@@ -1,0 +1,510 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Bousfield-Kan formula in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Bousfield-Kan formula
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#particular_implementations_in_model_categories">Particular Implementations in Model Categories</a></li>
+<ul>
+<li><a href="#via_geometric_realizations">Via Geometric Realizations</a></li>
+<li><a href="#via_functor_tensor_product">Via Functor Tensor Product</a></li>
+<li><a href="#framed">In Model Categories with Framings</a></li>
+</ul>
+<li><a href="#bousfieldkan_map">Bousfield–Kan map</a></li>
+<ul>
+<li><a href="#bousfieldkan_for_simplicial_objects">Bousfield–Kan for simplicial objects</a></li>
+<li><a href="#bousfieldkan_for_cosimplicial_objects">Bousfield–Kan for cosimplicial objects</a></li>
+</ul>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>Bousfield-Kan formula</em> (<a href="#BousfieldKan">BK72</a>) is a presentation of <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a> (or <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">dually</a>, <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limits</a>) in <a class="existingWikiWord" href="../../../../../../../missing.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-categories</a> (i.e., <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimits</a>) in terms of <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproducts</a> and <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a> of <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial objects</a>.</p>
+<p>In ordinary <a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">category theory</a>, the <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a> of a <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagram</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>I</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">F \colon I\to C</annotation></semantics></math> may be computed as a <a class="existingWikiWord" href="../../../../../6/7/7/0/776/content.html">coequalizer</a> of the <a class="existingWikiWord" href="../../../../../9/6/3/0/369/content.html">parallel pair</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><msub><mi>i</mi> <mn>0</mn></msub><mo>→</mo><msub><mi>i</mi> <mn>1</mn></msub></mrow></munder><mi>F</mi><msub><mi>i</mi> <mn>0</mn></msub><mo>⇉</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>F</mi><mi>i</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \coprod_{i_{0}\to i_{1}}F i_{0}
+    \rightrightarrows
+  \coprod_{i}F i
+  \,.
+
+</annotation></semantics></math></div>
+<p>When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category, we need to take “higher data” into account. So we take the <a class="existingWikiWord" href="../../../../4/4/0/447/content.html">geometric realization</a> (i.e., <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Delta^{op}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/5/6/1/1654/content.html">indexed colimit</a>) of the <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>(</mo><mi>⋯</mi><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><msub><mi>i</mi> <mn>0</mn></msub><mo>→</mo><msub><mi>i</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>i</mi> <mn>2</mn></msub></mrow></munder><mi>F</mi><msub><mi>i</mi> <mn>0</mn></msub><mo>⇛</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><msub><mi>i</mi> <mn>0</mn></msub><mo>→</mo><msub><mi>i</mi> <mn>1</mn></msub></mrow></munder><mi>F</mi><msub><mi>i</mi> <mn>0</mn></msub><mo>⇉</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></munder><mi>F</mi><mi>i</mi><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  B_{\bullet}(\ast,I,F)
+  \;=\;
+  \left(
+      \cdots
+    \coprod_{i_{0}\to i_{1}\to i_{2}} F i_{0}
+      \Rrightarrow
+    \coprod_{i_{0}\to i_{1}} F i_{0}
+      \rightrightarrows
+    \coprod_{i\in I} F i
+  \right)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This can be formalized as follows: There is an “initial vertex” functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">init</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><msub><mi>Δ</mi> <mrow><mo stretchy="false">/</mo><mi>I</mi></mrow></msub><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>→</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">\mathrm{init} \colon (\Delta_{/I})^{op}\to I</annotation></semantics></math> from the <a class="existingWikiWord" href="../../../../../5/2/3/0/325/content.html">opposite</a> of the <a class="existingWikiWord" href="../../../../../4/4/3/1/1344/content.html">category of simplices</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math>, which is <a class="existingWikiWord" href="../../../../../0/8/6/3/3680/content.html">homotopy final</a>. Thus,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">colim</mi> <mi>I</mi></msub><mi>F</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">colim</mi> <mrow><mo stretchy="false">(</mo><msub><mi>Δ</mi> <mrow><mo stretchy="false">/</mo><mi>I</mi></mrow></msub><msup><mo stretchy="false">)</mo> <mi>op</mi></msup></mrow></msub><mo stretchy="false">(</mo><mi>F</mi><mo>∘</mo><mi mathvariant="normal">init</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathrm{colim}_{I} F
+  \;\simeq\;
+  \mathrm{colim}_{(\Delta_{/I})^{op}}(F\circ\mathrm{init})
+  \,.
+
+</annotation></semantics></math></div>
+<p>The simplicial object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B_{\bullet}(\ast,I,F)</annotation></semantics></math> is just the <a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">left Kan extension</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>∘</mo><mi mathvariant="normal">init</mi></mrow><annotation encoding="application/x-tex">F\circ\mathrm{init}</annotation></semantics></math> along the projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>Δ</mi> <mrow><mo stretchy="false">/</mo><mi>I</mi></mrow></msub><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>→</mo><msup><mi>Δ</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">(\Delta_{/I})^{op}\to\Delta^{op}</annotation></semantics></math>, so we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">colim</mi> <mrow><mo stretchy="false">(</mo><msub><mi>Δ</mi> <mrow><mo stretchy="false">/</mo><mi>I</mi></mrow></msub><msup><mo stretchy="false">)</mo> <mi>op</mi></msup></mrow></msub><mo stretchy="false">(</mo><mi>F</mi><mo>∘</mo><mi mathvariant="normal">init</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi mathvariant="normal">colim</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msub><msub><mi>B</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathrm{colim}_{(\Delta_{/I})^{op}}  (F\circ\mathrm{init})
+    \simeq
+  \mathrm{colim}_{\Delta^{op}}B_{\bullet}(\ast,I,F)
+  \,.
+
+</annotation></semantics></math></div>
+<h2 id="particular_implementations_in_model_categories">Particular Implementations in Model Categories</h2>
+<h3 id="via_geometric_realizations">Via Geometric Realizations</h3>
+<p>In a <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimits</a> indexed by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Delta^{op}</annotation></semantics></math> are modeled by <a class="existingWikiWord" href="../../../../4/4/0/447/content.html">geometric realization</a> (see <a href="../../../../../4/1/6/4/4614/content.html#RelationToHomotopyColimit">there</a>). Therefore, the Bousfield-Kan formula for the <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimit</a> of a (pointwise <a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant</a>) diagram <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>I</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">F \colon I\to C</annotation></semantics></math> is computed by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">hocolim</mi> <mi>I</mi></msub><mi>F</mi><mo>≃</mo><mrow><mo maxsize="1.2em" minsize="1.2em">|</mo><msub><mi>B</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">|</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  {\mathrm {hocolim}}_{I}F
+    \simeq
+  {\big|B_{\bullet}(\ast,I,F)\big|}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Textbook account includes <a href="#Riehl14">Rie14, Chapter 5</a>.</p>
+<h3 id="via_functor_tensor_product">Via Functor Tensor Product</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>I</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">F \colon I\to C</annotation></semantics></math> be a (pointwise cofibrant) diagram in a <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model category</a>. Some <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a> calculus shows <a href="#Riehl14">Rie14, 6.6.1</a> that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">|</mo><msub><mi>B</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mi>I</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">|</mo><mspace width="thickmathspace"></mspace><mo>≅</mo><mspace width="thickmathspace"></mspace><msup><mo>∫</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msup><mi>N</mi><mo stretchy="false">(</mo><msub><mi>I</mi> <mrow><mo stretchy="false">/</mo><mi>i</mi></mrow></msub><mo stretchy="false">)</mo><mo>⊗</mo><mi>F</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="mediummathspace" rspace="mediummathspace">≕</mo><mspace width="thickmathspace"></mspace><mi>N</mi><mo stretchy="false">(</mo><msub><mi>I</mi> <mrow><mo stretchy="false">/</mo><mo>−</mo></mrow></msub><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mi>I</mi></msub><mi>F</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \big\vert
+    B_{\bullet}(\ast,I,F)
+  \big\vert
+   \;\cong\;
+  \int^{i\in I}N(I_{/i})\otimes F(i)
+    \;\eqqcolon\;
+  N(I_{/-})\otimes_{I}F
+  \,.
+
+</annotation></semantics></math></div>
+<p>The right hand side is also called the <em>Bousfield-Kan formula</em>.</p>
+<h3 id="framed">In Model Categories with Framings</h3>
+<p>A cosimplicial <a href="../../../../../9/6/9/1/1969/content.html#Framings">framing</a> on a <a class="existingWikiWord" href="../../../../5/2/0/257/content.html">model category</a> is roughly a functorial choice of cosimplicial <a class="existingWikiWord" href="../../../../../9/0/5/4/4509/content.html">resolutions</a> <a href="#Hir03">Hir03, Chapter 16</a>. With this data, we can formally mimic the Bousfield-Kan formula, and this is adopted as the definition of homotopy colimits in <a href="#Hir03">Hir03, Chapter19</a>; that this approach is equivalent to the ordinary notion of homotopy colimits is established in <a href="#AO23">AO23</a> (for combinatorial model categories) and <a href="#Ara23">Ara23, Theorem 1.16</a> (for general model categories).</p>
+<h2 id="bousfieldkan_map">Bousfield–Kan map</h2>
+<p>In a <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model category</a> (this can be generalized, as discussed <a href="#framed">above</a>), there are two formulas for <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimits</a> of <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial objects</a>: The Bousfield–Kan formula, and geometric realization. The Bousfield–Kan map(s) compare these formulas.</p>
+<p>More precisely, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be an (<a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>,<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo>=</mo><mo>×</mo></mrow><annotation encoding="application/x-tex">\otimes = \times</annotation></semantics></math>)-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> and write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo>:</mo><mi>Δ</mi><mo>→</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">
+  \Delta : \Delta \to Set^{\Delta^{op}}
+
+</annotation></semantics></math></div>
+<p>for the canonical cosimplicial <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> (the <a class="existingWikiWord" href="../../../../../9/1/5/0/519/content.html">adjunct</a> of the <a class="existingWikiWord" href="../../../../../6/2/3/0/326/content.html">hom-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mi>op</mi></msup><mo>×</mo><mi>Δ</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">\Delta^{op} \times \Delta \to Set</annotation></semantics></math>).</p>
+<p>Write furthermore <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">/</mo><mo>−</mo><mo stretchy="false">)</mo><mo>:</mo><mi>Δ</mi><mo>→</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">N(\Delta/-) : \Delta \to Set^{\Delta^{op}}</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../0/9/2/4/4290/content.html">fat simplex</a> functor, the <a class="existingWikiWord" href="../../../../../3/5/2/6/16253/content.html">cosimplicial</a> <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> which assigns to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[n]</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> of the <a class="existingWikiWord" href="../../../../../8/4/7/0/748/content.html">overcategory</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo stretchy="false">/</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Delta / [n]</annotation></semantics></math>.</p>
+<p>The <strong>Bousfield–Kan map of cosimplicial simplicial maps</strong> is a canonical morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Δ</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⟶</mo><mi>Δ</mi></mrow><annotation encoding="application/x-tex">
+  \varphi 
+  \,\colon\, 
+  N\big(\Delta/(-)\big) 
+   \longrightarrow 
+  \Delta
+
+</annotation></semantics></math></div>
+<p>of cosimplicial simplicial sets.</p>
+<p>This can also be regarded as a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><msup><mi>Δ</mi> <mi>op</mi></msup><msup><mo maxsize="1.2em" minsize="1.2em">)</mo> <mi>op</mi></msup><mo>⟶</mo><mi>Δ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \varphi 
+    \,\colon\, 
+  N\big(
+    (-)/\Delta^{op}
+  \big)^{op} 
+    \longrightarrow 
+  \Delta
+  \,.
+
+</annotation></semantics></math></div>
+<p>This morphism induces the following morphisms between (co)<a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial objects</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<h3 id="bousfieldkan_for_simplicial_objects">Bousfield–Kan for simplicial objects</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msup><mi>Δ</mi> <mo lspace="0em" rspace="thinmathspace">op</mo></msup><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">X \,\colon\, \Delta^\op \to C</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, the <strong>realization</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>X</mi><msub><mo>⊗</mo> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msub><mi>Δ</mi><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><msup><mo>∫</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>∈</mo><mi>Δ</mi></mrow></msup><msub><mi>X</mi> <mi>n</mi></msub><mo>⊗</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  {|X|} 
+    \;\coloneqq\; 
+  X \otimes_{\Delta^{op}} \Delta 
+    \;\coloneqq\; 
+  \int^{[n] \in \Delta} 
+    X_n \otimes \Delta^n
+  \,,
+
+</annotation></semantics></math></div>
+<p>where in the integrand we have the <em><a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copower</a></em> (or <em><a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">tensoring</a></em>) of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> by <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>.</p>
+<p>Here the <strong>Bousfield–Kan</strong> map is the morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><msub><mo>⊗</mo> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msub><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><msup><mi>Δ</mi> <mi>op</mi></msup><msup><mo maxsize="1.2em" minsize="1.2em">)</mo> <mi>op</mi></msup><mover><mo>⟶</mo><mrow><msub><mi>Id</mi> <mi>X</mi></msub><msub><mo>⊗</mo> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msub><mi>ϕ</mi></mrow></mover><mi>X</mi><msub><mo>⊗</mo> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msub><mi>Δ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  X \otimes_{\Delta^{op}} 
+   N\big((-)/\Delta^{op}\big)^{op}
+  \stackrel
+    {Id_X \otimes_{\Delta^{op}} \phi }
+    {\longrightarrow}
+  X \otimes_{\Delta^{op}} \Delta
+  \,.
+
+</annotation></semantics></math></div>
+<h3 id="bousfieldkan_for_cosimplicial_objects">Bousfield–Kan for cosimplicial objects</h3>
+<p>There is also the Bousfield–Kan map for cosimplicial objects:</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>Δ</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">X \,\colon\, \Delta \to C</annotation></semantics></math> any cosimplicial object, its <strong>totalization</strong> is the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/1/8/0/816/content.html">weighted limit</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Tot</mi><mi>X</mi><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><msup><mi>lim</mi> <mi>Δ</mi></msup><mi>X</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msub><mo>∫</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo>∈</mo><mi>Δ</mi><mo stretchy="false">]</mo></mrow></msub><msubsup><mi>X</mi> <mi>n</mi> <mrow><msup><mi>Δ</mi> <mi>n</mi></msup></mrow></msubsup><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  Tot X 
+    \;\coloneqq\; 
+  lim^\Delta X 
+    \;\simeq\; 
+  \int_{[n \in \Delta]} X_n^{\Delta^n}
+  \,,
+
+</annotation></semantics></math></div>
+<p>where in the integrand we have the <a class="existingWikiWord" href="../../../../../6/1/4/0/416/content.html">power</a> or cotensor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>X</mi> <mi>n</mi> <mrow><msup><mi>Δ</mi> <mi>n</mi></msup></mrow></msubsup><mo>=</mo><mo>⋔</mo><mo stretchy="false">(</mo><mi>Δ</mi><mo>,</mo><msub><mi>X</mi> <mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X_n^{\Delta^n} = \pitchfork(\Delta, X_n)</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> by <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>.</p>
+<p>Here the <strong>Bousfield–Kan</strong> morphism is the morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Tot</mi><mi>X</mi><mo>≃</mo><mi>hom</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><mi>hom</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo>,</mo><msub><mi>Id</mi> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow></mover><mi>hom</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Δ</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo lspace="0em" rspace="thinmathspace">ig</mo><mo stretchy="false">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>X</mi><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Tot X \simeq hom(\Delta,X) 
+    \stackrel
+      {hom(\phi,Id_X)} 
+      {\longrightarrow}  
+  hom\Big(
+    N\big(\Delta/(-)\ig)
+    ,\, 
+    X
+    \Big)
+  \,.
+
+</annotation></semantics></math></div>
+<div class="un_theorem">
+<h6 id="theorem">Theorem</h6>
+<p>If the <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/6/1/1/1169/content.html">Reedy</a>-<a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant</a> then its Bousfield–Kan map is a natural <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a>.</p>
+<p>If the co-<a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/6/1/1/1169/content.html">Reedy fibrant</a> then its Bousfield–Kan map is a natural weak equivalence.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>This can be proven for instance using <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimits</a> in the <a class="existingWikiWord" href="../../../../../6/4/9/1/1946/content.html">Reedy model structure</a>. Details are at <em><a href="../../../../../6/4/9/1/1946/content.html#SimplexCategory">Reedy model structure – over the simplex category</a></em>.</p>
+</div>
+<div class="un_example">
+<h6 id="example">Example</h6>
+<p>When the co<a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is degreewise fibrant, then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>lim</mi> <mrow><mi>N</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></msup><mi>X</mi><mo>≃</mo><mi>holim</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">
+  lim^{N(\Delta/(-))} X
+  \simeq holim X
+
+</annotation></semantics></math></div>
+<p>computes the <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy limit</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../../6/1/8/0/816/content.html">weighted limit</a> (as explained there). Then the above theorem says that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is Reedy fibrant, then the homotopy limit is already computed by the totalization</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>holim</mi><mi>X</mi><mo>≃</mo><msup><mi>lim</mi> <mi>Δ</mi></msup><mi>X</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">holim X \simeq lim^\Delta X.</annotation></semantics></math></div></div>
+<h2 id="references">References</h2>
+<p>The Bousfield-Kan formula was introduced in:</p>
+<ul>
+<li id="BK72"><a class="existingWikiWord" href="../../../../../3/9/6/6/6693/content.html">Aldridge K. Bousfield</a> and <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel M. Kan</a>, Chapter IX in: <em><a class="existingWikiWord" href="../../../../../2/3/1/3/23132/content.html">Homotopy Limits, Completions and Localizations</a></em>, Lecture Notes in Mathematics 304 (1972; 1987), Springer (<a href="https://link.springer.com/book/10.1007/978-3-540-38117-4">doi:10.1007/978-3-540-38117-4</a>)</li>
+</ul>
+<p>Discussion in <a class="existingWikiWord" href="../../../../5/2/0/257/content.html">model categories</a>:</p>
+<ul>
+<li id="Hir03">
+<p><a class="existingWikiWord" href="../../../../../3/9/3/1/21393/content.html">Philip Hirschhorn</a>, <em><a class="existingWikiWord" href="../../../../../8/7/0/2/22078/content.html">Model Categories and Their Localizations</a></em>, AMS Math. Survey and Monographs <strong>99</strong> (2002) [<a href="https://bookstore.ams.org/surv-99-s/">ISBN:978-0-8218-4917-0</a>, <a href="http://www.gbv.de/dms/goettingen/360115845.pdf">pdf toc</a>, <a href="https://people.math.rochester.edu/faculty/doug/otherpapers/pshmain.pdf">pdf</a>, <a href="http://www.maths.ed.ac.uk/~aar/papers/hirschhornloc.pdf">pdf</a>]</p>
+<blockquote>
+<p>The Bousfield–Kan map(s) are on p. 397, def. 18.7.1 and def. 18.7.3.</p>
+<p><em>Realization</em> and <em>totalization</em> are defs 18.6.2 and 18.6.3 on p. 395.</p>
+<p>Beware that this book writes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> for the nerve!</p>
+</blockquote>
+</li>
+</ul>
+<p>Discussions in <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model categories</a>:</p>
+<ul>
+<li id="Rie16"><a class="existingWikiWord" href="../../../../../4/6/3/0/364/content.html">Emily Riehl</a>, Chapter 5 in: <em><a class="existingWikiWord" href="../../../../4/0/3/13047/content.html">Categorical Homotopy Theory</a></em>, Cambridge University Press (2014) [<a href="https://doi.org/10.1017/CBO9781107261457">doi:10.1017/CBO9781107261457</a>, <a href="http://www.math.jhu.edu/~eriehl/cathtpy.pdf">pdf</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li id="AO23">
+<p><a class="existingWikiWord" href="../../../../7/0/3/23077/content.html">Sergey Arkhipov</a>, <a class="existingWikiWord" href="../../../../../6/7/0/3/23076/content.html">Sebastian Ørsted</a>: <em>Homotopy (co)limits via homotopy (co)ends in general combinatorial model categories</em>, Appl. Categ. Structures <strong>31</strong> 6 (2023) [<a href="https://doi.org/10.1007/s10485-023-09747-8">doi:10.1007/s10485-023-09747-8</a>]</p>
+</li>
+<li id="Ara23">
+<p><a class="existingWikiWord" href="../../../../../5/8/6/6/26685/content.html">Kensuke Arakawa</a>; Section 1 of: <em>Homotopy Limits and Homotopy Colimits of Chain Complexes</em>, J. Pure Appl. Algebra <strong>230</strong> 4 (2026) 108232 [<a href="https://doi.org/10.1016/j.jpaa.2026.108232">doi:10.1016/j.jpaa.2026.108232</a>, <a href="https://arxiv.org/abs/2310.00201">arXiv:2310.00201</a>]</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,705 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      generalized homology in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      generalized homology
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#reduced_homology">Reduced homology</a></li>
+<li><a href="#unreduced_homology">Unreduced homology</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#expression_by_ordinary_homology_via_atiyahhirzebruch_spectral_sequence">Expression by ordinary homology via Atiyah-Hirzebruch spectral sequence</a></li>
+<li><a href="#WhiteheadTheorem">Whitehead theorem</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>A <em>generalized homology theory</em> is a certain <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> from suitable <a class="existingWikiWord" href="../../../../7/3/0/374/content.html">topological spaces</a> to <a class="existingWikiWord" href="../../../../../0/7/1/7/17170/content.html">graded abelian groups</a> which satisfies most, but not all, of the abstract properties of <a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a> functors (e.g. <a class="existingWikiWord" href="../../../../../5/8/2/5/5285/content.html">singular homology</a>).</p>
+<p>By the <a class="existingWikiWord" href="../../../../../1/3/4/2/2431/content.html">Brown representability theorem</a>, under certain conditions every <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectrum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> is the coefficient object of a <a class="existingWikiWord" href="../../../../../1/2/7/1/1721/content.html">generalized</a> <a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">cohomology theory</a> and <a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">S-dually</a> of a generalized homology theory. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mi>H</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">K = H R</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../0/8/6/1/1680/content.html">Eilenberg-MacLane spectrum</a> this reduces to <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">ordinary homology</a>.</p>
+<p>See at <em><a class="existingWikiWord" href="../../../../../1/2/7/1/1721/content.html">generalized (Eilenberg-Steenrod) cohomology</a></em> for more.</p>
+<h2 id="definition">Definition</h2>
+<h3 id="reduced_homology">Reduced homology</h3>
+<p>Throughout, write <a class="existingWikiWord" href="../../../../3/1/0/134/content.html">Top</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow> <mi>CW</mi></msub></mrow><annotation encoding="application/x-tex">{}_{CW}</annotation></semantics></math> for the category of <a class="existingWikiWord" href="../../../../7/3/0/374/content.html">topological spaces</a> <a class="existingWikiWord" href="../../../../../9/2/6/1/1629/content.html">homeomorphic</a> to <a class="existingWikiWord" href="../../../../8/3/0/384/content.html">CW-complexes</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Top</mi> <mi>CW</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">Top^{\ast/}_{CW}</annotation></semantics></math> for the corresponding category of <a class="existingWikiWord" href="../../../../../2/7/4/0/10472/content.html">pointed topological spaces</a>.</p>
+<p>Recall that <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Top</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msup></mrow><annotation encoding="application/x-tex">Top^{\ast/}</annotation></semantics></math> are computed as colimits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math> after adjoining the base point and its inclusion maps to the given diagram</p>
+<div class="num_example" id="WedgeSumAsCoproduct">
+<h6 id="example">Example</h6>
+<p>The <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a> in <a class="existingWikiWord" href="../../../../../2/7/4/0/10472/content.html">pointed topological spaces</a> is the <em><a class="existingWikiWord" href="../../../../../8/5/9/0/958/content.html">wedge sum</a></em>, denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∨</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub><msub><mi>X</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\vee_{i \in I} X_i</annotation></semantics></math>.</p>
+</div>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mo>≔</mo><msup><mi>S</mi> <mn>1</mn></msup><mo>∧</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msubsup><mi>Top</mi> <mi>CW</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup><mo>⟶</mo><msubsup><mi>Top</mi> <mi>CW</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">
+  \Sigma \coloneqq S^1 \wedge (-)
+  \;\colon\;
+  Top^{\ast/}_{CW} \longrightarrow Top^{\ast/}_{CW}
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../7/3/2/1/1237/content.html">reduced suspension</a> functor.</p>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ab</mi> <mi>ℤ</mi></msup></mrow><annotation encoding="application/x-tex">Ab^{\mathbb{Z}}</annotation></semantics></math> for the category of <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integer</a>-<a class="existingWikiWord" href="../../../../../0/7/1/7/17170/content.html">graded abelian groups</a>.</p>
+<div class="num_defn" id="ReducedGeneralizedHomology">
+<h6 id="definition_2">Definition</h6>
+<p>A <strong>reduced homology theory</strong> is a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><msubsup><mi>Top</mi> <mi>CW</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>Ab</mi> <mi>ℤ</mi></msup></mrow><annotation encoding="application/x-tex">
+  \tilde E_\bullet 
+   \;\colon\; 
+  (Top^{\ast/}_{CW}) \longrightarrow Ab^{\mathbb{Z}}
+
+</annotation></semantics></math></div>
+<p>from the category of <a class="existingWikiWord" href="../../../../../2/7/4/0/10472/content.html">pointed topological spaces</a> (<a class="existingWikiWord" href="../../../../8/3/0/384/content.html">CW-complexes</a>) to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/7/1/7/17170/content.html">graded abelian groups</a> (“<a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology groups</a>”), in components</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>X</mi><mover><mo>⟶</mo><mi>f</mi></mover><mi>Y</mi><mo stretchy="false">)</mo><mo>↦</mo><mo stretchy="false">(</mo><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><msub><mi>f</mi> <mo>*</mo></msub></mrow></mover><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \tilde E _\bullet
+    \;\colon\; 
+  (X \stackrel{f}{\longrightarrow} Y)
+    \mapsto
+  (\tilde E_\bullet(X) 
+    \stackrel{f_\ast}{\longrightarrow}
+  \tilde E_\bullet(Y))
+  \,,
+
+</annotation></semantics></math></div>
+<p>and equipped with a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> of degree +1, to be called the <strong><a class="existingWikiWord" href="../../../../../0/2/8/8/8820/content.html">suspension isomorphism</a></strong>, of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mover><mo>⟶</mo><mo>≃</mo></mover><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Σ</mi><mo>−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \sigma
+    \;\colon\;
+  \tilde E_\bullet(-) 
+    \overset{\simeq}{\longrightarrow} 
+  \tilde E_{\bullet +1}(\Sigma -) 
+
+</annotation></semantics></math></div>
+<p>such that:</p>
+<ol>
+<li>
+<p><strong>(<a class="existingWikiWord" href="../../../../../8/7/6/0/10678/content.html">homotopy invariance</a>)</strong> If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>f</mi> <mn>2</mn></msub><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>⟶</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f_1,f_2 \colon X \longrightarrow Y</annotation></semantics></math> are two morphisms of pointed topological spaces such that there is a (base point preserving) <a class="existingWikiWord" href="../../../../../8/4/7/1/1748/content.html">homotopy</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>1</mn></msub><mo>≃</mo><msub><mi>f</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">f_1 \simeq f_2</annotation></semantics></math> between them, then the induced <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphisms</a> of abelian groups are <a class="existingWikiWord" href="../../../../../7/0/2/0/207/content.html">equal</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>1</mn></msub><msub><mo></mo><mo>*</mo></msub><mo>=</mo><msub><mi>f</mi> <mn>2</mn></msub><msub><mo></mo><mo>*</mo></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f_1_\ast = f_2_\ast
+  \,.
+
+</annotation></semantics></math></div></li>
+<li id="ReducedExactnessAxiom">
+<p><strong>(exactness)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">i \colon A \hookrightarrow X</annotation></semantics></math> an inclusion of pointed topological spaces, with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>⟶</mo><mi>Cone</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">j \colon X \longrightarrow Cone(i)</annotation></semantics></math> the induced <a class="existingWikiWord" href="../../../../8/0/1/1084/content.html">mapping cone</a>, then this gives an <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">exact sequence</a> of graded abelian groups</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><msub><mi>i</mi> <mo>*</mo></msub></mrow></mover><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><msub><mi>j</mi> <mo>*</mo></msub></mrow></mover><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Cone</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\tilde E_\bullet(A)
+\overset{i_\ast}{\longrightarrow} 
+\tilde E_\bullet(X)
+\overset{j_\ast}{\longrightarrow}
+\tilde E_\bullet(Cone(i)) 
+\,.
+
+</annotation></semantics></math></div></li>
+</ol>
+<p>We say <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">\tilde E_\bullet</annotation></semantics></math> is <strong>additive</strong> if in addition</p>
+<ul>
+<li>
+<p><strong>(<a class="existingWikiWord" href="../../../../../8/2/3/7/17328/content.html">wedge axiom</a>)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>X</mi> <mi>i</mi></msub><msub><mo stretchy="false">}</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\{X_i\}_{i \in I} </annotation></semantics></math> any set of pointed CW-complexes, then the canonical morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⊕</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>⟶</mo><msup><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msup><mo stretchy="false">(</mo><msub><mo>∨</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub><msub><mi>X</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \oplus_{i \in I} \tilde E_\bullet(X_i)
+    \longrightarrow
+  \tilde E^\bullet(\vee_{i \in I} X_i) 
+
+</annotation></semantics></math></div>
+<p>from the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> of the value on the summands to the value on the <a class="existingWikiWord" href="../../../../../8/5/9/0/958/content.html">wedge sum</a>, example <a class="maruku-ref" href="#WedgeSumAsCoproduct"></a>, is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+</li>
+</ul>
+<p>We say <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">\tilde E_\bullet</annotation></semantics></math> is <strong>ordinary</strong> if its value on the <a class="existingWikiWord" href="../../../../../9/6/9/6/16969/content.html">0-sphere</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>0</mn></msup></mrow><annotation encoding="application/x-tex">S^0</annotation></semantics></math> is concentrated in degree 0:</p>
+<ul>
+<li><strong>(Dimension)</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mrow><mo>•</mo><mo>≠</mo><mn>0</mn></mrow></msub><mo stretchy="false">(</mo><msup><mi>𝕊</mi> <mn>0</mn></msup><mo stretchy="false">)</mo><mo>≃</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\tilde E_{\bullet\neq 0}(\mathbb{S}^0) \simeq 0</annotation></semantics></math>.</li>
+</ul>
+<p>A <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> of reduced cohomology theories</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo>⟶</mo><msub><mover><mi>F</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">
+  \eta \;\colon\; \tilde E_\bullet \longrightarrow \tilde F_\bullet
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> between the underlying functors which is compatible with the suspension isomorphisms in that all the following <a class="existingWikiWord" href="../../../../../5/7/7/0/775/content.html">squares commute</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msub><mi>η</mi> <mi>X</mi></msub></mrow></mover></mtd> <mtd><msub><mover><mi>F</mi><mo stretchy="false">˜</mo></mover> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>σ</mi> <mi>E</mi></msub></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>σ</mi> <mi>F</mi></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msub><mover><mi>E</mi><mo stretchy="false">˜</mo></mover> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Σ</mi><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msub><mi>η</mi> <mrow><mi>Σ</mi><mi>X</mi></mrow></msub></mrow></mover></mtd> <mtd><msub><mover><mi>F</mi><mo stretchy="false">˜</mo></mover> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Σ</mi><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    \tilde E_\bullet(X) &amp;\overset{\eta_X}{\longrightarrow}&amp;  \tilde F_\bullet(X)
+    \\
+    {}^{\mathllap{\sigma_E}}\downarrow &amp;&amp; \downarrow^{\mathrlap{\sigma_F}}
+    \\
+    \tilde E_{\bullet + 1}(\Sigma X) 
+    &amp;\overset{\eta_{\Sigma X}}{\longrightarrow}&amp;
+    \tilde F_{\bullet + 1}(\Sigma X)
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<h3 id="unreduced_homology">Unreduced homology</h3>
+<p>In the following a <em>pair</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,A)</annotation></semantics></math> refers to a <a class="existingWikiWord" href="../../../../../3/9/0/3/3093/content.html">subspace</a> inclusion of <a class="existingWikiWord" href="../../../../7/3/0/374/content.html">topological spaces</a> (<a class="existingWikiWord" href="../../../../8/3/0/384/content.html">CW-complexes</a>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \hookrightarrow X</annotation></semantics></math>. Whenever only one space is mentioned, the subspace is assumed to be the <a class="existingWikiWord" href="../../../../../1/6/4/0/461/content.html">empty set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, \emptyset)</annotation></semantics></math>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Top</mi> <mi>CW</mi> <mo>↪</mo></msubsup></mrow><annotation encoding="application/x-tex">Top_{CW}^{\hookrightarrow}</annotation></semantics></math> for the category of such pairs (the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> of the <a class="existingWikiWord" href="../../../../0/4/0/404/content.html">arrow category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Top</mi> <mi>CW</mi></msub></mrow><annotation encoding="application/x-tex">Top_{CW}</annotation></semantics></math> on the inclusions). We identify <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Top</mi> <mi>CW</mi></msub><mo>↪</mo><msubsup><mi>Top</mi> <mi>CW</mi> <mo>↪</mo></msubsup></mrow><annotation encoding="application/x-tex">Top_{CW} \hookrightarrow Top_{CW}^{\hookrightarrow}</annotation></semantics></math> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \mapsto (X,\emptyset)</annotation></semantics></math>.</p>
+<div class="num_defn" id="GeneralizedHomologyTheory">
+<h6 id="definition_3">Definition</h6>
+<p>A <strong>homology theory</strong> (unreduced, <a class="existingWikiWord" href="../../../../../5/9/2/3/3295/content.html">relative</a>) is a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub><mo>:</mo><mo stretchy="false">(</mo><msubsup><mi>Top</mi> <mi>CW</mi> <mo>↪</mo></msubsup><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>Ab</mi> <mi>ℤ</mi></msup></mrow><annotation encoding="application/x-tex">
+  E_\bullet : (Top_{CW}^{\hookrightarrow}) \longrightarrow Ab^{\mathbb{Z}}
+
+</annotation></semantics></math></div>
+<p>to the category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/7/1/7/17170/content.html">graded abelian groups</a>, as well as a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> of degree +1, to be called the <strong><a class="existingWikiWord" href="../../../../../6/9/5/4/4596/content.html">connecting homomorphism</a></strong>, of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi> <mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>E</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>⟶</mo><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \delta_{(X,A)} 
+    \;\colon\;  
+  E_{\bullet + 1}(X, A)
+    \longrightarrow
+  E_\bullet(A, \emptyset)  
+  \,.
+
+</annotation></semantics></math></div>
+<p>such that:</p>
+<ol>
+<li>
+<p><strong>(homotopy invariance)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><msub><mi>X</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>A</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><msub><mi>X</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>A</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f \colon (X_1,A_1) \to (X_2,A_2)</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a> of pairs, then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>A</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mover><mo>⟶</mo><mo>≃</mo></mover><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>A</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  E_\bullet(f) 
+   \;\colon\; 
+  E_\bullet(X_1,A_1) \stackrel{\simeq}{\longrightarrow} E_\bullet(X_2,A_2)
+
+</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>;</p>
+</li>
+<li id="ExactnessUnreduced">
+<p><strong>(exactness)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \hookrightarrow X</annotation></semantics></math> the induced sequence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>→</mo><msub><mi>E</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mi>δ</mi></mover><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>⟶</mo><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⟶</mo><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex"> 
+\cdots 
+\to 
+E_{n+1}(X, A) 
+\stackrel{\delta}{\longrightarrow} 
+E_n(A) 
+\longrightarrow
+E_n(X) 
+\longrightarrow 
+E_n(X, A) 
+\to 
+\cdots 
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">long exact sequence</a> of <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian groups</a>.</p>
+</li>
+<li id="excision">
+<p><strong>(<a class="existingWikiWord" href="../../../../../2/5/0/8/8052/content.html">excision</a>)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>↪</mo><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U \hookrightarrow A \hookrightarrow X</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>U</mi><mo>¯</mo></mover><mo>⊂</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\overline{U} \subset Int(A)</annotation></semantics></math>, then the natural inclusion of the pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mi>A</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mo>↪</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i \colon (X-U, A-U) \hookrightarrow (X, A)</annotation></semantics></math> induces an isomorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mi>A</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mo>≃</mo></mover><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+E_\bullet(i) 
+\;\colon\; 
+E_n(X-U, A-U)  
+\overset{\simeq}{\longrightarrow}
+E_n(X, A)
+
+</annotation></semantics></math></div></li>
+</ol>
+<p>We say <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">E_\bullet</annotation></semantics></math> is <strong>additive</strong> if it takes <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproducts</a> to <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sums</a>:</p>
+<ul>
+<li>
+<p><strong>(additivity)</strong> If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>i</mi></msub><mo>,</mo><msub><mi>A</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, A) = \coprod_i (X_i, A_i)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a>, then the canonical comparison morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⊕</mo> <mi>i</mi></msub><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>i</mi></msub><mo>,</mo><msub><mi>A</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mover><mo>⟶</mo><mo>≃</mo></mover><msub><mi>E</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \oplus_i E_n(X_i, A_i) \overset{\simeq}{\longrightarrow} E_n(X, A)
+
+</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>from the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> of the value on the summands, to the value on the total pair.</p>
+</li>
+</ul>
+<p>We say <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">E_\bullet</annotation></semantics></math> is <strong>ordinary</strong> if its value on the point is concentrated in degree 0</p>
+<ul>
+<li><strong>(Dimension)</strong>: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mrow><mo>•</mo><mo>≠</mo><mn>0</mn></mrow></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">E_{\bullet \neq 0}(\ast,\emptyset) = 0</annotation></semantics></math>.</li>
+</ul>
+<p>A <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> of unreduced homology theories</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>E</mi> <mo>•</mo></msub><mo>⟶</mo><msub><mi>F</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">
+  \eta \;\colon\; E_\bullet \longrightarrow F_\bullet
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> of the underlying functors that is compatible with the connecting homomorphisms, hence such that all these <a class="existingWikiWord" href="../../../../../5/7/7/0/775/content.html">squares commute</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>E</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msub><mi>η</mi> <mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></msub></mrow></mover></mtd> <mtd><msub><mi>F</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>δ</mi> <mi>E</mi></msub></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>δ</mi> <mi>F</mi></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msub><mi>η</mi> <mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo></mrow></msub></mrow></mover></mtd> <mtd><msub><mi>F</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+     E_{\bullet +1}(X,A) 
+       &amp;\overset{\eta_{(X,A)}}{\longrightarrow}&amp;
+     F_{\bullet +1}(X,A)
+     \\
+     {}^{\mathllap{\delta_E}}\downarrow &amp;&amp; \downarrow^{\mathrlap{\delta_F}}
+     \\
+     E_\bullet(A,\emptyset) &amp;\overset{\eta_{(A,\emptyset)}}{\longrightarrow}&amp; F_\bullet(A,\emptyset)
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_defn" id="AlternativeFormulationOfExcisionAxiom">
+<h6 id="lemma">Lemma</h6>
+<p>The excision axiom in def. <a class="maruku-ref" href="#GeneralizedHomologyTheory"></a> is equivalent to the following statement:</p>
+<p>For all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A,B \hookrightarrow X</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>A</mi><mo>∪</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">X = A \cup B</annotation></semantics></math>, then the inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false">)</mo><mo>⟶</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  i \colon (A, A \cap B) \longrightarrow (X,B) 
+
+</annotation></semantics></math></div>
+<p>induces an isomorphism,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>*</mo></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mo>≃</mo></mover><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  i_\ast
+    \;\colon\;
+  E_\bullet(A, A \cap B)
+    \overset{\simeq}{\longrightarrow}
+  E_\bullet(X, B)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(e.g <a href="#Switzer75">Switzer 75, 7.2, 7.5</a>)</p>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>First consider the statement under the condition that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = Int(A) \cup Int(B)</annotation></semantics></math>.</p>
+<p>In one direction, suppose that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>•</mo></msup></mrow><annotation encoding="application/x-tex">E^\bullet</annotation></semantics></math> satisfies the original excision axiom. Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A,B</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo lspace="0em" rspace="thinmathspace">Int</mo><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = \Int(A) \cup Int(B)</annotation></semantics></math>, set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>≔</mo><mi>X</mi><mo>−</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">U \coloneqq X-A</annotation></semantics></math> and observe that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mover><mi>U</mi><mo>¯</mo></mover></mtd> <mtd><mo>=</mo><mover><mrow><mi>X</mi><mo>−</mo><mi>A</mi></mrow><mo>¯</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>X</mi><mo>−</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>⊂</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+     \overline{U} 
+        &amp; = \overline{X-A} 
+     \\ &amp; = X- Int(A)
+     \\ &amp; \subset Int(B)
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>and that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (X-U, B-U) = (A, A \cap B)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Hence the excision axiom implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mo>≃</mo></mover><msup><mi>E</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">  E^\bullet(X, B) \overset{\simeq}{\longrightarrow} E^\bullet(A, A \cap B)</annotation></semantics></math>.</p>
+<p>Conversely, suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>•</mo></msup></mrow><annotation encoding="application/x-tex">E^\bullet</annotation></semantics></math> satisfies the alternative condition. Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>↪</mo><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U \hookrightarrow A \hookrightarrow X</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>U</mi><mo>¯</mo></mover><mo>⊂</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\overline{U} \subset Int(A)</annotation></semantics></math>, observe that we have a cover</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>Int</mi><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mover><mi>U</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo>∩</mo><mo lspace="0em" rspace="thinmathspace">Int</mo><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>⊃</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>∩</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>X</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+          Int(X-U) \cup Int(A) 
+      &amp; = (X - \overline{U}) \cap \Int(A)
+   \\ &amp; \supset (X - Int(A)) \cap Int(A)
+   \\ &amp; = X   
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>and that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mo>∩</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mi>A</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (X-U, (X-U) \cap A) = (X-U, A - U)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Hence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mi>A</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mo>≃</mo><msup><mi>E</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo>,</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>U</mi><mo stretchy="false">)</mo><mo>∩</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≃</mo><msup><mi>E</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  E^\bullet(X-U,A-U)
+  \simeq
+  E^\bullet(X-U, (X-U)\cap A)
+  \simeq
+  E^\bullet(X,A)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This shows the statement for the special case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>Int</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = Int(A)\cup Int(U)</annotation></semantics></math>. The general statement reduces to this by finding a suitable homotopy equivalence to a slightly larger covering pair (e.g <a href="#Switzer75">Switzer 75, 7.5</a>).</p>
+</div>
+<div class="num_prop" id="ExactSequenceOfATriple">
+<h6 id="proposition">Proposition</h6>
+<p><strong>(exact sequence of a triple)</strong></p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">E_\bullet</annotation></semantics></math> an unreduced generalized cohomology theory, def. <a class="maruku-ref" href="#GeneralizedHomologyTheory"></a>, then every inclusion of two consecutive subspaces</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>↪</mo><mi>Y</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">
+  Z \hookrightarrow Y \hookrightarrow X
+
+</annotation></semantics></math></div>
+<p>induces a <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">long exact sequence</a> of homology groups of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>→</mo><msub><mi>E</mi> <mi>q</mi></msub><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow></mrow></mover><msub><mi>E</mi> <mi>q</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow></mrow></mover><msub><mi>E</mi> <mi>q</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mover><mi>δ</mi><mo stretchy="false">¯</mo></mover></mover><msub><mi>E</mi> <mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo><mo>→</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">
+  \cdots
+   \to
+  E_q(Y,Z)
+    \stackrel{}{\longrightarrow}
+  E_q(X,Z)
+    \stackrel{}{\longrightarrow}
+  E_q(X,Y)
+    \stackrel{\bar \delta}{\longrightarrow}
+  E_{q-1}(Y,Z) 
+    \to
+  \cdots
+
+</annotation></semantics></math></div>
+<p>where</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>δ</mi><mo stretchy="false">¯</mo></mover><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>E</mi> <mi>q</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mi>δ</mi></mover><msub><mi>E</mi> <mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>⟶</mo><msub><mi>E</mi> <mrow><mi>q</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \bar \delta 
+    \;\colon \;
+  E_{q}(X,Y)
+   \stackrel{\delta}{\longrightarrow}
+  E_{q-1}(Y)
+   \longrightarrow
+  E_{q-1}(Y,Z) 
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>Apply the <a class="existingWikiWord" href="../../../../../2/4/3/7/17342/content.html">braid lemma</a> to the interlocking long exact sequences of the three pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,Y)</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,Z)</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Y,Z)</annotation></semantics></math>:</p>
+<p><img src="http://ncatlab.org/nlab/files/BraidDiagramForHomologyOnTripled.jpg" width="500"/></p>
+<p>(graphics from <a href="http://math.stackexchange.com/a/1180681/58526">this Maths.SE comment</a>)</p>
+<p>See <a href="../../../../../2/4/3/7/17342/content.html#ExactSequenceForTripleInGeneralizedHomology">here</a> for details.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<h3 id="expression_by_ordinary_homology_via_atiyahhirzebruch_spectral_sequence">Expression by ordinary homology via Atiyah-Hirzebruch spectral sequence</h3>
+<p>The <a class="existingWikiWord" href="../../../../../5/7/1/8/8175/content.html">Atiyah-Hirzebruch spectral sequence</a> serves to express generalized homology <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">E_\bullet</annotation></semantics></math> in terms of ordinary homology with coefficients in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E_\bullet(\ast)</annotation></semantics></math>.</p>
+<h3 id="WhiteheadTheorem">Whitehead theorem</h3>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>⟶</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">\phi \colon E \longrightarrow F</annotation></semantics></math> be a morphism of reduced generalized (co-)homology functors, def. <a class="maruku-ref" href="#ReducedGeneralizedHomology"></a> (a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a>) such that its component</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><msup><mi>S</mi> <mn>0</mn></msup><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo stretchy="false">(</mo><msup><mi>S</mi> <mn>0</mn></msup><mo stretchy="false">)</mo><mo>⟶</mo><mi>F</mi><mo stretchy="false">(</mo><msup><mi>S</mi> <mn>0</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \phi(S^0) \colon E(S^0) \longrightarrow F(S^0)
+
+</annotation></semantics></math></div>
+<p>on the <a class="existingWikiWord" href="../../../../../9/6/9/6/16969/content.html">0-sphere</a> is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi(X)\colon E(X)\to F(X)</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../8/3/0/384/content.html">CW-complex</a> with a <a class="existingWikiWord" href="../../../../../2/5/6/0/10652/content.html">finite number</a> of cells. If both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> satisfy the <a class="existingWikiWord" href="../../../../../8/2/3/7/17328/content.html">wedge axiom</a>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi(X)</annotation></semantics></math> is an isomorphism for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../8/3/0/384/content.html">CW-complex</a>, not necessarily finite.</p>
+</div>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../6/5/6/5/5656/content.html">ordinary cohomology</a>/<a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a> functors a proof of this is in (<a href="#EilenbergSteenrod52">Eilenberg-Steenrod 52, section III.10</a>). From this the general statement follows (e.g. <a href="#Kochman96">Kochman 96, theorem 3.4.3, corollary 4.2.8</a>) via the <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">naturality</a> of the <a class="existingWikiWord" href="../../../../../5/7/1/8/8175/content.html">Atiyah-Hirzebruch spectral sequence</a> (the classical result gives that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> induces an isomorphism between the second pages of the AHSSs for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>). A complete proof of the general result is also given as (<a href="#Switzer75">Switzer 75, theorem 7.55, theorem 7.67</a>)</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/0/7/9/19709/content.html">stable homotopy homology theory</a> is the homology theory represented by the <a class="existingWikiWord" href="../../../../../7/1/3/5/5317/content.html">sphere spectrum</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a> is the homology theory represented by an <a class="existingWikiWord" href="../../../../../0/8/6/1/1680/content.html">Eilenberg-MacLane spectrum</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/2/7/17226/content.html">bordism homology theory</a> is the homology theory represented by a <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a>;</p>
+</li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">generalized cohomology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/6/2/7/17261/content.html">Kronecker pairing</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/7/1/8/8175/content.html">Atiyah-Hirzebruch spectral sequence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/4/5/0/10545/content.html">Steenrod algebra</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/7/0/10710/content.html">phantom map</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/6/8/9/9867/content.html">bivariant cohomology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/7/0/10720/content.html">Bousfield equivalence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/7/6/6779/content.html">Hurewicz homomorphism</a>, <a class="existingWikiWord" href="../../../../../1/1/2/7/17211/content.html">Boardman homomorphism</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>(For more see the references at <em><a class="existingWikiWord" href="../../../../../1/2/7/1/1721/content.html">generalized (Eilenberg-Steenrod) cohomology</a></em>.)</p>
+<p>Original articles include</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/6/1/6/6165/content.html">George Whitehead</a>, <em>Generalized homology theories</em> (1961) (<a href="http://www.maths.ed.ac.uk/~aar/papers/gww9.pdf">pdf</a>)</li>
+</ul>
+<p>Textbook accounts include</p>
+<ul>
+<li id="Kochmann96">
+<p><a class="existingWikiWord" href="../../../../../7/1/2/7/17217/content.html">Stanley Kochmann</a>, section 3.4 of <em><a class="existingWikiWord" href="../../../../../1/2/2/7/17221/content.html">Bordism, Stable Homotopy and Adams Spectral Sequences</a></em>, AMS 1996</p>
+</li>
+<li id="Switzer75">
+<p><a class="existingWikiWord" href="../../../../../0/2/6/0/10620/content.html">Robert Switzer</a>, chapter 7 (and 8-12) of <em>Algebraic Topology - Homotopy and Homology</em>, Die Grundlehren der Mathematischen Wissenschaften in Einzeldarstellungen, Vol. 212, Springer-Verlag, New York, N. Y., 1975.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../3/3/3/3334/content.html">Stefan Schwede</a>, chapter II, section 6 of <em><a class="existingWikiWord" href="../../../../../6/5/2/7/17256/content.html">Symmetric spectra</a></em>, 2012 (<a href="http://www.math.uni-bonn.de/~schwede/SymSpec-v3.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/5/5/5/5559/content.html">Friedrich Bauer</a>, <em>Classifying spectra for generalized homology theories</em> Annali di Maternatica pura ed applicata</p>
+<p>(IV), Vol. CLXIV (1993), pp. 365-399</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/5/5/5/5559/content.html">Friedrich Bauer</a>, <em>Remarks on universal coefficient theorems for generalized homology theories</em>, Quaestiones Mathematicae <strong>9</strong> 1 &amp; 4 (1986) 29–54</p>
+</li>
+</ul>
+<p>A general construction of homologies by “geometric cycles” similar to the <a class="existingWikiWord" href="../../../../../1/7/8/9/9871/content.html">Baum-Douglas geometric cycles</a> for <a class="existingWikiWord" href="../../../../../6/4/5/9/9546/content.html">K-homology</a> is discussed in</p>
+<ul>
+<li>S. Buoncristiano, C. P. Rourke and B. J. Sanderson, <em>A geometric approach to homology theory</em>, Cambridge Univ. Press, Cambridge, Mass. (1976)</li>
+</ul>
+<p>Further generalization of this to <a class="existingWikiWord" href="../../../../../7/6/8/9/9867/content.html">bivariant cohomology theories</a>:</p>
+<ul>
+<li>Martin Jakob, <em>Bivariant theories for smooth manifolds</em>, Applied Categorical Structures 10 no. 3 (2002)</li>
+</ul>
+<p>Generalization to <a class="existingWikiWord" href="../../../../../6/8/2/8/8286/content.html">coefficients</a> in <a class="existingWikiWord" href="../../../../../5/5/1/1/1155/content.html">combinatorial spectra</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../2/5/8/28524/content.html">Hadrian Heine</a>: <em>On the categorification of homology</em> [<a href="https://arxiv.org/abs/2505.22640">arXiv:2505.22640</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

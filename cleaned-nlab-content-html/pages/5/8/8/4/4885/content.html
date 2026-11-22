@@ -1,0 +1,905 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Reidemeister move in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Reidemeister move
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#reidemeisters_theorem">Reidemeister’s theorem</a></li>
+<li><a href="#consequences_of_reidemeisters_theorem">Consequences of Reidemeister’s theorem</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>Reidemeister moves</em> are local changes to <a class="existingWikiWord" href="../../../../../4/7/8/4/4874/content.html">link diagrams</a> which can be realised as <a class="existingWikiWord" href="../../../../../1/6/8/4/4861/content.html">isotopies</a> between the link diagrams from which they arise. Because of Reidemeister’s theorem, Theorem <a class="maruku-ref" href="#TheoremReidemeister"></a>, they are of fundamental importance in knot theory, allowing knots and links to be treated purely combinatorially and diagrammatically.</p>
+<p>The moves were introduced in the book <a href="#Reidemeister">Reidemeister</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>The convention below is that part of a <a class="existingWikiWord" href="../../../../../4/7/8/4/4874/content.html">link diagram</a> is shown with the ‘move’ indicated, but that outside that, the diagram of the link is unchanged. As usual in knot theory, everything is up to planar <a class="existingWikiWord" href="../../../../../1/6/8/4/4861/content.html">isotopy</a>.</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>The <em>first Reidemeister move</em>, or <em>R1 move</em>, allows either of the following replacements of a fragment of a link diagram to be made.</p>
+<div>
+<svg height="143.25488pt" viewbox="-18.65686 -71.62744 403.2646 143.25488 " width="403.2646pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(0, 71.62744 ) scale(1,-1) translate(0,71.62744 )">
+<g>
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<g stroke-width="0.4pt">
+<g>
+</g>
+<g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,0.0,0.0)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<text font-size="10" style="stroke: none;" text-anchor="middle" transform="scale(1,-1) translate(0.0,0)">
+</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  0.0 0.0 C  70.62744 70.62744 70.62744 -70.62744 2.20717 -2.2071  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  0.0 0.0 L  -17.65686 -17.65686  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  -2.20717 2.2071 L  -17.65686 17.65686  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<path d=" M  71.13185 0.0 L  111.31096 0.0  " style="fill: none;"></path>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,111.31096,0.0)">
+<g>
+<g stroke-dasharray="none" stroke-dashoffset="0.0pt">
+<g stroke-linejoin="miter">
+<path d=" M  -7.29425 4.5 L  0.5 0.0 L  -7.29425 -4.5 Z  "></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,156.49014,0.0)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<text font-size="10" style="stroke: none;" text-anchor="middle" transform="scale(1,-1) translate(0.0,0)">
+</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  138.83328 17.65686 L  147.66171 8.82843 C  152.5306 3.95955 160.44969 3.95955 165.31857 8.82843 C  227.11758 70.62744 227.11758 -70.62744 165.31857 -8.82843 C  160.44969 -3.95955 152.5306 -3.95955 147.66171 -8.82843 L  138.83328 -17.65686  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<path d=" M  227.622 0.0 L  267.8011 0.0  " style="fill: none;"></path>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,267.8011,0.0)">
+<g>
+<g stroke-dasharray="none" stroke-dashoffset="0.0pt">
+<g stroke-linejoin="miter">
+<path d=" M  -7.29425 4.5 L  0.5 0.0 L  -7.29425 -4.5 Z  "></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g>
+<g>
+<g transform="matrix(0.0,1.0,-1.0,0.0,312.9803,0.0)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<text font-size="10" style="stroke: none;" text-anchor="middle" transform="scale(1,-1) translate(0.0,0)">
+</text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  312.9803 0.0 C  383.60774 -70.62744 383.60774 70.62744 315.18741 2.20717  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  312.9803 0.0 L  295.32344 17.65686  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  310.7732 -2.20717 L  295.32344 -17.65686  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>The <em>second Reidemeister move</em>, or <em>R2 move</em>, allows either of the following replacements of a fragment of a link diagram to be made.</p>
+<div>
+<svg height="123.81097pt" viewbox="-5.0 -118.81097 351.43304 123.81097 " width="351.43304pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(0, 5.0 ) scale(1,-1) translate(0,118.81097 )">
+<g>
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<g stroke-width="0.4pt">
+<g>
+</g>
+<g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  56.90549 0.0 C  0.0 -28.45274 0.0 -85.35823 56.90549 -113.81097  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  0.0 0.0 C  56.90549 -28.45274 56.90549 -85.35823 0.0 -113.81097  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  0.0 0.0 C  56.90549 -28.45274 56.90549 -85.35823 0.0 -113.81097  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<path d=" M  71.13185 -56.90549 L  125.53734 -56.90549  " style="fill: none;"></path>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,125.53734,-56.90549)">
+<g>
+<g stroke-dasharray="none" stroke-dashoffset="0.0pt">
+<g stroke-linejoin="miter">
+<path d=" M  -7.29425 4.5 L  0.5 0.0 L  -7.29425 -4.5 Z  "></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  199.16927 0.0 C  170.71652 -28.45274 170.71652 -85.35823 199.16927 -113.81097  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  142.26378 0.0 C  170.71652 -28.45274 170.71652 -85.35823 142.26378 -113.81097  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<path d=" M  213.39563 -56.90549 L  267.80112 -56.90549  " style="fill: none;"></path>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,267.80112,-56.90549)">
+<g>
+<g stroke-dasharray="none" stroke-dashoffset="0.0pt">
+<g stroke-linejoin="miter">
+<path d=" M  -7.29425 4.5 L  0.5 0.0 L  -7.29425 -4.5 Z  "></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<path d=" M  284.52756 0.0 C  341.43304 -28.45274 341.43304 -85.35823 284.52756 -113.81097  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<g fill="rgb(100.0%,0.0%,0.0%)">
+<g stroke-width="2.0pt">
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  341.43304 0.0 C  284.52756 -28.45274 284.52756 -85.35823 341.43304 -113.81097  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  341.43304 0.0 C  284.52756 -28.45274 284.52756 -85.35823 341.43304 -113.81097  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>The <em>third Reidemeister move</em>, or <em>R3 move</em>, allows the following replacement of a fragment of a link diagram to be made.</p>
+<div>
+<svg height="157.8452pt" viewbox="-90.35823 -93.14897 408.3385 157.8452 " width="408.3385pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(0, 64.69623 ) scale(1,-1) translate(0,93.14897 )">
+<g>
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<g stroke-width="0.4pt">
+<g>
+</g>
+<g>
+<g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  -85.35823 28.45274 L  85.35823 28.45274  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  -85.35823 28.45274 L  85.35823 28.45274  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  67.31996 59.69623 L  -18.03825 -88.14896  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  67.31996 59.69623 L  -18.03825 -88.14896  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  18.03825 -88.14896 L  -67.31996 59.69623  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  18.03825 -88.14896 L  -67.31996 59.69623  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g stroke-width="2.0pt">
+<g stroke="rgb(0.0%,0.0%,0.0%)">
+<g fill="rgb(0.0%,0.0%,0.0%)">
+<path d=" M  85.35823 -14.22636 L  139.76372 -14.22636  " style="fill: none;"></path>
+<g>
+<g transform="matrix(1.0,0.0,0.0,1.0,139.76372,-14.22636)">
+<g>
+<g stroke-dasharray="none" stroke-dashoffset="0.0pt">
+<g stroke-linejoin="miter">
+<path d=" M  -7.29425 4.5 L  0.5 0.0 L  -7.29425 -4.5 Z  "></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  142.26381 -56.90549 L  312.98027 -56.90549  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  142.26381 -56.90549 L  312.98027 -56.90549  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  245.6603 59.69621 L  160.30208 -88.14897  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  245.6603 59.69621 L  160.30208 -88.14897  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g stroke-width="4.0pt">
+<g stroke="rgb(100.0%,100.0%,100.0%)">
+<g fill="rgb(100.0%,100.0%,100.0%)">
+<g>
+<g stroke-width="10.0pt">
+<path d=" M  294.942 -88.14897 L  209.58379 59.69621  " style="fill: none;"></path>
+<g>
+<g stroke-width="2.0pt">
+<g stroke="rgb(100.0%,0.0%,0.0%)">
+<path d=" M  294.942 -88.14897 L  209.58379 59.69621  " style="fill: none;"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>A pair of link diagrams <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">D'</annotation></semantics></math> are <em>isotopic</em>, or <em>isotopic by moves</em>, or <em>equivalent</em> if there is a finite sequence of the moves R1, R2 and R3 taking <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">D'</annotation></semantics></math> up to planar isotopy.</p>
+</div>
+</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>A pair of link diagrams <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">D'</annotation></semantics></math> are <em>regularly isotopic</em> if there is a finite sequence of the moves R2 and R3 taking <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">D'</annotation></semantics></math> up to <span class="newWikiWord">planar isotopy<a href="/nlab/new/planar+isotopy">?</a></span>.</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>Both isotopy and and regular isotopy define equivalence relations on link diagrams.</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>There are a number of variants of the R3 move. All of them can be obtained as a finite sequence of the Reidemeister moves as defined above.</p>
+</div>
+</p>
+<h2 id="reidemeisters_theorem">Reidemeister’s theorem</h2>
+<p>The following crucial theorem establishes that the Reidemeister moves are of central significance in knot theory.</p>
+<p>
+<div class="num_theorem" id="TheoremReidemeister">
+<h6>Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_{1}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_{2}</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../3/5/8/4/4853/content.html">links</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">D_{1}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">D_{2}</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../4/7/8/4/4874/content.html">link diagrams</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_{1}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_{2}</annotation></semantics></math> respectively. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">D_{1}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">D_{2}</annotation></semantics></math> are equivalent if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_{1}</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../1/6/8/4/4861/content.html">isotopic</a> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_{2}</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>The key idea of the proof is that of subdivision. Working piecewise-linearly, one can reduce to the consideration of a few ‘minimal’ moves on knot diagrams, which one shows can be obtained as a finite sequence of Reidemeister moves. See for example section 2.1 of <a href="#KauffmanKnotDiagrammatics">Kauffman</a>.</p>
+<h2 id="consequences_of_reidemeisters_theorem">Consequences of Reidemeister’s theorem</h2>
+<p>Because of Theorem <a class="maruku-ref" href="#TheoremReidemeister"></a>, we can use the Reidemeister moves to verify invariance of a potential <a class="existingWikiWord" href="../../../../../7/7/8/4/4877/content.html">link invariant</a>. For instance, as none of the moves alters the number of components of a link diagram, the number of components is an isotopy invariant (which is not at all surprising!). We can conclude that the <a class="existingWikiWord" href="../../../../0/0/5/5005/content.html">Hopf link</a> and the <a class="existingWikiWord" href="../../../../../7/0/0/5/5007/content.html">Borromean rings</a> are not isotopic.</p>
+<p>A slightly deeper observation is that the <a class="existingWikiWord" href="../../../../../8/7/8/4/4878/content.html">linking number</a> is a link invariant, for which see that entry.</p>
+<p><a class="existingWikiWord" href="../../../../2/9/4/4925/content.html">3-colourability</a> is a <a class="existingWikiWord" href="../../../../../4/0/6/2/2604/content.html">knot invariant</a> as is easy to check. This shows, for instance, that the trefoil knot is not equivalent to the unknot, and hence shows, very simply, that non-trivial knots exist. It also shows that the figure eight knot is not equivalent to the trefoil.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/9/6/8/8690/content.html">Yang-Baxter equation</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>The original article:</p>
+<ul>
+<li id="Reidemeister"><a class="existingWikiWord" href="../../../../../1/4/2/7/7241/content.html">Kurt Reidemeister</a>, <em>Knotentheorie,</em> Ergebnisse der Mathematik (1932)</li>
+</ul>
+<p>Careful discussion for oriented <a class="existingWikiWord" href="../../../../../9/9/1/5/5199/content.html">framed links</a>:</p>
+<ul>
+<li>Michael Polyak: <em>Minimal generating sets of Reidemeister moves</em>, Quantum Topology <strong>1</strong> 4 (2010) 399–411 [<a href="https://arxiv.org/abs/0908.3127">arXiv:0908.3127</a>, <a href="https://doi.org/10.4171/QT/10">doi:10.4171/QT/10</a>]</li>
+</ul>
+<p>Simple examples of invariants under the Reidemeister moves are given in, for instance, the following.</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/4/2/7/7242/content.html">Nick Gilbert</a>, <a class="existingWikiWord" href="../../../../../8/3/4/0/438/content.html">Tim Porter</a>, <em>Knots and surfaces</em>, Oxford University Press (1994) [<a href="https://global.oup.com/academic/product/knots-and-surfaces-9780198514909?cc=de&amp;lang=en&amp;">ISBN:9780198514909</a>]</p>
+</li>
+<li id="KauffmanKnotDiagrammatics">
+<p><a class="existingWikiWord" href="../../../../2/4/8/8425/content.html"> Louis H. Kauffman</a>, <em>Knot diagrammatics</em>, Handbook of knot theory, Elsevier, 233 - 318, 2005 <a href="https://arxiv.org/abs/math/0410329">arXiv:math/0410329</a></p>
+</li>
+</ul>
+<p>Most texts on <a class="existingWikiWord" href="../../../../../6/2/6/2/2626/content.html">Knot Theory</a> contain discussions of the Reidemeister Moves.</p>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

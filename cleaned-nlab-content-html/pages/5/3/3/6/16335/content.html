@@ -1,0 +1,524 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      geometry of physics -- de Rham coefficients in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      geometry of physics -- de Rham coefficients
+  </h1>
+<div id="revision">
+<blockquote>
+<p>This entry is going to contain one chapter of <em><a class="existingWikiWord" href="../../../../../0/8/5/8/8580/content.html">geometry of physics</a></em>.</p>
+<p>previous chapters: <em><a href="../../../../../0/8/5/8/8580/content.html#FlatConnections">flat connections</a></em></p>
+<p>next chapter: <em><a href="../../../../../0/8/5/8/8580/content.html#PrincipalConnections">principal connections</a></em></p>
+</blockquote>
+<hr/>
+<h2 id="de_rham_coefficients">De Rham coefficients</h2>
+<h3 id="model_layer">Model Layer</h3>
+<h4 id="liealgebra_valued_differential_1forms">Lie-algebra valued differential 1-forms</h4>
+<div class="num_defn" id="SheafOfLieAlgebraValuedForms">
+<h6 id="definition">Definition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie group</a>, and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔤</mi></mrow><annotation encoding="application/x-tex">\mathfrak{g}</annotation></semantics></math> for its <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebra</a>. The set of <a class="existingWikiWord" href="../../../../../3/7/8/1/1873/content.html">Lie algebra valued differential 1-forms</a> is the <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mi>ℝ</mi></msub><mi>𝔤</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Omega^1(U,\mathfrak{g}) = \Omega^1(U) \otimes_{\mathbb{R}} \mathfrak{g}
+  \,.
+
+</annotation></semantics></math></div>
+<p>flat forms:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>{</mo><mi>ω</mi><mo>∈</mo><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><msub><mi>F</mi> <mi>ω</mi></msub><mo>=</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle><mi>ω</mi><mo>+</mo><mo stretchy="false">[</mo><mi>ω</mi><mo>,</mo><mi>ω</mi><mo stretchy="false">]</mo><mo>=</mo><mn>0</mn><mo>}</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Omega^1_{flat}(U, \mathfrak{g}) = 
+  \left\{
+    \omega \in \Omega^1(U,\mathfrak{g}) |
+    F_\omega = \mathbf{d} \omega + [\omega, \omega] = 0
+  \right\}
+
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(…)</p>
+<p>This is a <a class="existingWikiWord" href="../../../../../0/7/7/1/1770/content.html">smooth space</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>Smooth</mi><mn>0</mn><mi>Type</mi></mrow><annotation encoding="application/x-tex">
+  \Omega^1_{flat}(-,\mathfrak{g}) \in Smooth 0 Type
+
+</annotation></semantics></math></div>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔤</mi><mo>=</mo><mi>Lie</mi><mo stretchy="false">(</mo><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathfrak{g} = Lie(\mathbb{R})</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>Lie</mi><mo stretchy="false">(</mo><mi>ℝ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msup><mi>Ω</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">
+  \Omega^1(-,Lie(\mathbb{R})) = \Omega^1
+
+</annotation></semantics></math></div>
+<p>and we write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>Lie</mi><mo stretchy="false">(</mo><mi>ℝ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>Ω</mi> <mi>cl</mi> <mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">
+  \Omega^1_{flat}(-,Lie(\mathbb{R})) = \Omega^1_{cl}
+
+</annotation></semantics></math></div>
+<p>Below we see</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \flat_{dR}\mathbf{B}G \simeq \Omega^1_{flat}(-,\mathfrak{g})
+
+</annotation></semantics></math></div>
+<h4 id="the_de_rham_complex">The de Rham complex</h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../0/3/2/2305/content.html">de Rham complex</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../0/3/2/2305/content.html">de Rham cohomology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/9/3/2/2398/content.html">de Rham theorem</a></p>
+</li>
+</ul>
+<p>Below we see that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>ℝ</mi><mo>≃</mo><msub><mo>♭</mo> <mi>dR</mi></msub><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>≃</mo><mi>DK</mi><mo stretchy="false">[</mo><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle></mover><msup><mi>Ω</mi> <mn>2</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle></mover><mi>⋯</mi><mover><mo>→</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle></mover><msubsup><mi>Ω</mi> <mi>cl</mi> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \flat_{dR}\mathbf{B}^n \mathbb{R} 
+    \simeq
+  \flat_{dR}\mathbf{B}^n U(1)
+   \simeq
+  DK[ \Omega^1(-) \stackrel{\mathbf{d}}{\to} \Omega^2(-) \stackrel{\mathbf{d}}{\to}\cdots \stackrel{\mathbf{d}}{\to} \Omega^n_{cl}(-)]
+ \,.
+
+</annotation></semantics></math></div>
+<h3 id="semantic_layer">Semantic Layer</h3>
+<h4 id="de_rham_coefficient_objects">De Rham coefficient objects</h4>
+<div class="num_defn" id="deRhamCoefficientObject">
+<h6 id="definition_2">Definition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>∈</mo><mi>Gpr</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G \in Gpr(\mathbf{H})</annotation></semantics></math>, its <strong>de Rham coefficient object</strong> is the <a class="existingWikiWord" href="../../../../8/7/0/785/content.html">homotopy pullback</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≔</mo><mo>♭</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msub><mo>×</mo> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>*</mo></mrow><annotation encoding="application/x-tex">
+  \flat_{dR} \mathbf{B}G \coloneqq \flat \mathbf{B}G \times_{\mathbf{B}G} * 
+
+</annotation></semantics></math></div>
+<p>in</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd> <mtd><mover><mo>→</mo><mi>UnderlyingConnection</mi></mover></mtd> <mtd><mo>♭</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd><mi>pb</mi></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mi>UnderlyingBundle</mi></mpadded></msup></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+     \flat_{dR} \mathbf{B}G &amp;\stackrel{UnderlyingConnection}{\to}&amp; \flat \mathbf{B}G
+     \\
+     \downarrow &amp;pb&amp; \downarrow^{\mathrlap{UnderlyingBundle}}
+     \\
+     * &amp;\to&amp; \mathbf{B}G
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>This pullback diagram expresses that <a class="existingWikiWord" href="../../../../../4/2/0/1/1024/content.html">elements</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\flat_{dR}\mathbf{B}G</annotation></semantics></math> are flat <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-connections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∇</mo><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mo>♭</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\nabla \colon X \to \flat \mathbf{B}G</annotation></semantics></math>, def. <a class="maruku-ref" href="#FlatCohesiveConnection"></a> equipped with a trivialization of their underlying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-principal bundle, def. <a class="maruku-ref" href="#UnderlyingBundleOfFlatConnection"></a>.</p>
+</div>
+<h4 id="OrdinaryDifferentialFormsFromSmoothCohesion">Recovering smooth differential forms from cohesive de Rham coefficients</h4>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">Smooth∞Grpd</a>. All <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifolds</a> and sheaves on smooth manifolds etc. in the following are canonically regarded as objects in this <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo><msub><mi>Sh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><mi>CartSp</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = Sh_\infty(CartSp)</annotation></semantics></math>.</p>
+<div class="num_prop" id="DeRhamCoefficientsOfLieGroup">
+<h6 id="proposition">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie group</a>, the de Rham coefficient object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\flat_{dR}\mathbf{B}G</annotation></semantics></math>, def. <a class="maruku-ref" href="#deRhamCoefficientObject"></a> of its <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a> is given by the <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> of flat <a class="existingWikiWord" href="../../../../../3/7/8/1/1873/content.html">Lie algebra valued differential 1-forms</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega^1_{flat}(-,\mathfrak{g})</annotation></semantics></math>, def. <a class="maruku-ref" href="#SheafOfLieAlgebraValuedForms"></a>, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔤</mi></mrow><annotation encoding="application/x-tex">\mathfrak{g}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebra</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \flat_{dR}\mathbf{B}G \simeq \Omega^1_{flat}(-,\mathfrak{g})
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is discussed at <em><a href="../../../../../1/0/2/6/6201/content.html#deRhamWithCoefficientsInBOfLieGroup">smooth ∞-groupoid - structures - de Rham coefficients for BG with G a Lie group</a></em>.</p>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U(1)</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../6/7/9/3/3976/content.html">circle group</a> regared as a <a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie group</a> in the standard way.</p>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math>, the de Rham coefficient object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\flat_{dR}\mathbf{B}^n U(1)</annotation></semantics></math>, def. <a class="maruku-ref" href="#deRhamCoefficientObject"></a>, of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-fold <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U(1)</annotation></semantics></math> is given by the image under the <a class="existingWikiWord" href="../../../../../0/8/6/0/680/content.html">Dold-Kan correspondence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>DK</mi><mo lspace="verythinmathspace">:</mo><mo>:</mo><mi>Sh</mi><mo stretchy="false">(</mo><mi>CartSp</mi><mo>,</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">)</mo><mo>→</mo><mi>Sh</mi><mo stretchy="false">(</mo><mi>CartSp</mi><mo>,</mo><mi>sSet</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>L</mi> <mi>lwhe</mi></msub><mi>Sh</mi><mo stretchy="false">(</mo><mi>CartSp</mi><mo>,</mo><mi>sSet</mi><mo stretchy="false">)</mo><mo>≃</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">
+  DK \colon : Sh(CartSp, Ch_\bullet) \to Sh(CartSp, sSet)
+  \to L_{lwhe} Sh(CartSp, sSet) \simeq \mathbf{H}
+
+</annotation></semantics></math></div>
+<p>of the truncated <a class="existingWikiWord" href="../../../../0/3/2/2305/content.html">de Rham complex</a> of sheaves of differential forms,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mo>♭</mo> <mi>dR</mi></msub><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd> <mtd><mo>≃</mo><msub><mo>♭</mo> <mi>dR</mi></msub><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>ℝ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><mi>DK</mi><mo stretchy="false">[</mo><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle></mover><mi>⋯</mi><mover><mo>→</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle></mover><msubsup><mi>Ω</mi> <mi>cl</mi> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><mi>DK</mi><mo stretchy="false">[</mo><msubsup><mi>Ω</mi> <mi>cl</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn><mo>→</mo><mi>⋯</mi><mo>→</mo><mn>0</mn><mo stretchy="false">]</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+   \flat_{dR}\mathbf{B}^n U(1)
+   &amp;\simeq
+   \flat_{dR} \mathbf{B}^n \mathbb{R}
+   \\
+   &amp; \simeq
+   DK[\Omega^1(-) \stackrel{\mathbf{d}}{\to} \cdots \stackrel{\mathbf{d}}{\to} \Omega^n_{cl}(-)]
+    \\ 
+   &amp; \simeq DK[\Omega^1_{cl}(-) \to 0 \to  \cdots \to 0]
+  \end{aligned}
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is discussed at <em><a href="../../../../../1/0/2/6/6201/content.html#deRhamCoefficientsInBnU1">smooth ∞-groupoid - structures - de Rham coefficients for the circle n-groups</a></em>.</p>
+<h3 id="syntactic_layer">Syntactic Layer</h3>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mo>♭</mo> <mi>dR</mi></msub><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo lspace="verythinmathspace">:</mo><mi>Type</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo></mtd> <mtd><mi>Type</mi></mtd></mtr> <mtr><mtd><mo>≔</mo></mtd> <mtd><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mo>∇</mo><mo lspace="verythinmathspace">:</mo><mo>♭</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></munder><mo stretchy="false">(</mo><mi>UnderlyingBundle</mi><mo stretchy="false">(</mo><mo>∇</mo><mo stretchy="false">)</mo><mo>=</mo><mo>*</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    \flat_{dR}(\mathbf{B}G \colon Type)\; \colon &amp; Type
+    \\
+    \coloneqq &amp; 
+     \;\;
+    \sum_{\nabla \colon \flat \mathbf{B}G}
+    (  UnderlyingBundle(\nabla) = * )
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<h2 id="MaurerCartanForms"><strong>Maurer-Cartan forms</strong></h2>
+<h3 id="MaurerCartanLayerMod">Model Layer</h3>
+<h4 id="MaurerCartanFormOnLieGroup">Maurer-Cartan form on a Lie group</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/2/9/2/2926/content.html">Maurer-Cartan form</a></li>
+</ul>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mi>G</mi></msub><mo lspace="verythinmathspace">:</mo><mi>G</mi><mo>→</mo><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \theta_G \colon G \to \Omega^1_{flat}(-,\mathfrak{g})
+
+</annotation></semantics></math></div>
+<p>Consider</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>ℝ</mi><mo>=</mo><msubsup><mi>Ω</mi> <mi>cl</mi> <mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">
+  \flat_{dR} \mathbf{B}\mathbb{R}  = \Omega^1_{cl}
+
+</annotation></semantics></math></div>
+<p>the Maurer-Cartan form on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mi>ℝ</mi></msub><mo>=</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle><mo lspace="verythinmathspace">:</mo><mi>ℝ</mi><mo>→</mo><msubsup><mi>Ω</mi> <mi>cl</mi> <mn>1</mn></msubsup><mo>↪</mo><msup><mi>Ω</mi> <mn>1</mn></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \theta_{\mathbb{R}} = \mathbf{d} \colon \mathbb{R} \to \Omega^1_{cl} \hookrightarrow \Omega^1
+  \,.
+
+</annotation></semantics></math></div>
+<h3 id="semantic_layer_2">Semantic Layer</h3>
+<h4 id="maurercartan_form_on_a_cohesive_group">Maurer-Cartan form on a cohesive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-group</h4>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../9/9/4/4995/content.html">cohesive (infinity,1)-topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>Π</mi></mstyle><mo>⊣</mo><mo>♭</mo><mo>⊣</mo><mo>♯</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbf{\Pi} \dashv \flat \dashv \sharp)</annotation></semantics></math>. We discuss a general formulation of <a class="existingWikiWord" href="../../../../../6/2/9/2/2926/content.html">Maurer-Cartan forms</a> on cohesive <a class="existingWikiWord" href="../../../../../0/5/4/3/3450/content.html">infinity-groups</a></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>∈</mo><mi>Grp</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G \in Grp(\mathbf{H})</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../../../missing.html">group object</a>.</p>
+<p>Use the <a class="existingWikiWord" href="../../../../../4/2/8/5/5824/content.html">pasting law</a> together with the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♭</mo></mrow><annotation encoding="application/x-tex">\flat</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> and hence preserves <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limits</a> to get <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math> in</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>G</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mi>θ</mi></mpadded></msup></mtd> <mtd><mi>pb</mi></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>♭</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd><mi>pb</mi></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    G &amp;\to&amp; *
+    \\
+    \downarrow^{\mathrlap{\theta}} &amp; pb &amp; \downarrow
+    \\
+    \flat_{dR} \mathbf{B}G &amp;\to&amp; \flat \mathbf{B}G
+    \\
+    \downarrow &amp;pb&amp; \downarrow
+    \\
+    * &amp;\to&amp; \mathbf{B}G
+  }
+
+</annotation></semantics></math></div>
+<div class="num_defn" id="GeneralAbstractMaurerCartanForm">
+<h6 id="definition_3">Definition</h6>
+<p>This is the <strong><a class="existingWikiWord" href="../../../../../6/2/9/2/2926/content.html">Maurer-Cartan form</a></strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>G</mi><mo>→</mo><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \theta \;\colon\; G \to \flat_{dR} \mathbf{B}G
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_defn" id="DifferentiationOfInfinityGroupValuedFunction">
+<h6 id="definition_4">Definition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mo>→</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">S \;\colon\; X \to G</annotation></semantics></math> a morphism, write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mstyle mathvariant="bold"><mi>d</mi></mstyle><mi>S</mi><mo>≔</mo><msup><mi>S</mi> <mo>*</mo></msup><msub><mi>θ</mi> <mi>G</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mover><mo>→</mo><mi>S</mi></mover><mi>G</mi><mover><mo>→</mo><mrow><msub><mi>θ</mi> <mi>G</mi></msub></mrow></mover><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">
+  S^{-1} \mathbf{d} S 
+  \coloneqq S^* \theta_G
+  \;\colon\;
+  X \stackrel{S}{\to}
+  G
+  \stackrel{\theta_G}{\to}
+  \flat_{dR}\mathbf{B}G
+
+</annotation></semantics></math></div>
+<p>for its composite with the map of def. <a class="maruku-ref" href="#GeneralAbstractMaurerCartanForm"></a>, hence the <strong>pullback of the Maurer-Cartan form along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></strong>. We also call this the <strong><a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a></strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>.</p>
+</div>
+<h4 id="maurercartan_forms_on_smooth_groups">Maurer-Cartan forms on smooth <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groups</h4>
+<div class="num_prop">
+<h6 id="proposition_3">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie group</a> canonically regarded in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = </annotation></semantics></math><a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">Smooth∞Grpd</a> the general abstract morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mi>G</mi></msub><mo lspace="verythinmathspace">:</mo><mi>G</mi><mo>→</mo><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">
+  \theta_G \colon G \to \flat_{dR}\mathbf{B}G
+
+</annotation></semantics></math></div>
+<p>is identified, via the identification <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\flat_{dR}\mathbf{B}G \simeq \Omega^1_{flat}(-,\mathfrak{g})</annotation></semantics></math> of prop. <a class="maruku-ref" href="#DeRhamCoefficientsOfLieGroup"></a> and the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a>, with the traditional <a class="existingWikiWord" href="../../../../../6/2/9/2/2926/content.html">Maurer-Cartan form</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mi>G</mi></msub><mo>∈</mo><msubsup><mi>Ω</mi> <mi>flat</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \theta_G \in \Omega^1_{flat}(G, \mathfrak{g})
+  \,.
+
+</annotation></semantics></math></div></div>
+<h4 id="CohesiveDifferentiation">Cohesive differentiation</h4>
+<p>The Maurer-Cartan form on the <a class="existingWikiWord" href="../../../../../9/3/6/4/4639/content.html">line object</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mi>ℝ</mi></msub><mo lspace="verythinmathspace">:</mo><mi>ℝ</mi><mo>→</mo><msubsup><mi>Ω</mi> <mi>cl</mi> <mn>1</mn></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \theta_{\mathbb{R}} \colon \mathbb{R} \to \Omega^1_{cl}(-,\mathbb{R})
+
+</annotation></semantics></math></div>
+<p>is the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>d</mi></mstyle><mo>=</mo><msub><mi>θ</mi> <mi>ℝ</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{d} = \theta_{\mathbb{R}}
+  \,.
+
+</annotation></semantics></math></div>
+<h4 id="universal_curvature_characteristic_forms">Universal curvature characteristic forms</h4>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G = \mathbf{B}^n U(1)</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>curv</mi><mo lspace="verythinmathspace">:</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>→</mo><msub><mo>♭</mo> <mi>dR</mi></msub><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  curv \colon \mathbf{B}^n U(1) \to \flat_{dR} \mathbf{B}^{n+1}U(1)
+
+</annotation></semantics></math></div>
+<p>sends a circle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-bundle to the curvature of a pseudo-connection on it.</p>
+<h3 id="syntactic_layer_2">Syntactic Layer</h3>
+<p>(…)</p>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

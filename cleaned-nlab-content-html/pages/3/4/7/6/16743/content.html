@@ -1,0 +1,508 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      De Morgan topos in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      De Morgan topos
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#some_equivalent_formulations">Some equivalent formulations</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#de_morganization">De Morganization</a></li>
+<li><a href="#the_gleason_cover">The Gleason cover</a></li>
+<li><a href="#relation_to_cohesion">Relation to cohesion</a></li>
+<li><a href="#relation_to_model_theory">Relation to model theory</a></li>
+</ul>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>A <strong>De Morgan topos</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is a middle thing between a <a class="existingWikiWord" href="../../../../../8/8/4/0/488/content.html">Boolean topos</a> with a <a class="existingWikiWord" href="../../../../9/8/0/893/content.html">classical internal logic</a> and a general <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> with an <a class="existingWikiWord" href="../../../../../6/9/1/1/1196/content.html">intuitionistic internal logic</a>, in that the lattices of <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> obey a weak form of the <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">law of excluded middle</a> which defines a <a class="existingWikiWord" href="../../../../../9/3/7/6/16739/content.html">De Morgan Heyting algebra</a>.</p>
+<p>The de Morgan property has many equivalent formulations and many facets making the class of de Morgan toposes an important one in <a class="existingWikiWord" href="../../../../../2/8/0/0/82/content.html">topos theory</a>. From the perspective on toposes as generalized spaces they correspond to <em>extremally disconnected spaces</em> in <a class="existingWikiWord" href="../../../../2/4/0/423/content.html">topology</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>A topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is called a <strong>De Morgan topos</strong> if its <a class="existingWikiWord" href="../../../../../6/0/3/0/306/content.html">subobject classifier</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math> is an internal <a class="existingWikiWord" href="../../../../../9/3/7/6/16739/content.html">De Morgan Heyting algebra</a>.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>
+<p>Every <a class="existingWikiWord" href="../../../../../8/8/4/0/488/content.html">Boolean topos</a> is a De Morgan topos.</p>
+</li>
+<li>
+<p>A simple example of a topos that is De Morgan but not Boolean is the <a class="existingWikiWord" href="../../../../../9/7/4/7/7479/content.html">Sierpinski topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mo>→</mo></msup></mrow><annotation encoding="application/x-tex">Set^{\to}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../4/0/4/0/404/content.html">arrow category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>: the diagram category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math> is easily seen to satify the <a class="existingWikiWord" href="../../../../../2/6/4/7/27462/content.html">Ore condition</a> (cf. <a href="#presheaf-deMorgan">below</a>).</p>
+</li>
+<li>
+<p>The topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(X)</annotation></semantics></math> of sheaves on a topological space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is De Morgan precisely iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/9/7/0/10796/content.html">extremally disconnected</a>, i.e. the closure of every open subset is open. (Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mo>→</mo></msup></mrow><annotation encoding="application/x-tex">Set^{\to}</annotation></semantics></math> is equivalently the topos of sheaves on <a class="existingWikiWord" href="../../../../../4/4/9/0/944/content.html">Sierpinski space</a> it instantiates this case as well.)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/1/5/5/15519/content.html">Injective Grothendieck toposes</a> are De Morgan (cf. <a href="#Johnstone">Johnstone 2002, p.739</a>).</p>
+</li>
+</ul>
+<h2 id="some_equivalent_formulations">Some equivalent formulations</h2>
+<p>The importance of the concept of a De Morgan topos stems partly from the fact that for many statements whose classical (Boolean) validity is lost in intuitionistic logic the De Morgan property delineates precisely the range of toposes where the statement is valid. An illustration of this is e.g. the implication that maximal ideals are prime in commutative rings.</p>
+<p>Though such statements are in fact equivalent to the De Morgan property they are better viewed as higher-order properties of De Morgan toposes.</p>
+<p>In contrast, there exists also a long list, mostly due to <a href="#Johnstone79">Johnstone (1979)</a>, of statements equivalent to the De Morgan property, that are logically of the same complexity and are often more convenient to work with than the original definition. Some of the most important of these appear in the following:</p>
+<div class="num_prop" id="deMorgan_equivalents">
+<h6 id="proposition">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> be a topos. The following are equivalent:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is a De Morgan topos.</p>
+</li>
+<li>
+<p>For all formulae <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo>,</mo><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\varphi,\psi</annotation></semantics></math> : <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi><mo>⊧</mo><mo>¬</mo><mo stretchy="false">(</mo><mi>φ</mi><mo>∧</mo><mi>ψ</mi><mo stretchy="false">)</mo><mo>⇔</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>φ</mi><mo>∨</mo><mo>¬</mo><mi>ψ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{E}\models \neg (\varphi\wedge\psi)\Leftrightarrow(\neg\varphi\vee\neg\psi)</annotation></semantics></math> .</p>
+</li>
+<li>
+<p>For every formula <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi></mrow><annotation encoding="application/x-tex">\varphi</annotation></semantics></math> : <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi><mo>⊧</mo><mo>¬</mo><mi>φ</mi><mo>∨</mo><mo>¬</mo><mo>¬</mo><mi>φ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}\models \neg\varphi\vee\neg\neg\varphi</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>For every subobject <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↣</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\rightarrowtail Y</annotation></semantics></math>: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>X</mi><mo>∨</mo><mo>¬</mo><mo>¬</mo><mi>X</mi><mo>=</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">\neg X\vee\neg\neg X=Y</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sub</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sub(X)</annotation></semantics></math> is a De Morgan Heyting algebra for every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">X\in\mathcal{E}</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>The canonical monomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>⊤</mo><mo>,</mo><mo>⊥</mo><mo stretchy="false">)</mo><mo>:</mo><mn>1</mn><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mn>1</mn><mo>↣</mo><msub><mi>Ω</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub></mrow><annotation encoding="application/x-tex">(\top,\bot):1\coprod 1\rightarrowtail\Omega_{\neg\neg}</annotation></semantics></math> to the subobject classifier of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub><mo stretchy="false">(</mo><mi>ℰ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_{\neg\neg}(\mathcal{E})</annotation></semantics></math> is an isomorphism.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\Omega_{\neg\neg}</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../1/5/5/0/551/content.html">decidable</a>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1\coprod 1</annotation></semantics></math> is a retract of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\Omega_{\neg\neg}</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1\coprod 1</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/2/1/1/1129/content.html">injective</a>.</p>
+</li>
+<li>
+<p>Every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>¬</mo></mrow><annotation encoding="application/x-tex">\neg\neg</annotation></semantics></math>-sheaf is decidable.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊥</mo><mo>:</mo><mn>1</mn><mo>→</mo><mi>Ω</mi></mrow><annotation encoding="application/x-tex">\bot:1\to\Omega</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complement</a>.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../6/6/4/6/6466/content.html">object of Dedekind reals</a> coincides with the object of <a class="existingWikiWord" href="../../../../../1/0/7/2/2701/content.html">Dedekind-MacNeille reals</a>.</p>
+</li>
+</ul>
+</div>
+<p>The first few equivalences are based mainly on the validity of the “law of excluded middle” for elements of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">\neg a</annotation></semantics></math> in any <a class="existingWikiWord" href="../../../../../9/3/7/6/16739/content.html">De Morgan Heyting algebra</a>. For the rest see e.g. <a href="#Johnstone">Johnstone (2002, pp.999-1000)</a>. The very last point is supplied by <a href="#Johnstone79">Johnstone (1979)</a>.</p>
+<h2 id="properties">Properties</h2>
+<p>The following shows that ‘being De Morgan’ is a <em>local property</em> i.e. stable under slicing. This is immediate from the fact that the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi><mo>→</mo><mi>ℰ</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}\to\mathcal{E}/A</annotation></semantics></math> sending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mi>A</mi></msub><mo>:</mo><mi>X</mi><mo>×</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">p_A: X\times A\to A</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/7/1/3/3176/content.html">logical</a> hence preserves the various equivalent formulations of De Morgan’s law.</p>
+<div class="num_prop" id="local_property">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> be an object of the De Morgan topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math>. Then the <a class="existingWikiWord" href="../../../../../2/1/4/5/5412/content.html">slice topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}/A</annotation></semantics></math> is De Morgan as well.</p>
+</div>
+<div class="num_prop" id="presheaf-deMorgan">
+<h6 id="proposition_3">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> be a small category. The <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">presheaf topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{\mathcal{C}^{op}}</annotation></semantics></math> is De Morgan precisely if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> satifies the <a class="existingWikiWord" href="../../../../../2/6/4/7/27462/content.html">Ore condition</a>.</p>
+</div>
+<p>This result due to <a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a> appears e.g. in <a href="#Johnstone79">Johnstone (1979)</a>. Compare also the generalizations in <a href="#KR94">Kock-Reyes (1994)</a> and <a href="#Caramello12">Caramello (2012)</a>.</p>
+<p>Since the <a class="existingWikiWord" href="../../../../../8/2/7/6/16728/content.html">dense topology</a> coincides with the <a class="existingWikiWord" href="../../../../../9/7/5/7/17579/content.html">atomic topology</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> satisfying the Ore condition the preceding proposition implies that the <a class="existingWikiWord" href="../../../../../1/7/3/4/4371/content.html">double negation subtopos</a> of a De Morgan presheaf topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{\mathcal{C}^{op}}</annotation></semantics></math> is always <a class="existingWikiWord" href="../../../../../8/7/5/7/17578/content.html">atomic</a>.</p>
+<h3 id="de_morganization">De Morganization</h3>
+<p>It was discovered by <a class="existingWikiWord" href="../../../../../0/1/9/8/8910/content.html">Olivia Caramello</a> that every topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> can be associated with a De Morgan topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>m</mi></msub><mo stretchy="false">(</mo><mi>ℰ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_m(\mathcal{E})</annotation></semantics></math>, its <a class="existingWikiWord" href="content.html">De Morganization</a>, in a universal way:</p>
+<div class="num_prop" id="largest_deMorgan">
+<h6 id="proposition_4">Proposition</h6>
+<p>Given a topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math>. There exists a unique largest <a class="existingWikiWord" href="../../../../../9/6/3/6/16369/content.html">dense subtopos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>m</mi></msub><mo stretchy="false">(</mo><mi>ℰ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_m(\mathcal{E})</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> that is a De Morgan topos.</p>
+</div>
+<p>For a proof see <a href="#Caramello09">Caramello (2009)</a>. The <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math> that occurs here, refers to the <em>De Morgan topology</em> , cf. <a class="existingWikiWord" href="content.html">De Morganization</a>.</p>
+<p>As <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub><mo stretchy="false">(</mo><mi>ℰ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_{\neg\neg}(\mathcal{E})</annotation></semantics></math>, the sheaf subtopos for the <a class="existingWikiWord" href="../../../../../1/7/3/4/4371/content.html">double negation topology</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>¬</mo></mrow><annotation encoding="application/x-tex">\neg\neg</annotation></semantics></math> , is the <em>smallest</em> dense De Morgan subtopos, we see that all dense De Morgan subtoposes lie in the interval between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub><mo stretchy="false">(</mo><mi>ℰ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_{\neg\neg}(\mathcal{E})</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>m</mi></msub><mo stretchy="false">(</mo><mi>ℰ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_{m}(\mathcal{E})</annotation></semantics></math>.</p>
+<p>In analogy with <a class="existingWikiWord" href="../../../../../8/5/7/6/16758/content.html">skeletal geometric morphisms</a> that preserve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>¬</mo></mrow><annotation encoding="application/x-tex">\neg\neg</annotation></semantics></math>-sheaves, geometric morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mo>→</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}\to\mathcal{E}</annotation></semantics></math> that map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math>-sheaves in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math>-sheaves in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> are called <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math><em>-skeletal</em>. They occur in the following characterization of De Morgan toposes (cf. <a class="existingWikiWord" href="content.html">De Morganization</a>):</p>
+<div class="num_prop" id="deMorgan_m-skeletal">
+<h6 id="proposition_5">Proposition</h6>
+<p>A topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is De Morgan iff every geometric morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mo>→</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}\to\mathcal{E}</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math>-skeletal. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▪</mo></mrow><annotation encoding="application/x-tex">\qed</annotation></semantics></math></p>
+</div>
+<h3 id="the_gleason_cover">The Gleason cover</h3>
+<p>Another way to associate a De Morgan topos to an arbitrary topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> was proposed by <a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a> in the late 70s (Johnstone <a href="#Johnstone79b">1979b</a>, <a href="#J80">1980</a>). The so called <em>Gleason cover</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\gamma\mathcal{E}</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> generalizes a construction in <a class="existingWikiWord" href="../../../../2/4/0/423/content.html">topology</a> that covers an arbitrary <a class="existingWikiWord" href="../../../../../5/3/1/2/2135/content.html">space</a> by an extremally disconnected topological space.</p>
+<p>……</p>
+<h3 id="relation_to_cohesion">Relation to cohesion</h3>
+<p>Given that the <a href="#deMorgan_equivalents">above conditions</a> concern <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1\coprod 1</annotation></semantics></math> and the contractability of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi> <mrow><mo>¬</mo><mo>¬</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\Omega_{\neg\neg}</annotation></semantics></math> it comes as no surprise that the De Morgan property interacts interestingly with <a class="existingWikiWord" href="../../../../6/5/1/1563/content.html">Lawvere's</a> axiomatic approach to <a class="existingWikiWord" href="../../../../../1/0/4/5/5401/content.html">cohesion</a> and, in particular, with the part of it that concerns the connectedness of the subobject classifier in a cohesive topos of spaces. A first indication of this is the following:</p>
+<div class="num_prop" id="omega_connected">
+<h6 id="proposition_6">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{\mathcal{C}^{op}}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">presheaf topos</a>. Then its <a class="existingWikiWord" href="../../../../../6/0/3/0/306/content.html">subobject classifier</a> is connected iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>∈</mo><msup><mi>Set</mi> <mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">1\in Set^{\mathcal{C}^{op}}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/4/6/2/2649/content.html">connected</a> object and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{\mathcal{C}^{op}}</annotation></semantics></math> is not de Morgan iff there exists a connected object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><msup><mi>Set</mi> <mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">X\in Set^{\mathcal{C}^{op}}</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mn>1</mn><mo>↣</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">1\coprod 1\rightarrowtail X</annotation></semantics></math> .</p>
+</div>
+<p>This result appears in <a href="#RZZZ04">La Palme-Reyes-Reyes-Zolfaghari (2004, p.220)</a> where it is attributed to <a class="existingWikiWord" href="../../../../6/5/1/1563/content.html">Lawvere</a>.</p>
+<p>The following result due to <a href="#Mielke84">Mielke (1984)</a> shows that the De Morgan property coincides with the (local) absence of a non-trivial <a class="existingWikiWord" href="../../../../../1/7/4/0/471/content.html">interval objects</a> in a topos.</p>
+<p>Here by an interval object we mean an internal linearly ordered object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> with disjoint least and greatest elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>:</mo><mn>1</mn><mo>→</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">m:1\to I</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>:</mo><mn>1</mn><mo>→</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">M:1\to I</annotation></semantics></math>, respectively, i.e. roughly the sort of thing that is classified by <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>.</p>
+<p>An interval object is <em>trivial</em> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>≃</mo><msub><mi>I</mi> <mn>1</mn></msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><msub><mi>I</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">I\simeq I_1\coprod I_2</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>,</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">m,M</annotation></semantics></math> factor through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>I</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">I_1,I_2</annotation></semantics></math>, respectively. A topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is said to be <strong>homotopically trivial</strong> if every interval object in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is trivial, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is said to <em>locally homotopically trivial</em> if the <a class="existingWikiWord" href="../../../../../2/1/4/5/5412/content.html">slice topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi><mo stretchy="false">/</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}/X</annotation></semantics></math> is homotopically trivial for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">X\in\mathcal{E}</annotation></semantics></math>.</p>
+<div class="num_prop" id="deMorgan_interval">
+<h6 id="proposition_7">Proposition</h6>
+<p>A topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is locally homotopically trivial iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is a De Morgan topos. If subobjects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> generate, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is homotopically trivial iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is a De Morgan topos.</p>
+</div>
+<p>For situations where subobjects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> generate see e.g. <a href="#Johnstone77">Johnstone (1977, sec.5.3 pp.145ff)</a>. For a <a class="existingWikiWord" href="../../../../../1/4/2/0/241/content.html">Grothendieck topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math>, this happens precisely when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(L)</annotation></semantics></math> for some <a class="existingWikiWord" href="../../../../../8/5/4/0/458/content.html">locale</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math>. From e.g. <a href="#Borceux94">Borceux (1994, p.443)</a> it follows then that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(L)</annotation></semantics></math> <em>is homotopically trivial</em> precisely when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is a <em>De Morgan locale</em>.</p>
+<h3 id="relation_to_model_theory">Relation to model theory</h3>
+<p>….</p>
+<div class="num_prop" id="model_companion">
+<h6 id="proposition_8">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> be a coherent theory. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> admits a <span class="newWikiWord">model companion<a href="/nlab/new/model+companion">?</a></span> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Mod</mi><mo stretchy="false">(</mo><mi>𝒯</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Mod(\mathcal{T})</annotation></semantics></math> has the <a class="existingWikiWord" href="../../../../../5/5/7/7/7755/content.html">amalgamation property</a> iff for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>∈</mo><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">B\in\mathcal{T}</annotation></semantics></math> , the lattice of subobjects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> admits a negation satisfying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>A</mi><mo>∨</mo><mo>¬</mo><mo>¬</mo><mi>A</mi><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\neg A\vee\neg\neg A = B</annotation></semantics></math>.</p>
+</div>
+<p>This result appears without proof in <a href="#Harun96">Harun (1976, p.73)</a> where it is attributed to a preprint of <a class="existingWikiWord" href="../../../../../0/7/3/1/1370/content.html">André Joyal</a> and <a class="existingWikiWord" href="../../../../../8/5/2/2/2258/content.html">Gonzalo E. Reyes</a>. A proof and further discussion of the connection between the De Morgan properties and the model-theoretical <a class="existingWikiWord" href="../../../../../5/5/7/7/7755/content.html">amalgamation property</a> can be found in <a href="../../../../../../../missing.html">Caramello-Chamoun (2025)</a>.</p>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li><a class="existingWikiWord" href="content.html">De Morganization</a></li>
+<li><a class="existingWikiWord" href="../../../../../9/3/7/6/16739/content.html">De Morgan Heyting algebra</a></li>
+<li><a class="existingWikiWord" href="../../../../0/9/4/24903/content.html">De Morgan Heyting category</a></li>
+<li><a class="existingWikiWord" href="../../../../../2/6/4/7/27462/content.html">Ore condition</a></li>
+<li><a class="existingWikiWord" href="../../../../../1/7/3/4/4371/content.html">double negation</a></li>
+<li><a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a></li>
+<li><a class="existingWikiWord" href="../../../../../8/8/4/0/488/content.html">Boolean topos</a></li>
+<li><a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">law of excluded middle</a></li>
+<li><a class="existingWikiWord" href="../../../../../8/5/7/6/16758/content.html">skeletal geometric morphism</a></li>
+<li><a class="existingWikiWord" href="../../../../6/4/1/1463/content.html">ultrafilter principle</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p>A. Bagchi, <em>De Morgan’s law and related identities in classifying topoi</em> , Proc. CT91 pp.1-32, American Mathematical Society 1992.</p>
+</li>
+<li>
+<p>A. Bagchi, <em>Lee Identities in Topoi I</em> , JPAA <strong>120</strong> (1997) pp.143-159.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/1/4/4/4416/content.html">Francis Borceux</a>, <em>Handbook of Categorical Algebra vol.3</em> , Cambridge UP 1994. (sections 1.2, 7.3)</p>
+</li>
+<li id="Caramello09">
+<p><a class="existingWikiWord" href="../../../../../0/1/9/8/8910/content.html">Olivia Caramello</a>, <em>De Morgan classifying toposes</em> , Adv. in Math. <strong>222</strong> (2009) pp.2117-2144. (<a href="http://arxiv.org/abs/0808.1519">arXiv:0808.1519</a>)</p>
+</li>
+<li id="Caramello12">
+<p><a class="existingWikiWord" href="../../../../../0/1/9/8/8910/content.html">Olivia Caramello</a>, <em>Topologies for intermediate logics</em> , arXiv:1205.2547 (2012). (<a href="http://arxiv.org/abs/1205.2547">arXiv:1205.2547</a>)</p>
+</li>
+<li id="CC25">
+<p><a class="existingWikiWord" href="../../../../../0/1/9/8/8910/content.html">Olivia Caramello</a>, Yorgo Chamoun, <em>De Morgan’s law in toposes I</em>, arXiv:2507.01869 (2025). (<a href="https://arxiv.org/abs/2507.01869">abstract</a>)</p>
+</li>
+<li id="CJ09">
+<p><a class="existingWikiWord" href="../../../../../0/1/9/8/8910/content.html">Olivia Caramello</a>, <a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>De Morgan’s law and the Theory of Fields</em> , Adv. in Math. <strong>222</strong> (2009) pp.2145-2152. (<a href="http://arxiv.org/abs/0808.1572">arXiv:0808.1572</a>)</p>
+</li>
+<li id="Harun76">
+<p>R. Harun, <em>Applications of De Morgan toposes and the Gleason cover</em> , PhD Montréal 1996. (<a href="http://www.collectionscanada.gc.ca/obj/s4/f2/dsk2/ftp04/mq29711.pdf">pdf 4.6MB</a>)</p>
+</li>
+<li id="Johnstone77">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Topos Theory</em> , Academic Press New York 1977. (Dover reprint New York 2014, exercise 5.5.3 p.162)</p>
+</li>
+<li id="Johnstone79">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Conditions Related to De Morgan’s Law</em> , pp.479-491 in LNM <strong>753</strong> Springer Heidelberg 1979.</p>
+</li>
+<li id="Johnstone79b">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Another Condition Equivalent to De Morgan’s Law</em> , Comm. Alg. <strong>7</strong> (1979) pp.1309-1312.</p>
+</li>
+<li id="Johnstone80">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>The Gleason Cover of a Topos I</em> , JPAA <strong>19</strong> (1980) pp.171-192.</p>
+</li>
+<li id="Johnstone81">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>The Gleason Cover of a Topos II</em> , JPAA <strong>22</strong> (1981) pp.229-247.</p>
+</li>
+<li id="Johnstone">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em><a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Sketches of an Elephant</a> vol. II</em>, Oxford UP 2002. (section D4.6, pp.998ff)</p>
+</li>
+<li id="Johnstone13">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>The Gleason Cover of a Realizability Topos</em> , TAC <strong>28</strong> no.32 (2013) pp.1139-1152. (<a href="http://www.tac.mta.ca/tac/volumes/28/32/28-32abs.html">abstract</a>)</p>
+</li>
+<li id="KR94">
+<p><a class="existingWikiWord" href="../../../../../1/5/4/1/1451/content.html">Anders Kock</a>, <a class="existingWikiWord" href="../../../../../8/5/2/2/2258/content.html">Gonzalo E. Reyes</a>, <em>Relatively Boolean and De Morgan Toposes and Locales</em> , Cah. Top. Géom. Diff. Cat. <strong>35</strong> no.3 (1994) pp.249-261. (<a href="http://www.numdam.org/numdam-bin/item?id=CTGDC_1994__35_3_249_0">numdam</a>)</p>
+</li>
+<li id="LawvereMenni15">
+<p><a class="existingWikiWord" href="../../../../6/5/1/1563/content.html">William Lawvere</a>, <a class="existingWikiWord" href="../../../../9/6/1/11693/content.html">Matías Menni</a>, <em>Internal choice holds in the discrete part of any cohesive topos satisfying stable connected codiscreteness</em> , TAC <strong>30</strong> no.26 (2015) pp.909-932. (<a href="http://www.tac.mta.ca/tac/volumes/30/26/30-26abs.html">abstract</a>)</p>
+</li>
+<li>
+<p>K. B. Lee, <em>Equational Classes of Distributed Pseudo-Complemented Lattices</em> , Can. J. Math. <strong>22</strong> (1970) pp.881-891. (<a href="http://cms.math.ca/openaccess/cjm/v22/cjm1970v22.0881-0891.pdf">pdf</a>)</p>
+</li>
+<li>
+<p>B. Loiseau, M.-M. Mawanda, <em>On Natural Number Objects, Finiteness and Kripke-Platek Models in Toposes</em> , JPAA <strong>61</strong> (1989) pp.257-266.</p>
+</li>
+<li id="Mawanda88">
+<p>M.-M. Mawanda, <em>Well-ordering and Choice in Toposes</em> , JPAA <strong>50</strong> (1988) pp.171-184.</p>
+</li>
+<li id="Mielke84">
+<p>M. V. Mielke, <em>Homotopically Trivial Toposes</em> , Pacific J. Math. <strong>110</strong> no.1 (1984) pp.171-182. (<a href="https://projecteuclid.org/euclid.pjm/1102711108">euclid</a>)</p>
+</li>
+<li id="Mielke93">
+<p>M. V. Mielke, <em>Topos based homology theory</em> , Comment. Math. Univ. Carolinae <strong>34</strong> (1993) pp.549-565. (<a href="http://www.kurims.kyoto-u.ac.jp/EMIS/journals/CMUC/pdf/cmuc9303/mielke.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/8/4/1/11489/content.html">Chris Mulvey</a>, <em>The Maximality of Filters</em> , JPAA <strong>68</strong> (1990) pp.253-258.</p>
+</li>
+<li id="RRZ04">
+<p>M. La Palme Reyes, <a class="existingWikiWord" href="../../../../../8/5/2/2/2258/content.html">G. E. Reyes</a>, H. Zolfaghari, <em>Generic Figures and their Glueings</em> , Polimetrica Milano 2004.</p>
+</li>
+<li>
+<p>M. E. Szabo, <em>Categorical De Morgan laws</em> , Alg. Universalis <strong>12</strong> (1981) pp.93-102.</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

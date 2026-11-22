@@ -1,0 +1,402 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      extension system in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      extension system
+  </h1>
+<div id="revision">
+<blockquote>
+<p>This page is about an alternative presentation of <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monads</a> as popular for <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a>. For a different notion of an “extension system” (that is to a <a class="existingWikiWord" href="../../../../../3/5/2/0/253/content.html">bicategory</a> what a <a class="existingWikiWord" href="../../../../../6/4/3/0/346/content.html">closed category</a> is to a <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a>) see instead <em><a class="existingWikiWord" href="../../../../../6/4/3/0/346/content.html">closed category</a></em>.</p>
+</blockquote>
+<h1 id="extension_systems">Extension systems</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#the_kleisli_category">The Kleisli category</a></li>
+<li><a href="#the_category_of_algebras">The category of algebras</a></li>
+<li><a href="#strong_monads">Strong monads</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>The notion of an “<em>extension system</em>” (<a href="#MarmolejoWood10">Marmolejo &amp; Wood (2010)</a>), originally called “<em><a class="existingWikiWord" href="../../../../../6/3/5/0/536/content.html">algebraic theory</a> in extension form</em>” (<a href="#Manes76">Manes (1976), p. 32</a>) and previously also referred to as a “<em><a class="existingWikiWord" href="../../../../../5/4/8/4/24845/content.html">Kleisli triple</a></em>” (<a href="#Moggi91">Moggi (1991), Def. 1.2</a>) is an equivalent way of presenting the <a class="existingWikiWord" href="../../../../0/7/7/7708/content.html">structure</a> of a <em><a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a></em> (on a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a>) that does not explicitly refer to <a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">composition</a> (“iteration”) of its <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a>. This is simpler for certain purposes, and in any case more natural for others, notably in the use of <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a>. Abstractly, the notion may be understood as specialising the definition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/9/9/0/10993/content.html">relative monads</a> to the case where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../6/9/3/1/1396/content.html">identity functor</a>.</p>
+<p>Specifically, noticing that the <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a> <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> may be understood as constructing its <a href="../../../../../7/6/0/1/21067/content.html#FreeAlgebras">free algebras</a>, which (lacking <a class="existingWikiWord" href="../../../../../6/6/8/0/866/content.html">relations</a>) tend to be “large” (say as concerns the <a class="existingWikiWord" href="../../../../../5/8/1/1/1185/content.html">cardinality</a> of their <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying sets</a>), the iterated application of this endofunctor produces ever larger objects, and some authors have pointed to avoiding this phenomenon as motivation for considering extension systems:</p>
+<blockquote>
+<p id="MarmolejoWoodQuote"> [<a href="#MarmolejoWood10">Marmolejo-Wood 10</a>]: there is an important overarching reason to consider monads in this way. Extension systems allow us to completely dispense with the iterates <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math>…<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math> of the underlying arrow. No iteration is necessary. A moment’s reflection on the various terms of terms and terms of terms of terms that occur in practical applications suggest that this alone justifies the alternate approach. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math>…<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math> we note that extension systems in <a class="existingWikiWord" href="../../../../../4/3/0/0/34/content.html">higher dimensional category theory</a> provide an even more important simplication of monads. For even in dimension 2, some of the tamest examples are built on <a class="existingWikiWord" href="../../../../../3/6/5/0/563/content.html">pseudofunctors</a> that are difficult to iterate.</p>
+</blockquote>
+<p>Major alternative motivation for extension systems comes from their understanding as <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a> (<a class="existingWikiWord" href="../../../../../5/4/8/4/24845/content.html">Kleisli triples</a>); see there for more.</p>
+<h2 id="definition">Definition</h2>
+<p>An <strong>extension system</strong> (<a href="#MarmolejoWood10">Marmolejo-Wood 2010</a>) on a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> consists of</p>
+<ul>
+<li>
+<p>For every <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A\in C</annotation></semantics></math>, an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>A</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">T A\in C</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\eta_A \colon A\to T A</annotation></semantics></math>, and</p>
+</li>
+<li>
+<p>For every <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">f\colon B\to T A</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>T</mi></msup><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>B</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">f^T \colon T B \to T A</annotation></semantics></math> (the <em>Kleisli extension</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math>), satisfying the following <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axioms</a>:</p>
+<ul>
+<li>
+<p>For every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>A</mi></msub><msup><mo stretchy="false">)</mo> <mi>T</mi></msup><mo>=</mo><msub><mn>1</mn> <mrow><mi>T</mi><mi>A</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(\eta_A)^T = 1_{T A}</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>For every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">f \colon B\to T A</annotation></semantics></math>, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>T</mi></msup><mo>∘</mo><msub><mi>η</mi> <mi>B</mi></msub><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">f^T \circ \eta_B = f</annotation></semantics></math>, and</p>
+</li>
+<li>
+<p>For every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">f \colon B\to T A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>T</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">g:C \to T B</annotation></semantics></math>, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>T</mi></msup><mo>∘</mo><msup><mi>g</mi> <mi>T</mi></msup><mo>=</mo><mo stretchy="false">(</mo><msup><mi>f</mi> <mi>T</mi></msup><mo>∘</mo><mi>g</mi><msup><mo stretchy="false">)</mo> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">f^T \circ g^T = (f^T \circ g)^T</annotation></semantics></math>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Given these data, we make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>f</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>A</mi></msub><mo>∘</mo><mi>f</mi><msup><mo stretchy="false">)</mo> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">T f = (\eta_A \circ f)^T</annotation></semantics></math>, we define multiplication maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>A</mi></msub><mo>:</mo><mi>T</mi><mi>T</mi><mi>A</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\mu_A:T T A \to T A</annotation></semantics></math> as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mn>1</mn> <mrow><mi>T</mi><mi>A</mi></mrow></msub><msup><mo stretchy="false">)</mo> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">(1_{T A})^T</annotation></semantics></math>, and we verify that the result is a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>. Conversely, given a monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T,\eta,\mu)</annotation></semantics></math>, we define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>T</mi></msup><mo>=</mo><msub><mi>μ</mi> <mi>A</mi></msub><mo>∘</mo><mi>T</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">f^T = \mu_A \circ T f</annotation></semantics></math> and check the above axioms. Thus, extension systems are <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalent</a> to monads.</p>
+<h3 id="the_kleisli_category">The Kleisli category</h3>
+<p>This presentation of a monad is especially convenient for defining the <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>T</mi></msub></mrow><annotation encoding="application/x-tex">C_T</annotation></semantics></math> (whence the aternative terminology “<a class="existingWikiWord" href="../../../../../5/4/8/4/24845/content.html">Kleisli triple</a>”):</p>
+<p>its objects are those of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, its morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">B\to A</annotation></semantics></math> are the morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">B\to T A</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, and the composite of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>B</mi><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">f:B\to T A</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>T</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">g:C \to T B</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>T</mi></msup><mo>∘</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">f^T \circ g</annotation></semantics></math>.</p>
+<h3 id="the_category_of_algebras">The category of algebras</h3>
+<p>It is also possible to define <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras over a monad</a> using this presentation. A <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebra consists of</p>
+<ul>
+<li>
+<p>An object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, and</p>
+</li>
+<li>
+<p>For every morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">h:X\to B</annotation></semantics></math>, a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>h</mi> <mi>B</mi></msup><mo>:</mo><mi>T</mi><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">h^B : T X \to B</annotation></semantics></math>, such that</p>
+</li>
+<li>
+<p>For every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">h:X\to B</annotation></semantics></math> we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>h</mi> <mi>B</mi></msup><mo>∘</mo><msub><mi>η</mi> <mi>X</mi></msub><mo>=</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">h^B \circ \eta_X = h</annotation></semantics></math>, and</p>
+</li>
+<li>
+<p>For every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">h:X\to B</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>:</mo><mi>Y</mi><mo>→</mo><mi>T</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">y:Y\to T X</annotation></semantics></math> we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>h</mi> <mi>B</mi></msup><mo>∘</mo><msup><mi>y</mi> <mi>T</mi></msup><mo>=</mo><mo stretchy="false">(</mo><msup><mi>h</mi> <mi>B</mi></msup><mo>∘</mo><mi>y</mi><msup><mo stretchy="false">)</mo> <mi>B</mi></msup></mrow><annotation encoding="application/x-tex">h^B \circ y^T = (h^B \circ y)^B</annotation></semantics></math>.</p>
+</li>
+</ul>
+<h3 id="strong_monads">Strong monads</h3>
+<p>When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed category</a>, to make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../0/9/8/1/1890/content.html">strong monad</a> we simply have to enhance the extension operation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">(-)^T</annotation></semantics></math> to an internal morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mi>A</mi><msup><mo stretchy="false">)</mo> <mi>B</mi></msup><mo>→</mo><mo stretchy="false">(</mo><mi>T</mi><mi>A</mi><msup><mo stretchy="false">)</mo> <mrow><mi>T</mi><mi>B</mi></mrow></msup></mrow><annotation encoding="application/x-tex">(T A)^B \to (T A)^{T B}</annotation></semantics></math>, or equivalently <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>B</mi><mo>×</mo><mo stretchy="false">(</mo><mi>T</mi><mi>A</mi><msup><mo stretchy="false">)</mo> <mi>B</mi></msup><mo>→</mo><mi>T</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">T B \times (T A)^B \to T A</annotation></semantics></math>. This morphism is known as “bind” in use of <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad in computer science</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/9/9/0/10993/content.html">relative monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/4/6/26434/content.html">polymonad</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The notion appears explicitly in:</p>
+<ul>
+<li id="Manes76"><a class="existingWikiWord" href="../../../../../4/1/7/8/8714/content.html">Ernest G. Manes</a>, Sec 3, Ex. 12 (p. 32) of: <em>Algebraic Theories</em>, Springer (1976) [<a href="https://doi.org/10.1007/978-1-4612-9860-1">doi:10.1007/978-1-4612-9860-1</a>]</li>
+</ul>
+<p>and is expanded on considerably in</p>
+<ul>
+<li id="MarmolejoWood10"><a class="existingWikiWord" href="../../../../../6/2/3/1/21326/content.html">Francisco Marmolejo</a>, <a class="existingWikiWord" href="../../../../../4/7/0/9/19074/content.html">Richard J. Wood</a>, <em>Monads as extension systems – no iteration is necessary</em> <a class="existingWikiWord" href="../../../../../4/7/8/2/2874/content.html">TAC</a> <strong>24</strong> 4 (2010) 84-113 [<a href="http://www.tac.mta.ca/tac/volumes/24/4/24-04abs.html">tac:24-04</a>]</li>
+</ul>
+<p>An earlier appearance in a different guise (“devices”):</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../5/2/8/8258/content.html">R. F. C. Walters</a>, Chapter I of: <em>A categorical approach to universal algebra</em>, Ph.D. Thesis (1970) [<a href="https://openresearch-repository.anu.edu.au/handle/1885/133321">anu:1885/133321</a>]</li>
+</ul>
+<p>The use of extension systems (there called <a class="existingWikiWord" href="../../../../../5/4/8/4/24845/content.html">Kleisli triples</a>) as <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a> capturing <a class="existingWikiWord" href="../../../../../7/8/3/8/8387/content.html">computation</a> with side effects is due to:</p>
+<ul>
+<li id="Moggi91"><a class="existingWikiWord" href="../../../../../1/9/9/6/6991/content.html">Eugenio Moggi</a>, <em>Notions of computation and monads</em>, Information and Computation, <strong>93</strong> 1 (1991) [<a href="https://doi.org/10.1016/0890-5401(91)90052-4">doi:10.1016/0890-5401(91)90052-4</a>, <a href="http://www.disi.unige.it/person/MoggiE/ftp/ic91.pdf">pdf</a>]</li>
+</ul>
+<p>This way of presenting a monad is also closely related to <a class="existingWikiWord" href="../../../../../5/7/9/8/8975/content.html">continuation-passing style</a>, as described in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/3/8/8/8837/content.html">Andrzej Filinski</a>. 1994. <a href="https://dl.acm.org/doi/10.1145/174675.178047">Representing monads</a>, <a href="https://web.archive.org/web/20130527112749/https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.43.8213&amp;rep=rep1&amp;type=pdf">(pdf)</a>. In Proceedings of the 21st ACM SIGPLAN-SIGACT symposium on Principles of programming languages (POPL ‘94). Association for Computing Machinery, New York, NY, USA, 446–457. https://doi.org/10.1145/174675.178047</li>
+</ul>
+<p>Generalization to <a class="existingWikiWord" href="../../../../../0/9/5/1/1590/content.html">pseudomonads</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/3/1/21326/content.html">Francisco Marmolejo</a>, <a class="existingWikiWord" href="../../../../../4/7/0/9/19074/content.html">Richard J. Wood</a>, <em>Kan extensions and lax idempotent pseudomonads</em>, <a class="existingWikiWord" href="../../../../../4/7/8/2/2874/content.html">TAC</a> <strong>26</strong> 1 (2012) 1-29 [<a href="http://www.tac.mta.ca/tac/volumes/26/1/26-01abs.html">26-01</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/3/1/21326/content.html">Francisco Marmolejo</a>, <a class="existingWikiWord" href="../../../../../4/7/0/9/19074/content.html">Richard J. Wood</a>, <em>No-iteration pseudomonads</em>, <a class="existingWikiWord" href="../../../../../4/7/8/2/2874/content.html">TAC</a> <strong>28</strong> 14 (2013) 371-402 [<a href="http://www.tac.mta.ca/tac/volumes/28/14/28-14abs.html">tac:28-14</a>]</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

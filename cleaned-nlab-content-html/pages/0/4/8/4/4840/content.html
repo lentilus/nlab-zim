@@ -1,0 +1,524 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Stokes theorem in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Stokes theorem
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<ul>
+<li><a href="#traditional_statement">Traditional statement</a></li>
+<li><a href="#FormulationInCohesiveHomotopyTypeTheory">Abstract formulation in cohesive homotopy-type theory</a></li>
+</ul>
+<li><a href="#classical_forms">Classical forms</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <strong>Stokes theorem</strong> (also <em>Stokes' theorem</em> or <em>Stokes's theorem</em>) asserts that the <a class="existingWikiWord" href="../../../../../8/7/5/8/8578/content.html">integral</a> of an <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">exterior differential form</a> on the boundary of an <a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">oriented</a> <a class="existingWikiWord" href="../../../../5/0/5/5050/content.html">manifold with boundary</a> (or <a class="existingWikiWord" href="../../../../7/1/6/6170/content.html">submanifold</a> or <a class="existingWikiWord" href="../../../../../4/5/2/8/8254/content.html">chain</a> of such) equals the integral of the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a> of the form on the manifold itself. (The theorem also applies to exterior pseudoforms on a chain of pseudoriented submanifolds.)</p>
+<h2 id="statement">Statement</h2>
+<h3 id="traditional_statement">Traditional statement</h3>
+<p>Let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>Diff</mi></msub><mo>:</mo><mi>Δ</mi><mo>→</mo><mi>Diff</mi></mrow><annotation encoding="application/x-tex">
+  \Delta_{Diff} : \Delta \to Diff
+
+</annotation></semantics></math></div>
+<p>be the <a class="existingWikiWord" href="../../../../../3/5/2/6/16253/content.html">cosimplicial object</a> of standard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplices</a> in <a class="existingWikiWord" href="../../../../../5/3/1/0/135/content.html">SmoothMfd</a>: in degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> this is the standard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Δ</mi> <mi>Diff</mi> <mi>k</mi></msubsup><mo>⊂</mo><msup><mi>ℝ</mi> <mi>k</mi></msup></mrow><annotation encoding="application/x-tex">\Delta^k_{Diff} \subset \mathbb{R}^k</annotation></semantics></math> regarded as a <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> <a class="existingWikiWord" href="../../../../5/0/5/5050/content.html">with boundary and corners</a>. This may be parameterized as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mi>k</mi></msup><mo>=</mo><mo stretchy="false">{</mo><msup><mi>t</mi> <mn>1</mn></msup><mo>,</mo><mi>⋯</mi><mo>,</mo><msup><mi>t</mi> <mi>k</mi></msup><mo>∈</mo><msub><mi>ℝ</mi> <mrow><mo>≥</mo><mn>0</mn></mrow></msub><mo stretchy="false">|</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>i</mi></munder><msup><mi>t</mi> <mi>i</mi></msup><mo>≤</mo><mn>1</mn><mo stretchy="false">}</mo><mo>⊂</mo><msup><mi>ℝ</mi> <mi>k</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Delta^k = \{ t^1, \cdots, t^k \in \mathbb{R}_{\geq 0} | \sum_i t^i \leq 1\}
+  \subset \mathbb{R}^k
+  \,.
+
+</annotation></semantics></math></div>
+<p>In this parameterization the coface maps of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>Diff</mi></msub></mrow><annotation encoding="application/x-tex">\Delta_{Diff}</annotation></semantics></math> are</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mi>i</mi></msub><mo>:</mo><mo stretchy="false">(</mo><msup><mi>t</mi> <mn>1</mn></msup><mo>,</mo><mi>⋯</mi><mo>,</mo><msup><mi>t</mi> <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo><mo>↦</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><msup><mi>t</mi> <mn>1</mn></msup><mo>,</mo><mi>⋯</mi><mo>,</mo><msup><mi>t</mi> <mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>,</mo><msup><mi>t</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>⋯</mi><mo>,</mo><msup><mi>t</mi> <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mtd> <mtd><mo stretchy="false">|</mo><mi>i</mi><mo>&gt;</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><munderover><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow> <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></munderover><msup><mi>t</mi> <mi>i</mi></msup><mo>,</mo><msup><mi>t</mi> <mn>1</mn></msup><mo>,</mo><mi>⋯</mi><mo>,</mo><msup><mi>t</mi> <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \partial_i : (t^1, \cdots, t^{k-1}) \mapsto
+  \left\{
+    \array{
+       (t^1, \cdots, t^{i-1}, t^{i+1} , \cdots, t^{k-1}) &amp; | i \gt 0
+       \\
+       (1- \sum_{i=1}^{k-1} t^i, t^1, \cdots, t^{k-1})
+    }
+  \right.
+  \,.
+
+</annotation></semantics></math></div>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> a <strong>smooth <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-simplex in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></strong> is a <a class="existingWikiWord" href="../../../../../9/5/9/3/3959/content.html">smooth function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>:</mo><msup><mi>Δ</mi> <mi>k</mi></msup><mo>→</mo><mi>X</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \sigma : \Delta^k \to X
+  \,.
+
+</annotation></semantics></math></div>
+<p>The <strong>boundary</strong> of this simplex in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../4/5/2/8/8254/content.html">chain</a> (formal linear combination of smooth <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k-1)</annotation></semantics></math>-simplices)</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><mi>σ</mi><mo>=</mo><munderover><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow> <mi>k</mi></munderover><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>i</mi></msup><mi>σ</mi><mo>∘</mo><msub><mo>∂</mo> <mi>i</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \partial \sigma = \sum_{i = 0}^k (-1)^i \sigma \circ \partial_i
+  \,.
+
+</annotation></semantics></math></div>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msup><mi>Ω</mi> <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega \in \Omega^{k-1}(X)</annotation></semantics></math> be a degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k-1)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential form</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<div class="num_theorem">
+<h6 id="theorem">Theorem</h6>
+<p><strong>(Stokes theorem)</strong></p>
+<p>The <a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integral</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math> over the boundary of the simplex equals the integral of its <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a> over the simplex itself</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><mo>∂</mo><mi>σ</mi></mrow></msub><mi>ω</mi><mo>=</mo><msub><mo>∫</mo> <mi>σ</mi></msub><mi>d</mi><mi>ω</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \int_{\partial \sigma} \omega = \int_\sigma d \omega
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>It follows that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/5/2/8/8254/content.html">chain</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">\partial C</annotation></semantics></math> its boundary <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k-1)</annotation></semantics></math>-chain, we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><mo>∂</mo><mi>C</mi></mrow></msub><mi>ω</mi><mo>=</mo><msub><mo>∫</mo> <mi>C</mi></msub><mi>d</mi><mi>ω</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \int_{\partial C} \omega = \int_{C} d \omega
+  \,.
+
+</annotation></semantics></math></div>
+<p>More generally:</p>
+<div class="num_prop" id="StokesTheoremForFiberIntegration">
+<h6 id="proposition">Proposition</h6>
+<p><strong>(Stokes theorem for <a class="existingWikiWord" href="../../../../../1/1/9/3/3911/content.html">fiber integration</a>)</strong></p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is any <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msup><mi>Ω</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>U</mi><mo>×</mo><mi>Σ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega \in \Omega^\bullet(U \times \Sigma)</annotation></semantics></math> is a differential form on the <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">Cartesian product</a>, then with respect to <a class="existingWikiWord" href="../../../../../1/1/9/3/3911/content.html">fiber-wise</a> <a class="existingWikiWord" href="../../../../../8/7/5/8/8578/content.html">integration of differential forms</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mi>Σ</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>Ω</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mi>dim</mi><mo stretchy="false">(</mo><mi>Σ</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>U</mi><mo>×</mo><mi>Σ</mi><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>Ω</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \int_\Sigma \;\colon\;
+  \Omega^{\bullet + dim(\Sigma)}(U \times \Sigma)
+    \longrightarrow
+  \Omega^\bullet(U)
+
+</annotation></semantics></math></div>
+<p>along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>×</mo><mi>Σ</mi><mover><mo>→</mo><mrow><msub><mi>pr</mi> <mn>1</mn></msub></mrow></mover><mi>U</mi></mrow><annotation encoding="application/x-tex">U \times \Sigma \overset{pr_1}{\to} U</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mi>Σ</mi></msub><mi>d</mi><mi>ω</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mo>∫</mo> <mrow><msub><mo>∂</mo> <mi>Σ</mi></msub></mrow></msub><mi>ω</mi><mo>+</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mrow><mi>dim</mi><mo stretchy="false">(</mo><mi>Σ</mi><mo stretchy="false">)</mo></mrow></msup><mi>d</mi><msub><mo>∫</mo> <mi>Σ</mi></msub><mi>ω</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \int_\Sigma d \omega
+  \;=\;
+  \int_{\partial_\Sigma} \omega
+  +
+  (-1)^{dim(\Sigma)} d \int_\Sigma \omega 
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(e.g. <a href="#GomiTerashima00">Gomi &amp; Terashima 2000, remark 3.1</a>)</p>
+<h3 id="FormulationInCohesiveHomotopyTypeTheory">Abstract formulation in cohesive homotopy-type theory</h3>
+<p>We discuss here a general abstract formulation of differential forms, their integration and Stokes theorem in the axiomatics of <a class="existingWikiWord" href="../../../../../9/5/0/7/7059/content.html">cohesive homotopy type theory</a> (following <a href="#BunkeNikolausVoelkl13">Bunke-Nikolaus-Völkl 13, theorem 3.2</a>).</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../../../missing.html">cohesive (∞,1)-topos</a> and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">T \mathbf{H}</annotation></semantics></math> for its <a class="existingWikiWord" href="../../../../../4/9/4/0/10494/content.html">tangent cohesive (∞,1)-topos</a>.</p>
+<p>Assume that there is an <a class="existingWikiWord" href="../../../../../1/7/4/0/471/content.html">interval object</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>∪</mo><mo>*</mo><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>i</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mover><msup><mi>Δ</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">
+  \ast \cup \ast \stackrel{(i_0, i_1)}{\longrightarrow}  \Delta^1
+
+</annotation></semantics></math></div>
+<p>“exhibiting the cohesion” (see at <em><a class="existingWikiWord" href="../../../../../4/3/5/5/5534/content.html">continuum</a></em>) in that there is a (chosen) <a class="existingWikiWord" href="../../../../2/1/0/120/content.html">equivalence</a> between the <a class="existingWikiWord" href="../../../../../1/1/3/7/7311/content.html">shape modality</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi></mrow><annotation encoding="application/x-tex">\Pi</annotation></semantics></math> and the <a class="existingWikiWord" href="../../../../../../../missing.html">localization</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow></msub></mrow><annotation encoding="application/x-tex">L_{\Delta^1}</annotation></semantics></math> at the the <a class="existingWikiWord" href="../../../../../7/7/8/5/5877/content.html">projection</a> maps out of <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">Cartesian products</a> with this line <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mn>1</mn></msup><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Delta^1\times (-) \to (-)</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi><mo>≃</mo><msub><mi>L</mi> <mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Pi \simeq L_{\Delta^1}
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the case for instance for the “standard <a class="existingWikiWord" href="../../../../../4/3/5/5/5534/content.html">continuum</a>”, the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real line</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">Smooth∞Grpd</a>.</p>
+<p>It follows in particular that there is a chosen <a class="existingWikiWord" href="../../../../../../../missing.html">equivalence of (∞,1)-categories</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♭</mo><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>L</mi> <mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow></msub><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">
+  \flat(\mathbf{H})\simeq L_{\Delta^1}\mathbf{H}
+
+</annotation></semantics></math></div>
+<p>between the <a class="existingWikiWord" href="../../../../../2/8/9/8/8982/content.html">flat</a> <a class="existingWikiWord" href="../../../../8/9/8/8980/content.html">modal homotopy-types</a> and the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">\Delta^1</annotation></semantics></math>-homotopy invariant homotopy-types.</p>
+<p>Given a <a class="existingWikiWord" href="../../../../0/5/0/10500/content.html">stable homotopy type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>E</mi><mo stretchy="false">^</mo></mover><mo>∈</mo><mi>Stab</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">)</mo><mo>↪</mo><mi>T</mi><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\hat E \in Stab(\mathbf{H})\hookrightarrow T \mathbf{H}</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../1/0/4/5/5401/content.html">cohesion</a> provides two objects</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mi>dR</mi></msub><mi>Ω</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mo>♭</mo> <mi>dR</mi></msub><mi>Σ</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>∈</mo><mi>Stab</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \Pi_{dR} \Omega \hat E \,,\;\;  \flat_{dR}\Sigma \hat E
+  \;\;
+  \in Stab(\mathbf{H})
+
+</annotation></semantics></math></div>
+<p>which may be interpreted as <a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">de Rham complexes</a> with <a class="existingWikiWord" href="../../../../../6/8/2/8/8286/content.html">coefficients</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi><mo stretchy="false">(</mo><msub><mo>♭</mo> <mi>dR</mi></msub><mi>Σ</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi(\flat_{dR} \Sigma \hat E)</annotation></semantics></math>, the first one restricted to negative degree, the second to non-negative degree. Moreover, there is a canonical map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>Π</mi> <mi>dR</mi></msub><mi>Ω</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mtd> <mtd></mtd> <mtd><mover><mo>⟶</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle></mover></mtd> <mtd></mtd> <mtd><msub><mo>♭</mo> <mi>dR</mi></msub><mi>Σ</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mpadded lspace="-100%width" width="0"><mi>ι</mi></mpadded></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><msub><mo>↗</mo> <mpadded width="0"><mrow><msub><mi>θ</mi> <mover><mi>E</mi><mo stretchy="false">^</mo></mover></msub></mrow></mpadded></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \Pi_{dR}\Omega \hat E &amp;&amp; \stackrel{\mathbf{d}}{\longrightarrow} &amp;&amp; \flat_{dR}\Sigma \hat E
+    \\
+    &amp; {}_{\mathllap{\iota}}\searrow &amp;&amp; \nearrow_{\mathrlap{\theta_{\hat E}}}
+    \\
+    &amp;&amp; 
+    \hat E
+  }
+
+</annotation></semantics></math></div>
+<p>which interprets as the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>d</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{d}</annotation></semantics></math>. See at <em><a class="existingWikiWord" href="../../../../../4/6/5/1/11564/content.html">differential cohomology diagram</a></em> for details.</p>
+<p>Throughout in the following we leave the “inclusion” <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ι</mi></mrow><annotation encoding="application/x-tex">\iota</annotation></semantics></math> of “differential forms regarded as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat E</annotation></semantics></math>-connections on trivial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-bundles” implicit.</p>
+<div class="num_defn" id="CohesiveIntegrationOfDifferentialForms">
+<h6 id="definition">Definition</h6>
+<p><a class="existingWikiWord" href="../../../../../8/7/5/8/8578/content.html">Integration of differential forms</a> is the map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msup><mi>Δ</mi> <mn>1</mn></msup><mo>,</mo><msub><mo>♭</mo> <mi>dR</mi></msub><mi>Σ</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">]</mo><mo>⟶</mo><msub><mi>Π</mi> <mi>dR</mi></msub><mi>Ω</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">
+  \int_{\Delta^1} \;\colon\;  [\Delta^1, \flat_{dR}\Sigma \hat E] \longrightarrow \Pi_{dR}\Omega \hat E
+
+</annotation></semantics></math></div>
+<p>which is induced via the <a class="existingWikiWord" href="../../../../../3/6/0/9/9063/content.html">homotopy cofiber</a> property of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>♭</mo> <mi>dR</mi></msub><mi>Ω</mi><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\flat_{dR}\Omega \hat E</annotation></semantics></math> from the <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">counit</a> naturality square of the <a class="existingWikiWord" href="../../../../../2/8/9/8/8982/content.html">flat modality</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mo>*</mo><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mo>*</mo><mover><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>i</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>i</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow></mover><msup><mi>Δ</mi> <mn>1</mn></msup><mo stretchy="false">)</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[(\ast \coprod \ast \stackrel{(i_0, i_1)}{\to} \Delta ^1 ), -]</annotation></semantics></math>, using that this square exhibits a <a class="existingWikiWord" href="../../../../../7/4/1/8/8147/content.html">null homotopy</a> due to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">\Delta^1</annotation></semantics></math>-homotopy invariance of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♭</mo><mover><mi>E</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\flat \hat E</annotation></semantics></math>.</p>
+</div>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>Stokes’ theorem holds:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><msup><mi>Δ</mi> <mn>1</mn></msup></mrow></msub><mo>∘</mo><mstyle mathvariant="bold"><mi>d</mi></mstyle><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msubsup><mi>i</mi> <mn>1</mn> <mo>*</mo></msubsup><mo lspace="verythinmathspace" rspace="0em">−</mo><msubsup><mi>i</mi> <mn>0</mn> <mo>*</mo></msubsup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \int_{\Delta^1} \circ \mathbf{d} 
+  \;\simeq\; 
+  i_1^\ast - i_0^\ast
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(<a href="#BunkeNikolausVoelkl13">Bunke-Nikolaus-Völkl 13, theorem 3.2</a>)</p>
+<h2 id="classical_forms">Classical forms</h2>
+<p>In early 20th-century <span class="newWikiWord">vector analysis<a href="/nlab/new/vector+analysis">?</a></span> (and even today in undergraduate Calculus courses), the Stokes theorem took various classical forms about <a class="existingWikiWord" href="../../../../../2/2/7/2/2722/content.html">vector fields</a> in the <a class="existingWikiWord" href="../../../../../5/5/1/2/2155/content.html">Cartesian space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^n</annotation></semantics></math>:</p>
+<ul>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n = 1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k = 1</annotation></semantics></math>, then this is the second <a class="existingWikiWord" href="../../../../../5/3/6/0/10635/content.html">Fundamental Theorem of Calculus</a>: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow></msub><mi>f</mi><mo>′</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\int_{[a,b]} f' = f(b) - f(a)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \leq b</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../2/9/7/9/9792/content.html">continuously differentiable function</a> on a <a class="existingWikiWord" href="../../../../../4/3/6/1/1634/content.html">neighbourhood</a> of the <a class="existingWikiWord" href="../../../../../3/2/0/2/2023/content.html">interval</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[a,b]</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k = 1</annotation></semantics></math> more generally, then this is a generalized form of the FTC: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mi>C</mi></msub><mi>grad</mi><mi>f</mi><mo>⋅</mo><mstyle mathvariant="bold"><mi>T</mi></mstyle><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\int_C grad f \cdot \mathbf{T} = f(Q) - f(P)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a continuously differentiable oriented <a class="existingWikiWord" href="../../../0/6/6040/content.html">curve</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^n</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math> are the beginning and ending points (respectively) of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>T</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{T}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../4/3/6/7/17634/content.html">unit vector</a> field on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> tangent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> in the direction given by its orientation, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is a continuously differentiable function on a neighbourhood of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n = 2</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k = 2</annotation></semantics></math>, then this is <a class="existingWikiWord" href="../../../../../3/9/6/9/19693/content.html">Green's Theorem</a> (see there for other forms; stated without proof by <a class="existingWikiWord" href="../../../../../6/6/4/9/9466/content.html">Cauchy</a> in 1846, proved by <a class="existingWikiWord" href="../../../../../9/4/8/3/3849/content.html">Riemann</a> in 1851): <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><msub><mo>∫</mo> <mi>R</mi></msub><mo stretchy="false">(</mo><mo>∂</mo><mi>v</mi><mo stretchy="false">/</mo><mo>∂</mo><mi>x</mi><mo>−</mo><mo>∂</mo><mi>u</mi><mo stretchy="false">/</mo><mo>∂</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∫</mo> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>u</mi><mspace width="thinmathspace"></mspace><mi mathvariant="normal">d</mi><mi>x</mi><mo>+</mo><mi>v</mi><mspace width="thinmathspace"></mspace><mi mathvariant="normal">d</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\int\int_R (\partial{v}/\partial{x} - \partial{u}/\partial{y}) = \int_C (u \,\mathrm{d}x + v \,\mathrm{d}y)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a continuously differentiable <a class="existingWikiWord" href="../../../../../8/8/5/8/18588/content.html">simple closed curve</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^2</annotation></semantics></math> (oriented using the standard orientation on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^2</annotation></semantics></math>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is the region that it encloses (guaranteed by the <a class="existingWikiWord" href="../../../../../2/4/1/8/18142/content.html">Jordan Curve Theorem</a>), and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math> are continuously differentiable functions of the coordinates <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math> on a neighbourhood of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k = 2</annotation></semantics></math>, then this is the <strong>Kelvin–Stokes Theorem</strong> or <strong>Curl Theorem</strong> (stated without proof by <span class="newWikiWord">Stokes<a href="/nlab/new/Stokes">?</a></span> in 1854, proved by <span class="newWikiWord">Hankel<a href="/nlab/new/Hankel">?</a></span> in 1861): <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><msub><mo>∫</mo> <mi>R</mi></msub><mi>curl</mi><mstyle mathvariant="bold"><mi>F</mi></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><mi>n</mi></mstyle><mo>=</mo><msub><mo>∫</mo> <mi>C</mi></msub><mstyle mathvariant="bold"><mi>F</mi></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><mi>T</mi></mstyle></mrow><annotation encoding="application/x-tex">\int\int_R curl \mathbf{F} \cdot \mathbf{n} = \int_C \mathbf{F} \cdot \mathbf{T}</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a continuously differentiable <a class="existingWikiWord" href="../../../../../4/6/6/5/25664/content.html">pseudooriented</a> <a class="existingWikiWord" href="../../../../../8/2/7/4/4728/content.html">surface</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math> with a continuously differentiable boundary <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> (oriented to match the pseudoorientation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> using the standard orientation on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>n</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{n}</annotation></semantics></math> is the unit <a class="existingWikiWord" href="../../../../0/3/8/18300/content.html">normal vector</a> field on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> in the direction given by the pseudoorientation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>T</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{T}</annotation></semantics></math> is the unit tangent vector field on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>F</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{F}</annotation></semantics></math> is a continuously differentiable <a class="existingWikiWord" href="../../../../../2/2/7/2/2722/content.html">vector field</a> on a neighbourhood of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k = 3</annotation></semantics></math>, then this is the <strong>Ostrogradsky–Gauss Theorem</strong> or <strong>Divergence Theorem</strong> (special cases were proved by Gauss in 1813, the general case was proved by Ostrogradsky in 1826): <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><mo>∫</mo><msub><mo>∫</mo> <mi>D</mi></msub><mi>div</mi><mstyle mathvariant="bold"><mi>F</mi></mstyle><mo>=</mo><mo>∫</mo><msub><mo>∫</mo> <mi>R</mi></msub><mstyle mathvariant="bold"><mi>F</mi></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><mi>n</mi></mstyle></mrow><annotation encoding="application/x-tex">\int\int\int_D div \mathbf{F} = \int\int_R \mathbf{F} \cdot \mathbf{n}</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a continuously differentiable closed surface in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is the region that it encloses (guaranteed by the <a class="existingWikiWord" href="../../../../../2/4/1/8/18142/content.html">Jordan–Brouwer Separation Theorem</a>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>n</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{n}</annotation></semantics></math> is the outward-pointing unit normal vector field on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>F</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{F}</annotation></semantics></math> is a continuously differentiable vector field on a neighbourhood of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">k = n</annotation></semantics></math> more generally, then this is the generalized <a class="existingWikiWord" href="../../../../../4/9/6/9/19694/content.html">Divergence Theorem</a> (proved by Ostrogradsky in 1836): <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mi>D</mi></msub><mi>div</mi><mstyle mathvariant="bold"><mi>F</mi></mstyle><mo>=</mo><msub><mo>∫</mo> <mi>R</mi></msub><mstyle mathvariant="bold"><mi>F</mi></mstyle><mo>⋅</mo><mstyle mathvariant="bold"><mi>n</mi></mstyle></mrow><annotation encoding="application/x-tex">\int_D div \mathbf{F} = \int_R \mathbf{F} \cdot \mathbf{n}</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a continuously differentiable closed <a class="existingWikiWord" href="../../../../../3/2/1/2/22123/content.html">hypersurface</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^n</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is the region that it encloses, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>n</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{n}</annotation></semantics></math> is the outward-pointing unit normal vector field on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>F</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{F}</annotation></semantics></math> is a continuously differentiable vector field on a neighbourhood of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>.</p>
+</li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/2/2/4/4223/content.html">Poincaré lemma</a></p>
+</li>
+<li>
+<p><strong>Stokes theorem</strong></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/3/7/8/8737/content.html">nonabelian Stokes theorem</a></li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/9/3/2/2398/content.html">de Rham theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../5/0/9/9050/content.html">Hodge theorem</a></p>
+</li>
+<li>
+<p>a special case is <a class="existingWikiWord" href="../../../../../8/5/9/7/7958/content.html">Cauchy's integral theorem</a></p>
+</li>
+</ul>
+<h2 id="References">References</h2>
+<p>The basic statement:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../9/1/3/3190/content.html">Raoul Bott</a>, <a class="existingWikiWord" href="../../../../../1/1/1/6/6111/content.html">Loring Tu</a>, Theorem 3.5 in: <em><a class="existingWikiWord" href="../../../../1/1/6/6110/content.html">Differential Forms in Algebraic Topology</a></em>, Graduate Texts in Mathematics 82, Springer 1982 (<a href="https://link.springer.com/book/10.1007/978-1-4757-3951-0">doi:10.1007/978-1-4757-3951-0</a>)</li>
+</ul>
+<p>In the generality of <a class="existingWikiWord" href="../../../../5/0/5/5050/content.html">manifolds with corners</a>:</p>
+<ul>
+<li id="Lee12">
+<p><a class="existingWikiWord" href="../../../../../6/0/7/1/21706/content.html">John Lee</a>, Theorem 10.32 in: <em>Introduction to Smooth Manifolds</em>, Springer 2012 (<a href="https://doi.org/10.1007/978-1-4419-9982-5">doi:10.1007/978-1-4419-9982-5</a>, <a href="https://lost-contact.mit.edu/afs/adrake.org/usr/rkh/Books/books/Introduction%20to%20Smooth%20Manifolds%20-%20J.%20Lee.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/2/1/7/7128/content.html">Brian Conrad</a>: <em>Stokes’ theorem with corners</em> [<a href="http://math.stanford.edu/~conrad/diffgeomPage/handouts/stokescorners.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/ConradStokesTheorem.pdf" title="pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>Statement of the fiberwise Stokes theorem:</p>
+<ul>
+<li id="GomiTerashima00">
+<p><a class="existingWikiWord" href="../../../../../8/6/8/5/5868/content.html">Kiyonori Gomi</a>, <a class="existingWikiWord" href="../../../../../1/9/6/1/21691/content.html">Yuji Terashima</a>, Remark 3.1 in: <em>A Fiber Integration Formula for the Smooth Deligne Cohomology</em>, International Mathematics Research Notices 2000, No. 13 (<a href="http://imrn.oxfordjournals.org/content/2000/13/699.full.pdf">pdf</a>, <a href="http://numr.wdfiles.com/local--files/differential-cohomology/gomi-terashima.pdf">pdf</a>, <a href="https://doi.org/10.1155/S1073792800000386">doi:10.1155/S1073792800000386</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/3/0/20337/content.html">Liviu Nicolaescu</a>, Theorem 3.4.54 of: <em>Lectures on the Geometry of Manifolds</em>, 2018 (<a href="https://www3.nd.edu/~lnicolae/Lectures.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/NicolaescuGeometryOfManifolds.pdf" title="pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>and specifically for simplicial differential forms:</p>
+<ul>
+<li>Dupont, Ljungman, Theorem 5.10 in: <em>Integration of simllicial forms and Deligne cohomology</em> (<a href="https://arxiv.org/abs/math/0402059">arXiv:math/0402059</a>)</li>
+</ul>
+<p>Statement of the Stokes theorem in the full generality of <a class="existingWikiWord" href="../../../../../1/1/9/3/3911/content.html">fiberwise integration</a> over fibers <a class="existingWikiWord" href="../../../../5/0/5/5050/content.html">with corners</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/3/8/4/4832/content.html">Alberto Cattaneo</a>, Nima Moshayedi, Konstantin Wernli, equation (65) in: <em>Globalization for Perturbative Quantization of Nonlinear Split AKSZ Sigma Models on Manifolds with Boundary</em> (<a href="https://arxiv.org/abs/1807.11782">arXiv:1807.11782</a>)</li>
+</ul>
+<p>Discussion of <a class="existingWikiWord" href="../../../../../4/5/2/8/8254/content.html">chains</a> of smooth <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">singular simplices</a></p>
+<ul>
+<li><em>Stokes’ theorem on chains</em> (<a href="http://idv.sinica.edu.tw/ftliang/diff_geom/*diff_geometry(II)/3.25/deRham_theorem/stokes_on_chains.pdf">pdf</a>)</li>
+</ul>
+<p>Discussion for manifolds with more general singularities on the boundary is in</p>
+<ul>
+<li>Friedrich Sauvigny, <em>Partial Differential Equations: Vol. 1 Foundations and Integral Representations</em></li>
+</ul>
+<p>Discussion in <a class="existingWikiWord" href="../../../../../9/5/0/7/7059/content.html">cohesive homotopy type theory</a> is in</p>
+<ul>
+<li id="BunkeNikolausVoelkl13"><a class="existingWikiWord" href="../../../../2/3/2/2320/content.html">Ulrich Bunke</a>, <a class="existingWikiWord" href="../../../../../3/2/5/0/523/content.html">Thomas Nikolaus</a>, <a class="existingWikiWord" href="../../../../../7/9/4/0/10497/content.html">Michael Völkl</a>, <em>Differential cohomology theories as sheaves of spectra</em> (<a href="http://arxiv.org/abs/1311.3188">arXiv:1311.3188</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

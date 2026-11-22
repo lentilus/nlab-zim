@@ -1,0 +1,408 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      comonad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      comonad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#coalgebras">Coalgebras</a></li>
+<li><a href="#comonadic_homology_and_descent">Comonadic homology and descent</a></li>
+<li><a href="#mixed_distributive_laws">Mixed distributive laws</a></li>
+</ul>
+<li><a href="#typing_rules">Typing rules</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#as_contexts_in_computer_science">As contexts in computer science</a></li>
+<li><a href="#GameComonads">Game comonads in logic</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="definition">Definition</h2>
+<p>A <strong>comonad</strong> (or <em>cotriple</em>) on a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../2/5/0/526/content.html">comonoid</a> in the <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a> of endofunctors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A \to A</annotation></semantics></math>. More generally, a comonad in a <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../2/5/0/526/content.html">comonoid</a> in the <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E(X,X)</annotation></semantics></math> for some <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">X\in K</annotation></semantics></math>.</p>
+<p>Just as a monad may be defined for any 2-category, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>, as a <a class="existingWikiWord" href="../../../../../9/8/8/1/1889/content.html">lax 2-functor</a> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mn>1</mn></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{1}</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>, so a comonad in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/8/8/1/1889/content.html">oplax 2-functor</a> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mn>1</mn></mstyle><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">\mathbf{1} \to E</annotation></semantics></math>.</p>
+<p>See at <em><a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a></em> for more.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="coalgebras">Coalgebras</h3>
+<p>A <strong><a class="existingWikiWord" href="../../../../../1/1/3/7/17311/content.html">coalgebra over a comonad</a></strong> (or <strong>comodule</strong>) over a comonad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> on a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a\in A</annotation></semantics></math> with a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>→</mo><mi>C</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">a\to C a</annotation></semantics></math> satisfying dual axioms to those for an <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebra over a monad</a>. The category of coalgebras is called its (co-)<a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">Eilenberg-Moore category</a> and satisfies a universal property dual to that of the <a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">Eilenberg-Moore object</a> for a monad; it can thereby be internalized to any <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a>. The <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a> from the category of coalgebras to the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is called a <a class="existingWikiWord" href="../../../../../7/4/6/4/4647/content.html">comonadic functor</a>. Similarly, a comonad also has a <a class="existingWikiWord" href="../../../../../4/4/5/6/16544/content.html">co-Kleisli category</a>.</p>
+<h3 id="comonadic_homology_and_descent">Comonadic homology and descent</h3>
+<p>Any comonad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> induces an augmented <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial</a> <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> consisting of its iterates. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> and the comonad is <a class="existingWikiWord" href="../../2/2876/content.html">additive</a>, then this is the basis of <span class="newWikiWord">comonadic homology<a href="/nlab/new/comonadic+homology">?</a></span>. <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">Comodules</a> (= coalgebras) over the comonad with underlying endofunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>R</mi></msub><mo>↦</mo><msub><mi>M</mi> <mi>R</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>S</mi></mrow><annotation encoding="application/x-tex">M_R\mapsto M_R\otimes_R S</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Mod</mi></mrow><annotation encoding="application/x-tex">Mod</annotation></semantics></math> for the extension of rings <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>↪</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">R\hookrightarrow S</annotation></semantics></math> correspond to the <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a> data for that extension. <a class="existingWikiWord" href="/zoranskoda/show/gluing+categories+from+localizations">Gluing of categories from localizations</a> may also be formalized via comonads.</p>
+<h3 id="mixed_distributive_laws">Mixed distributive laws</h3>
+<p><a class="existingWikiWord" href="../../../../../9/3/9/0/939/content.html">Distributive laws</a> between a monad and a comonad are so-called <em>mixed</em> distributive laws; a special case has been rediscovered in physics under the name <em>entwining structures</em> (Brzeziński, Majid 1997). Their theory is often studied in the connection with the theory of comonads in the bicategory of rings, modules and morphisms of modules, that is <a class="existingWikiWord" href="../../../../../0/4/9/0/940/content.html">coring</a>s. There is a homomorphism of bicategories from a bicategory of entwinings to a bicategory of corings (<a href="http://front.math.ucdavis.edu/0805.4611">Škoda 2008</a>), which is an analogue of the 2-functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>comp</mi></mrow><annotation encoding="application/x-tex">comp</annotation></semantics></math> (R. Street, <em>Formal theory of monads</em>, JPAA 1972) of strict 2-categories in the case of distributive laws of monads (recall also that a distributive law among monads corresponds to a monad in the 2-category of monads).</p>
+<h2 id="typing_rules">Typing rules</h2>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>t</mi><mo>:</mo><mo>□</mo><mi>A</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mstyle mathvariant="sans-serif"><mi>extract</mi></mstyle><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>:</mo><mi>A</mi></mrow></mfrac><mspace width="2em"></mspace><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>t</mi><mo>:</mo><mo>□</mo><mi>A</mi><mspace width="2em"></mspace><mi>x</mi><mo>:</mo><mo>□</mo><mi>A</mi><mo>⊢</mo><mi>u</mi><mo>:</mo><mi>B</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mstyle mathvariant="sans-serif"><mi>extend</mi></mstyle><mspace width="thickmathspace"></mspace><mi>x</mi><mo>=</mo><mi>t</mi><mspace width="thickmathspace"></mspace><mstyle mathvariant="sans-serif"><mi>in</mi></mstyle><mspace width="thickmathspace"></mspace><mi>u</mi><mo>:</mo><mo>□</mo><mi>B</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+  \frac{\Gamma \vdash t:\Box A}{\Gamma \vdash \mathsf{extract}(t):A}
+  \qquad
+  \frac{\Gamma \vdash t:\Box A \qquad x:\Box A \vdash u:B}
+       {\Gamma \vdash \mathsf{extend}\ x = t\ \mathsf{in}\ u:\Box B}
+
+</annotation></semantics></math></div>
+<p>In <a class="existingWikiWord" href="../../../../../9/7/8/7/7879/content.html">Haskell</a>, comonads are defined by the following typeclass:</p>
+<pre class="haskell"><code class="haskell">class Functor w =&gt; Comonad w where
+  extract :: w a -&gt; a
+
+  duplicate :: w a -&gt; w (w a)
+  duplicate = extend id
+
+  extend :: (w a -&gt; b) -&gt; w a -&gt; w b
+  extend f = fmap f . duplicate
+
+  {-# MINIMAL extract, (duplicate | extend) #-}</code></pre>
+<p>See also the definition of a <span class="newWikiWord">monoidal comonad<a href="/nlab/new/monoidal+comonad">?</a></span>.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/1/0/6/16014/content.html">necessity</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/5/6/16510/content.html">writer comonad</a>, <a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">store comonad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/8/9/8/8982/content.html">flat modality</a>, <a class="existingWikiWord" href="../../../../../3/2/1/9/9123/content.html">infinitesimal flat modality</a>, <a class="existingWikiWord" href="../../../../../1/2/1/9/9121/content.html">reduction modality</a>, <a class="existingWikiWord" href="../../../../../9/1/3/6/16319/content.html">bosonic modality</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/4/5/6/16548/content.html">jet comonad</a></p>
+</li>
+<li>
+<p><span class="newWikiWord">monoidal comonad<a href="/nlab/new/monoidal+comonad">?</a></span></p>
+</li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/6/7/17692/content.html">model structure on coalgebras over a comonad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/7/7/6/26773/content.html">polynomial comonad</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<ul>
+<li id="ApplegateTierney70"><a class="existingWikiWord" href="../../../../2/1/3/23126/content.html">Harry Applegate</a>, <a class="existingWikiWord" href="../../../../../9/8/9/5/5989/content.html">Myles Tierney</a>, <em>Iterated cotriples</em>, Lecture Notes in Math. <strong>137</strong> (1970) 56-99 (<a href="https://doi.org/10.1007/BFb0060440">doi:10.1007/BFb0060440</a>)</li>
+</ul>
+<p>Some introductory material on <a class="existingWikiWord" href="content.html">comonads</a>, <a class="existingWikiWord" href="../../../../../1/1/3/7/17311/content.html">coalgebras</a> and <a class="existingWikiWord" href="../../../../../4/4/5/6/16544/content.html">co-Kleisli morphisms</a> can be found in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Notes on Category Theory with examples from basic mathematics</em>, Chapter 5. (<a href="http://arxiv.org/abs/1912.10642">arXiv</a>)</li>
+</ul>
+<h3 id="as_contexts_in_computer_science">As contexts in computer science</h3>
+<p>On <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">comonads in computer science</a>:</p>
+<ul>
+<li id="UustaluVene08">
+<p><a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, <a class="existingWikiWord" href="../../../../../7/8/8/4/24887/content.html">Varmo Vene</a>, <em>Comonadic Notions of Computation</em>, Electronic Notes in Theoretical Computer Science <strong>203</strong> 5 (2008) 263-284 [<a href="https://doi.org/10.1016/j.entcs.2008.05.029">doi:10.1016/j.entcs.2008.05.029</a>]</p>
+</li>
+<li id="POM13">
+<p><a class="existingWikiWord" href="../../../../../2/2/1/6/26122/content.html">Tomas Petricek</a>, <a class="existingWikiWord" href="../../../../../0/5/5/0/20550/content.html">Dominic Orchard</a>, <a class="existingWikiWord" href="../../../../../1/2/1/6/26121/content.html">Alan Mycroft</a>, <em>Coeffects: Unified Static Analysis of Context-Dependence</em>, in: <em>Automata, Languages, and Programming. ICALP 2013</em>, Lecture Notes in Computer Science <strong>7966</strong> Springer (2013) [<a href="https://doi.org/10.1007/978-3-642-39212-2_35">doi:10.1007/978-3-642-39212-2_35</a>]</p>
+</li>
+<li id="GKOBU16">
+<p>Marco Gaboardi, <a class="existingWikiWord" href="../../../../../2/9/8/4/24892/content.html">Shin-ya Katsumata</a>, <a class="existingWikiWord" href="../../../../../0/5/5/0/20550/content.html">Dominic Orchard</a>, Flavien Breuvart, <a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, <em>Combining effects and coeffects via grading</em>, ICFP 2016: Proceedings of the 21st ACM SIGPLAN International Conference on Functional Programming (2016) 476–489 [<a href="https://doi.org/10.1145/2951913.2951939">doi:10.1145/2951913.2951939</a>, <a href="https://icfp16.sigplan.org/details/icfp-2016-papers/31/Combining-Effects-and-Coeffects-via-Grading">talk abstract</a>, <a href="https://www.youtube.com/watch?v=l1ZNMT3fQCo">video rec</a>]</p>
+</li>
+<li id="KRU20">
+<p><a class="existingWikiWord" href="../../../../../2/9/8/4/24892/content.html">Shin-ya Katsumata</a>, Exequiel Rivas, <a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, LICS (2020) 604-618 <em>Interaction laws of monads and comonads</em> [<a href="https://arxiv.org/abs/1912.13477">arXiv:1912.13477</a>, <a href="https://doi.org/10.1145/3373718.3394808">doi:10.1145/3373718.3394808</a>]</p>
+</li>
+</ul>
+<h3 id="GameComonads">Game comonads in logic</h3>
+<p>Comonads encode positions in back-and-forth <a class="existingWikiWord" href="../../../../6/0/8/8066/content.html">games</a> and <a class="existingWikiWord" href="../../../../../4/2/4/5/5424/content.html">bisimulations</a> in various <a class="existingWikiWord" href="../../../../../8/3/9/5/15938/content.html">fragments</a> of <a class="existingWikiWord" href="../../../../../7/3/0/3/3037/content.html">first-order</a> and <a class="existingWikiWord" href="../../../../../9/9/9/4/4999/content.html">modal logics</a>. See, for example, the <em><a class="existingWikiWord" href="../../../../../1/7/8/2/22871/content.html">Ehrenfeucht-Fraïssé comonad</a></em>.</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/6/3/3605/content.html">Samson Abramsky</a>. <em>Structure and Power: an emerging landscape.</em> Fundamenta Informaticae 186(1-4) : 1–26, 2022 (<a href="https://doi.org/10.3233/FI-222116">doi:10.3233/FI-222116</a>, <a href="http://arxiv.org/abs/quant-ph/2206.07393">arXiv:quant-ph/2206.07393</a>)</p>
+</li>
+<li id="AbramskyShah">
+<p><a class="existingWikiWord" href="../../../../../5/0/6/3/3605/content.html">Samson Abramsky</a> and <span class="newWikiWord">Nihil Shah<a href="/nlab/new/Nihil+Shah">?</a></span>, <em>Relating Structure and Power: Comonadic Semantics for Computational Resources</em> (<a href="https://arxiv.org/abs/1806.09031">arXiv:1806.09031</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/6/3/3605/content.html">Samson Abramsky</a>, Anuj Dawar, and Pengming Wang. <em>The pebbling comonad in finite model theory.</em> 32nd Annual ACM/IEEE Symposium on Logic in Computer Science (LICS). IEEE, 2017 (<a href="https://arxiv.org/abs/1704.05124">arXiv:1704.05124</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/6/3/3605/content.html">Samson Abramsky</a> and Dan Marsden. <em>Comonadic semantics for guarded fragments.</em> 36th Annual ACM/IEEE Symposium on Logic in Computer Science (LICS). IEEE, 2021. (<a href="https://arxiv.org/abs/2008.11094">arXiv:2008.11094</a>)</p>
+</li>
+<li>
+<p>Adam Ó Conghaile and Anuj Dawar. <em>Game Comonads &amp; Generalised Quantifiers.</em> 29th EACSL Annual Conference on Computer Science Logic. 2021. (<a href="https://arxiv.org/abs/2006.16039">arXiv:2006.16039</a>)</p>
+</li>
+<li>
+<p>Yoàv Montacute and Nihil Shah. <em>The pebble-relation comonad in finite model theory.</em> Proceedings of the 37th Annual ACM/IEEE Symposium on Logic in Computer Science. 2022. (<a href="https://arxiv.org/abs/2110.08196">arXiv:2110.08196</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

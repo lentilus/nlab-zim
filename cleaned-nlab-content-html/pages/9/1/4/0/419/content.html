@@ -1,0 +1,826 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      monoidal model category in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      monoidal model category
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#MonoidalHomotopyCategory">Monoidal homotopy category</a></li>
+<ul>
+<li><a href="#abstractly">Abstractly</a></li>
+<li><a href="#explicitly">Explicitly</a></li>
+</ul>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#classical_homotopy_theory">Classical homotopy theory</a></li>
+<li><a href="#SimplicialPresheaves">Simplicial presheaves</a></li>
+<li><a href="#MonoidalPresheaves">Monoidal presheaves</a></li>
+<li><a href="#homological_algebra_and_stable_homotopy_theory">Homological algebra and stable homotopy theory</a></li>
+<li><a href="#categorical_model_structures">Categorical model structures</a></li>
+<li><a href="#model_structure_on_objects">Model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-objects</a></li>
+<li><a href="#model_structure_on_monoids">Model structure on monoids</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>A <em>monoidal model category</em> is a <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> which is also a <a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed monoidal category</a> in a compatible way. In particular, its <a class="existingWikiWord" href="../../../../../4/6/2/0/264/content.html">homotopy category</a> inherits a closed monoidal structure, as does the <a class="existingWikiWord" href="../../../../../4/8/2/0/284/content.html">(infinity,1)-category</a> that it presents.</p>
+<h2 id="definition">Definition</h2>
+<p>
+<div class="num_defn" id="MonoidalModelCategory">
+<h6>Definition</h6>
+<p>A (symmetric) <strong>monoidal model category</strong> is</p>
+<ul>
+<li>a <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math></li>
+</ul>
+<p>equipped with the further <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of</p>
+<ul>
+<li>a <em><a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed</a></em> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>,</mo><mo>⊗</mo><mo>,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{C}, \otimes, I)</annotation></semantics></math></li>
+</ul>
+<p>such that the following two compatibility conditions are satisfied:</p>
+<ol>
+<li id="PushoutProductAxiom">
+<p>(<a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pushout-product axiom</a>) For every <a class="existingWikiWord" href="../../../9/8/8919/content.html">pair</a> of <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibrations</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \to Y</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>′</mo><mo>→</mo><mi>Y</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f' \colon X' \to Y'</annotation></semantics></math>, their <a class="existingWikiWord" href="../../../../../2/0/5/7/7502/content.html">pushout-product</a>, hence the induced morphism out of the <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">cofibered</a> <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a> over ways of forming the <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor product</a> of these objects</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>⊗</mo><mi>Y</mi><mo>′</mo><mo stretchy="false">)</mo><mover><mo>⨿</mo><mrow><mi>X</mi><mo>⊗</mo><mi>X</mi><mo>′</mo></mrow></mover><mo stretchy="false">(</mo><mi>Y</mi><mo>⊗</mo><mi>X</mi><mo>′</mo><mo stretchy="false">)</mo><mo>⟶</mo><mi>Y</mi><mo>⊗</mo><mi>Y</mi><mo>′</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+(X \otimes Y') 
+\overset
+{X \otimes X'}
+{\amalg}
+(Y \otimes X')
+\longrightarrow
+Y \otimes Y'
+\,,
+
+</annotation></semantics></math></div>
+<p>is itself a <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibration</a>, which, furthermore, is <a class="existingWikiWord" href="../../../../../0/8/0/7/7080/content.html">acyclic</a> (i.e. also a <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a>) if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f'</annotation></semantics></math> is so.</p>
+<p>(Equivalently this says that the <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>×</mo><mi>C</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">\otimes \colon C \times C \to C</annotation></semantics></math> is a left <a class="existingWikiWord" href="../../../../../7/6/5/2/2567/content.html">Quillen bifunctor</a>.)</p>
+</li>
+<li id="UnitAxiom">
+<p>(unit axiom) For every <a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and every <a class="existingWikiWord" href="../../../../0/5/4/4509/content.html">cofibrant resolution</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∅</mi><mo>↪</mo><mi>Q</mi><mi>I</mi><mover><mo>⟶</mo><mrow><msub><mi>p</mi> <mi>I</mi></msub></mrow></mover><mi>I</mi></mrow><annotation encoding="application/x-tex">\emptyset \hookrightarrow Q I \stackrel{p_I}{\longrightarrow} I</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math>, the resulting morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mi>I</mi><mo>⊗</mo><mi>X</mi><mover><mo>⟶</mo><mrow><msub><mi>p</mi> <mi>I</mi></msub><mo>⊗</mo><mi>X</mi></mrow></mover><mi>I</mi><mo>⊗</mo><mi>X</mi><mover><mo>⟶</mo><mo>≃</mo></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">
+Q I \otimes X 
+\stackrel{p_I \otimes X}{\longrightarrow} 
+I\otimes X \stackrel{\simeq}{\longrightarrow} X
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a>.</p>
+</li>
+</ol>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="InternalHomQuillenAdjunction">
+<h6>Remark</h6>
+<p><strong>(internal hom Quillen adjunction)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant object</a>, hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∅</mo><mover><mo>→</mo><mrow><mo>∃</mo><mo>!</mo></mrow></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">\varnothing \overset{\exists !}{\to} X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibration</a>.</p>
+<p>In this case the <a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pushout-product axiom</a> (Def. <a class="maruku-ref" href="#MonoidalModelCategory"></a>) says that the <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor product</a> <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \otimes (-)</annotation></semantics></math> preserves <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibrations</a> and <a class="existingWikiWord" href="../../../../../0/8/0/7/7080/content.html">acyclic cofibrations</a>. Since the ambient category is assumed to be <a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed monoidal category</a>, so that this functor has a <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> <a class="existingWikiWord" href="../../../../4/8/0/849/content.html">internal hom</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[X,-]</annotation></semantics></math>, this means that it is the <a class="existingWikiWord" href="../../../../../6/5/7/1/1756/content.html">left Quillen functor</a> in a <a class="existingWikiWord" href="../../../../../6/5/7/1/1756/content.html">Quillen adjunction</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><munderover><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mo>⊥</mo> <mpadded width="0"><mi>Qu</mi></mpadded></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow><munder><mo>⟶</mo><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow></munder><mover><mo>⟵</mo><mrow><mi>X</mi><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover></munderover><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">
+  \mathcal{C}
+  \underoverset
+    {\underset{[X,-]}{\longrightarrow}}
+    {\overset{X\otimes(-)}{\longleftarrow}}
+    {
+      \;\;\;\;\;
+      \bot_{\mathrlap{Qu}} 
+      \;\;\;\;\;
+    }
+  \mathcal{C}
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="MeaningOfPushoutProductAxiom">
+<h6>Remark</h6>
+<p><strong>(meaning of the pushout product axiom)</strong> <br/> The <a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pushout-product axiom</a> (<a href="#PushoutProductAxiom">above</a>) is stronger than its implied statement in Exp. <a class="maruku-ref" href="#InternalHomQuillenAdjunction"></a>, while the latter might superficially seem to be all that would reasonably be required of a model-category theoretic version of a <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a>.</p>
+<p>It is at this point that the established tradition to just say “monoidal model category” for the above definition is somewhat misleading, in that Def. <a class="maruku-ref" href="#MonoidalModelCategory"></a> is really a model-category theoretic version of the stronger concept of <em><a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed monoidal</a></em> categories (<em>symmetric</em> closed monoidal really, but the symmetry is not the subtle part). The arguably more accurate terminology “closed monoidal model category” for Def. <a class="maruku-ref" href="#MonoidalModelCategory"></a> is probably being avoided because <a href="#Quillen67">Quillen (1967)</a> originally introduced model categories in general under the name “closed model categories” with the adjective “closed” <em>not</em> meant to refer to its use in <em><a class="existingWikiWord" href="../../../../../6/4/3/0/346/content.html">closed categories</a></em>…</p>
+<p>Namely, the full strength of the pushout-product axiom is needed to imply that not only the <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo></mrow><annotation encoding="application/x-tex">\otimes</annotation></semantics></math> but also its <a class="existingWikiWord" href="../../../../4/8/0/849/content.html">internal hom</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>×</mo><mi>C</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">[-,-] \,\colon\, C^{op} \times C \to C</annotation></semantics></math> is homotopically well-behaved, to wit that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,-]</annotation></semantics></math> satisfies the <em><a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pullback-power axiom</a></em>, which in turn implies that not just <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[X,-]</annotation></semantics></math> but also <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>A</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,A]</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../6/5/7/1/1756/content.html">right Quillen functors</a> for all <a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <a class="existingWikiWord" href="../../../../7/0/7/7079/content.html">fibrant objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+<p>In short, the <a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pushout-product axiom</a> is the model-category theoretic way to ensure that not just the <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor product</a>, but also the <a class="existingWikiWord" href="../../../../4/8/0/849/content.html">internal hom</a> as well as their joint relatin in a <a class="existingWikiWord" href="../../../../../8/0/4/0/408/content.html">two-variable adjunction</a> are homotopically meaningful.</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="CaseOfCofibrantTensorUnit">
+<h6>Remark</h6>
+<p><strong>(cofibrant tensor unit implies unit axiom)</strong><br/> As a special case of Rem. <a class="maruku-ref" href="#InternalHomQuillenAdjunction"></a>: If the <a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> happens to be <a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant</a>, then the unit axiom in def. <a class="maruku-ref" href="#MonoidalModelCategory"></a> is already implied by the <a href="#PushoutProductAxiom">pushout-product axiom</a>.</p>
+<p>(Because then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mi>I</mi><mo>→</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">Q I \to I</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a> between <a class="existingWikiWord" href="../../../../../0/3/6/6/26630/content.html">cofibrant objects</a> and such are preserved by functors that preserve acyclic cofibrations, by <a class="existingWikiWord" href="../../../../../4/5/5/4/4554/content.html">Ken Brown's lemma</a>.)</p>
+</div>
+</p>
+<div class="num_defn" id="MonoidAxiom">
+<h6 id="definition_2">Definition</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../0/4/2/5/5240/content.html">monoid axiom</a>)</strong></p>
+<p>One says that a <a class="existingWikiWord" href="content.html">monoidal model category</a> (Def. <a class="maruku-ref" href="#MonoidalModelCategory"></a>) satisfies the <em><a class="existingWikiWord" href="../../../../../0/4/2/5/5240/content.html">monoid axiom</a></em> if every <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> that is obtained as a <a class="existingWikiWord" href="../../../../../6/8/8/1/1886/content.html">transfinite composition</a> of <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushouts</a> of <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor products</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⊗</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">X\otimes f</annotation></semantics></math> of acyclic cofibrations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> with any object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a>.</p>
+</div>
+<p>(<a href="#SchwedeShipley00">Schwede-Shipley 00, def. 3.3.</a>).</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>In particular, the axiom in def. <a class="maruku-ref" href="#MonoidAxiom"></a> says that for every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \otimes (-)</annotation></semantics></math> sends acyclic cofibrations to weak equivalences.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<h3 id="MonoidalHomotopyCategory">Monoidal homotopy category</h3>
+<h4 id="abstractly">Abstractly</h4>
+<div class="num_prop" id="LocalizationFunctorIsLaxMonoidal">
+<h6 id="proposition">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>,</mo><mo>⊗</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{C},\otimes)</annotation></semantics></math> a monoidal model category, def. <a class="maruku-ref" href="#MonoidalModelCategory"></a>, then the <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">derived functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>⊗</mo> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\otimes^L</annotation></semantics></math> of the tensor product makes the <a class="existingWikiWord" href="../../../../../8/0/3/7/17308/content.html">homotopy category of the model category</a> itself into a <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a>, such that the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>𝒞</mi><mo>,</mo><mo>⊗</mo><mo stretchy="false">)</mo><mo>⟶</mo><mo stretchy="false">(</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>,</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \gamma
+   \;\colon\;
+  (\mathcal{C},\otimes)
+    \longrightarrow
+  (Ho(\mathcal{C}), \otimes^L)
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">lax monoidal functor</a>.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> be a monoidal model category, and consider it as a <em><a class="existingWikiWord" href="../../../../0/5/7/17509/content.html">derivable category</a></em> in the sense of (<a href="#Shulman11">Shulman 11, section 8</a>) with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>Q</mi></msub></mrow><annotation encoding="application/x-tex">V_Q</annotation></semantics></math> the subcategory of cofibrant objects and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>R</mi></msub><mo>=</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">V_R=V</annotation></semantics></math>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo>:</mo><mi>V</mi><mo>×</mo><mi>V</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">\otimes :V\times V\to V</annotation></semantics></math> is left derivable, i.e. it preserves the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math>-subcategories and weak equivalences. Since deriving is <a class="existingWikiWord" href="../../../../../3/6/5/0/563/content.html">pseudofunctorial</a> (and product-preserving) on the <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a> of <a class="existingWikiWord" href="../../../../0/5/7/17509/content.html">derivable categories</a> and <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">left derivable functors</a>, it follows immediately that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ho</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Ho(V)</annotation></semantics></math> is monoidal; this is (<a href="#Shulman11">Shulman 11, example 8.13</a>).</p>
+<p>Now let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">V_0</annotation></semantics></math> denote the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> with its trivial derivable structure: only isomorphisms are weak equivalences, and all objects are both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>. Then of course <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ho</mi><mo stretchy="false">(</mo><msub><mi>V</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">Ho(V_0) = V</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">V_0</annotation></semantics></math> is also a pseudomonoid in derivable categories. The identity functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo>:</mo><msub><mi>V</mi> <mn>0</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">Id : V_0 \to V</annotation></semantics></math> is not left derivable, since it does not preserve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math>-objects; but it is <em>right</em> derivable, since we took all objects in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> to be <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-objects (ignoring the fibrant objects in the model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>). Of course <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi></mrow><annotation encoding="application/x-tex">Id</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">strong monoidal</a>, and this monoidality constraint can be expressed as a square in the <a class="existingWikiWord" href="../../../../../1/5/2/0/251/content.html">double category</a> of (<a href="#Shulman11">Shulman 11</a>) whose vertical arrows are left derivable functors and whose horizontal arrows are right derivable functors; moreover the axioms on a <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">monoidal functor</a> may be expressed using products and double-categorical pasting in this double category. Therefore, it is all preserved by the double pseudofunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ho</mi></mrow><annotation encoding="application/x-tex">Ho</annotation></semantics></math>; but <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ho</mi><mo stretchy="false">(</mo><mi>Id</mi><mo stretchy="false">)</mo><mo>=</mo><mi>γ</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Ho(Id) = \gamma : V \to Ho(V)</annotation></semantics></math>. The only thing that is not visible to the double category is the invertibility of the monoidal constraint, and hence this is not preserved by the double pseudofunctor; thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> is only <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">lax monoidal</a>.</p>
+</div>
+<h4 id="explicitly">Explicitly</h4>
+<div class="num_prop" id="MonoidalStructureOnHomotopyCategoryOfMonoidalModelCategory">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>,</mo><mo>⊗</mo><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{C}, \otimes, 1)</annotation></semantics></math> be a <a class="existingWikiWord" href="content.html">monoidal model category</a> with cofibrant <a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a>. Then the <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">left derived functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>⊗</mo> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\otimes^L</annotation></semantics></math> of the tensor product exists</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd> <mtd><mover><mo>⟶</mo><mo>⊗</mo></mover></mtd> <mtd><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><mi>γ</mi><mo>×</mo><mi>γ</mi></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mrow><msup><mi>μ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mi>γ</mi></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msup><mo>⊗</mo> <mi>L</mi></msup></mrow></mover></mtd> <mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathcal{C}_c\times \mathcal{C}_c
+      &amp;\overset{\otimes}{\longrightarrow}&amp;
+    \mathcal{C}_c
+    \\
+    {}^{\mathllap{\gamma \times \gamma}}\downarrow 
+      &amp;\swArrow_{\mu^{-1}}&amp; 
+    \downarrow^{\mathrlap{\gamma}}
+    \\
+    Ho(\mathcal{C})\times Ho(\mathcal{C})
+     &amp;\overset{\otimes^L}{\longrightarrow}&amp;
+    Ho(\mathcal{C})
+  }
+
+</annotation></semantics></math></div>
+<p>and makes the <a class="existingWikiWord" href="../../../../../8/0/3/7/17308/content.html">homotopy category</a> into a <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>,</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo>,</mo><mi>γ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Ho(\mathcal{C}), \otimes^L, \gamma(1))</annotation></semantics></math>.</p>
+<p>Moreover, the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>,</mo><mo>⊗</mo><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo><mo>⟶</mo><mo stretchy="false">(</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>,</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo>,</mo><mi>γ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \gamma
+  \;\colon\;
+  (\mathcal{C}_c, \otimes, 1)
+   \longrightarrow
+  (Ho(\mathcal{C}), \otimes^L , \gamma(1))
+
+</annotation></semantics></math></div>
+<p>on the <a class="existingWikiWord" href="../../../../../0/0/3/8/8300/content.html">category of cofibrant objects</a> is a <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">strong monoidal functor</a> with structure morphism the inverse of the above natural isomorpmism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mrow><mi>X</mi><mo>,</mo><mi>Y</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>γ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mi>γ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>X</mi><mo>⊗</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mu_{X,Y}
+  \;\colon\;
+  \gamma(X)\otimes^L \gamma(Y)
+    \longrightarrow
+  \gamma(X \otimes Y)
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>For the <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">left derived functor</a> (<a href="../../../../../3/4/3/7/17343/content.html#LeftAndRightDerivedFunctorsOnModelCategories">def.</a>) of the tensor product</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi><mo>⟶</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">
+  \otimes
+  \;
+  \mathcal{C}\times \mathcal{C}
+    \longrightarrow
+  \mathcal{C}
+
+</annotation></semantics></math></div>
+<p>to exist, it is sufficient that its restriction to the subcategory</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi><msub><mo stretchy="false">)</mo> <mi>c</mi></msub><mo>≃</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
+  (\mathcal{C} \times \mathcal{C})_c
+  \simeq
+  \mathcal{C}_c \times \mathcal{C}_c
+
+</annotation></semantics></math></div>
+<p>of cofibrant objects preserves acyclic cofibrations (<a class="existingWikiWord" href="../../../../../4/5/5/4/4554/content.html">Ken Brown's lemma</a>, <a href="../../../../../3/4/3/7/17343/content.html#KenBrownLemma">here</a>).</p>
+<p>Every morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f,g)</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../5/9/0/4/4095/content.html">product category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}_{c}\times \mathcal{C}_{c}</annotation></semantics></math> may be written as a composite of a pairing with an identity morphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><msub><mi>c</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>d</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><msub><mi>id</mi> <mrow><msub><mi>c</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></mover><mo stretchy="false">(</mo><msub><mi>c</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>d</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><msub><mi>id</mi> <mrow><msub><mi>c</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">)</mo></mrow></mover><mo stretchy="false">(</mo><msub><mi>c</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>d</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (f,g)
+    \;\colon\;
+  (c_1, d_1)
+    \overset{(id_{c_1},g)}{\longrightarrow}
+  (c_1,d_2)
+    \overset{(f,id_{c_2})}{\longrightarrow}
+  (c_2,d_2)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Now since the <a class="existingWikiWord" href="../../../../../2/0/5/7/7502/content.html">pushout product</a> (with respect to tensor product) with the initial morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo>→</mo><msub><mi>c</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\ast \to c_1)</annotation></semantics></math> is equivalently the tensor product</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo>→</mo><msub><mi>c</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>□</mo> <mo>⊗</mo></msub><mi>g</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msub><mi>id</mi> <mrow><msub><mi>c</mi> <mn>1</mn></msub></mrow></msub><mo>⊗</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">
+  (\ast \to c_1) \Box_{\otimes} g
+    \;\simeq\;
+  id_{c_1} \otimes g
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><msub><mo>□</mo> <mo>⊗</mo></msub><mo stretchy="false">(</mo><mo>*</mo><mo>→</mo><msub><mi>c</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>f</mi><mo>⊗</mo><msub><mi>id</mi> <mrow><msub><mi>c</mi> <mn>2</mn></msub></mrow></msub></mrow><annotation encoding="application/x-tex">
+  f \Box_{\otimes} (\ast \to c_2)
+    \;\simeq\;
+  f \otimes id_{c_2}
+
+</annotation></semantics></math></div>
+<p>the <a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pushout-product axiom</a> (def. <a class="maruku-ref" href="#MonoidalModelCategory"></a>) implies that on the subcategory of cofibrant objects the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo></mrow><annotation encoding="application/x-tex">\otimes</annotation></semantics></math> preserves acyclic cofibrations. (This is why one speaks of a <em><a class="existingWikiWord" href="../../../../../7/6/5/2/2567/content.html">Quillen bifunctor</a></em>, see also <a href="#Hovey99">Hovey 99, prop. 4.3.1</a>).</p>
+<p>Hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>⊗</mo> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\otimes^L</annotation></semantics></math> exists.</p>
+<p>By the same decomposition and using the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> of a category (<a href="../../../../../3/4/3/7/17343/content.html#HomotopyCategoryOfACategoryWithWeakEquivalences">def.</a>) one finds that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> any two <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">categories with weak equivalences</a> (<a href="../../../../../3/4/3/7/17343/content.html#CategoryWithWeakEquivalences">def.</a>) then the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> of their <a class="existingWikiWord" href="../../../../../5/9/0/4/4095/content.html">product category</a> is the product category of their localizations:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>×</mo><mi>𝒟</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mo stretchy="false">(</mo><msub><mi>W</mi> <mi>𝒞</mi></msub><mo>⊔</mo><msub><mi>W</mi> <mi>𝒟</mi></msub><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo><mo>≃</mo><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">[</mo><msubsup><mi>W</mi> <mi>𝒞</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">[</mo><msubsup><mi>W</mi> <mi>𝒟</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (\mathcal{C} \times \mathcal{D})[(W_{\mathcal{C}} \sqcup W_{\mathcal{D}})^{-1}]
+  \simeq
+  (\mathcal{C}[W^{-1}_{\mathcal{C}}])
+  \times
+  (\mathcal{D}[W^{-1}_{\mathcal{D}}])
+  \,.
+
+</annotation></semantics></math></div>
+<p>With this, the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> as a <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> (<a href="../../../../../3/4/3/7/17343/content.html#HomotopyCategoryOfACategoryWithWeakEquivalences">def.</a>) of the <a class="existingWikiWord" href="../../../../../8/0/3/7/17308/content.html">homotopy category of a model category</a> (<a href="../../../../../3/4/3/7/17343/content.html#UniversalPropertyOfHomotopyCategoryOfAModelCategory">thm.</a>) induces <a class="existingWikiWord" href="../../../../../4/2/9/3/3924/content.html">associators</a>: Let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>𝒞</mi></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>γ</mi> <mrow><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi></mrow></msub></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mi>η</mi></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>γ</mi> <mi>𝒞</mi></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mrow><mtable><mtr><mtd><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>𝒞</mi></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>γ</mi> <mrow><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi></mrow></msub></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mrow><mi>η</mi><mo>′</mo></mrow></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>γ</mi> <mi>𝒞</mi></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathcal{C}_c \times \mathcal{C}_c \times \mathcal{C}_c
+      &amp;\overset{((-)\otimes(-))\otimes (-)}{\longrightarrow}&amp;
+    \mathcal{C}
+    \\
+    {}^{\mathllap{\gamma_{\mathcal{C} \times \mathcal{C} \times \mathcal{C}}}}\downarrow
+      &amp;\swArrow_{\eta}&amp;
+    \downarrow^{\mathrlap{\gamma_{\mathcal{C}}}}
+    \\
+    Ho(\mathcal{C}) \times Ho(\mathcal{C}) \times Ho(\mathcal{C})
+      &amp;\overset{((-)\otimes^L(-))\otimes^L (-)}{\longrightarrow}&amp;
+    Ho(\mathcal{C})
+  }
+  \;\;\;\,,\;\;\;\;\;
+  \array{
+    \mathcal{C}_c \times \mathcal{C}_c \times \mathcal{C}_c
+      &amp;\overset{ (-) \otimes ( (-) \otimes (-) ) }{\longrightarrow}&amp;
+    \mathcal{C}
+    \\
+    {}^{\mathllap{\gamma_{\mathcal{C} \times \mathcal{C} \times \mathcal{C}}}}\downarrow
+      &amp;\swArrow_{\eta'}&amp;
+    \downarrow^{\mathrlap{\gamma_{\mathcal{C}}}}
+    \\
+    Ho(\mathcal{C}) \times Ho(\mathcal{C}) \times Ho(\mathcal{C})
+      &amp;\overset{ (-) \otimes^L ( (-) \otimes^L (-) )  }{\longrightarrow}&amp;
+    Ho(\mathcal{C})
+  }
+
+</annotation></semantics></math></div>
+<p>be the <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> exhibiting the <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">derived functors</a> of the two possible tensor products of three objects, as shown at the top. By pasting the second with the <a class="existingWikiWord" href="../../../../../4/2/9/3/3924/content.html">associator</a> natural isomorphism of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> we obtain another such factorization for the first, as shown on the left below,</p>
+<div class="maruku-equation" id="DerivedAssociatorFromUniversalPropertyOfLocalization"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>⋆</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mrow><mtable><mtr><mtd><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>𝒞</mi></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mo>=</mo></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mi>α</mi></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mo>=</mo></mpadded></msup></mtd></mtr> <mtr><mtd><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>𝒞</mi></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>γ</mi> <mrow><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi></mrow></msub></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mi>η</mi></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>γ</mi> <mi>𝒞</mi></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mrow><mtable><mtr><mtd><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub><mo>×</mo><msub><mi>𝒞</mi> <mi>c</mi></msub></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>𝒞</mi></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>γ</mi> <mrow><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi></mrow></msub></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mrow><mi>η</mi><mo>′</mo></mrow></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>γ</mi> <mi>𝒞</mi></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mo>=</mo></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd><msub><mo>⇙</mo> <mrow><msup><mi>α</mi> <mi>L</mi></msup></mrow></msub></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mo>=</mo></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd> <mtd><munder><mo>⟶</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>Ho</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  (\star)
+  \;\;\;\;\;\;
+  \array{
+    \mathcal{C}_c \times \mathcal{C}_c \times \mathcal{C}_c
+      &amp;\overset{((-)\otimes(-))\otimes (-)}{\longrightarrow}&amp;
+    \mathcal{C}
+    \\
+    {}^{\mathllap{=}}\downarrow 
+      &amp;\swArrow_{\alpha}&amp;
+    \downarrow^{\mathrlap{=}}
+    \\
+    \mathcal{C}_c \times \mathcal{C}_c \times \mathcal{C}_c
+      &amp;\overset{ (-) \otimes ( (-) \otimes (-) ) }{\longrightarrow}&amp;
+    \mathcal{C}
+    \\
+    {}^{\mathllap{\gamma_{\mathcal{C} \times \mathcal{C} \times \mathcal{C}}}}\downarrow
+      &amp;\swArrow_\eta&amp;
+    \downarrow^{\mathrlap{\gamma_{\mathcal{C}}}}
+    \\
+    Ho(\mathcal{C}) \times Ho(\mathcal{C}) \times Ho(\mathcal{C})
+      &amp;\overset{ (-) \otimes^L ( (-) \otimes^L (-) )  }{\longrightarrow}&amp;
+    Ho(\mathcal{C})
+  }
+  \;\;\;\;\;\;
+  \simeq
+  \;\;\;\;\;\;
+  \array{
+    \mathcal{C}_c \times \mathcal{C}_c \times \mathcal{C}_c
+      &amp;\overset{((-)\otimes(-))\otimes (-)}{\longrightarrow}&amp;
+    \mathcal{C}
+    \\
+    {}^{\mathllap{\gamma_{\mathcal{C} \times \mathcal{C} \times \mathcal{C}}}}\downarrow
+      &amp;\swArrow_{\eta'}&amp;
+    \downarrow^{\mathrlap{\gamma_{\mathcal{C}}}}
+    \\
+    Ho(\mathcal{C}) \times Ho(\mathcal{C}) \times Ho(\mathcal{C})
+      &amp;\overset{((-)\otimes^L(-))\otimes^L (-)}{\longrightarrow}&amp;
+    Ho(\mathcal{C})
+    \\
+    {}^{\mathllap{=}}\downarrow 
+      &amp;\swArrow_{\alpha^L}&amp;
+    \downarrow^{\mathrlap{=}}
+    \\
+    Ho(\mathcal{C})\times Ho(\mathcal{C})\times Ho(\mathcal{C})
+      &amp;\underset{(-)\otimes^L((-)\otimes^L (-))}{\longrightarrow}&amp;
+    Ho(\mathcal{C})
+  }
+
+</annotation></semantics></math></div>
+<p>and hence by the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of the factorization through the derived functor, there exists a unique natural isomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>α</mi> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\alpha^L</annotation></semantics></math> such as to make this composite of natural isomorphisms equal to the one shown on the right. Hence the <a class="existingWikiWord" href="../../../../../0/1/7/9/9710/content.html">pentagon identity</a> satisfied by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> implies a pentagon identity for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>α</mi> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\alpha^L</annotation></semantics></math>, and so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>α</mi> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\alpha^L</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../4/2/9/3/3924/content.html">associator</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>⊗</mo> <mi>L</mi></msup></mrow><annotation encoding="application/x-tex">\otimes^L</annotation></semantics></math>.</p>
+<p>The above equation on pasting composites of <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> is equivalently just the coherence law for a monoidal functor:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mi>γ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mi>γ</mi><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>α</mi> <mrow><mi>γ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>,</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow> <mi>L</mi></msubsup></mrow></mover></mtd> <mtd><mi>γ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mo stretchy="false">(</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><msup><mo>⊗</mo> <mi>L</mi></msup><mi>γ</mi><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><mi>η</mi><mo>′</mo></mrow></mpadded></msup><mo stretchy="false">↑</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mi>η</mi></mpadded></msup></mtd></mtr> <mtr><mtd><mi>γ</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>X</mi><mo>⊗</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>⊗</mo><mi>Z</mi><mo stretchy="false">)</mo></mtd> <mtd><munder><mo>⟶</mo><mrow><mi>γ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>γ</mi><mo stretchy="false">(</mo><mi>X</mi><mo>⊗</mo><mo stretchy="false">(</mo><mi>Y</mi><mo>⊗</mo><mi>Z</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    (\gamma(X) \otimes^L \gamma(Y)) \otimes^L \gamma(Z)
+     &amp;\overset{\alpha^L_{\gamma(X), \gamma(Y), \gamma(Z)}}{\longrightarrow}&amp;
+    \gamma(X) \otimes^L (\gamma(Y) \otimes^L \gamma(Z))
+    \\
+    {}^{\mathllap{\eta'}}\uparrow
+      &amp;&amp;
+    \uparrow^{\mathrlap{\eta}}
+    \\
+    \gamma( (X \otimes Y) \otimes Z )
+     &amp;\underset{\gamma(\alpha)}{\longrightarrow}&amp;
+   \gamma(X \otimes (Y \otimes Z))
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<h2 id="examples">Examples</h2>
+<h3 id="classical_homotopy_theory">Classical homotopy theory</h3>
+<ul>
+<li>
+<p>A <a class="existingWikiWord" href="../../../../../6/3/0/1/1036/content.html">nice category of topological spaces</a> with cartesian product and the <a class="existingWikiWord" href="../../../../../5/6/2/7/17265/content.html">classical model structure on topological spaces</a>.</p>
+</li>
+<li>
+<p>The category of <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a> with cartesian product and the <a class="existingWikiWord" href="../../../../../8/6/2/7/17268/content.html">classical model structure on simplicial sets</a>.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../0/0/3/7/17300/content.html">classical model structure on pointed topological spaces</a> or pointed simplicial sets with the <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash product</a> of pointed objects.</p>
+</li>
+</ul>
+<h3 id="SimplicialPresheaves">Simplicial presheaves</h3>
+<p>If the underlying <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> has <a class="existingWikiWord" href="../../../../../2/9/7/7/17792/content.html">finite products</a>, then both the injective and the projective, the global and the local <a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a> becomes a <a class="existingWikiWord" href="../../../../../3/4/3/0/343/content.html">cartesian</a> <a class="existingWikiWord" href="content.html">monoidal model category</a> with respect to the standard <a class="existingWikiWord" href="../../../../../2/4/1/1/1142/content.html">closed monoidal structure on presheaves</a>.</p>
+<p>See at <em><a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a></em> the section <em><a href="../../../../../7/4/7/0/747/content.html#MonoidalStructure">Closed monoidal structure</a></em>.</p>
+<h3 id="MonoidalPresheaves">Monoidal presheaves</h3>
+<p>More generally, if a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> has <a class="existingWikiWord" href="../../../../../2/9/7/7/17792/content.html">finite products</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℳ</mi></mrow><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/7/8/1/1878/content.html">cofibrantly generated</a> <a class="existingWikiWord" href="content.html">symmetric monoidal model category</a>, then the <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Func</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>𝒮</mi> <mi>op</mi></msup><mo>,</mo><mi>ℳ</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">Func\big(\mathcal{S}^{op}, \mathcal{M}\big)</annotation></semantics></math> with its object-wise <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a>-structure and with the <a class="existingWikiWord" href="../../../../../8/4/9/1/1948/content.html">projective model structure on functors</a> is itself a monoidal model category (see <a href="#Yalin12">Yalin 2012, Lem. 3.8</a>; <a href="#White17">White 2017, Cor. 5.20</a>; <a href="#PavlovScholbach18">Pavlov &amp; Scholbach 2018, inside proof of Prop. 7.9</a>).</p>
+<h3 id="homological_algebra_and_stable_homotopy_theory">Homological algebra and stable homotopy theory</h3>
+<ul>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../3/8/0/1/1083/content.html">category of chain complexes</a> with the usual <a class="existingWikiWord" href="../../../../../0/5/1/8/8150/content.html">tensor product of chain complexes</a> carries various monoidal model category structures, see</p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../3/9/7/1/1793/content.html">model structure on chain complexes</a>.</p>
+</li>
+</ul>
+<p>With respect to a <a class="existingWikiWord" href="../../../../../8/6/3/2/2368/content.html">symmetric monoidal smash product of spectra</a>:</p>
+<ul>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../4/7/0/10749/content.html">model structure on symmetric spectra</a></p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../0/5/7/0/10750/content.html">model structure on orthogonal spectra</a></p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../0/8/1/7/17180/content.html">model structure for excisive functors</a></p>
+</li>
+</ul>
+<p>(<a href="#SchwedeShipley00">Schwede-Shipley 00</a>, <a href="#MMSS00">MMSS 00, theorem 12.1 (iii) with prop. 12.3</a>)</p>
+<p>The standard example of a monoidal model category whose unit is not cofibrant is the category of EKMM S-modules.</p>
+<h3 id="categorical_model_structures">Categorical model structures</h3>
+<ul>
+<li>
+<p>The category <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> with cartesian product and the <a class="existingWikiWord" href="../../../../../5/6/0/0/65/content.html">folk model structure</a>.</p>
+</li>
+<li>
+<p>The category <a class="existingWikiWord" href="../../../../../2/6/3/0/362/content.html">Gray</a> of <a class="existingWikiWord" href="../../../../2/3/0/329/content.html">strict 2-categories</a> with the <a class="existingWikiWord" href="../../../../../2/6/3/0/362/content.html">Gray tensor product</a> and the <a class="existingWikiWord" href="../../../../../4/7/5/1/21574/content.html">Lack model structure</a>.</p>
+</li>
+</ul>
+<h3 id="model_structure_on_objects">Model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-objects</h3>
+<div class="un_def">
+<h6 id="assumption">Assumption</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> equipped with the structure of</p>
+<ul>
+<li>
+<p>a <a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed</a> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a>;</p>
+</li>
+<li>
+<p>a <a class="existingWikiWord" href="content.html">monoidal model category</a>;</p>
+</li>
+</ul>
+<p>such that</p>
+<ul>
+<li>
+<p>the model structure is <a class="existingWikiWord" href="../../../../../8/7/8/1/1878/content.html">cofibrantly generated</a>;</p>
+</li>
+<li>
+<p>the tensor unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> is cofibrant.</p>
+</li>
+</ul>
+</div>
+<div class="un_prop">
+<h6 id="proposition_3">Proposition</h6>
+<p>Under these conditions there is for each <a class="existingWikiWord" href="../../../../../6/1/0/5/5016/content.html">discrete group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> the structure of a <a class="existingWikiWord" href="content.html">monoidal model category</a> on the <a class="existingWikiWord" href="../../../../../8/2/5/1/11528/content.html">Borel model structure</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℰ</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\mathcal{E}^{\mathbf{B}G}</annotation></semantics></math> of objects in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> equipped with a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a>, for which the <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℰ</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msup><mo>→</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">
+  \mathcal{E}^{\mathbf{B}G} \to \mathcal{E}
+
+</annotation></semantics></math></div>
+<p>preserves and reflects fibrations and weak equivalences.</p>
+</div>
+<p>See <a href="#BergerMoerdijkResolution">Berger &amp; Moerdijk (2006) 2.5</a>.</p>
+<h3 id="model_structure_on_monoids">Model structure on monoids</h3>
+<p>See <a class="existingWikiWord" href="../../../../../8/3/2/5/5238/content.html">model structure on monoids in a monoidal model category</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/7/0/7/7076/content.html">cartesian closed monoidal model category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/6/5/25606/content.html">enriched monoidal model category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/5/7/17508/content.html">monoidal localization</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/1/1/5/5118/content.html">monoidal Quillen adjunction</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/2/5/5238/content.html">model structure on monoids in a monoidal model category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/6/0/4/24066/content.html">model structure on modules in a monoidal model category</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Textbook accounts:</p>
+<ul>
+<li id="Hovey99">
+<p><a class="existingWikiWord" href="../../../../../6/2/1/5/5126/content.html">Mark Hovey</a>, Chapter 4, Def. 4.2.6, in: <em><a class="existingWikiWord" href="../../../../../2/7/0/2/22072/content.html">Model Categories</a></em>, Mathematical Surveys and Monographs, <strong>63</strong> AMS (1999) [<a href="https://bookstore.ams.org/surv-63-s">ISBN:978-0-8218-4361-1</a>, <a href="https://doi.org/http://dx.doi.org/10.1090/surv/063">doi:10.1090/surv/063</a>, <a href="https://people.math.rochester.edu/faculty/doug/otherpapers/hovey-model-cats.pdf">pdf</a>, <a href="http://books.google.co.uk/books?id=Kfs4uuiTXN0C&amp;printsec=frontcover">Google books</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, Def. A.3.1.2 in: <em><a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></em>, Annals of Mathematics Studies 170, Princeton University Press 2009 (<a href="https://press.princeton.edu/titles/8957.html">pup:8957</a>, <a href="https://www.math.ias.edu/~lurie/papers/HTT.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p id="OriginalReferences"> Historically, the first mention of monoidal model categories (without the unit axiom) under this name is in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William G. Dwyer</a>, <a class="existingWikiWord" href="../../../../../3/9/3/1/21393/content.html">Philip S. Hirschhorn</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel M. Kan</a>, <em><a class="existingWikiWord" href="../../../../../8/3/3/4/24338/content.html">Model Categories and More General Abstract Homotopy Theory</a></em> [<a href="https://web.math.rochester.edu/people/faculty/doug/otherpapers/dhk.pdf">pdf</a>]</p>
+<blockquote>
+<p>(Mentioned in passing in Remark 55.10, with no definition given, but the preceding section discusses the pushout product axiom.)</p>
+</blockquote>
+</li>
+</ul>
+<p>The term “pushout smash product” is used for the case of <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash products</a> in <a class="existingWikiWord" href="../../../../../4/1/5/0/514/content.html">pointed categories</a> (such as of <a class="existingWikiWord" href="../../../../../4/6/3/7/17364/content.html">pointed simplicial sets</a> or <a class="existingWikiWord" href="../../../../../7/4/7/0/10747/content.html">symmetric spectra</a>):</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/2/1/5/5126/content.html">Mark Hovey</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, <a class="existingWikiWord" href="../../../../../0/3/9/2/2930/content.html">Jeff Smith</a>, <em>Symmetric spectra</em>, J. Amer. Math. Soc. <strong>13</strong> (1998) 149-208 [<a href="https://arxiv.org/abs/math/9801077">arXiv:math/9801077</a>, <a href="https://doi.org/10.1090/S0894-0347-99-00320-3">doi:10.1090/S0894-0347-99-00320-3</a>]</li>
+</ul>
+<p>The general notion of monoidal model categories and their pushout-product axiom appears in:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, Def. 2.1 <em>Algebras and modules in monoidal model categories</em>, Proc. London Math. Soc. <strong>80</strong> 2 (2000) 491-511 [<a href="https://arxiv.org/abs/math/9801082">arXiv:math/9801082</a>, <a href="https://doi.org/10.1112/S002461150001220X">doi:10.1112/S002461150001220X</a>]</p>
+</li>
+<li id="Hovey98">
+<p><a class="existingWikiWord" href="../../../../../6/2/1/5/5126/content.html">Mark Hovey</a>, Def. 1.1 in: <em>Monoidal model categories</em> [<a href="https://arxiv.org/abs/math/9803002">arXiv:math/9803002v1</a>]</p>
+</li>
+</ul>
+<p>Although the earliest mentions of terminology appear to be these sources indicated above, the notion itself is older. In particular, <a href="#Hovey99">Hovey (1999), p. 107</a> credits the definition of a <a class="existingWikiWord" href="../../../../../7/6/5/2/2567/content.html">Quillen bifunctor</a> to <a class="existingWikiWord" href="../../../7/5/5719/content.html">Dwyer, Hirschhorn, Kan Smith (2004)</a> (which had for years earlier been “in preparation”), and the definition is of course just a small variant of the definition <a class="existingWikiWord" href="../../../../../1/6/3/1/1361/content.html">enriched model categories</a>, which in its specialization to <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model categories</a> is due to</p>
+<ul>
+<li id="Quillen67"><a class="existingWikiWord" href="../../../../../4/4/5/3/3544/content.html">Daniel Quillen</a>, chapter II, section 2 of: <em><a class="existingWikiWord" href="../../../../../7/8/3/1/21387/content.html">Homotopical Algebra</a></em>, Lecture Notes in Mathematics <strong>43</strong>, Springer (1967) [<a href="https://link.springer.com/book/10.1007/BFb0097438">doi:10.1007/BFb0097438</a>]</li>
+</ul>
+<p>(The corresponding <a class="existingWikiWord" href="../../../../../8/6/4/0/468/content.html">pullback-power axiom</a> is axiom “SM7” in <a href="#Quillen67">Quillen (1967)</a>.)</p>
+<p>The <a class="existingWikiWord" href="content.html">unit axiom</a> together with the fact that the <a class="existingWikiWord" href="../../../../../4/6/2/0/264/content.html">homotopy category</a> is monoidal in this case is due to Hovey.</p>
+<p>Conditions for the existence of induced monoidal model structure on <a class="existingWikiWord" href="../../../../../6/4/9/1/1946/content.html">Reedy model categories</a>:</p>
+<ul>
+<li id="Barwick10"><a class="existingWikiWord" href="../../../../../3/6/8/2/2863/content.html">Clark Barwick</a>, p. 282 in: <em>On left and right model categories and left and right Bousfield localizations</em>, Homology, Homotopy and Applications <strong>12</strong> 2 (2010) 245–320 [<a href="https://doi.org/10.4310/hha.2010.v12.n2.a9">doi:10.4310/hha.2010.v12.n2.a9</a>, <a href="https://projecteuclid.org/journals/homology-homotopy-and-applications/volume-12/issue-2/On-left-and-right-model-categories-and-left-and-right/hha/1296223884.full">euclid:1296223884</a>, subsuming: <a href="https://arxiv.org/abs/0708.2067">arXiv:0708.2067</a>, <a href="https://arxiv.org/abs/0708.2832">arXiv:0708.2832</a>, <a href="http://arxiv.org/abs/0708.3435">arXiv:0708.3435</a>]</li>
+</ul>
+<p>Some relevant homotopy category background:</p>
+<ul>
+<li id="Shulman11"><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a>, <em>Comparing composites of left and right derived functors</em>, New York Journal of Mathematics Volume 17 (2011) 75-125 (<a href="http://arxiv.org/abs/0706.2868">arXiv:0706.2868</a>, <a href="http://nyjm.albany.edu/j/2011/17-5.html">publisher</a>)</li>
+</ul>
+<p>The monoidal structures for a <a class="existingWikiWord" href="../../../../../8/6/3/2/2368/content.html">symmetric monoidal smash product of spectra</a> are due to</p>
+<ul>
+<li id="SchwedeShipley00">
+<p><a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, <em>Algebras and modules in monoidal model categories</em> Proc. London Math. Soc. (2000) 80(2): 491-511 (<a href="http://www.math.uic.edu/~bshipley/monoidal.pdf">pdf</a>)</p>
+</li>
+<li id="MMSS00">
+<p><a class="existingWikiWord" href="../../../../../3/1/1/5/5113/content.html">Michael Mandell</a>, <a class="existingWikiWord" href="../../../../../7/1/5/0/517/content.html">Peter May</a>, <a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, part III of <em><a class="existingWikiWord" href="../../../../../8/9/2/7/17298/content.html">Model categories of diagram spectra</a></em>, Proceedings London Mathematical Society Volume 82, Issue 2, 2000 (<a href="http://www.math.uchicago.edu/~may/PAPERS/mmssLMSDec30.pdf">pdf</a>, <a href="http://plms.oxfordjournals.org/content/82/2/441.short?rss=1&amp;ssource=mfc">publisher</a>)</p>
+</li>
+</ul>
+<p>Further variation of the axiomatics is discussed in</p>
+<ul>
+<li id="BataninBerger13"><a class="existingWikiWord" href="../../../../9/0/2/2099/content.html">Michael Batanin</a>, <a class="existingWikiWord" href="../../../../../3/1/8/2/2813/content.html">Clemens Berger</a>, <em>Homotopy theory for algebras over polynomial monads</em> (<a href="https://arxiv.org/abs/1305.0086">arXiv:1305.0086</a>)</li>
+</ul>
+<p>The monoidal model structure on the <a class="existingWikiWord" href="../../../../../8/2/5/1/11528/content.html">Borel model structure</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℰ</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\mathcal{E}^{\mathbf{B}G}</annotation></semantics></math> is discussed for instance in</p>
+<ul>
+<li id="BergerMoerdijkResolution"><a class="existingWikiWord" href="../../../../../3/1/8/2/2813/content.html">Clemens Berger</a>, <a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, <em>The Boardman-Vogt resolution of operads in monoidal model categories</em>, Topology <strong>45</strong> (2006) 807-849 [<a href="https://arxiv.org/abs/math/0502155">arXiv:math/0502155</a>, <a href="https://doi.org/10.1016/j.top.2006.05.001">doi:10.1016/j.top.2006.05.001</a>]</li>
+</ul>
+<p>Relation to <a class="existingWikiWord" href="../../../../../../../missing.html">symmetric monoidal (infinity,1)-categories</a> (in particular, that every locally presentable symmetric monoidal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category arises from a symmetric monoidal model category) is discussed in</p>
+<ul>
+<li id="NikolausSagave15"><a class="existingWikiWord" href="../../../../../3/2/5/0/523/content.html">Thomas Nikolaus</a>, <a class="existingWikiWord" href="../../../../../6/7/9/9/9976/content.html">Steffen Sagave</a>, <em>Presentably symmetric monoidal infinity-categories are represented by symmetric monoidal model categories</em>. Algebr. Geom. Topol. 17 (2017), no. 5, 3189–3212. (<a href="http://arxiv.org/abs/1506.01475">arXiv:1506.01475</a>)</li>
+</ul>
+<p>The essential uniqueness of such a presentation is discussed in</p>
+<ul>
+<li id="Arakawa26"><a class="existingWikiWord" href="../../../../../5/8/6/6/26685/content.html">Kensuke Arakawa</a>, <em>On the equivalence of two approaches to multiplicative homotopy theories</em> (<a href="https://arxiv.org/abs/2603.23018">arXiv:2603.23018</a>)</li>
+</ul>
+<p>Monoidal Reedy model structures are discussed in</p>
+<ul>
+<li>Moncef Ghazel, Fethi Kadhi, <em>Reedy diagrams in V-model categories</em>, <a href="https://arxiv.org/abs/1610.06535">arXiv:1610.06535</a>, <a href="https://doi.org/10.1007/s10485-019-09566-w">doi:10.1007/s10485-019-09566-w</a>.</li>
+</ul>
+<p>On enhancement of monoidal model categories up to <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">strong</a> <a class="existingWikiWord" href="../../../../../8/1/1/5/5118/content.html">monoidal</a> <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a>:</p>
+<ul>
+<li id="PavlovScholbach18"><a class="existingWikiWord" href="../../../../../0/8/1/6/6180/content.html">Dmitri Pavlov</a>, <a class="existingWikiWord" href="../../../../../1/9/0/4/24091/content.html">Jakob Scholbach</a>, p. 20 of: <em>Admissibility and rectification of colored symmetric operads</em>, Journal of Topology <strong>11</strong> 3 (2018) 559-601 [<a href="https://doi.org/10.1112/topo.12008">doi:10.1112/topo.12008</a>, <a href="https://arxiv.org/abs/1410.5675">arXiv:1410.5675</a>]</li>
+</ul>
+<p>and for monoidal <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model categories</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/8/5/5/25583/content.html">Haldun Özgür Bayındır</a>, <a class="existingWikiWord" href="../../../../../6/6/9/0/10966/content.html">Boris Chorny</a>, <em>Admissible replacements for simplicial monoidal model categories</em>, Algebr. Geom. Topol. <strong>23</strong> (2023) 43-73 [<a href="https://arxiv.org/abs/2008.00515">arXiv:2008.00515</a>, <a href="https://doi.org/10.2140/agt.2023.23.43">doi:10.2140/agt.2023.23.43</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li id="Yalin12">
+<p><a class="existingWikiWord" href="../../../../../2/1/8/6/26812/content.html">Sinan Yalin</a>, Lem 3.8 in version 1 of: <em>Classifying spaces and moduli spaces of algebras over a prop</em> [<a href="https://arxiv.org/abs/1207.2964v1">arXiv:1207.2964v1</a>]</p>
+</li>
+<li id="White17">
+<p><a class="existingWikiWord" href="../../../../../2/7/9/9/9972/content.html">David White</a>, <em>Model Structures on Commutative Monoids in General Model Categories</em>, Journal of Pure and Applied Algebra, <strong>221</strong> 12 (2017) 3124-3168 [<a href="https://arxiv.org/abs/1403.6759">arXiv:1403.6759</a>, <a href="https://doi.org/10.1016/j.jpaa.2017.03.001">doi:10.1016/j.jpaa.2017.03.001</a>]</p>
+</li>
+<li>
+<p>Kensuke Arakawa: <em>On the equivalence of two approaches to multiplicative homotopy theories</em> [<a href="https://arxiv.org/abs/2603.23018">arXiv:2603.23018</a>]</p>
+</li>
+</ul>
+<p>On <a class="existingWikiWord" href="../../../../../7/0/0/0/20007/content.html">change of enrichment</a>:</p>
+<ul>
+<li>Kimball Strong: <em>Change of Enrichment for Monoidal Model Categories</em> [<a href="https://arxiv.org/abs/2607.09612">arXiv:2607.09612</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

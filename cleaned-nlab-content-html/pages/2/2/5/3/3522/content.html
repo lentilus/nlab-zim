@@ -1,0 +1,669 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Goodwillie calculus in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Goodwillie calculus
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<ul>
+<li><a href="#as_an_approximation_to_stabilization_of_a_functor">As an approximation to stabilization of a functor</a></li>
+<li><a href="#Analogy">Analogy between homotopy theory and calculus</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#toposes_of_polynomial_functors"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Toposes of polynomial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty, 1)</annotation></semantics></math>-functors</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#goodwillie_derivatives_of_the_identity_functor">Goodwillie derivatives of the identity functor</a></li>
+<li><a href="#GoodwillieDerivativeOfExponentialModality">Goodwillie derivatives of exponential modality</a></li>
+<li><a href="#goodwillie_derivatives_of_mapping_spaces">Goodwillie derivatives of mapping spaces</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Goodwillie calculus is an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-</a><a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorification</a> of <a class="existingWikiWord" href="../../../../../7/1/7/5/5717/content.html">differential calculus</a>, where <a class="existingWikiWord" href="../../../../../9/5/9/3/3959/content.html">smooth functions</a> between <a class="existingWikiWord" href="../../../../../5/5/1/2/2155/content.html">Cartesian spaces</a> are replaced by <a class="existingWikiWord" href="../../../../../1/4/6/1/1641/content.html">topological functors</a> between <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a> of <a class="existingWikiWord" href="../../../../7/4/0/10472/content.html">pointed topological spaces</a>.</p>
+<h3 id="as_an_approximation_to_stabilization_of_a_functor">As an approximation to stabilization of a functor</h3>
+<p>The operation of <a class="existingWikiWord" href="../../../../../1/2/1/3/3121/content.html">stabilization</a> that sends an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../../../missing.html">stable (∞,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(C)</annotation></semantics></math> does not in general extend to a functor.</p>
+<p>We may think of this operation as the analog of <em>linearizing</em> a space. Turning an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>→</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">F \colon C \to D</annotation></semantics></math> into a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Stab</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(C) \to Stab(D)</annotation></semantics></math> is not unlike performing a first order <a class="existingWikiWord" href="../../../../../3/9/2/4/4293/content.html">Taylor expansion</a> of a function, whence one speaks here of <a class="existingWikiWord" href="../../../../../6/2/5/0/10526/content.html">Goodwillie-Taylor towers</a>.</p>
+<p>This is what Goodwillie calculus studies.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>𝒞</mi><mo>→</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">F: \mathcal{C} \to \mathcal{D}</annotation></semantics></math> (where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> are each either <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Top</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Top_*</annotation></semantics></math>, the category of <a class="existingWikiWord" href="../../../../7/4/0/10472/content.html">pointed topological spaces</a>, or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spec</mi></mrow><annotation encoding="application/x-tex">Spec</annotation></semantics></math>, the category of <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectra</a>) be a pointed homotopy functor. Associate with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> a sequence of spectra, called the derivatives of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>, denoted by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mn>1</mn></msub><mi>F</mi><mo>,</mo><msub><mo>∂</mo> <mn>2</mn></msub><mi>F</mi><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mo>∂</mo> <mi>n</mi></msub><mi>F</mi><mo>,</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">\partial_1 F, \partial_2 F,\cdots, \partial_n F, \cdots</annotation></semantics></math>, or, collectively, by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mo>*</mo></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">\partial_* F</annotation></semantics></math>. For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> the spectrum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mi>n</mi></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">\partial_n F</annotation></semantics></math> has a natural <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a> of the <a class="existingWikiWord" href="../../../../../5/5/7/9/19755/content.html">symmetric group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\Sigma_n</annotation></semantics></math>. Thus, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mo>•</mo></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">\partial_\bullet F</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../3/7/0/1/11073/content.html">symmetric sequence</a> of spectra.</p>
+<p>The Goodwillie-derivatives of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> contain substantial information about the homotopy type of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>. We can form a sequence of ‘approximations’ to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> together with natural transformations forming a <em><a class="existingWikiWord" href="../../../../../6/2/5/0/10526/content.html">Goodwillie-Taylor tower</a></em>. This tower takes the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>P</mi> <mi>n</mi></msub><mi>F</mi><mo>→</mo><msub><mi>P</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mi>F</mi><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>P</mi> <mn>0</mn></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">
+F \to \cdots \to P_n F \to P_{n-1} F \to \cdots\to P_0 F
+
+</annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>n</mi></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">P_n F</annotation></semantics></math> being the universal <em>n-excisive</em> approximation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>. (A functor is <a class="existingWikiWord" href="../../../../../3/9/4/0/10493/content.html">n-excisive</a> if it takes any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n + 1</annotation></semantics></math>-dimensional cube with homotopy pushout squares for faces to a homotopy cartesian cube.) For ‘<a class="existingWikiWord" href="../../../../../../../missing.html">analytic (∞,1)-functors</a>’ <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>, this tower converges for sufficiently highly connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, that is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><munder><mi>holim</mi><mi>n</mi></munder><msub><mi>P</mi> <mi>n</mi></msub><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+F(X) \simeq \underset{n}{holim} P_n F(X).
+
+</annotation></semantics></math></div>
+<p>The fibre <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mi>n</mi></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">D_n F</annotation></semantics></math> of the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>n</mi></msub><mi>F</mi><mo>→</mo><msub><mi>P</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">P_n F \to P_{n-1} F</annotation></semantics></math> is an <em>n-homogeneous</em> functor in an appropriate sense, and is determined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mi>n</mi></msub><mi>F</mi></mrow><annotation encoding="application/x-tex">\partial_n F</annotation></semantics></math>, via the following formula. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> takes values in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spec</mi></mrow><annotation encoding="application/x-tex">Spec</annotation></semantics></math> then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mi>n</mi></msub><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><mo stretchy="false">(</mo><msub><mo>∂</mo> <mi>n</mi></msub><mi>F</mi><mo>∧</mo><msup><mi>X</mi> <mrow><mo>∧</mo><mi>n</mi></mrow></msup><msub><mo stretchy="false">)</mo> <mrow><mi>h</mi><msub><mi>Σ</mi> <mi>n</mi></msub></mrow></msub><mo>.</mo></mrow><annotation encoding="application/x-tex">
+D_n F(X) \simeq (\partial_n F \wedge X^{\wedge n})_{h \Sigma_n}.
+
+</annotation></semantics></math></div>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> takes values in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Top</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Top_*</annotation></semantics></math> then one needs to prefix the right hand side with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ω</mi> <mn>∞</mn></msup></mrow><annotation encoding="application/x-tex">\Omega^{\infty}</annotation></semantics></math>. (Arone &amp; Ching)</p>
+<h3 id="Analogy">Analogy between homotopy theory and calculus</h3>
+<p>Here is an overview of the relation between <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a>/<a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a> theory and <a class="existingWikiWord" href="../../../../../8/0/0/2/2008/content.html">differential calculus</a> that is the starting point for Goodwillie calculus.</p>
+<blockquote>
+<p>based on a message by <a class="existingWikiWord" href="../../../../../0/7/3/1/1370/content.html">André Joyal</a> to the Category Theory Mailing list, May 12, 2010</p>
+</blockquote>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k[ [x] ]</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">ring</a> of <a class="existingWikiWord" href="../../../../9/2/4/4292/content.html">formal power series</a> in one variable over a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>. The ring <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k[ [x] ]</annotation></semantics></math> bears some resemblances with the category of <a class="existingWikiWord" href="../../../../../9/0/5/0/509/content.html">pointed</a> <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a>s (= pointed spaces up to <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a>s). The category of pointed homotopy types is a ring (the product is the <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash product</a> and the sum is the <a class="existingWikiWord" href="../../../../../8/5/9/0/958/content.html">wedge sum</a>).</p>
+<p>The following dictionary indicates what the correspondence between the two subjects is.</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mo>↦</mo><mtext>corresponds to</mtext></mover></mrow><annotation encoding="application/x-tex">\stackrel{\text{corresponds to}}{\mapsto}</annotation></semantics></math> the category of <a class="existingWikiWord" href="../../../../../0/2/5/0/520/content.html">pointed set</a>s;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k[ [x] ]</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the category of pointed <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a>s;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the pointed circle;</p>
+</li>
+<li>
+<p>the augmentation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>→</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k[ [x] ] \to k)</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">connected components functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math> : pointed homotopy types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math> pointed sets</p>
+</li>
+<li>
+<p>the augmentation ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../6/2/1/0/126/content.html">subcategory</a> of pointed <a class="existingWikiWord" href="../../../../../9/4/6/2/2649/content.html">connected</a> spaces;</p>
+</li>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math> power of the augmentation ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">J^{n+1}</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the subcategory of pointed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/4/6/2/2649/content.html">connected</a> spaces;</p>
+</li>
+<li>
+<p>the product of an element in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">J^{n+1}</annotation></semantics></math> with an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">J^{m+1}</annotation></semantics></math> is an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mrow><mi>n</mi><mo>+</mo><mi>m</mi><mo>+</mo><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">J^{n+m+2}</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash product</a> of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/4/6/2/2649/content.html">connected</a> space with a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math>-connected space is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+m+1)</annotation></semantics></math>-connected;</p>
+</li>
+<li>
+<p>multiplication by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../9/7/1/1792/content.html">suspension</a> functor.</p>
+</li>
+<li>
+<p>division by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a> functor;</p>
+<p>Notice here the difference: the loop functor is <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> to the suspension functor, not its <a class="existingWikiWord" href="../../../../1/0/1/1012/content.html">inverse</a>. Moreover, the loop space of a space has a special structure (it is a <a class="existingWikiWord" href="../../../../../../../missing.html">group</a>).</p>
+</li>
+<li>
+<p>the ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>=</mo><mi>x</mi><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">J=x k[ [x] ]</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k[ [x] ]</annotation></semantics></math> via division by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> similarly, the category of pointed connected spaces is equivalent to the category of topological groups via the loop space functor (it is actually an <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> of <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model categories</a>).</p>
+</li>
+<li>
+<p>More generally, the ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">J^{n+1}</annotation></semantics></math> is isomorphic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k[ [x] ]</annotation></semantics></math> via division by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">x^{n+1}</annotation></semantics></math>. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> similarly, the category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-connected spaces is equivalent to the category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>-fold <a class="existingWikiWord" href="../../../../../9/9/8/0/899/content.html">topological group</a>s (it is actually an <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> of <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model categories</a>) via the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>-fold loop space functor.</p>
+</li>
+<li>
+<p>the quotient ring <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">/</mo><msup><mi>J</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k[ [x] ]/J^{n+1}</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> the category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated homotopy types (=<a class="existingWikiWord" href="../../../../../6/4/6/0/646/content.html">homotopy n-type</a>s)</p>
+</li>
+<li>
+<p>The sequence of approximations of a formal power series <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>a</mi> <mn>0</mn></msub><mo>+</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi><mo>+</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">f(x)=a_0+a_1x+ \cdots </annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a_0</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi> <mn>0</mn></msub><mo>+</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">a_0+a_1 x</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi> <mn>0</mn></msub><mo>+</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi><mo>+</mo><msub><mi>a</mi> <mn>2</mn></msub><msup><mi>x</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">a_0+a_1 x + a_2 x^2</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math></p>
+<p>the <a class="existingWikiWord" href="../../../../../6/2/9/0/926/content.html">Postnikov tower</a> of a pointed homotopy type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>:</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\pi_0(X)]</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>;</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\pi_0(X); \pi_1(X)]</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>;</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>;</mo><msub><mi>π</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\pi_0(X); \pi_1(X); \pi_2(X)]</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi></mrow><annotation encoding="application/x-tex">\cdots</annotation></semantics></math></p>
+<p>Here, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_0(X)</annotation></semantics></math> is the set of connected components of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>;</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\pi_0(X); \pi_1(X)]</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../5/6/1/0/165/content.html">fundamental groupoid</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>;</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>;</mo><msub><mi>π</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\pi_0(X); \pi_1(X); \pi_2(X)]</annotation></semantics></math> is the fundamental 2-groupoid of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, etc.</p>
+</li>
+<li>
+<p>The differences between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math> and its successives approximations</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi>R</mi> <mn>0</mn></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>a</mi> <mn>0</mn></msub></mtd> <mtd><mo>=</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi><mo>+</mo><msub><mi>a</mi> <mn>2</mn></msub><msup><mi>x</mi> <mn>2</mn></msup><mo>+</mo><msub><mi>a</mi> <mn>3</mn></msub><msup><mi>x</mi> <mn>3</mn></msup><mo>+</mo><mi>⋯</mi></mtd></mtr> <mtr><mtd><msub><mi>R</mi> <mn>1</mn></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mo stretchy="false">(</mo><msub><mi>a</mi> <mn>0</mn></msub><mo>+</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><msub><mi>a</mi> <mn>2</mn></msub><msup><mi>x</mi> <mn>2</mn></msup><mo>+</mo><msub><mi>a</mi> <mn>3</mn></msub><msup><mi>x</mi> <mn>3</mn></msup><mo>+</mo><msub><mi>a</mi> <mn>4</mn></msub><msup><mi>x</mi> <mn>4</mn></msup><mo>+</mo><mi>⋯</mi></mtd></mtr> <mtr><mtd><msub><mi>R</mi> <mn>2</mn></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mo stretchy="false">(</mo><msub><mi>a</mi> <mn>0</mn></msub><mo>+</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi><mo>+</mo><msub><mi>a</mi> <mn>2</mn></msub><msup><mi>x</mi> <mn>2</mn></msup><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><msub><mi>a</mi> <mn>3</mn></msub><msup><mi>x</mi> <mn>3</mn></msup><mo>+</mo><msub><mi>a</mi> <mn>4</mn></msub><msup><mi>x</mi> <mn>4</mn></msup><mo>+</mo><msub><mi>a</mi> <mn>5</mn></msub><msup><mi>x</mi> <mn>5</mn></msup><mo>+</mo><mi>⋯</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \begin{aligned}
+   R_0 = f(x)-a_0  &amp;= a_1 x+a_2 x^2+a_3 x^3+ \cdots
+   \\
+   R_1 = f(x)-(a_0+a_1 x) &amp;= a_2 x^2 + a_3 x^3 + a_4 x^4+ \cdots
+   \\
+   R_2 = f(x)-(a_0+a_1x+a_2x^2) &amp;= a_3 x^3 + a_4 x^4 + a_5 x^5 +\cdots
+ \end{aligned}
+
+</annotation></semantics></math></div>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↦</mo></mrow><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math></p>
+<p>the <a class="existingWikiWord" href="../../../../8/5/2/2582/content.html">Whitehead tower</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>,</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>0</mn></msub><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>π</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>π</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>⋯</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">C_0=[0;\pi_1(X), \pi_2(X), \pi_3(X), \cdots]</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>1</mn></msub><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>,</mo><msub><mi>π</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>π</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>⋯</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">C_1=[0;0, \pi_2(X), \pi_3(X), \cdots]</annotation></semantics></math></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>2</mn></msub><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><msub><mi>π</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>⋯</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">C_2=[0;0, 0, \pi_3(X), \cdots]</annotation></semantics></math></p>
+<p>Here, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">C_0</annotation></semantics></math> is the connected component of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> at the base point, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">C_1</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../9/5/1/1592/content.html">universal cover</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> constructed by from paths starting at the base point, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">C_2</annotation></semantics></math> is the universal 2-cover of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> constructed from paths starting the base point, etc.</p>
+</li>
+<li>
+<p>Division by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> is shifting down the coefficients of a power series.</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>a</mi> <mn>1</mn></msub><mi>x</mi><mo>+</mo><msub><mi>a</mi> <mn>2</mn></msub><msup><mi>x</mi> <mn>2</mn></msup><mo>+</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">f(x)=a_1 x+a_2 x^2 + \cdots</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>x</mi><mo>=</mo><msub><mi>a</mi> <mn>1</mn></msub><mo>+</mo><msub><mi>a</mi> <mn>2</mn></msub><mi>x</mi><mo>+</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">f(x)/x= a_1+a_2 x+ \cdots </annotation></semantics></math></p>
+<p>Similarly, the loop space functor is shifting down the homotopy groups of a pointed space:</p>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false">[</mo><msub><mi>a</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>2</mn></msub><mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X=[a_0,a_1,a_2,...]</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><msub><mi>a</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>2</mn></msub><mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Omega(X)=[a_1,a_2,....]</annotation></semantics></math>.</p>
+<p>Unfortunately, the <a class="existingWikiWord" href="../../../../9/7/1/1792/content.html">suspension</a> functor does not shift up the <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy group</a>s of a space. It is however shifting the first <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math> homotopy groups of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-connected space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>≥</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n \geq 1)</annotation></semantics></math> by the <a class="existingWikiWord" href="../../../../../5/9/5/1/1595/content.html">Freudenthal suspension theorem</a></p>
+<p>For example, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>,</mo><msub><mi>a</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>3</mn></msub><mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X=[0;0,a_2, a_3,...]</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mi>X</mi><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><msub><mi>a</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>3</mn></msub><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Sigma X=[0;0,0,a_2,a_3...]</annotation></semantics></math>, and if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><msub><mi>a</mi> <mn>3</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>4</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>5</mn></msub><mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X=[0;0,0, a_3, a_4, a_5,...]</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mi>X</mi><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><msub><mi>a</mi> <mn>3</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>4</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>5</mn></msub><mo>,</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Sigma X=[0;0,0, 0, a_3, a_4, a_5,...]</annotation></semantics></math>.</p>
+<p>In other words, the canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>Ω</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">X \to \Omega X</annotation></semantics></math> is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math>-equivalence if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/4/6/2/2649/content.html">connected</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>≥</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n \geq 1)</annotation></semantics></math>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">[</mo><mn>2</mn><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X[2n]</annotation></semantics></math> denotes the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math>-type of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> (the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">truncation</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>), then we have a <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a></p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">[</mo><mn>2</mn><mi>n</mi><mo stretchy="false">]</mo><mo>→</mo><mi>Ω</mi><mi>Σ</mi><mi>X</mi><mo stretchy="false">[</mo><mn>2</mn><mi>n</mi><mo stretchy="false">]</mo><mo>≃</mo><mi>Ω</mi><mi>Σ</mi><mi>X</mi><mo stretchy="false">[</mo><mn>2</mn><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X[2n]  \to \Omega \Sigma X[2n] \simeq \Omega \Sigma X[2n+1]</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>…</p>
+<p>From a blog <a href="http://golem.ph.utexas.edu/category/2008/12/smooth_structures_in_ottawa.html#c020698">discussion</a></p>
+<p><a href="#AroneKankaanrinta95">Arone Kankaanrinta 95</a> write</p>
+<blockquote>
+<p>The Goodwillie tower of the identity…is a tower of functors and natural transformations, which starts with stable homotopy and converges to unstable homotopy. (p. 1)</p>
+<p>…the Goodwillie tower is an inverse to stable homotopy in the same way as logarithm is an inverse to exponential. (p. 1)</p>
+<p>It is the point of this paper that the Goodwillie tower is the homotopy theoretic analog of logarithmic expansion, rather than of Taylor series. (p. 6)</p>
+</blockquote>
+<p>What’s going on, they say, is like finding a function of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi> <mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">a^{x - 1}</annotation></semantics></math> which best approximates <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>. This is when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">a = e</annotation></semantics></math>.</p>
+<p>The functor from spaces to spaces which sends <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../5/2/3/4/4325/content.html">infinite loop space</a> underlying its <a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectrum</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ω</mi> <mn>∞</mn></msup><msup><mi>Σ</mi> <mn>∞</mn></msup><mi>X</mi><mo>=</mo><mi>colim</mi><msup><mi>Ω</mi> <mi>n</mi></msup><msup><mi>Σ</mi> <mi>n</mi></msup><mi>X</mi></mrow><annotation encoding="application/x-tex">
+\Omega^{\infty}\Sigma^{\infty} X = colim \Omega^n \Sigma^n X
+
+</annotation></semantics></math></div>
+<p>sends coproducts to products and is supposed to be like <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi> <mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">e^{x - 1}</annotation></semantics></math>. (The “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math>” comes about from issues to do with basepoints.)</p>
+<p>A homogeneous linear functor is defined to be one sending coproducts to products, so it is like an <a class="existingWikiWord" href="../../../../../9/6/7/4/4769/content.html">exponential</a>. Compared to an exponential, the <a class="existingWikiWord" href="../../../../../6/9/3/1/1396/content.html">identity functor</a> is like a <a class="existingWikiWord" href="../../../../../7/6/7/4/4767/content.html">logarithm</a>, so it has a non-trivial Taylor series.</p>
+<blockquote>
+<p>…our point of view is that stable homotopy is analogous to the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi> <mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">e^{x - 1}</annotation></semantics></math> rather than to a linear function, and the Goodwillie tower is an infinite product, rather than an infinite sum, namely it is analogous to the product</p>
+</blockquote>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi> <mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><msup><mi>e</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mn>2</mn></msup></mrow><mn>2</mn></mfrac></mrow></msup><mo>⋅</mo><msup><mi>e</mi> <mfrac><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mn>3</mn></msup></mrow><mn>3</mn></mfrac></msup><mi>…</mi><mo>=</mo><msup><mi>e</mi> <mrow><mi>ln</mi><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></msup><mo>=</mo><mi>x</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+e^{x - 1} \cdot e^{-\frac{(x - 1)^2}{2}} \cdot e^{\frac{(x - 1)^3}{3}} \ldots = e^{ln(1 + (x - 1))} = x. 
+
+</annotation></semantics></math></div>
+<blockquote>
+<p>(p. 2)</p>
+</blockquote>
+<p>Gregory Arone in an MO <a href="http://mathoverflow.net/questions/32071/is-the-dual-notion-of-a-presheaf-useful">answer</a></p>
+<blockquote>
+<p>Covariant functors from the category of pointed sets to the category of pointed topological spaces are sometimes called <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>-spaces, and they have been important in algebraic topology. One reason is that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../8/5/3/7/7358/content.html">spaces</a> model infinite loop spaces (and therefore connective spectra) and are very helpful for understanding stable homotopy theory.</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>-spaces also serve as a model for particularly well-behaved covariant functors from the category of pointed topological spaces to itself. Of course, these functors play an important role in topology as well. I like to think of Goodwillie’s Calculus of Homotopy Functors (and also of Michael Weiss’s Orthogonal Calculus) as a kind of “sheaf theory for covariant functors”. In these theories, covariant functors are analogous to presheaves and linear functors are analogous to sheaves (The definition of a linear functor is essentially a homotopy-invariant version of the definition of a sheaf). The process of approximating a general functor by a linear one is analogous to sheafification, and so forth. These theories provide methods for studying certain types of functors, but of course they also tell you something about the category of spaces itself.</p>
+</blockquote>
+<p>Eric Finster’s research statement</p>
+<blockquote>
+<p>One tantalizing aspect of the Goodwillie calculus is that it suggests the possibility of thinking geometrically about the global structure of homotopy theory. In this interpretation, the category of spectra plays the role of the tangent space to the category of spaces at the one-point space. Moreover, the identity functor from spaces to spaces is not linear…and one can interpret this as saying that spaces have some kind of non-trivial curvature.</p>
+</blockquote>
+<p>However, Goodwillie remarks in the <a href="#OWR2004">report</a> (p. 905) on a Oberwolfach meeting.:</p>
+<blockquote>
+<p>Rhetorical question: If the first derivative of the identity is the identity matrix, why is the second derivative not zero? Answer: Some of the terminology of homotopy calculus works better for functors from spaces to spectra than for functors from spaces to spaces. Specifically, since “linearity” means taking pushout squares to pullback squares, the identity functor is not linear and the composition of two linear functors is not linear.</p>
+<p>Attempted cryptic remark: Unlike the category of spectra, where pushouts are the same as pullbacks, the category of spaces may be thought of has having nonzero curvature.</p>
+<p>Correction: After the talk Boekstedt asked about that remark. We discussed the matter at length and found more than one connection on the category of spaces, but none that was not flat. In fact curvature is the wrong thing to look for. There are in some sense exactly two tangent connections on the category of spaces (or should we say on any model category?). Both are flat and torsion-free. There is a map between them, so it is meaningful to subtract them. As is well-known in differential geometry, the difference between two connections is a 1-form with values in endomorphisms (whereas the curvature is a 2-form with values in endomorphisms). Thus there is a way of discussing the discrepancy between pushouts and pullbacks in the language of differential geometry, but it is a tensor field of a different type from what I had guessed.</p>
+</blockquote>
+<p>This is from the <a href="#OWR2004">report</a> (p. 905) on a Oberwolfach meeting. The table on p. 900 also makes comparisons to differential geometry.</p>
+<p>Chris Schommer-Pries</p>
+<blockquote>
+<p>Any linear functor from spaces to spaces is a generalized cohomology theory. More precisely, there is a model category on the functors from spaces to spaces called the model category of W-spaces. Really I should be using pointed spaces here. This model category is one of the standard models for the category spectra and so the fibrant objects can be thought of as the (co)homology theories. The fibrant objects are precisely those functors which are linear in Goodwillie’s sense. The example <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><msup><mi>P</mi> <mn>∞</mn></msup></mrow><annotation encoding="application/x-tex">S P^{\infty}</annotation></semantics></math> corresponds to ordinary cohomology (well there is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math> issue, but let’s ignore that). In general evaluating the linear functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> on a space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> gives you a space which should be thought of as the smash product of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>So now why should spectra/cohomology theories be thought of as linear functors? Well if you think of spectra as analogous to abelian groups, then applying a spectrum to a space (i.e. smashing with it) is a linearization of that space.</p>
+<p>Following this analogy, if we now have any old functor from space to spaces we can take its fibrant replacement in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-spaces. This is a linear functor which is the best approximation to the original functor. So it is like taking a derivative of a function. Goodwillie’s insight was to extend this analogy to encompass the rudiments of calculus. There is in fact a whole series of model categories on functors from spaces to spaces where the fibrant objects are Goodwillie’s polynomial functors of degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>.</p>
+</blockquote>
+<p>See also Eric Finster’s blog post <a href="https://web.archive.org/web/20121114044441/https://curiousreasoning.wordpress.com/2010/08/02/thoughts-on-the-goodwillie-calculus/">Thoughts on the Goodwillie Calculus</a></p>
+<h2 id="properties">Properties</h2>
+<h3 id="toposes_of_polynomial_functors"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Toposes of polynomial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty, 1)</annotation></semantics></math>-functors</h3>
+<p>For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>, the collection of <a class="existingWikiWord" href="../../../../../../../missing.html">n-excisive (∞,1)-functors</a> from bare <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy types</a> to bare homotopy types is an <a class="existingWikiWord" href="../../../../../0/0/1/1/1100/content.html">(infinity,1)-topos</a>, the <em><a href="../../../../../8/2/5/0/10528/content.html#JetToposes">jet topos</a></em>.</p>
+<p>due to ( <a href="#Joyal08">Joyal 08, 35.5</a>, with <a class="existingWikiWord" href="../../../../../4/7/4/0/10474/content.html">Georg Biedermann</a>) See also at <em><a class="existingWikiWord" href="../../../../../6/2/1/3/3126/content.html">tangent (infinity,1)-category</a></em>, and <a class="existingWikiWord" href="../../../../../5/2/8/2/2825/content.html">Charles Rezk</a>, appears as (<a href="#HigherAlg">Lurie, remark 6.1.1.11</a>).</p>
+<h2 id="examples">Examples</h2>
+<h3 id="goodwillie_derivatives_of_the_identity_functor">Goodwillie derivatives of the identity functor</h3>
+<p>The Goodwillie derivatives of the <a class="existingWikiWord" href="../../../../../6/9/3/1/1396/content.html">identity functor</a> on <a class="existingWikiWord" href="../../../../7/4/0/10472/content.html">pointed topological spaces</a>, form an <a class="existingWikiWord" href="../../../3/0/322/content.html">operad</a> in <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectra</a> (<a href="#Ching05">Ching 05</a>).</p>
+<p>See at <em><a class="existingWikiWord" href="../../../../../7/7/8/9/19877/content.html">Goodwillie derivatives of the identity functor</a></em></p>
+<h3 id="GoodwillieDerivativeOfExponentialModality">Goodwillie derivatives of exponential modality</h3>
+<p>The (<a class="existingWikiWord" href="../../../../../9/9/0/1/1099/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-</a>)functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>∞</mn></msup><mo>∘</mo><msup><mi>Ω</mi> <mn>∞</mn></msup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Spectra</mi><mo>→</mo><mi>Spectra</mi></mrow><annotation encoding="application/x-tex">
+  \Sigma^\infty \circ \Omega^\infty
+  \;\colon\;
+  Spectra \to Spectra
+
+</annotation></semantics></math></div>
+<p><a href="../../../../../5/5/2/0/255/content.html#RelationBetweenAdjunctionsAndMonads">induced</a> from the <a class="existingWikiWord" href="../../../../../1/2/1/3/3121/content.html">stabilization</a>-<a class="existingWikiWord" href="../../../../../5/5/3/2/2355/content.html">adjunction</a> is (see <a href="../../../../7/0/1/11072/content.html#RealizationInLinearHomotopyTypeTheory">there</a>) the <a class="existingWikiWord" href="../../../../7/0/1/11072/content.html">exponential modality</a> in <a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">linear homotopy type theory</a> (or rather the un-pointed version is). Indeed, in Goodwillie calculus it behaves like an <a class="existingWikiWord" href="../../../../../9/6/7/4/4769/content.html">exponential function</a> (“minus 1”), for instance in that</p>
+<ul>
+<li>
+<p>all its higher <a class="existingWikiWord" href="content.html">Goodwillie derivatives</a> are the <a class="existingWikiWord" href="../../../../9/9/3/3992/content.html">unit</a> <a class="existingWikiWord" href="../../../../../7/1/3/5/5317/content.html">sphere spectrum</a>, and</p>
+</li>
+<li>
+<p>on <a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕏</mi><mo>≡</mo><msubsup><mi>Σ</mi> <mo>+</mo> <mn>∞</mn></msubsup><mi>X</mi></mrow><annotation encoding="application/x-tex">\mathbb{X} \equiv \Sigma^\infty_+ X</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>∞</mn></msup><msup><mi>Ω</mi> <mn>∞</mn></msup><mi>𝕏</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><munder><mo>⊕</mo><mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow></munder><msup><mi>𝕏</mi> <mrow><mo>∧</mo><mi>n</mi></mrow></msup><mo>⫽</mo><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Sigma^\infty \Omega^\infty \mathbb{X}
+  \;\simeq\;
+  \underset{n \geq 1}{\oplus}
+  \mathbb{X}^{\wedge n} \sslash Sym(n)
+  \,.
+
+</annotation></semantics></math></div></li>
+</ul>
+<p>(<a href="#AroneChing19">Arone &amp; Ching 2019, Exp. 2.6</a>, using <a href="#AhearnKuhn02">Ahearn &amp; Kuhn 2002, Cor. 1.3</a>)</p>
+<h3 id="goodwillie_derivatives_of_mapping_spaces">Goodwillie derivatives of mapping spaces</h3>
+<p>See at <em><a class="existingWikiWord" href="../../../../../6/8/8/9/19886/content.html">stable splitting of mapping spaces</a></em>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/3/0/7/17033/content.html">Goodwillie spectral sequence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">Goodwillie-differentiable (∞,1)-category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/4/0/10492/content.html">excisive (∞,1)-functor</a>, <a class="existingWikiWord" href="../../../../../3/9/4/0/10493/content.html">n-excisive (∞,1)-functor</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/5/0/10526/content.html">Taylor tower</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/2/5/0/10527/content.html">Goodwillie differentiation</a>, <a class="existingWikiWord" href="../../../../../4/5/9/9/19954/content.html">Goodwillie chain rule</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/8/9/19877/content.html">Goodwillie derivative of the identity functor</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">tangent (∞,1)-category</a>, <a class="existingWikiWord" href="../../../../../4/9/4/0/10494/content.html">tangent cohesion</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">jet (∞,1)-category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/6/0/7/17060/content.html">orthogonal calculus</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/6/1/7/17163/content.html">Weiss topology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/8/1/7/17187/content.html">manifold calculus</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The original articles:</p>
+<ul>
+<li id="Goodwillie90">
+<p><a class="existingWikiWord" href="../../../../../8/3/0/4/4038/content.html">Tom Goodwillie</a>, <em>The differential calculus of homotopy functors</em>, Proceedings of the International Congress of Mathematicians in Kyoto 1990, Vol. I, Math. Soc. Japan, 1991, pp. 621–6 (<a href="https://math.mit.edu/juvitop/old/notes/2009_Fall/goodwillie-icm.pdf">article pdf</a>, <a href="https://www.mathunion.org/fileadmin/ICM/Proceedings/ICM1990.2/ICM1990.2.ocr.pdf">full proceedings Vol I pdf</a>, <a class="existingWikiWord" href="/nlab/files/GoodwillieICM1990.pdf" title="pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/0/4/4038/content.html">Thomas Goodwillie</a>, <em>Calculus. I. The first derivative of pseudoisotopy theory</em>, K-Theory <strong>4</strong> (1990), no. 1, 1-27 (<a href="http://dx.doi.org/10.1007/BF00534191">doi:10.1007/BF00534191</a>, MR:1076523)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/0/4/4038/content.html">Thomas Goodwillie</a>, <em>Calculus. II. Analytic functors</em>, K-Theory <strong>5</strong> (1991/92), no. 4, 295-332 (<a href="http://dx.doi.org/10.1007/BF00535644">doi:10.1007/BF00535644</a>, MR:1162445)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/0/4/4038/content.html">Thomas Goodwillie</a>, <em>Calculus. III. Taylor series</em>, Geom. Topol. 7 (2003), 645–711 (<a href="https://projecteuclid.org/euclid.gt/1513883319">euclid:gt/1513883319</a> <a href="http://dx.doi.org/10.2140/gt.2003.7.645">doi:10.2140/gt.2003.7.645</a>, <a href="http://arxiv.org/abs/math/0310481">arXiv:math/0310481</a>)</p>
+</li>
+<li id="OWR2004">
+<p>The Goodwillie Calculus of Functors. Workshop Oberwolfach Report 17 (2004) [<a href="https://doi.org/10.14760/OWR-2004-17">doi:10.4171/OWR/2004/17</a>]</p>
+</li>
+</ul>
+<p>Surveys and introductions:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/0/4/4037/content.html">Brian Munson</a>, <em>Introduction to the manifold calculus of Goodwillie-Weiss</em>, Morfismos, Vol . 14, No. 1, 2010, pp. 1-60 (<a href="https://arxiv.org/abs/1005.1698">arXiv:1005.1698</a>)</p>
+</li>
+<li id="MunsonVolic15">
+<p><a class="existingWikiWord" href="../../../../../7/3/0/4/4037/content.html">Brian Munson</a>, <a class="existingWikiWord" href="../../../../../9/0/9/9/19909/content.html">Ismar Volic</a>, Section 10 of: <em>Cubical homotopy theory</em>, Cambridge University Press, 2015 (<a href="http://palmer.wellesley.edu/~ivolic/pdf/Papers/CubicalHomotopyTheory.pdf">pdf</a>, <a href="https://doi.org/10.1017/CBO9781139343329">doi:10.1017/CBO9781139343329</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../7/0/7/17072/content.html">Michael Ching</a>, <a class="existingWikiWord" href="../../../../../7/8/3/1/11387/content.html">Nicholas Kuhn</a>, <a class="existingWikiWord" href="../../../../../4/0/7/0/20704/content.html">Victor Turchin</a>, <em><a href="http://www.birs.ca/events/2011/5-day-workshops/11w5058">Functor Calculus and Operads</a></em>, BANFF Workshop 2011</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/1/1/11120/content.html">Gregory Arone</a>, <a class="existingWikiWord" href="../../../../7/0/7/17072/content.html">Michael Ching</a> <em><a href="https://math.mit.edu/events/talbot/index.php?year=2012">Talbot Workshop 2012: Calculus of Functors</a></em> (<a href="https://math.mit.edu/events/talbot/2012/2012TalbotTalks.pdf">Talk schedule</a>, <a href="https://math.mit.edu/events/talbot/index.php?year=2012&amp;sub=talks">Notes</a>)</p>
+</li>
+<li id="AroneChing19">
+<p><a class="existingWikiWord" href="../../../../../0/2/1/1/11120/content.html">Gregory Arone</a>, <a class="existingWikiWord" href="../../../../7/0/7/17072/content.html">Michael Ching</a>, <em>Goodwillie Calculus</em>, in: <em><a class="existingWikiWord" href="../../../../../3/8/9/9/19983/content.html">Handbook of Homotopy Theory</a></em> Taylor &amp; Francis (2019) [<a href="https://arxiv.org/abs/1902.00803">arXiv:1902.00803</a>,<a href="https://doi.org/10.1201/9781351251624">doi:10.1201/9781351251624</a>]</p>
+</li>
+</ul>
+<p>A <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> presentation for <a class="existingWikiWord" href="../../../../../3/9/4/0/10493/content.html">n-excisive functors</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/4/0/10474/content.html">Georg Biedermann</a>, <a class="existingWikiWord" href="../../../../../6/6/9/0/10966/content.html">Boris Chorny</a>, Oliver Röndigs, <em>Calculus of functors and model categories</em>, Adv. Math., <strong>214</strong>, n. 1 (2007) 92–115, <a href="http://dx.doi.org/10.1016/j.aim.2006.10.009">doi</a>, <a href="http://arxiv.org/abs/math/0601221">math.AT/0601221</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/1/1/11120/content.html">Gregory Arone</a>, <a class="existingWikiWord" href="../../../../7/0/7/17072/content.html">Michael Ching</a>, <em>Operads And Chain Rules For The Calculus Of Functors</em>, <a href="https://arxiv.org/abs/0902.0399">arXiv:0902.0399</a></p>
+</li>
+<li>
+<p><a href="#AroneMahowald98">AroneMahowald 98</a></p>
+</li>
+<li id="AroneKankaanrinta95">
+<p><a class="existingWikiWord" href="../../../../../0/2/1/1/11120/content.html">Gregory Arone</a>, Marja Kankaanrinta, <em>The Goodwillie tower of the identity is a logarithm</em>, 1995 (<a class="existingWikiWord" href="/nlab/files/Arone95.pdf" title="pdf">pdf</a>, <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.53.8306">web</a>)</p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li id="AhearnKuhn02">
+<p><span class="newWikiWord">Stephen T. Ahearn<a href="/nlab/new/Stephen+T.+Ahearn">?</a></span>, <a class="existingWikiWord" href="../../../../../7/8/3/1/11387/content.html">Nicholas J. Kuhn</a>, <em>Product and other fine structure in polynomial resolutions of mapping spaces</em>, Algebr. Geom. Topol. <strong>2</strong> (2002) 591-647 [<a href="https://arxiv.org/abs/math/0109041">arXiv:math/0109041</a>, <a href="https://doi.org/10.2140/agt.2002.2.591">doi:10.2140/agt.2002.2.591</a>]</p>
+</li>
+<li>
+<p>Andrew Mauer-Oats, <em>Algebraic Goodwillie calculus and a cotriple model for the remainder</em>, Trans. Amer. Math. Soc. <strong>358</strong> (2006), no. 5, 1869–1895 <a href="http://www.ams.org/tran/2006-358-05/S0002-9947-05-03936-X/home.html">journal</a>, <a href="http://arxiv.org/abs/math/0212095">math.AT/0212095</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/6/9/6/16961/content.html">David Barnes</a>, <a class="existingWikiWord" href="../../../../../1/6/0/7/17061/content.html">Rosona Eldred</a>, <em>Capturing Goodwillie’s Derivative</em>, Journal of Pure and Applied Algebra</p>
+<p><strong>220</strong> 1 (2016) 197-222 [<a href="https://arxiv.org/abs/1406.0424">arXiv:1406.0424</a>, <a href="https://doi.org/10.1016/j.jpaa.2015.06.006">doi:10.1016/j.jpaa.2015.06.006</a>]</p>
+</li>
+</ul>
+<p>Discussion in the context of <a class="existingWikiWord" href="../../../../../9/0/1/8/8109/content.html">chromatic homotopy theory</a>:</p>
+<ul>
+<li id="AroneMahowald98">
+<p><a class="existingWikiWord" href="../../../../../0/2/1/1/11120/content.html">Greg Arone</a>, <a class="existingWikiWord" href="../../../../../0/0/7/0/10700/content.html">Mark Mahowald</a>, <em>The Goodwillie tower of the identity functor and the unstable periodic homotopy of spheres</em>, Inventiones mathematicae, February 1999, Volume 135, Issue 3, pp 743-788 (<a href="http://hopf.math.purdue.edu/Arone-Mahowald/ArMahowald.pdf">pdf</a>, <a href="https://doi.org/10.1007/s002220050300">doi:10.1007/s002220050300</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/8/3/1/11387/content.html">Nicholas Kuhn</a>, <em>Goodwillie towers and chromatic homotopy: an overview</em>, Proceedings of the Nishida Fest (Kinosaki 2003), 245–279, Geom. Topol. Monogr., 10, Geom. Topol. Publ., Coventry, 2007 (<a href="https://arxiv.org/abs/math/0410342">arXiv:math/0410342</a>, <a href="http://dx.doi.org/10.2140/gtm.2007.10.245">doi:10.2140/gtm.2007.10.245</a>)</p>
+</li>
+</ul>
+<p>Discussion via <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categories</a> and <a class="existingWikiWord" href="../../../../../../../missing.html">stable (∞,1)-categories</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../../../missing.html">(∞,2)-Categories and the Goodwillie Calculus</a></em>, <a href="http://www.math.harvard.edu/~lurie/papers/GoodwillieI.pdf#page=159">section 5</a></li>
+</ul>
+<p>This is now section 7 of</p>
+<ul>
+<li id="HigherAlg"><a class="existingWikiWord" href="../../../../1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../0/5/6/5/5650/content.html">Higher Algebra</a></em></li>
+</ul>
+<p>See also</p>
+<ul>
+<li>
+<p>Luis Pereira, <em>A general context for Goodwillie Calculus</em> (<a href="http://arxiv.org/abs/1301.2832">arXiv:1301.2832</a>)</p>
+</li>
+<li id="Joyal08">
+<p><a class="existingWikiWord" href="../../../../../0/7/3/1/1370/content.html">André Joyal</a>, <em>Notes on Logoi</em>, 2008 (<a href="http://www.math.uchicago.edu/~may/IMA/JOYAL/Joyal.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>Generalization from <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-categories</a> to <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,n)-categories</a> and relation to <a class="existingWikiWord" href="../../../../../4/4/1/1/1144/content.html">rational homotopy theory</a> is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/1/3/7/7318/content.html">Gijs Heuts</a>, <em>Goodwillie approximations to higher categories</em> (<a href="http://arxiv.org/abs/1510.03304">arXiv:1510.03304</a>)</li>
+</ul>
+<p>Relation to <a class="existingWikiWord" href="../../../../../9/0/1/8/8109/content.html">chromatic homotopy theory</a> is discussed in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/1/1/11120/content.html">Greg Arone</a>, <a class="existingWikiWord" href="../../../../../0/0/7/0/10700/content.html">Mark Mahowald</a>, <em>The Goodwillie tower of the identity functor and the unstable periodic homotopy of spheres</em>, Inventiones mathematicae, 1999, Volume 135, Issue 3, pp 743-788 (<a href="http://hopf.math.purdue.edu/Arone-Mahowald/ArMahowald.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/8/3/1/11387/content.html">Nicholas Kuhn</a>, <em>Goodwillie towers and chromatic homotopy: an overview</em>, Geom. Topol. Monogr. 10 (2007) 245-279 (<a href="http://arxiv.org/abs/math/0410342">arXiv:math/0410342</a>)</p>
+</li>
+</ul>
+<p>On the relation to <a class="existingWikiWord" href="../../../../../0/7/0/8/18070/content.html">configuration spaces</a>:</p>
+<ul>
+<li id="Ching05">
+<p><a class="existingWikiWord" href="../../../../7/0/7/17072/content.html">Michael Ching</a>, <em>Bar constructions for topological operads and the Goodwillie derivatives of the identity</em>, Geom. Topol. 9 (2005) 833-934 (<a href="https://arxiv.org/abs/math/0501429">arXiv:math/0501429</a>)</p>
+</li>
+<li id="Ching05b">
+<p><a class="existingWikiWord" href="../../../../7/0/7/17072/content.html">Michael Ching</a>, <em>Calculus of Functors and Configuration Spaces</em>, Conference on Pure and Applied Topology Isle of Skye, Scotland, 21-25 June, 2005 (<a href="https://www3.amherst.edu/~mching/Work/skye.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>Discussion in terms of <a class="existingWikiWord" href="../../../../../0/4/0/2/2040/content.html">spectral Mackey functors</a></p>
+<ul>
+<li id="Glasman15">
+<p><a class="existingWikiWord" href="../../../../../1/2/0/7/17021/content.html">Saul Glasman</a>, <em>Stratified categories, geometric fixed points and a generalized Arone-Ching theorem</em> (<a href="https://arxiv.org/abs/1507.01976">arXiv:1507.01976</a>, <a href="http://www-users.math.umn.edu/~sglasman/strattalk.pdf">talk notes pdf</a>)</p>
+</li>
+<li id="Glasman16">
+<p><a class="existingWikiWord" href="../../../../../1/2/0/7/17021/content.html">Saul Glasman</a>, <em>Goodwillie calculus and Mackey functors</em> (<a href="https://arxiv.org/abs/1610.03127">arXiv:1610.03127</a>)</p>
+</li>
+</ul>
+<p>Discussion in an <a class="existingWikiWord" href="../../../../../8/0/4/8/8408/content.html">equivariant</a> setting is in</p>
+<ul>
+<li>Emanuele Dotto, <em>Higher Equivariant Excision</em>, (<a href="https://arxiv.org/abs/1507.01909">arXiv:1507.01909</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

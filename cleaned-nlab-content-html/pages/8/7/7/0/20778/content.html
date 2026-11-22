@@ -1,0 +1,412 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Kantorovich monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Kantorovich monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#wasserstein_spaces">Wasserstein spaces</a></li>
+<ul>
+<li><a href="#properties">Properties</a></li>
+</ul>
+<li><a href="#functor_unit_and_multiplication">Functor, unit and multiplication</a></li>
+<li><a href="#algebras">Algebras</a></li>
+<li><a href="#duality">Duality</a></li>
+<li><a href="#the_ordered_case">The ordered case</a></li>
+<li><a href="#for_lawvere_metric_spaces">For Lawvere metric spaces</a></li>
+<li><a href="#see_also">See also</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The Kantorovich monad is a <a class="existingWikiWord" href="../../../../2/7/0/20728/content.html">probability monad</a> on the category of <a class="existingWikiWord" href="../../../../../9/6/7/1/1769/content.html">complete metric spaces</a> and 1-Lipschitz (or <a class="existingWikiWord" href="../../../../../2/6/0/9/9062/content.html">Lipschitz</a>) maps. Its functor part assigns to each complete metric space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> the space of <a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon</a> <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measures</a> with finite first moment, equipped with the <a class="existingWikiWord" href="../../../../../6/0/2/6/6206/content.html">Kantorovich-Wasserstein distance</a>.</p>
+<p>Its <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> are <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed</a> <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex</a> subsets of <a class="existingWikiWord" href="../../../../../6/9/4/1/1496/content.html">Banach spaces</a>.</p>
+<p>The construction was first given by van Breugel for the compact case (see <a href="#vanbreugel">vB ‘05</a>).</p>
+<p>There is an <a class="existingWikiWord" href="../../../../../2/3/8/2/2832/content.html">ordered</a> version of the Kantorovich monad, making use of the <a class="existingWikiWord" href="../../../../4/7/0/20748/content.html">stochastic order</a>. Its <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> are <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed</a> <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex</a> subsets of <span class="newWikiWord">ordered Banach spaces<a href="/nlab/new/ordered+Banach+spaces">?</a></span>.</p>
+<h2 id="wasserstein_spaces">Wasserstein spaces</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric space</a>. A <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> has <strong>finite first moment</strong> if</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><mi>X</mi><mo>×</mo><mi>X</mi></mrow></msub><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>dp</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>dp</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>&lt;</mo><mspace width="thickmathspace"></mspace><mo>+</mo><mn>∞</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">
+\int_{X\times X} d(x,y) \, dp(x)\,dp(y) \;\lt\; +\infty,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">d(-,-)</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">distance</a>.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon</a> <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measures</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> of finite first moment. The <strong><a class="existingWikiWord" href="../../../../../6/0/2/6/6206/content.html">Kantorovich-Wasserstein distance</a></strong> is given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><munder><mi>inf</mi> <mrow><mi>r</mi><mo>∈</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow></munder><msub><mo>∫</mo> <mrow><mi>X</mi><mo>×</mo><mi>X</mi></mrow></msub><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>dr</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">
+d(p,q) \;\coloneqq\; \inf_{r\in\Gamma(p,q)} \int_{X\times X} d(x,y) \,dr(x,y) ,
+
+</annotation></semantics></math></div>
+<p>where the infimum (which is attained if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is complete) is taken over the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma(p,q)</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">couplings</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math>, i.e. the measures on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">X\times X</annotation></semantics></math> which admit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> as their <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">marginals</a>.</p>
+<p>Equivalently, the distance can be written as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mi>sup</mi> <mrow><mi>f</mi><mo>∈</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>ℝ</mi><mo stretchy="false">]</mo></mrow></munder><mo>∫</mo><mi>f</mi><mspace width="thinmathspace"></mspace><mi>dp</mi><mo>−</mo><mo>∫</mo><mi>f</mi><mspace width="thinmathspace"></mspace><mi>dq</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">
+d(p,q) \;=\; \sup_{f\in[X,\mathbb{R}]} \int f\, dp - \int f\, dq,
+
+</annotation></semantics></math></div>
+<p>where the supremum (which is usually not attained) is taken over the set of 1-<a class="existingWikiWord" href="../../../../../2/6/0/9/9062/content.html">Lipschitz</a> functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">X\to \mathbb{R}</annotation></semantics></math>. (This equivalence is an instance of the celebrated <span class="newWikiWord">Kantorovich duality<a href="/nlab/new/Kantorovich+duality">?</a></span>.)</p>
+<p>The <strong>1-Wasserstein space</strong> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> of Radon probability measures on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> with finite first moment, equipped with the Wasserstein metric.</p>
+<h3 id="properties">Properties</h3>
+<ul>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/6/7/1/1769/content.html">complete</a>, so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/3/0/3/3036/content.html">separable</a>, so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a>, so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>More information on Wasserstein spaces can be found in <a href="#villani">Villani ‘08</a>.</p>
+<h2 id="functor_unit_and_multiplication">Functor, unit and multiplication</h2>
+<p>As it is customary for <a class="existingWikiWord" href="../../../../2/7/0/20728/content.html">probability monads</a>, the functor assigns to a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f:X\to Y</annotation></semantics></math> (in this case, a <a class="existingWikiWord" href="../../../../../2/6/0/9/9062/content.html">Lipschitz</a> or 1-Lipschitz map) the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>f</mi><mo>:</mo><mi>P</mi><mi>X</mi><mo>→</mo><mi>P</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">P f: P X \to P Y</annotation></semantics></math> induced by the <a class="existingWikiWord" href="../../../../../2/8/9/8/18982/content.html">pushforward of measures</a>. The pushforward of a Radon probability measure of finite first moment along a Lipschitz map is again Radon and of finite first moment. Moreover, the resulting map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">P f</annotation></semantics></math> is again Lipschitz, with the same Lipschitz constant as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math>. Therefore we have an endofunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> on the category of <a class="existingWikiWord" href="../../../../../9/6/7/1/1769/content.html">complete metric spaces</a> and <a class="existingWikiWord" href="../../../../../2/6/0/9/9062/content.html">Lipschitz maps</a> (or 1-Lipschitz).</p>
+<p>Again, as it happens in general with <a class="existingWikiWord" href="../../../../2/7/0/20728/content.html">probability monads</a>, the unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\delta:X\to P X</annotation></semantics></math> is given by forming the <a class="existingWikiWord" href="../../../../../9/7/7/0/20779/content.html">Dirac measures</a> and the multiplication <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>:</mo><mi>P</mi><mi>P</mi><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">E:P P X\to P X</annotation></semantics></math> is given by <a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integration</a>. More formally, given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>∈</mo><mi>P</mi><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\xi\in P P X</annotation></semantics></math>, the measure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>ξ</mi><mo>∈</mo><mi>PX</mi></mrow><annotation encoding="application/x-tex">E \xi\in PX</annotation></semantics></math> is defined as the one which assigns to a <a class="existingWikiWord" href="../../../../../2/2/0/4/4022/content.html">Borel set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A\subseteq X</annotation></semantics></math> the number</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>ξ</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo>∫</mo><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>d</mi><mi>ξ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+E \xi(A) \;\coloneqq\; \int p(A) \,d\xi(p) .
+
+</annotation></semantics></math></div>
+<p>The maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> satisfy the usual <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axioms</a> of a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> (see <a href="#kantorovich19">F-P ‘19</a>), which is known as the <strong>Kantorovich monad</strong>.</p>
+<h2 id="algebras">Algebras</h2>
+<p>As it is the case for most <a class="existingWikiWord" href="../../../../2/7/0/20728/content.html">probability monad</a>, the algebras are <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex spaces</a> of a particular kind. For the Kantorovich monad, the objects of the underlying category are complete metric spaces, and so the <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed</a> <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex</a> subsets of <a class="existingWikiWord" href="../../../../../6/9/4/1/1496/content.html">Banach spaces</a> are an ideal candidate: they are <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric spaces</a>, they are <a class="existingWikiWord" href="../../../../../9/6/7/1/1769/content.html">complete</a>, and they have a well-defined <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex combination operation</a>. It turns out that this is exactly the case.</p>
+<p>More in detail, every closed convex subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> of a Banach space comes equipped with a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>:</mo><mi>P</mi><mi>A</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">e:P A\to A</annotation></semantics></math> given by vector-valued <a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integration</a>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mo>∫</mo><mi>a</mi><mspace width="thinmathspace"></mspace><mi>dp</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+p\;\mapsto\; \int a \,dp(a) .
+
+</annotation></semantics></math></div>
+<p>The integral exists since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> has finite first moment. Conversely, it can be proven that every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>-algebra is of this form.</p>
+<p>The <a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">morphisms of algebras</a> are maps between algebras <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> which commute with the integration map. It can be shown that equivalently these are exactly the <strong>affine</strong> maps, i.e.~those maps which satisfy</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mspace width="thinmathspace"></mspace><mi>x</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>λ</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>y</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>λ</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+f\big(\lambda\,x + (1-\lambda)\,y\big) \;=\; \lambda\,f(x) + (1-\lambda)\,f(y).
+
+</annotation></semantics></math></div>
+<p>For more details, see <a href="#kantorovich19">F-P ‘19</a>.</p>
+<h2 id="duality">Duality</h2>
+<p>(…)</p>
+<h2 id="the_ordered_case">The ordered case</h2>
+<p>(Work in progress. For now see <a href="#orderedkantorovich">F-P ‘18</a>.)</p>
+<h2 id="for_lawvere_metric_spaces">For Lawvere metric spaces</h2>
+<p>(…)</p>
+<h2 id="see_also">See also</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../2/7/0/20728/content.html">monads of probability, measures, and valuations</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a>, <a class="existingWikiWord" href="../../../../../2/7/7/0/20772/content.html">Radon monad</a>, <a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html">extended probabilistic powerdomain</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/2/6/6206/content.html">Kantorovich-Wasserstein distance</a>, <a class="existingWikiWord" href="../../../../../6/6/5/6/26566/content.html">optimal transport</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric space</a>, <a class="existingWikiWord" href="../../../../../9/6/7/1/1769/content.html">complete metric space</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/9/4/1/1496/content.html">Banach space</a>, <span class="newWikiWord">ordered Banach space<a href="/nlab/new/ordered+Banach+space">?</a></span>, <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex space</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li id="vanbreugel">
+<p>Franck van Breugel, <em>The metric monad for probabilistic nondeterminism</em>, unpublished, 2005. (<a href="http://www.cse.yorku.ca/~franck/research/drafts/monad.pdf">pdf</a>)</p>
+</li>
+<li id="kantorovich19">
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a> and <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>A probability monad as the colimit of spaces of finite samples</em>, Theory and Applications of Categories 34, 2019. (<a href="http://www.tac.mta.ca/tac/volumes/34/7/34-07.pdf">pdf</a>)</p>
+</li>
+<li id="orderedkantorovich">
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a> and <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Stochastic order on metric spaces and the ordered Kantorovich monad</em>, Advances in Mathematics 366, 2020. (<a href="https://arxiv.org/abs/1808.09898">arXiv:1808.09898</a>)</p>
+</li>
+<li id="villani">
+<p><a class="existingWikiWord" href="../../../../../5/1/7/9/9715/content.html">Cedric Villani</a>, <em>Optimal transport: old and new</em>, Springer, 2008.</p>
+</li>
+<li id="behavioral">
+<p>Paolo Baldan, Filippo Bonchi, Henning Kerstan and Barbara König, <em>Coalgebraic behavioral metrics</em>, Logical Methods in Computer Science 14(3), 2018. (<a href="https:doi.org/10.23638/LMCS-14%283:20%292018">doi: 10.23638/LMCS-14(3:20)2018</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

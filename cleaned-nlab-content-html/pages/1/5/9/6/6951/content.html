@@ -1,0 +1,491 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Kripke-Joyal semantics in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Kripke-Joyal semantics
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#formulation">Formulation</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#lawvere_on_kripkejoyal_semantics">Lawvere on Kripke–Joyal semantics</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><strong>Kripke–Joyal semantics</strong> is a higher order generalization of the <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantic</a> interpretation proposed initially by Beth, Grzegorczyk, and Kripke for <a class="existingWikiWord" href="../../../../../6/9/1/1/1196/content.html">intuitionistic predicate logic</a> (IPL). It provides a notion of <em>‘local truth’</em> or <em>‘validity at a stage’</em> in a <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a>.</p>
+<p>Since it is closely related to <a class="existingWikiWord" href="../../../../../2/2/6/5/15622/content.html">Paul Cohen's</a> <a class="existingWikiWord" href="../../../../../4/5/9/3/3954/content.html">forcing</a> technique in <a class="existingWikiWord" href="../../../../../5/1/0/1/1015/content.html">set theory</a>, a connection that was already observed by Grzegorczyk and Kripke, it is sometimes called <em>forcing</em> semantics. Other terms in use for it are <em>external</em> semantics, <em>cover</em> semantics or <em>Beth–Kripke–Joyal</em> semantics.</p>
+<p>By giving a semantics to formulas written in the <a class="existingWikiWord" href="../../../../../6/9/4/2/2496/content.html">higher-order</a> <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a> used to express <a class="existingWikiWord" href="../../../../3/4/6/6431/content.html">ordinary mathematics</a> in a topos, the Kripke–Joyal semantics serves as <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantic</a> interface between the <a class="existingWikiWord" href="../../../../../6/3/0/0/36/content.html">internal (syntactic) description</a> of mathematical objects using the <a class="existingWikiWord" href="../../../../../2/0/8/1/1802/content.html">Mitchell–Bénabou language</a> and the external description.</p>
+<p>Kripke–Joyal semantics provides rules and prescriptions for semantic interpretation for general toposes but these prescriptions may simplify for special classes of toposes e.g. the rules resulting for <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">presheaf toposes</a> over posets (when restricted to first-order formulas) correspond to the original notion of model for IPL considered by <a class="existingWikiWord" href="../../../../../9/1/0/1/11019/content.html">Kripke</a> et al.</p>
+<p>Kripke–Joyal semantics for <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>, as claimed <a href="../../../../../8/1/2/0/10218/content.html#InModels">here</a>, can be found in <a href="#AGH21">Awodey, Gambino, and Hazratpour (2021)</a>.</p>
+<h2 id="formulation">Formulation</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">elementary topos</a>. We will now specify the Kripke–Joyal semantics for formulas <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi></mrow><annotation encoding="application/x-tex">\varphi</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../2/0/8/1/1802/content.html">Mitchell–Bénabou language</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> restricting ourselves mainly to formulas <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi (x)</annotation></semantics></math> with one free variable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. The straightforward generalization to the case with (less or) more free variables can be found in Johnstone (<a href="../../../../../../../missing.html">1977</a>) or Borceux (<a href="#Borceux94">1994</a>).</p>
+<p>Recall that such a formula <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi (x)</annotation></semantics></math> is interpreted by a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mover><mo>→</mo><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mover><mi>Ω</mi></mrow><annotation encoding="application/x-tex">X\overset{\varphi(x)}{\to}\Omega</annotation></semantics></math> and gets an extension <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x|\varphi(x)\}</annotation></semantics></math> assigned to by the pullback</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mn>1</mn></mtd> <mtd></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd><mstyle mathvariant="sans-serif"><mi>true</mi></mstyle></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><munder><mo>→</mo><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>Ω</mi></mtd> <mtd></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\array{
+\{x|\varphi(x)\}&amp;\to &amp; 1&amp; \\
+\downarrow &amp;  &amp;\downarrow &amp;\mathsf{true} \\
+X &amp;\underset{\varphi(x)}{\to} &amp; \Omega&amp;
+}
+
+</annotation></semantics></math></div>
+<p>Now a global element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mover><mo>→</mo><mrow><msub><mi>x</mi> <mn>0</mn></msub></mrow></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">1\overset{x_0}{\to} X</annotation></semantics></math> satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi(x)</annotation></semantics></math> if it is contained in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x|\varphi(x)\}</annotation></semantics></math> in the sense that the following commutes:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mn>1</mn></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd><mstyle mathvariant="sans-serif"><mi>true</mi></mstyle></mtd></mtr> <mtr><mtd><mn>1</mn></mtd> <mtd><munder><mo>→</mo><mrow><msub><mi>x</mi> <mn>0</mn></msub></mrow></munder></mtd> <mtd><mi>X</mi></mtd> <mtd><munder><mo>→</mo><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>Ω</mi></mtd> <mtd></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\array{
+&amp; &amp;\{x|\varphi(x)\}&amp;\to &amp; 1 &amp;\\
+ &amp;\nearrow&amp;\downarrow &amp;  &amp;\downarrow &amp;\mathsf{true} \\
+1&amp;\underset{x_0}{\to}&amp; X &amp;\underset{\varphi(x)}{\to} &amp; \Omega&amp;
+}
+
+</annotation></semantics></math></div>
+<p>Kripke–Joyal semantics results from the generalization of this satisfaction relation from global elements to <em>generalized</em> elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mover><mo>→</mo><mi>α</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">U\overset{\alpha}{\to} X</annotation></semantics></math>.</p>
+<div class="num_defn" id="forcing">
+<h6 id="definition">Definition</h6>
+<p>A generalized element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mover><mo>→</mo><mi>α</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">U\overset{\alpha}{\to} X</annotation></semantics></math> is said to <em>satisfy the formula</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi(x)</annotation></semantics></math> or more suggestively, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> <em>forces</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi></mrow><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>, denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi (\alpha)</annotation></semantics></math>, when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> factors through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x|\varphi(x)\}</annotation></semantics></math> i.e. there exists a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math> making the following commute:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mn>1</mn></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd><mover><mo>↗</mo><mi>m</mi></mover></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd><mstyle mathvariant="sans-serif"><mi>true</mi></mstyle></mtd></mtr> <mtr><mtd><mi>U</mi></mtd> <mtd><mover><mo>→</mo><mi>α</mi></mover></mtd> <mtd><mi>X</mi></mtd> <mtd><munder><mo>→</mo><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>Ω</mi></mtd> <mtd></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\array{
+&amp; &amp;\{x|\varphi(x)\}&amp;\to &amp; 1&amp; \\
+ &amp;\overset{m}\nearrow&amp;\downarrow &amp;  &amp;\downarrow &amp;\mathsf{true} \\
+U&amp;\overset{\alpha}{\to}&amp; X &amp;\underset{\varphi(x)}{\to} &amp; \Omega&amp;
+}
+
+</annotation></semantics></math></div></div>
+<p>This is the same as to say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>im</mi><mspace width="thinmathspace"></mspace><mi>α</mi><mo>⊆</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">im\,\alpha\subseteq \{x|\varphi(x)\}</annotation></semantics></math> as subobjects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>Whereas <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x|\varphi(x)\}</annotation></semantics></math> represents the set of elements satisfying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi></mrow><annotation encoding="application/x-tex">\varphi</annotation></semantics></math> internally, the collection of global elements has in general no such representation thereby motivating the terminology ‘external semantics’.</p>
+<h2 id="properties">Properties</h2>
+<p>One can now unwind the <a class="existingWikiWord" href="../../../../../4/5/9/3/3954/content.html">forcing</a> relation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi (\alpha)</annotation></semantics></math> recursively over the syntactic composition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi></mrow><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>. This results in a collection of semantic rules that is commonly referred to as the <em>Kripke–Joyal semantics</em> and permits to make contact with the original rules proposed by Kripke for intuitionistic logic in 1965.</p>
+<p>These rules are often useful for translating step by step an object defined by a formula of the Mitchell–Bénabou language into a concrete mathematical object in the topos.</p>
+<p>First of all, the <a class="existingWikiWord" href="../../../../../4/5/9/3/3954/content.html">forcing</a> relation is <em>monotone</em> and <em>local</em> :</p>
+<div class="num_prop" id="Monotone_Local">
+<h6 id="proposition">Proposition</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">f:V\to U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi (\alpha)</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V\models \varphi (\alpha\circ f)</annotation></semantics></math>. Conversely, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">f:V\to U</annotation></semantics></math> is <em>epic</em> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V\models \varphi (\alpha\circ f)</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi (\alpha)</annotation></semantics></math>.</p>
+</div>
+<p>The short proof can be found in MacLane–Moerdijk (<a href="#MM94">1994</a>, p.304).</p>
+<p>Note that the proposition gives a first hint of the importance of epimorphisms or <em>covers</em> in this semantics, testimony of its geometric underpinning.</p>
+<div class="num_prop" id="Kripke-Joyal">
+<h6 id="theorem">Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> be an elementary topos and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>:</mo><mi>U</mi><mo>→</mo><mi>X</mi><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">\alpha:U\to X\,</annotation></semantics></math> a generalized element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">X\in\mathcal{E}</annotation></semantics></math> . The forcing relation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊧</mo></mrow><annotation encoding="application/x-tex">\models</annotation></semantics></math> satisfies</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>∧</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi(\alpha)\wedge \psi(\alpha)</annotation></semantics></math> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi(\alpha)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">U\models \psi(\alpha)\,</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>∨</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi(\alpha)\vee \psi(\alpha)</annotation></semantics></math> iff there exists maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi> <mn>1</mn></msub><mo>:</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">g_1:U_1\to U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi> <mn>2</mn></msub><mo>:</mo><msub><mi>U</mi> <mn>2</mn></msub><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">g_2:U_2\to U</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi> <mn>1</mn></msub><mo>+</mo><msub><mi>g</mi> <mn>2</mn></msub><mo>:</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>+</mo><msub><mi>U</mi> <mn>2</mn></msub><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">g_1+g_2:U_1+U_2\to U</annotation></semantics></math> epic and such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><msub><mi>g</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U_1\models \varphi(\alpha\circ g_1)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub><mo>⊧</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><msub><mi>g</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">U_2\models \psi(\alpha\circ g_2)\,</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>⇒</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \varphi(\alpha)\Rightarrow \psi(\alpha)</annotation></semantics></math> iff for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>U</mi><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">g:V\to U\,</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V\models \varphi(\alpha\circ g)</annotation></semantics></math> implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>ψ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>g</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">V\models\psi(\alpha\circ g)\,</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mo>¬</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models\neg \varphi(\alpha)</annotation></semantics></math> iff for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>U</mi><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">g:V\to U\,</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V\models \varphi(\alpha\circ g)</annotation></semantics></math> implies that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>≃</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">V\simeq 0</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi(x,y)</annotation></semantics></math> be a formula with free variables x,y of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> respectively. Then</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mo>∃</mo><mi>y</mi><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \exists y\varphi(\alpha, y)</annotation></semantics></math> iff there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">g:V\to U</annotation></semantics></math> epic and a generalized element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">h:V\to Y</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">V\models \varphi(\alpha\circ g,h)\,</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊧</mo><mo>∀</mo><mi>y</mi><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U\models \forall y\varphi(\alpha, y)</annotation></semantics></math> iff for every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> and all pairs of generalized elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">g:V\to U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>V</mi><mo>→</mo><mi>Y</mi><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">h:V\to Y\,</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊧</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>α</mi><mo>∘</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">V\models \varphi(\alpha\circ g,h)\,</annotation></semantics></math>.</p>
+</li>
+</ol>
+</div>
+<p>For a proof see MacLane–Moerdijk (<a href="#MM94">1994</a>, pp.305f).</p>
+<h2 id="lawvere_on_kripkejoyal_semantics">Lawvere on Kripke–Joyal semantics</h2>
+<blockquote>
+<p>To workers in algebraic geometry and analysis, it may appear somewhat excessive to detour through an elaborate Mitchell–Bénabou language which in turn requires a Kripke–Joyal semantics in order to get back at the mathematical content of a specific topos. (That sometimes-recommended procedure is strictly analogous to defining a group to be the quotient of the free group generated by itself, which analogously is sometimes useful). The key clause in that semantics was presupposed in the title ‘Quantifiers and Sheaves’, but the linear case was a theorem in Godement 1958 and indeed just expresses in terms of 20th century concepts the content of Volterra’s local existence theorem. Briefly,</p>
+<p>a) the rule of inference for existential quantification is just a symbolic expression of the universal property enjoyed by the geometric image of any map (not only in the category of sets where the axiom of choice holds, but) in any topos,</p>
+<p>b) a figure lying in such an image comes in fact only locally from figures in the domain of the map.</p>
+</blockquote>
+<p>Lawvere (<a href="#Law00">2000</a>, pp.717f).</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/0/8/1/1802/content.html">Mitchell–Bénabou language</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantics</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/4/5/6/6543/content.html">stack semantics</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/9/3/3954/content.html">forcing</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>For the origins in the semantics of intuitionistic logic consult</p>
+<ul>
+<li>
+<p>E. W. Beth, <em>Semantic construction of intuitionistic logic</em>, Mededel. Kon. Ned. Akad. Wetensch. Afd. letterkunde N. S. <strong>19</strong> no.13 (1956) pp.357–388.</p>
+</li>
+<li>
+<p>A. Grzegorczyk, <em>A philosophically plausible formal interpretation of intuitionistic logic</em>, Indagationes Mathematicae <strong>26</strong> (1964) pp.596–601.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/1/0/1/11019/content.html">S. A. Kripke</a>, <em>Semantical analysis of intuitionistic logic I</em>, pp.92–130 in Crossley, Dummett (eds.), <em>Formal Systems and Recursive Functions</em>, North-Holland Amsterdam 1965.</p>
+</li>
+<li>
+<p>H. C. M. de Swart, <em>An intuitionistically plausible interpretation of intuitionistic logic</em>, JSL <strong>42</strong> no. 4 (1977) pp.564–578.</p>
+</li>
+<li>
+<p>W. Veldman, <em>An intuitionistic completeness theorem for intuitionistic predicate calculus</em>, JSL <strong>41</strong> no. 1 (1976) pp.159–166.</p>
+</li>
+</ul>
+<p>A categorical-constructive take on these completeness results is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/4/0/7/7046/content.html">Erik Palmgren</a>, <em>Constructive Sheaf Semantics</em>, Math. Log. Quart. <strong>43</strong> (1997) pp.321-327.</li>
+</ul>
+<p>A (non-categorical) textbook presentation of the original Kripke semantics can be found in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/7/2/7/17277/content.html">J. Bell</a>, M. Machover, <em>A Course in Mathematical Logic</em>, North-Holland Amsterdam 1977. (section IX.6 pp.416–422)</li>
+</ul>
+<p>A more recent overview is in</p>
+<ul>
+<li>D. van Dalen, <em>Intuitionistic Logic</em>, pp.224–257 in Goble (ed.), <em>The Blackwell Guide to Philosophical Logic</em>, Oxford 2001. (pp.237–240)</li>
+</ul>
+<p>The topos-theoretic generalization is usually attributed to <a class="existingWikiWord" href="../../../../../0/7/3/1/1370/content.html">André Joyal</a> who observed in the early 70s that this topos semantics subsumes various notions of forcing but his work was apparently not published. An early reference is</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/7/9/5/15976/content.html">G. Osius</a>, <em>A note on Kripke–Joyal semantics for the internal language of topoi</em>, Springer LNM <strong>445</strong> (1975) pp.349–354.</li>
+</ul>
+<p>The first section of the following sums up a 1973 talk and gives an interesting informal overview of the basics involved emphazising <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">sites</a></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../4/1/1451/content.html">Anders Kock</a>, <em>Universal Projective Geometry via Topos Theory</em>, JPAA <strong>9</strong> (1976) pp.1-24.</li>
+</ul>
+<p>The following texts stress the connection to Cohen and Kripke’s work</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/6/5/1/1563/content.html">F. William Lawvere</a>, <em>Variable sets etendu and variable structure in topoi</em>, Lecture notes University of Chicago 1975.</p>
+</li>
+<li id="Lawvere76">
+<p><a class="existingWikiWord" href="../../../../../3/6/5/1/1563/content.html">F. William Lawvere</a>, <em>Variable quantities and variable structures in topoi</em>, pp.101–131 in Heller, Tierney (eds.), Algebra, Topology and Category Theory, Academic Press New York 1976.</p>
+</li>
+</ul>
+<p>Most textbooks on topos theory have a section on Kripke–Joyal semantics. Particularly thorough are</p>
+<ul>
+<li id="Borceux94">
+<p><a class="existingWikiWord" href="../../../../../6/1/4/4/4416/content.html">Francis Borceux</a>, <em>Handbook of Categorical Algebra vol.3</em>, Cambridge UP 1994. (section 6.6)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/5/2/2/2259/content.html">Saunders MacLane</a>, <a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, <em><a class="existingWikiWord" href="../../../../../6/0/1/1/1106/content.html">Sheaves in Geometry and Logic</a></em>, Springer Heidelberg 1994. (section VI.6–7)</p>
+</li>
+</ul>
+<p>More concise are</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Topos Theory</em>, Academic Press New York 1977. (Reprinted by Dover Mineola 2014; pp.157–161)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/9/4/4912/content.html">Colin McLarty</a>, <em>Elementary Categories, Elementary Toposes</em>, Oxford UP 1992. (chapter 18)</p>
+</li>
+</ul>
+<p>Freely available online are</p>
+<ul>
+<li id="Goldblatt84">
+<p>R. Goldblatt, <em>Topoi – The Categorical Analysis of Logic</em>, 2nd ed. North-Holland Amsterdam 1984. (Dover reprint New York 2006; <a href="http://projecteuclid.org/euclid.bia/1403013939">project euclid</a>, section XIV.6)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, <a class="existingWikiWord" href="../../../../../7/0/9/4/4907/content.html">Jaap van Oosten</a>, <em>Topos theory</em>, lecture notes (2007). (<a href="http://www.staff.science.uu.nl/~ooste110/syllabi/toposmoeder.pdf">pdf</a>, page 58ff)</p>
+</li>
+</ul>
+<p>The above Lawvere quote stems from</p>
+<ul>
+<li id="Law00">F. W. Lawvere, <em>Comments on the development of topos theory</em>, pp.715–734 in Pier (ed.), <em>Development of Mathematics 1950–2000</em>, Birkhäuser Basel 2000. Reprinted as TAC reprint <strong>24</strong> (2014) pp.1–22. (<a href="http://www.tac.mta.ca/tac/reprints/articles/24/tr24abs.html">TAC</a>)</li>
+</ul>
+<p>For a philosophical assessment and comparison to ordinary Tarski semantics see</p>
+<ul>
+<li>Jean Petitot, <em>La neige est blanche ssi… Prédication et perception</em>, Mathématiques et Sciences humaines, Tome <strong>140</strong> (1997) pp.35–50. (<a href="http://archive.numdam.org/article/MSH_1997__140__35_0.pdf">pdf</a>)</li>
+</ul>
+<p>A generalization to <a class="existingWikiWord" href="../../../../../3/6/9/0/963/content.html">quantales</a> is in</p>
+<ul>
+<li>R. Goldblatt, <em>A Kripke–Joyal Semantics for Noncommutative Logic in Quantales</em>, pp.209–225 in Governatori, Hodkinson, Venema (eds.), <em>Advances in Model Logic vol. 6</em>, College Publications London 2006. (<a href="http://www.mcs.vuw.ac.nz/~rob/papers/aiml11printed.pdf">draft</a>)</li>
+</ul>
+<p>Semantics via generalized elements in categories with pullbacks is studied in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../4/1/1451/content.html">Anders Kock</a>, <em>Elementwise semantics in categories with pull-backs</em>, arXiv:2004.14731 (2020). (<a href="http://arxiv.org/abs/2004.14731">abstract</a>)</li>
+</ul>
+<p>Kripke-Joyal semantics for <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">Homotopy type theory</a> are developed in</p>
+<ul>
+<li id="AGH21"><a class="existingWikiWord" href="../../../../../3/1/9/4/4913/content.html">Steve Awodey</a>, <a class="existingWikiWord" href="../../../../2/0/3/3021/content.html">Nicola Gambino</a>, <a class="existingWikiWord" href="../../../../../7/8/7/8/18787/content.html">Sina Hazratpour</a>, <em>Kripke-Joyal forcing for type theory and uniform fibrations</em> (2021) [<a href="https://arxiv.org/abs/2110.14576">arXiv:2110.14576</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,536 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      bit flip code in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      bit flip code
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#details">Details</a></li>
+<ul>
+<li><a href="#3QbitFlipCode">3-qbit flip code</a></li>
+<ul>
+<li><a href="#idea_2">Idea</a></li>
+<li><a href="#ThreeBitFlipCodeCircuitDiagramsAndPseudoCode">Circuit diagram and pseudo-code</a></li>
+</ul>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>In <a class="existingWikiWord" href="../../../../../1/0/6/3/3601/content.html">quantum information theory</a> a <em>bit flip code</em> is a <a class="existingWikiWord" href="../../../../../7/1/1/1/21117/content.html">quantum error correcting</a> <a class="existingWikiWord" href="../../../../5/5/2/22553/content.html">code</a> to correct for <a class="existingWikiWord" href="../../../../../9/1/5/2/22519/content.html">quantum noise</a> caused by <a class="existingWikiWord" href="../../../../../2/2/9/4/24922/content.html">bit flip channels</a>.</p>
+<h2 id="details">Details</h2>
+<h3 id="3QbitFlipCode">3-qbit flip code</h3>
+<p>The following basic example of a bit flip code encodes single <a class="existingWikiWord" href="../../../../../7/1/1/1/21117/content.html">logical qbits</a> in <a class="existingWikiWord" href="../../../../../0/2/9/8/8920/content.html">triples</a> of <a class="existingWikiWord" href="../../../../../7/1/1/1/21117/content.html">physical qbits</a>.</p>
+<h4 id="idea_2">Idea</h4>
+<p>Here the <a class="existingWikiWord" href="../../../../../6/4/6/1/1646/content.html">Hilbert space</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>LogicalQBit</mi><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi></mrow><annotation encoding="application/x-tex">
+  LogicalQBit
+  \;\coloneqq\;
+  QBit \otimes QBit \otimes QBit
+
+</annotation></semantics></math></div>
+<p>of a single logical qbit has <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex</a> <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimension</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn> <mn>3</mn></msup><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mn>8</mn></mrow><annotation encoding="application/x-tex">2^3 \,=\, 8</annotation></semantics></math>. Inside this is the space of undisturbed logical qbits</p>
+<div class="maruku-equation" id="eq:PureLogicalQBit"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>QBit</mi><munderover><mo>→</mo><mrow><mo>∼</mo></mrow><mi>encode</mi></munderover><msub><mi>DisturbedQBit</mi> <mn>0</mn></msub></mtd> <mtd><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mover></mtd> <mtd><mi>LogicalQBit</mi></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>P</mi> <mrow><mi>s</mi><mo>=</mo><mn>0</mn></mrow></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>|</mo></mrow></mrow></mover></mtd> <mtd><msub><mi>DisturbedQBit</mi> <mn>0</mn></msub></mtd></mtr> <mtr><mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  
+  \begin{array}{ccccc}
+    QBit
+    \xrightarrow[\sim]{encode}
+    DisturbedQBit_{0}
+    &amp;\overset{\phantom{---}}{\hookrightarrow}&amp;
+    LogicalQBit
+    &amp;\xrightarrow{
+      P_{s = 0}
+      \;\coloneqq\;
+      \left\vert 0,0,0 \right\rangle
+      \left\langle 0,0,0 \right\vert
+      +
+      \left\vert 1,1,1 \right\rangle
+      \left\langle 1,1,1 \right\vert
+    }&amp;
+    DisturbedQBit_0
+    \\
+    q_0 \left\vert 0 \right\rangle
+    +
+    q_1 \left\vert 1 \right\rangle
+      &amp;\mapsto&amp;
+    q_0 \left\vert 0, 0, 0 \right\rangle
+    +
+    q_1 \left\vert 1, 1, 1 \right\rangle    
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>as well as three further orthogonal subspaces which are the images of this one under one of the three <em>single</em> bit flips, respectively:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><msub><mi>DisturbedQBit</mi> <mn>1</mn></msub></mtd> <mtd><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mover></mtd> <mtd><mi>LogicalQBit</mi></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>P</mi> <mrow><mi>s</mi><mo>=</mo><mn>1</mn></mrow></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>|</mo></mrow></mrow></mover></mtd> <mtd><msub><mi>DisturbedQBit</mi> <mn>1</mn></msub></mtd></mtr> <mtr><mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow></mtd></mtr> <mtr><mtd><mphantom><mi>A</mi></mphantom></mtd></mtr> <mtr><mtd><msub><mi>DisturbedQBit</mi> <mn>2</mn></msub></mtd> <mtd><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mover></mtd> <mtd><mi>LogicalQBit</mi></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>P</mi> <mrow><mi>s</mi><mo>=</mo><mn>2</mn></mrow></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>|</mo></mrow></mrow></mover></mtd> <mtd><msub><mi>DisturbedQBit</mi> <mn>2</mn></msub></mtd></mtr> <mtr><mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow></mtd></mtr> <mtr><mtd><mphantom><mi>A</mi></mphantom></mtd></mtr> <mtr><mtd><msub><mi>DisturbedQBit</mi> <mn>3</mn></msub></mtd> <mtd><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mover></mtd> <mtd><mi>LogicalQBit</mi></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>P</mi> <mrow><mi>s</mi><mo>=</mo><mn>3</mn></mrow></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>|</mo></mrow><mo>+</mo><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>|</mo></mrow></mrow></mover></mtd> <mtd><msub><mi>DisturbedQBit</mi> <mn>3</mn></msub></mtd></mtr> <mtr><mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>q</mi> <mn>0</mn></msub><mrow><mo>|</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>⟩</mo></mrow><mo>+</mo><msub><mi>q</mi> <mn>1</mn></msub><mrow><mo>|</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>⟩</mo></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    DisturbedQBit_{1}
+    &amp;\overset{\phantom{---}}{\hookrightarrow}&amp;
+    LogicalQBit
+    &amp;\xrightarrow{
+      P_{s=1}
+      \;\coloneqq\;
+      \left\vert 1,0,0 \right\rangle
+      \left\langle 1,0,0 \right\vert
+      +
+      \left\vert 0,1,1 \right\rangle
+      \left\langle 0,1,1 \right\vert
+    }&amp;
+    DisturbedQBit_1
+    \\
+    q_0 \left\vert 0 \right\rangle
+    +
+    q_1 \left\vert 1 \right\rangle
+    &amp;\mapsto&amp;
+    q_0 \left\vert 1, 0, 0 \right\rangle
+    +
+    q_1 \left\vert 0, 1, 1 \right\rangle   
+    \\
+    {\phantom{A}}
+    \\ 
+    DisturbedQBit_{2}
+    &amp;\overset{\phantom{---}}{\hookrightarrow}&amp;
+    LogicalQBit
+    &amp;\xrightarrow{
+      P_{s=2}
+      \;\coloneqq\;
+      \left\vert 0,1,0 \right\rangle
+      \left\langle 0,1,0 \right\vert
+      +
+      \left\vert 1,0,1 \right\rangle
+      \left\langle 1,0,1 \right\vert
+    }&amp;
+    DisturbedQBit_2
+    \\
+    q_0 \left\vert 0 \right\rangle
+    +
+    q_1 \left\vert 1 \right\rangle
+    &amp;\mapsto&amp;
+    q_0 \left\vert 0, 1, 0 \right\rangle
+    +
+    q_1 \left\vert 1, 0, 1 \right\rangle   
+    \\
+    {\phantom{A}}
+    \\ 
+    DisturbedQBit_{3}
+    &amp;\overset{\phantom{---}}{\hookrightarrow}&amp;
+    LogicalQBit
+    &amp;\xrightarrow{
+      P_{s=3}
+      \;\coloneqq\;
+      \left\vert 0,0,1 \right\rangle
+      \left\langle 0,0,1 \right\vert
+      +
+      \left\vert 1,1,0 \right\rangle
+      \left\langle 1,1,0 \right\vert
+    }&amp;
+    DisturbedQBit_3
+    \\
+    q_0 \left\vert 0 \right\rangle
+    +
+    q_1 \left\vert 1 \right\rangle
+    &amp;\mapsto&amp;
+    q_0 \left\vert 0, 0, 1 \right\rangle
+    +
+    q_1 \left\vert 1, 1, 0 \right\rangle   
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>The 4 labels of these three subspaces are called the “error syndrome”, which we collect in the 4-element set</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Synd</mi><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">
+  Synd \;\coloneqq\; \{0,1,2,3\}
+
+</annotation></semantics></math></div>
+<p>to express the logical q-bit space alternatively in this linear basis:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>QBit</mi><mover><mo>↪</mo><mi>encode</mi></mover><munder><munder><mrow><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi></mrow><mo>⏟</mo></munder><mi>LogicalQBit</mi></munder><munderover><mo>→</mo><mrow><mo>∼</mo></mrow><mrow><mo stretchy="false">(</mo><msub><mi>P</mi> <mi>s</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>s</mi><mo lspace="verythinmathspace">:</mo><mi>Synd</mi></mrow></msub></mrow></munderover><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>s</mi><mo lspace="verythinmathspace">:</mo><mi>Synd</mi></mrow></munder><msub><mi>DisturbedQBit</mi> <mi>s</mi></msub></mrow><annotation encoding="application/x-tex">
+  QBit
+  \xhookrightarrow{ encode }
+  \underset{
+    LogicalQBit
+  }{
+    \underbrace{
+      QBit \otimes QBit \otimes QBit
+    }
+  }
+  \xrightarrow[\sim]{
+    (P_s)_{s \colon Synd}
+  }
+  \underset{  
+    s \colon Synd
+  }{\bigoplus}
+  DisturbedQBit_{s}
+
+</annotation></semantics></math></div>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>Beware that there is no room to record the further possible errors of 2 qbits flipping at once. Instead, this error process takes pure qbits to one of the subspaces reserved for single bit flips. Similarly, if all three bits flip at once, the initial pure state remains in the subspace reserved for pure states, but now with its phases mixed up. Therefore, the following error correction code fails on flips of more than one of the 3-qbits and will reduce the overall error probability only if single bit flips are sufficiently more likely than double and triple spin flips.</p>
+</div>
+</p>
+<p>The error correction now proceeds by:</p>
+<ol>
+<li>
+<p>Performing a <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a> of the above error syndrome <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> on the logical Qbit space. While this measurement <a class="existingWikiWord" href="../../../../../8/7/1/8/18178/content.html">collapses</a> the quantum state onto the subspace <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>DisturbedQBit</mi> <mi>s</mi></msub></mrow><annotation encoding="application/x-tex">DisturbedQBit_s</annotation></semantics></math> the particular logical qbit states of the pure form <a class="maruku-eqref" href="#eq:PureLogicalQBit">(1)</a> lose no information under this collapse, in that there is a <a class="existingWikiWord" href="../../../../../5/2/6/3/3625/content.html">unitary operator</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>DisturbedQBit</mi> <mi>s</mi></msub></mrow><annotation encoding="application/x-tex">DisturbedQBit_s</annotation></semantics></math> which turns any such collapse state back into the original qbit state.</p>
+</li>
+<li>
+<p>applying this correcting unitary <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>s</mi></msub></mrow><annotation encoding="application/x-tex">X_s</annotation></semantics></math>, which is evidently the “<a class="existingWikiWord" href="../../../../../6/2/3/4/4326/content.html">Pauli X</a>-” (or “<a class="existingWikiWord" href="../../../../../9/6/8/0/869/content.html">NOT</a>-”)<a class="existingWikiWord" href="../../../../../8/3/0/1/11038/content.html">quantum gate</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>QBit</mi><mo>→</mo><mi>QBit</mi></mrow><annotation encoding="application/x-tex">X \,\colon\, QBit \to QBit</annotation></semantics></math> acting on the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math>-th qbit:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><msub><mi>X</mi> <mn>0</mn></msub></mtd> <mtd><mo>≔</mo></mtd> <mtd><mi>id</mi><mo>⊗</mo><mi>id</mi><mo>⊗</mo><mi>id</mi></mtd></mtr> <mtr><mtd><msub><mi>X</mi> <mn>1</mn></msub></mtd> <mtd><mo>≔</mo></mtd> <mtd><mi>X</mi><mo>⊗</mo><mi>id</mi><mo>⊗</mo><mi>id</mi></mtd></mtr> <mtr><mtd><msub><mi>X</mi> <mn>2</mn></msub></mtd> <mtd><mo>≔</mo></mtd> <mtd><mi>id</mi><mo>⊗</mo><mi>X</mi><mo>⊗</mo><mi>id</mi></mtd></mtr> <mtr><mtd><msub><mi>X</mi> <mn>3</mn></msub></mtd> <mtd><mo>≔</mo></mtd> <mtd><mi>id</mi><mo>⊗</mo><mi>id</mi><mo>⊗</mo><mi>X</mi></mtd></mtr></mtable><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><munder><munder><mrow><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi></mrow><mo>⏟</mo></munder><mi>LogicalQBit</mi></munder><mo>⊸</mo><munder><munder><mrow><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi><mo>⊗</mo><mi>QBit</mi></mrow><mo>⏟</mo></munder><mi>LogicalQBit</mi></munder></mrow><annotation encoding="application/x-tex">
+  \begin{array}{cccc}
+    X_0 &amp;\coloneqq&amp; id \otimes id \otimes id
+    \\
+    X_1 &amp;\coloneqq&amp; X \otimes id \otimes id   
+    \\
+    X_2 &amp;\coloneqq&amp; id \otimes X \otimes id   
+    \\
+    X_3 &amp;\coloneqq&amp; id \otimes id \otimes X
+  \end{array} 
+  \;\;\;\colon\;\;\;
+  \underset{
+    LogicalQBit
+  }{
+    \underbrace{
+      QBit \otimes QBit \otimes QBit
+    }
+  }
+  \multimap
+  \underset{
+    LogicalQBit
+  }{
+    \underbrace{
+      QBit \otimes QBit \otimes QBit
+    }
+  }
+
+</annotation></semantics></math></div></li>
+<li>
+<p>re-preparing a logical QBit from the recovered Qbit.</p>
+</li>
+</ol>
+<h4 id="ThreeBitFlipCodeCircuitDiagramsAndPseudoCode">Circuit diagram and pseudo-code</h4>
+<p>In terms of <a class="existingWikiWord" href="../../../../../6/2/6/2/22626/content.html">quantum circuit diagrams</a> and the <a class="existingWikiWord" href="/schreiber/show/QS">QS</a>-<a class="existingWikiWord" href="../../../../../5/4/9/4/24945/content.html">pseudo-code</a>, the 3-bit flip error correcting code looks as follows (following the notation from <em><a class="existingWikiWord" href="../../../../../5/0/7/4/24705/content.html">quantum circuits via dependent linear types</a></em>):</p>
+<div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/QS_3BitFlipCodeIngredients-221125.jpg" width="720px"/>
+</div>
+<p><br/></p>
+<div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/QS_3BitFlipCode-221125.jpg" width="700px"/>
+</div>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/3/6/26357/content.html">Æ code</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="content.html">bit flip code</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/5/5/2/22555/content.html">stabilizer code</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../5/2/22523/content.html">HaPPY code</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/2/5/2/22528/content.html">Majorana dimer code</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/1/8/28174/content.html">surface code</a><a class="existingWikiWord" href="../../../../../7/0/1/7/27107/content.html">toric code</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/0/3/4/24304/content.html">Michael A. Nielsen</a>, <a class="existingWikiWord" href="../../../../../5/0/3/4/24305/content.html">Isaac L. Chuang</a>, §10.1.1 in: <em>Quantum computation and quantum information</em>, Cambridge University Press (2000) [<a href="https://doi.org/10.1017/CBO9780511976667">doi:10.1017/CBO9780511976667</a>, <a href="http://csis.pace.edu/~ctappert/cs837-19spring/QC-textbook.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/NielsenChuangQuantumComputation.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li id="DevittNemotoMunro09">
+<p><a class="existingWikiWord" href="../../../../../5/3/6/2/22635/content.html">Simon J. Devitt</a>, Kae Nemoto, William J. Munro, §IV of: <em>Quantum Error Correction for Beginners</em>, Rep. Prog. Phys. <strong>76</strong> (2013) 076001 [<a href="https://arxiv.org/abs/0905.2794">arXiv:0905.2794</a>, <a href="https://iopscience.iop.org/article/10.1088/0034-4885/76/7/076001">doi:10.1088/0034-4885/76/7/076001</a>]</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

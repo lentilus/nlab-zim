@@ -1,0 +1,948 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      univalence axiom in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      univalence axiom
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#Decomposition">Decomposition</a></li>
+<li><a href="#resizing_the_identity_types">Resizing the identity types</a></li>
+</ul>
+<li><a href="#stricter_variants_of_univalence">Stricter variants of univalence</a></li>
+<ul>
+<li><a href="#using_definitional_isomorphism">Using definitional isomorphism</a></li>
+<li><a href="#using_judgmental_equality_of_types">Using judgmental equality of types</a></li>
+</ul>
+<li><a href="#WeakerVariants">Weaker variants of univalence</a></li>
+<ul>
+<li><a href="#equivalence_implies_identity">Equivalence implies identity</a></li>
+<li><a href="#CategoricalUnivalence">Categorical univalence</a></li>
+<li><a href="#section_up_to_pointwise_homotopy">Section up to pointwise homotopy</a></li>
+</ul>
+<li><a href="#InCategoricalSemantics">In categorical semantics</a></li>
+<ul>
+<li><a href="#InSimplicialSets">In simplicial sets</a></li>
+<li><a href="#InSimplicialPresheaves">In simplicial presheaves</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#UnivalenceFunctionExtensionality">Relation to function extensionality</a></li>
+<li><a href="#relation_to_large_elimination_of_the_interval_type">Relation to large elimination of the interval type</a></li>
+<li><a href="#univalence_and_truncation_levels">Univalence and truncation levels</a></li>
+<li><a href="#UnivalenceLEM">Univalence and excluded middle</a></li>
+<li><a href="#Canonicity">Canonicity and homotopy canonicity</a></li>
+<li><a href="#a_univalent_universe_inside_a_nonunivalent_universe">A univalent universe inside a non-univalent universe</a></li>
+</ul>
+<li><a href="#univalence_axiom_without_universes">Univalence axiom without universes</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+<ul>
+<li><a href="#history">History</a></li>
+<li><a href="#exposition_and_survey">Exposition and survey</a></li>
+<li><a href="#variants">Variants</a></li>
+<li><a href="#semantics">Semantics</a></li>
+<li><a href="#properties_2">Properties</a></li>
+<li><a href="#proof_assistants">Proof assistants</a></li>
+<li><a href="#canonicity_and_computational_interpretations">Canonicity and computational interpretations</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>In <a class="existingWikiWord" href="../../../../../9/6/9/6/6969/content.html">intensional type theory</a>, <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity types</a> behave like <a class="existingWikiWord" href="../../../../../7/3/4/0/437/content.html">path space objects</a>; this viewpoint is called <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>. This induces furthermore a notion of <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fibers</a>, hence of <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a>s between <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">types</a>.</p>
+<p>On the other hand, if type theory contains a <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universe</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, so that types can be considered as <em>points</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, then between two types we also have an <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>Y</mi></mrow><annotation encoding="application/x-tex">X =_U Y</annotation></semantics></math>. The <em>univalence axiom</em> says that these two notions of “sameness” for types are the same.</p>
+<p>Extensionality principles like <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>, <a class="existingWikiWord" href="../../../../../9/5/1/6/16159/content.html">propositional extensionality</a> (where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">h-propositions</a>), and univalence (“typal extensionality”) are naturally regarded as a stronger form of <em><a class="existingWikiWord" href="../../../../../3/6/7/1/11763/content.html">identity of indiscernibles</a></em>. In particular, the <a class="existingWikiWord" href="../../../../../9/9/1/0/10199/content.html">consistency</a> of univalence means that in <a class="existingWikiWord" href="../../../../5/6/6/6655/content.html">Martin-Löf type theory</a> without univalence, one cannot define any <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">predicate</a> that provably distinguishes isomorphic <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">types</a>; thus isomorphic types are “externally indiscernible”, and univalence incarnates that principle internally by making them identical.</p>
+<p>The name <em>univalence</em> (due to Voevodsky, see <a href="#Voevodsky14">Voevodsky 14</a> for etymology) comes from the following reasoning. A fibration or bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">p\colon E\to B</annotation></semantics></math> of some sort is commonly said to be <em>universal</em> if every other bundle of the same sort is a pullback of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> in a unique way (up to homotopy). Less commonly, a bundle is said to be <em>versal</em> if every other bundle is a pullback of it in <em>some</em> way, not necessarily unique. By contrast, a bundle is said to be <em>univalent</em> if every other bundle is a pullback of it in <em>at most one</em> way (up to homotopy). In the language of <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> theory, a univalent bundle is an <a class="existingWikiWord" href="../../../../../2/2/3/2/2322/content.html">object classifier</a>.</p>
+<p>The univalence axiom does not <em>literally</em> say that anything is univalent in this sense. However, it is <em>equivalent</em> to saying that the canonical fibration over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is univalent: every fibration with <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>-small</em> fibers is an essentially unique pullback of this one. For a description of this equivalence, see section 4.8 of the <a class="existingWikiWord" href="../../../../../9/4/8/9/9849/content.html">HoTT Book</a> (syntactically) and <a href="#GepnerKock12">Gepner-Kock</a> (semantically).</p>
+<p>Univalence is a commonly assumed <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axiom</a> in <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>, and is central to the proposal (<a href="#Voevodsky">Voevodsky</a>) that this provides a natively <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theoretic</a> <a class="existingWikiWord" href="../../../../7/0/0/75/content.html">foundation</a> of <a class="existingWikiWord" href="../../../../../9/7/0/0/79/content.html">mathematics</a> (see at <em><a class="existingWikiWord" href="../../../../../1/3/6/1/21631/content.html">univalent foundations for mathematics</a></em>).</p>
+<h2 id="definition">Definition</h2>
+<p>We work in a <a class="existingWikiWord" href="../../../../../9/7/9/6/6979/content.html">dependent type theory</a> with <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity types</a>, <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product types</a>, and <a class="existingWikiWord" href="../../../../../9/0/5/7/7509/content.html">dependent sum types</a>.</p>
+<p>There are multiple notions of <a class="existingWikiWord" href="../../../1/5/25105/content.html">equivalence types</a> in <a class="existingWikiWord" href="../../../../../9/7/9/6/6979/content.html">dependent type theory</a>, which can be used for a definition of univalence for a <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universe</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>; these include</p>
+<ul>
+<li>the type of <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">functions</a> with <a class="existingWikiWord" href="../../../../6/0/7/7065/content.html">contractible</a> <a class="existingWikiWord" href="../../../../4/7/4/24745/content.html">fibers</a>;</li>
+<li>the type of <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">functions</a> with left and right <a class="existingWikiWord" href="../../../../../7/9/9/2/2997/content.html">homotopy inverses</a>;</li>
+<li>the type of <a class="existingWikiWord" href="../../../../../1/2/3/0/321/content.html">spans</a> with contractible fibers;</li>
+<li>the type of <a class="existingWikiWord" href="../../../../../3/4/1/5/25143/content.html">multivalued partial functions</a> which are single-valued and <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">total</a> and have contractible fibers;</li>
+<li>the type of <a class="existingWikiWord" href="../../../../../6/4/1/5/25146/content.html">one-to-one correspondences</a>.</li>
+</ul>
+<p>Let us assume an abstract family of equivalence types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≃</mo></mrow><annotation encoding="application/x-tex">\simeq</annotation></semantics></math> with the property that for each type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> we have an <a class="existingWikiWord" href="../../../../../9/0/4/1/1409/content.html">identity equivalence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>:</mo><mi>A</mi><mo>≃</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{idequiv}(A) : A \simeq A</annotation></semantics></math>.</p>
+<p>Fix a <a class="existingWikiWord" href="../../../../../1/2/7/4/24721/content.html">Tarski universe</a> in the sense of a type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> with a <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">type family</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><annotation encoding="application/x-tex">A : U \vdash T(A) \; \mathrm{type}</annotation></semantics></math>. There is a <a class="existingWikiWord" href="../../../../../9/5/7/8/8759/content.html">reflexive graph</a> whose type of vertices is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, whose type of edges from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A : U</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">B : U</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>≔</mo><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>T</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">E(A,B) \coloneqq (T(A) \simeq T(B)),</annotation></semantics></math></div>
+<p>and whose reflexivity map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r : (A : U) \to E(A,A)</annotation></semantics></math> sends <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idequiv</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idequiv}(T(A))</annotation></semantics></math>. The reflexivity map induces, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A,B : U</annotation></semantics></math>, a function</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(A, B) : (A =_U B) \to E(A,B)</annotation></semantics></math></div>
+<p>defined using <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity elimination</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi mathvariant="normal">refl</mi> <mi>A</mi></msub><mo stretchy="false">)</mo><mo>≔</mo><mi>r</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(A, A)(\mathrm{refl}_A) \coloneqq r(A)</annotation></semantics></math>.</p>
+<p>The Tarski universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(U,T)</annotation></semantics></math> is <strong>univalent</strong> if the induced <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>E</mi><mo>,</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(U,E,r)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../6/1/5/25165/content.html">univalent</a> as a <a class="existingWikiWord" href="../../../../../9/5/7/8/8759/content.html">reflexive graph</a>, i.e., if one of the following conditions (equivalent by the <a class="existingWikiWord" href="../../../../../6/6/1/5/25166/content.html">fundamental theorem of identity types</a>) holds:</p>
+<ol>
+<li>
+<p>For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A:U</annotation></semantics></math> the type of elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">B:A</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E(A, B)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../6/0/7/7065/content.html">contractible type</a>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>:</mo><mi mathvariant="normal">isContr</mi><mrow><mo>(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow></munder><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">A:U \vdash \mathrm{ua}(A):\mathrm{isContr}\left(\sum_{B:U} E(A, B)\right)</annotation></semantics></math></div></li>
+<li>
+<p>For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A:U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">B:U</annotation></semantics></math>, the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(A, B)</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>,</mo><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U, \vdash \mathrm{ua}(A, B):\mathrm{isEquiv}(\mathrm{idtoequiv}(A, B))</annotation></semantics></math></div></li>
+<li>
+<p>There is a family of equivalences</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U \vdash \mathrm{ua}(A, B):(A =_U B) \simeq E(A, B)</annotation></semantics></math></div></li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../7/5/1/4/24157/content.html">identity system</a>.</p>
+</li>
+<li>
+<p>For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A:U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">B:U</annotation></semantics></math>, the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(A, B)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/0/7/0/700/content.html">retraction</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U \vdash \mathrm{ua}(A, B):E(A, B) \to (A =_U B)</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>e</mi><mo>:</mo><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi mathvariant="normal">ua</mi><mi>β</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo><mo>:</mo><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msub><mo>=</mo> <mrow><mi>E</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub><mi>e</mi></mrow><annotation encoding="application/x-tex">A:U, B:U, e:E(A, B) \vdash \mathrm{ua}\beta(A,B,e):\mathrm{idtoequiv}(A,B)(\mathrm{ua}(A,B)(e)) =_{E(A, B)} e</annotation></semantics></math></div>
+<p>(This is due to <a class="existingWikiWord" href="../../../../../4/7/9/5/5974/content.html">Daniel Licata</a> in <a href="#Licata16">Licata 16</a>.)</p>
+</li>
+<li>
+<p>The family <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> with its reflexivity map satisfies the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">weak identity type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow><annotation encoding="application/x-tex">A =_U B</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>See <a class="existingWikiWord" href="../../../../../6/6/1/5/25166/content.html">fundamental theorem of identity types</a> for proofs that these definitions are the same.</p>
+<h3 id="Decomposition">Decomposition</h3>
+<p>Assuming <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>, <a class="existingWikiWord" href="../../../../../8/2/2/4/24228/content.html">Ian Orton</a> and <a class="existingWikiWord" href="../../../../../2/6/1/6/6162/content.html">Andrew Pitts</a> (<a href="#OrtonPitts19">Orton and Pitts 19</a>) showed that the univalence axiom can be simplified to the following special cases:</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>unit</mi><mo>:</mo><mi>A</mi><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></msub><mn>1</mn></mrow><annotation encoding="application/x-tex">unit : A = \sum_{a:A} 1</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>flip</mi><mo>:</mo><mo stretchy="false">(</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></msub><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></msub><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></msub><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></msub><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">flip : (\sum_{a:A} \sum_{b:B} C(a,b)) = (\sum_{b:B} \sum_{a:A} C(a,b))</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>contract</mi><mo>:</mo><mi>IsContr</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">contract: IsContr(A) \to (A=1)</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>unit</mi> <mi>β</mi></msub><mo>:</mo><mi>coe</mi><mo stretchy="false">(</mo><mi>unit</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mo>⋆</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">unit_\beta : coe(unit(a)) = (a,\star)</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>flip</mi> <mi>β</mi></msub><mo>:</mo><mi>coe</mi><mo stretchy="false">(</mo><mi>flip</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">flip_\beta : coe(flip(a,b,c)) = (b,a,c)</annotation></semantics></math>.</li>
+</ul>
+<p>The proof constructs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ua</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:</mo><mi>A</mi><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">ua(f): A=B</annotation></semantics></math> (for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>≃</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\simeq B</annotation></semantics></math>) as the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mover><mo>=</mo><mi>unit</mi></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder><mn>1</mn><mover><mo>=</mo><mi>contract</mi></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></munder><mi>f</mi><mi>a</mi><mo>=</mo><mi>b</mi><mover><mo>=</mo><mi>flip</mi></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></munder><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></munder><mi>f</mi><mi>a</mi><mo>=</mo><mi>b</mi><mover><mo>=</mo><mi>contract</mi></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></munder><mn>1</mn><mover><mo>=</mo><mi>unit</mi></mover><mi>B</mi></mrow><annotation encoding="application/x-tex"> A \overset{unit}{=} \sum_{a:A} 1 \overset{contract}{=} \sum_{a:A} \sum_{b:B} f a=b \overset{flip}{=} \sum_{b:B} \sum_{a:A} f a = b \overset{contract}{=} \sum_{b:B} 1 \overset{unit}{=} B </annotation></semantics></math></div>
+<p>and uses <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>unit</mi> <mi>β</mi></msub></mrow><annotation encoding="application/x-tex">unit_\beta</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>flip</mi> <mi>β</mi></msub></mrow><annotation encoding="application/x-tex">flip_\beta</annotation></semantics></math> to compute that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>coe</mi><mo stretchy="false">(</mo><mi>ua</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">coe(ua(f))(a) = f(a)</annotation></semantics></math>, hence by function extensionality <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>coe</mi><mo stretchy="false">(</mo><mi>ua</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">coe(ua(f)) = f</annotation></semantics></math>.</p>
+<p>In the absence of <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>, this set of axioms is <a href="#WeakerVariants">conjectured to be weaker than univalence</a>. In addition, unlike the definitions above, this definition of univalence cannot be generalized to <a class="existingWikiWord" href="../../../../../9/5/7/8/8759/content.html">reflexive graphs</a>.</p>
+<h3 id="resizing_the_identity_types">Resizing the identity types</h3>
+<p>Due to the usual <a class="existingWikiWord" href="content.html">univalence axiom</a>, we know that it is consistent to <a class="existingWikiWord" href="../../../9/5/15905/content.html">resize</a> the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity types</a> of a universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> to be <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/3/8/3/3837/content.html">small</a>.</p>
+<p>Resizing the identity types allows for one more version of univalence, where we replace the <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a> between the identity type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow><annotation encoding="application/x-tex">A =_U B</annotation></semantics></math> and the type of equivalences of the universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \simeq B</annotation></semantics></math> in the univalence axioms with the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a> of the universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, resulting in the statement that for all small types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A:U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">B:U</annotation></semantics></math>, there is an <a class="existingWikiWord" href="../../../../8/9/3/23985/content.html">identification</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><msub><mo>=</mo> <mi>U</mi></msub><mi>T</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msub><mo>=</mo> <mi>U</mi></msub><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>T</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{ua}(A, B):(T(A) =_U T(B)) =_{U} (T(A) \simeq T(B))</annotation></semantics></math></div>
+<p>This implies the usual version of univalence either through <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identification elimination</a>, <a class="existingWikiWord" href="../../../../../4/8/9/3/23984/content.html">transport</a>, and <a class="existingWikiWord" href="../../../../../4/9/9/3/23994/content.html">action on identifications</a> for the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a>. On the other hand, the usual version of univalence implies this version of univalence by repeated applications of univalence.</p>
+<h2 id="stricter_variants_of_univalence">Stricter variants of univalence</h2>
+<p>There are a few variants of univalence that are stricter than the usual axiom of univalence in that they use <a class="existingWikiWord" href="../../../../1/5/8/8515/content.html">judgmental equalities</a> and thus have to be expressed as (possibly multiple) <a class="existingWikiWord" href="../../../../../2/8/5/8/8582/content.html">inference rules</a> instead of an <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axiom</a>.</p>
+<h3 id="using_definitional_isomorphism">Using definitional isomorphism</h3>
+<p>There is a variant of univalence called <strong>definitional univalence</strong> or <strong>judgmental univalence</strong>, which says that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x:A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">y:A</annotation></semantics></math>, the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(x, y)</annotation></semantics></math> inductively defined in the previous section is a <a class="existingWikiWord" href="../../../../../7/8/7/6/26787/content.html">definitional isomorphism</a> instead of an <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a>.</p>
+<p>Unlike the case for the usual typal variant of univalence, where one can use an element of an <a class="existingWikiWord" href="../../../1/5/25105/content.html">equivalence type</a>, we cannot use definitional isomorphisms as elements of <a class="existingWikiWord" href="../../../../../7/8/7/6/26787/content.html">definitional isomorphism types</a> to express definitional univalence, because the large recursion principle of the <a class="existingWikiWord" href="../../../../../2/6/0/7/7062/content.html">interval type</a> together with <a class="existingWikiWord" href="../../../../../7/8/7/6/26787/content.html">definitional isomorphism types</a> implies <a class="existingWikiWord" href="../../../../../1/7/9/6/6971/content.html">equality reflection</a>, which contradicts univalence.</p>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a>'s model of <a class="existingWikiWord" href="../../../../../1/7/7/3/23771/content.html">higher observational type theory</a> uses the type of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>-small one-to-one correspondences for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> in definitional univalence.</p>
+<h3 id="using_judgmental_equality_of_types">Using judgmental equality of types</h3>
+<p>There is another variant of univalence where we replace the <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a> between the identity type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow><annotation encoding="application/x-tex">A =_U B</annotation></semantics></math> and the type of equivalences of the universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \simeq B</annotation></semantics></math> in the univalence axioms with <a class="existingWikiWord" href="../../../../1/5/8/8515/content.html">judgmental equality of types</a>, resulting in the statement that for all small types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A:U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">B:U</annotation></semantics></math>, one could judge that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo><mo>≡</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><annotation encoding="application/x-tex">(A =_U B) \equiv (A \simeq B) \; \mathrm{type}</annotation></semantics></math>. This implies the usual version of univalence through the structural rules for <a class="existingWikiWord" href="../../../../1/5/8/8515/content.html">judgmental equality</a>. The interpretation of such a univalent universe is that <a class="existingWikiWord" href="../../../../8/9/3/23985/content.html">identifications</a> of universes <em>are</em> <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalences of types</a>.</p>
+<p>Such univalent Tarski universes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(U, T)</annotation></semantics></math> can be defined directly using inference rules instead of a judgmental equality, which say that identities <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow><annotation encoding="application/x-tex">p:A =_U B</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalences of types</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>. Namely, given <a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function types</a> and the <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">isEquiv</a> type family, one could add rules to the type theory which says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow><annotation encoding="application/x-tex">A =_U B</annotation></semantics></math> behaves as an <a class="existingWikiWord" href="../../../1/5/25105/content.html">equivalence type</a>:</p>
+<p>Introduction rules:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>B</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>⊢</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>y</mi><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A:U \quad \Gamma \vdash B:U \quad \Gamma, x:T[A/X] \vdash f:T[B/X] \quad \Gamma \vdash y:\mathrm{isEquiv}(f)}{\Gamma \vdash \mathrm{equiv}(f, y):A =_U B}</annotation></semantics></math></div>
+<p>Elimination rules:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>B</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>⊢</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo>⊢</mo><mi>C</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>y</mi><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">[</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo></mrow><mrow><mi>Γ</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo>⊢</mo><msubsup><mi mathvariant="normal">ind</mi> <mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow> <mi>C</mi></msubsup><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><mi>C</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A:U \quad \Gamma \vdash B:U \quad \Gamma, x:T[A/X] \vdash f:T[B/X] \quad \Gamma, z:A =_U B \vdash C \; \mathrm{type} \quad \Gamma, x:T[A/X], f:T[B/X], y:\mathrm{isEquiv}(f) \vdash c:C[\mathrm{equiv}(f, y)/z]}{\Gamma, z:A =_U B \vdash \mathrm{ind}_{A =_U B}^C(c):C}</annotation></semantics></math></div>
+<p>Computation rules:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>B</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>⊢</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo>⊢</mo><mi>C</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>y</mi><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">[</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo></mrow><mrow><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>y</mi><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>⊢</mo><msubsup><mi>β</mi> <mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow> <mi>C</mi></msubsup><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><msubsup><mi mathvariant="normal">ind</mi> <mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow> <mi>C</mi></msubsup><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo><msub><mo>=</mo> <mrow><mi>C</mi><mo stretchy="false">[</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo></mrow></msub><mi>c</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A:U \quad \Gamma \vdash B:U \quad \Gamma, x:T[A/X] \vdash f:T[B/X] \quad \Gamma, z:A =_U B \vdash C \; \mathrm{type} \quad \Gamma, x:T[A/X], f:T[B/X], y:\mathrm{isEquiv}(f) \vdash c:C[\mathrm{equiv}(f, y)/z]}{\Gamma, x:T[A/X], f:T[B/X], y:\mathrm{isEquiv}(f) \vdash \beta_{A =_U B}^C(c):\mathrm{ind}_{A =_U B}^C(c)[\mathrm{equiv}(f, y)/z] =_{C[\mathrm{equiv}(f, y)/z]} c}</annotation></semantics></math></div>
+<p>Uniqueness rules:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>B</mi><mo>:</mo><mi>U</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>⊢</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo>⊢</mo><mi>C</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>y</mi><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>c</mi><mo>:</mo><mi>C</mi><mo stretchy="false">[</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>z</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo>⊢</mo><mi>u</mi><mo>:</mo><mi>C</mi><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>f</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>X</mi><mo stretchy="false">]</mo><mo>,</mo><mi>y</mi><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>⊢</mo><msub><mi>i</mi> <mi mathvariant="normal">in</mi></msub><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>:</mo><mi>u</mi><mo stretchy="false">[</mo><mi mathvariant="normal">equiv</mi><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo><msub><mo>=</mo> <mrow><mi>C</mi><mo stretchy="false">[</mo><mi mathvariant="normal">in</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo></mrow></msub><mi>c</mi></mrow><mrow><mi>Γ</mi><mo>,</mo><mi>e</mi><mo>:</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo>⊢</mo><msubsup><mi>η</mi> <mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow> <mi>C</mi></msubsup><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><mi>u</mi><mo stretchy="false">[</mo><mi>e</mi><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo><msub><mo>=</mo> <mrow><mi>C</mi><mo stretchy="false">[</mo><mi>e</mi><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo></mrow></msub><msubsup><mi mathvariant="normal">ind</mi> <mrow><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi></mrow> <mi>C</mi></msubsup><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mi>e</mi><mo stretchy="false">/</mo><mi>z</mi><mo stretchy="false">]</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A:U \quad \Gamma \vdash B:U \quad \Gamma, x:T[A/X] \vdash f:T[B/X] \quad \Gamma, z:A =_U B \vdash C \; \mathrm{type} \quad \Gamma, x:T[A/X], f:T[B/X], y:\mathrm{isEquiv}(f) \vdash c:C[\mathrm{equiv}(f, y)/z] \quad \Gamma, z:A =_U B \vdash u:C \quad \Gamma, x:T[A/X], f:T[B/X], y:\mathrm{isEquiv}(f) \vdash i_\mathrm{in}(u):u[\mathrm{equiv}(f, y)/z] =_{C[\mathrm{in}(x, y)/z]} c}{\Gamma, e:A =_U B \vdash \eta_{A =_U B}^C(c):u[e/z] =_{C[e/z]} \mathrm{ind}_{A =_U B}^C(c)[e/z]}</annotation></semantics></math></div>
+<h2 id="WeakerVariants">Weaker variants of univalence</h2>
+<h3 id="equivalence_implies_identity">Equivalence implies identity</h3>
+<p>The existence of a map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U \vdash \mathrm{ua}(A, B): (A \simeq B) \to (A =_U B)</annotation></semantics></math></div>
+<p>alone is strictly weaker than the univalence axiom. <a class="existingWikiWord" href="../../../../../0/4/9/6/6940/content.html">Bauer</a> and <a class="existingWikiWord" href="../../../../../0/2/2/5/25220/content.html">Winterhalter</a>‘s cardinal model contains a non-univalent universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> that admits such a map (<a href="#Winterhalter20">Winterhalter 20, Theorem 8.3.2</a>). That <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is not univalent can be shown using that the cardinal model validates <a class="existingWikiWord" href="../../../../../1/7/9/6/6971/content.html">equality reflection</a> (<a href="#Winterhalter20">Winterhalter 20, Theorem 8.3.1</a>).</p>
+<h3 id="CategoricalUnivalence">Categorical univalence</h3>
+<p>Any universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is the type of objects of a <a class="existingWikiWord" href="../../../../../8/4/0/8/8048/content.html">wild category</a> whose type of morphisms from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A:U</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">B:U</annotation></semantics></math> is the function type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \to B</annotation></semantics></math>. It is a <a class="existingWikiWord" href="../../../../../1/2/2/8/18221/content.html">univalent category</a> if the canonical map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi mathvariant="normal">idtoiso</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≅</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U \vdash \mathrm{idtoiso}(A,B) : (A =_U B) \to (A \cong B)</annotation></semantics></math></div>
+<p>is an equivalence, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≅</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \cong B</annotation></semantics></math> is the type of maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \to B</annotation></semantics></math> equipped with left and right inverses up to equality of functions. The axiom that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> defines a univalent category is called <strong>categorical univalence</strong> in <a href="#CavalloHofer26">Cavallo and Höfer 26</a>.</p>
+<p>Assuming <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>, categorical univalence of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is equivalent to univalence of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>. Without function extensionality, however, categorical univalence is strictly weaker, and in particular does not itself imply function extensionality (<a href="#CavalloHofer26">Cavallo and Höfer 26, Theorem 5.6</a>).</p>
+<h3 id="section_up_to_pointwise_homotopy">Section up to pointwise homotopy</h3>
+<p>Van den Berg (<a href="#VanDenBerg20">Van den Berg 20, Definition 2.13</a>) gives a definition of univalent fibration in a <a class="existingWikiWord" href="../../../../../4/9/8/5/25894/content.html">path category</a> which can be translated into type theory as follows:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><msub><mo>=</mo> <mi>U</mi></msub><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U \vdash \mathrm{ua}(A, B): (A \simeq B) \to (A =_U B)</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>B</mi><mo>:</mo><mi>U</mi><mo>,</mo><mi>e</mi><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo><mo>,</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mi>β</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>e</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>:</mo><mi mathvariant="normal">coe</mi><mo stretchy="false">(</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><msub><mo>=</mo> <mi>B</mi></msub><mi>e</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A:U, B:U, e : (A\simeq B), a: A \vdash \mathrm{ua}\beta(A,B,e,a) : \mathrm{coe}(\mathrm{ua}(A,B))(a) =_{B} e(a)</annotation></semantics></math></div>
+<p>Notably, this variant of the univalence axiom can be unfolded and presented as a pair of inference rules in a type theory with only <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity types</a>, <a class="existingWikiWord" href="../../../../../9/0/5/7/7509/content.html">dependent sum types</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>. All uses of <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product types</a> can be replaced with hypothetical judgements.</p>
+<p>Assuming <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product types</a> with <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>, this is equivalent to the univalence axiom (<a href="#Licata16">Licata 16</a>). If <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a> is not explicitly assumed, it is an open question whether it is equivalent to the univalence axiom (or equivalently, <a href="#UnivalenceFunctionExtensionality">that it implies function extensionality</a>). This is observed in Remark 4.6 of <a href="#Swan24">Swan 24</a>. It is, however, equivalent to <a href="#Decomposition">Orton and Pitts’ set of axioms</a>.</p>
+<h2 id="InCategoricalSemantics">In categorical semantics</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/7/0/7/7077/content.html">locally cartesian closed model category</a> in which all objects are cofibrant.</p>
+<p>By the <a class="existingWikiWord" href="../../../../../1/9/8/5/5891/content.html">categorical semantics</a> of <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>, a <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">dependent type</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>:</mo><mi>B</mi><mo>⊢</mo><mi>E</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><annotation encoding="application/x-tex">
+  b : B \vdash E(b) \; \mathrm{type}
+
+</annotation></semantics></math></div>
+<p>corresponds to a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">E \to B</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> that is a <a class="existingWikiWord" href="../../../../../1/6/5/0/561/content.html">fibration</a> between fibrant objects.</p>
+<p>Then the <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">dependent</a> <a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>b</mi> <mn>2</mn></msub><mo>:</mo><mi>B</mi><mo>⊢</mo><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">(</mo><msub><mi>b</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mo stretchy="false">(</mo><msub><mi>b</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><annotation encoding="application/x-tex">
+  b_1, b_2 : B \vdash ( E(b_1) \to E(b_2)) \; \mathrm{type}
+
+</annotation></semantics></math></div>
+<p>is interpreted as the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub></mrow><annotation encoding="application/x-tex">[-,-]_{\mathcal{C}/_{B \times B}}</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../8/4/7/0/748/content.html">slice category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}/_{B \times B}</annotation></semantics></math> after extending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../7/8/5/0/587/content.html">context</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">B \times B</annotation></semantics></math> by pulling back along the two projections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>p</mi> <mn>2</mn></msub><mo>:</mo><mi>B</mi><mo>×</mo><mi>B</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">p_1, p_2 : B \times B \to B</annotation></semantics></math>, respectively. Hence this is interpreted as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msubsup><mi>p</mi> <mn>1</mn> <mo>*</mo></msubsup><mi>E</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><msubsup><mi>p</mi> <mn>2</mn> <mo>*</mo></msubsup><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mo>≃</mo><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mo>∈</mo><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [p_1^* E \, , \, p_2^* E]_{\mathcal{C}/_{B \times B}}
+  \simeq
+  [E \times B \, , \, B \times E]_{\mathcal{C}/_{B \times B}}
+  \in 
+  \mathcal{C}/_{B \times B}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Consider then the <a class="existingWikiWord" href="../../../../../9/4/3/2/2349/content.html">diagonal</a> morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub><mo>:</mo><mi>B</mi><mo>→</mo><mi>B</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\Delta_B : B \to B \times B</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> as an object of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}/_{B \times B}</annotation></semantics></math>. We would like to define a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo lspace="verythinmathspace">:</mo><msub><mi>Δ</mi> <mi>B</mi></msub><mo>→</mo><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex"> q \colon \Delta_B \to [E \times B , B \times E]_{\mathcal{C}/_{B \times B}} \,.</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}/_{B \times B}</annotation></semantics></math>. By the defining (<a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊣</mo></mrow><annotation encoding="application/x-tex">\dashv</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>)-<a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a>, it suffices to define a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub><msub><mo>×</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mi>E</mi><mo>×</mo><mi>B</mi><mo>→</mo><mi>B</mi><mo>×</mo><mi>E</mi></mrow><annotation encoding="application/x-tex"> \Delta_B \times_{\mathcal{C}/_{B \times B}} E \times B \to B \times E </annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}/_{B \times B}</annotation></semantics></math>. But now by the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a>, it suffices to define just in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mrow><mo stretchy="false">/</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}_{/B}</annotation></semantics></math> a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub><msub><mo>×</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mi>E</mi><mo>×</mo><mi>B</mi><mo>→</mo><msub><mi>Δ</mi> <mi>B</mi></msub><msub><mo>×</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mi>B</mi><mo>×</mo><mi>E</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex"> \Delta_B \times_{\mathcal{C}/_{B \times B}} E \times B \to \Delta_B \times_{\mathcal{C}/_{B \times B}} B \times E\,. </annotation></semantics></math></div>
+<p>And since the composite pullback along either composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mover><mo>→</mo><mrow><msub><mi>Δ</mi> <mi>B</mi></msub></mrow></mover><mi>B</mi><mo>×</mo><mi>B</mi><mover><mo>→</mo><mrow><msub><mi>π</mi> <mn>1</mn></msub></mrow></mover><mi>B</mi></mrow><annotation encoding="application/x-tex"> B \xrightarrow{\Delta_B} B\times B \xrightarrow{\pi_1} B</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mover><mo>→</mo><mrow><msub><mi>Δ</mi> <mi>B</mi></msub></mrow></mover><mi>B</mi><mo>×</mo><mi>B</mi><mover><mo>→</mo><mrow><msub><mi>π</mi> <mn>2</mn></msub></mrow></mover><mi>B</mi></mrow><annotation encoding="application/x-tex"> B \xrightarrow{\Delta_B} B\times B \xrightarrow{\pi_2} B</annotation></semantics></math></div>
+<p>is the identity, both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub><msub><mo>×</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mi>E</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\Delta_B \times_{\mathcal{C}/_{B \times B}} E \times B</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub><msub><mo>×</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub><mi>B</mi><mo>×</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta_B \times_{\mathcal{C}/_{B \times B}} B \times E</annotation></semantics></math> are isomorphic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>; thus here we can take the <a class="existingWikiWord" href="../../../../../7/1/4/8/18417/content.html">identity</a> morphism.</p>
+<p>Now, using the <a class="existingWikiWord" href="../../../../../7/3/4/0/437/content.html">path object</a> factorization in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>B</mi></mtd> <mtd></mtd> <mtd><mover><mo>↪</mo><mo>≃</mo></mover></mtd> <mtd></mtd> <mtd><msup><mi>B</mi> <mi>I</mi></msup></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>Δ</mi> <mi>B</mi></msub></mrow></mpadded></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><msub><mo>↙</mo> <mpadded width="0"><mrow></mrow></mpadded></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mo>×</mo><mi>B</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+     B &amp;&amp;\stackrel{\simeq}{\hookrightarrow}&amp;&amp; B^I
+     \\
+     &amp; {}_{\mathllap{\Delta_B}}\searrow
+     &amp;&amp; \swarrow_{\mathrlap{}}
+     \\
+     &amp;&amp; B \times B
+  }
+
+</annotation></semantics></math></div>
+<p>by an acyclic cofibration followed by a fibration, we obtain a fibrant replacement of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\Delta_B</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../4/1/9/2/2914/content.html">slice model category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}_{B \times B}</annotation></semantics></math>.</p>
+<p>Since also <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub></mrow><annotation encoding="application/x-tex">[E \times B, B \times E]_{\mathcal{C}/_{B \times B}}</annotation></semantics></math> is fibrant by the axioms on the <a class="existingWikiWord" href="../../../../../7/7/0/7/7077/content.html">locally cartesian closed model category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, we have a lift <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>q</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat q</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagram</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}/_{B \times B}</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>B</mi></mtd> <mtd><mover><mo>→</mo><mi>q</mi></mover></mtd> <mtd><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mover><mi>q</mi><mo stretchy="false">^</mo></mover></mpadded></msup><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><msup><mi>B</mi> <mi>I</mi></msup></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>B</mi><mo>×</mo><mi>B</mi><mo>=</mo><msub><mo>*</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    B &amp;\stackrel{q}{\to}&amp; [E \times B, B \times E]_{\mathcal{C}/_{B \times B}}
+   \\
+   \downarrow &amp;{}^{\mathllap{\hat q}}\nearrow&amp; \downarrow
+   \\
+   B^I &amp;\to&amp; B \times B = *_{\mathcal{C}/_{B \times B}}
+  } 
+  \,.
+
+</annotation></semantics></math></div>
+<p>This lift is the interpretation of the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">path induction</a> that deduces a map on all paths <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>∈</mo><msup><mi>B</mi> <mi>I</mi></msup></mrow><annotation encoding="application/x-tex">\gamma \in B^I</annotation></semantics></math> from one on just the identity paths <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>id</mi> <mi>b</mi></msub><mo>∈</mo><mi>B</mi><mo>↪</mo><msup><mi>B</mi> <mi>I</mi></msup></mrow><annotation encoding="application/x-tex">id_b \in B \hookrightarrow B^I</annotation></semantics></math>.</p>
+<p>Finally, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Eq</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>↪</mo><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>𝒞</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow></msub></mrow><annotation encoding="application/x-tex">Eq(E) \hookrightarrow [E \times B , B \times E]_{\mathcal{C}/_{B \times B}}</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobject</a> on the weak equivalences (…), and observe that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>q</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat q</annotation></semantics></math> factor through this to give a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>q</mi><mo stretchy="false">^</mo></mover><mo>:</mo><msup><mi>B</mi> <mi>I</mi></msup><mo>→</mo><mi>Eq</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \hat q : B^I \to Eq(E)
+  \,.
+
+</annotation></semantics></math></div>
+<p>The fibration <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">E \to B</annotation></semantics></math> is <strong>univalent</strong> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> if this morphism is a weak equivalence. By the <a class="existingWikiWord" href="../../../../../9/4/6/5/5649/content.html">2-out-of-3 property</a>, of course, it is equivalent to ask that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mo>→</mo><mi>Eq</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q\colon B\to Eq(E)</annotation></semantics></math> be a weak equivalence.</p>
+<p>(…)</p>
+<h3 id="InSimplicialSets">In simplicial sets</h3>
+<p>We specialize the <a href="#InCategoricalSemantics">general discussion</a> above to the realization in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathcal{C} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>, equipped with the standard <a class="existingWikiWord" href="../../../../../8/7/3/0/378/content.html">model structure on simplicial sets</a>.</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">E \to B</annotation></semantics></math> any fibration (<a class="existingWikiWord" href="../../../../../2/9/4/0/492/content.html">Kan fibration</a>) between fibrant objects (<a class="existingWikiWord" href="../../../../../4/5/3/0/354/content.html">Kan complexes</a>), consider first the simplicial set</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub><mo>∈</mo><mi>sSet</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+  [E \times B , B \times E]_{B \times B}
+  \in 
+  sSet/_{B \times B} 
+
+</annotation></semantics></math></div>
+<p>defined as the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> in the <a class="existingWikiWord" href="../../../../../8/4/7/0/748/content.html">slice category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">sSet/_{B \times B}</annotation></semantics></math>.</p>
+<p>Notice that the vertices of this simplicial set over a fixed pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>b</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>b</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>:</mo><mo>*</mo><mo>→</mo><mi>B</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">(b_1, b_2) : * \to B \times B</annotation></semantics></math> of vertices in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> form the set of morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>→</mo><msub><mi>E</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub></mrow><annotation encoding="application/x-tex">E_{b_1} \to E_{b_2}</annotation></semantics></math> between the <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>.</p>
+<p>This is because – by the defining property of the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> in the <a class="existingWikiWord" href="../../../../../8/4/7/0/748/content.html">slice</a> and using that <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">products</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">sSet/_{B \times B}</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullbacks</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math> – the horizontal morphisms of simplcial sets in</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo>*</mo></mtd> <mtd></mtd> <mtd><mo>→</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><mo stretchy="false">(</mo><msub><mi>b</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>b</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></mpadded></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><mo>↙</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mo>×</mo><mi>B</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    * &amp;&amp;\to&amp;&amp; [E \times B, B \times E]_{B \times B}
+    \\
+    &amp; {}_{\mathllap{(b_1,b_2)}}\searrow &amp;&amp; \swarrow
+    \\
+    &amp;&amp; B \times B
+  }
+
+</annotation></semantics></math></div>
+<p>correspond bijectively to the horizontal morphisms in</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>E</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>×</mo><mo stretchy="false">{</mo><msub><mi>b</mi> <mn>2</mn></msub><mo stretchy="false">}</mo></mtd> <mtd></mtd> <mtd><mo>→</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">{</mo><msub><mi>b</mi> <mn>1</mn></msub><mo stretchy="false">}</mo><mo>×</mo><msub><mi>E</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>↘</mo></mtd> <mtd></mtd> <mtd><mo>↙</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mo>×</mo><mi>B</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    E_{b_1} \times \{b_2\} &amp;&amp;\to&amp;&amp; \{b_1\} \times E_{b_2}
+    \\
+    &amp; \searrow &amp;&amp; \swarrow
+    \\
+    &amp;&amp; B \times B
+  }
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>, which are precisely morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>→</mo><msub><mi>E</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub></mrow><annotation encoding="application/x-tex">E_{b_1} \to E_{b_2}</annotation></semantics></math>.</p>
+<p>Let then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Eq</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>↪</mo><mo stretchy="false">[</mo><mi>E</mi><mo>×</mo><mi>B</mi><mo>,</mo><mi>B</mi><mo>×</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub><mo>∈</mo><mi>sSet</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+  Eq(E) \hookrightarrow [E \times B, B \times E]_{B \times B}
+  \in sSet/_{B \times B}
+
+</annotation></semantics></math></div>
+<p>be the full sub-simplicial set on those vertices that correspond to <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalences</a> ((<a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak</a>) <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalences</a>).</p>
+<p>By a similar consideration, one sees that the <a class="existingWikiWord" href="../../../../../9/4/3/2/2349/content.html">diagonal</a> morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>B</mi></msub><mo>:</mo><mi>B</mi><mo>→</mo><mi>B</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\Delta_B : B \to B \times B</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>, regarded as an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>∈</mo><mi>sSet</mi><msub><mo stretchy="false">/</mo> <mrow><mi>B</mi><mo>×</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">B \in sSet/_{B \times B}</annotation></semantics></math>, comes with a canonical morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>→</mo><mi>Eq</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  B \to Eq(E)
+  \,.
+
+</annotation></semantics></math></div>
+<p>The fibration <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">E \to B</annotation></semantics></math> is univalent, precisely when this morphism is a weak equivalence.</p>
+<p>This appears originally as <a href="#UnivalentFoundationsProject">Voevodsky, def. 3.4</a></p>
+<h3 id="InSimplicialPresheaves">In simplicial presheaves</h3>
+<p>(…)</p>
+<p>See (<a href="#Shulman12">Shulman 15</a>, <a href="../../../../../../../missing.html">UF 13</a>)</p>
+<p>(…)</p>
+<h2 id="properties">Properties</h2>
+<h3 id="UnivalenceFunctionExtensionality">Relation to function extensionality</h3>
+<p>The univalence axiom for a universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> implies <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a> for dependent function types between types in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>. This result is due to Voevodsky. A commented version of a formal proof of this fact can be found in (<a href="#BauerLumsdaine">Bauer-Lumsdaine</a>).</p>
+<p>However, at least one <a href="#WeakerVariants">weaker variant</a> of the univalence axiom (<a href="#CategoricalUnivalence">categorical univalence</a>) does not imply function extensionality, which shows that the implication from univalence to function extensionality depends on subtle details in the way equivalence is defined. See <a href="#CavalloHofer26">Cavallo and Höfer 26</a> for more discussion.</p>
+<h3 id="relation_to_large_elimination_of_the_interval_type">Relation to large elimination of the interval type</h3>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a> proved in <a href="https://mathoverflow.net/questions/413736/how-to-formulate-the-univalence-axiom-without-universes">this MathOverflow post</a> that given a <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universe</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, large elimination of the interval type for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>-small types is equivalent to the <a class="existingWikiWord" href="content.html">univalence axiom</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>.</p>
+<h3 id="univalence_and_truncation_levels">Univalence and truncation levels</h3>
+<p>The univalence axiom can be used to deduce facts about the <a class="existingWikiWord" href="../../../../../9/1/0/7/7019/content.html">homotopy level</a> of a univalent universe. For example (compare Theorem 7.1.11 in the <a class="existingWikiWord" href="../../../../../9/4/8/9/9849/content.html">HoTT Book</a>):</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n \ge -2</annotation></semantics></math>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><annotation encoding="application/x-tex">A : U \vdash T(A) \; \mathrm{type}</annotation></semantics></math> is a univalent <a class="existingWikiWord" href="../../../../../1/2/7/4/24721/content.html">Tarski universe</a> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T(A)</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/1/0/7/7019/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>n</mi>
+</mrow>
+<annotation encoding="application/x-tex">n</annotation>
+</semantics>
+</math>-type</a> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A : U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>-type.</p>
+</div>
+</p>
+<p>In particular, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is any univalent universe, then the <a class="existingWikiWord" href="../../../../../4/2/8/3/23824/content.html">subtype</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mrow><mo>≤</mo><mi>n</mi></mrow></msup><mo>↪</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">U^{\le n} \hookrightarrow U</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-types in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is a univalent universe (see <a href="#Rijke22">Rijke 22, Proposition 17.2.1</a>) and an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>-type.</p>
+<p>Conversely, univalence can also imply lower bounds on the homotopy level of a universe. For example (Example 3.1.9 in the <a class="existingWikiWord" href="../../../../../9/4/8/9/9849/content.html">HoTT Book</a>):</p>
+<p>
+<div class="num_prop" id="UnivalentUniverseNotHSet">
+<h6>Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mi>U</mi><mo>⊢</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><annotation encoding="application/x-tex">A : U \vdash T(A) \; \mathrm{type}</annotation></semantics></math> be a univalent <a class="existingWikiWord" href="../../../../../1/2/7/4/24721/content.html">Tarski universe</a>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> contains a <a class="existingWikiWord" href="../../../../../0/2/7/7/27720/content.html">type of booleans</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mn>2</mn></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{2}</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is not an <a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-set</a>.</p>
+</div>
+</p>
+<p>This follows from the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mn>2</mn></mstyle><mo>≃</mo><mstyle mathvariant="bold"><mn>2</mn></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{2} \simeq \mathbf{2}</annotation></semantics></math> is not an <a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">h-proposition</a>; the role of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mn>2</mn></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{2}</annotation></semantics></math> here can be played by any type with a non-trivial <a class="existingWikiWord" href="../../../../../1/8/2/0/281/content.html">automorphism</a>. Similarly, a univalent universe containing a <a class="existingWikiWord" href="../../../../../2/8/1/2/22182/content.html">circle type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">S^1</annotation></semantics></math> cannot be an <a class="existingWikiWord" href="../../../../../9/0/9/8/8909/content.html">h-groupoid</a>, since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>1</mn></msup><mo>≃</mo><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">S^1 \simeq S^1</annotation></semantics></math> is equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>1</mn></msup><mo>+</mo><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">S^1 + S^1</annotation></semantics></math>.</p>
+<p><a href="#KrausSattler15">Kraus and Sattler</a> consider univalent universes containing other univalent universes and show:</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p>(<a href="#KrausSattler15">Kraus–Sattler 15, Theorem 5.9</a>) Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">0 \le i \le n</annotation></semantics></math> be a collection of univalent universes such that</p>
+<ul>
+<li>each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math> is closed under <a class="existingWikiWord" href="../../../../9/2/1/1295/content.html">dependent products</a>, <a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sums</a>, and <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity types</a>;</li>
+<li>each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">U_{i+1}</annotation></semantics></math> contains <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math> and all types in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math>;</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">U_0</annotation></semantics></math> contains a <a class="existingWikiWord" href="../../../../../0/2/7/7/27720/content.html">type of booleans</a>.</li>
+</ul>
+<p>Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">U_n</annotation></semantics></math> is not an <a class="existingWikiWord" href="../../../../../9/1/0/7/7019/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>n</mi>
+</mrow>
+<annotation encoding="application/x-tex">n</annotation>
+</semantics>
+</math>-type</a>.</p>
+</div>
+</p>
+<p>The above has consequences for the compatibility of univalence with <a class="existingWikiWord" href="../../../../../6/3/9/8/8936/content.html">uniqueness of identity proofs</a> (UIP), or equivalently <a class="existingWikiWord" href="../../../../../9/0/6/9/19609/content.html">axiom K</a>. By Proposition <a class="maruku-ref" href="#UnivalentUniverseNotHSet"></a>, UIP for all types is inconsistent with the existence of a univalent universe containing a <a class="existingWikiWord" href="../../../../../0/2/7/7/27720/content.html">type of booleans</a> (or other type with a non-trivial <a class="existingWikiWord" href="../../../../../1/8/2/0/281/content.html">automorphism</a>). On the other hand, a type theory can consistently contain a univalent universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> that satisfies UIP, in the sense that all types in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-sets</a>. The univalent universe in the <a href="#HofmannStreicher98">Hofmann–Streicher groupoid model</a> is of this kind, as is the <a class="existingWikiWord" href="../../../../../4/2/8/3/23824/content.html">subtype</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mrow><mo>≤</mo><mn>0</mn></mrow></msup><mo>↪</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">U^{\le 0} \hookrightarrow U</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-sets</a> in any univalent universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>.</p>
+<h3 id="UnivalenceLEM">Univalence and excluded middle</h3>
+<p>The principle of the <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">excluded middle</a> is consistent with the existence of any number of univalent universes. This is because the principle of excluded middle as traditionally defined in mathematics is about <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">propositions</a> or <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">(-1)-truncated</a> types.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><msub><mi mathvariant="normal">lem</mi> <mi>A</mi></msub><mo>:</mo><mi mathvariant="normal">isProp</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><mo>∨</mo><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>∅</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A \; \mathrm{type}}{\Gamma \vdash \mathrm{lem}_A:\mathrm{isProp}(A) \to (A \vee (A \to \emptyset))}</annotation></semantics></math></div>
+<p>Dependent type theory with excluded middle and universes satisfying the univalence axiom has semantics in <a class="existingWikiWord" href="../../../../../8/8/4/0/488/content.html">boolean</a> <a class="existingWikiWord" href="../../../../../0/0/1/1/1100/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty, 1)</annotation>
+</semantics>
+</math>-toposes</a>. A short proof of the excluded middle for the <a href="#InSimplicialSets">simplicial model</a> can be found in <a href="#KapulkinLumsdaine20">Kapulkin–Lumsdaine 20</a>.</p>
+<p>However, there is a global choice axiom which is inconsistent with the existence of sufficiently non-trivial univalent universes (<a href="#Escardo12">Escardó 12</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><msub><mi mathvariant="normal">gc</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>+</mo><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>∅</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A \; \mathrm{type}}{\Gamma \vdash \mathrm{gc}_A:A + (A \to \emptyset)}</annotation></semantics></math></div>
+<p>This is sometimes called “excluded middle” in the <a class="existingWikiWord" href="../../../../../7/2/7/2/2727/content.html">propositions as types</a> interpretation of type theory, where the principle of excluded middle is reinterpreted so that types are used instead of <a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">mere propositions</a>. But this principle is much stronger than the excluded middle for mere propositions, being of comparable strength to a <a class="existingWikiWord" href="../../../../../6/5/4/2/2456/content.html">choice operator</a> and implying that every type is an <a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-set</a>.</p>
+<h3 id="Canonicity">Canonicity and homotopy canonicity</h3>
+<p>If we extend <a class="existingWikiWord" href="../../../../5/6/6/6655/content.html">Martin-Löf type theory</a> with an axiom stating that a universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is univalent, we get a type theory which does not satisfy <a class="existingWikiWord" href="../../../../../7/5/5/7/7557/content.html">canonicity</a>: there exist <a class="existingWikiWord" href="../../../../../0/8/9/5/5980/content.html">terms</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋅</mo><mo>⊢</mo><mi>N</mi><mo>:</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\cdot \vdash N : \mathbb{N}</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../3/0/7/0/20703/content.html">empty context</a> which are not <a class="existingWikiWord" href="../../../../1/5/8/8515/content.html">judgmentally equal</a> to any <a class="existingWikiWord" href="../../../../../7/8/8/8/8887/content.html">numeral</a>. For example, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋅</mo><mo>⊢</mo><mi>e</mi><mo>:</mo><mi>ℕ</mi><mo>≃</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\cdot \vdash e : \mathbb{N} \simeq \mathbb{N}</annotation></semantics></math> is some <a class="existingWikiWord" href="../../../1/5/25105/content.html">equivalence</a> (such as the identity equivalence), then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>coe</mi><mo stretchy="false">(</mo><mi>ua</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>:</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">coe(ua(e))(0) : \mathbb{N}</annotation></semantics></math> is such a term: although there is a <a class="existingWikiWord" href="../../../../../2/8/1/5/25182/content.html">typal equality</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>coe</mi><mo stretchy="false">(</mo><mi>ua</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mi>e</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">coe(ua(e))(0) = e(0)</annotation></semantics></math>, there is no <a class="existingWikiWord" href="../../../../1/5/8/8515/content.html">judgmental equality</a>. This can be shown using <a class="existingWikiWord" href="../../../../../2/6/0/2/22062/content.html">normalization</a> for MLTT to compare the <a class="existingWikiWord" href="../../../../../1/6/4/9/19461/content.html">normal forms</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>coe</mi><mo stretchy="false">(</mo><mi>ua</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">coe(ua(e))(0)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e(0)</annotation></semantics></math>, treating <a class="existingWikiWord" href="../../../../../3/4/0/8/8043/content.html">judgments</a> of the extended theory as judgments of MLTT with an extra hypothesis in the <a class="existingWikiWord" href="../../../../../7/8/5/0/587/content.html">context</a> stating that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is univalent.</p>
+<p>Despite this, it is possible to extend <a class="existingWikiWord" href="../../../../5/6/6/6655/content.html">Martin-Löf type theory</a> with univalent universes <em>further</em> to create a theory that does enjoy <a class="existingWikiWord" href="../../../../../7/5/5/7/7557/content.html">canonicity</a>. <a class="existingWikiWord" href="../../../../../7/3/7/8/18737/content.html">Cubical type theories</a> are examples of such theories which can support an infinite <a class="existingWikiWord" href="../../../../../6/8/3/6/26386/content.html">hierarchy</a> of univalent universes; see <a class="existingWikiWord" href="../../../../../7/3/7/8/18737/content.html">cubical type theory</a> for more details. An earlier canonicity result for a type theory with one univalent universe where every type is an <a class="existingWikiWord" href="../../../../../9/0/9/8/8909/content.html">h-groupoid</a> was proven by Harper and Licata (<a href="#HarperLicata">Harper and Licata 12</a>).</p>
+<p>A separate question is whether <a class="existingWikiWord" href="../../../../5/6/6/6655/content.html">Martin-Löf type theory</a> extended with one or more univalent universes satisfies the weaker <a class="existingWikiWord" href="../../../../../9/0/7/4/24709/content.html">homotopy canonicity</a> property. In 2019, <a class="existingWikiWord" href="../../../../../6/4/3/8/18346/content.html">Christian Sattler</a> and <a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Krzysztof Kapulkin</a> announced a proof of this result; the proof has been described in talks (<a href="#Sattler19">Sattler 19</a>) but has not appeared publicly. <a class="existingWikiWord" href="../../../../3/7/4/24735/content.html">Rafaël Bocquet</a> gives a second proof of homotopy canonicity in a preprint (<a href="#Bocquet23">Bocquet 23</a>). Earlier homotopy canonicity results for truncated versions of univalent type theory were shown by Shulman (<a href="#Shulman12">Shulman 15, Section 13</a>). <a href="#Shulman12">Shulman 15, Theorem 13.7</a> shows that <a class="existingWikiWord" href="../../../../5/6/6/6655/content.html">Martin-Löf type theory</a> with</p>
+<ul>
+<li>one univalent universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">U_0</annotation></semantics></math>,</li>
+<li>a “strong homotopy” <a class="existingWikiWord" href="../../../../6/9/8/8965/content.html">natural number type</a> (not contained in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">U_0</annotation></semantics></math>),</li>
+<li><a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>, and</li>
+<li>an axiom asserting that every type is an <a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-set</a></li>
+</ul>
+<p>has homotopy canonicity. <a href="#Shulman12">Shulman 15, Theorem 13.12</a> shows that <a class="existingWikiWord" href="../../../../5/6/6/6655/content.html">Martin-Löf type theory</a> with</p>
+<ul>
+<li>two nested univalent universes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>0</mn></msub><mo>:</mo><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_0 : U_1</annotation></semantics></math>,</li>
+<li>a “strong homotopy” <a class="existingWikiWord" href="../../../../6/9/8/8965/content.html">natural number type</a> contained in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_1</annotation></semantics></math>,</li>
+<li><a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">function extensionality</a>,</li>
+<li>an axiom asserting that every type is a <a class="existingWikiWord" href="../../../../../9/0/9/8/8909/content.html">h-groupoid</a></li>
+</ul>
+<p>has homotopy canonicity. The proofs use <a class="existingWikiWord" href="../../../../2/1/7/7125/content.html">Artin gluing</a> of a suitable <a class="existingWikiWord" href="../../../6/7/7605/content.html">type-theoretic fibration category</a> with the <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> and <a class="existingWikiWord" href="../../../../../7/8/6/0/687/content.html">Grpd</a>, respectively, effectively inducing canonicity from these categories. By (<a href="#Shulman12">Shulman 15, remark 13.13</a>), for this construction to generalize to a univalent type theory without a global <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">truncation</a> axiom, one seems to need a sufficiently strict <a class="existingWikiWord" href="../../../../../1/7/4/3/3471/content.html">global sections</a> functor with values in some model for <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">infinity-groupoids</a>. The proofs in <a href="#Sattler19">Sattler 19</a> and <a href="#Bocquet23">Bocquet 23</a> address this problem in different ways.</p>
+<h3 id="a_univalent_universe_inside_a_nonunivalent_universe">A univalent universe inside a non-univalent universe</h3>
+<p>In a post to the <a href="https://groups.google.com/forum/#!forum/homotopytypetheory">Homotopy Type Theory Google Group</a>, Peter LeFanu Lumsdaine <a href="https://groups.google.com/d/msg/homotopytypetheory/3wp32xV7OX0/2HfAnBt44XoJ">wrote</a>:</p>
+<blockquote>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x_0:X)</annotation></semantics></math> be any <a class="existingWikiWord" href="../../../../../3/5/7/0/10753/content.html">pointed type</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒰</mi><mo>,</mo><mi>El</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{U}, El)</annotation></semantics></math> be a universe (with rules as I set out a couple of emails ago). Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">X \times \mathcal{U}</annotation></semantics></math> is again a universe, admitting all the same constructors as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math>: take</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>El</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mi>El</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">El(x,A) = El(A)</annotation></semantics></math>,<br/><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><msub><mo>+</mo> <mi>𝒰</mi></msub><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><mi>A</mi><msub><mo>+</mo> <mi>𝒰</mi></msub><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,A) +_\mathcal{U} (y,B) = (x_0, A +_\mathcal{U} B)</annotation></semantics></math>,</p>
+<p>and so on; that is, constructor operations on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>𝒰</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X \times \mathcal{U})</annotation></semantics></math> are constantly <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x_0</annotation></semantics></math> on the first component, and mirror those of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math> on the second component.</p>
+<p>Now if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math> is univalent, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> has non-trivial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\pi_0</annotation></semantics></math> (e.g. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">X=S^1</annotation></semantics></math>), then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi><mo>→</mo><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U} \rightarrow (X \times \mathcal{U}</annotation></semantics></math>) gives a univalent universe sitting inside a non-univalent one (again, with the rules as I set out earlier).</p>
+<p>Slightly more generally, given any cumulative pair of universes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒰</mi> <mn>0</mn></msub><mo>→</mo><msub><mi>𝒰</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\mathcal{U}_0 \rightarrow \mathcal{U}_1</annotation></semantics></math>, we can consider <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒰</mi> <mn>0</mn></msub><mo>→</mo><mi>A</mi><mo>×</mo><msub><mi>𝒰</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\mathcal{U}_0 \rightarrow A \times \mathcal{U}_1</annotation></semantics></math>; this shows we can additionally have the smaller universe represented by an element of the larger one.</p>
+</blockquote>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a><a href="https://groups.google.com/d/msg/homotopytypetheory/3wp32xV7OX0/kIapR0lo1UEJ">added</a>:</p>
+<blockquote>
+<p>[N]ot only is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">X \times \mathcal{U}</annotation></semantics></math> not univalent, it’s not even “univalent on the image of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math>”, as was the case for the example in the groupoid model that I mentioned.</p>
+</blockquote>
+<h2 id="univalence_axiom_without_universes">Univalence axiom without universes</h2>
+<p>In <a class="existingWikiWord" href="../../../../../7/3/3/7/27337/content.html">dependent type theory with type variables</a>, presented using a single type judgment and with <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html#IdentityTypesBetweenTypes">identity types between types</a>, it is possible to state the univalence axiom without any <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universes</a>.</p>
+<p>The <strong>univalence axiom</strong> states that the function</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(A, B):(A = B) \to (A \simeq B)</annotation></semantics></math></div>
+<p>inductively defined by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>A</mi><mo>,</mo><mi mathvariant="normal">refl</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>≔</mo><msub><mi mathvariant="normal">id</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\mathrm{idtoequiv}(A, A, \mathrm{refl}(A)) \coloneqq \mathrm{id}_A</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a> for all types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{isEquiv}(\mathrm{idtoequiv}(A, B))</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">id</mi> <mi>A</mi></msub><mo>≔</mo><mi>λ</mi><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\mathrm{id}_A \coloneqq \lambda x:A.x</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../9/0/4/1/1409/content.html">identity function</a> on the type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>. This is given by the following axiom:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">ctx</mi></mrow><mrow><mi>Γ</mi><mo>,</mo><mi>A</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi><mo>,</mo><mi>B</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">type</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>p</mi><mo>:</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo>.</mo><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \; \mathrm{ctx}}{\Gamma, A \; \mathrm{type}, B \; \mathrm{type} \vdash \mathrm{ua}(A, B):\mathrm{isEquiv}(\lambda p:A = B.\mathrm{idtoequiv}(A, B, p))}</annotation></semantics></math></div>
+<p>In <a class="existingWikiWord" href="../../../../../1/7/1/7/27171/content.html">impredicative polymorphism</a>, this is also given by the following axiom:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mspace width="thickmathspace"></mspace><mi mathvariant="normal">ctx</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mi mathvariant="normal">ua</mi><mo>:</mo><mi>Π</mi><mi>A</mi><mo>.</mo><mi>Π</mi><mi>B</mi><mo>.</mo><mi mathvariant="normal">isEquiv</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>p</mi><mo>:</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo>.</mo><mi mathvariant="normal">idtoequiv</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \; \mathrm{ctx}}{\Gamma \vdash \mathrm{ua}:\Pi A.\Pi B.\mathrm{isEquiv}(\lambda p:A = B.\mathrm{idtoequiv}(A, B, p))}</annotation></semantics></math></div>
+<p>Unlike the other presentation of dependent type theory in terms of universes, in this presentation of dependent type theory with a type judgment and type variables, it <em>is consistent</em> to assume both the <a class="existingWikiWord" href="content.html">univalence axiom</a> and an <a class="existingWikiWord" href="../../../../../3/2/2/5/25223/content.html">axiom of set truncation</a> like <a class="existingWikiWord" href="../../../../../6/3/9/8/8936/content.html">UIP</a> or <a class="existingWikiWord" href="../../../../../9/0/6/9/19609/content.html">axiom K</a>, since here there is no universe, provided one doesn’t have any higher types, such as the circle type.</p>
+<p>There is one other version of univalence, where we replace the <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a> between the identity type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A = B</annotation></semantics></math> and the type of equivalences of the universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≃</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \simeq B</annotation></semantics></math> in the univalence axioms with the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a>, resulting in the statement that for all small types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, there is an <a class="existingWikiWord" href="../../../../8/9/3/23985/content.html">identification</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">ua</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{ua}(A, B):(A = B) = (A \simeq B)</annotation></semantics></math>.</p>
+<p>This implies the usual version of univalence either through <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identification elimination</a>, <a class="existingWikiWord" href="../../../../../4/8/9/3/23984/content.html">transport</a>, and <a class="existingWikiWord" href="../../../../../4/9/9/3/23994/content.html">action on identifications</a> for the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../9/5/15905/content.html">resizing axiom</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/6/1/21631/content.html">univalent foundations</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/6/1/4/24168/content.html">univalent type theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/6/7/4/24769/content.html">extensionality</a></p>
+<ul>
+<li>
+<p>Univalence is closely related to the “completeness” condition in the theory of <a class="existingWikiWord" href="../../../../../4/8/7/0/784/content.html">Segal spaces</a>/<a class="existingWikiWord" href="../../../../9/8/8/8895/content.html">semi-Segal spaces</a>. See <em><a class="existingWikiWord" href="../../../../../2/7/5/0/572/content.html">complete Segal space</a></em>/_<a class="existingWikiWord" href="../../../../9/8/8/8895/content.html">complete semi-Segal space</a><em>.</em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/5/1/6/16159/content.html">propositional extensionality</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/6/5/8/28561/content.html">equivalence induction</a></p>
+</li>
+<li>
+<p>contrary to univalence is the <a class="existingWikiWord" href="../../../../../6/3/9/8/8936/content.html">axiom UIP</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/6/5/25657/content.html">directed univalence axiom</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/7/7/27711/content.html">axiom of relativity</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html#IdentityTypesBetweenTypes">identity type between types</a></p>
+</li>
+</ul>
+<h2 id="References">References</h2>
+<blockquote>
+<p>For more references see also at <em><a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a></em>.</p>
+</blockquote>
+<h3 id="history">History</h3>
+<p>Arguably, the earliest occurrence of a version of the univalence axiom is due – under the name “universe extensionality” – to:</p>
+<ul>
+<li id="HofmannStreicher98"><a class="existingWikiWord" href="../../../../../2/7/9/6/6972/content.html">Martin Hofmann</a>, <a class="existingWikiWord" href="../../../../../3/7/9/6/6973/content.html">Thomas Streicher</a>, Section 5.4 of: <em>The groupoid interpretation of type theory</em>, in: <a class="existingWikiWord" href="../../../../../1/2/6/8/8621/content.html">Giovanni Sambin</a> et al. (eds.), <em>Twenty-five years of constructive type theory</em>, Proceedings of a congress, Venice, Italy, October 19-21, 1995. Oxford: Clarendon Press. Oxf. Logic Guides. <strong>36</strong> (1998) 83-111 [<a href="https://global.oup.com/academic/product/twenty-five-years-of-constructive-type-theory-9780198501275">ISBN:9780198501275</a>, <a href="http://www.mathematik.tu-darmstadt.de/~streicher/venedig.ps.gz">ps</a>, <a class="existingWikiWord" href="/nlab/files/HofmannStreicherGroupoidInterpretation.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>Strictly speaking, univalence for <em>propositions</em> has a much longer pedigree, this that can and does hold even in <a class="existingWikiWord" href="../../../../../6/8/5/4/24586/content.html">set-level foundations</a>, but this is the earliest version of univalence that goes beyond what is possible there. However, their universe extensionality axiom is stated only for <a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-sets</a>, and would be incorrect if naively generalized to higher types. The correct statement that works for higher types requires a better definition of <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalences in homotopy type theory</a> (see <a href="../../../../../2/8/0/7/7082/content.html#TheIssueWithQuasiInverses">there</a> for details), which Voevodsky was the first to give.</p>
+<p>For comments on the early history see also:</p>
+<ul>
+<li id="Altenkirch21"><a class="existingWikiWord" href="../../../../../2/2/3/7/7322/content.html">Thorsten Altenkirch</a>, <em>Martin Hofmann’s contributions to type theory: Groupoids and univalence</em>, Mathematical Structures in Computer Science <strong>31</strong> 9 (2021) 953-957 [<a href="https://doi.org/10.1017/S0960129520000316">doi:10.1017/S0960129520000316</a>]</li>
+</ul>
+<p>It is this notion of <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence in homotopy type theory</a> which was fixed in</p>
+<ul>
+<li id="Voevodsky10"><a class="existingWikiWord" href="../../../../8/7/1/1785/content.html">Vladimir Voevodsky</a>, p. 8, 10-11 of: <em>Univalent Foundations Project</em> (2010) [<a href="http://www.math.ias.edu/~vladimir/Site3/Univalent_Foundations_files/univalent_foundations_project.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Voevodsky-UFP2010.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>ever since the univalence axiom is widely attributed to Voevodsky. Earlier documentation of the univalence axiom in modern form is hard to come by:</p>
+<p>The first technical understanding of (the semantics of) univalence in simplicial sets seems to be due to:</p>
+<ul>
+<li id="Bousfield06"><a class="existingWikiWord" href="../../../../../3/9/6/6/6693/content.html">Aldridge Bousfield</a>, <a href="https://groups.google.com/g/homotopytypetheory/c/K_4bAZEDRvE/m/YSQz-jJ_AAAJ">email to VV from 01 May 2006 10:10:30 CDT</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a class="existingWikiWord" href="/nlab/files/BousfieldOnUnivalence.jpg" title="screenshot">screenshot</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<p>(which 6 years later came to be written up as <a href="#KapulkinLumsdaineVoevodsky12">Kapulkin, Lumsdaine &amp; Voevodsky12</a> and another 10 years later was published as <a href="#KapulkinLumsdaine21">Kapulkin &amp; Lumsdaine 2021</a>).</p>
+<p>The first mentioning by Voevodsky of the term “univalence” by email is 3.5 years later, from <a href="https://groups.google.com/g/homotopytypetheory/c/K_4bAZEDRvE/m/3N2xxxfSAAAJ">Dec. 30 2009</a> (according to <a href="https://groups.google.com/g/homotopytypetheory/c/K_4bAZEDRvE/m/-Lp5dxTTAAAJ">Grayson, Oct. 2017</a>).</p>
+<p>The earliest recorded statement of the univalence axiom by Voevodsky’s hand date may be <a href="#Voevodsky10">Voevodsky (2010), p. 11</a></p>
+<p>see also:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../8/7/1/1785/content.html">Vladimir Voevodsky</a>, <em>The equivalence axiom and univalent models of type theory</em> (Talk at CMU on February 4, 2010) (<a href="https://arxiv.org/abs/1402.5556">arXiv:1402.5556</a>)</p>
+</li>
+<li id="Voevodsky14">
+<p><a class="existingWikiWord" href="../../../../8/7/1/1785/content.html">Vladimir Voevodsky</a>, <em>Univalent foundations – new type-theoretic foundations of mathematics</em>, talk at IHP 2014 (<a href="https://www.math.ias.edu/vladimir/sites/math.ias.edu.vladimir/files/2014_04_22_slides.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>Later in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../8/7/1/1785/content.html">Vladimir Voevodsky</a>, <em><a href="https://www.ias.edu/ideas/2014/voevodsky-origins">The Origins and Motivations of Univalent Foundations</a></em>, IAS Institute Letter Summer 2014</li>
+</ul>
+<p>appears the claim that:</p>
+<blockquote>
+<p>have been working on the ideas that led to the discovery of univalent models since 2005 and gave the first public presentation on this subject at Ludwig-Maximilians-Universität München in November 2009.</p>
+</blockquote>
+<p>A comprehensive discussion finally appears in the textbook:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../9/8/8905/content.html">Univalent Foundations Project</a>, p. 4 &amp; Sec. 2.10 in: <em><a class="existingWikiWord" href="../../../../../9/4/8/9/9849/content.html">Homotopy Type Theory – Univalent Foundations of Mathematics</a></em> (2013) [<a href="http://homotopytypetheory.org/book/">web</a>, <a href="http://hottheory.files.wordpress.com/2013/03/hott-online-323-g28e4374.pdf">pdf</a>]</li>
+</ul>
+<p>Voevodsky’s (<a href="#Bousfield06">Bousfield’s</a>) original idea for the <a class="existingWikiWord" href="../../../../../7/0/7/7/17707/content.html">universal Kan fibration</a> as a model for a univalent universe in <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a>/<a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-groupoids</a> was eventually published as:</p>
+<ul>
+<li id="KapulkinLumsdaine21"><a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Chris Kapulkin</a>, <a class="existingWikiWord" href="../../../../../7/3/9/6/6937/content.html">Peter LeFanu Lumsdaine</a>, <em>The Simplicial Model of Univalent Foundations (after Voevodsky)</em>, Journal of the European Mathematical Society <strong>23</strong> (2021) 2071–2126 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://arxiv.org/abs/1211.2851">arXiv:1211.2851</a>, <a href="https://doi.org/10.4171/jems/1050">doi:10.4171/jems/1050</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<h3 id="exposition_and_survey">Exposition and survey</h3>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/0/7/7012/content.html">Peter Aczel</a>, <em>On Voevodsky’s Univalence Axiom</em>, talk at Third European Set Theory Conference (2011) [<a href="http://www.cs.man.ac.uk/~petera/Recent-Slides/Edinburgh-2011-slides_pap.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Aczel-Univalence.pdf" title="pdf">pdf</a>]</p>
+<blockquote>
+<p>(in view of the <a class="existingWikiWord" href="../../../../../3/0/1/5/25103/content.html">structure identity principle</a>)</p>
+</blockquote>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a>, <em>Homotopy type theory, IV</em> [<a href="http://golem.ph.utexas.edu/category/2011/04/homotopy_type_theory_iv.html">blog post</a>]</p>
+</li>
+</ul>
+<p>Additional definition of univalent universes appeared in section 17.1 of</p>
+<ul>
+<li id="Rijke22"><a class="existingWikiWord" href="../../../../5/7/9/9755/content.html">Egbert Rijke</a>, <em><a class="existingWikiWord" href="../../../../../8/2/6/1/21628/content.html">Introduction to Homotopy Type Theory</a></em>, Cambridge Studies in Advanced Mathematics, Cambridge University Press [<a href="https://arxiv.org/abs/2212.11082">arXiv:2212.11082</a>]</li>
+</ul>
+<h3 id="variants">Variants</h3>
+<p>On a superficially weaker but equivalent statement of univalence (also recorded in <a href="#OrtonPittsTYPES17">Orton and Pitts 19, Theorem 3.5</a>):</p>
+<ul>
+<li id="Licata16"><a class="existingWikiWord" href="../../../../../4/7/9/5/5974/content.html">Dan Licata</a>, <em>weak univalence with “beta” implies full univalence</em> (2016) [<a href="https://groups.google.com/forum/#!msg/homotopytypetheory/j2KBIvDw53s/YTDK4D0NFQAJ">web</a>]</li>
+</ul>
+<p>On a reduction of the univalence axiom to special cases:</p>
+<ul>
+<li id="OrtonPittsTYPES17"><a class="existingWikiWord" href="../../../../../8/2/2/4/24228/content.html">Ian Orton</a>, <a class="existingWikiWord" href="../../../../../2/6/1/6/6162/content.html">Andrew M. Pitts</a>, <em>Decomposing the Univalence Axiom</em>, in 23rd International Conference on Types for Proofs and Programs (TYPES 2017), Leibniz International Proceedings in Informatics (LIPIcs) <strong>104</strong> (2019) 6:1–6:19 [<a href="https://arxiv.org/abs/1712.04890">arXiv:1712.04890</a>, <a href="https://doi.org/10.4230/LIPIcs.TYPES.2017.6">doi:10.4230/LIPIcs.TYPES.2017.6</a>]</li>
+</ul>
+<p>On a possibly weaker variant of univalence:</p>
+<ul>
+<li id="VanDenBerg20">
+<p><a class="existingWikiWord" href="../../../../../4/6/7/5/5764/content.html">Benno van den Berg</a>, Section 2.3 in <em>Univalent polymorphism</em>, Annals of Pure and Applied Logic <strong>171</strong> (2020) 102793 [<a href="https://arxiv.org/abs/1803.10113">arXiv:1803.10113</a>, <a href="http://doi.org/10.1016/j.apal.2020.102793">doi:10.1016/j.apal.2020.102793</a>]</p>
+</li>
+<li id="Swan24">
+<p><a class="existingWikiWord" href="../../../../../6/1/0/2/22016/content.html">Andrew Swan</a>, Section 4 in <em>A categorical formulation of Kraus’ paradox</em> (2024) [<a href="https://arxiv.org/abs/2403.17961">arXiv:2403.17961</a>]</p>
+</li>
+</ul>
+<p>On a variant of univalence that is weaker in the absence of function extensionality:</p>
+<ul>
+<li id="CavalloHofer26"><a class="existingWikiWord" href="../../../../../8/6/5/1/21568/content.html">Evan Cavallo</a>, <a class="existingWikiWord" href="../../../../3/6/8/28635/content.html">Jonas Höfer</a>, <em>Univalence without function extensionality</em>, Proceedings of MFPS XLII, Electronic Notes in Theoretical Informatics and Computer Science <strong>6</strong> (2026) [<a href="https://arxiv.org/abs/2605.00812">arXiv:2605.00812</a>,<a href="https://doi.org/10.46298/entics.19622">doi:10.46298/entics.19622</a>]</li>
+</ul>
+<p>On the cardinal model, which separates the univalence axiom from the existence of a map from equivalences to identities:</p>
+<ul>
+<li id="Winterhalter20"><a class="existingWikiWord" href="../../../../../0/2/2/5/25220/content.html">Théo Winterhalter</a>, Section 8.3 in <em>Formalisation and Meta-Theory of Type Theory</em>, PhD thesis, Université de Nantes (2020) [<a href="https://theses.hal.science/tel-05425836">hal:tel-05425836</a>, <a href="https://github.com/TheoWinterhalter/phd-thesis/releases/download/v1.2.1/TheoWinterhalter-PhD-v1.2.1.pdf">author pdf</a>]</li>
+</ul>
+<p>Some details regarding the univalence axiom for <a class="existingWikiWord" href="../../../../../1/2/7/4/24721/content.html">weakly Tarski universes</a> appeared on MathOverflow in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/4/3/6/26341/content.html">Madeleine Birchfield</a>, <a class="existingWikiWord" href="../../../../../9/5/4/9/19459/content.html">Valery Isaev</a>, <em>Univalence for weakly Tarski universes</em>, MathOverflow, [<a href="https://mathoverflow.net/q/431723">web</a>]</li>
+</ul>
+<p>Some discussion about the univalence axiom in <a class="existingWikiWord" href="../../../../../7/3/3/7/27337/content.html">dependent type theory with type variables</a> occurs in:</p>
+<ul>
+<li id="CTZulip"><em>Dependent Type Theory vs Polymorphic Type Theory</em>, Category Theory Zulip [<a href="https://categorytheory.zulipchat.com/#narrow/stream/229199-learning.3A-questions/topic/Dependent.20Type.20Theory.20vs.20Polymorphic.20Type.20Theory">web</a>]</li>
+</ul>
+<h3 id="semantics">Semantics</h3>
+<p>An accessible account of Voevodsky’s proof (following <a href="#Bousfield06">Bousfield 06</a>) that the universal <a class="existingWikiWord" href="../../../../../2/9/4/0/492/content.html">Kan fibration</a> in <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a> is univalent:</p>
+<ul>
+<li id="KapulkinLumsdaineVoevodsky12"><a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Chris Kapulkin</a>, <a class="existingWikiWord" href="../../../../../7/3/9/6/6937/content.html">Peter LeFanu Lumsdaine</a>, <a class="existingWikiWord" href="../../../../8/7/1/1785/content.html">Vladimir Voevodsky</a>, <em>Univalence in simplicial sets</em> [<a href="http://arxiv.org/abs/1203.2553">arXiv:1203.2553</a>]</li>
+</ul>
+<p>A quick elegant proof of the <a class="existingWikiWord" href="../../../../../2/2/3/2/2322/content.html">object classifier</a>/universal <a class="existingWikiWord" href="../../../../../8/8/8/4/4888/content.html">associated infinity-bundle</a> in simplicial sets/<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids is in</p>
+<ul>
+<li id="Moerdijk"><a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a> (notes by Chris Kapulkin), <em>Fiber bundles and univalence</em> [<a href="https://www.math.uwo.ca/faculty/kapulkin/notes/fiber_bundles_univalence.pdf">pdf</a>]</li>
+</ul>
+<p>A study of the <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantic</a> side of univalence in <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-toposes</a>, as well as further cases of <a class="existingWikiWord" href="../../../../../../../missing.html">locally cartesian closed (infinity,1)-categories</a> is in</p>
+<ul>
+<li id="GepnerKock12"><a class="existingWikiWord" href="../../../../../9/9/1/4/4199/content.html">David Gepner</a>, <a class="existingWikiWord" href="../../../../../8/2/4/2/2428/content.html">Joachim Kock</a>, <em>Univalence in locally cartesian closed infinity-categories</em>, Forum Mathematicum <strong>29</strong> 3 (2016) 617–652 [<a href="http://arxiv.org/abs/1208.1749">arXiv:1208.1749</a>, <a href="https://doi.org/10.1515/forum-2015-0228">doi:10.1515/forum-2015-0228</a>]</li>
+</ul>
+<p>This does not yet show that the univalence axiom in its usual form holds in the internal type theory of <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-toposes</a>, however, due to the lack of a (known) sufficiently strict model for the object classifier. (But it works with <a class="existingWikiWord" href="../../../../../1/2/7/4/24721/content.html">Tarski universes</a>, see there and <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universes</a>). Constructions of such a model in some very special cases are in <a href="#Shulman12">Shulman12</a> below, and also in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Michael Shulman</a>, <em>The univalence axiom for elegant Reedy presheaves</em>, Homology, Homotopy and Applications <strong>17</strong> 2 (2015) 81–106 [<a href="http://arxiv.org/abs/1203.3253">arXiv:1307.6248</a>, <a href="https://doi.org/10.4310/HHA.2015.v17.n2.a6">doi:10.4310/HHA.2015.v17.n2.a6</a>]</p>
+</li>
+<li id="Cisinski14">
+<p><a class="existingWikiWord" href="../../../../../9/0/7/2/2709/content.html">Denis-Charles Cisinski</a>, <em>Univalent universes for elegant models of homotopy types</em> [<a href="http://arxiv.org/abs/1406.0058">arXiv:1406.0058</a>]</p>
+</li>
+</ul>
+<p>Finally, full proof that all <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a> <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-topos</a> have <a class="existingWikiWord" href="../../../../../../../missing.html">presentations</a> by <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model categories</a> which interpret (provide <a class="existingWikiWord" href="../../../../../1/9/8/5/5891/content.html">categorical semantics</a>) for <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a> with <a class="existingWikiWord" href="content.html">univalent</a> <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universes</a>:</p>
+<ul>
+<li id="Shulman19"><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Michael Shulman</a>, <em>All <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-toposes have strict univalent universes</em> [<a href="https://arxiv.org/abs/1904.07004">arXiv:1904.07004</a>)]</li>
+</ul>
+<p>On the issue of strict pullback of the univalent universe see</p>
+<ul>
+<li>Univalent Foundations Mailing List, <em><a href="https://groups.google.com/d/msg/univalent-foundations/Glo7NgNvhJA/4j9SewiFvQ0J">Quotients</a></em>, March 2013</li>
+</ul>
+<p>On an interpretation of a univalent universe at the strength of finite order arithmetic:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/9/4/4912/content.html">Colin McLarty</a>, <em>A univalent universe in finite order arithmetic</em> [<a href="http://arxiv.org/abs/1412.6714">arXiv:1412.6714</a>]</li>
+</ul>
+<h3 id="properties_2">Properties</h3>
+<p>Coexistence of univalence with the <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">excluded middle</a> for <a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">mere propositions</a>:</p>
+<ul>
+<li id="KapulkinLumsdaine20"><a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Chris Kapulkin</a>, <a class="existingWikiWord" href="../../../../../7/3/9/6/6937/content.html">Peter LeFanu Lumsdaine</a>, <em>The Law of Excluded Middle in the Simplicial Model of Type Theory</em>, Theory and Applications of Categories <strong>35</strong> 40 (2020) 1546–1548 [<a href="https://arxiv.org/abs/2006.13694">arXiv:2006.13694</a>, <a href="https://doi.org/10.70930/tac/ykx24t1x">doi:10.70930/tac/ykx24t1x</a>]</li>
+</ul>
+<p>Incompatibility of univalence with the <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">excluded middle</a> for <em>all</em> types (not only <a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">mere propositions</a>) follows from:</p>
+<ul>
+<li id="Escardo12"><a class="existingWikiWord" href="../../../../../2/1/7/5/15712/content.html">Martín Escardó</a>, <em>Rice’s Theorem for the Martin-Lof universe</em> (2012) [<a href="https://martinescardo.github.io/papers/universe/RicesTheoremForTheUniverse.html">Agda</a>, <a href="https://lists.chalmers.se/sympa/arc/agda/2012-02/msg00008.html">mailing list discussion</a>]</li>
+</ul>
+<p>On lower bounds on the truncation levels of univalent universes:</p>
+<ul>
+<li id="KrausSattler15"><a class="existingWikiWord" href="../../../../../9/9/4/8/8499/content.html">Nicolai Kraus</a>, <a class="existingWikiWord" href="../../../../../6/4/3/8/18346/content.html">Christian Sattler</a>, <em>Higher Homotopies in a Hierarchy of Univalent Universes</em>, ACM Transactions on Computational Logic <strong>16</strong> 2 (2015) 1–12 [<a href="https://arxiv.org/abs/xxxx.yyyyy">arXiv:xxxx.yyyyy</a>, <a href="https://doi.org/10.1145/2729979">doi:10.1145/2729979</a>]</li>
+</ul>
+<h3 id="proof_assistants">Proof assistants</h3>
+<p>Implementation of univalence in <a class="existingWikiWord" href="../../../../../7/4/9/9/9947/content.html">proof assistants</a>:</p>
+<p>in <a class="existingWikiWord" href="../../../../../4/3/9/6/6934/content.html">Agda</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/7/5/15712/content.html">Martín Escardó</a>, <em><a href="https://www.cs.bham.ac.uk/~mhe/HoTT-UF-in-Agda-Lecture-Notes/HoTT-UF-Agda.html#univalence">Voevodsky’s univalence axiom</a></em>, §3.11 in: <em>Introduction to Univalent Foundations of Mathematics with Agda</em> [<a href="https://arxiv.org/abs/1911.00580">arXiv:1911.00580</a>, <a href="https://www.cs.bham.ac.uk/~mhe/HoTT-UF-in-Agda-Lecture-Notes/HoTT-UF-Agda.html">webpage</a>]</li>
+</ul>
+<p><a class="existingWikiWord" href="../../../../../4/3/9/6/6934/content.html">cubical Agda</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../2/7/4/24725/content.html">1lab</a>, <em><a href="https://1lab.dev/1Lab.Univalence.html">Univalence</a></em></li>
+</ul>
+<p>in <a class="existingWikiWord" href="../../../../../0/9/8/6/6890/content.html">Coq</a>:</p>
+<ul>
+<li>
+<p><em><a href="https://github.com/HoTT/HoTT/blob/master/theories/Types/Universe.v">HoTT/HoTT theories/Types/Universe.v</a></em></p>
+</li>
+<li>
+<p><em><a href="https://github.com/HoTT/HoTT/blob/master/theories/UnivalenceAxiom.v">HoTT/HoTT theories/UnivalenceAxiom.v</a></em></p>
+</li>
+</ul>
+<p>A guided walk through the formal proof that univalence implies <a class="existingWikiWord" href="../../../../../6/1/0/7/7016/content.html">functional extensionality</a> is at</p>
+<ul>
+<li id="BauerLumsdaine"><a class="existingWikiWord" href="../../../../../0/4/9/6/6940/content.html">Andrej Bauer</a>, <a class="existingWikiWord" href="../../../../../7/3/9/6/6937/content.html">Peter LeFanu Lumsdaine</a>, <em><a class="existingWikiWord" href="../../../../../1/1/0/7/7011/content.html">Oberwolfach HoTT-Coq tutorial</a></em></li>
+</ul>
+<p>Application of univalence to <a class="existingWikiWord" href="../../../../../0/8/9/6/6980/content.html">proof</a> transfer:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/4/7/8/18742/content.html">Cyril Cohen</a>, Enzo Crance, <a class="existingWikiWord" href="../../../../../9/3/7/4/24739/content.html">Assia Mahboubi</a>, <em>Trocq: Proof Transfer for Free, With or Without Univalence</em>, in: <em>Programming Languages and Systems. ESOP 2024</em>, Lecture Notes in Computer Science <strong>14576</strong>, Springer (2024) [<a href="https://arxiv.org/abs/2310.14022">arXiv:2310.14022</a>, <a href="https://doi.org/10.1007/978-3-031-57262-3_10">doi:10.1007/978-3-031-57262-3_10</a>]</li>
+</ul>
+<h3 id="canonicity_and_computational_interpretations">Canonicity and computational interpretations</h3>
+<p>A discussion of univalence in categories of <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagrams</a> over an <a class="existingWikiWord" href="../../../../../0/6/6/3/3660/content.html">inverse category</a> with values in a category for which univalence is already established is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Michael Shulman</a>, <em>Univalence for inverse diagrams and homotopy canonicity</em>, Mathematical Structures in Computer Science <strong>25</strong> (2015) 1203–1277 [<a href="http://arxiv.org/abs/1203.3253">arXiv:1203.3253</a>, <a href="https://doi.org/10.1017/S0960129514000565">doi:10.1017/S0960129514000565</a>]</li>
+</ul>
+<p>This discusses <a class="existingWikiWord" href="../../../../../9/0/7/4/24709/content.html">homotopy canonicity</a> of univalence in its section 13. A proof of <a class="existingWikiWord" href="../../../../../9/0/7/4/24709/content.html">homotopy canonicity</a> was presented in</p>
+<ul>
+<li id="Sattler19"><a class="existingWikiWord" href="../../../../../6/4/3/8/18346/content.html">Christian Sattler</a> (with <a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Chris Kapulkin</a>), <em>Homotopy Canonicity</em>, Talk at HoTT-UF (2019) [<a href="https://eutypes.cs.ru.nl/pmwiki/uploads/Main/books-of-abstracts-TYPES2019.pdf">abstract</a>, <a href="https://sites.google.com/view/hott-uf-2019/speakers">program</a>]</li>
+</ul>
+<p>Another proof of <a class="existingWikiWord" href="../../../../../8/4/7/1/1748/content.html">homotopy</a> canonicity is the subject of</p>
+<ul>
+<li id="Bocquet23"><a class="existingWikiWord" href="../../../../3/7/4/24735/content.html">Rafaël Bocquet</a>, <em>Strict Rezk completions of models of HoTT and homotopy canonicity</em> (2023) [<a href="https://arxiv.org/abs/2311.05849">arXiv:2311.05849</a>]</li>
+</ul>
+<p>Bocquet’s introduction includes a sketch of <a href="#Sattler19">Sattler and Kapulkin’s proof strategy</a>.</p>
+<p>Another approach to showing canonicity is (via <a class="existingWikiWord" href="../../../../../9/6/2/0/269/content.html">cubical sets</a>) in</p>
+<ul>
+<li>
+<p id="CoquandHuber13"><a class="existingWikiWord" href="../../../../../6/3/7/8/18736/content.html">Marc Bezem</a>, <a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>, <a class="existingWikiWord" href="../../../../../8/5/8/6/16858/content.html">Simon Huber</a>, <em>A model of type theory in cubical sets</em>, in 19th International Conference on Types for Proofs and Programs (TYPES 2013), Leibniz International Proceedings in Informatics (LIPIcs) <strong>26</strong> (2014) 107–128 [<a href="https://doi.org/10.4230/LIPIcs.TYPES.2013.107">doi:10.4230/LIPIcs.TYPES.2013.107</a>, <a href="http://www.cse.chalmers.se/~coquand/mod1.pdf">pdf</a>, <a href="https://github.com/simhu/cubical">Haskell code</a>, <a href="https://groups.google.com/forum/#!topic/homotopytypetheory/GmXKEArD3HY">discussion</a>]</p>
+</li>
+<li id="BezemCoquandHuber17">
+<p><a class="existingWikiWord" href="../../../../../6/3/7/8/18736/content.html">Marc Bezem</a>, <a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>, <a class="existingWikiWord" href="../../../../../8/5/8/6/16858/content.html">Simon Huber</a>, <em>The univalence axiom in cubical sets</em>, Journal of Automated Reasoning <strong>63</strong> (2019) 159–171 [<a href="https://arxiv.org/abs/1710.10941">arXiv:1710.10941</a>, <a href="https://doi.org/10.1007/s10817-018-9472-6">doi:10.1007/s10817-018-9472-6</a>]</p>
+</li>
+</ul>
+<p>The computational interpretation of univalence / <a class="existingWikiWord" href="../../../../../7/5/5/7/7557/content.html">canonicity</a> is discussed in</p>
+<ul id="HarperLicata">
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/9/5/5974/content.html">Dan Licata</a> (with <a class="existingWikiWord" href="../../../../../7/0/0/7/7007/content.html">Robert Harper</a>), <em>Computing with Univalence</em>, talk at Workshop on Higher Dimensional Algebra, Categories and Types (2012) [<a href="https://web.archive.org/web/20140113195421/http://4wft.fmf.uni-lj.si/wp-content/uploads/2012/04/Licata.pdf">abstract (archived)</a>, <a href="https://dlicata.wescreates.wesleyan.edu/pubs/lh122tttalks/lh12hdact-slides.pdf">slides</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/0/7/7007/content.html">Robert Harper</a>, <a class="existingWikiWord" href="../../../../../4/7/9/5/5974/content.html">Daniel Licata</a>, <em>Canonicity for 2-dimensional type theory</em>, in Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium on Principles of Programming Languages (POPL) (2012) 337–348 [<a href="https://doi.org/10.1145/2103656.2103697">doi:10.1145/2103656.2103697</a>, <a href="http://www.cs.cmu.edu/~rwh/papers/2dtt-can/paper.pdf">pdf</a>]</p>
+</li>
+</ul>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/9/5/5974/content.html">Daniel Licata</a>, <em>The computational interpretation of HoTT (in 2D)</em>, talk at <a class="existingWikiWord" href="../../../9/8/8905/content.html">UF-IAS-2012</a> [<a href="http://video.ias.edu/stream&amp;ref=1674">video</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/5/8/6/16858/content.html">Simon Huber</a> (with <a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>), <em>Towards a computational justification of the Axiom of Univalence</em> , talk at <em>TYPES 2011</em> [<a href="http://www.cse.chalmers.se/~simonhu/slides/types11.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/9/5/1/11593/content.html">Bruno Barras</a>, <a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>, <a class="existingWikiWord" href="../../../../../8/5/8/6/16858/content.html">Simon Huber</a>, <em>A Generalization of the Takeuti-Gandy Interpretation</em>, Mathematical Structures in Computer Science <strong>25</strong> Special Issue 5 (2015) 1071–1099 [<a href="https://simhu.github.io/papers/v5.pdf">pdf</a>, <a href="https://doi.org/10.1017/S0960129514000504">doi:10.1017/S0960129514000504</a>]</p>
+</li>
+</ul>
+<p>and realized in <a class="existingWikiWord" href="../../../../../7/3/7/8/18737/content.html">cubical type theory</a> in</p>
+<ul>
+<li id="Coquand13">
+<p><a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a> (with <a class="existingWikiWord" href="../../../../../6/3/7/8/18736/content.html">Marc Bezem</a> and <a class="existingWikiWord" href="../../../../../8/5/8/6/16858/content.html">Simon Huber</a>), <em>Computational content of the Axiom of Univalence</em>, September 2013 [<a href="http://www.humboldt-kolleg.iam.unibe.ch/talks/Coquand.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/4/7/8/18742/content.html">Cyril Cohen</a>, <a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>, <a class="existingWikiWord" href="../../../../../8/5/8/6/16858/content.html">Simon Huber</a>, <a class="existingWikiWord" href="../../../../../1/4/7/8/18741/content.html">Anders Mörtberg</a>, <em>Cubical Type Theory: a constructive interpretation of the univalence axiom</em>, in 21st International Conference on Types for Proofs and Programs (TYPES 2015), Leibniz International Proceedings in Informatics (LIPIcs) <strong>69</strong> (2018) 5:1–5:34 [<a href="https://arxiv.org/abs/1611.02108">arxiv:1611.02108</a>, <a href="https://hal.inria.fr/hal-01378906">hal-01378906</a>, <a href="https://doi.org/10.4230/LIPIcs.TYPES.2015.5">doi:10.4230/LIPIcs.TYPES.2015.5</a>]</p>
+</li>
+</ul>
+<p>Proof of the <a class="existingWikiWord" href="content.html">univalence axiom</a> from large elimination of the interval type relativizing to the <a class="existingWikiWord" href="../../../../4/0/7/7045/content.html">type universe</a>:</p>
+<ul>
+<li><em>How to formulate the univalence axiom without universes?</em> (<a href="https://mathoverflow.net/questions/413736/how-to-formulate-the-univalence-axiom-without-universes">web</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

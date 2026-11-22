@@ -1,0 +1,588 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      simplicial localization in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      simplicial localization
+  </h1>
+<div id="revision">
+<blockquote>
+<p>See also at <em><a class="existingWikiWord" href="../../../../../9/6/9/1/1969/content.html">derived hom space</a></em>.</p>
+</blockquote>
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#construction">Construction</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#standard_simplicial_localization">“Standard” simplicial localization</a></li>
+<li><a href="#hammock_localization">Hammock localization</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#basic_properties">Basic properties</a></li>
+<li><a href="#simplical_localization_gives_all_categories">Simplical localization gives all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</a></li>
+<li><a href="#equivalences_between_simplicial_localizations">Equivalences between simplicial localizations</a></li>
+<li><a href="#simplicial_localization_of_model_categories">Simplicial localization of model categories</a></li>
+<li><a href="#PresentationCSS">Presentation in terms of complete Segal spaces</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>A <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">category with weak equivalences</a> or <a class="existingWikiWord" href="../../../../../3/9/3/0/393/content.html">homotopical category</a> is a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> equipped with the information that some of its <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a>, specifically, a subcategory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>⊃</mo><mi>Core</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \supset Core(C)</annotation></semantics></math>, are to be regarded as “weakly invertible”. One way to make this notion precise is through the concept of <strong>simplicial localization</strong>, one form of which is known as <strong>Dwyer–Kan localization</strong>.</p>
+<p>The <em>simplicial localization</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">L C</annotation></semantics></math> of a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> realized concretely as a <a class="existingWikiWord" href="../../../../3/4/0/435/content.html">simplicially enriched category</a> which is such that the original category injects into it, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>↪</mo><mi>L</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">C \hookrightarrow L C</annotation></semantics></math>, such that every morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> that is labeled as a weak equivalence becomes an actual equivalence in the sense of morphisms in <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categories</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">L C</annotation></semantics></math>. And <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">L C</annotation></semantics></math> is in some sense universal with this property.</p>
+<p>Passing to the <a class="existingWikiWord" href="../../../../../../../missing.html">homotopy category of an (∞,1)-category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">L C</annotation></semantics></math> then reproduces the <a class="existingWikiWord" href="../../../../../4/6/2/0/264/content.html">homotopy category</a> that can also directly be obtained from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ho</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>Π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>L</mi><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Ho_C(a,b) \simeq \Pi_0 (L C(a,b))
+
+</annotation></semantics></math></div>
+<p>(where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\Pi_0</annotation></semantics></math> gives the <a class="existingWikiWord" href="../../../../3/6/1/1635/content.html">0th simplicial homotopy groupoid</a>).</p>
+<p>If the homotopical structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> extends to that of a (combinatorial) <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a>, then there is another procedure to obtain a simplicially enriched category from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category presented by a combinatorial model category</a>. This <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category is equivalent to the one obtained by simplicial localization but typically more explicit and more tractable.</p>
+<p>See also at <em><a class="existingWikiWord" href="../../../../../2/5/7/8/8752/content.html">localization of model categories</a></em>.</p>
+<h2 id="construction">Construction</h2>
+<p>See <em><a class="existingWikiWord" href="../../../../../8/6/7/4/4768/content.html">simplicial localization of a homotopical category</a></em>.</p>
+<h2 id="definition">Definition</h2>
+<h3 id="standard_simplicial_localization">“Standard” simplicial localization</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>:</mo><mstyle mathvariant="bold"><mi>Cat</mi></mstyle><mo>→</mo><mstyle mathvariant="bold"><mi>Grph</mi></mstyle></mrow><annotation encoding="application/x-tex">U : \mathbf{Cat} \to \mathbf{Grph}</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a> that sends a (small) category to its underlying <em><a class="existingWikiWord" href="../../../../../9/5/7/8/8759/content.html">reflexive</a></em> <a class="existingWikiWord" href="../../../../../4/8/1/2/2184/content.html">graph</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mstyle mathvariant="bold"><mi>Grph</mi></mstyle><mo>→</mo><mstyle mathvariant="bold"><mi>Cat</mi></mstyle></mrow><annotation encoding="application/x-tex">F : \mathbf{Grph} \to \mathbf{Cat}</annotation></semantics></math> be its <a class="existingWikiWord" href="../../../../../0/2/0/1/1020/content.html">left adjoint</a>. We then get a <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔾</mi><mo>=</mo><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mi>ϵ</mi><mo>,</mo><mi>δ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{G} = (G, \epsilon, \delta)</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Cat</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{Cat}</annotation></semantics></math>, and as usual this defines a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mo>•</mo></msub><mo>:</mo><mstyle mathvariant="bold"><mi>Cat</mi></mstyle><mo>→</mo><mo stretchy="false">[</mo><msup><mstyle mathvariant="bold"><mi>Δ</mi></mstyle> <mi>op</mi></msup><mo>,</mo><mstyle mathvariant="bold"><mi>Cat</mi></mstyle><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">G_\bullet : \mathbf{Cat} \to [\mathbf{\Delta}^{op}, \mathbf{Cat}]</annotation></semantics></math> from <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> to <a class="existingWikiWord" href="../../../../../8/0/6/0/608/content.html">simplicial objects in Cat</a> equipped with a canonical augmentation, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mi>n</mi></msub><mi>C</mi><mo>=</mo><msup><mi>G</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>C</mi></mrow><annotation encoding="application/x-tex">G_n C = G^{n+1} C</annotation></semantics></math>.</p>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>The <strong>standard resolution</strong> of a small category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is defined to be the simplicial category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mo>•</mo></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">G_\bullet C</annotation></semantics></math>.</p>
+</div>
+<p>Note that this is also a <a class="existingWikiWord" href="../../../../../2/6/2/0/262/content.html">simplicial category</a> in the strong sense, i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ob</mi><msub><mi>G</mi> <mo>•</mo></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">ob G_\bullet C</annotation></semantics></math> is discrete! Thus we may also regard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mo>•</mo></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">G_\bullet C</annotation></semantics></math> as an <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../3/4/0/435/content.html">category</a>. This is a <a class="existingWikiWord" href="../../../../../9/0/5/4/4509/content.html">resolution</a> in the sense that the augmentation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>:</mo><msub><mi>G</mi> <mo>•</mo></msub><mi>C</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">\epsilon : G_\bullet C \to C</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/1/4/3/3417/content.html">Dwyer-Kan equivalence</a>. (In fact, for objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, the morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mo>•</mo></msub><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>→</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G_\bullet C (X, Y) \to C (X, Y)</annotation></semantics></math> admits an extra degeneracy and hence a contracting homotopy.)</p>
+<div class="num_defn">
+<h6 id="definition_3">Definition</h6>
+<p>The <strong>standard simplicial localization</strong> of a <a class="existingWikiWord" href="../../../../7/5/9/9575/content.html">relative category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C, W)</annotation></semantics></math> is the simplicial category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L_\bullet (C, W)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>G</mi> <mi>n</mi></msub><mi>C</mi><mo stretchy="false">[</mo><msup><mrow><msub><mi>G</mi> <mi>n</mi></msub><mi>W</mi></mrow> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">L_n (C, W) = G_n C [{G_n W}^{-1}]</annotation></semantics></math>.</p>
+</div>
+<p>This appears as (<a href="#DwyerKanLocalizations">DwyerKanLocalizations, def. 4.1</a>). Again, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mo>•</mo></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">L_\bullet C</annotation></semantics></math> is a simplicial category in the strong sense, because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mo>•</mo></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">G_\bullet C</annotation></semantics></math> is.</p>
+<h3 id="hammock_localization">Hammock localization</h3>
+<div class="num_defn">
+<h6 id="definition_4">Definition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,W)</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">category with weak equivalences</a>. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">X,Y \in C</annotation></semantics></math> any two objects, write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">
+  L^H C(X,Y) \in sSet
+
+</annotation></semantics></math></div>
+<p>for the simplicial set defined as follows. For each natural number <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> there is a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> defined as follows:</p>
+<ul>
+<li>
+<p>its <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a> are length-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> zig-zags of morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mover><mo>←</mo><mo>≃</mo></mover><msub><mi>K</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>K</mi> <mn>2</mn></msub><mover><mo>←</mo><mo>≃</mo></mover><msub><mi>K</mi> <mn>3</mn></msub><mo>→</mo><mi>⋯</mi><mo>→</mo><mi>Y</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  X \stackrel{\simeq}{\leftarrow}
+  K_1 \to K_2 \stackrel{\simeq}{\leftarrow} K_3 \to
+  \cdots \to Y
+  \,,
+
+</annotation></semantics></math></div>
+<p>where the left-pointing morphisms are to be in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>its <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a> are “natural transformations” between such objects, fixing the endpoints:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><msub><mi>K</mi> <mn>1</mn></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><msub><mi>K</mi> <mn>2</mn></msub></mtd> <mtd><mover><mo>←</mo><mo>≃</mo></mover></mtd> <mtd><mi>⋯</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mo>≃</mo></mpadded></msup><mo>↙</mo></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msup><mo>↘</mo> <mrow></mrow></msup></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mo>≃</mo></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mo>≃</mo></msup></mtd> <mtd><mi>⋯</mi></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mi>Y</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mpadded lspace="-100%width" width="0"><mo>≃</mo></mpadded></msub><mo>↖</mo></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msup><mo>↗</mo> <mrow></mrow></msup></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><msub><mi>L</mi> <mn>1</mn></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><msub><mi>L</mi> <mn>2</mn></msub></mtd> <mtd><mover><mo>←</mo><mo>≃</mo></mover></mtd> <mtd><mi>⋯</mi></mtd></mtr></mtable></mrow><mspace width="thickmathspace"></mspace></mrow><annotation encoding="application/x-tex">
+  \array{
+     &amp;&amp; K_1 &amp;\to&amp; K_2 &amp;\stackrel{\simeq}{\leftarrow}&amp;
+     \cdots 
+     \\
+     &amp; {}^{\mathllap{\simeq}}\swarrow
+     &amp;&amp;&amp;&amp;&amp; &amp;&amp; \searrow^{}
+     \\
+    X 
+    &amp;&amp; \downarrow^{\simeq}&amp;&amp; \downarrow^{\simeq}&amp; \cdots&amp;&amp;  &amp;&amp; Y
+    \\
+     &amp; {}_{\mathllap{\simeq}}\nwarrow
+     &amp;&amp;&amp;&amp;&amp; &amp;&amp; \nearrow^{}
+    \\
+     &amp;&amp; L_1 &amp;\to&amp; L_2 &amp;\stackrel{\simeq}{\leftarrow}&amp;
+     \cdots 
+  }
+  \;
+
+</annotation></semantics></math></div></li>
+</ul>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L^H C(X,Y)</annotation></semantics></math> is obtained by</p>
+<ul>
+<li>
+<p>taking the <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a> of the <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerves</a> of these categories over all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>, and</p>
+</li>
+<li>
+<p>quotienting by the <a class="existingWikiWord" href="../../../../../4/8/4/0/484/content.html">equivalence relation</a> generated by inserting or removing identity morphisms and composing composable morphisms.</p>
+</li>
+</ul>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X,Y,Z</annotation></semantics></math> three objects, there is an evident compositing morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>×</mo><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  L^H C(X,Y) \times L^H C(Y,Z) \to L^H C(X,Z)
+
+</annotation></semantics></math></div>
+<p>given by horizontally concatenating hammock diagrams as above.</p>
+<p>The <a class="existingWikiWord" href="../../../../3/4/0/435/content.html">simplicially enriched category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi></mrow><annotation encoding="application/x-tex">L^H C</annotation></semantics></math> obtained this way is the <strong>hammock localization</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,W)</annotation></semantics></math>.</p>
+</div>
+<p>This appears as (<a href="#DwyerKanCalculating">DwyerKanCalculating, def. 2.1</a>).</p>
+<h2 id="properties">Properties</h2>
+<h3 id="basic_properties">Basic properties</h3>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,W)</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">category with weak equivalences</a>, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo>∈</mo><mi>sSet</mi><mi>Cat</mi></mrow><annotation encoding="application/x-tex">L^H C \in sSet Cat</annotation></semantics></math> for its hammock localization and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">[</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo><mo>∈</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">C[W^{-1}] \in Cat</annotation></semantics></math> for its ordinary <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ho</mi><mo stretchy="false">(</mo><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Ho(L^H C) \in Cat</annotation></semantics></math> for the category with the same objects as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and morphisms between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> being the <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected components</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_0 L^H C(X,Y)</annotation></semantics></math>.</p>
+<p>There is an <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalence of categories</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ho</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>≃</mo><mi>C</mi><mo stretchy="false">[</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Ho\big(L^H C\big)
+   \simeq
+  C[W^{-1}]
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This appears as (<a href="#DwyerKanCalculating">DwyerKanCalculating, prop. 3.1</a>).</p>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>Hammock localization is clearly a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> from the category of <a class="existingWikiWord" href="../../../../7/5/9/9575/content.html">relative categories</a> to <a class="existingWikiWord" href="../../../../3/4/0/435/content.html">sSet-enriched categories</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>RelativeCat</mi><mover><mo>⟶</mo><mrow><msubsup><mi>L</mi> <mi>W</mi> <mi>H</mi></msubsup></mrow></mover><mi>SimplicialCategories</mi></mrow><annotation encoding="application/x-tex">
+  RelativeCat \overset{L^H_W}{\longrightarrow} SimplicialCategories
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>See also <a href="#BarwickKan12">Barwick &amp; Kan 12, Sec. 1.5</a>, <a href="#Spitzweck10">Spitzweck 10, p. 3</a>.</p>
+<div class="num_prop" id="PrePostCompositionWithWeakEquivalences">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,W)</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">category with weak equivalences</a>, and let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mover><mo>→</mo><mi>f</mi></mover><mi>Y</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>W</mi><mo>⊂</mo><mi>Mor</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  (X \overset{f}{\to} Y) \in W \subset Mor(C)
+
+</annotation></semantics></math></div>
+<p>be a <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a>. Then for all objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">U \in C</annotation></semantics></math> we have that the concatenation operations on hammocks induces <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalences</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>≃</mo></mover><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  f_* 
+  \;\colon\; 
+  L^H C(U,X) 
+    \stackrel{\simeq}{\to}
+  L^H C(U,Y)
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>≃</mo></mover><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f^* 
+    \;\colon\; 
+  L^H C(Y,U) 
+    \stackrel{\simeq}{\to} 
+  L^H C(X, U)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This appears as (<a href="#DwyerKanCalculating">Dwyer &amp; Kan Calc., prop. 3.3</a>).</p>
+<h3 id="simplical_localization_gives_all_categories">Simplical localization gives all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</h3>
+<div class="num_prop">
+<h6 id="proposition_3">Proposition</h6>
+<p>Up to Dwyer-Kan equivalence –the <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalences</a> in the <a class="existingWikiWord" href="../../../../../7/1/4/3/3417/content.html">model structure on sSet-categories</a> – every <a class="existingWikiWord" href="../../../../../2/6/2/0/262/content.html">simplicial category</a> is the simplicial localization of a <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">category with weak equivalences</a>.</p>
+<p>This is (<a href="#DwyerKanEquivalences">DwyerKan 87, 2.5</a>).</p>
+</div>
+<p>If the <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">category with weak equivalences</a> in question happens to carry even the structure of a <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> there exist more refined tools for computing the <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>-<a class="existingWikiWord" href="../../../../../2/5/2/0/252/content.html">hom object</a> of the simplicial localization. These are described at <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categorical hom-space</a>.</p>
+<h3 id="equivalences_between_simplicial_localizations">Equivalences between simplicial localizations</h3>
+<div class="num_prop" id="SimplicialLocalizationOfNaturalTransformation">
+<h6 id="proposition_4">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,W)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo>,</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C', W')</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">categories with weak equivalences</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo>,</mo><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo>′</mo><mo>∈</mo><mi>sSet</mi><mi>Cat</mi></mrow><annotation encoding="application/x-tex">L^H C, L^H C' \in sSet Cat</annotation></semantics></math> for the corresponding <a class="existingWikiWord" href="content.html">hammock localizations</a>.</p>
+<p>Then for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>F</mi> <mn>2</mn></msub><mo>:</mo><mi>C</mi><mo>→</mo><mi>C</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">F_1, F_2 :  C \to C'</annotation></semantics></math> two <a class="existingWikiWord" href="../../../../../2/0/4/0/402/content.html">homotopical functors</a> (functors respecting the weak equivalences, i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>i</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>⊂</mo><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">F_i(W) \subset W'</annotation></semantics></math>) with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>:</mo><msub><mi>F</mi> <mn>1</mn></msub><mo>⇒</mo><msub><mi>F</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">
+  \eta : F_1 \Rightarrow F_2
+
+</annotation></semantics></math></div>
+<p>a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> with components in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">W'</annotation></semantics></math>, we have that for all objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">X,Y \in C</annotation></semantics></math>, there is induced a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural</a> <a class="existingWikiWord" href="../../../../../8/4/7/1/1748/content.html">homotopy</a> between morphisms of <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><msub><mi>F</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>F</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msup><mi>L</mi> <mi>H</mi></msup><msub><mi>F</mi> <mn>1</mn></msub></mrow></mpadded></msup><mo>↗</mo></mtd> <mtd></mtd> <mtd><msup><mo>↘</mo> <mpadded width="0"><mrow><mi>η</mi><mo stretchy="false">(</mo><mi>Y</mi><msub><mo stretchy="false">)</mo> <mo>*</mo></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd><mo>⇓</mo></mtd> <mtd></mtd> <mtd><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><msub><mi>F</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>F</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msup><mi>L</mi> <mi>H</mi></msup><msub><mi>F</mi> <mn>2</mn></msub></mrow></mpadded></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><msub><mo>↗</mo> <mpadded width="0"><mrow><mi>η</mi><mo stretchy="false">(</mo><mi>X</mi><msup><mo stretchy="false">)</mo> <mo>*</mo></msup></mrow></mpadded></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><msub><mi>F</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>F</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    &amp;&amp; L^H C'(F_1(X), F_1(Y) )     
+    \\
+    &amp; 
+    {}^{\mathllap{L^H F_1}}\nearrow 
+    &amp;&amp; 
+    \searrow^{\mathrlap{\eta(Y)_*}}
+    \\
+    L^H C(X,Y) 
+     &amp;&amp; \Downarrow &amp;&amp; 
+    L^H C'(F_1(X), F_2(Y))
+    \\
+    &amp; 
+     {}_{\mathllap{L^H F_2}}\searrow 
+    &amp;&amp;  
+     \nearrow_{\mathrlap{\eta(X)^*}}
+    \\
+    &amp;&amp; L^H C' (F_2(X), F_2(Y))
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is (<a href="#DwyerKanComputations">DwyerKanComputations, prop. 3.5</a>).</p>
+<div class="num_cor">
+<h6 id="corollary">Corollary</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>W</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>↪</mo><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>W</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i : (C_1, W_1) \hookrightarrow (C_2, W_2)</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> such that</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> is homotopy-essentially surjective: for every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi> <mn>2</mn></msub><mo>∈</mo><msub><mi>C</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">c_2 \in C_2</annotation></semantics></math> there is an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi> <mn>1</mn></msub><mo>∈</mo><msub><mi>C</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">c_1 \in C_1</annotation></semantics></math> and a weak equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi> <mn>2</mn></msub><mover><mo>→</mo><mo>≃</mo></mover><mi>i</mi><mo stretchy="false">(</mo><msub><mi>c</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c_2 \stackrel{\simeq}{\to} i(c_1)</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>there is a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>:</mo><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>W</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>W</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q : (C_2,W_2) \to (C_1, W_1)</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∘</mo><mi>Q</mi><mo>⇒</mo><msub><mi>Id</mi> <mrow><msub><mi>C</mi> <mn>2</mn></msub></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  i \circ Q  \Rightarrow Id_{C_2}
+  \,.
+
+</annotation></semantics></math></div></li>
+</ol>
+<p>Then we have an <a class="existingWikiWord" href="../../../../../../../missing.html">equivalence of (∞,1)-categories</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><msub><mi>C</mi> <mn>1</mn></msub><mo>≃</mo><msup><mi>L</mi> <mi>H</mi></msup><msub><mi>C</mi> <mn>2</mn></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  L^H C_1 \simeq L^H C_2
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>We have to check that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../../../missing.html">essentially surjective (∞,1)-functor</a> and a <a class="existingWikiWord" href="../../../../../../../missing.html">full and faithful (∞,1)-functor</a>.</p>
+<p>The first condition is immediate from the first assumption. The second follows with prop. <a class="maruku-ref" href="#SimplicialLocalizationOfNaturalTransformation"></a> (using prop. <a class="maruku-ref" href="#PrePostCompositionWithWeakEquivalences"></a>) from the second assumption.</p>
+</div>
+<h3 id="simplicial_localization_of_model_categories">Simplicial localization of model categories</h3>
+<div class="num_prop">
+<h6 id="proposition_5">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/6/3/1/1360/content.html">simplicial model category</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">C^\circ</annotation></semantics></math> for the full <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>-subcategory on the fibrant and cofibrant objects.</p>
+<p>Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">C^\circ</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi></mrow><annotation encoding="application/x-tex">L^H C</annotation></semantics></math> are connected by an <a class="existingWikiWord" href="../../../../../../../missing.html">equivalence of (∞,1)-categories</a>.</p>
+</div>
+<p>This is one of the central statements in (<a href="#DwyerKan80FunctionComplexes">Dwyer &amp; Kan 80 FuncComp</a>). The weak homotopy equivalence between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mo>∘</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C^\circ(X,Y)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>H</mi></msup><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L^H C(X,Y)</annotation></semantics></math> is in corollary 4.7. The equivalence of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-categories stated above follows with this and the diagram of morphisms of simplicial categories in prop. 4.8.</p>
+<div class="num_prop" id="QuillenEquivalencesInducingDKEquivalences">
+<h6 id="proposition_6">Proposition</h6>
+<p>A <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>⇆</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">D \leftrightarrows C</annotation></semantics></math> between <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model categories</a> induces a Dwyer-Kan-equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>C</mi><mo>↔</mo><mi>L</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">L C \leftrightarrow L D</annotation></semantics></math> between their <a class="existingWikiWord" href="content.html">simplicial localizations</a>.</p>
+</div>
+<p>This is made explicit in <a href="#MazelGee15">Mazel-Gee 15, p. 17</a> to follow from <a href="#DwyerKan80FunctionComplexes">Dwyer &amp; Kan 80 FuncComp, Prop. 4.4 with 5.4</a>.</p>
+<h3 id="PresentationCSS">Presentation in terms of complete Segal spaces</h3>
+<p>Using <a class="existingWikiWord" href="../../../../../9/5/2/0/259/content.html">quasicategories</a> as a model of <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-categories</a>, there is a construction which computes simplicial localization in terms of <a class="existingWikiWord" href="../../../../../2/7/5/0/572/content.html">complete Segal spaces</a>. See <a class="existingWikiWord" href="../../../../../2/7/5/0/572/content.html#RelationToSimplicialLocalization">complete Segal spaces#RelationToSimplicialLocalization</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/1/0/10121/content.html">localizer</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/3/5/5392/content.html">localizing subcategory</a></p>
+</li>
+</ul>
+<h2 id="References">References</h2>
+<p>The original articles:</p>
+<ul>
+<li id="DwyerKanLocalizations">
+<p><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William Dwyer</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>Simplicial localizations of categories</em>, J. Pure Appl. Algebra <strong>17</strong> 3 (1980), 267-284 [<a href="https://doi.org/10.1016/0022-4049(80)90049-3">doi:10.1016/0022-4049(80)90049-3</a>]</p>
+</li>
+<li id="DwyerKanCalculating">
+<p><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William Dwyer</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>Calculating simplicial localizations</em>, J. Pure Appl. Algebra 18 (1980), 17-35 [<a href="https://doi.org/10.1016/0022-4049(80)90113-9">doi:10.1016/0022-4049(80)90113-9</a>]</p>
+</li>
+<li id="DwyerKan80FunctionComplexes">
+<p><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William Dwyer</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>Function complexes in homotopical algebra</em>, Topology 19 (1980), 427-440 [<a href="https://doi.org/10.1016/0040-9383(80)90025-7">doi:10.1016/0040-9383(80)90025-7</a>, <a href="https://people.math.rochester.edu/faculty/doug/otherpapers/dwyer-kan-3.pdf">pdf</a>]</p>
+</li>
+<li id="DwyerKanEquivalences">
+<p><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William Dwyer</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>Equivalences between homotopy theories of diagrams</em>, in: <em>Algebraic topology and algebraic K-theory</em>, Ann. of Math. Stud. <strong>113</strong>, Princeton University Press (1988) [<a href="https://doi.org/10.1515/9781400882113-009">doi:10.1515/9781400882113-009</a>]</p>
+</li>
+</ul>
+<p>and in modernized form:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William Dwyer</a>, <a class="existingWikiWord" href="../../../../../3/9/3/1/21393/content.html">Philip Hirschhorn</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <a class="existingWikiWord" href="../../../../../0/3/9/2/2930/content.html">Jeff Smith</a>, around 35.6 of : <em><a class="existingWikiWord" href="../../../../../9/1/7/5/5719/content.html">Homotopy Limit Functors on Model Categories and Homotopical Categories</a></em>, Mathematical Surveys and Monographs <strong>113</strong>, AMS (2004) [<a href="https://bookstore.ams.org/surv-113-s">ISBN: 978-1-4704-1340-8</a>, <a href="http://dodo.pdmi.ras.ru/~topology/books/dhks.pdf">pdf</a>]</li>
+</ul>
+<p>Survey:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/4/0/438/content.html">Tim Porter</a>, Section 4.1 of: <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-Categories, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-groupoids, Segal categories and quasicategories</em> [<a href="http://arxiv.org/abs/math/0401274">arXiv:math/0401274</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/6/8/2/2863/content.html">Clark Barwick</a>, Section 2 of: <em>On (enriched) Bousfield localization of model categories</em> [<a href="http://arxiv.org/abs/0708.2067">arXiv:0708.2067</a>]</p>
+</li>
+</ul>
+<p>Further development:</p>
+<ul>
+<li id="BarwickKan12">
+<p><a class="existingWikiWord" href="../../../../../3/6/8/2/2863/content.html">Clark Barwick</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>A characterization of simplicial localization functors and a discussion of DK equivalences</em>, Indagationes Mathematicae Volume 23, Issues 1–2, March 2012, Pages 69-79 (<a href="https://doi.org/10.1016/j.indag.2011.10.001">doi:10.1016/j.indag.2011.10.001</a>)</p>
+</li>
+<li id="Hinich13">
+<p><a class="existingWikiWord" href="../../../../../4/7/4/4/4474/content.html">Vladimir Hinich</a>, <em>Dwyer-Kan Localization Revisited</em>, Homology, Homotopy and Applications Volume 18 (2016) Number 1 (<a href="https://arxiv.org/abs/1311.4128">arXiv:1311.4128</a>, <a href="https://dx.doi.org/10.4310/HHA.2016.v18.n1.a3">doi:10.4310/HHA.2016.v18.n1.a3</a>)</p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li id="Lurie09">
+<p><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, Section A.3.2 of: <em><a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></em></p>
+</li>
+<li id="Spitzweck10">
+<p><a class="existingWikiWord" href="../../../../../8/8/8/9/9888/content.html">Markus Spitzweck</a>, <em>Homotopy limits of model categories over inverse index categories</em>, Journal of Pure and Applied Algebra Volume 214, Issue 6, June 2010, Pages 769-777 (<a href="https://doi.org/10.1016/j.jpaa.2009.08.001">doi:10.1016/j.jpaa.2009.08.001</a>)</p>
+</li>
+<li id="MazelGee15">
+<p><a class="existingWikiWord" href="../../../../../6/6/4/8/8466/content.html">Aaron Mazel-Gee</a>, <em>Quillen adjunctions induce adjunctions of quasicategories</em>, New York Journal of Mathematics Volume 22 (2016) 57-93 (<a href="https://arxiv.org/abs/1501.03146">arXiv:1501.03146</a>, <a href="http://nyjm.albany.edu/j/2016/22-4.html">publisher</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

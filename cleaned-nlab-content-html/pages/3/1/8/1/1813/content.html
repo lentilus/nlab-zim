@@ -1,0 +1,513 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      nerve and realization in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      nerve and realization
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#TopologicalRealizationOfSimplicialSets">Topological realization of simplicial sets</a></li>
+<li><a href="#NervesOfCategories">Nerve and realization of categories</a></li>
+<li><a href="#doldkan_correspondence">Dold–Kan correspondence</a></li>
+<li><a href="#higher_lie_integration__smooth_sullivan_construction">Higher Lie integration / smooth Sullivan construction</a></li>
+<li><a href="#simplicial_models_for_categories">Simplicial models for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#FullAndFaithfulness">Full and faithfulness</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Under rather general conditions a <a class="existingWikiWord" href="../../../../2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>C</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>S</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">
+  S_C \;\colon\; S \to C
+
+</annotation></semantics></math></div>
+<p>into a <a class="existingWikiWord" href="../../../../../1/9/5/0/591/content.html">cocomplete category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> (possibly a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> some <a class="existingWikiWord" href="../../../../../9/8/5/0/589/content.html">complete</a> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a>) induces a pair of <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functors</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mover><munder><mo>→</mo><mi>N</mi></munder><mover><mo>←</mo><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow></mover></mover><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">
+   C \stackrel{\xleftarrow{|-|}}{\underset{N}{\rightarrow}} [S^{op}, V],
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><mo>⊣</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">|-| \dashv N</annotation></semantics></math>, between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and the <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">category of presheaves</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">PSh(S) = [S^{op}, V]</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> (here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> = <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> for the unenriched case)</p>
+<p>where</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> behaves like a <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> operation;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">|-|</annotation></semantics></math> behaves like <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a>.</p>
+</li>
+</ul>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>Here “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>” is supposed to be suggestive of a category of certain “<a class="existingWikiWord" href="../../../../../7/6/2/0/267/content.html">geometric Shapes</a>”. The canonical example is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>Δ</mi></mrow><annotation encoding="application/x-tex">S = \Delta</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../6/8/3/0/386/content.html">simplex category</a>, and the reader may find it helpful to keep that example in mind.</p>
+</div>
+<h2 id="definition">Definition</h2>
+<p>We place ourselves in the context of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriched category theory</a>. The reader wishing to stick to the ordinary notions in <a class="existingWikiWord" href="../../../../../7/5/1/0/157/content.html">locally small categories</a> takes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>= <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>.</p>
+<p>The <em>realization</em> operation is the left <a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">Kan extension</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>C</mi></msub><mo>:</mo><mi>S</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">S_C : S \to C</annotation></semantics></math> along the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>↪</mo><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">S \hookrightarrow [S^{op},V]</annotation></semantics></math> (i.e. the <a class="existingWikiWord" href="../../../../../5/4/0/1/1045/content.html">Yoneda extension</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>S</mi></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>S</mi> <mi>C</mi></msub></mrow></mover></mtd> <mtd></mtd> <mtd><mi>C</mi></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↓</mo> <mi>Y</mi></msup></mtd> <mtd><mo>⇓</mo></mtd> <mtd><msub><mo>↗</mo> <mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow></msub></mtd></mtr> <mtr><mtd><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    S &amp;\stackrel{S_C}{\to}&amp;&amp; C
+    \\
+    \downarrow^{Y} &amp;\Downarrow&amp; \nearrow_{|-|}
+    \\
+    [S^{op},V]
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>If we assume that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">tensored</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>, then by the general <a class="existingWikiWord" href="../../../../4/2/0/243/content.html">coend</a> formula for left <a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">Kan extension</a> we find that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X \in [S^{op}, V]</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo><mo>≃</mo><msup><mo>∫</mo> <mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></msup><msub><mi>S</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>X</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  |X| \simeq 
+   \int^{s \in S}
+   S_C(s) \cdot X_s
+  \,.
+
+</annotation></semantics></math></div>
+<p>For instance when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>Δ</mi></mrow><annotation encoding="application/x-tex">S = \Delta</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../6/8/3/0/386/content.html">simplex category</a> this reads more recognizably</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo><mo>≃</mo><msup><mo>∫</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>∈</mo><mi>Δ</mi></mrow></msup><msub><mi>Δ</mi> <mi>C</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>⋅</mo><msub><mi>X</mi> <mi>n</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  |X| \simeq 
+   \int^{[n] \in \Delta}
+   \Delta_C[n] \cdot X_n
+  \,.
+
+</annotation></semantics></math></div>
+<p>The corresponding <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> operation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>:</mo><mi>C</mi><mover><mo>→</mo><mrow></mrow></mover><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  N :
+  C \stackrel{}{\to} [S^{op},V]
+
+</annotation></semantics></math></div>
+<p>is given by the <a class="existingWikiWord" href="../../../../../6/1/0/0/20016/content.html">restricted Yoneda embedding</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><msup><mi>S</mi> <mi>op</mi></msup><mover><mo>→</mo><mrow><msubsup><mi>S</mi> <mi>C</mi> <mi>op</mi></msubsup></mrow></mover><msup><mi>C</mi> <mi>op</mi></msup><mover><mo>→</mo><mrow><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></mover><mi>V</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  N(c) : S^{op} \stackrel{S_C^{op}}{\to} C^{op}
+  \stackrel{C(-,c)}{\to}  
+  V
+  \,.
+
+</annotation></semantics></math></div>
+<p>
+<div class="num_theorem" id="NerveAndRealizationAreAdjoint">
+<h6>Theorem</h6>
+<p>Nerve and realization are a pair of <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functors</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow><mspace width="thinmathspace"></mspace><mo>⊣</mo><mspace width="thinmathspace"></mspace><mi>N</mi></mrow><annotation encoding="application/x-tex">
+    {|-|} \,\dashv\, N
+
+</annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a>.</p>
+<p></p>
+</div>
+ (<a href="#Kan58">Kan 1958, Sec. 3</a>)</p>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>Using the fact that the Hom in its first argument sends <a class="existingWikiWord" href="../../../../4/2/0/243/content.html">coends</a> to <a class="existingWikiWord" href="../../../../4/2/0/243/content.html">ends</a> and then using the definition of <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">tensoring</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>, we check the <a href="../../../../../4/9/4/0/494/content.html#InTermsOfHomIsomorphism">hom-isomorphism</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi>Hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>≔</mo><msub><mi>Hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><msup><mo>∫</mo> <mi>s</mi></msup><msub><mi>S</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>X</mi> <mi>s</mi></msub><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mo>∫</mo> <mi>s</mi></msub><msub><mi>Hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>X</mi> <mi>s</mi></msub><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mo>∫</mo> <mi>s</mi></msub><msub><mi>Hom</mi> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>s</mi></msub><mo>,</mo><mi>C</mi><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><msub><mo>∫</mo> <mi>s</mi></msub><msub><mi>Hom</mi> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>s</mi></msub><mo>,</mo><mi>N</mi><mo stretchy="false">(</mo><mi>c</mi><msub><mo stretchy="false">)</mo> <mi>s</mi></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>N</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    Hom_C(|X|, c)
+    &amp; 
+    \coloneqq
+    Hom_C( \int^{s} S_C(s) \cdot X_s, c)
+    \\
+    &amp; \simeq
+    \int_{s} Hom_C( S_C(s) \cdot X_s, c)
+    \\
+    &amp; \simeq
+    \int_{s} Hom_V( X_s , C(S_C(s), c))
+    \\
+    &amp; =
+    \int_{s} Hom_V( X_s , N(c)_s)
+    \\
+    &amp; \simeq
+    Hom_{[S^{op},V]}(X, N(c))
+    \,,
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>where in the last step we used the definition of the <a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a> in terms of an <a class="existingWikiWord" href="../../../../4/2/0/243/content.html">end</a>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>In many cases we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">V = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> and the <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">tensoring</a> of an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> over a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> is given by coproducts as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>⋅</mo><mi>I</mi><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></munder><mi>c</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">  
+    c \cdot I = \coprod_{i \in I} c
+    \,.
+  
+</annotation></semantics></math></div>
+<p>This is the case for instance for the below examples of realization of <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a>, nerves of categories and the <a class="existingWikiWord" href="../../../../../0/8/6/0/680/content.html">Dold-Kan correspondence</a>.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<h3 id="TopologicalRealizationOfSimplicialSets">Topological realization of simplicial sets</h3>
+<p>A classical example is given by the <a class="existingWikiWord" href="../../../../../5/1/6/4/4615/content.html">cosimplicial topological space</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>Top</mi></msub><mo>:</mo><mi>Δ</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">
+  \Delta_{Top} : \Delta \to Top
+
+</annotation></semantics></math></div>
+<p>that sends the abstract <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[n]</annotation></semantics></math> to the standard topological <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>Top</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>⊂</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\Delta_{Top}[n] \subset \mathbb{R}^n</annotation></semantics></math>.</p>
+<ul>
+<li>
+<p>The corresponding realization is what is traditionally called <em><a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a></em> of simplicial sets.</p>
+<p>By restricting this to simplicial sets which are themselves simplicial nerves of <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a> (see <a href="../../../../../../../missing.html">below</a>) or more generally are <a class="existingWikiWord" href="../../../../../9/5/2/0/259/content.html">quasi-categories</a>, this also induces the notion of geometric realization of categorical structures.</p>
+<p>The construction generalizes also to a notion of <em><a class="existingWikiWord" href="../../../../../4/1/6/4/4614/content.html">geometric realization of simplicial topological spaces</a></em>.</p>
+</li>
+<li>
+<p>The corresponding <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> is the <a class="existingWikiWord" href="../../../../../4/1/8/1/1814/content.html">singular simplicial complex</a> functor, producing the <a class="existingWikiWord" href="../../../6/0/613/content.html">fundamental ∞-groupoid</a> of a topological space.</p>
+</li>
+</ul>
+<p>This topological nerve and realization adjunction plays a central role as a presentation of the <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> between the <a class="existingWikiWord" href="../../../../../8/7/3/0/378/content.html">model structure on simplicial sets</a> and the <a class="existingWikiWord" href="../../../../../2/1/4/0/412/content.html">model structure on topological spaces</a>. This is discussed in detail at <em><a class="existingWikiWord" href="../../../../../8/5/5/0/558/content.html">homotopy hypothesis</a></em>.</p>
+<h3 id="NervesOfCategories">Nerve and realization of categories</h3>
+<p>Pretty much every notion of <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> and <a class="existingWikiWord" href="../../../../../4/3/0/0/34/content.html">higher category</a> comes, or should come, with its canonical notion of simplicial nerve, induced from a functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>C</mi></msub><mo>:</mo><mi>Δ</mi><mo>→</mo><mi>n</mi><mi>Cat</mi></mrow><annotation encoding="application/x-tex">
+    \Delta_C : \Delta \to n Cat
+  
+</annotation></semantics></math></div>
+<p>that sends the standard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> to something like the free <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-category on the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/9/0/0/91/content.html">directed graph</a> underlying that simplex.</p>
+<p>For ordinary categories see the discussion at <em><a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a></em> and at <em><a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization of categories</a></em>.</p>
+<p>One formalization of this for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>∞</mn></mrow><annotation encoding="application/x-tex">n = \infty</annotation></semantics></math> in the context of <a class="existingWikiWord" href="../../../../../1/8/3/0/381/content.html">strict ∞-categories</a> is the cosimplicial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>-category called the <a class="existingWikiWord" href="../../../../../1/7/0/0/71/content.html">orientals</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>ω</mi></msub><mo>:</mo><mi>Δ</mi><mo>→</mo><mi>ω</mi><mi>Cat</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+    \Delta_{\omega} : \Delta \to \omega Cat
+    \,.
+  
+</annotation></semantics></math></div>
+<ul>
+<li>
+<p>The induced <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> is the <a class="existingWikiWord" href="../../../../../0/3/6/1/1630/content.html">∞-nerve</a>.</p>
+</li>
+<li>
+<p>The induced realization operation is the operation of forming the free <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>-category on a simplicial set. See <a class="existingWikiWord" href="../../../../../1/7/0/0/71/content.html">oriental</a> for more details.</p>
+</li>
+</ul>
+<h3 id="doldkan_correspondence">Dold–Kan correspondence</h3>
+<p>The <a class="existingWikiWord" href="../../../../../0/8/6/0/680/content.html">Dold-Kan correspondence</a> is the nerve/realization adjunction for the <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology</a> functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mrow><msub><mi>C</mi> <mo>•</mo></msub></mrow></msub><mo>:</mo><mi>Δ</mi><mo>→</mo><msub><mi>Ch</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">
+    \Delta_{C_\bullet} : \Delta \to Ch_+
+  
+</annotation></semantics></math></div>
+<p>to the <a class="existingWikiWord" href="../../../../8/0/1/1083/content.html">category of chain complexes</a> of abelian groups, which sends the standard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> to its <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology</a> chain complex, more precisely to its normalized <a class="existingWikiWord" href="../../../../2/6/0/623/content.html">Moore complex</a>.</p>
+<ul>
+<li>The induced realization is the normalized <a class="existingWikiWord" href="../../../../2/6/0/623/content.html">Moore complex</a> functor extended from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math> to all <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a>.</li>
+</ul>
+<h3 id="higher_lie_integration__smooth_sullivan_construction">Higher Lie integration / smooth Sullivan construction</h3>
+<p>see at <em><a class="existingWikiWord" href="../../../../../7/5/0/0/57/content.html">Lie integration</a></em> <a href="../../../../../7/5/0/0/57/content.html#LieIntegrationIsRightQuillenFunctor">this Prop.</a></p>
+<h3 id="simplicial_models_for_categories">Simplicial models for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</h3>
+<p>The canonical cosimplicial <a class="existingWikiWord" href="../../../../../5/3/4/0/435/content.html">simplicially enriched category</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo>→</mo><mi>SSet</mi><mtext>-</mtext><mi>Cat</mi></mrow><annotation encoding="application/x-tex">
+  \Delta \to SSet\text{-}Cat
+
+</annotation></semantics></math></div>
+<p>induces the <a class="existingWikiWord" href="../../../../../4/1/4/1/1414/content.html">homotopy coherent nerve</a> of <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched categories</a> and establishes the relation between the <a class="existingWikiWord" href="../../../../../9/5/2/0/259/content.html">quasi-category</a> and the simplicially enriched model for <a class="existingWikiWord" href="../../../../../4/8/2/0/284/content.html">(infinity,1)-categories</a>. See</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/7/3/1/1371/content.html">relation between quasi-categories and simplicial categories</a>.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="FullAndFaithfulness">Full and faithfulness</h3>
+<p>When the nerve functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/9/3/0/396/content.html">full and faithful functor</a>, the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>C</mi></msub><mo>:</mo><mi>S</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">S_C : S \to C</annotation></semantics></math> is said to be a <a class="existingWikiWord" href="../../../../../5/4/9/0/945/content.html">dense functor</a>.</p>
+<p>See also at <em><a class="existingWikiWord" href="../../../../../7/6/1/7/7167/content.html">monad with arities</a></em>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a>, <a class="existingWikiWord" href="../../../../../7/6/1/7/7167/content.html">monad with arities</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/6/4/6/6464/content.html">totalization</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The notion of nerve and realization (not with these names yet) was introduced and proven to be an <a class="existingWikiWord" href="../../../../9/1/0/193/content.html">adjunction</a> in section 3 of</p>
+<ul>
+<li id="Kan58"><a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>Functors involving c.s.s complexes</em>, Transactions of the American Mathematical Society, Vol. 87, No. 2 (Mar., 1958), pp. 330–346 (<a href="http://www.jstor.org/stable/1993103">jstor:1993103</a>).</li>
+</ul>
+<p>In fact, in that very article apparently what is now called <a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">Kan extension</a> is first discussed.</p>
+<p>Also, in that article, as an example of the general mechanism, also the <a class="existingWikiWord" href="../../../../../0/8/6/0/680/content.html">Dold-Kan correspondence</a> was found and discussed, independently of the work by Dold and Puppe shortly before, who used a much less general-nonsense approach.</p>
+<p>In an article in 1984, Dwyer and Kan look at this ‘nerve-realization’ context from a different viewpoint, using the term ‘singular functor’ where the above has used ‘nerve’. Their motivation example is that in which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../4/6/1/1/1164/content.html">orbit category</a> of a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>, and the realisation starts with a functor on that category with values in spaces and returns a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-space:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">W. G. Dwyer</a> and <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">D. M. Kan</a>, <em>Singular functors and realization functors</em>, Nederl. Akad. Wetensch. Indag. Math., 87, (1984), 147 – 153.</li>
+</ul>
+<p>We should also mention the treatment in Leinster’s book and the relation to the notions of <a class="existingWikiWord" href="../../../../../7/7/9/0/977/content.html">dense subcategory</a> or adequate subcategory in the sense of Isbell.</p>
+<p>In a <a href="https://golem.ph.utexas.edu/category/2010/02/sheaves_do_not_belong_to_algeb.html">blog post</a> on the n-Category Café, Tom Leinster illustrates that “sections of a bundle” is a nerve operation, and its corresponding geometric realization is the construction of the étalé space of a presheaf.</p>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

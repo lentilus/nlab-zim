@@ -1,0 +1,444 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Dedekind completion in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="http://localhost/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="http://localhost/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Dedekind completion
+  </h1>
+<div id="revision">
+<h1 id="dedekind_completions">Dedekind completions</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definitions">Definitions</a></li>
+<ul>
+<li><a href="#using_open_intervals">Using open intervals</a></li>
+</ul>
+<li><a href="#generalisations">Generalisations</a></li>
+<ul>
+<li><a href="#in_predicative_constructive_mathematics">In predicative constructive mathematics</a></li>
+<li><a href="#strict_preorders">Strict preorders</a></li>
+</ul>
+<li><a href="#onesided_dedekind_completions">One-sided Dedekind completions</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>Dedekind completion</em> of a <a class="existingWikiWord" href="../../../../../7/6/4/6/26467/content.html">linear order</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is a new strict linear order <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>L</mi><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\widebar{L}</annotation></semantics></math> that contains <a class="existingWikiWord" href="../../../../../4/2/7/0/724/content.html">suprema</a> for all <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited</a> <a class="existingWikiWord" href="../../../../../3/8/7/9/9783/content.html">bounded subsets</a>, and such that a supremum in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is still a supremum in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>L</mi><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\widebar{L}</annotation></semantics></math>.</p>
+<p>While Dedekind completeness was traditionally described in the context of the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a>, it can be stated for any <a class="existingWikiWord" href="../../../../../8/2/4/7/27428/content.html">strict linear order</a>, although it really works best for <span class="newWikiWord">dense<a href="/nlab/new/dense+order">?</a></span> and unbounded (without <a class="existingWikiWord" href="../../../../../1/7/8/0/871/content.html">top</a> or <a class="existingWikiWord" href="../../../../../2/7/8/0/872/content.html">bottom</a>) strict linear orders. Intuitively, a strict linear order is <em>Dedekind complete</em> if <a class="existingWikiWord" href="../../../../../4/2/7/3/3724/content.html">Dedekind cuts</a> don’t give any ‘new’ elements.</p>
+<h2 id="definitions">Definitions</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../9/1/0/195/content.html">set</a> equipped with the structure of a <a class="existingWikiWord" href="../../../../../2/5/0/8/18052/content.html">dense linear order</a> without <a class="existingWikiWord" href="../../../../../1/7/8/0/871/content.html">top</a> or <a class="existingWikiWord" href="../../../../../2/7/8/0/872/content.html">bottom</a> elements (endpoints).</p>
+<div class="num_defn">
+<h6 id="definition">Definition</h6>
+<p>A <strong>cut</strong> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a pair of <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subsets</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>,</mo><mi>U</mi><mo>⊂</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">L, U \subset S</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> that satisfy the following eight properties:</p>
+<ol>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited</a>;</li>
+<li>Dually, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is inhabited;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \lt y \in L</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math>;</li>
+<li>Dually, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mi>y</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \gt y \in U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \in U</annotation></semantics></math>;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \lt y \in L</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math>;</li>
+<li>Dually, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \in U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mi>y</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \gt y \in U</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math>;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x \lt y</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">y \in U</annotation></semantics></math>;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">y \in U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x \lt y</annotation></semantics></math>.</li>
+</ol>
+</div>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>The linearly ordered set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is <strong>Dedekind complete</strong> if every cut <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L,U)</annotation></semantics></math> is of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mi>x</mi><mo>&lt;</mo><mi>a</mi><mo stretchy="false">}</mo><mo>,</mo><mspace width="thickmathspace"></mspace><mi>U</mi><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mi>x</mi><mo>&gt;</mo><mi>a</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex"> L = \{x \;| \;x \lt a\},\; U = \{x \;|\; x \gt a\}</annotation></semantics></math></div>
+<p>for some unique <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math>.</p>
+</div>
+<div class="num_defn">
+<h6 id="definition_3">Definition</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is also an unbounded dense strict linear order, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is Dedekind complete, and we have a <a class="existingWikiWord" href="../../../../../8/9/0/7/27098/content.html">universal arrow</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">u\colon T \to S</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of strict linear orders, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> (equipped with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math>) is <a class="existingWikiWord" href="../../../../../8/7/4/0/478/content.html">the</a> <strong>Dedekind completion</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>.</p>
+</div>
+<p>The set of Dedekind cuts of <a class="existingWikiWord" href="../../../../../2/9/9/2/2992/content.html">rational numbers</a> –the set of <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a>– is Dedekind complete. In fact, starting with any unbounded dense linearly ordered set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, the set of Dedekind cuts is isomorphic to the reals as long as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/5/6/1/1659/content.html">countably infinite set</a>.</p>
+<p>The operation of forming the set of Dedekind cuts is idempotent, so the Dedekind completion can be constructed as the set of Dedekind cuts. More precisely, the Dedekind-complete strict linear orders form a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a> of the category of dense unbounded strict linear orders, so that Dedekind completion is a kind of <a class="existingWikiWord" href="../../../../../2/5/6/2/2652/content.html">completion</a> in the abstract categorial sense.</p>
+<h3 id="using_open_intervals">Using open intervals</h3>
+<p>A set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> with a <a class="existingWikiWord" href="../../../../../8/2/4/7/27428/content.html">strict linear order</a> is <strong>Dedekind complete</strong> if</p>
+<ul>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">b \in F</annotation></semantics></math>, the open interval <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b)</annotation></semantics></math> is inhabited.</p>
+</li>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math>, the upper unbounded open interval <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mn>∞</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,\infty)</annotation></semantics></math> is inhabited.</p>
+</li>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math>, the lower unbounded open interval <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>∞</mn><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,a)</annotation></semantics></math> is inhabited.</p>
+</li>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">b \in F</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math> if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mn>∞</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b,\infty)</annotation></semantics></math> is a subinterval of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mn>∞</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,\infty)</annotation></semantics></math></p>
+</li>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">b \in F</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&lt;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \lt a</annotation></semantics></math> if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>∞</mn><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,b)</annotation></semantics></math> is a subinterval of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>∞</mn><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,a)</annotation></semantics></math></p>
+</li>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">b \in F</annotation></semantics></math>, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is a subinterval of the union of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mn>∞</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, \infty)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>∞</mn><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-\infty, b)</annotation></semantics></math></p>
+</li>
+<li>
+<p>For all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">a \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">b \in F</annotation></semantics></math>, the intersection of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mn>∞</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,\infty)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>∞</mn><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-\infty,b)</annotation></semantics></math> is a subinterval of the <a class="existingWikiWord" href="../../../../../3/2/0/2/2023/content.html">open interval</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b)</annotation></semantics></math></p>
+</li>
+</ul>
+<h2 id="generalisations">Generalisations</h2>
+<h3 id="in_predicative_constructive_mathematics">In predicative constructive mathematics</h3>
+<p>In predicative constructive mathematics, subsets are large and therefore are proper classes. Thus, any Dedekind completion of a <a class="existingWikiWord" href="../../../../../2/5/0/8/18052/content.html">dense linear order</a>, and in particular the rational numbers, is a <a class="existingWikiWord" href="../../../../../9/7/3/1/1379/content.html">proper class</a>. Instead, predicative constructive mathematicians typically use pairs of functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>,</mo><mi>U</mi><mo>:</mo><mi>ℚ</mi><mi>to</mi><mi>Σ</mi></mrow><annotation encoding="application/x-tex">L, U: \mathbb{Q} to \Sigma</annotation></semantics></math> representing the open subsets of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℚ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Q}</annotation></semantics></math> to define <strong>predicative cuts</strong>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math> is a small <a class="existingWikiWord" href="../../../../../3/9/6/3/23693/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>σ</mi>
+</mrow>
+<annotation encoding="application/x-tex">\sigma</annotation>
+</semantics>
+</math>-frame</a> with an <a class="existingWikiWord" href="../../../../../3/7/3/4/4373/content.html">embedding</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mo>→</mo><msub><mi mathvariant="normal">Prop</mi> <mi>𝒰</mi></msub></mrow><annotation encoding="application/x-tex">\Sigma \to \mathrm{Prop}_\mathcal{U}</annotation></semantics></math> into the large set of propositions for a universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math>. The definitions then become</p>
+<div class="num_defn">
+<h6 id="definition_4">Definition</h6>
+<p>Given a small <a class="existingWikiWord" href="../../../../../3/9/6/3/23693/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>σ</mi>
+</mrow>
+<annotation encoding="application/x-tex">\sigma</annotation>
+</semantics>
+</math>-frame</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math> that embeds into the large set of propositions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Prop</mi> <mi>𝒰</mi></msub></mrow><annotation encoding="application/x-tex">\mathrm{Prop}_\mathcal{U}</annotation></semantics></math> for a universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">\mathcal{U}</annotation></semantics></math> and a linearly ordered set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, a <strong>cut</strong> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a pair of functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>,</mo><mi>U</mi><mo>:</mo><mi>S</mi><mo>→</mo><mi>Σ</mi></mrow><annotation encoding="application/x-tex">L, U: S \to \Sigma</annotation></semantics></math> that satisfy the following eight properties:</p>
+<ol>
+<li>There is an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(a) = \top</annotation></semantics></math>.</li>
+<li>There is an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">b \in S</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(b) = \top</annotation></semantics></math>.</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math> are elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(b) = \top</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(a) = \top</annotation></semantics></math>.</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math> are elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(a) = \top</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(b) = \top</annotation></semantics></math>.</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(a) = \top</annotation></semantics></math>, then there is an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(b) = \top</annotation></semantics></math>.</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(b) = \top</annotation></semantics></math>, then there is an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(a) = \top</annotation></semantics></math>.</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math> are elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(a) = \top</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(b) = \top</annotation></semantics></math>.</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(a) = \top</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(b) = \top</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a \lt b</annotation></semantics></math>.</li>
+</ol>
+</div>
+<div class="num_defn">
+<h6 id="definition_5">Definition</h6>
+<p>The linearly ordered set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>-<strong>Dedekind complete</strong> if for every cut <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L,U)</annotation></semantics></math> there exists a unique element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math> such that for all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">x \in S</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x \lt a</annotation></semantics></math> implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">L(x) = \top</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">x \gt a</annotation></semantics></math> implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo>⊤</mo></mrow><annotation encoding="application/x-tex">U(x) = \top</annotation></semantics></math>.</p>
+</div>
+<p>Given any linearly ordered set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, for any two <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>-frames <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mo>′</mo></msup></mrow><annotation encoding="application/x-tex">\Sigma^{'}</annotation></semantics></math> that embed into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Prop</mi> <mi>𝒰</mi></msub></mrow><annotation encoding="application/x-tex">\mathrm{Prop}_\mathcal{U}</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mo>⊆</mo><msup><mi>Σ</mi> <mo>′</mo></msup></mrow><annotation encoding="application/x-tex">\Sigma \subseteq \Sigma^{'}</annotation></semantics></math>, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>-Dedekind completion of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mo>′</mo></msup></mrow><annotation encoding="application/x-tex">\Sigma^{'}</annotation></semantics></math>-Dedekind completion of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \subseteq B</annotation></semantics></math>.</p>
+<h3 id="strict_preorders">Strict preorders</h3>
+<div class="standout">
+<p>Any paragraph containing the string ‘duisp’ is original research (although lower duisps at least are known in <a class="existingWikiWord" href="../../../../../6/0/8/3/3806/content.html">domain theory</a>).</p>
+</div>
+<p>One can generalise Dedekind completion from <a class="existingWikiWord" href="../../../../../8/2/4/7/27428/content.html">strict linear orders</a> to <a class="existingWikiWord" href="../../../../../4/6/8/0/864/content.html">strict preorders</a>.</p>
+<div class="num_defn">
+<h6 id="definition_6">Definition</h6>
+<p>A <strong>duisp</strong> (<strong>d</strong>ense <strong>u</strong>nbounded <strong>i</strong>nhabited <strong>s</strong>trict <strong>p</strong>reorder) is a <a class="existingWikiWord" href="../../../../../4/6/8/0/864/content.html">strictly preordered set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> such that, given finite (here always meaning <a class="existingWikiWord" href="../../../../../6/8/5/0/586/content.html">Kuratowski-finite</a>) <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subsets</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">x \lt z</annotation></semantics></math> whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">x \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">z \in G</annotation></semantics></math>, we have some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi><mo>&lt;</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">x \lt y \lt z</annotation></semantics></math> whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">x \in F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>∈</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">z \in G</annotation></semantics></math>.</p>
+</div>
+<p>Note that, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../8/2/4/7/27428/content.html">strict linear order</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a duisp iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is dense, unbounded, and <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited</a>, hence the term ‘duisp’. (Using linearity, we may assume that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../0/5/0/505/content.html">subsingletons</a>; then two <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton subsets</a> is denseness, one singleton subset and one <a class="existingWikiWord" href="../../../../../2/0/7/3/3702/content.html">empty subset</a> is unboundedness, and two empty subsets is inhabitedness.)</p>
+<div class="num_defn">
+<h6 id="definition_7">Definition</h6>
+<p>Given a duisp <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, a <strong>cut</strong> is a pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L,U)</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subsets</a> such that:</p>
+<ol>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited</a> (which is a special case of (5) for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../2/0/7/3/3702/content.html">empty subset</a>);</li>
+<li>Dually, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is inhabited (a special case of (6));</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \lt y \in L</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math>;</li>
+<li>Dually, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&gt;</mo><mi>y</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \gt y \in U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \in U</annotation></semantics></math>;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is a finite subset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> (which we may assume inhabited if we include (1)), then for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math>, every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">y \in F</annotation></semantics></math> satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>&lt;</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y \lt x</annotation></semantics></math>;</li>
+<li>Dually, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is a finite (inhabited) subset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, then for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">x \in U</annotation></semantics></math>, every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">y \in F</annotation></semantics></math> satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>&gt;</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y \gt x</annotation></semantics></math>;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">L \lt x \lt U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>&lt;</mo><mi>y</mi><mo>&lt;</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">L \lt y \lt U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x = y</annotation></semantics></math>;</li>
+<li>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">y \in U</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x \lt y</annotation></semantics></math>.</li>
+</ol>
+</div>
+<p>We then define <strong>Dedekind-complete</strong> duisps and <strong>Dedekind completions</strong> of duisps the same as for dense linear orders, using this notion of cut.</p>
+<p>A good example of a duisp is the set of <a class="existingWikiWord" href="../../../../../2/9/9/2/2992/content.html">rational</a>-valued <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">functions</a> on any <a class="existingWikiWord" href="../../../../9/1/0/195/content.html">set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>; the Dedekind completion is the set of <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a>-valued functions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>Sections 4.31–39 of <em><a class="existingWikiWord" href="../../../../../3/5/5/1/1553/content.html">HAF</a></em> do things in even more generality, but I don't really understand it yet.</p>
+<h2 id="onesided_dedekind_completions">One-sided Dedekind completions</h2>
+<p>At least in <a class="existingWikiWord" href="../../../../../4/1/0/3/3014/content.html">classical mathematics</a>, considering only <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> (for a <strong>lower cut</strong>) or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> (for an <strong>upper cut</strong>) doesn't really give us anything new for strict linear orders; we have only the technicality that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn><mo>≔</mo><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mi>∅</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\infty \coloneqq (S,\empty)</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>∞</mn><mo>≔</mo><mo stretchy="false">(</mo><mi>∅</mi><mo>,</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">-\infty \coloneqq (\empty,S)</annotation></semantics></math> is a cut (depending on the side), and we can rule even these out by simply requiring that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> have an upper bound or that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> have a lower bound.</p>
+<p>In <a class="existingWikiWord" href="../../../../../8/4/9/0/948/content.html">constructive mathematics</a>, one-sided cuts are more general; see <a class="existingWikiWord" href="../../../../../0/4/7/3/3740/content.html">one-sided real number</a> for a discussion of the case where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the strict linear order of <a class="existingWikiWord" href="../../../../../2/9/9/2/2992/content.html">rational numbers</a>.</p>
+<p>Even in classical mathematics, one-sided cuts do give us something new for strict preorders. Here, we have first more general one-sided notions of duisps: a <strong>lower duisp</strong> need only satisfy the condition of a duisp for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a>, and an <strong>upper duisp</strong> need only satisfy the condition for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> a singleton. Then the <strong>lower Dedekind completion</strong> of a lower duisp is its set of lower cuts, and the <strong>upper Dedekind completion</strong> of an upper duisp is its set of upper cuts.</p>
+<p>For example, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../2/0/2/2025/content.html">compact Hausdorff space</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> be the strictly preordered set of <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous</a> real-valued functions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a duisp, hence both a lower and upper duisp. Its lower Dedekind completion is the set of lower <a class="existingWikiWord" href="../../../../../6/4/9/9/9946/content.html">semicontinuous</a> functions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> taking values in the <a class="existingWikiWord" href="../../../../../0/4/7/3/3740/content.html">lower reals</a> (which classically are all either real or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>); and dually on the upper side. Even working classically and ignoring the technicality of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>, semicontinuous functions are much more general than continuous ones.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/0/2/2079/content.html">Paul Taylor</a>'s <a href="http://www.paultaylor.eu/ASD/dedras/classical">page on Dedekind cuts</a></p>
+</li>
+<li>
+<p>Page 249&amp;250 of <em>Continuous Lattices and Domains</em> (<a href="http://books.google.com/books?id=xPF9Hb7DPLgC">Google book</a>) covers lower Dedekind completions of duisps (although not under that name) in the context of <a class="existingWikiWord" href="../../../../../6/0/8/3/3806/content.html">domain theory</a>.</p>
+</li>
+<li>
+<p>Univalent Foundations Project, <a class="existingWikiWord" href="../../../../../9/4/8/9/9849/content.html">Homotopy Type Theory – Univalent Foundations of Mathematics</a> (2013)</p>
+</li>
+<li>
+<p>Auke B. Booij, Extensional constructive real analysis via locators, (<a href="https://arxiv.org/abs/1805.06781">arxiv:1805.06781</a>)</p>
+</li>
+<li>
+<p>Steve Vickers, “Localic Completion Of Generalized Metric Spaces I”, <a href="http://www.tac.mta.ca/tac/volumes/14/15/14-15abs.html">TAC</a></p>
+</li>
+<li>
+<p>Davorin Lešnik, Synthetic Topology and Constructive Metric Spaces, (<a href="https://arxiv.org/abs/2104.10399">arxiv:2104.10399</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

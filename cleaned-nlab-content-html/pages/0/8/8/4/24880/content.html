@@ -1,0 +1,830 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      quantum reader monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      quantum reader monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#Properties">Properties</a></li>
+<ul>
+<li><a href="#RelationToDependentLinearTypes">Relation to dependent linear types</a></li>
+<li><a href="#RelationToQuantumMeasurement">Relation to quantum measurement</a></li>
+<li><a href="#MonoidalMonadStructure">Monoidal monad structure and Decoherence</a></li>
+</ul>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>By the <em>linear reader monad</em> or <em>quantum reader monad</em> we shall mean the <a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a> but on the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> (in applications specifically of <a class="existingWikiWord" href="../../../../../3/9/2/9/9293/content.html">complex vector spaces</a>, though essentially all discussion here applies over any <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>Set</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⊢</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mo>◯</mo> <mi>B</mi></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>Map</mi><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>B</mi></munder><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Vect</mi><mo>→</mo><mi>Vect</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  B \,\colon\, Set
+  \;\;\;\;\;
+  \vdash
+  \;\;\;\;\;
+  \bigcirc_B 
+  \;\coloneqq\; 
+  Map(B,-) 
+  \;=\;
+  \underset{B}{\prod}(-)
+  \;\colon\; 
+  Vect 
+  \to 
+  Vect
+  \,.
+
+</annotation></semantics></math></div>
+<p>The reason for the <a class="existingWikiWord" href="../../../../../2/3/6/2/2632/content.html">quantum physics</a>-terminology is that this monad is closely related to — in fact arguably is the fundamental formalization in <a class="existingWikiWord" href="../../../../../1/3/3/0/331/content.html">categorical logic</a> of — the concept of <em><a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a></em>, including its subtle peculiarities such as the dependence on a choice of <em>measurement basis</em> and the phenomenon of <a class="existingWikiWord" href="../../../../../8/7/1/8/18178/content.html">wavefunction collapse</a> entailed by the measurement process. It would in fact make good sense to speak of the <strong>quantum measurement monad</strong> — but notice that the conceptual difference between “reading” (say a global parameter, as is common interpretation for the <a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a> when used as a <a class="existingWikiWord" href="../../../3/8/8380/content.html">monad in computer science</a>) and “measuring” is small already informally and seems to all but vanish in the <a class="existingWikiWord" href="../../../../../9/9/9/4/4999/content.html">modal logic</a> of the quantum reader (its “<a href="../../../../../4/1/0/6/16014/content.html#ModalQuantumLogic">quantum modal logic</a>”, if you wish).</p>
+<p>Often one is interested in the case that the parameter set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> here is a <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite set</a> (explicitly so in applications to <a class="existingWikiWord" href="../../../../../1/0/6/3/3601/content.html">quantum information theory</a> and <a class="existingWikiWord" href="../../../../../8/3/6/9/9638/content.html">quantum computing</a> where eg. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">B =</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/5/7/4/4752/content.html">Bool</a> for <a class="existingWikiWord" href="../../../../../9/3/9/7/7939/content.html">qbits</a>, but it could probably be argued that any <em>real</em> measurement in <a class="existingWikiWord" href="../../../../../4/0/3/0/10304/content.html">experiment</a> can only ever resolve a <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite set</a> of potential outcomes), and this is the case we shall focus on now unless otherwise specified.</p>
+<p>In this case of <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite</a> parameter set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, the existence of <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproducts</a> in <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">VectorSpaces</a> — namely of <em><a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sums</a></em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⊕</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\oplus_B</annotation></semantics></math> — implies that the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> of the quantum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-reader monad coincides with that of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../1/5/6/16510/content.html">coreader comonad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⋆</mo> <mi>B</mi></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>B</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Vect</mi><mo>→</mo><mi>Vect</mi></mrow><annotation encoding="application/x-tex">\star_B \;\coloneqq\; \coprod_B (-) \;\colon\; Vect \to Vect</annotation></semantics></math>:</p>
+<div class="maruku-equation" id="eq:IsomorphismsOfUnderlyingFunctors"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mo>⋆</mo> <mi>B</mi></msub><mi class="mathscript">𝒱</mi></mtd> <mtd><mo>≃</mo></mtd> <mtd><msub><mo>⊕</mo> <mi>B</mi></msub><mi class="mathscript">𝒱</mi></mtd> <mtd><mo>≃</mo></mtd> <mtd><msub><mo>◯</mo> <mi>B</mi></msub><mi class="mathscript">𝒱</mi></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mo>≃</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><msup><mi>𝟙</mi> <mi>B</mi></msup><mo>⊗</mo><mi class="mathscript">𝒱</mi></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+  \star_B \mathscr{V}
+  &amp;\simeq&amp;
+  \oplus_B \mathscr{V}
+  &amp;\simeq&amp;
+  \bigcirc_B \mathscr{V}
+  \\
+  &amp;&amp; 
+  \simeq
+  \\
+  &amp;&amp; 
+  \mathbb{1}^B \otimes \mathscr{V}
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>In fact, the induced joint <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>- and <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a>-<a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> on this functor are compatible to jointly make the quantum reader be a <em><a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a></em>:</p>
+<p>An organized way to see this <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a>-<a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> on the quantum reader monad over a finite parameter set is to observe (which is a straightforward inspection, but we spell it out <a href="#Details">below</a>) that the quantum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-reader monad is also <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a> to the <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝟙</mi> <mi>B</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{1}^B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a></em> corresponding to the <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebra</a></p>
+<div class="maruku-equation" id="eq:AlgebraOfProjectorsInIntroduction"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝟙</mi> <mi>B</mi></msup><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mo>⊕</mo> <mi>B</mi></msub><mi>k</mi><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mi>CMon</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>Vect</mi> <mi>k</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><msub><mi>CAlg</mi> <mi>k</mi></msub><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  
+  \mathbb{1}^B 
+    \;=\; 
+  \oplus_B k
+  \;\in\;
+  CMon\big(Vect_k\big)
+  \,=\,
+  CAlg_k
+  \,,
+
+</annotation></semantics></math></div>
+<p>which is <a class="existingWikiWord" href="../../../../../1/6/3/7/7361/content.html">generated</a> by a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed set</a> of mutually orthogonal <a class="existingWikiWord" href="../../../../../2/7/7/8/8772/content.html">projection operators</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>P</mi> <mi>b</mi></msub><msub><mo stretchy="false">}</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\{P_b\}_{b \colon B}</annotation></semantics></math> (over the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>).</p>
+<p>It is immediate to check that <a class="maruku-eqref" href="#eq:AlgebraOfProjectorsInIntroduction">(2)</a> canonically carries the further <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of a <a class="existingWikiWord" href="../../../../../6/2/6/3/3626/content.html">Frobenius algebra</a> (see the example <a href="../../../../../6/2/6/3/3626/content.html#VectorSpaceWithLinearBasis">there</a>) with <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>𝟙</mi> <mi>B</mi></msup><mo>→</mo><msup><mi>𝟙</mi> <mi>B</mi></msup><mo>⊗</mo><msup><mi>𝟙</mi> <mi>B</mi></msup></mrow><annotation encoding="application/x-tex">\delta \;\colon\; \mathbb{1}^B \to \mathbb{1}^B \otimes \mathbb{1}^B</annotation></semantics></math> given by duplication over the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/8/2/7/7281/content.html">basis</a>: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>P</mi> <mi>b</mi></msub><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><msub><mi>P</mi> <mi>B</mi></msub><mo>⊗</mo><msub><mi>P</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">\delta \;\colon\; P_b \,\mapsto\, P_B \otimes P_b</annotation></semantics></math>. But this makes manifest that the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> of <a class="existingWikiWord" href="../../../../9/7/7/17790/content.html">tensoring</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝟙</mi> <mi>B</mi></msup><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{1}^B \otimes (-)</annotation></semantics></math> also carries the <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of a <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a> in a compatible way to make a <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a>.</p>
+<div class="maruku-equation" id="eq:EquivalencesOfTheQuantumReaderMonad"><span class="maruku-eq-number">(3)</span><code class="maruku-mathml">
+</code></div><div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/QuantumReaderFrobeniusMonad-221112.jpg" width="600px"/>
+</div>
+<p>In this its incarnation as the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝟙</mi> <mi>B</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{1}^B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer</a> <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a>, the quantum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-reader monad is famous in the literature on <a class="existingWikiWord" href="../../../../../4/0/7/3/3704/content.html">quantum information theory via dagger-compact categories</a> as encoding <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a> with respect to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-basis – known as <strong>classical structures</strong> or <strong>Frobenius structures</strong> in these references [<a href="#CoeckePavlović08">Coecke &amp; Pavlović (2008), §1.5.1</a>, <a href="#CoeckePaquette08">Coecke &amp; Paquette (2008), §2.3</a>], as well as <a class="existingWikiWord" href="../../../../../9/0/8/4/24809/content.html">classically controlled quantum gates</a> [<a href="#HeunenVicary19">Heunen &amp; Vicary (2019), around Lem. 5.61</a>, albeit not making the monadic algebra explicit] (See also at <em><a class="existingWikiWord" href="../../../../../7/6/9/0/10967/content.html">no-cloning theorem</a></em> <a href="../../../../../7/6/9/0/10967/content.html#ExampleOfNonCloningOfCoalgebraMap">this Remark</a>.)</p>
+<p>In this guise, the quantum reader monad is reflected by the “green spiders” in the <a class="existingWikiWord" href="../../../../../9/4/8/4/24849/content.html">ZX-calculus</a>.</p>
+<h2 id="Properties">Properties</h2>
+<h3 id="RelationToDependentLinearTypes">Relation to dependent linear types</h3>
+<p>We discuss the quantum reader monad as the reader monad induced by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../6/8/18680/content.html">dependent linear types</a> which have <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproducts</a>, such as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed sets</a> of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a>. Notation and graphics follows <a href="#CQTS22">CQTS (2022)</a>.</p>
+<p>
+<div class="num_prop" id="QuantumBReaderAlgebrasAreBDependentLinearTypes">
+<h6>Proposition</h6>
+<p><strong>(quantum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebras are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../6/8/18680/content.html">dependent linear types</a>)</strong> <br/> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace></mrow><annotation encoding="application/x-tex">B \;\in\;</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../1/5/9/0/951/content.html">FiniteSets</a>, the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> for the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mo>◯</mo> <mi>B</mi></msub><mo lspace="verythinmathspace">:</mo></mtd> <mtd><mi>Vect</mi></mtd> <mtd><mover><mo>→</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mover></mtd> <mtd><mi>Vect</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mi class="mathscript">ℋ</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>Maps</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>B</mi><mo>,</mo><mi class="mathscript">ℋ</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \bigcirc_B 
+    \colon
+    &amp;
+    Vect 
+    &amp;\xrightarrow{\phantom{---}}&amp;
+    Vect 
+    \\
+    &amp;
+    \mathscr{H}
+    &amp;\mapsto&amp;
+    Maps\big(B, \mathscr{H} \big)
+    \mathrlap{
+      \;
+      \simeq
+      \;
+      \underset{b \colon B}{\bigoplus}
+      \mathscr{H}
+    }
+  }
+
+</annotation></semantics></math></div>
+<p>on the category <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a> of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> (over any given <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>) is <a class="existingWikiWord" href="../../../../0/8/0/800/content.html">equivalent</a> to that of <a class="existingWikiWord" href="../../../../../7/4/5/1/1547/content.html">vector bundles</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> (hence to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed sets</a> of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Vect</mi> <mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow></msup><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>Vect</mi> <mi>B</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Vect^{\bigcirc_B}
+  \;\;\simeq\;\;
+  Vect_B
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<div style="margin: -10px 0px 20px 10px">
+<img src="/nlab/files/LinearTypesAsModalModules-221113.jpg" width="840px"/>
+</div>
+<p>(Something close to this statement, in its <a class="existingWikiWord" href="../../../../../9/9/8/5/5899/content.html">adjoint</a> form for the quantum <a class="existingWikiWord" href="../../../../1/5/6/16510/content.html">coreader comonad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>★</mo></mrow><annotation encoding="application/x-tex">\bigstar</annotation></semantics></math>, is the content of <a href="#CoeckePavlović08">Coecke &amp; Pavlović 2008, Thm. 1.5</a>.) 
+<div class="proof">
+<h6>Proof</h6>
+<p>We state first an abstract proof and then a concrete proof.</p>
+<p>Abstractly, observe that <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a> has (finite) <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproducts</a> (given by the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> of vector spaces) which together with the assumption that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite</a> implies that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>B</mi></munder><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>Vect</mi> <mi>B</mi></msub><mover><mo>→</mo><mspace width="thickmathspace"></mspace></mover><mi>Vect</mi></mrow><annotation encoding="application/x-tex">\underset{B}{\prod} \;\colon\; Vect_B \xrightarrow{\;} Vect</annotation></semantics></math>:</p>
+<ol>
+<li>
+<p>is not only a <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> but also a <a class="existingWikiWord" href="../../../../2/0/1/1020/content.html">left adjoint</a> (hence an <a class="existingWikiWord" href="../../../../../4/8/9/0/10984/content.html">ambidextrous adjoint</a> to <a class="existingWikiWord" href="../../../../../5/9/9/7/17995/content.html">pullback of vector bundles</a> along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>→</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">B \to \ast</annotation></semantics></math>), <a class="existingWikiWord" href="../../../../../5/7/2/8/18275/content.html">hence</a> in particular it <a class="existingWikiWord" href="../../../../../8/9/3/3/3398/content.html">preserves</a> all <a class="existingWikiWord" href="../../../../9/5/0/590/content.html">colimits</a>;</p>
+</li>
+<li>
+<p>is a <a class="existingWikiWord" href="../../../../../2/3/6/0/632/content.html">conservative functor</a> (since the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-components of any morphism of vector bundles over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> can still be extracted via (<a class="existingWikiWord" href="../../../../../7/0/6/6/16607/content.html">co-</a>)<a class="existingWikiWord" href="../../../../../7/7/8/5/5877/content.html">projections</a> from their image under forming the <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproduct</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>).</p>
+</li>
+</ol>
+<p>Therefore the conditions for the <a class="existingWikiWord" href="../../../../../5/0/0/3/3005/content.html">monadicity theorem</a> are met (see <a href="../../../../../5/0/0/3/3005/content.html#CrudeMonadicityTheorem">there</a>), implying that the functor is <a class="existingWikiWord" href="../../../../2/3/1/1320/content.html">monadic functor</a>, which in turn implies the claim.</p>
+<p><br/></p>
+<p>Alternatively, we now check the claim more concretely by unwinding what it means for a vector space to carry <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebra structure and for a linear map between vector spaces to be a <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> for this structure:</p>
+<p>First observe that the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> product <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>join</mi> <mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow></msup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mo>◯</mo> <mi>B</mi></msub><msub><mo>◯</mo> <mi>B</mi></msub><mover><mo>→</mo><mrow><msup><mi>join</mi> <mo>◯</mo></msup></mrow></mover><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">join^{\bigcirc_B} \;\colon\; \bigcirc_B \bigcirc_B \xrightarrow{join^{\bigcirc}} \bigcirc_B</annotation></semantics></math> on a <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>Vect</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} \,\in\, Vect</annotation></semantics></math> is explicitly given by:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msubsup><mi>join</mi> <mi class="mathscript">ℋ</mi> <mo>◯</mo></msubsup><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo>″</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>″</mo><mo>,</mo><mi>b</mi><mo>″</mo></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>″</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+  \underset{b \colon B}{\bigoplus}
+  \;
+  \underset{b' \colon B}{\bigoplus}
+  \;
+  \mathscr{H}
+  &amp;
+  \xrightarrow{\;\; join^{\bigcirc}_{\mathscr{H}} \;\;}
+  &amp;
+  \underset{b'' \colon B}{\bigoplus}
+  \mathscr{H}
+  \\
+  \big(
+     \psi_{b,b'}
+  \big)_{b,b' \colon B}
+  &amp;\mapsto&amp;
+  \big(
+    \psi_{b'' ,b''}
+  \big)_{b'' \colon B}
+  }
+
+</annotation></semantics></math></div>
+<p>and that a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebra structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear map</a> of this form:</p>
+<div class="maruku-equation" id="eq:MapsUnderlyingAlgebraStructureOverLinearReaderMonad"><span class="maruku-eq-number">(4)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>ρ</mi> <mi class="mathscript">ℋ</mi> <mo>◯</mo></msubsup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><munder><mo>⊕</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi><mover><mo>→</mo><mrow><mphantom><mo lspace="verythinmathspace" rspace="0em">−</mo></mphantom><mo stretchy="false">(</mo><msub><mi>P</mi> <mi>b</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub><mphantom><mo lspace="verythinmathspace" rspace="0em">−</mo></mphantom></mrow></mover><mi class="mathscript">ℋ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \rho^\bigcirc_{\mathscr{H}}
+  \;\colon\;
+  \underset{b \colon B}{\oplus}
+  \mathscr{H}
+  \xrightarrow{\phantom{-}(P_b)_{b \colon B}\phantom{-}}
+  \mathscr{H}  
+  \,.
+
+</annotation></semantics></math></div>
+<p>Of such maps, the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-action property (<a href="../../../../../7/6/0/1/21067/content.html#eq:ActionProperty">here</a>) demands that the following two linear maps are equal:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><msubsup><mi>join</mi> <mi class="mathscript">ℋ</mi> <mo>◯</mo></msubsup><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo>″</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><msubsup><mi>ρ</mi> <mi class="mathscript">ℋ</mi> <mo>◯</mo></msubsup><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>″</mo><mo>,</mo><mi>b</mi><mo>″</mo></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>″</mo><mo>,</mo><mi>b</mi><mo>″</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>b</mi><mo>″</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><msub><mi>P</mi> <mrow><mi>b</mi><mo>″</mo></mrow></msub><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>″</mo><mo>,</mo><mi>b</mi><mo>″</mo></mrow></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mtext>and</mtext></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mo>◯</mo><msubsup><mi>ρ</mi> <mi class="mathscript">ℋ</mi> <mo>◯</mo></msubsup><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo>″</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><msubsup><mi>ρ</mi> <mi class="mathscript">ℋ</mi> <mo>◯</mo></msubsup><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><msub><mi>P</mi> <mi>b</mi></msub><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo></mrow></msub><mo stretchy="false">)</mo><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><msub><mi>P</mi> <mrow><mi>b</mi><mo>′</mo></mrow></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>P</mi> <mi>b</mi></msub><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo></mrow></msub><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{    
+    &amp;
+    \underset{b \colon B}{\bigoplus}
+    \;
+    \underset{b' \colon B}{\bigoplus}
+    \;
+    \mathscr{H}
+      &amp;\xrightarrow{\; join^\bigcirc_{\mathscr{H}}  \;}&amp;
+    \underset{b'' \colon B}{\bigoplus}
+    \mathscr{H}
+      &amp;\xrightarrow{\; \rho^\bigcirc_{\mathscr{H}} \;}&amp;  
+    \mathscr{H}
+    \\
+    &amp;
+    \big(
+       \psi_{b,b'}
+    \big)_{b,b' \colon B}    
+    &amp;\mapsto&amp;
+    \big(
+       \psi_{b'',b''}
+    \big)_{b'',b'' \colon B}    
+    &amp;\mapsto&amp;
+    \underset{b'' \colon B}{\sum}
+    P_{b''}(\psi_{b'',b''})
+    \\
+    \text{and}
+    &amp;
+    \\
+    &amp;
+    \underset{b \colon B}{\bigoplus}
+    \;
+    \underset{b' \colon B}{\bigoplus}
+    \;
+    \mathscr{H}
+      &amp;\xrightarrow{\; \bigcirc \rho^\bigcirc_{\mathscr{H}}  \;}&amp;
+    \underset{b'' \colon B}{\bigoplus}
+    \mathscr{H}
+      &amp;\xrightarrow{\; \rho^\bigcirc_{\mathscr{H}} \;}&amp;  
+    \mathscr{H}
+    \\
+    &amp;
+    \big(
+       \psi_{b,b'}
+    \big)_{b,b' \colon B}    
+    &amp;\mapsto&amp;
+    \big(
+       \underset{b \colon B}{\sum}
+       P_{b}(\psi_{b,b'})
+    \big)_{b' \colon B}    
+    &amp;\mapsto&amp;
+    \underset{b, b' \colon B}{\sum}
+    P_{b'}\big(P_{b}(\psi_{b,b'})\big)
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>By considering the value of these maps on <a class="existingWikiWord" href="../../../../../2/8/4/7/7482/content.html">tuples</a> of <a class="existingWikiWord" href="../../../../../8/8/0/6/6088/content.html">vectors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ψ</mi> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\big(\psi_{b,b'}\big)_{b,b' \colon B}</annotation></semantics></math> which are non-<a class="existingWikiWord" href="../../../../../7/4/3/4/4347/content.html">zero</a> only for single elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>∈</mo><mi>B</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">(b,b') \in B \times B</annotation></semantics></math> one finds that the above condition is equivalent to the following condition:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>∀</mo><mrow><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>P</mi> <mi>b</mi></msub><mo>∘</mo><msub><mi>P</mi> <mrow><mi>b</mi><mo>′</mo></mrow></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>{</mo><mrow><mtable><mtr><mtd><msub><mi>P</mi> <mi>b</mi></msub></mtd> <mtd><mtext>if</mtext><mspace width="thickmathspace"></mspace><mi>b</mi><mo>=</mo><mi>b</mi><mo>′</mo></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><mtext>otherwise</mtext><mspace width="thinmathspace"></mspace><mo>.</mo></mtd></mtr></mtable></mrow></mrow></mrow><annotation encoding="application/x-tex">
+  \underset{
+    b, b' \colon B
+  }{
+    \forall
+  } 
+  \;\;\;\; 
+    P_b \circ P_{b'} 
+  \;=\; 
+  \left\{
+    \array{
+      P_b &amp;\text{if} \; b = b'
+      \\
+      0  &amp; \text{otherwise}
+      \,.
+    }
+  \right.
+
+</annotation></semantics></math></div>
+<p>Moreover, the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="0em" rspace="thinmathspace">id</mo><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msup><mi>ret</mi> <mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow></msup><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mover><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\id \xrightarrow{\;\; ret^{\bigcirc_B} \;\;} \bigcirc_B</annotation></semantics></math> is given by the <a class="existingWikiWord" href="../../../../../9/4/3/2/2349/content.html">diagonal map</a> into the <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproduct</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msubsup><mi>ret</mi> <mi class="mathscript">ℋ</mi> <mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow></msubsup><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mi>ψ</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mi>b</mi></msub><mo>≔</mo><mi>ψ</mi><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}
+    &amp;\xrightarrow{\;\;
+      ret^{\bigcirc_B}_{\mathscr{H}}
+    \;\;}
+    &amp;
+    \underset{b \colon B}{\bigoplus}
+    \mathscr{H}
+    \\
+    \psi
+    &amp;\mapsto&amp;
+    (\psi_b \coloneqq \psi)_{b \colon B}
+  }
+
+</annotation></semantics></math></div>
+<p>so that the unitality property (<a href="../../../../../7/6/0/1/21067/content.html#eq:UnitProperty">here</a>) of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebra structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>P</mi> <mi>b</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(P_b)_{b \colon B}</annotation></semantics></math> demands equivalently that the <a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">composite</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><msubsup><mi>ret</mi> <mi class="mathscript">ℋ</mi> <mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow></msubsup><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><msubsup><mi>ρ</mi> <mi class="mathscript">ℋ</mi> <mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow></msubsup><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mi>ψ</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>ψ</mi><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><msub><mi>P</mi> <mi>b</mi></msub><mo stretchy="false">(</mo><mi>ψ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}   
+    &amp;\xrightarrow{\; ret^{\bigcirc_B}_{\mathscr{H}} \;}&amp;
+    \underset{b \colon B}{\bigoplus}
+    \mathscr{H}
+    &amp;\xrightarrow{\; \rho^{\bigcirc_B}_{\mathscr{H}} \;}&amp;
+    \mathscr{H}
+    \\
+    \psi
+    &amp;\mapsto&amp;
+    \big( 
+      \psi
+    \big)_{b \colon B}
+    &amp;\mapsto&amp;
+    \underset{b \colon B}{\sum}
+    \;
+    P_b(\psi)
+  }
+
+</annotation></semantics></math></div>
+<p>is the <a class="existingWikiWord" href="../../../../../9/0/4/1/1409/content.html">identity function</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>, hence that this system of <a class="existingWikiWord" href="../../../../../2/7/7/8/8772/content.html">projection operators</a> is “complete” in that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><msub><mi>P</mi> <mi>b</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>id</mi> <mi class="mathscript">ℋ</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \underset{b \colon B}{\bigoplus} P_b
+  \;=\;
+  id_{\mathscr{H}}
+  \,.
+
+</annotation></semantics></math></div>
+<p>In summary, this means that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/8/4/7/7482/content.html">tuples</a> of <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear maps</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>P</mi> <mi>b</mi></msub><mo lspace="verythinmathspace">:</mo><mi class="mathscript">ℋ</mi><mo>→</mo><mi class="mathscript">ℋ</mi><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(P_b \colon \mathscr{H} \to \mathscr{H})_{b \colon B}</annotation></semantics></math> as in <a class="maruku-eqref" href="#eq:MapsUnderlyingAlgebraStructureOverLinearReaderMonad">(4)</a> to constitute a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-module structure is equivalent to them being systems of orthogonal linear <a class="existingWikiWord" href="../../../../../2/7/7/8/8772/content.html">projection operators</a>, whose <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">images</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi class="mathscript">ℋ</mi> <mi>b</mi></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>im</mi><mo stretchy="false">(</mo><msub><mi>P</mi> <mi>b</mi></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>⊂</mo><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">
+  \mathscr{H}_b \;\coloneqq\; im(P_b) \;\subset\; \mathscr{H}
+
+</annotation></semantics></math></div>
+<p><a class="existingWikiWord" href="../../../../../7/2/1/8/8127/content.html">span</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thickmathspace"></mspace></mrow><annotation encoding="application/x-tex">\;</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> under <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><msub><mi class="mathscript">ℋ</mi> <mi>b</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathscr{H}
+  \;\simeq\;
+  \underset{b \colon B}{\bigoplus}
+  \mathscr{H}_b
+  \,.
+
+</annotation></semantics></math></div>
+<p>Such structures, of course, are exactly the images under the right <a class="existingWikiWord" href="../../../../../1/9/0/1/1091/content.html">base change</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>B</mi></munder><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>Vect</mi> <mi>B</mi></msub><mo>⟶</mo><mspace width="thickmathspace"></mspace><mi>Vect</mi></mrow><annotation encoding="application/x-tex">\underset{B}{\prod} \;\colon\; Vect_B \longrightarrow{\;} Vect</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed sets</a> of vector spaces.</p>
+<p>Finally, the <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a>-property on a <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear map</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mover><mo>→</mo><mi>ϕ</mi></mover><mi class="mathscript">ℋ</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\mathscr{H} \xrightarrow{\phi} \mathscr{H}'</annotation></semantics></math> between the underlying vector spaces of two such <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-modules demands that the following <a class="existingWikiWord" href="../../../../../5/5/7/3/3755/content.html">diagram commutes</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><munder><mo>⊕</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><msup><mrow></mrow> <mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>P</mi> <mi>b</mi></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow></msup></mrow></mpadded><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd> <mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo><mpadded width="0"><mrow><msup><mrow></mrow> <mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>P</mi><msub><mo>′</mo> <mi>b</mi></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow></msup></mrow></mpadded></mtd></mtr> <mtr><mtd><mi class="mathscript">ℋ</mi></mtd> <mtd><munder><mo>⟶</mo><mrow><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom><mi>ϕ</mi><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mrow></munder></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>′</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex"> 
+  \array{
+    \underset{b \colon B}{\bigoplus}
+    \mathscr{H}
+    &amp;\xrightarrow{\;\;\;
+      \underset{b \colon B}{\oplus}
+    \;\;\;}&amp;
+    \underset{b \colon B}{\bigoplus}
+    \mathscr{H}
+    \\
+    \mathllap{
+      {}^{
+      \big(
+        P_b 
+      \big)_{b \colon B}
+      }
+    }
+    \big\downarrow
+    &amp;&amp;
+    \big\downarrow
+    \mathrlap{
+      {}^{
+      \big(
+        P'_b 
+      \big)_{b \colon B}
+      }
+    }
+    \\
+    \mathscr{H}
+    &amp;
+    \underset{\phantom{---} \phi \phantom{---} }
+      {\longrightarrow}
+    &amp;
+    \mathscr{H}'
+    \,.
+  }
+
+</annotation></semantics></math></div>
+<p>The <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-indexed components of this condition require that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../1/0/3/4/4301/content.html">commutes</a> with all these <a class="existingWikiWord" href="../../../../../2/7/7/8/8772/content.html">projection operators</a>, in that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⊢</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>P</mi><msub><mo>′</mo> <mi>b</mi></msub><mo>∘</mo><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mo>∘</mo><msub><mi>P</mi> <mi>b</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  b \colon B
+  \;\;\;\;
+  \vdash
+  \;\;\;\;
+  P'_b \circ \phi
+  \;=\;
+  \phi \circ P_b
+  \,.
+
+</annotation></semantics></math></div>
+<p>But this evidently means that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> itself is the image under the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a>-<a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mo>⊕</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo></mrow></munder><msub><mi>ϕ</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">
+  \phi
+  \;=\;
+  \underset{b \colon}{\oplus}
+  \phi_b
+
+</annotation></semantics></math></div>
+<p>of a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/8/4/7/7482/content.html">tuple</a> of <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear maps</a> between the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-indexed component spaces:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi class="mathscript">ℋ</mi> <mi>b</mi></msub><mo>⟶</mo><mi class="mathscript">ℋ</mi><mo>′</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  b \colon B
+  \;\;\;
+  \colon
+  \;\;\;
+  \mathscr{H}_b \longrightarrow \mathscr{H}'
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the defining property of morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Vect</mi> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">Vect_B</annotation></semantics></math> and hence shows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebra homomorphisms are equivalently morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed sets</a> of vector spaces, hence that the two <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a> are <a class="existingWikiWord" href="../../../../0/8/0/800/content.html">agree</a>.</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="FreeQuantumReaderAlgebras">
+<h6>Example</h6>
+<p><strong>(free quantum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebras and quantum measurement bases)</strong> <br/> The <em><a href="../../../../../7/6/0/1/21067/content.html#FreeAlgebras">free</a></em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebras in <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a> are those whose underlying vector space is of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub><mi class="mathscript">ℬ</mi><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\bigcirc_B \mathscr{B} = \underset{b \colon B}{\bigoplus} \mathscr{B}</annotation></semantics></math> for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>Vect</mi></mrow><annotation encoding="application/x-tex">\mathscr{B} \,\in \, Vect</annotation></semantics></math>, hence, under the equivalence of Prop. <a class="maruku-ref" href="#QuantumBReaderAlgebrasAreBDependentLinearTypes"></a>, are those <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../6/8/18680/content.html">dependent linear types</a> which happen to assign the same vector space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b \colon B</annotation></semantics></math>.</p>
+<p>But <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphisms</a> of such free <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebras are still allowed to be non-trivially <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-dependent families of linear maps. This is directly a special case of Prop. <a class="maruku-ref" href="#QuantumBReaderAlgebrasAreBDependentLinearTypes"></a> but is also immediate under the <a href="../../../../../6/0/0/2/2006/content.html#KleisliEquivalence">Kleisli equivalence</a> from observing that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli morphisms</a> are of the following form:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℬ</mi></mtd> <mtd><mover><mo>→</mo><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>ϕ</mi> <mi>b</mi></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></msub></mrow></mover></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo><mrow><mi>b</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi></mrow></munder><mi class="mathscript">ℬ</mi><mo>′</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{B}
+    &amp;\xrightarrow{
+      \big(
+        \phi_b
+      \big)_{b \colon B}
+    }&amp;
+    \underset{b \colon B}{\bigoplus}
+    \mathscr{B}'
+    \,.
+  }
+
+</annotation></semantics></math></div>
+<h3 id="RelationToQuantumMeasurement">Relation to quantum measurement</h3>
+<p>In <a class="existingWikiWord" href="../../../../../1/0/6/3/3601/content.html">quantum information theory</a> the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebras in <a class="existingWikiWord" href="../../../../../3/9/2/9/9293/content.html">complex vector spaces</a> which are free on the <a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>ℂ</mi><mi>Vect</mi></mrow><annotation encoding="application/x-tex">\mathbb{C} \,\in\, \mathbb{C} Vect</annotation></semantics></math> (the <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">1-dimensional</a> <a class="existingWikiWord" href="../../../../../3/9/2/9/9293/content.html">complex vector space</a>) play the role of (<a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite dimensional</a> <a class="existingWikiWord" href="../../../../../3/9/2/9/9293/content.html">complex vector spaces</a> <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a>) <a class="existingWikiWord" href="../../../../../4/0/1/6/26104/content.html">finite-dimensional Hilbert spaces</a> <a class="existingWikiWord" href="../../../../../6/3/9/7/7936/content.html">of quantum states</a> which are <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">spanned</a> by the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> regarded as a “<a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a> <a class="existingWikiWord" href="../../../../../1/8/2/7/7281/content.html">basis</a>”.</p>
+<p>For example, the <a class="existingWikiWord" href="../../../6/8/18680/content.html">dependent linear type</a> of <a class="existingWikiWord" href="../../../../../9/3/9/7/7939/content.html">qbits</a> is the free <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math>-algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>Bool</mi></msub><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\bigcirc_{Bool} \mathbb{C}</annotation></semantics></math> spanned by the <a class="existingWikiWord" href="../../../../../5/5/6/6/6655/content.html">classical type</a> <a class="existingWikiWord" href="../../../../../2/5/7/4/4752/content.html">Bool</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">= \{0,1\}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../2/5/7/4/4752/content.html">bits</a>, reflecting the two canonical <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a>-outcomes (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mn>0</mn><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\vert 0\rangle</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mn>1</mn><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\vert 1 \rangle</annotation></semantics></math>) of <a class="existingWikiWord" href="../../../../../9/3/9/7/7939/content.html">qbits</a>.</p>
+<p id="QuantumMeasurementAsIndefinitenessHandling"> Curiously, from this one finds that <em><a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a> is exactly indefiniteness handling</em></p>
+<p>where</p>
+<ul>
+<li>
+<p>“indefiniteness” is understood as the the effect/<a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modality</a> expressed by the reader monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_B</annotation></semantics></math> (see <a href="../../../../../4/1/0/6/16014/content.html#RelationToPotentiality">here</a>),</p>
+</li>
+<li>
+<p>“handling” is understood as <em>effect handling</em> in the sense of effect-<a class="existingWikiWord" href="../../../3/8/8380/content.html">monads in computer science</a> (see <a href="../../../3/8/8380/content.html#MonadModulesInIdeaSection">here</a>);</p>
+</li>
+</ul>
+<p>namely:</p>
+<div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/QMeasurementViaIndefinitenessHandling-221109c.jpg" width="730px"/>
+</div>
+<p>Notice that this process may be understood as the “<a class="existingWikiWord" href="../../../../../7/4/8/4/24847/content.html">dynamic lifting</a>” of <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a>-results into the <a class="existingWikiWord" href="../../../../../7/8/5/0/587/content.html">context</a> (here: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">B = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/5/7/4/4752/content.html">Bool</a>) of the ambient <a class="existingWikiWord" href="../../../6/8/18680/content.html">dependent linear type theory</a>.</p>
+<p>For more on this see at <em><a class="existingWikiWord" href="../../../../../5/0/7/4/24705/content.html">quantum circuits via dependent linear types</a></em>.</p>
+</div>
+</p>
+<p><br/></p>
+<p>This naturally relates to the discussion of <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a> via <a class="existingWikiWord" href="../../../../../6/2/6/3/3626/content.html">Frobenius algebra</a>-structures which is popular in the context of <a class="existingWikiWord" href="../../../../../4/0/7/3/3704/content.html">quantum information theory via dagger-compact categories</a> – as follows:</p>
+<p>
+<div class="num_remark" id="QuantumrReaderMonadIsFrobenius">
+<h6>Remark</h6>
+<p><strong>(quantum reader monad is Frobenius)</strong> <br/> Since the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> is a <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproduct</a> and using our running assumption that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite set</a>, it follows that the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> of the quantum <a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a> from Prop. <a class="maruku-ref" href="#QuantumBReaderAlgebrasAreBDependentLinearTypes"></a> coincides with that of the <a class="existingWikiWord" href="../../../../1/5/6/16510/content.html">coreader comonad</a>, and hence that the quantum reader monad is a <em><a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a></em> (see there).</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="QuantumReaderMonadIsSpecialFrobeniusWriterMonad">
+<h6>Remark</h6>
+<p><strong>(quantum reader monad is special Frobenius writer monad)</strong> <br/> Consider the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed</a> the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">k^{\otimes^B}</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> with itself as a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">algebra</a> and write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup></mrow><mtext>-</mtext><mi>Writer</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Vect</mi><mo>→</mo><mi>Vect</mi></mrow><annotation encoding="application/x-tex">
+  {k^{\otimes^B}}\text{-}Writer
+  \;\colon\;
+  Vect \to Vect
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a> corresponding to this <a class="existingWikiWord" href="../../../../../1/4/3/6/16341/content.html">monoid object</a> in <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a>: The monad which acts by forming the <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Writer</mi> <mrow><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup></mrow></msub><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>V</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">Writer_{k^{\otimes^B}}(V) \;\coloneqq\; V \otimes \big( k^{\otimes^B} \big) </annotation></semantics></math> and whose monad multiplication and <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit of a monad</a> are induced from the <a class="existingWikiWord" href="../../../../../4/7/2/7/17274/content.html">multiplication</a> and <a class="existingWikiWord" href="../../../../1/7/4/4710/content.html">unit</a> in this monoid.</p>
+<p>The above proof of Prop. <a class="maruku-ref" href="#QuantumBReaderAlgebrasAreBDependentLinearTypes"></a> shows at once that this <a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a> is <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a> to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-reader monad:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msub><mi>Writer</mi> <mrow><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \bigcirc_B
+  \;\simeq\;
+  Writer_{k^{\otimes^B}}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Now the <a class="existingWikiWord" href="../../../../../2/3/2/3/3232/content.html">monad modules</a> over a <a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a> are just the ordinary <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a> over the corresponding <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a>, so that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>B</mi></msub><mi>Mod</mi><mo stretchy="false">(</mo><mi>Vect</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mi>Mod</mi><mo stretchy="false">(</mo><mi>Vect</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \bigcirc_B Mod(Vect)
+  \;\simeq\;
+  \big(
+    k^{\otimes^B} 
+  \big)Mod(Vect)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This provides a rather transparent re-derivation of and alternative perspective on Example <a class="maruku-ref" href="#FreeQuantumReaderAlgebras"></a>.</p>
+<p><a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">Dually</a>, as in Prop. <a class="maruku-ref" href="#QuantumReaderMonadIsFrobenius"></a>, the quantum <a class="existingWikiWord" href="../../../../1/5/6/16510/content.html">coreader comonad</a> is isomorphic to the <a class="existingWikiWord" href="../../../../1/5/6/16510/content.html">coreader comonad</a> corresponding to the <a class="existingWikiWord" href="../../../../../1/8/1/0/181/content.html">coalgebra</a>-<a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">k^{\otimes^B}</annotation></semantics></math>.</p>
+<p>Hence, as a <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a> (Prop. <a class="maruku-ref" href="#QuantumReaderMonadIsFrobenius"></a>), the quantum reader corresponds to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi> <mrow><msup><mo>⊗</mo> <mi>B</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">k^{\otimes^B}</annotation></semantics></math> regarded as a <a class="existingWikiWord" href="../../../../../6/2/6/3/3626/content.html">Frobenius algebra</a>, in fact as a commutative and special Frobenius algebra. In this form the quantum reader monad is prominent in the literature on <a class="existingWikiWord" href="../../../../../4/0/7/3/3704/content.html">quantum information theory via dagger-compact categories</a> [<a href="#CoeckePavlović08">Coecke &amp; Pavlović (2008), §1.5.1</a>, <a href="#CoeckePaquette08">Coecke &amp; Paquette (2008), §2.3</a>].</p>
+</div>
+</p>
+<h3 id="MonoidalMonadStructure">Monoidal monad structure and Decoherence</h3>
+<p>
+<div class="num_prop" id="SymmetricMonoidalMonadStructure">
+<h6>Proposition</h6>
+<p>The above quantum reader monad carries the <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of a <a class="existingWikiWord" href="../../../../../7/1/1/5/5117/content.html">symmetric</a> <a class="existingWikiWord" href="../../../../../1/1/4/7/7411/content.html">monoidal monad</a> with respect to the <a class="existingWikiWord" href="../../../../9/7/7/17790/content.html">tensor product of vector spaces</a> (or whatever the <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a> of the given linear types) as follows:</p>
+<div style="margin: -20px 0px 20px 0px">
+<img src="/nlab/files/LaxMonoidalStructureOnQuantumReader-230930.jpg" width="710px"/>
+</div>
+<p id="ComomoidalStructure"> <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">Dually</a>, the quantum coreaders is comonoidal comonadic:</p>
+<div style="margin: -40px 0px 20px 0px">
+<img src="/nlab/files/LaxCoMonoidalStructureOnQuantumCoreader-230930.jpg" width="710px"/>
+</div>
+<p></p>
+</div>
+ (Here we have assumed <a class="existingWikiWord" href="../../../../7/5/0/570/content.html">strict monoidal structure</a> cf. [<a href="../../../../../../../missing.html#Schauenburg01">Schauenburg 2001</a>], to notationally suppress its <a class="existingWikiWord" href="../../../../../4/2/9/3/3924/content.html">associators</a> and <a class="existingWikiWord" href="../../../../../5/2/9/3/3925/content.html">unitors</a>.)</p>
+<p>
+<div class="num_remark" id="MonoidalMonadStructureAndDecoherence">
+<h6>Remark</h6>
+<p>The monoidal monad structure from Prop. <a class="maruku-ref" href="#SymmetricMonoidalMonadStructure"></a> extends the <a href="#RelationToQuantumMeasurement">above</a> quantum measurement typing from <a class="existingWikiWord" href="../../../../../1/8/9/7/7981/content.html">pure states</a> to <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed states</a>, by implementing the <a class="existingWikiWord" href="../../../../../6/9/2/9/9296/content.html">decoherence</a> process which eliminates the off-diagonal terms in the density matrix, as indicated in the following:</p>
+<center>
+<img src="/nlab/files/QuantumReaderMonoidalnessAsDecoherence-230903.jpg" width="780"/>
+</center>
+<p>This operation hence sends quantum states (pure or not) to their corresponding <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability distributions</a> (under <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a>) just as demanded by the <em><a class="existingWikiWord" href="../../../../../1/7/3/4/24371/content.html">Born rule</a></em> postulate.</p>
+<p></p>
+</div>
+</p>
+<p><br/></p>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../2/1/6/26120/content.html">quantum costate comonad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/7/4/24705/content.html">quantum circuits via dependent linear types</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/5/4/5/25458/content.html">doubly closed monoidal category</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The <a class="existingWikiWord" href="content.html">quantum reader monad</a> – implicitly, in its incarnation as the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝟙</mi> <mi>B</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{1}^B</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer</a> <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a> – is highlighted in the literature on <a class="existingWikiWord" href="../../../../../4/0/7/3/3704/content.html">quantum information theory via dagger-compact categories</a> as formalizing “classical structures” (namely <a class="existingWikiWord" href="../../../../../1/8/2/7/7281/content.html">linear bases</a> for <a class="existingWikiWord" href="../../../../../5/2/8/9/9825/content.html">quantum measurement</a>):</p>
+<ul>
+<li id="CoeckePavlović08">
+<p><a class="existingWikiWord" href="../../../../../6/0/6/3/3606/content.html">Bob Coecke</a>, <a class="existingWikiWord" href="../../../../../9/9/5/8/8599/content.html">Duško Pavlović</a>, §1.5.1 of: <em>Quantum measurements without sums</em>, in: <a class="existingWikiWord" href="../../../../../5/2/4/8/8425/content.html">Louis Kauffman</a>, <a class="existingWikiWord" href="../../../../../6/7/6/2/22676/content.html">Samuel Lomonaco</a> (eds.), <em>Mathematics of Quantum Computation and Quantum Technology</em>, Taylor &amp; Francis (2008) 559-596 [<a href="https://arxiv.org/abs/quant-ph/0608035">arXiv:quant-ph/0608035</a>, <a href="https://doi.org/10.1201/9781584889007">doi:10.1201/9781584889007</a>]</p>
+</li>
+<li id="CoeckePaquette08">
+<p><a class="existingWikiWord" href="../../../../../6/0/6/3/3606/content.html">Bob Coecke</a>, <a class="existingWikiWord" href="../../../../../7/7/8/4/24877/content.html">Eric Oliver Paquette</a>, §2.3 in: <em>POVMs and Naimark’s theorem without sums</em>, Electronic Notes in Theoretical Computer Science <strong>210</strong> (2008) 15-31 [<a href="https://arxiv.org/abs/quant-ph/0608072">arXiv:quant-ph/0608072</a>, <a href="https://doi.org/10.1016/j.entcs.2008.04.015">doi:10.1016/j.entcs.2008.04.015</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/6/3/3606/content.html">Bob Coecke</a>, <a class="existingWikiWord" href="../../../../../7/7/8/4/24877/content.html">Eric Paquette</a>, <a class="existingWikiWord" href="../../../../../9/9/5/8/8599/content.html">Duško Pavlović</a>, Def. 2.8 in: <em>Classical and quantum structures</em> (2008) [<a href="http://www.comlab.ox.ac.uk/files/627/RR-08-02.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Coecke-Paquette-Pavlovic-CQS.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/6/3/3606/content.html">Bob Coecke</a>, <a class="existingWikiWord" href="../../../../../7/7/8/4/24877/content.html">Eric Oliver Paquette</a>, <a class="existingWikiWord" href="../../../../../9/9/5/8/8599/content.html">Duško Pavlović</a>, <em>Classical and quantum structuralism</em> [<a href="https://arxiv.org/abs/0904.1997">arXiv:0904.1997</a>]</p>
+</li>
+</ul>
+<p>and the evolution of the “classical structures”-monad into the “spider”-ingredient of the <a class="existingWikiWord" href="../../../../../9/4/8/4/24849/content.html">ZX-calculus</a>:</p>
+<ul>
+<li id="CoeckeDuncan08">
+<p><a class="existingWikiWord" href="../../../../../6/0/6/3/3606/content.html">Bob Coecke</a>, <a class="existingWikiWord" href="../../../../../3/8/2/7/7283/content.html">Ross Duncan</a>, §3 in: <em>Interacting Quantum Observables</em>, in <em>Automata, Languages and Programming. ICALP 2008</em>, Lecture Notes in Computer Science <strong>5126</strong>, Springer (2008) [<a href="https://doi.org/10.1007/978-3-540-70583-3_25">doi:10.1007/978-3-540-70583-3_25</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/0/6/3/3604/content.html">Aleks Kissinger</a>, §§2 in: <em>Graph Rewrite Systems for Classical Structures in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>†</mo></mrow><annotation encoding="application/x-tex">\dagger</annotation></semantics></math>-Symmetric Monoidal Categories</em>, MSc thesis, Oxford (2008) [<a href="https://www.cs.ox.ac.uk/people/bob.coecke/Aleks.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Kissinger-CLassicalStructures.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/0/6/3/3604/content.html">Aleks Kissinger</a>, §4 in: <em>Exploring a Quantum Theory with Graph Rewriting and Computer Algebra</em>, in: <em>Intelligent Computer Mathematics. CICM 2009</em>, Lecture Notes in Computer Science <strong>5625</strong> (2009) 90-105 [<a href="https://doi.org/10.1007/978-3-642-02614-0_12">doi:10.1007/978-3-642-02614-0_12</a>]</p>
+</li>
+<li id="CoeckeDuncan11">
+<p><a class="existingWikiWord" href="../../../../../6/0/6/3/3606/content.html">Bob Coecke</a>, <a class="existingWikiWord" href="../../../../../3/8/2/7/7283/content.html">Ross Duncan</a>, Def. 6.4 in: <em>Interacting Quantum Observables: Categorical Algebra and Diagrammatics</em>, New J. Phys. <strong>13</strong> (2011) 043016 [<a href="http://arxiv.org/abs/0906.4725">arXiv:0906.4725</a>, <a href="https://doi.org/10.1088/1367-2630/13/4/043016">doi:10.1088/1367-2630/13/4/043016</a>]</p>
+</li>
+</ul>
+<p>Also, albeit without explicit mentioning of <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monadic</a> structures:</p>
+<ul>
+<li id="HeunenVicary19"><a class="existingWikiWord" href="../../../../../7/2/0/5/5027/content.html">Chris Heunen</a>, <a class="existingWikiWord" href="../../../../../4/5/3/4/4354/content.html">Jamie Vicary</a>, around Lem. 5.61 in <em>Categories for Quantum Theory</em>, Oxford University Press 2019 [<a href="https://global.oup.com/academic/product/categories-for-quantum-theory-9780198739616">ISBN:9780198739616</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/7/3/5/25372/content.html">Stefano Gogioso</a>, <em>Finite-dimensional Quantum Observables are the Special Symmetric Dagger-Frobenius Algebras of CP Maps</em>, EPTCS <strong>394</strong> (2023) 432-441 [<a href="https://arxiv.org/abs/2110.07074">arXiv:2110.07074</a>]</li>
+</ul>
+<p>The above discussion follows:</p>
+<ul>
+<li id="CQTS22"><a class="existingWikiWord" href="../../../../../2/1/5/2/2512/content.html">Hisham Sati</a>, <a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>: <em><a class="existingWikiWord" href="/schreiber/show/The+Quantum+Monadology">The Quantum Monadology</a></em>, Quantum Studies: Mathematics and Foundations <strong>12</strong> 25 (2025) [<a href="https://arxiv.org/abs/2310.15735">arXiv:2310.15735</a>, <a href="https://doi.org/10.1007/s40509-025-00368-5">doi:10.1007/s40509-025-00368-5</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      continuation monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      continuation monad
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#setting_and_notation">Setting and notation</a></li>
+<li><a href="#the_dualization_adjunction">The dualization adjunction</a></li>
+<li><a href="#the_continuation_monad">The continuation monad</a></li>
+<li><a href="#equivalent_formulations">Equivalent formulations</a></li>
+<li><a href="#strength">Strength</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#first_examples">First examples</a></li>
+<li><a href="#further_examples">Further examples</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#algebras">Algebras</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>In a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> with <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal homs</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,-]</annotation></semantics></math>, given an <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, the <em>continuation monad</em> is the <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↦</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo></mrow><annotation encoding="application/x-tex">X \mapsto \big[ [X, S], S\big]</annotation></semantics></math>, together with the <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>X</mi></mtd> <mtd><mover><mo>⟶</mo><mi>η</mi></mover></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo></mtd></mtr> <mtr><mtd><mi>x</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>λ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccl}
+    X 
+    &amp;\overset{\eta}{\longrightarrow}&amp;
+    \big[ [X,S],S \big]
+    \\
+    x &amp;\mapsto&amp; \lambda\big(k:[X,S]\big).\, k(x)
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>and multiplication</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mo maxsize="1.2em" minsize="1.2em">[</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo></mtd> <mtd><mover><mo>⟶</mo><mi>μ</mi></mover></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo></mtd></mtr> <mtr><mtd><mi>M</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>λ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>M</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>λ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>.</mo><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccl}
+    \big[ \big[ [ [X,S],S ],S \big],S \big] 
+    &amp;\overset{\mu}{\longrightarrow}&amp;
+    \big[ [X,S],S\big]
+    \\
+    M &amp;\mapsto&amp; 
+    \lambda\big(k:[X,S]\big).\, 
+      M\Big(\lambda\big(c: [ [X,S],S]\big). c(k)\Big)
+    \mathrlap{\,.}
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>In general <a class="existingWikiWord" href="../../../../../9/7/0/0/79/content.html">mathematics</a> this <a class="existingWikiWord" href="../../../../5/2/0/255/content.html">monad</a> is ubiquitous as modelling <em>double dualization</em> (cf. Ex. <a class="maruku-ref" href="#DoublePowerset"></a> and Ex. <a class="maruku-ref" href="#DoubleDualVectorSpaces"></a> below).</p>
+<p>In <a class="existingWikiWord" href="../../../../../7/3/7/1/1737/content.html">computer science</a> this <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad</a> is used to model <a class="existingWikiWord" href="../../../../7/9/8/8975/content.html">continuation-passing style</a> of programming, and therefore this is also called the <em>continuation monad</em>. The idea here is that a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \to Y</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a> of the continuation monad, hence a morphism in the original category of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X\longrightarrow [ [Y,S],S]</annotation></semantics></math>, is much like a map from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> only that instead of “returning” its output directly it instead feeds it into a given function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">Y \to S</annotation></semantics></math> which hence <em>continues</em> the computation.</p>
+<h2 id="definition">Definition</h2>
+<h3 id="setting_and_notation">Setting and notation</h3>
+<p>
+<div class="num_remark" id="SettingAndNotation">
+<h6>Remark</h6>
+<p><strong>(setting)</strong> Throughout, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>,</mo><mo>⊗</mo><mo>,</mo><mi>𝟙</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{C}, \otimes, \mathbb{1})</annotation></semantics></math> denotes a <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric</a> <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">closed monoidal category</a>, with <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><msup><mi>𝒞</mi> <mi>op</mi></msup><mo>×</mo><mi>𝒞</mi><mo>→</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">[-,-] \colon \mathcal{C}^{op} \times \mathcal{C} \to \mathcal{C}</annotation></semantics></math>, <a class="existingWikiWord" href="../../../../../7/8/8/5/5887/content.html">evaluation map</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">ev</mi> <mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow></msub><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">]</mo><mo>⊗</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\mathrm{ev}_{A,B} \colon [A,B] \otimes A \to B</annotation></semantics></math>, and <a class="existingWikiWord" href="../../../../../7/2/9/3/3927/content.html">symmetry</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi> <mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow></msub><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>⊗</mo><mi>B</mi><mover><mo>⟶</mo><mo>∼</mo></mover><mi>B</mi><mo>⊗</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\sigma_{A,B} \colon A \otimes B \overset{\sim}{\longrightarrow} B \otimes A</annotation></semantics></math>. The main example is a <a class="existingWikiWord" href="../../../../7/3/0/375/content.html">cartesian closed category</a> such as <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo><mo>=</mo><mo>×</mo></mrow><annotation encoding="application/x-tex">\otimes = \times</annotation></semantics></math>.</p>
+<p>We fix an object</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">
+  S \,\in\, \mathcal{C}
+
+</annotation></semantics></math></div>
+<p>and refer to it as the <em>answer object</em> (or <em>answer type</em>, or <em>result type</em>, in <a class="existingWikiWord" href="../../../../../7/3/7/1/1737/content.html">computer science</a>). Morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">k \colon X \to S</annotation></semantics></math>, hence (generalized) elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k : [X,S]</annotation></semantics></math>, are called <em>continuations</em> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="LambdaNotation">
+<h6>Remark</h6>
+<p><strong>(<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-notation)</strong> We denote morphisms by terms of the <a class="existingWikiWord" href="../../../../../0/3/3/6/16330/content.html">simply typed lambda calculus</a> (in the cartesian case) or of the <a class="existingWikiWord" href="../../../../../1/0/9/0/10901/content.html">linear <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>λ</mi>
+</mrow>
+<annotation encoding="application/x-tex">\lambda</annotation>
+</semantics>
+</math>-calculus</a> (in the general symmetric monoidal case), interpreted in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> as its <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal language</a>:</p>
+<ul>
+<li>
+<p>a <a class="existingWikiWord" href="../../../../../0/8/9/5/5980/content.html">term</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> in a <a class="existingWikiWord" href="../../../../../7/8/5/0/587/content.html">context</a> of <a class="existingWikiWord" href="../../../../../1/8/9/5/5981/content.html">variables</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi> <mn>1</mn></msub><mo lspace="verythinmathspace">:</mo><msub><mi>X</mi> <mn>1</mn></msub><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mi>x</mi> <mi>n</mi></msub><mo lspace="verythinmathspace">:</mo><msub><mi>X</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">x_1 \colon X_1, \cdots, x_n \colon X_n</annotation></semantics></math> denotes a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mn>1</mn></msub><mo>⊗</mo><mi>⋯</mi><mo>⊗</mo><msub><mi>X</mi> <mi>n</mi></msub><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">X_1 \otimes \cdots \otimes X_n \to B</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/0/1/8/8104/content.html">application</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">k(x)</annotation></semantics></math>, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">k \colon [X,S]</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x : X</annotation></semantics></math>, denotes the <a class="existingWikiWord" href="../../../../../7/8/8/5/5887/content.html">evaluation map</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">ev</mi><mo stretchy="false">(</mo><mi>k</mi><mo>⊗</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{ev}(k \otimes x)</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>abstraction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>t</mi></mrow><annotation encoding="application/x-tex">\lambda (x : X).\, t</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../9/1/5/0/519/content.html">adjunct</a> (“<a class="existingWikiWord" href="../../../../../9/0/1/4/4109/content.html">currying</a>”) of the morphism denoted by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>for terms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a : A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x : X</annotation></semantics></math> in disjoint contexts, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">a \otimes x</annotation></semantics></math> denotes their <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a>, a term of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊗</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \otimes X</annotation></semantics></math>; and a morphism out of a tensor product <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊗</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \otimes X</annotation></semantics></math> is specified by a term <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> in context <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>:</mo><mi>A</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>x</mi><mo>:</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">a : A,\, x : X</annotation></semantics></math>, written as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>x</mi><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mi>t</mi></mrow><annotation encoding="application/x-tex">a \otimes x \,\mapsto\, t</annotation></semantics></math>. (In the cartesian case, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⊗</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">a \otimes x</annotation></semantics></math> is just the pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,x)</annotation></semantics></math>.)</p>
+</li>
+</ul>
+<p>By the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>, these terms satisfy <a class="existingWikiWord" href="../../../../../6/0/5/7/7506/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>β</mi>
+</mrow>
+<annotation encoding="application/x-tex">\beta</annotation>
+</semantics>
+</math>-reduction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">[</mo><mi>a</mi><mo stretchy="false">/</mo><mi>x</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">(\lambda x.\, t)(a) = t[a/x]</annotation></semantics></math> and <a class="existingWikiWord" href="../../../../../7/0/5/7/7507/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>η</mi>
+</mrow>
+<annotation encoding="application/x-tex">\eta</annotation>
+</semantics>
+</math>-reduction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\lambda x.\, k(x) = k</annotation></semantics></math>.</p>
+<p>In the cartesian case this is equivalently the usual notation in terms of <a class="existingWikiWord" href="../../../../../4/2/0/1/1024/content.html">generalized elements</a>. In the general symmetric monoidal case it is legitimate here because all terms below use each <a class="existingWikiWord" href="../../../../../1/8/9/5/5981/content.html">variable</a> — whether <a class="existingWikiWord" href="../../../../../1/8/9/5/5981/content.html">bound</a> or <a class="existingWikiWord" href="../../../../../1/8/9/5/5981/content.html">free</a> in the context — exactly once (Rem. <a class="maruku-ref" href="#Linearity"></a>).</p>
+<p>We also write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>∘</mo><mi>f</mi><mspace width="thinmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thinmathspace"></mspace><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">k \circ f \,:=\, \lambda x.\, k\big(f(x)\big)</annotation></semantics></math>.</p>
+</div>
+</p>
+<h3 id="the_dualization_adjunction">The dualization adjunction</h3>
+<p>
+<div class="num_prop" id="DualizationSelfAdjunction">
+<h6>Proposition</h6>
+<p><strong>(dualization is self-adjoint on the right)</strong> The <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> of dualization into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>𝒞</mi> <mi>op</mi></msup><mo>⟶</mo><mi>𝒞</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>X</mi><mover><mo>⟶</mo><mi>f</mi></mover><mi>Y</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mover><mo>⟶</mo><mrow><mo stretchy="false">[</mo><mi>f</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></mover><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>k</mi><mo>↦</mo><mi>k</mi><mo>∘</mo><mi>f</mi><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  [-,S]
+    \;\colon\;
+  \mathcal{C}^{op} \longrightarrow \mathcal{C}
+  \,,
+  \;\;\;\;\;\;\;
+  \big(
+    X \overset{f}{\longrightarrow} Y
+  \big)
+  \;\;\mapsto\;\;
+  \Big(
+    [Y,S]
+      \overset{[f,S]}{\longrightarrow}
+    [X,S]
+    \,,
+    \;\;
+    k \mapsto k \circ f
+  \Big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>is <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> to its own <a class="existingWikiWord" href="../../../../2/3/0/325/content.html">opposite functor</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒞</mi> <mi>op</mi></msup><munderover><mo>⊥</mo><munder><mo>⟶</mo><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></munder><mover><mo>⟵</mo><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><msup><mo stretchy="false">]</mo> <mi>op</mi></msup></mrow></mover></munderover><mi>𝒞</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathcal{C}^{op}
+  \underoverset
+    {\underset{[-,S]}{\longrightarrow}}
+    {\overset{[-,S]^{op}}{\longleftarrow}}
+    {\bot}
+  \mathcal{C}
+  \,.
+
+</annotation></semantics></math></div>
+<p>The <a href="../../../../../4/9/4/0/494/content.html#InTermsOfHomIsomorphism">hom-isomorphism</a> of this <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjunction</a> is the <a class="existingWikiWord" href="../../../../2/1/0/125/content.html">composite</a> of <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphisms</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒞</mi> <mi>op</mi></msup><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>A</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>A</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>A</mi><mo>⊗</mo><mi>X</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><munder><mo>≃</mo><mrow><mi>𝒞</mi><mo stretchy="false">(</mo><msub><mi>σ</mi> <mrow><mi>X</mi><mo>,</mo><mi>A</mi></mrow></msub><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo stretchy="false">)</mo></mrow></munder><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>X</mi><mo>⊗</mo><mi>A</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>X</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \mathcal{C}^{op}\big([X,S],\, A\big)
+  \;=\;
+  \mathcal{C}\big(A,\, [X,S]\big)
+  \;\simeq\;
+  \mathcal{C}\big(A \otimes X,\, S\big)
+  \underset{
+    \mathcal{C}(\sigma_{X,A},\, S)
+  }{\simeq}
+  \mathcal{C}\big(X \otimes A,\, S\big)
+  \;\simeq\;
+  \mathcal{C}\big(X,\, [A,S]\big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>which in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-notation (Rem. <a class="maruku-ref" href="#LambdaNotation"></a>) is “swapping the arguments”:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>A</mi><mover><mo>⟶</mo><mi>ϕ</mi></mover><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>X</mi><mover><mo>⟶</mo><mover><mi>ϕ</mi><mo>˜</mo></mover></mover><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mover><mi>ϕ</mi><mo>˜</mo></mover><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Big(
+    A \overset{\phi}{\longrightarrow} [X,S]
+  \Big)
+  \;\;\;\;
+  \mapsto
+  \;\;\;\;
+  \Big(
+    X \overset{\widetilde{\phi}}{\longrightarrow} [A,S]
+  \Big)
+  \,,
+  \;\;\;\;\;\;
+  \widetilde{\phi}
+  \;:=\;
+  \lambda (x : X).\,
+  \lambda (a : A).\,
+  \phi(a)(x)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This <a class="existingWikiWord" href="../../../../../4/0/5/0/504/content.html">bijection</a> is its own inverse: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mover><mi>ϕ</mi><mo>˜</mo></mover><mo>˜</mo></mover><mo>=</mo><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\widetilde{\widetilde{\phi}} = \phi</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>Each of the displayed <a class="existingWikiWord" href="../../../../../4/0/5/0/504/content.html">bijections</a> is <a class="existingWikiWord" href="../../../../../6/7/3/8/8376/content.html">natural</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">X \in \mathcal{C}</annotation></semantics></math> and in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">A \in \mathcal{C}^{op}</annotation></semantics></math>; the outer two by the definition of the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>, and the middle one by naturality of the symmetry. That the <a class="existingWikiWord" href="../../../../2/1/0/125/content.html">composite</a> is an <a class="existingWikiWord" href="../../../../../8/2/9/2/2928/content.html">involution</a> follows from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi> <mrow><mi>A</mi><mo>,</mo><mi>X</mi></mrow></msub><mo>∘</mo><msub><mi>σ</mi> <mrow><mi>X</mi><mo>,</mo><mi>A</mi></mrow></msub><mo>=</mo><mi mathvariant="normal">id</mi></mrow><annotation encoding="application/x-tex">\sigma_{A,X} \circ \sigma_{X,A} = \mathrm{id}</annotation></semantics></math>, or directly from the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-formula.</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="UnitAndCounit">
+<h6>Remark</h6>
+<p><strong>(unit and counit)</strong> The <a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">adjunction unit</a> of Prop. <a class="maruku-ref" href="#DualizationSelfAdjunction"></a> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">X \in \mathcal{C}</annotation></semantics></math> is the image of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">id</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{id}_{[X,S]}</annotation></semantics></math> under the hom-isomorphism, which is the canonical map into the double dual:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>X</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>η</mi> <mi>X</mi></msub><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \eta_X
+    \;\colon\;
+  X \longrightarrow [ [X,S],S]
+  \,,
+  \;\;\;\;\;\;\;
+  \eta_X
+    \;:=\;
+  \lambda (x : X).\,
+  \lambda (k : [X,S]).\,
+  k(x)
+  \,,
+
+</annotation></semantics></math></div>
+<p>namely the <a class="existingWikiWord" href="../../../../../9/1/5/0/519/content.html">adjunct</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⊗</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mover><mo>⟶</mo><mi>σ</mi></mover><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⊗</mo><mi>X</mi><mover><mo>⟶</mo><mi mathvariant="normal">ev</mi></mover><mi>S</mi></mrow><annotation encoding="application/x-tex">X \otimes [X,S] \overset{\sigma}{\longrightarrow} [X,S] \otimes X \overset{\mathrm{ev}}{\longrightarrow} S</annotation></semantics></math>.</p>
+<p>Since the hom-isomorphism is its own inverse, the <a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">adjunction counit</a> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">A \in \mathcal{C}^{op}</annotation></semantics></math> is, regarded as a morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, the same kind of map, namely <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\eta_A \colon A \to [ [A,S],S]</annotation></semantics></math>. Accordingly, both <a class="existingWikiWord" href="../../../../../2/4/7/1/1742/content.html">triangle identities</a> of the adjunction reduce to one and the same identity in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, saying that the single dual is a <a class="existingWikiWord" href="../../../../../0/0/7/0/700/content.html">retract</a> of the triple dual:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>η</mi> <mi>A</mi></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">id</mi> <mrow><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext>for all</mtext><mspace width="thickmathspace"></mspace><mi>A</mi><mo>∈</mo><mi>𝒞</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [\eta_A, S] \circ \eta_{[A,S]}
+  \;=\;
+  \mathrm{id}_{[A,S]}
+  \;\;\;\;\;\;
+  \text{for all}\; A \in \mathcal{C}
+  \,.
+
+</annotation></semantics></math></div>
+<p>In <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-notation:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>η</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>a</mi><mo>.</mo><mspace width="thinmathspace"></mspace><msub><mi>η</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>a</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>k</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  k
+  \;\;\mapsto\;\;
+  \lambda (c : [ [A,S],S]).\, c(k)
+  \;\;\mapsto\;\;
+  \lambda (a : A).\,
+  \big(\lambda c.\, c(k)\big)\big(\eta_A(a)\big)
+  \;=\;
+  \lambda a.\, \eta_A(a)(k)
+  \;=\;
+  \lambda a.\, k(a)
+  \;=\;
+  k
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<h3 id="the_continuation_monad">The continuation monad</h3>
+<p>
+<div class="num_defn" id="TheContinuationMonad">
+<h6>Definition</h6>
+<p><strong>(continuation monad)</strong> The <em>continuation monad</em> (or <em>double dualization monad</em>) on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> with answer object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../5/2/0/255/content.html">monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(D, \eta, \mu)</annotation></semantics></math> induced by the <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> of Prop. <a class="maruku-ref" href="#DualizationSelfAdjunction"></a>, hence with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><msup><mo stretchy="false">]</mo> <mi>op</mi></msup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo>⟶</mo><mi>𝒞</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>η</mi><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><mtext>adjunction unit</mtext><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>μ</mi><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mi>ϵ</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><msup><mo stretchy="false">]</mo> <mi>op</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  D
+    \;:=\;
+  [-,S] \circ [-,S]^{op}
+    \;\colon\;
+  \mathcal{C} \longrightarrow \mathcal{C}
+  \,,
+  \;\;\;\;\;\;\;
+  \eta \;:=\; \text{adjunction unit}
+  \,,
+  \;\;\;\;\;\;\;
+  \mu \;:=\; [-,S] \, \epsilon \, [-,S]^{op}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Explicitly, the components are as follows:</p>
+<p><strong>The underlying <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a></strong> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>D</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>f</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  D(X) \;=\; [ [X,S],S]
+  \,,
+  \;\;\;\;\;\;\;
+  D(f) \;=\; [ [f,S],S]
+  \,,
+
+</annotation></semantics></math></div>
+<p>hence for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \to Y</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  D(f)
+    \;\colon\;
+  [ [X,S],S] \longrightarrow [ [Y,S],S]
+  \,,
+  \;\;\;\;\;\;\;
+  \phi
+    \;\mapsto\;
+  \lambda (k : [Y,S]).\, \phi(k \circ f)
+  \,.
+
+</annotation></semantics></math></div>
+<p><strong>The unit</strong> is the canonical map into the double dual (Rem. <a class="maruku-ref" href="#UnitAndCounit"></a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>X</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>x</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \eta_X
+    \;\colon\;
+  X \longrightarrow [ [X,S],S]
+  \,,
+  \;\;\;\;\;\;\;
+  x
+    \;\mapsto\;
+  \lambda (k : [X,S]).\, k(x)
+  \,.
+
+</annotation></semantics></math></div>
+<p><strong>The multiplication</strong> is the dual of the unit at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[X,S]</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo stretchy="false">]</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X
+    \;:=\;
+  [\eta_{[X,S]},\, S]
+    \;\colon\;
+  [ [ [ [X,S],S],S],S]
+    \longrightarrow
+  [ [X,S],S]
+  \,,
+
+</annotation></semantics></math></div>
+<p>hence it is given by precomposition with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\eta_{[X,S]}</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>M</mi><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X(M)
+    \;=\;
+  M \circ \eta_{[X,S]}
+  \,,
+
+</annotation></semantics></math></div>
+<p>which in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-notation reads:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>M</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X(M)
+  \;=\;
+  \lambda (k : [X,S]).\,
+  M\Big(
+    \lambda (c : [ [X,S],S]).\, c(k)
+  \Big)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="UnwindingTheMultiplication">
+<h6>Remark</h6>
+<p><strong>(unwinding the multiplication)</strong> In the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-term for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\mu_X</annotation></semantics></math> in Def. <a class="maruku-ref" href="#TheContinuationMonad"></a> the subterms have the following types:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right center left"><mtr><mtd><mi>k</mi></mtd> <mtd><mo>:</mo></mtd> <mtd><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mtd></mtr> <mtr><mtd><mi>c</mi></mtd> <mtd><mo>:</mo></mtd> <mtd><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mtd></mtr> <mtr><mtd><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>:</mo></mtd> <mtd><mi>S</mi></mtd></mtr> <mtr><mtd><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>:</mo></mtd> <mtd><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mtd></mtr> <mtr><mtd><mi>M</mi></mtd> <mtd><mo>:</mo></mtd> <mtd><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mtd></mtr> <mtr><mtd><mi>M</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>:</mo></mtd> <mtd><mi>S</mi></mtd></mtr> <mtr><mtd><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>M</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>:</mo></mtd> <mtd><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \arrayopts{\colalign{right center left}}
+    k
+      &amp;:&amp;
+    [X,S]
+    \\
+    c
+      &amp;:&amp;
+    [ [X,S],S]
+    \\
+    c(k)
+      &amp;:&amp;
+    S
+    \\
+    \lambda c.\, c(k)
+      \;=\;
+    \eta_{[X,S]}(k)
+      &amp;:&amp;
+    [ [ [X,S],S],S]
+    \\
+    M
+      &amp;:&amp;
+    [ [ [ [X,S],S],S],S]
+    \\
+    M\big(\lambda c.\, c(k)\big)
+      &amp;:&amp;
+    S
+    \\
+    \lambda k.\, M\big(\lambda c.\, c(k)\big)
+      &amp;:&amp;
+    [ [X,S],S]
+  }
+
+</annotation></semantics></math></div>
+<p>In words: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mu_X(M)</annotation></semantics></math> is the functional on continuations which, given a continuation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">k \colon X \to S</annotation></semantics></math>, evaluates <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> on the “evaluation at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>”-functional</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>c</mi><mo>:</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \eta_{[X,S]}(k)
+    \;=\;
+  \lambda \big(c : [ [X,S],S]\big).\, c(k)
+  \,,
+
+</annotation></semantics></math></div>
+<p>hence:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>M</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mrow><annotation encoding="application/x-tex">
+  \mu_X(M)(k) \;=\; M\big(\eta_{[X,S]}(k)\big)
+  \mathrlap{\,.}
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_prop" id="MonadLaws">
+<h6>Proposition</h6>
+<p><strong>(monad laws)</strong> The data in Def. <a class="maruku-ref" href="#TheContinuationMonad"></a> satisfies the <a class="existingWikiWord" href="../../../../5/2/0/255/content.html">monad</a> axioms.</p>
+</div>
+</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>Abstractly, this is a special case of the general fact that every <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>⊣</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">L \dashv R</annotation></semantics></math> induces a monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mi>L</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>R</mi><mi>ϵ</mi><mi>L</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R L, \eta, R \epsilon L)</annotation></semantics></math>.</p>
+<p>Concretely, in terms of the one triangle identity from Rem. <a class="maruku-ref" href="#UnitAndCounit"></a>, of the contravariant functoriality <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>g</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><mo stretchy="false">[</mo><mi>h</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">[</mo><mi>h</mi><mo>∘</mo><mi>g</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[g,S] \circ [h,S] = [h \circ g, S]</annotation></semantics></math> and of <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">naturality</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math>:</p>
+<p><em>Left unit law.</em> By the triangle identity for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A = [X,S]</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo>∘</mo><msub><mi>η</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">id</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X \circ \eta_{D X}
+    \;=\;
+  [\eta_{[X,S]}, S] \circ \eta_{[ [X,S],S]}
+    \;=\;
+  \mathrm{id}_{D X}
+  \,.
+
+</annotation></semantics></math></div>
+<p><em>Right unit law.</em> By the triangle identity for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A = X</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo>∘</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>X</mi></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><msub><mi>η</mi> <mi>X</mi></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">[</mo><mo stretchy="false">[</mo><msub><mi>η</mi> <mi>X</mi></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.8em" minsize="1.8em">]</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi mathvariant="normal">id</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">id</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X \circ D(\eta_X)
+    \;=\;
+  [\eta_{[X,S]},S] \circ \big[ [\eta_X, S], S\big]
+    \;=\;
+  \Big[ [\eta_X,S] \circ \eta_{[X,S]},\, S\Big]
+    \;=\;
+  [\mathrm{id}_{[X,S]}, S]
+    \;=\;
+  \mathrm{id}_{D X}
+  \,.
+
+</annotation></semantics></math></div>
+<p><em>Associativity.</em> We have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mo>∘</mo><msub><mi>μ</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">[</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext>and</mtext><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>μ</mi> <mi>X</mi></msub><mo>∘</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><msub><mi>μ</mi> <mi>X</mi></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X \circ \mu_{D X}
+    \;=\;
+  \big[
+    \eta_{[D X,S]} \circ \eta_{[X,S]}
+    ,\,
+    S
+  \big]
+  \;\;\;\;\;\;
+  \text{and}
+  \;\;\;\;\;\;
+  \mu_X \circ D(\mu_X)
+    \;=\;
+  \big[
+    [\mu_X, S] \circ \eta_{[X,S]}
+    ,\,
+    S
+  \big]
+  \,,
+
+</annotation></semantics></math></div>
+<p>and these agree: since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>μ</mi> <mi>X</mi></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>=</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mo>=</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[\mu_X,S] = \big[ [\eta_{[X,S]},S],S\big] = D(\eta_{[X,S]})</annotation></semantics></math>, the equation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>=</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">)</mo><mo>∘</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\eta_{[D X,S]} \circ \eta_{[X,S]} = D(\eta_{[X,S]}) \circ \eta_{[X,S]}</annotation></semantics></math> is the naturality square of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> on the morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\eta_{[X,S]} \colon [X,S] \to [D X, S]</annotation></semantics></math>.</p>
+<p>Alternatively, in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-notation, using only <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math>- and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math>-reduction (for associativity, both sides reduce to the same term):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right center left"><mtr><mtd><msub><mi>μ</mi> <mi>X</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>η</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi></mtd></mtr> <mtr><mtd><msub><mi>μ</mi> <mi>X</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>X</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><msub><mi>η</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi></mtd></mtr> <mtr><mtd><msub><mi>μ</mi> <mi>X</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>μ</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><mo stretchy="false">(</mo><mi>ℳ</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ℳ</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>λ</mi><mi>C</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>C</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo></mtd></mtr> <mtr><mtd><msub><mi>μ</mi> <mi>X</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>D</mi><mo stretchy="false">(</mo><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>ℳ</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ℳ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>C</mi><mo>.</mo><mspace width="thinmathspace"></mspace><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ℳ</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>λ</mi><mi>C</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>C</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>c</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>c</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \arrayopts{\colalign{right center left}}
+    \mu_X\big(\eta_{D X}(\phi)\big)
+      &amp;=&amp;
+    \lambda k.\, \big(\lambda c.\, c(k)\big)(\phi)
+    \;=\;
+    \lambda k.\, \phi(k)
+    \;=\;
+    \phi
+    \\
+    \mu_X\big(D(\eta_X)(\phi)\big)
+      &amp;=&amp;
+    \lambda k.\, \phi\big(\lambda x.\, \eta_X(x)(k)\big)
+    \;=\;
+    \lambda k.\, \phi\big(\lambda x.\, k(x)\big)
+    \;=\;
+    \phi
+    \\
+    \mu_X\big(\mu_{D X}(\mathcal{M})\big)
+      &amp;=&amp;
+    \lambda k.\, \mathcal{M}\Big(\lambda C.\, C\big(\lambda c.\, c(k)\big)\Big)
+    \\
+    \mu_X\big(D(\mu_X)(\mathcal{M})\big)
+      &amp;=&amp;
+    \lambda k.\, \mathcal{M}\big(\lambda C.\, \mu_X(C)(k)\big)
+    \;=\;
+    \lambda k.\, \mathcal{M}\Big(\lambda C.\, C\big(\lambda c.\, c(k)\big)\Big)
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>This completes the argument.</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="Linearity">
+<h6>Remark</h6>
+<p><strong>(linearity and the role of the symmetry)</strong> In each of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-terms on this page every variable, whether bound or free in the context, occurs exactly once. Therefore these terms make sense in the <a class="existingWikiWord" href="../../../../../1/0/9/0/10901/content.html">internal linear type theory</a> of any symmetric closed monoidal category: they use neither <a class="existingWikiWord" href="../../../../../9/4/3/2/2349/content.html">duplication</a> nor <a class="existingWikiWord" href="../../../../../7/7/8/5/5877/content.html">deletion</a> of variables, which is why the definition does not require <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> to be <a class="existingWikiWord" href="../../../../../3/4/3/0/343/content.html">cartesian</a> (see <a href="#MelliesTabareau07">Melliès &amp; Tabareau 2007</a>).</p>
+<p>On the other hand, the symmetry <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> is used, if implicitly: it is the exchange rule which allows to form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">k(x)</annotation></semantics></math> in the context <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>X</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">x : X,\, k : [X,S]</annotation></semantics></math>, as in the definition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\eta_X</annotation></semantics></math>. In a non-symmetric <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">biclosed monoidal category</a>, writing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msub><mo stretchy="false">]</mo> <mi>r</mi></msub></mrow><annotation encoding="application/x-tex">[X,-]_r</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>⊗</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">(-) \otimes X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msub><mo stretchy="false">]</mo> <mi>l</mi></msub></mrow><annotation encoding="application/x-tex">[X,-]_l</annotation></semantics></math> for that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⊗</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \otimes (-)</annotation></semantics></math>, the hom-isomorphism of Prop. <a class="maruku-ref" href="#DualizationSelfAdjunction"></a> is instead</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>A</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><msub><mo stretchy="false">]</mo> <mi>r</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>A</mi><mo>⊗</mo><mi>X</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>X</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>S</mi><msub><mo stretchy="false">]</mo> <mi>l</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \mathcal{C}\big(A,\, [X,S]_r\big)
+  \;\simeq\;
+  \mathcal{C}\big(A \otimes X,\, S\big)
+  \;\simeq\;
+  \mathcal{C}\big(X,\, [A,S]_l\big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>so that one has to alternate between the two one-sided internal homs: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↦</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><msub><mo stretchy="false">]</mo> <mi>r</mi></msub><mo>,</mo><mi>S</mi><msub><mo maxsize="1.2em" minsize="1.2em">]</mo> <mi>l</mi></msub></mrow><annotation encoding="application/x-tex">X \mapsto \big[ [X,S]_r, S\big]_l</annotation></semantics></math>.</p>
+</div>
+</p>
+<h3 id="equivalent_formulations">Equivalent formulations</h3>
+<p>
+<div class="num_prop" id="KleisliExtension">
+<h6>Proposition</h6>
+<p><strong>(Kleisli triple / bind form)</strong> In terms of <a class="existingWikiWord" href="../../../../../8/1/6/6/16618/content.html">Kleisli extension</a>, the continuation monad (Def. <a class="maruku-ref" href="#TheContinuationMonad"></a>) is given by the unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> together with the operation which sends a Kleisli morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">f \colon X \to [ [Y,S],S]</annotation></semantics></math> to</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><mspace width="thickmathspace"></mspace><mo>:</mo><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>μ</mi> <mi>Y</mi></msub><mo>∘</mo><mi>D</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f^\ast
+    \;:=\;
+  \mu_Y \circ D(f)
+    \;\colon\;
+  [ [X,S],S] \longrightarrow [ [Y,S],S]
+  \,,
+  \;\;\;\;\;\;\;
+  \phi
+    \;\mapsto\;
+  \lambda (k : [Y,S]).\,
+  \phi\big(
+    \lambda (x : X).\, f(x)(k)
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Conversely, the multiplication and the functor are recovered as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>X</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi mathvariant="normal">id</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub><msup><mo maxsize="1.2em" minsize="1.2em">)</mo> <mo>*</mo></msup><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>D</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>η</mi> <mi>Y</mi></msub><mo>∘</mo><mi>f</mi><msup><mo maxsize="1.2em" minsize="1.2em">)</mo> <mo>*</mo></msup><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \mu_X \;=\; \big(\mathrm{id}_{D X}\big)^\ast
+  \,,
+  \;\;\;\;\;\;\;
+  D(f) \;=\; \big(\eta_Y \circ f\big)^\ast
+  \,,
+
+</annotation></semantics></math></div>
+<p>and the composite of Kleisli morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>D</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \to D Y</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo lspace="verythinmathspace">:</mo><mi>Y</mi><mo>→</mo><mi>D</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">g \colon Y \to D Z</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>g</mi> <mo>*</mo></msup><mo>∘</mo><mi>f</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>Z</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>y</mi><mo>:</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>g</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  g^\ast \circ f
+  \;=\;
+  \lambda (x : X).\,
+  \lambda (k : [Z,S]).\,
+  f(x)\big(
+    \lambda (y : Y).\, g(y)(k)
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the form in which the continuation monad appears in <a href="#Moggi91">Moggi (1991), Ex. 1.1</a>. In <a class="existingWikiWord" href="../../../../../9/7/8/7/7879/content.html">Haskell</a>-notation (ignoring that the standard libraries define <code>Cont r</code> as <code>ContT r Identity</code>, with <code>ContT</code> a <code>newtype</code>):</p>
+<pre><code>type Cont r a = (a -&gt; r) -&gt; r
+
+return x  = \k -&gt; k x               -- unit
+m &gt;&gt;= f   = \k -&gt; m (\x -&gt; f x k)   -- Kleisli extension
+join mm   = \k -&gt; mm (\m -&gt; m k)    -- multiplication</code></pre>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_prop" id="ContinuationTransformers">
+<h6>Proposition</h6>
+<p><strong>(Kleisli morphisms as continuation transformers)</strong> Under the hom-isomorphism of Prop. <a class="maruku-ref" href="#DualizationSelfAdjunction"></a>, Kleisli morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">f \colon X \to [ [Y,S],S]</annotation></semantics></math> correspond to morphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo>˜</mo></mover><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⟶</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>k</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \widetilde{f}
+    \;\colon\;
+  [Y,S] \longrightarrow [X,S]
+  \,,
+  \;\;\;\;\;\;\;
+  k
+    \;\mapsto\;
+  \lambda (x : X).\, f(x)(k)
+  \,,
+
+</annotation></semantics></math></div>
+<p>which turn continuations of the output into continuations of the input. This correspondence is compatible with composition, in that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mrow><msub><mi>η</mi> <mi>X</mi></msub></mrow><mo>˜</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">id</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mover><mrow><msup><mi>g</mi> <mo>*</mo></msup><mo>∘</mo><mi>f</mi></mrow><mo>˜</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mover><mi>f</mi><mo>˜</mo></mover><mo>∘</mo><mover><mi>g</mi><mo>˜</mo></mover><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \widetilde{\eta_X} \;=\; \mathrm{id}_{[X,S]}
+  \,,
+  \;\;\;\;\;\;\;
+  \widetilde{ g^\ast \circ f } \;=\; \widetilde{f} \circ \widetilde{g}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Hence the <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a> of the continuation monad is equivalent to the <a class="existingWikiWord" href="../../../../2/3/0/325/content.html">opposite</a> of the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> on the objects of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[X,S]</annotation></semantics></math>, via <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↦</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">X \mapsto [X,S]</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>↦</mo><mover><mi>f</mi><mo>˜</mo></mover></mrow><annotation encoding="application/x-tex">f \mapsto \widetilde{f}</annotation></semantics></math>. (This is an instance of the general fact that the Kleisli category of the monad induced by an adjunction is equivalent to the full image of the <a class="existingWikiWord" href="../../../../../0/2/0/1/1020/content.html">left adjoint</a>.)</p>
+<p>In these terms, Kleisli extension and multiplication are just dualization of continuation transformers:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mover><mi>f</mi><mo>˜</mo></mover><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>μ</mi> <mi>X</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">[</mo><mover><mrow><msub><mi mathvariant="normal">id</mi> <mrow><mi>D</mi><mi>X</mi></mrow></msub></mrow><mo>˜</mo></mover><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>η</mi> <mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow></msub><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f^\ast \;=\; [\widetilde{f},\, S]
+  \,,
+  \;\;\;\;\;\;\;
+  \mu_X
+    \;=\;
+  \big[\widetilde{\mathrm{id}_{D X}},\, S\big]
+    \;=\;
+  [\eta_{[X,S]},\, S]
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="AsCodensityMonad">
+<h6>Remark</h6>
+<p><strong>(as a codensity monad)</strong> The continuation monad is the (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriched</a>) <a class="existingWikiWord" href="../../../../../9/8/1/7/7189/content.html">codensity monad</a> of the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝟙</mi><mo>→</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathbb{1} \to \mathcal{C}</annotation></semantics></math> which picks the object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, since the <a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">right Kan extension</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> along itself is the <a class="existingWikiWord" href="../../../../../6/1/4/0/416/content.html">cotensor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Ran</mi> <mi>S</mi></msub><mi>S</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">{</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>S</mi><mo maxsize="1.2em" minsize="1.2em">}</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathrm{Ran}_S S \,(X)
+  \;\simeq\;
+  \big\{ [X,S],\, S \big\}
+  \;=\;
+  [ [X,S],S]
+  \,.
+
+</annotation></semantics></math></div>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathcal{C} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> this is the familiar <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↦</mo><msup><mi>S</mi> <mrow><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>X</mi></msup><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">X \mapsto S^{(S^X)}</annotation></semantics></math>.</p>
+<p>Codensity monads of inclusions of <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategories</a> of “small” objects are closely related: the codensity monad of <a class="existingWikiWord" href="../../../../../1/5/9/0/951/content.html">FinSet</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↪</mo></mrow><annotation encoding="application/x-tex">\hookrightarrow</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> is the <a class="existingWikiWord" href="../../../../../2/0/0/1/1002/content.html">ultrafilter monad</a>, which is a submonad of the continuation monad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{0,1\}</annotation></semantics></math> (Ex. <a class="maruku-ref" href="#DoublePowerset"></a>); and the codensity monad of the inclusion of <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional vector spaces</a> into all <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> is the continuation monad of Ex. <a class="maruku-ref" href="#DoubleDualVectorSpaces"></a> itself (see <a href="#Leinster13">Leinster (2013)</a>).</p>
+</div>
+</p>
+<h3 id="strength">Strength</h3>
+<p>
+<div class="num_prop" id="Strength">
+<h6>Proposition</h6>
+<p><strong>(strength)</strong> The continuation monad is a <a class="existingWikiWord" href="../../../../../0/9/8/1/1890/content.html">strong monad</a>, with <a class="existingWikiWord" href="../../../../../8/8/8/1/1888/content.html">tensorial strength</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi> <mrow><mi>A</mi><mo>,</mo><mi>X</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>A</mi><mo>⊗</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⟶</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>A</mi><mo>⊗</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>a</mi><mo>⊗</mo><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>A</mi><mo>⊗</mo><mi>X</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>a</mi><mo>⊗</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>;</mo></mrow><annotation encoding="application/x-tex">
+  t_{A,X}
+    \;\colon\;
+  A \otimes [ [X,S],S]
+    \longrightarrow
+  [ [A \otimes X, S], S]
+  \,,
+  \;\;\;\;\;\;\;
+  a \otimes \phi
+    \;\mapsto\;
+  \lambda (k : [A \otimes X, S]).\,
+  \phi\big(
+    \lambda (x : X).\, k(a \otimes x)
+  \big)
+  \,;
+
+</annotation></semantics></math></div>
+<p>equivalently (<a href="#Kock72">Kock (1972)</a>) it is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../9/2/1/11295/content.html">enriched monad</a>, with action on internal homs</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">]</mo><mo>⟶</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mi>D</mi><mi>X</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>D</mi><mi>Y</mi><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>f</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo>:</mo><mi>D</mi><mi>X</mi><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>λ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>:</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>k</mi><mo>∘</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [X,Y] \longrightarrow \big[ D X,\, D Y \big]
+  \,,
+  \;\;\;\;\;\;\;
+  f
+    \;\mapsto\;
+  \lambda (\phi : D X).\,
+  \lambda (k : [Y,S]).\,
+  \phi(k \circ f)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="NonCommutativity">
+<h6>Remark</h6>
+<p><strong>(non-commutativity)</strong> The continuation monad is (in general) <em>not</em> a <a class="existingWikiWord" href="../../../../../0/5/0/1/21050/content.html">commutative monad</a>: The two maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>X</mi><mo>⊗</mo><mi>D</mi><mi>Y</mi><mo>→</mo><mi>D</mi><mo stretchy="false">(</mo><mi>X</mi><mo>⊗</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D X \otimes D Y \to D(X \otimes Y)</annotation></semantics></math> induced by the strength and its mirror image are</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>⊗</mo><mi>ψ</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ψ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo>⊗</mo><mi>y</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext>and</mtext><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mo>⊗</mo><mi>ψ</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mi>k</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ψ</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>ϕ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mspace width="thinmathspace"></mspace><mi>k</mi><mo stretchy="false">(</mo><mi>x</mi><mo>⊗</mo><mi>y</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \phi \otimes \psi
+    \;\mapsto\;
+  \lambda k.\,
+  \phi\Big(\lambda x.\, \psi\big(\lambda y.\, k(x \otimes y)\big)\Big)
+  \;\;\;\;\;\;\;
+  \text{and}
+  \;\;\;\;\;\;\;
+  \phi \otimes \psi
+    \;\mapsto\;
+  \lambda k.\,
+  \psi\Big(\lambda y.\, \phi\big(\lambda x.\, k(x \otimes y)\big)\Big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>which differ in the order in which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\psi</annotation></semantics></math> get to act on the continuation (“evaluation order”). For example, in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathcal{C} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{0,1\}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>Y</mi><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">X = Y = \ast</annotation></semantics></math>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\psi</annotation></semantics></math> be the constant functionals with value <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>, respectively: then the first map gives the constant functional with value <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math>, the second the one with value <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>.</p>
+</div>
+</p>
+<h2 id="examples">Examples</h2>
+<h3 id="first_examples">First examples</h3>
+<p>
+<div class="num_remark" id="DoublePowerset">
+<h6>Example</h6>
+<p><strong>(double powerset)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathcal{C} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{0,1\}</annotation></semantics></math>, identify maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">X \to \{0,1\}</annotation></semantics></math> with <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subsets</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \subset X</annotation></semantics></math> (via their <a class="existingWikiWord" href="../../../../../6/1/9/1/1916/content.html">characteristic functions</a>). Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>X</mi><mo>≃</mo><mi>P</mi><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">D X \simeq P P X</annotation></semantics></math> is the set of families <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math> of subsets of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, and the structure maps of Def. <a class="maruku-ref" href="#TheContinuationMonad"></a> become:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right center left"><mtr><mtd><msub><mi>η</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">{</mo><mi>A</mi><mo>⊂</mo><mi>X</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">|</mo><mspace width="thinmathspace"></mspace><mi>x</mi><mo>∈</mo><mi>A</mi><mo maxsize="1.2em" minsize="1.2em">}</mo></mtd></mtr> <mtr><mtd><mi>D</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>𝒜</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">{</mo><mi>B</mi><mo>⊂</mo><mi>Y</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">|</mo><mspace width="thinmathspace"></mspace><msup><mi>f</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>𝒜</mi><mo maxsize="1.2em" minsize="1.2em">}</mo></mtd></mtr> <mtr><mtd><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>𝔐</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mo maxsize="1.8em" minsize="1.8em">{</mo><mi>A</mi><mo>⊂</mo><mi>X</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">|</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">{</mo><mi>𝒜</mi><mo>∈</mo><mi>P</mi><mi>P</mi><mi>X</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mi>A</mi><mo>∈</mo><mi>𝒜</mi><mo maxsize="1.2em" minsize="1.2em">}</mo><mo>∈</mo><mi>𝔐</mi><mo maxsize="1.8em" minsize="1.8em">}</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \arrayopts{\colalign{right center left}}
+    \eta_X(x)
+      &amp;=&amp;
+    \big\{
+      A \subset X
+      \,\big\vert\,
+      x \in A
+    \big\}
+    \\
+    D(f)(\mathcal{A})
+      &amp;=&amp;
+    \big\{
+      B \subset Y
+      \,\big\vert\,
+      f^{-1}(B) \in \mathcal{A}
+    \big\}
+    \\
+    \mu_X(\mathfrak{M})
+      &amp;=&amp;
+    \Big\{
+      A \subset X
+      \,\Big\vert\,
+      \big\{
+        \mathcal{A} \in P P X
+        \,\vert\,
+        A \in \mathcal{A}
+      \big\}
+      \in
+      \mathfrak{M}
+    \Big\}
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>Elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P P X</annotation></semantics></math> may be thought of as generalized <a class="existingWikiWord" href="../../../../../3/9/5/4/4593/content.html">quantifiers</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, for instance <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∀</mo> <mi>X</mi></msub><mo>=</mo><mo stretchy="false">{</mo><mi>X</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\forall_X = \{X\}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∃</mo> <mi>X</mi></msub><mo>=</mo><mo stretchy="false">{</mo><mi>A</mi><mo>⊂</mo><mi>X</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mi>A</mi><mo>≠</mo><mo>∅</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\exists_X = \{ A \subset X \,\vert\, A \neq \varnothing\}</annotation></semantics></math>, while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\eta_X(x)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/0/0/1/1002/content.html">principal ultrafilter</a> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> (“evaluation at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>”).</p>
+<p>Restricting to upward closed families, to <a class="existingWikiWord" href="../../../../9/9/0/995/content.html">filters</a>, or to <a class="existingWikiWord" href="../../../../../2/0/0/1/1002/content.html">ultrafilters</a> yields submonads, the last one being the <a class="existingWikiWord" href="../../../../../2/0/0/1/1002/content.html">ultrafilter monad</a>, whose <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> are the <a class="existingWikiWord" href="../../../../2/0/2/2025/content.html">compact Hausdorff spaces</a> (see <a href="#Leinster13">Leinster (2013)</a>).</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="DoubleDualVectorSpaces">
+<h6>Example</h6>
+<p><strong>(double dual vector spaces)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>=</mo><msub><mi mathvariant="normal">Vect</mi> <mi>𝕂</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{C} = \mathrm{Vect}_{\mathbb{K}}</annotation></semantics></math> the category of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> over a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕂</mi></mrow><annotation encoding="application/x-tex">\mathbb{K}</annotation></semantics></math>, with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo></mrow><annotation encoding="application/x-tex">\otimes</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../0/9/7/7/17790/content.html">tensor product of vector spaces</a>, and with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>𝕂</mi></mrow><annotation encoding="application/x-tex">S = \mathbb{K}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>, the continuation monad is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><msup><mi>V</mi> <mrow><mo>*</mo><mo>*</mo></mrow></msup></mrow><annotation encoding="application/x-tex">
+  V \;\mapsto\; V^{\ast\ast}
+
+</annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>V</mi></msub><mo lspace="verythinmathspace">:</mo><mi>V</mi><mo>→</mo><msup><mi>V</mi> <mrow><mo>*</mo><mo>*</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\eta_V \colon V \to V^{\ast\ast}</annotation></semantics></math> the canonical map of a <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> into its <a class="existingWikiWord" href="../../../../../6/1/2/7/7216/content.html">double dual</a> (which is injective by the existence of <a class="existingWikiWord" href="../../../../../0/2/1/4/4120/content.html">bases</a>, invoking the <a class="existingWikiWord" href="../../../../../3/3/1/0/133/content.html">axiom of choice</a> for infinite-dimensional <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>), and with multiplication</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>V</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>η</mi> <mrow><msup><mi>V</mi> <mo>*</mo></msup></mrow></msub><mo>,</mo><mi>𝕂</mi><mo stretchy="false">]</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>V</mi> <mrow><mo>*</mo><mo>*</mo><mo>*</mo><mo>*</mo></mrow></msup><mo>⟶</mo><msup><mi>V</mi> <mrow><mo>*</mo><mo>*</mo></mrow></msup></mrow><annotation encoding="application/x-tex">
+  \mu_V \;=\; [\eta_{V^\ast}, \mathbb{K}] \;\colon\; V^{\ast\ast\ast\ast} \longrightarrow V^{\ast\ast}
+
+</annotation></semantics></math></div>
+<p>the <a class="existingWikiWord" href="../../../../../0/4/0/0/10040/content.html">dual linear map</a> of the canonical inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><msup><mi>V</mi> <mo>*</mo></msup></mrow></msub><mo lspace="verythinmathspace">:</mo><msup><mi>V</mi> <mo>*</mo></msup><mo>↪</mo><msup><mi>V</mi> <mrow><mo>*</mo><mo>*</mo><mo>*</mo></mrow></msup></mrow><annotation encoding="application/x-tex">\eta_{V^\ast} \colon V^\ast \hookrightarrow V^{\ast\ast\ast}</annotation></semantics></math> (as in Def. <a class="maruku-ref" href="#TheContinuationMonad"></a>). This is an example where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is not cartesian (cf. Rem. <a class="maruku-ref" href="#Linearity"></a>). On <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional vector spaces</a> the unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> is an isomorphism.</p>
+</div>
+</p>
+<h3 id="further_examples">Further examples</h3>
+<p>Further examples are discussed at:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/7/3/4/4371/content.html">double negation monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/9/1/1/11194/content.html">dualizing object in a closed category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/8/0/10854/content.html">extensive quantity</a></p>
+</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="algebras">Algebras</h3>
+<p>
+<div class="num_prop" id="MonadicityOfDualization">
+<h6>Proposition</h6>
+<p><strong>(monadicity of dualization over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>)</strong> On the <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">category of sets</a>, the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><msup><mstyle mathvariant="bold"><mi>Set</mi></mstyle> <mi>op</mi></msup><mo>→</mo><mstyle mathvariant="bold"><mi>Set</mi></mstyle></mrow><annotation encoding="application/x-tex">[-,S] \colon\mathbf{Set}^{op}\to \mathbf{Set}</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/2/3/1/1320/content.html">monadic</a> (with left adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><msup><mo stretchy="false">]</mo> <mi>op</mi></msup><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Set</mi></mstyle><mo>→</mo><msup><mstyle mathvariant="bold"><mi>Set</mi></mstyle> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">[-, S]^{op} \colon \mathbf{Set} \to \mathbf{Set}^{op}</annotation></semantics></math>) whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>S</mi><mo stretchy="false">|</mo></mrow><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">{|S|}\geq 2</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>(cf. <a href="#HylandLevyPlotkinPower07">Hyland, Levy, Plotkin &amp; Power 2007 Prop. 10</a>)</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>The following argument uses <a class="existingWikiWord" href="../../../../../3/9/8/0/893/content.html">classical logic</a>, for instance in identifying the <a class="existingWikiWord" href="../../../../../6/0/3/0/306/content.html">subobject classifier</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> with the <a class="existingWikiWord" href="../../../../../9/9/1/2/2199/content.html">boolean domain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math>.</p>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,S]</annotation></semantics></math> has the <a class="existingWikiWord" href="../../../../../0/2/0/1/1020/content.html">left adjoint</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><msup><mo stretchy="false">]</mo> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">[-,S]^{op}</annotation></semantics></math> (Prop. <a class="maruku-ref" href="#DualizationSelfAdjunction"></a>) and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">Set^{op}</annotation></semantics></math> has <a class="existingWikiWord" href="../../../../../9/8/0/3/3089/content.html">reflexive coequalizers</a> (these being the coreflexive <a class="existingWikiWord" href="../../../../../8/2/0/1/1028/content.html">equalizers</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>), by Beck’s crude <a class="existingWikiWord" href="../../../../0/0/3/3005/content.html">monadicity theorem</a> it suffices to see that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,S]</annotation></semantics></math></p>
+<ol>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/9/3/3/3398/content.html">preserves</a> reflexive coequalizers, hence takes coreflexive equalizers in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> to <a class="existingWikiWord" href="../../../../../6/7/7/0/776/content.html">coequalizers</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>reflects <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a>.</p>
+</li>
+</ol>
+<blockquote>
+<p>(The alternative argument of <a href="#HylandLevyPlotkinPower07">Hyland, Levy, Plotkin &amp; Power 2007, Prop. 10</a>, shows and uses that the image under <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,S]</annotation></semantics></math> of a <a class="existingWikiWord" href="../../../../../9/8/0/3/3089/content.html">coreflexive equalizer</a> is a <a class="existingWikiWord" href="../../../../../0/9/9/3/3990/content.html">split coequalizer</a>.)</p>
+</blockquote>
+<p>Regarding the first point: Say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is (internally) <em>injective</em> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-, S]</annotation></semantics></math> takes coreflexive equalizers in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> to coequalizers in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>. (The coreflexivity cannot be dropped here: For example, the equalizer of the identity and of the swap map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">2 = \{0,1\}</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∅</mo><mo>↪</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\varnothing \hookrightarrow 2</annotation></semantics></math>, but the coequalizer of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi mathvariant="normal">id</mi><mo>,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\mathrm{id},2]</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>τ</mi><mo>,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\tau,2]</annotation></semantics></math> on the 4-element set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[2,2]</annotation></semantics></math> has 3 elements, while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>∅</mo><mo>,</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\varnothing,2]</annotation></semantics></math> has a single element.)</p>
+<p>The <a class="existingWikiWord" href="../../../../../6/0/3/0/306/content.html">subobject classifier</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math> is injective in this sense, by the proof of Paré’s theorem (for constructing finite colimits in an elementary topos), which shows that the <a class="existingWikiWord" href="../../../../../9/4/4/1/1449/content.html">power object</a> functor takes coreflexive equalizers to (split) coequalizers. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>Set</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">S \times (-) \colon Set \to Set</annotation></semantics></math> preserves <a class="existingWikiWord" href="../../../../../8/0/0/4/4008/content.html">connected limits</a> such as equalizers (and, as does any functor, coreflexive pairs), it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>S</mi><mo>×</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mn>2</mn><mo stretchy="false">]</mo><mo>≅</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msup><mn>2</mn> <mi>S</mi></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[S \times -, 2] \cong [-, 2^S]</annotation></semantics></math> takes coreflexive equalizers to coequalizers, i.e., that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn> <mi>S</mi></msup></mrow><annotation encoding="application/x-tex">2^S</annotation></semantics></math> is injective, for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>. Finally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>S</mi><mo stretchy="false">|</mo><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">|S| \geq 2</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/0/7/0/700/content.html">retract</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn> <mi>S</mi></msup></mrow><annotation encoding="application/x-tex">2^S</annotation></semantics></math> — via the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>↦</mo><mo stretchy="false">{</mo><mi>s</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">s \mapsto \{s\}</annotation></semantics></math> and the map which sends singletons to their element and all other subsets to a fixed element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>0</mn></msub><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">s_0 \in S</annotation></semantics></math> — so that the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,S]</annotation></semantics></math> is a retract of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msup><mn>2</mn> <mi>S</mi></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,2^S]</annotation></semantics></math>; and since a retract of a coequalizer diagram is again a coequalizer diagram, also <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is injective.</p>
+<p>Regarding the second point: Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>S</mi><mo stretchy="false">|</mo><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">|S| \geq 2</annotation></semantics></math>, the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math> is a retract of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>; and since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/9/9/0/997/content.html">cogenerator</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>, so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, which means that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,S]</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/0/2/0/209/content.html">faithful</a>. But faithful functors reflect <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monomorphisms</a> and <a class="existingWikiWord" href="../../../../../7/3/1/0/137/content.html">epimorphisms</a>, and in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> every morphism which is both is an isomorphism. Hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-, S]</annotation></semantics></math> reflects isomorphisms.</p>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="AlgebrasAsCompleteAtomicBooleanAlgebras">
+<h6>Remark</h6>
+<p><strong>(algebras as complete atomic Boolean algebras)</strong> Thus, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>S</mi><mo stretchy="false">|</mo><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">|S| \geq 2</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">Eilenberg-Moore algebras</a> of the continuation monad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> are equivalent to <a class="existingWikiWord" href="../../../../../2/0/4/3/3402/content.html">complete atomic Boolean algebras</a>, as the category of these is equivalent to the <a class="existingWikiWord" href="../../../../2/3/0/325/content.html">opposite</a> of the category of sets. (For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>S</mi><mo stretchy="false">|</mo><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|S| \leq 1</annotation></semantics></math> the continuation monad degenerates: For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">S = \ast</annotation></semantics></math> it is constant on the point, while for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo>∅</mo></mrow><annotation encoding="application/x-tex">S = \varnothing</annotation></semantics></math> it sends <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∅</mo></mrow><annotation encoding="application/x-tex">\varnothing</annotation></semantics></math> to itself and every other set to the point.)</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="MonadicInMultipleWays">
+<h6>Remark</h6>
+<p><strong>(monadic in multiple ways)</strong> This illustrates the fact that a category can be monadic over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Set</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{Set}</annotation></semantics></math> in multiple ways. In other words, one should not refer to a <em>category</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> as monadic over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>, unless everyone agrees to which “forgetful functor” <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>→</mo><mstyle mathvariant="bold"><mi>Set</mi></mstyle></mrow><annotation encoding="application/x-tex">U\colon C \to \mathbf{Set}</annotation></semantics></math> is being considered – better is to refer to a <em>functor</em> as monadic.</p>
+</div>
+</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/9/9/1/21991/content.html">selection monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../7/9/8/8975/content.html">continuation-passing style</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/1/1/11136/content.html">maybe monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/1/1/11134/content.html">state monad</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>As a <a class="existingWikiWord" href="../../../../5/2/0/255/content.html">monad</a> in <a class="existingWikiWord" href="../../../../../9/7/0/0/79/content.html">mathematics</a>:</p>
+<ul>
+<li id="Kock70">
+<p><a class="existingWikiWord" href="../../../../../1/5/4/1/1451/content.html">Anders Kock</a>: <em>On double dualization monads</em>, Math. Scand. <strong>27</strong> (1970) 151–165 [<a href="https://www.jstor.org/stable/24489892">jstor:24489892</a>, <a href="https://eudml.org/doc/166154">eudml:166154</a>, <a href="https://tildeweb.au.dk/au76680/DD.pdf">pdf</a>]</p>
+</li>
+<li id="Kock72">
+<p><a class="existingWikiWord" href="../../../../../1/5/4/1/1451/content.html">Anders Kock</a>, <em>Strong functors and monoidal monads</em>, Archiv der Mathematik <strong>23</strong> (1972) 113-120 [<a href="https://doi.org/10.1007/BF01304852">doi:10.1007/BF01304852</a>]</p>
+</li>
+</ul>
+<p>As a <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad in computer science</a>:</p>
+<ul>
+<li id="Moggi91">
+<p><a class="existingWikiWord" href="../../../../../1/9/9/6/6991/content.html">Eugenio Moggi</a>, Ex. 1.1 in: <em>Notions of computation and monads</em>, Information and Computation <strong>93</strong> 1 (1991) 55-92 [<a href="https://doi.org/10.1016/0890-5401(91)90052-4">doi:10.1016/0890-5401(91)90052-4</a>, <a href="http://www.disi.unige.it/person/MoggiE/ftp/ic91.pdf">pdf</a>]</p>
+</li>
+<li id="Milewski19">
+<p><a class="existingWikiWord" href="../../../../../4/5/3/6/16354/content.html">Bartosz Milewski</a>, §21.2.7 in: <em>Category Theory for Programmers</em>, Blurb (2019) [<a href="https://github.com/hmemcpy/milewski-ctfp-pdf/releases/download/v1.3.0/category-theory-for-programmers.pdf">pdf</a>, <a href="https://github.com/hmemcpy/milewski-ctfp-pdf">github</a>, <a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/">webpage</a>, <a href="https://www.blurb.com/b/9621951-category-theory-for-programmers-new-edition-hardco">ISBN:9780464243878</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, p.27 of: <em>Monads and Interaction Lecture 1</em> [<a href="https://cs.ioc.ee/~tarmo/mgs21/mgs1.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Uustalu-Monads1.pdf" title="pdf">pdf</a>], lecture notes for <a href="https://staffwww.dcs.shef.ac.uk/people/G.Struth/mgs21.html">MGS 2021</a> (2021)</p>
+</li>
+</ul>
+<p>As a <a class="existingWikiWord" href="../../../../../9/8/1/7/7189/content.html">codensity monad</a>:</p>
+<ul>
+<li id="Leinster13"><a class="existingWikiWord" href="../../../../../1/1/0/0/11/content.html">Tom Leinster</a>, <em>Codensity and the ultrafilter monad</em>, Theory and Applications of Categories <strong>28</strong> 13 (2013) 332-370 [<a href="https://arxiv.org/abs/1209.3606">arXiv:1209.3606</a>, <a href="http://www.tac.mta.ca/tac/volumes/28/13/28-13abs.html">tac:28-13</a>]</li>
+</ul>
+<p>In the generality of <a class="existingWikiWord" href="../../../../../1/0/9/0/10901/content.html">linear type theory</a> as the linear <a class="existingWikiWord" href="../../../../../1/7/3/4/4371/content.html">double negation monad</a>:</p>
+<ul>
+<li id="MelliesTabareau07">
+<p><a class="existingWikiWord" href="../../../../../0/3/1/5/5130/content.html">Paul-André Melliès</a>, Nicolas Tabareau: <em>Linear continuations and duality</em>, preprint (2007) [<a href="https://hal.science/hal-00339156">hal:hal-00339156</a>, <a href="http://hal.inria.fr/docs/00/33/91/56/PDF/linear-control.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/3/1/5/5130/content.html">Paul-André Melliès</a>, <em>The parametric continuation monad</em>, Mathematical Structures in Computer Science <strong>27</strong> 5 (2017) 651-680, Festschrift in honor of Corrado Böhm for his 90th birthday [<a href="https://doi.org/10.1017/S0960129515000328">doi:10.1017/S0960129515000328</a>, <a class="existingWikiWord" href="/nlab/files/MelliesContinuation.pdf" title="pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>The characterization of algebras over the continuation monad:</p>
+<ul>
+<li id="HylandLevyPlotkinPower07"><a class="existingWikiWord" href="../../../../../8/1/9/4/4918/content.html">Martin Hyland</a>, <a class="existingWikiWord" href="../../../../../7/4/5/4/24547/content.html">Paul Blain Levy</a>, <a class="existingWikiWord" href="../../../../../2/9/3/8/8392/content.html">Gordon Plotkin</a>, <a class="existingWikiWord" href="../../../../../9/1/9/4/4919/content.html">John Power</a>; Prop. 10 in: <em>Combining algebraic effects with continuations</em>, Theoretical Computer Science <strong>375</strong> 1-3 (2007) 20-40 [<a href="https://homepages.inf.ed.ac.uk/gdp/publications/comb_cont_journal.pdf">pdf</a>]</li>
+</ul>
+<p>A characterisation of (<a class="existingWikiWord" href="../../../../9/2/1/11295/content.html">enriched</a>) monads isomorphic to continuation monads is given in:</p>
+<ul>
+<li>Christopher Townsend, <em>When are enriched strong monads double exponential monads?</em>, Bulletin of the Belgian Mathematical Society-Simon Stevin <strong>23.2</strong> (2016) 311–319 [<a href="http://doi.org/10.36045/bbms/1464710120">doi:10.36045/bbms/1464710120</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

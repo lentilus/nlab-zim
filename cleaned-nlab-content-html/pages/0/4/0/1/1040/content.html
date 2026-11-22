@@ -1,0 +1,1430 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      idempotent monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      idempotent monad
+  </h1>
+<div id="revision">
+<h1 id="idempotent_monads">Idempotent monads</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#Properties">Properties</a></li>
+<ul>
+<li><a href="#AlgebrasForAnIdempotentMonad">Algebras for an idempotent monad and Localization</a></li>
+<li><a href="#AssociatedIdemopotentMonad">The associated idempotent monad of a monad</a></li>
+<li><a href="#idempotent_strong_monads_are_commutative">Idempotent strong monads are commutative</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>An <em>idempotent monad</em> is a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> that “squares to itself” in the evident <a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">category-theoretic</a> sense. Idempotent monads hence serve as <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorified</a> <a class="existingWikiWord" href="../../../../../7/7/8/5/5877/content.html">projection</a> operators, in that they encode <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategories</a> and the reflection/<a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> onto these.</p>
+<p>In terms of <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a> idempotent monads interpret (co-)<a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operators</a>; see <a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a>.</p>
+<h2 id="definition">Definition</h2>
+<div class="num_defn" id="IdempotentMonad">
+<h6 id="definition_2">Definition</h6>
+<p>An <strong>idempotent monad</strong> is a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>μ</mi><mo>,</mo><mi>η</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T,\mu,\eta)</annotation></semantics></math> on a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> such that one (hence all) of the following equivalent statements are true:</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>T</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">\mu\colon T T \to T</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a>.</p>
+</li>
+<li>
+<p>All components of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>T</mi><mi>T</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">\mu \,\colon\, T T \to T</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monomorphisms</a>.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../2/1/6/9/9612/content.html">maps</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>η</mi><mo>,</mo><mi>η</mi><mi>T</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>T</mi><mo>→</mo><mi>T</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">T\eta, \eta T \,\colon\, T \to T T</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../7/0/2/0/207/content.html">equal</a> (that is, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>η</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T, \eta)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/4/7/2/22741/content.html">well-pointed endofunctor</a>).</p>
+</li>
+<li>
+<p>For every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebra</a> (aka: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-module) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(M,u)</annotation></semantics></math>, the corresponding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../8/2/0/280/content.html">action</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>M</mi><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">u\colon T M \to M</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> (i.e. every algebra is a <a class="existingWikiWord" href="../../../../8/4/8/8480/content.html">fixed point</a>).</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒞</mi> <mi>T</mi></msup><mo>→</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}^T \to \mathcal{C}</annotation></semantics></math> (where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">C^T</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">Eilenberg-Moore category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebras) is a <a class="existingWikiWord" href="../../../../../6/9/3/0/396/content.html">full and faithful functor</a>.</p>
+</li>
+<li>
+<p>There exists a pair of <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>⊣</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">F \dashv U</annotation></semantics></math> such that the induced monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo lspace="verythinmathspace">:</mo><mi>U</mi><mi>F</mi><mo>,</mo><mi>μ</mi><mo>≔</mo><mi>U</mi><mi>ϵ</mi><mi>F</mi><mo>,</mo><mi>η</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T \colon U F, \mu \coloneqq U \epsilon F, \eta)</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>μ</mi><mo>,</mo><mi>η</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T,\mu, \eta)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/9/3/0/396/content.html">full and faithful functor</a>.</p>
+<p id="SixPrime"> 6’.</p>
+<p>There is a <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo lspace="verythinmathspace">:</mo><msup><mi>C</mi> <mi>T</mi></msup><mo>↪</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">U \colon C^T \hookrightarrow C</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../6/7/3/8/8376/content.html">natural bijection</a> of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>Hom</mi> <mi>𝒞</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>T</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>U</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mo>∼</mo></mover></mtd> <mtd><msub><mi>Hom</mi> <mi>𝒞</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>c</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>U</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>T</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mi>f</mi></mover><mi>U</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>c</mi><mover><mo>⟶</mo><mi>η</mi></mover><mi>T</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mi>f</mi></mover><mi>U</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+  Hom_{\mathcal{C}}\big(
+    T(c)
+    ,\,
+    U(a)
+  \big)
+  &amp;
+  \overset{\sim}{\longrightarrow}
+  &amp;
+  Hom_{\mathcal{C}}\big(
+    c
+    ,\,
+    U(a)
+  \big)
+  \\
+  \big(
+    T(c) \overset{f}{\longrightarrow} U(a)
+  \big)
+  &amp;\mapsto&amp;
+  \big(
+    c
+      \overset{\eta}{\longrightarrow}
+    T(c) 
+      \overset{f}{\longrightarrow} 
+    U(a)
+  \big)
+  }
+
+</annotation></semantics></math></div>
+<blockquote>
+<p>(This is the form in which <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operators</a> tend to be axiomatized in <a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a>, e.g. <a href="../../../../../7/2/4/0/10427/content.html#HoTTBook">UP13, Def. 7.7.1</a>.)</p>
+</blockquote>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../7/1/4/8/18417/content.html">identity</a> <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>T</mi><mo>⇒</mo><mi>T</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">T T \Rightarrow T T</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/3/9/0/939/content.html">distributive law</a>.</p>
+</li>
+</ol>
+</div>
+<p>e.g. (<a href="#Borceux">Borceux, prop. 4.2.3</a>). For (7) see Lemma 3.4 of <a href="#RosebrughWood95">RW95</a>.</p>
+<div class="num_prop" id="EquivalentConditions">
+<h6 id="proposition">Proposition</h6>
+<p>The conditons in Def. <a class="maruku-ref" href="#IdempotentMonad"></a> are indeed equivalent.</p>
+</div>
+<div class="proof">
+<h6 id="proof_in_more_than_one_way">Proof (in more than one way).</h6>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⇒</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1\Rightarrow 2</annotation></semantics></math></p>
+<p>This is trivial.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>⇒</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">2\Rightarrow 3</annotation></semantics></math></p>
+<p>Compositions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>∘</mo><mi>T</mi><mi>η</mi></mrow><annotation encoding="application/x-tex">\mu\circ T\eta</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>∘</mo><mi>η</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\mu\circ\eta T</annotation></semantics></math> are always the identity (unit axioms for the monad), and in particular agree; if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math> has all components monic, this implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>η</mi><mo>=</mo><mi>η</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">T\eta = \eta T</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>⇒</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">3\Rightarrow 4</annotation></semantics></math></p>
+<p>Compatibility of action and unit is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>∘</mo><msub><mi>η</mi> <mi>M</mi></msub><mo>=</mo><msub><mi>id</mi> <mi>M</mi></msub></mrow><annotation encoding="application/x-tex">u \circ \eta_M = id_M</annotation></semantics></math>, hence also <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>∘</mo><mi>T</mi><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>M</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>id</mi> <mrow><mi>T</mi><mi>M</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T(u)\circ T(\eta_M) = id_{T M}</annotation></semantics></math>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>η</mi><mo>=</mo><mi>η</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">T\eta = \eta T</annotation></semantics></math> then this implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>id</mi> <mrow><mi>T</mi><mi>M</mi></mrow></msub><mo>=</mo><mi>T</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>∘</mo><msub><mi>η</mi> <mrow><mi>T</mi><mi>M</mi></mrow></msub><mo>=</mo><msub><mi>η</mi> <mi>M</mi></msub><mo>∘</mo><mi>u</mi></mrow><annotation encoding="application/x-tex">id_{T M} = T(u)\circ \eta_{T M} = \eta_M\circ u</annotation></semantics></math>, where the naturality of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> is used in the second equality. Therefore we exhibited <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>M</mi></msub></mrow><annotation encoding="application/x-tex">\eta_M</annotation></semantics></math> both as a left and a right inverse of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>⇒</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">4\Rightarrow 1</annotation></semantics></math></p>
+<p>If every action is iso, then the components of multiplication <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>M</mi></msub><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>T</mi><mi>M</mi><mo>→</mo><mi>T</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">\mu_M\colon T T M\to T M</annotation></semantics></math> are isos as a special case, namely of the free action on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">T M</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>⇒</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">4\Rightarrow 5</annotation></semantics></math></p>
+<p>For any monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>, the forgetful functor from Eilenberg-Moore category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">C^T</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is faithful: a morphism of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebras is always a morphism of underlying objects in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. To show that it is also full, we consider any pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(M,u)</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo>′</mo><mo>,</mo><mi>u</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(M',u')</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">C^T</annotation></semantics></math> and must show that any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>M</mi><mo>→</mo><mi>M</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f\colon M\to M'</annotation></semantics></math> is actually a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>M</mi><mo>′</mo><mo>,</mo><mi>u</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f\colon (M,u)\to (M',u')</annotation></semantics></math>; i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>′</mo><mo>∘</mo><mi>T</mi><mi>f</mi><mo>=</mo><mi>f</mi><mo>∘</mo><mi>u</mi></mrow><annotation encoding="application/x-tex">u'\circ T f = f\circ u</annotation></semantics></math>. But we know that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>M</mi></msub><mo>,</mo><msub><mi>η</mi> <mrow><mi>M</mi><mo>′</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\eta_M, \eta_{M'}</annotation></semantics></math> are inverses of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>,</mo><mi>u</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">u,u'</annotation></semantics></math> respectively and the naturality for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> says <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><mi>M</mi><mo>′</mo></mrow></msub><mo>∘</mo><mi>f</mi><mo>=</mo><mi>T</mi><mi>f</mi><mo>∘</mo><msub><mi>η</mi> <mi>M</mi></msub></mrow><annotation encoding="application/x-tex">\eta_{M'}\circ f = T f \circ \eta_M</annotation></semantics></math>. Compose that equation with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> on the right and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">u'</annotation></semantics></math> on the left with the result (notice that we used just the invertibility of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math>).</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>⇒</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">5\Rightarrow 6</annotation></semantics></math></p>
+<p>Because the Eilenberg-Moore construction induces the original monad by the standard recipe.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>⇒</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">6\Rightarrow 3</annotation></semantics></math></p>
+<p>By <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math> the counit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math> is iso, hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mi>ϵ</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">U\epsilon F</annotation></semantics></math> has a unique 2-sided inverse; by <a class="existingWikiWord" href="../../../../../2/4/7/1/1742/content.html">triangle identities</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>η</mi></mrow><annotation encoding="application/x-tex">T\eta</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\eta T</annotation></semantics></math> are both right inverses of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mi>ϵ</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">U\epsilon F</annotation></semantics></math>, hence 2-sided inverses, hence they are equal.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>⇔</mo><mn>6</mn><mo>′</mo></mrow><annotation encoding="application/x-tex">6 \Leftrightarrow 6'</annotation></semantics></math></p>
+<p>This is the special case of the characterization (<a href="../../../../../4/9/4/0/494/content.html#CollectionOfUniversalArrowsEquivalentToAdjointFunctor">here</a>) of (<a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">adjunction units</a> of) <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>⊣</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">F \dashv U</annotation></semantics></math> as systems of <a href="../../../../../4/9/4/0/494/content.html#UniversalArrows">universal arrows</a> when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/9/3/0/396/content.html">fully faithful</a>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>⇒</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">6\Rightarrow 1</annotation></semantics></math></p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>⊣</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">F\dashv U</annotation></semantics></math> is an adjunction with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> fully faithful, then the counit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math> is iso. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>FU</mi><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>C</mi><mo stretchy="false">(</mo><mi>UX</mi><mo>,</mo><mi>UY</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>D</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(FU X,Y)\simeq C(UX,UY)\simeq D(X,Y)</annotation></semantics></math> where the last equivalence holds since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is full and faithful; hence by essential unicity of the representing object there is an isomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>FUX</mi><mover><mo>→</mo><mo>∼</mo></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">FUX\stackrel{\sim}{\to} X</annotation></semantics></math> ; let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X=Y</annotation></semantics></math> then the adjoint of this identity is the counit of the adjunction; since the hom objects correspond bijectively, the counit is an isomorphism. Hence the multiplication of the induced monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mi>U</mi><mi>ϵ</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">\mu = U\epsilon F</annotation></semantics></math> is also an iso.</p>
+</li>
+</ul>
+</div>
+<p>Part 5 means that in such a case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">C^T</annotation></semantics></math> is, up to equivalence a full <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. Conversely, the monad induced by any reflective subcategory is idempotent, so giving an idempotent monad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is equivalent to giving a reflective subcategory of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<p>In the language of <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">stuff, structure, property</a>, an idempotent monad may be said to equip its algebras with <em>properties only</em> (since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">C^T\to C</annotation></semantics></math> is fully faithful), unlike an arbitrary monad, which equips its algebras with <em>at most structure</em> (since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">C^T\to C</annotation></semantics></math> is, in general, faithful but not full).</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is idempotent, then it follows in particular that an object of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> admits at most one structure of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebra, that this happens precisely when the unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>X</mi></msub><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>T</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\eta_X\colon X\to T X</annotation></semantics></math> is an isomorphism, and in this case the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebra structure map is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>η</mi> <mi>X</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>X</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\eta_X^{-1}\colon T X \to X</annotation></semantics></math>. However, it is possible to have a non-idempotent monad for which any object of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> admits at most one structure of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebra, in which case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> can be said to equip objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> with <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">property-like structure</a>; an easy example is the monad on <a class="existingWikiWord" href="../../../../../2/4/6/1/1642/content.html">semigroups</a> whose algebras are <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoids</a>.</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>Let us be in a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math>. Part of the structure of an idempotent monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>T</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,T,\eta,\mu)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> is of course an idempotent morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">T:C\to C</annotation></semantics></math>. More precisely (Definition 1.1.9) considers <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math> as part of the structure such that an idempotent 1-cell has a 2-isomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>:</mo><mi>TT</mi><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">\mu:TT\to T</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>T</mi><mo>=</mo><mi>T</mi><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu T=T\mu</annotation></semantics></math>. Equivalently an idempotent morphism is a normalized pseudofunctor from the two object monoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo>*</mo><mo>,</mo><mi>e</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{*,e\}</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi> <mn>2</mn></msup><mo>=</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">e^2=e</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math>.</p>
+<p>Recall that a <em>splitting of an idempotent</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T,\mu)</annotation></semantics></math> consists of a pair of 1-cells <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>:</mo><mi>D</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">I:D\to C</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">R:C\to D</annotation></semantics></math> and a pair of 2-isomorphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>:</mo><mi>R</mi><mi>I</mi><mo>→</mo><msub><mi>id</mi> <mi>D</mi></msub></mrow><annotation encoding="application/x-tex">a:R I\to id_D</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>:</mo><mi>T</mi><mo>→</mo><mi>I</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">b:T\to I R</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><msup><mi>b</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>I</mi><mo>∘</mo><mi>s</mi><mo>∘</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mo>∘</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mu=b^{-1}(I\circ s\circ R)(b\circ b)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∘</mo></mrow><annotation encoding="application/x-tex">\circ</annotation></semantics></math> denotes horizontal composition of 2-cells. Equivalently an splitting of an idempotent is a limit or a colimit of the defining pseudofunctor. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> has equalizers or coequalizers, then all its idempotents split.</p>
+<p>Now if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>I</mi><mo>,</mo><mi>R</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(I,R,a,b)</annotation></semantics></math> is a splitting of an idempotent monad, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>⊣</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">R\dashv I</annotation></semantics></math> are adjoint. And in this case the splitting of an idempotent is equivalently an Eilenberg-Moore object for the monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>T</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,T,\eta,\mu)</annotation></semantics></math>. In this case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is called an <em>adjoint retract of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></em>.</p>
+</div>
+<p>(<a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Johnstone, B 1.1.9, p.248-249</a>)</p>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>Equivalences (resp. cores) in an allegory are precisely those symmetric idempotents which are idempotent monads (resp. comonads). In an allegory the following statements are equivalent: all symmetric idempotents split, idempotent monads split, idempotent comonads split. A similar statement holds at least for some 2-categories.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_3">Remark</h6>
+<p>Given an algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>u</mi><mo>:</mo><mi>TX</mi><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, u:TX\to X)</annotation></semantics></math> , by (1) and (4) the action <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> yields an isomorphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>T</mi></msup></mrow><annotation encoding="application/x-tex">C^T</annotation></semantics></math> between the free algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>TX</mi><mo>,</mo><msub><mi>μ</mi> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(TX, \mu_X)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,u)</annotation></semantics></math> i.e. for an idempotent monad the Eilenberg-Moore and the Kleisli categories coincide.</p>
+</div>
+<h2 id="Properties">Properties</h2>
+<h3 id="AlgebrasForAnIdempotentMonad">Algebras for an idempotent monad and Localization</h3>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>η</mi><mo>,</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T, \eta, \mu)</annotation></semantics></math> be an idempotent monad on a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>. The following conditions on an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> are equivalent:</p>
+<ol>
+<li>
+<p>The object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> carries an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebra structure</a>.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>e</mi><mo lspace="verythinmathspace">:</mo><mi>e</mi><mo>→</mo><mi>T</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\eta e\colon e \to T e</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../6/7/0/760/content.html">split monomorphism</a>.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\eta e</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+</li>
+</ol>
+<p>(It follows from 3. that there is at most one algebra structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math>, given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>=</mo><mo stretchy="false">(</mo><mi>η</mi><mi>e</mi><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>e</mi><mo>→</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">\xi = (\eta e)^{-1}\colon T e \to e</annotation></semantics></math>.)</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>The implication 1. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⇒</mo></mrow><annotation encoding="application/x-tex">\Rightarrow</annotation></semantics></math> 2. is immediate. Next, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>e</mi><mo>→</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">\xi\colon T e \to e</annotation></semantics></math> is any retraction of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\eta e</annotation></semantics></math>, we have both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>∘</mo><mi>η</mi><mi>e</mi><mo>=</mo><msub><mn>1</mn> <mi>e</mi></msub></mrow><annotation encoding="application/x-tex">\xi \circ \eta e = 1_e</annotation></semantics></math> and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>η</mi><mi>e</mi><mo>∘</mo><mi>ξ</mi></mtd> <mtd><mo>=</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>T</mi><mi>ξ</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>η</mi><mi>T</mi><mi>e</mi><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd><mtext>naturality of</mtext><mspace width="thinmathspace"></mspace><mi>η</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>T</mi><mi>ξ</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>T</mi><mi>η</mi><mi>e</mi><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd><mtext>see definitions above</mtext></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>T</mi><mo stretchy="false">(</mo><mi>ξ</mi><mo>∘</mo><mi>η</mi><mi>e</mi><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd><mtext>functoriality</mtext></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><msub><mn>1</mn> <mrow><mi>T</mi><mi>e</mi></mrow></msub></mtd> <mtd></mtd> <mtd></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{
+\eta e \circ \xi &amp; = &amp; (T \xi)(\eta T e) &amp; &amp; \text{naturality of}\, \eta \\
+ &amp; = &amp; (T \xi)(T \eta e) &amp; &amp; \text{see definitions above} \\
+ &amp; = &amp; T(\xi \circ \eta e) &amp; &amp; \text{functoriality} \\
+ &amp; = &amp; 1_{T e} &amp; &amp; 
+}
+</annotation></semantics></math></div>
+<p>so 2. implies 3. Finally, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\eta e</annotation></semantics></math> is an isomorphism, put <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>=</mo><mo stretchy="false">(</mo><mi>η</mi><mi>e</mi><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\xi = (\eta e)^{-1}</annotation></semantics></math>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>∘</mo><mi>η</mi><mi>e</mi><mo>=</mo><msub><mn>1</mn> <mi>e</mi></msub></mrow><annotation encoding="application/x-tex">\xi \circ \eta e = 1_e</annotation></semantics></math> (unit condition), and the associativity condition for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi></mrow><annotation encoding="application/x-tex">\xi</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi><mo>∘</mo><mi>μ</mi><mi>e</mi><mo>=</mo><mi>ξ</mi><mo>∘</mo><mi>T</mi><mi>ξ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\xi \circ \mu e = \xi \circ T \xi,</annotation></semantics></math></div>
+<p>follows by inverting the naturality equation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>T</mi><mi>e</mi><mo>∘</mo><mi>η</mi><mi>e</mi><mo>=</mo><mi>T</mi><mi>η</mi><mi>e</mi><mo>∘</mo><mi>η</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">\eta T e \circ \eta e = T \eta e \circ \eta e</annotation></semantics></math>. Thus 3. implies 1.</p>
+</div>
+<div class="num_remark" id="ReflectiveSubcategoryOfIdempotentMonad">
+<h6 id="remark_4">Remark</h6>
+<p>This means that the <a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">Eilenberg-Moore category</a> of an <a class="existingWikiWord" href="content.html">idempotent monad</a> is equivalently the <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a> (a “<a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a>” of the ambient category) whose embedding-reflection <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> gives the idempotent monad.</p>
+</div>
+<p>See also (<a href="#Borceux">Borceux, volume 2, corollary 4.2.4</a>).</p>
+<div class="num_remark">
+<h6 id="remark_5">Remark</h6>
+<p>Hence <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">dually</a> the co-algebras over an idempotent <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a> form a <a class="existingWikiWord" href="../../../../../9/8/2/1/1289/content.html">coreflective subcategory</a>, hence a “co-localization” of the ambient category.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_6">Remark</h6>
+<p>In <a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a> one thinks of a (idempotent) (co-)monad as a (co-)<a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operator</a> and of its algebras as (co-)<a class="existingWikiWord" href="../../../../8/9/8/8980/content.html">modal types</a>. In this terminology the above says that categories of (co-)modal types are precisely the (co-)reflective <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localizations</a> of the ambient type system.</p>
+</div>
+<h3 id="AssociatedIdemopotentMonad">The associated idempotent monad of a monad</h3>
+<p>We discuss here how under suitable conditions, for every <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> there is a “completion” to an idempotent monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>T</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde T</annotation></semantics></math> in that the completion construction is <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> to the inclusion of idempotent monads into the category of all monads on a given category, exhibiting the subcategory of idempotent monads as a <a class="existingWikiWord" href="../../../../../9/8/2/1/1289/content.html">coreflective subcategory</a>. Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>T</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde T</annotation></semantics></math> inverts the same morphisms that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> does and hence exhibits the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> (<a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a>) at the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-equivalences, and in fact the factorization of any <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> inducing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> through that localization (<a href="#Fakir70">Fakir 70</a>, <a href="#ApplegateTierney70">Applegate-Tierney 70</a>, <a href="#Day74">Day 74</a> <a href="#CasacubertaFrei99">Casacuberta-Frei 99</a>. <a href="#Lucyshyn-Wright14">Lucyshyn-Wright 14</a>).</p>
+<p>
+<div class="num_theorem" id="ExistenceOfIdempotentCore">
+<h6>Theorem</h6>
+<p><strong>(<a href="#Fakir70">Fakir 70</a>)</strong> <br/> Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../9/8/5/0/589/content.html">complete</a>, <a class="existingWikiWord" href="../../../../../7/4/5/0/547/content.html">well-powered category</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">M\colon C \to C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> with <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo lspace="verythinmathspace">:</mo><mn>1</mn><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">u\colon 1 \to M</annotation></semantics></math> and multiplication <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo lspace="verythinmathspace">:</mo><mi>M</mi><mi>M</mi><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">m\colon M M \to M</annotation></semantics></math>. Then there is a universal idempotent monad, giving a <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> to the inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>IdempotentMonad</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>Monad</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">IdempotentMonad(C) \hookrightarrow Monad(C)</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>Given a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>, define a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">M'</annotation></semantics></math> as the <a class="existingWikiWord" href="../../../../../8/2/0/1/1028/content.html">equalizer</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>u</mi></mrow><annotation encoding="application/x-tex">M u</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">u M</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>′</mo><mo>↪</mo><mi>M</mi><mover><munder><mo>⟶</mo><mrow><mi>M</mi><mi>u</mi></mrow></munder><mover><mo>⟶</mo><mrow><mi>u</mi><mi>M</mi></mrow></mover></mover><mi>M</mi><mi>M</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">M' \hookrightarrow M \stackrel{\overset{u M}{\longrightarrow}}{\underset{M u}{\longrightarrow}} M M.</annotation></semantics></math></div>
+<p>This <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">M'</annotation></semantics></math> acquires a unique monad structure such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>′</mo><mo>↪</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">M' \hookrightarrow M</annotation></semantics></math> is a morphism of monads (see this <a href="http://mathoverflow.net/questions/147264/regarding-a-difficulty-in-the-fakir-article-about-associated-idempotent-triple/147272#147272">MathOverflow thread</a> for some detailed discussion). It might not be an idempotent monad (although it will be if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../5/0/1/1050/content.html">left exact</a>). However we can apply the process again, and continue transfinitely. Define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>0</mn></msub><mo>=</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">M_0 = M</annotation></semantics></math>, and if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">M_\alpha</annotation></semantics></math> has been defined, put <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mrow><mi>α</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>M</mi> <mi>α</mi></msub><mo>′</mo></mrow><annotation encoding="application/x-tex">M_{\alpha+1} = M_{\alpha}'</annotation></semantics></math>; at limit ordinals <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math>, define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>β</mi></msub></mrow><annotation encoding="application/x-tex">M_\beta</annotation></semantics></math> to be the inverse limit of the chain</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>…</mi><mo>↪</mo><msub><mi>M</mi> <mi>α</mi></msub><mo>↪</mo><mi>…</mi><mo>↪</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">\ldots \hookrightarrow M_{\alpha} \hookrightarrow \ldots \hookrightarrow M</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> ranges over ordinals less than <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math>. This defines the monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">M_\alpha</annotation></semantics></math> inductively; below, we let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">u_\alpha</annotation></semantics></math> denote the <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">unit</a> of this monad.</p>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../7/4/5/0/547/content.html">well-powered</a> (i.e., since each object has only a small number of <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a>), the large limit</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mi>lim</mi><mrow><mi>α</mi><mo>∈</mo><mi>Ord</mi></mrow></munder><msub><mi>M</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E(M)(c) = \underset{\alpha \in Ord}{\lim} M_\alpha(c)</annotation></semantics></math></div>
+<p>exists for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>. Hence the large limit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mi>lim</mi><mrow><mi>α</mi><mo>∈</mo><mi>Ord</mi></mrow></munder><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">E(M) = \underset{\alpha \in Ord}{\lim} M_\alpha</annotation></semantics></math> exists as an endofunctor. The underlying functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Monad</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Endo</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Monad(C) \to Endo(C)</annotation></semantics></math></div>
+<p>reflects limits (irrespective of size), so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>E</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E = E(M)</annotation></semantics></math> acquires a monad structure defined by the limit. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo lspace="verythinmathspace">:</mo><mn>1</mn><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">\eta\colon 1 \to E</annotation></semantics></math> be the unit and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mi>E</mi><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">\mu\colon E E \to E</annotation></semantics></math> the multiplication of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>. For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>, there is a monad map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>α</mi></msub><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\pi_\alpha\colon E \to M_\alpha</annotation></semantics></math> defined by the limit projection.</p>
+</div>
+<div class="num_lemma">
+<h6 id="lemma">Lemma</h6>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is idempotent.</p>
+</div>
+<div class="proof">
+<h6 id="proof_3">Proof</h6>
+<p>For this it suffices to check that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mi>E</mi><mo>=</mo><mi>E</mi><mi>η</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mi>E</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\eta E = E \eta\colon E \to E E</annotation></semantics></math>. This may be checked objectwise. So fix an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>, and for that particular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>, choose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> so large that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_\alpha (c)\colon E(c) \to M_\alpha(c)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>α</mi></msub><mi>E</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>E</mi><mi>E</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub><mi>E</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_\alpha E(c)\colon E E(c) \to M_{\alpha} E(c)</annotation></semantics></math> are isomorphisms. In particular, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>α</mi></msub><msub><mi>π</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>E</mi><mi>E</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub><msub><mi>M</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_\alpha \pi_\alpha(c)\colon E E (c) \to M_\alpha M_\alpha(c)</annotation></semantics></math> is invertible.</p>
+<p>Now <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi> <mi>α</mi></msub><msub><mi>M</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>M</mi> <mi>α</mi></msub><msub><mi>u</mi> <mi>α</mi></msub><mi>c</mi></mrow><annotation encoding="application/x-tex">u_\alpha M_\alpha(c) = M_{\alpha} u_{\alpha} c</annotation></semantics></math>, since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>α</mi></msub><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\pi_\alpha\colon E \to M_\alpha</annotation></semantics></math> factors through the equalizer <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mrow><mi>α</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>↪</mo><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">M_{\alpha + 1} \hookrightarrow M_\alpha</annotation></semantics></math>. Because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\pi_\alpha</annotation></semantics></math> is a monad morphism, we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>η</mi><mi>E</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mo stretchy="false">(</mo><msub><mi>π</mi> <mi>α</mi></msub><msub><mi>π</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><msub><mi>u</mi> <mi>α</mi></msub><msub><mi>M</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msub><mi>π</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><mo stretchy="false">(</mo><msub><mi>π</mi> <mi>α</mi></msub><msub><mi>π</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><msub><mi>M</mi> <mi>α</mi></msub><msub><mi>u</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msub><mi>π</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>E</mi><mi>η</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{
+\eta E(c) &amp; = &amp; (\pi_\alpha \pi_\alpha (c))^{-1} (u_\alpha M_\alpha(c))\pi_\alpha(c) \\
+       &amp; = &amp; (\pi_\alpha \pi_\alpha (c))^{-1} (M_\alpha u_\alpha(c))\pi_\alpha(c) \\
+       &amp; = &amp; E \eta(c)
+}
+</annotation></semantics></math></div>
+<p>as required.</p>
+<p>Finally we must check that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>↦</mo><mi>E</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M \mapsto E(M)</annotation></semantics></math> satisfies the appropriate universal property. Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is an idempotent monad with unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">\phi\colon T \to M</annotation></semantics></math> be a monad map. We define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">T \to M_\alpha</annotation></semantics></math> by induction: given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mi>α</mi></msub><mo lspace="verythinmathspace">:</mo><mi>T</mi><mo>→</mo><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\phi_\alpha\colon T \to M_\alpha</annotation></semantics></math>, we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>u</mi> <mi>α</mi></msub><msub><mi>M</mi> <mi>α</mi></msub><mo stretchy="false">)</mo><msub><mi>ϕ</mi> <mi>α</mi></msub><mo>=</mo><msub><mi>ϕ</mi> <mi>α</mi></msub><msub><mi>ϕ</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>v</mi><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>ϕ</mi> <mi>α</mi></msub><msub><mi>ϕ</mi> <mi>α</mi></msub><mo stretchy="false">(</mo><mi>T</mi><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mi>M</mi> <mi>α</mi></msub><msub><mi>u</mi> <mi>α</mi></msub><mo stretchy="false">)</mo><msub><mi>ϕ</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">(u_\alpha M_\alpha)\phi_\alpha = \phi_\alpha \phi_\alpha (v T) = \phi_\alpha \phi_\alpha (T v) = (M_\alpha u_{\alpha})\phi_\alpha</annotation></semantics></math></div>
+<p>so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\phi_{\alpha}</annotation></semantics></math> factors uniquely through the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mrow><mi>α</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>↪</mo><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">M_{\alpha + 1} \hookrightarrow M_\alpha</annotation></semantics></math>. This defines <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mrow><mi>α</mi><mo>+</mo><mn>1</mn></mrow></msub><mo lspace="verythinmathspace">:</mo><mi>T</mi><mo>→</mo><msub><mi>M</mi> <mrow><mi>α</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\phi_{\alpha + 1}\colon T \to M_{\alpha + 1}</annotation></semantics></math>; this is a monad map. The definition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\phi_\alpha</annotation></semantics></math> at limit ordinals, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">M_\alpha</annotation></semantics></math> is a limit monad, is clear. Hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">T \to M</annotation></semantics></math> factors (uniquely) through the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">E(M) \hookrightarrow M</annotation></semantics></math>, as was to be shown.</p>
+</div>
+<div class="num_theorem" id="FactorizationOfIdempotentCore">
+<h6 id="theorem">Theorem</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>R</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mover><munder><mo>⟵</mo><mi>R</mi></munder><mover><mo>⟶</mo><mi>L</mi></mover></mover><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">
+  (L \dashv R)
+  \;\colon\;
+  \mathcal{C}
+  \stackrel{\overset{L}{\longrightarrow}}{\underset{R}{\longleftarrow}}
+  \mathcal{D}
+</annotation></semantics></math> a pair of <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functors</a> with induced <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mi>R</mi><mo>∘</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">T = R\circ L</annotation></semantics></math> on the complete and well-powered category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, then the idempotent monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>T</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde T</annotation></semantics></math> of theorem <a class="maruku-ref" href="#ExistenceOfIdempotentCore"></a> corresponds via remark <a class="maruku-ref" href="#ReflectiveSubcategoryOfIdempotentMonad"></a> to a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a> inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mi>T</mi></msub><mover><mo>↪</mo><mi>i</mi></mover><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}_T \stackrel{i}{\hookrightarrow} \mathcal{C}</annotation></semantics></math> which factors the original adjunction</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>R</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mover><munder><mo>⟵</mo><mi>i</mi></munder><mover><mo>⟶</mo><mrow></mrow></mover></mover><msub><mi>𝒞</mi> <mi>T</mi></msub><mover><munder><mo>⟵</mo><mrow></mrow></munder><mover><mo>⟶</mo><mrow><mi>L</mi><mo>′</mo></mrow></mover></mover><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">
+  (L\dashv R)
+  \;\colon\;
+  \mathcal{C}
+    \stackrel{\overset{}{\longrightarrow}}{\underset{i}{\longleftarrow}}
+  \mathcal{C}_T
+    \stackrel{\overset{L'}{\longrightarrow}}{\underset{}{\longleftarrow}}
+  \mathcal{D}
+
+</annotation></semantics></math></div>
+<p>such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">L'</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../2/3/6/0/632/content.html">conservative functor</a>.</p>
+</div>
+<p>(<a href="#LucyshynWright14">Lucyshyn-Wright 14, theorem 4.15</a>)</p>
+<div class="num_remark" id="IdempotentFactorizationAndBousfieldLocalization">
+<h6 id="remark_7">Remark</h6>
+<p>The factorization in theorem <a class="maruku-ref" href="#FactorizationOfIdempotentCore"></a> has its analog in <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a> in the concept of <a class="existingWikiWord" href="../../../../../7/5/7/0/757/content.html">Bousfield localization of model categories</a>: given a <a class="existingWikiWord" href="../../../../../6/5/7/1/1756/content.html">Quillen adjunction</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>R</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mover><mo>⟵</mo><mo>⟶</mo></mover><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">
+  (L \dashv R) 
+  \;\colon\;
+  \mathcal{C}
+    \stackrel{\longrightarrow}{\longleftarrow}
+  \mathcal{D}
+
+</annotation></semantics></math></div>
+<p>then (if it exists) the <a class="existingWikiWord" href="../../../../../7/5/7/0/757/content.html">Bousfield localized</a> <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mi>W</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}_W</annotation></semantics></math> obtained from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> by adding the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math>-weak equivalences factors this into two consecutive Quillen adjunctions of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mover><munder><mo>⟵</mo><mi>id</mi></munder><mover><mo>⟶</mo><mi>id</mi></mover></mover><msub><mi>𝒞</mi> <mi>W</mi></msub><mover><munder><mo>⟵</mo><mi>R</mi></munder><mover><mo>⟶</mo><mi>L</mi></mover></mover><mi>𝒟</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathcal{C}
+   \stackrel{\overset{id}{\longrightarrow}}{\underset{id}{\longleftarrow}}
+  \mathcal{C}_{W}
+    \stackrel{\overset{L}{\longrightarrow}}{\underset{R}{\longleftarrow}}
+  \mathcal{D}
+  \,.
+
+</annotation></semantics></math></div>
+<p>On the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categories</a> <a class="existingWikiWord" href="../../../../../../../missing.html">presented</a> by these model categories this gives a factorization of the <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">derived</a> <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-adjunction</a> through <a class="existingWikiWord" href="../../../../../../../missing.html">localization</a> onto a <a class="existingWikiWord" href="../../../../../../../missing.html">reflective sub-(∞,1)-category</a> followed by a <a class="existingWikiWord" href="../../../../../6/0/0/1/11006/content.html">conservative (∞,1)-functor</a>.</p>
+</div>
+<div class="num_example">
+<h6 id="example">Example</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> be a commutative ring, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f\colon A \to B</annotation></semantics></math> be a flat (commutative) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-algebra. Then the <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><mo>=</mo><msup><mi>Ab</mi> <mi>f</mi></msup><mo lspace="verythinmathspace">:</mo><msup><mi>Ab</mi> <mi>B</mi></msup><mo>→</mo><msup><mi>Ab</mi> <mi>A</mi></msup></mrow><annotation encoding="application/x-tex">f^\ast = Ab^f\colon Ab^B \to Ab^A</annotation></semantics></math></div>
+<p>from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-modules to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-modules has a <a class="existingWikiWord" href="../../../../5/0/1/1050/content.html">left exact</a> <a class="existingWikiWord" href="../../../../2/0/1/1020/content.html">left adjoint</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>!</mo></msub><mo>=</mo><mi>B</mi><msub><mo>⊗</mo> <mi>A</mi></msub><mo>−</mo></mrow><annotation encoding="application/x-tex">f_! = B \otimes_A -</annotation></semantics></math>. The induced monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><msub><mi>f</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">f^\ast f_!</annotation></semantics></math> on the category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-modules preserves <a class="existingWikiWord" href="../../../../../8/2/0/1/1028/content.html">equalizers</a>, and so its associated idempotent monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> may be formed by taking the equalizer</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><msub><mo>⊗</mo> <mi>A</mi></msub><mi>M</mi><mover><munder><mo>⟶</mo><mrow><mi>η</mi><msup><mi>f</mi> <mo>*</mo></msup><msub><mi>f</mi> <mo>!</mo></msub><mi>M</mi></mrow></munder><mover><mo>⟶</mo><mrow><msup><mi>f</mi> <mo>*</mo></msup><msub><mi>f</mi> <mo>!</mo></msub><mi>η</mi><mi>M</mi></mrow></mover></mover><mi>B</mi><msub><mo>⊗</mo> <mi>A</mi></msub><mi>B</mi><msub><mo>⊗</mo> <mi>A</mi></msub><mi>M</mi></mrow><annotation encoding="application/x-tex">T(M) \to B \otimes_A M \stackrel{\overset{f^\ast f_! \eta M}{\longrightarrow}}{\underset{\eta f^\ast f_! M}{\longrightarrow}} B \otimes_A B \otimes_A M</annotation></semantics></math></div></div>
+<div class="query">
+<p>(To be continued. This example is based on how Joyal and Tierney introduce effective descent for commutative ring homomorphisms, in An Extension of the Galois Theory of Grothendieck. I would like to consult that before going further – Todd.)</p>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a>: How about some examples of monads and their associated idempotent monads?</p>
+<p>Do 2-monads have associated lax-, colax-, or pseudo-idempotent 2-monads?</p>
+</div>
+<h3 id="idempotent_strong_monads_are_commutative">Idempotent strong monads are commutative</h3>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>𝒞</mi><mo>,</mo><mo>⊗</mo><mo>,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{C}, \otimes, I)</annotation></semantics></math> be a monoidal category and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>μ</mi><mo>,</mo><mi>η</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(T, \mu, \eta)</annotation></semantics></math> be an idempotent monad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> equipped with compatible left and right <a class="existingWikiWord" href="../../../../9/8/1/1890/content.html">strengths</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi> <mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow></msub><mo>:</mo><mi>TA</mi><mo>⊗</mo><mi>B</mi><mo>→</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>⊗</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t_{A, B} : TA \otimes B \to T(A \otimes B)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><msub><mo>′</mo> <mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow></msub><mo>:</mo><mi>A</mi><mo>⊗</mo><mi>TB</mi><mo>→</mo><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>⊗</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t'_{A, B} : A \otimes TB \to T(A \otimes B)</annotation></semantics></math>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../5/0/1/21050/content.html">commutative monad</a>, or equivalently a <a class="existingWikiWord" href="../../../../../1/1/4/7/7411/content.html">monoidal monad</a>.</p>
+</div>
+</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>The commutativity equation is obtained using the strength axioms, the monad axioms, and the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>T</mi></msub><mo>=</mo><mi>T</mi><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta_T = T \eta</annotation></semantics></math> for an idempotent monad: <svg height="107.61pt" version="1.2" viewbox="0 0 613.386 107.61" width="613.386pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" overflow="visible">
+<path d="M 4.96875 -7.265625 C 5.03125 -7.546875 5.0625 -7.65625 5.234375 -7.703125 C 5.328125 -7.734375 5.734375 -7.734375 5.984375 -7.734375 C 7.171875 -7.734375 7.734375 -7.671875 7.734375 -6.75 C 7.734375 -6.578125 7.671875 -6.125 7.609375 -5.671875 L 7.59375 -5.53125 C 7.59375 -5.484375 7.640625 -5.421875 7.71875 -5.421875 C 7.828125 -5.421875 7.828125 -5.484375 7.875 -5.671875 L 8.21875 -7.78125 C 8.234375 -7.875 8.234375 -7.90625 8.234375 -7.9375 C 8.234375 -8.078125 8.171875 -8.078125 7.921875 -8.078125 L 1.421875 -8.078125 C 1.140625 -8.078125 1.125 -8.0625 1.0625 -7.84375 L 0.328125 -5.703125 C 0.328125 -5.671875 0.28125 -5.546875 0.28125 -5.53125 C 0.28125 -5.484375 0.328125 -5.421875 0.40625 -5.421875 C 0.5 -5.421875 0.53125 -5.46875 0.578125 -5.625 C 1.078125 -7.0625 1.328125 -7.734375 2.90625 -7.734375 L 3.703125 -7.734375 C 3.984375 -7.734375 4.109375 -7.734375 4.109375 -7.59375 C 4.109375 -7.5625 4.109375 -7.53125 4.046875 -7.328125 L 2.453125 -0.921875 C 2.328125 -0.46875 2.3125 -0.34375 1.046875 -0.34375 C 0.75 -0.34375 0.671875 -0.34375 0.671875 -0.125 C 0.671875 0 0.796875 0 0.859375 0 C 1.15625 0 1.46875 -0.03125 1.765625 -0.03125 L 3.625 -0.03125 C 3.921875 -0.03125 4.234375 0 4.53125 0 C 4.671875 0 4.78125 0 4.78125 -0.21875 C 4.78125 -0.34375 4.703125 -0.34375 4.390625 -0.34375 C 3.328125 -0.34375 3.328125 -0.453125 3.328125 -0.625 C 3.328125 -0.640625 3.328125 -0.71875 3.375 -0.921875 Z M 4.96875 -7.265625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" overflow="visible">
+<path d="M 2.03125 -1.328125 C 1.609375 -0.625 1.203125 -0.375 0.625 -0.34375 C 0.5 -0.328125 0.40625 -0.328125 0.40625 -0.125 C 0.40625 -0.046875 0.46875 0 0.546875 0 C 0.765625 0 1.296875 -0.03125 1.515625 -0.03125 C 1.859375 -0.03125 2.234375 0 2.578125 0 C 2.640625 0 2.78125 0 2.78125 -0.21875 C 2.78125 -0.328125 2.6875 -0.34375 2.625 -0.34375 C 2.34375 -0.375 2.125 -0.46875 2.125 -0.75 C 2.125 -0.921875 2.1875 -1.046875 2.34375 -1.3125 L 3.25 -2.8125 L 6.28125 -2.8125 C 6.296875 -2.703125 6.296875 -2.609375 6.3125 -2.5 C 6.34375 -2.1875 6.484375 -0.953125 6.484375 -0.71875 C 6.484375 -0.375 5.875 -0.34375 5.6875 -0.34375 C 5.5625 -0.34375 5.421875 -0.34375 5.421875 -0.125 C 5.421875 0 5.53125 0 5.609375 0 C 5.8125 0 6.046875 -0.03125 6.25 -0.03125 L 6.921875 -0.03125 C 7.65625 -0.03125 8.171875 0 8.1875 0 C 8.28125 0 8.40625 0 8.40625 -0.21875 C 8.40625 -0.34375 8.296875 -0.34375 8.125 -0.34375 C 7.46875 -0.34375 7.453125 -0.453125 7.421875 -0.8125 L 6.6875 -8.234375 C 6.671875 -8.484375 6.625 -8.5 6.484375 -8.5 C 6.375 -8.5 6.296875 -8.484375 6.1875 -8.296875 Z M 3.453125 -3.15625 L 5.84375 -7.15625 L 6.25 -3.15625 Z M 3.453125 -3.15625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" overflow="visible">
+<path d="M 4.359375 -7.328125 C 4.46875 -7.765625 4.515625 -7.78125 4.984375 -7.78125 L 6.53125 -7.78125 C 7.875 -7.78125 7.875 -6.640625 7.875 -6.53125 C 7.875 -5.578125 6.90625 -4.34375 5.328125 -4.34375 L 3.625 -4.34375 Z M 6.375 -4.25 C 7.671875 -4.484375 8.84375 -5.390625 8.84375 -6.484375 C 8.84375 -7.421875 8.03125 -8.125 6.671875 -8.125 L 2.859375 -8.125 C 2.625 -8.125 2.53125 -8.125 2.53125 -7.90625 C 2.53125 -7.78125 2.625 -7.78125 2.8125 -7.78125 C 3.53125 -7.78125 3.53125 -7.6875 3.53125 -7.5625 C 3.53125 -7.53125 3.53125 -7.46875 3.484375 -7.28125 L 1.875 -0.875 C 1.78125 -0.46875 1.75 -0.34375 0.921875 -0.34375 C 0.6875 -0.34375 0.578125 -0.34375 0.578125 -0.125 C 0.578125 0 0.640625 0 0.875 0 L 4.96875 0 C 6.78125 0 8.1875 -1.375 8.1875 -2.578125 C 8.1875 -3.5625 7.328125 -4.15625 6.375 -4.25 Z M 4.671875 -0.34375 L 3.078125 -0.34375 C 2.90625 -0.34375 2.875 -0.34375 2.8125 -0.359375 C 2.671875 -0.375 2.671875 -0.390625 2.671875 -0.484375 C 2.671875 -0.578125 2.6875 -0.640625 2.71875 -0.75 L 3.546875 -4.109375 L 5.78125 -4.109375 C 7.1875 -4.109375 7.1875 -2.796875 7.1875 -2.703125 C 7.1875 -1.5625 6.15625 -0.34375 4.671875 -0.34375 Z M 4.671875 -0.34375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" overflow="visible">
+<path d="M 8.59375 -2.96875 C 8.59375 -5.171875 6.8125 -6.9375 4.625 -6.9375 C 2.421875 -6.9375 0.65625 -5.140625 0.65625 -2.96875 C 0.65625 -0.78125 2.4375 0.984375 4.625 0.984375 C 6.828125 0.984375 8.59375 -0.8125 8.59375 -2.96875 Z M 2.265625 -5.53125 C 2.234375 -5.5625 2.15625 -5.640625 2.15625 -5.671875 C 2.15625 -5.71875 3.125 -6.640625 4.625 -6.640625 C 5.03125 -6.640625 6.125 -6.578125 7.109375 -5.671875 L 4.625 -3.171875 Z M 1.921875 -0.484375 C 1.1875 -1.296875 0.953125 -2.21875 0.953125 -2.96875 C 0.953125 -3.890625 1.296875 -4.765625 1.921875 -5.46875 L 4.40625 -2.96875 Z M 7.328125 -5.46875 C 7.890625 -4.859375 8.296875 -3.953125 8.296875 -2.96875 C 8.296875 -2.0625 7.953125 -1.1875 7.328125 -0.484375 L 4.84375 -2.96875 Z M 6.984375 -0.421875 C 7.015625 -0.390625 7.09375 -0.3125 7.09375 -0.28125 C 7.09375 -0.234375 6.125 0.6875 4.625 0.6875 C 4.21875 0.6875 3.125 0.625 2.140625 -0.28125 L 4.625 -2.78125 Z M 6.984375 -0.421875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" overflow="visible">
+<path d="M 3.875 2.890625 C 3.875 2.859375 3.875 2.828125 3.671875 2.625 C 2.46875 1.421875 1.8125 -0.53125 1.8125 -2.96875 C 1.8125 -5.28125 2.375 -7.265625 3.75 -8.671875 C 3.875 -8.78125 3.875 -8.796875 3.875 -8.828125 C 3.875 -8.90625 3.8125 -8.921875 3.765625 -8.921875 C 3.609375 -8.921875 2.625 -8.078125 2.046875 -6.90625 C 1.4375 -5.703125 1.171875 -4.421875 1.171875 -2.96875 C 1.171875 -1.90625 1.328125 -0.484375 1.953125 0.78125 C 2.65625 2.21875 3.625 2.984375 3.765625 2.984375 C 3.8125 2.984375 3.875 2.96875 3.875 2.890625 Z M 3.875 2.890625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" overflow="visible">
+<path d="M 3.359375 -2.96875 C 3.359375 -3.875 3.234375 -5.34375 2.578125 -6.734375 C 1.875 -8.15625 0.890625 -8.921875 0.765625 -8.921875 C 0.71875 -8.921875 0.65625 -8.90625 0.65625 -8.828125 C 0.65625 -8.796875 0.65625 -8.78125 0.859375 -8.578125 C 2.046875 -7.375 2.71875 -5.40625 2.71875 -2.96875 C 2.71875 -0.671875 2.15625 1.328125 0.78125 2.71875 C 0.65625 2.828125 0.65625 2.859375 0.65625 2.890625 C 0.65625 2.96875 0.71875 2.984375 0.765625 2.984375 C 0.921875 2.984375 1.890625 2.125 2.46875 0.96875 C 3.078125 -0.25 3.359375 -1.53125 3.359375 -2.96875 Z M 3.359375 -2.96875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" overflow="visible">
+<path d="M 2.234375 -1.625 C 2.359375 -1.734375 2.703125 -2 2.828125 -2.109375 C 3.3125 -2.5625 3.78125 -3 3.78125 -3.71875 C 3.78125 -4.671875 3 -5.28125 2 -5.28125 C 1.046875 -5.28125 0.421875 -4.5625 0.421875 -3.84375 C 0.421875 -3.453125 0.734375 -3.40625 0.84375 -3.40625 C 1.015625 -3.40625 1.25 -3.53125 1.25 -3.828125 C 1.25 -4.234375 0.859375 -4.234375 0.765625 -4.234375 C 0.984375 -4.8125 1.53125 -5.015625 1.90625 -5.015625 C 2.65625 -5.015625 3.03125 -4.390625 3.03125 -3.71875 C 3.03125 -2.890625 2.453125 -2.296875 1.515625 -1.328125 L 0.515625 -0.296875 C 0.421875 -0.21875 0.421875 -0.203125 0.421875 0 L 3.5625 0 L 3.78125 -1.421875 L 3.546875 -1.421875 C 3.515625 -1.265625 3.453125 -0.859375 3.359375 -0.71875 C 3.3125 -0.65625 2.703125 -0.65625 2.578125 -0.65625 L 1.171875 -0.65625 Z M 2.234375 -1.625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-2" overflow="visible">
+<path d="M 2.015625 -2.65625 C 2.640625 -2.65625 3.03125 -2.1875 3.03125 -1.359375 C 3.03125 -0.359375 2.46875 -0.078125 2.046875 -0.078125 C 1.609375 -0.078125 1.015625 -0.234375 0.734375 -0.65625 C 1.03125 -0.65625 1.21875 -0.828125 1.21875 -1.09375 C 1.21875 -1.34375 1.046875 -1.53125 0.78125 -1.53125 C 0.578125 -1.53125 0.34375 -1.390625 0.34375 -1.078125 C 0.34375 -0.328125 1.15625 0.171875 2.0625 0.171875 C 3.125 0.171875 3.859375 -0.5625 3.859375 -1.359375 C 3.859375 -2.015625 3.328125 -2.625 2.53125 -2.796875 C 3.15625 -3.015625 3.625 -3.5625 3.625 -4.1875 C 3.625 -4.828125 2.90625 -5.28125 2.078125 -5.28125 C 1.234375 -5.28125 0.59375 -4.8125 0.59375 -4.21875 C 0.59375 -3.921875 0.78125 -3.796875 0.984375 -3.796875 C 1.234375 -3.796875 1.390625 -3.96875 1.390625 -4.203125 C 1.390625 -4.5 1.140625 -4.609375 0.96875 -4.609375 C 1.296875 -5.046875 1.90625 -5.078125 2.0625 -5.078125 C 2.265625 -5.078125 2.859375 -5.015625 2.859375 -4.1875 C 2.859375 -3.640625 2.640625 -3.296875 2.53125 -3.171875 C 2.28125 -2.921875 2.109375 -2.90625 1.625 -2.875 C 1.46875 -2.875 1.40625 -2.859375 1.40625 -2.765625 C 1.40625 -2.65625 1.46875 -2.65625 1.609375 -2.65625 Z M 2.015625 -2.65625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-3" overflow="visible">
+<path d="M 2.640625 1.984375 C 2.703125 1.984375 2.796875 1.984375 2.796875 1.890625 C 2.796875 1.859375 2.796875 1.84375 2.6875 1.75 C 1.609375 0.71875 1.328125 -0.75 1.328125 -1.984375 C 1.328125 -4.265625 2.28125 -5.34375 2.6875 -5.703125 C 2.796875 -5.8125 2.796875 -5.8125 2.796875 -5.859375 C 2.796875 -5.890625 2.765625 -5.953125 2.6875 -5.953125 C 2.5625 -5.953125 2.171875 -5.546875 2.109375 -5.484375 C 1.046875 -4.359375 0.8125 -2.9375 0.8125 -1.984375 C 0.8125 -0.203125 1.5625 1.21875 2.640625 1.984375 Z M 2.640625 1.984375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-4" overflow="visible">
+<path d="M 2.453125 -1.984375 C 2.453125 -2.734375 2.328125 -3.640625 1.828125 -4.578125 C 1.4375 -5.3125 0.71875 -5.953125 0.578125 -5.953125 C 0.5 -5.953125 0.46875 -5.890625 0.46875 -5.859375 C 0.46875 -5.828125 0.46875 -5.8125 0.578125 -5.71875 C 1.6875 -4.65625 1.9375 -3.203125 1.9375 -1.984375 C 1.9375 0.296875 0.984375 1.375 0.59375 1.734375 C 0.484375 1.84375 0.46875 1.84375 0.46875 1.890625 C 0.46875 1.921875 0.5 1.984375 0.578125 1.984375 C 0.703125 1.984375 1.109375 1.578125 1.171875 1.515625 C 2.234375 0.390625 2.453125 -1.03125 2.453125 -1.984375 Z M 2.453125 -1.984375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" overflow="visible">
+<path d="M 1.75 -3.15625 L 2.53125 -3.15625 C 2.6875 -3.15625 2.78125 -3.15625 2.78125 -3.3125 C 2.78125 -3.421875 2.671875 -3.421875 2.546875 -3.421875 L 1.8125 -3.421875 L 2.109375 -4.546875 C 2.140625 -4.671875 2.140625 -4.703125 2.140625 -4.71875 C 2.140625 -4.875 2.015625 -4.953125 1.875 -4.953125 C 1.609375 -4.953125 1.546875 -4.75 1.453125 -4.390625 L 1.21875 -3.421875 L 0.453125 -3.421875 C 0.296875 -3.421875 0.203125 -3.421875 0.203125 -3.265625 C 0.203125 -3.15625 0.296875 -3.15625 0.4375 -3.15625 L 1.15625 -3.15625 L 0.671875 -1.25 C 0.625 -1.0625 0.5625 -0.78125 0.5625 -0.671875 C 0.5625 -0.1875 0.9375 0.078125 1.359375 0.078125 C 2.21875 0.078125 2.703125 -1.046875 2.703125 -1.140625 C 2.703125 -1.21875 2.625 -1.234375 2.578125 -1.234375 C 2.5 -1.234375 2.484375 -1.203125 2.421875 -1.09375 C 2.265625 -0.703125 1.875 -0.140625 1.390625 -0.140625 C 1.21875 -0.140625 1.125 -0.25 1.125 -0.515625 C 1.125 -0.671875 1.15625 -0.75 1.171875 -0.859375 Z M 1.75 -3.15625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-2" overflow="visible">
+<path d="M 1.921875 -2.796875 C 1.953125 -2.953125 2.03125 -3.21875 2.03125 -3.25 C 2.03125 -3.421875 1.890625 -3.5 1.765625 -3.5 C 1.5 -3.5 1.421875 -3.234375 1.390625 -3.125 L 0.296875 1.28125 C 0.265625 1.40625 0.265625 1.4375 0.265625 1.453125 C 0.265625 1.65625 0.421875 1.703125 0.515625 1.703125 C 0.5625 1.703125 0.734375 1.703125 0.84375 1.5 C 0.859375 1.421875 1.09375 0.484375 1.25 -0.15625 C 1.390625 -0.046875 1.65625 0.078125 2.0625 0.078125 C 2.71875 0.078125 3.140625 -0.453125 3.171875 -0.484375 C 3.3125 0.0625 3.84375 0.078125 3.9375 0.078125 C 4.3125 0.078125 4.5 -0.21875 4.5625 -0.359375 C 4.71875 -0.640625 4.828125 -1.109375 4.828125 -1.140625 C 4.828125 -1.1875 4.796875 -1.234375 4.703125 -1.234375 C 4.609375 -1.234375 4.59375 -1.1875 4.546875 -0.984375 C 4.421875 -0.5625 4.28125 -0.140625 3.96875 -0.140625 C 3.78125 -0.140625 3.71875 -0.296875 3.71875 -0.515625 C 3.71875 -0.65625 3.796875 -0.984375 3.859375 -1.21875 L 4.0625 -2.03125 C 4.109375 -2.234375 4.15625 -2.40625 4.21875 -2.640625 C 4.25 -2.8125 4.328125 -3.125 4.328125 -3.171875 C 4.328125 -3.375 4.171875 -3.421875 4.078125 -3.421875 C 3.796875 -3.421875 3.75 -3.21875 3.671875 -2.859375 L 3.5 -2.203125 L 3.25 -1.21875 L 3.171875 -0.890625 C 3.15625 -0.84375 2.9375 -0.546875 2.765625 -0.390625 C 2.625 -0.296875 2.390625 -0.140625 2.109375 -0.140625 C 1.734375 -0.140625 1.46875 -0.34375 1.46875 -0.828125 C 1.46875 -1.046875 1.546875 -1.28125 1.59375 -1.46875 Z M 1.921875 -2.796875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" overflow="visible">
+<path d="M 3.59375 -4.796875 C 3.65625 -5.09375 3.671875 -5.109375 4 -5.109375 L 4.59375 -5.109375 C 5.421875 -5.109375 5.515625 -4.84375 5.515625 -4.4375 C 5.515625 -4.25 5.46875 -3.90625 5.46875 -3.859375 C 5.4375 -3.78125 5.4375 -3.703125 5.4375 -3.6875 C 5.4375 -3.59375 5.515625 -3.5625 5.5625 -3.5625 C 5.640625 -3.5625 5.671875 -3.609375 5.703125 -3.765625 L 5.90625 -5.25 C 5.90625 -5.359375 5.8125 -5.359375 5.671875 -5.359375 L 1 -5.359375 C 0.796875 -5.359375 0.78125 -5.359375 0.734375 -5.203125 L 0.25 -3.828125 C 0.234375 -3.78125 0.203125 -3.71875 0.203125 -3.671875 C 0.203125 -3.609375 0.265625 -3.5625 0.328125 -3.5625 C 0.40625 -3.5625 0.421875 -3.609375 0.46875 -3.734375 C 0.921875 -5.015625 1.15625 -5.109375 2.359375 -5.109375 L 2.671875 -5.109375 C 2.90625 -5.109375 2.921875 -5.09375 2.921875 -5.03125 C 2.921875 -5.015625 2.890625 -4.84375 2.875 -4.8125 L 1.828125 -0.65625 C 1.765625 -0.34375 1.734375 -0.265625 0.90625 -0.265625 C 0.65625 -0.265625 0.578125 -0.265625 0.578125 -0.109375 C 0.578125 -0.109375 0.578125 0 0.71875 0 C 0.921875 0 1.46875 -0.03125 1.6875 -0.03125 L 2.359375 -0.03125 C 2.59375 -0.03125 3.140625 0 3.359375 0 C 3.421875 0 3.546875 0 3.546875 -0.15625 C 3.546875 -0.265625 3.453125 -0.265625 3.25 -0.265625 C 3.0625 -0.265625 3 -0.265625 2.78125 -0.28125 C 2.53125 -0.296875 2.5 -0.328125 2.5 -0.4375 C 2.5 -0.46875 2.515625 -0.5 2.53125 -0.578125 Z M 3.59375 -4.796875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" overflow="visible">
+<path d="M 4.140625 -2.1875 C 4.171875 -2.3125 4.203125 -2.4375 4.203125 -2.625 C 4.203125 -3.21875 3.78125 -3.5 3.21875 -3.5 C 2.578125 -3.5 2.15625 -3.109375 1.921875 -2.8125 C 1.875 -3.25 1.53125 -3.5 1.125 -3.5 C 0.828125 -3.5 0.640625 -3.3125 0.515625 -3.078125 C 0.328125 -2.71875 0.234375 -2.3125 0.234375 -2.28125 C 0.234375 -2.21875 0.296875 -2.1875 0.359375 -2.1875 C 0.453125 -2.1875 0.46875 -2.21875 0.53125 -2.421875 C 0.625 -2.828125 0.765625 -3.28125 1.09375 -3.28125 C 1.296875 -3.28125 1.34375 -3.09375 1.34375 -2.90625 C 1.34375 -2.765625 1.3125 -2.609375 1.25 -2.34375 C 1.234375 -2.28125 1.109375 -1.8125 1.078125 -1.703125 L 0.78125 -0.515625 C 0.75 -0.390625 0.703125 -0.203125 0.703125 -0.171875 C 0.703125 0.015625 0.859375 0.078125 0.953125 0.078125 C 1.109375 0.078125 1.21875 -0.015625 1.28125 -0.109375 C 1.296875 -0.15625 1.359375 -0.421875 1.40625 -0.59375 L 1.59375 -1.296875 C 1.609375 -1.421875 1.6875 -1.71875 1.71875 -1.84375 C 1.828125 -2.265625 1.828125 -2.28125 2.015625 -2.546875 C 2.265625 -2.921875 2.640625 -3.28125 3.171875 -3.28125 C 3.453125 -3.28125 3.625 -3.109375 3.625 -2.734375 C 3.625 -2.59375 3.5625 -2.296875 3.5625 -2.28125 L 2.671875 1.28125 C 2.640625 1.390625 2.640625 1.4375 2.640625 1.453125 C 2.640625 1.65625 2.796875 1.703125 2.890625 1.703125 C 3.171875 1.703125 3.234375 1.4375 3.25 1.34375 Z M 4.140625 -2.1875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-5" overflow="visible">
+<path d="M 1.34375 -0.625 C 1.265625 -0.328125 1.25 -0.265625 0.671875 -0.265625 C 0.515625 -0.265625 0.421875 -0.265625 0.421875 -0.109375 C 0.421875 0 0.53125 0 0.65625 0 L 3.609375 0 C 4.90625 0 5.890625 -0.921875 5.890625 -1.703125 C 5.890625 -2.28125 5.390625 -2.75 4.59375 -2.828125 C 5.515625 -3.015625 6.3125 -3.609375 6.3125 -4.3125 C 6.3125 -4.90625 5.734375 -5.421875 4.734375 -5.421875 L 1.953125 -5.421875 C 1.8125 -5.421875 1.71875 -5.421875 1.71875 -5.265625 C 1.71875 -5.15625 1.8125 -5.15625 1.9375 -5.15625 C 2.203125 -5.15625 2.4375 -5.15625 2.4375 -5.03125 C 2.4375 -5 2.421875 -5 2.40625 -4.890625 Z M 2.578125 -2.921875 L 3.0625 -4.859375 C 3.140625 -5.140625 3.140625 -5.15625 3.46875 -5.15625 L 4.609375 -5.15625 C 5.390625 -5.15625 5.5625 -4.65625 5.5625 -4.328125 C 5.5625 -3.65625 4.84375 -2.921875 3.828125 -2.921875 Z M 2.03125 -0.265625 C 1.953125 -0.28125 1.9375 -0.28125 1.9375 -0.328125 C 1.9375 -0.390625 1.953125 -0.453125 1.96875 -0.515625 L 2.53125 -2.703125 L 4.140625 -2.703125 C 4.875 -2.703125 5.125 -2.203125 5.125 -1.765625 C 5.125 -0.984375 4.359375 -0.265625 3.40625 -0.265625 Z M 2.03125 -0.265625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph5-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph5-1" overflow="visible">
+<path d="M 1.875 -2.796875 C 1.90625 -2.890625 1.921875 -2.953125 1.921875 -2.984375 C 1.921875 -3.171875 1.75 -3.328125 1.5625 -3.328125 C 1.328125 -3.328125 1.25 -3.125 1.21875 -3.03125 L 0.390625 -0.484375 C 0.375 -0.453125 0.359375 -0.40625 0.359375 -0.375 C 0.359375 -0.28125 0.59375 -0.234375 0.609375 -0.234375 C 0.65625 -0.234375 0.6875 -0.28125 0.703125 -0.328125 Z M 1.875 -2.796875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph6-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph6-1" overflow="visible">
+<path d="M 6.078125 -1.984375 C 6.078125 -3.546875 4.8125 -4.796875 3.28125 -4.796875 C 1.71875 -4.796875 0.46875 -3.53125 0.46875 -1.984375 C 0.46875 -0.421875 1.734375 0.828125 3.265625 0.828125 C 4.828125 0.828125 6.078125 -0.4375 6.078125 -1.984375 Z M 1.5625 -3.875 C 2.171875 -4.453125 2.890625 -4.546875 3.265625 -4.546875 C 3.75 -4.546875 4.421875 -4.40625 5 -3.875 L 3.28125 -2.15625 Z M 1.375 -0.265625 C 0.9375 -0.734375 0.71875 -1.375 0.71875 -1.984375 C 0.71875 -2.59375 0.921875 -3.234375 1.375 -3.703125 L 3.109375 -1.984375 Z M 5.171875 -3.703125 C 5.609375 -3.234375 5.828125 -2.59375 5.828125 -1.984375 C 5.828125 -1.375 5.625 -0.734375 5.171875 -0.265625 L 3.4375 -1.984375 Z M 5 -0.09375 C 4.375 0.484375 3.65625 0.578125 3.28125 0.578125 C 2.796875 0.578125 2.125 0.4375 1.5625 -0.09375 L 3.265625 -1.8125 Z M 5 -0.09375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph7-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph7-1" overflow="visible">
+<path d="M 3.09375 -3.578125 C 3.140625 -3.78125 3.15625 -3.78125 3.40625 -3.78125 L 3.953125 -3.78125 C 4.578125 -3.78125 4.671875 -3.609375 4.671875 -3.25 C 4.671875 -3.171875 4.65625 -3.015625 4.640625 -2.828125 C 4.625 -2.8125 4.625 -2.75 4.625 -2.71875 C 4.625 -2.671875 4.671875 -2.625 4.734375 -2.625 C 4.828125 -2.625 4.84375 -2.6875 4.859375 -2.78125 L 5.015625 -3.921875 C 5.015625 -4.03125 4.953125 -4.03125 4.828125 -4.03125 L 0.953125 -4.03125 C 0.796875 -4.03125 0.796875 -4.03125 0.75 -3.90625 L 0.359375 -2.8125 C 0.34375 -2.75 0.34375 -2.71875 0.34375 -2.71875 C 0.34375 -2.703125 0.34375 -2.625 0.453125 -2.625 C 0.53125 -2.625 0.53125 -2.65625 0.59375 -2.796875 C 0.859375 -3.53125 1.046875 -3.78125 1.8125 -3.78125 L 2.34375 -3.78125 C 2.46875 -3.78125 2.46875 -3.78125 2.546875 -3.765625 L 1.75 -0.515625 C 1.703125 -0.34375 1.671875 -0.296875 1.5 -0.265625 C 1.34375 -0.234375 1 -0.234375 0.984375 -0.234375 C 0.828125 -0.234375 0.828125 -0.234375 0.796875 -0.21875 C 0.765625 -0.203125 0.75 -0.109375 0.75 -0.078125 C 0.75 -0.078125 0.75 0 0.859375 0 C 1.015625 0 1.203125 -0.015625 1.359375 -0.015625 C 1.59375 -0.015625 1.75 -0.03125 1.90625 -0.03125 C 2.09375 -0.03125 2.265625 -0.015625 2.453125 -0.015625 C 2.625 -0.015625 2.8125 0 2.984375 0 C 3.03125 0 3.078125 0 3.09375 -0.046875 C 3.109375 -0.0625 3.125 -0.125 3.125 -0.15625 C 3.109375 -0.234375 3.078125 -0.234375 2.890625 -0.234375 C 2.75 -0.234375 2.625 -0.25 2.5 -0.25 C 2.359375 -0.265625 2.296875 -0.265625 2.296875 -0.359375 Z M 3.09375 -3.578125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph8-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph8-1" overflow="visible">
+<path d="M 3.203125 -1.109375 L 2.984375 -1.109375 C 2.96875 -1.03125 2.90625 -0.640625 2.828125 -0.578125 C 2.78125 -0.53125 2.296875 -0.53125 2.21875 -0.53125 L 1.09375 -0.53125 L 1.859375 -1.15625 C 2.0625 -1.3125 2.59375 -1.703125 2.78125 -1.875 C 2.953125 -2.046875 3.203125 -2.359375 3.203125 -2.78125 C 3.203125 -3.53125 2.53125 -3.953125 1.734375 -3.953125 C 0.96875 -3.953125 0.421875 -3.453125 0.421875 -2.890625 C 0.421875 -2.59375 0.6875 -2.546875 0.75 -2.546875 C 0.90625 -2.546875 1.078125 -2.65625 1.078125 -2.875 C 1.078125 -3 1 -3.203125 0.734375 -3.203125 C 0.875 -3.5 1.234375 -3.734375 1.640625 -3.734375 C 2.265625 -3.734375 2.59375 -3.265625 2.59375 -2.78125 C 2.59375 -2.359375 2.328125 -1.921875 1.90625 -1.546875 L 0.5 -0.25 C 0.4375 -0.1875 0.421875 -0.1875 0.421875 0 L 3.015625 0 Z M 3.203125 -1.109375 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="S7O3uGuSxYkAQiljhhQu5JSmxfQ=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="5.930025" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="14.386374" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="25.777095" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="37.688924" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="46.145273" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="190.289868" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="198.746217" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="210.136938" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="222.048767" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="230.505116" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="284.673802" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="293.130154" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="297.665717" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="306.122066" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="317.512787" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="329.424616" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="338.886325" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="379.36562" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="387.820976" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="10.133275"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="392.536885" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="397.072447" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="408.463165" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="420.374994" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="429.836703" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="556.550467" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="565.006819" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="569.542382" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="580.933099" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="592.845925" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="602.307634" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="14.456606"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="91.370372" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="99.826724" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="52.265579"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="104.541637" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="115.932354" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="127.84518" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="136.301529" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="181.526628" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="189.981984" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="194.518542" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="202.974891" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="214.365613" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="226.277442" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="234.733791" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="244.195503" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="282.316346" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="290.772698" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="52.265579"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="295.487611" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="300.023173" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="308.479522" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="319.870243" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="331.782072" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="341.244777" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="379.36562" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="387.820976" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-2" y="52.265579"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="392.536885" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="397.072447" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="408.463165" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="420.374994" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="429.836703" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="467.957545" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="476.413898" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="52.265579"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="481.129806" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="485.665369" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="497.056086" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="508.967916" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="518.429624" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="56.588911"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="5.930025" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="14.386374" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="25.777095" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="37.688924" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="46.145273" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="89.192266" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="97.648618" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="102.184181" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="113.574898" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="125.486727" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="133.943076" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="143.405785" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="286.544024" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="295.000376" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="94.397883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="299.715289" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="304.251847" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="315.642565" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="327.554394" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="337.016103" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="379.36562" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="387.820976" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="94.397883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="392.536885" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="397.072447" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="408.463165" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="420.374994" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="429.836703" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="467.957545" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="476.413898" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-1" y="94.397883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="481.129806" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="485.665369" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="497.056086" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="508.967916" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="518.429624" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="556.550467" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="565.006819" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="569.542382" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-2" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="580.933099" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph1-1" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="592.845925" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph0-3" y="98.721215"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="602.307634" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph2-2" y="98.721215"></use>
+</g>
+<path d="M -276.620391 33.470675 L -276.620391 -32.784204 " style="fill:none;stroke-width:2.79451;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -276.620391 33.470675 L -276.620391 -32.784204 " style="fill:none;stroke-width:1.83812;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -246.343087 42.032844 L -121.866244 42.032844 " style="fill:none;stroke-width:2.79451;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -246.343087 42.032844 L -121.866244 42.032844 " style="fill:none;stroke-width:1.83812;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -246.343087 -42.538176 L -223.808588 -42.538176 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.484741 2.867241 C -2.033894 1.146183 -1.018509 0.334658 0.00079729 0.00142381 C -1.018509 -0.335731 -2.033894 -1.147255 -2.484741 -2.868314 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,83.624206,95.743606)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="70.876645" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="103.430149"></use>
+</g>
+<path d="M 222.714011 -42.538176 L 245.248511 -42.538176 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485872 2.867241 C -2.031105 1.146183 -1.01964 0.334658 -0.000334159 0.00142381 C -1.01964 -0.335731 -2.031105 -1.147255 -2.485872 -2.868314 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,550.988614,95.743606)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="537.220522" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-2" y="101.964461"></use>
+</g>
+<path d="M -61.315557 42.032844 L -27.615738 42.032844 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.488182 2.867412 C -2.033415 1.146353 -1.018029 0.334829 0.00127647 0.00159416 C -1.018029 -0.335561 -2.033415 -1.147085 -2.488182 -2.868144 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,279.108103,11.478151)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="259.459185" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="8.675558"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="262.506142" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph5-1" y="5.873713"></use>
+</g>
+<path d="M 42.516423 42.032844 L 67.418848 42.032844 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485455 2.867412 C -2.030688 1.146353 -1.019223 0.334829 0.0000831698 0.00159416 C -1.019223 -0.335561 -2.030688 -1.147085 -2.485455 -2.868144 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,373.800698,11.478151)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="356.8283" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="8.675558"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="362.916115" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="8.675558"></use>
+</g>
+<path d="M 133.79918 42.032844 L 245.248511 42.032844 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485872 2.867412 C -2.031105 1.146353 -1.01964 0.334829 -0.000334159 0.00159416 C -1.01964 -0.335561 -2.031105 -1.147085 -2.485872 -2.868144 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,550.988614,11.478151)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="492.924062" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-2" y="7.132152"></use>
+</g>
+<path d="M 276.309896 31.479108 L 276.309896 -31.988361 " style="fill:none;stroke-width:2.79451;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M 276.309896 31.479108 L 276.309896 -31.988361 " style="fill:none;stroke-width:1.83812;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -256.300921 -32.784204 L -206.770499 -9.022617 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485613 2.867304 C -2.031461 1.149175 -1.022128 0.334436 0.000405924 0.000398069 C -1.021722 -0.33543 -2.032594 -1.146299 -2.484982 -2.868695 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.898294,-0.430978,-0.430978,-0.898294,100.577932,62.24272)"></path>
+<path d="M 58.335938 80.132812 L 93.46875 80.132812 L 93.46875 68.03125 L 58.335938 68.03125 Z M 58.335938 80.132812 " style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="60.901796" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.022479"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="66.989611" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="76.022479"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="71.50437" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph6-1" y="76.022479"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="78.067584" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.022479"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="84.155399" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-5" y="76.022479"></use>
+</g>
+<path d="M -111.206657 33.470675 L -162.716885 10.998902 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.486046 2.869649 C -2.03083 1.148217 -1.020899 0.335433 0.000898119 0.00083895 C -1.0191 -0.336933 -2.031886 -1.148386 -2.487901 -2.870062 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(-0.91319,0.398426,0.398426,0.91319,144.039548,42.49497)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="137.44738" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="26.952319"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="141.681036" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph7-1" y="28.286484"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="147.496958" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph6-1" y="26.952319"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="154.060172" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="26.952319"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="160.147987" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-5" y="26.952319"></use>
+</g>
+<path d="M -155.860093 -0.252666 L -131.138006 -0.252666 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.48772 2.867322 C -2.032953 1.146263 -1.021488 0.334739 0.00173856 0.00150398 C -1.021488 -0.335651 -2.032953 -1.147175 -2.48772 -2.868234 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,175.959205,53.610874)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="162.120958" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="61.297844"></use>
+</g>
+<path d="M -91.58894 33.470675 L -91.58894 10.775439 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.484662 2.870918 C -2.033815 1.145939 -1.01843 0.334414 0.000875882 0.0011798 C -1.01843 -0.335975 -2.033815 -1.147499 -2.484662 -2.868558 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0,0.996389,0.996389,0,215.127731,42.858502)"></path>
+<path d="M 210.304688 36.597656 L 219.953125 36.597656 L 219.953125 26.503906 L 210.304688 26.503906 Z M 210.304688 36.597656 " style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="212.869037" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="32.489252"></use>
+</g>
+<path d="M -52.518164 -0.252666 L -29.983664 -0.252666 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485997 2.867322 C -2.03123 1.146263 -1.019765 0.334739 -0.000459376 0.00150398 C -1.019765 -0.335651 -2.03123 -1.147175 -2.485997 -2.868234 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,276.750458,53.610874)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="259.6206" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="50.807862"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="265.708415" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="50.807862"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="268.751507" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph5-1" y="48.00502"></use>
+</g>
+<path d="M 133.79918 -0.252666 L 156.33368 -0.252666 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485664 2.867322 C -2.030896 1.146263 -1.019431 0.334739 -0.000125495 0.00150398 C -1.019431 -0.335651 -2.030896 -1.147175 -2.485664 -2.868234 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,462.394656,53.610874)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="445.585626" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="49.263459"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="451.673441" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-2" y="49.263459"></use>
+</g>
+<path d="M 211.356592 -10.806402 L 254.285049 -31.776659 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.486972 2.86907 C -2.034747 1.148313 -1.021812 0.334129 0.000831413 0.000283818 C -1.019213 -0.332184 -2.031433 -1.145153 -2.485731 -2.868037 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.895255,0.437315,0.437315,-0.895255,559.967882,85.12489)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="530.699157" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-2" y="80.898807"></use>
+</g>
+<path d="M 44.884349 -0.252666 L 67.418848 -0.252666 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485455 2.867322 C -2.030688 1.146263 -1.019223 0.334739 0.0000831698 0.00150398 C -1.019223 -0.335651 -2.030688 -1.147175 -2.485455 -2.868234 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,373.800698,53.610874)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="355.939521" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="50.807862"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="362.023471" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph8-1" y="48.00502"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="366.159482" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="50.807862"></use>
+</g>
+<path d="M 123.037663 -10.806402 L 166.075891 -31.274847 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.48694 2.867314 C -2.03339 1.146741 -1.021769 0.334088 0.00105716 -0.0000259154 C -1.020936 -0.33409 -2.031378 -1.148898 -2.486205 -2.867315 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.899769,0.427889,0.427889,-0.899769,472.077185,84.620618)"></path>
+<path d="M 445.535156 79.46875 L 455.738281 79.46875 L 455.738281 69.378906 L 445.535156 69.378906 Z M 445.535156 79.46875 " style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="448.095529" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-2" y="75.360877"></use>
+</g>
+<path d="M 254.712374 31.479108 L 212.830665 11.014584 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.487168 2.867434 C -2.031246 1.148037 -1.019069 0.335005 -0.000759223 -0.00104615 C -1.019904 -0.336554 -2.031171 -1.147161 -2.488742 -2.869702 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(-0.895226,0.437365,0.437365,0.895226,518.234153,42.485644)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="531.775257" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="27.944723"></use>
+</g>
+<path d="M -164.324252 -31.988361 L -116.213017 -10.998502 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.48746 2.870489 C -2.032165 1.149099 -1.018613 0.334806 -0.000404689 0.00183334 C -1.020374 -0.335984 -2.033109 -1.147477 -2.485442 -2.870723 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.91322,-0.398386,-0.398386,-0.91322,190.8136,64.220263)"></path>
+<path d="M 145.996094 81.210938 L 187.691406 81.210938 L 187.691406 68.140625 L 145.996094 68.140625 Z M 145.996094 81.210938 " style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="148.561101" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.662161"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="154.645052" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-3" y="76.662161"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="157.927157" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="76.662161"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="162.445781" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph6-1" y="76.662161"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="169.008994" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.662161"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="175.088868" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-5" y="76.662161"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="181.848461" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-4" y="76.662161"></use>
+</g>
+<path d="M -153.676426 -42.538176 L -25.737863 -42.538176 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.487597 2.867241 C -2.03283 1.146183 -1.021365 0.334658 0.00186143 0.00142381 C -1.021365 -0.335731 -2.03283 -1.147255 -2.487597 -2.868314 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,280.978614,95.743606)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="211.33958" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="104.656703"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="217.427395" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-1" y="104.656703"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="220.471484" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph5-1" y="101.854858"></use>
+</g>
+<path d="M 7.687527 -31.478708 L 7.687527 -11.284691 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485565 2.867421 C -2.030797 1.146362 -1.019332 0.334838 -0.000026557 0.0016031 C -1.019332 -0.335552 -2.030797 -1.147076 -2.485565 -2.868135 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0,-0.996389,-0.996389,0,314.048472,64.363255)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="276.624972" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="282.708923" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph8-1" y="73.948994"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="286.844933" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-3" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="290.127038" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="294.645662" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph6-1" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="301.208876" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-5" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="307.964392" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-4" y="76.75084"></use>
+</g>
+<path d="M 32.048936 -31.478708 L 77.16498 -11.002422 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.486018 2.868579 C -2.031711 1.146849 -1.018541 0.333983 0.00116045 0.00037181 C -1.019771 -0.332817 -2.031334 -1.148173 -2.485885 -2.870763 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.907262,-0.411748,-0.411748,-0.907262,383.491288,64.223471)"></path>
+<path d="M 347.800781 81.300781 L 374.230469 81.300781 L 374.230469 67.546875 L 347.800781 67.546875 Z M 347.800781 81.300781 " style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="350.362732" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="356.447679" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph8-1" y="73.948994"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="360.583689" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-3" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="363.864798" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="76.75084"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="368.383422" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-4" y="76.75084"></use>
+</g>
+<path d="M 40.638548 -42.538176 L 67.897138 -42.538176 " style="fill:none;stroke-width:2.79451;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M 40.638548 -42.538176 L 67.897138 -42.538176 " style="fill:none;stroke-width:1.83812;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M 100.848159 -31.478708 L 100.848159 -11.284691 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M -2.485565 2.869239 C -2.030797 1.14818 -1.019332 0.336656 -0.000026557 -0.000499047 C -1.019332 -0.333734 -2.030797 -1.149178 -2.485565 -2.870237 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0,-0.996389,-0.996389,0,406.870597,64.363255)"></path>
+<path d="M 392.957031 80.960938 L 420.785156 80.960938 L 420.785156 67.890625 L 392.957031 67.890625 Z M 392.957031 80.960938 " style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="395.520073" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-3" y="76.409078"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="401.60502" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-3" y="76.409078"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="404.886129" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph4-4" y="76.409078"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="409.119785" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph7-1" y="77.743243"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="414.936703" xlink:href="#S7O3uGuSxYkAQiljhhQu5JSmxfQ=-glyph3-4" y="76.409078"></use>
+</g>
+<path d="M 133.79918 -42.538176 L 156.811969 -42.538176 " style="fill:none;stroke-width:2.79451;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+<path d="M 133.79918 -42.538176 L 156.811969 -42.538176 " style="fill:none;stroke-width:1.83812;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996389,0,0,-0.996389,306.387109,53.357621)"></path>
+</g>
+</svg></p>
+</div>
+</p>
+<p>Alternatively we can deduce this from the fact that that <a class="existingWikiWord" href="../../../6/8/18640/content.html">thunkable</a> morphisms are <a class="existingWikiWord" href="../../../../../8/2/8/4/4828/content.html">central</a>, since a monad is idempotent iff every Kleisli map is thunkable, and a monad is commutative iff every Kleisli map is central. (This fact is proved by Paul Levy <a href="https://www.cs.bham.ac.uk/~pbl/papers/thunkcentral.pdf">there</a>.)</p>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>If furthermore <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../5/3/3/0/20335/content.html">monoidal category with diagonals</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo>⊗</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Delta_A : A \to A \otimes A</annotation></semantics></math>, then the induced <a class="existingWikiWord" href="../../../../../1/1/4/7/7411/content.html">monoidal monad</a> structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../2/5/6/6/26652/content.html">idempotent</a> in the sense that the following diagram commutes: <svg height="93.689pt" version="1.2" viewbox="0 0 165.696 93.689" width="165.696pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-1" overflow="visible">
+<path d="M 6.203125 -9.078125 C 6.296875 -9.4375 6.328125 -9.578125 6.546875 -9.640625 C 6.671875 -9.65625 7.15625 -9.65625 7.46875 -9.65625 C 8.96875 -9.65625 9.65625 -9.609375 9.65625 -8.4375 C 9.65625 -8.21875 9.609375 -7.65625 9.515625 -7.109375 L 9.5 -6.921875 C 9.5 -6.859375 9.5625 -6.78125 9.65625 -6.78125 C 9.796875 -6.78125 9.796875 -6.84375 9.84375 -7.09375 L 10.28125 -9.71875 C 10.296875 -9.859375 10.296875 -9.890625 10.296875 -9.9375 C 10.296875 -10.09375 10.21875 -10.09375 9.921875 -10.09375 L 1.765625 -10.09375 C 1.421875 -10.09375 1.421875 -10.078125 1.328125 -9.8125 L 0.421875 -7.125 C 0.40625 -7.109375 0.359375 -6.9375 0.359375 -6.921875 C 0.359375 -6.84375 0.421875 -6.78125 0.5 -6.78125 C 0.625 -6.78125 0.65625 -6.828125 0.71875 -7.03125 C 1.34375 -8.828125 1.65625 -9.65625 3.640625 -9.65625 L 4.625 -9.65625 C 4.984375 -9.65625 5.140625 -9.65625 5.140625 -9.5 C 5.140625 -9.453125 5.140625 -9.421875 5.0625 -9.15625 L 3.0625 -1.15625 C 2.921875 -0.578125 2.890625 -0.4375 1.3125 -0.4375 C 0.9375 -0.4375 0.828125 -0.4375 0.828125 -0.15625 C 0.828125 0 1 0 1.078125 0 C 1.4375 0 1.828125 -0.03125 2.203125 -0.03125 L 4.53125 -0.03125 C 4.90625 -0.03125 5.296875 0 5.671875 0 C 5.84375 0 5.984375 0 5.984375 -0.28125 C 5.984375 -0.4375 5.875 -0.4375 5.5 -0.4375 C 4.15625 -0.4375 4.15625 -0.5625 4.15625 -0.796875 C 4.15625 -0.796875 4.15625 -0.90625 4.21875 -1.140625 Z M 6.203125 -9.078125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-2" overflow="visible">
+<path d="M 2.53125 -1.65625 C 2.015625 -0.78125 1.5 -0.46875 0.796875 -0.4375 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.15625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.625 -0.03125 1.890625 -0.03125 C 2.328125 -0.03125 2.796875 0 3.21875 0 C 3.3125 0 3.484375 0 3.484375 -0.28125 C 3.484375 -0.421875 3.359375 -0.4375 3.28125 -0.4375 C 2.9375 -0.46875 2.65625 -0.578125 2.65625 -0.9375 C 2.65625 -1.140625 2.734375 -1.3125 2.9375 -1.640625 L 4.0625 -3.515625 L 7.859375 -3.515625 C 7.875 -3.375 7.875 -3.265625 7.890625 -3.125 C 7.9375 -2.734375 8.109375 -1.1875 8.109375 -0.90625 C 8.109375 -0.46875 7.359375 -0.4375 7.125 -0.4375 C 6.953125 -0.4375 6.796875 -0.4375 6.796875 -0.15625 C 6.796875 0 6.921875 0 7.015625 0 C 7.265625 0 7.5625 -0.03125 7.8125 -0.03125 L 8.671875 -0.03125 C 9.578125 -0.03125 10.234375 0 10.25 0 C 10.34375 0 10.515625 0 10.515625 -0.28125 C 10.515625 -0.4375 10.375 -0.4375 10.15625 -0.4375 C 9.34375 -0.4375 9.328125 -0.5625 9.28125 -1.015625 L 8.375 -10.296875 C 8.34375 -10.609375 8.28125 -10.625 8.109375 -10.625 C 7.96875 -10.625 7.875 -10.609375 7.75 -10.375 Z M 4.3125 -3.953125 L 7.3125 -8.953125 L 7.8125 -3.953125 Z M 4.3125 -3.953125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph1-1" overflow="visible">
+<path d="M 10.75 -3.71875 C 10.75 -6.46875 8.515625 -8.6875 5.796875 -8.6875 C 3.015625 -8.6875 0.8125 -6.4375 0.8125 -3.71875 C 0.8125 -0.984375 3.046875 1.234375 5.78125 1.234375 C 8.546875 1.234375 10.75 -1.015625 10.75 -3.71875 Z M 2.828125 -6.921875 C 2.796875 -6.953125 2.6875 -7.0625 2.6875 -7.09375 C 2.6875 -7.140625 3.90625 -8.3125 5.78125 -8.3125 C 6.296875 -8.3125 7.671875 -8.234375 8.890625 -7.09375 L 5.796875 -3.96875 Z M 2.390625 -0.609375 C 1.484375 -1.625 1.1875 -2.765625 1.1875 -3.71875 C 1.1875 -4.875 1.625 -5.953125 2.390625 -6.828125 L 5.515625 -3.71875 Z M 9.15625 -6.828125 C 9.875 -6.078125 10.375 -4.9375 10.375 -3.71875 C 10.375 -2.578125 9.953125 -1.484375 9.171875 -0.609375 L 6.0625 -3.71875 Z M 8.734375 -0.515625 C 8.765625 -0.484375 8.875 -0.390625 8.875 -0.359375 C 8.875 -0.296875 7.671875 0.859375 5.796875 0.859375 C 5.265625 0.859375 3.90625 0.796875 2.6875 -0.359375 L 5.78125 -3.46875 Z M 8.734375 -0.515625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph2-1" overflow="visible">
+<path d="M 4.84375 3.625 C 4.84375 3.578125 4.84375 3.546875 4.59375 3.296875 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.59375 2.96875 -9.078125 4.6875 -10.84375 C 4.84375 -10.96875 4.84375 -11 4.84375 -11.046875 C 4.84375 -11.140625 4.765625 -11.171875 4.703125 -11.171875 C 4.515625 -11.171875 3.296875 -10.09375 2.5625 -8.640625 C 1.796875 -7.125 1.453125 -5.546875 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.328125 2.765625 4.546875 3.734375 4.703125 3.734375 C 4.765625 3.734375 4.84375 3.703125 4.84375 3.625 Z M 4.84375 3.625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph2-2" overflow="visible">
+<path d="M 4.203125 -3.703125 C 4.203125 -4.84375 4.046875 -6.6875 3.21875 -8.40625 C 2.34375 -10.203125 1.109375 -11.171875 0.953125 -11.171875 C 0.890625 -11.171875 0.8125 -11.140625 0.8125 -11.046875 C 0.8125 -11 0.8125 -10.96875 1.078125 -10.71875 C 2.5625 -9.21875 3.390625 -6.765625 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.546875 0.8125 3.578125 0.8125 3.625 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.375 2.671875 3.09375 1.203125 C 3.859375 -0.3125 4.203125 -1.921875 4.203125 -3.703125 Z M 4.203125 -3.703125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph3-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph3-1" overflow="visible">
+<path d="M 4.6875 -6.890625 C 4.578125 -7.078125 4.453125 -7.078125 4.390625 -7.078125 C 4.3125 -7.078125 4.203125 -7.078125 4.09375 -6.890625 L 0.578125 -0.25 C 0.5 -0.140625 0.5 -0.125 0.5 -0.09375 C 0.5 0 0.578125 0 0.75 0 L 8.03125 0 C 8.203125 0 8.265625 0 8.265625 -0.09375 C 8.265625 -0.125 8.265625 -0.140625 8.203125 -0.25 Z M 4.0625 -6.109375 L 6.890625 -0.78125 L 1.234375 -0.78125 Z M 4.0625 -6.109375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph4-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph4-1" overflow="visible">
+<path d="M 3.875 -4.484375 C 3.9375 -4.71875 3.953125 -4.734375 4.25 -4.734375 L 4.9375 -4.734375 C 5.734375 -4.734375 5.84375 -4.515625 5.84375 -4.078125 C 5.84375 -3.96875 5.828125 -3.765625 5.8125 -3.546875 C 5.796875 -3.515625 5.78125 -3.4375 5.78125 -3.40625 C 5.78125 -3.34375 5.84375 -3.296875 5.921875 -3.296875 C 6.046875 -3.296875 6.0625 -3.375 6.078125 -3.484375 L 6.28125 -4.90625 C 6.28125 -5.03125 6.1875 -5.03125 6.046875 -5.03125 L 1.203125 -5.03125 C 1 -5.03125 0.984375 -5.03125 0.9375 -4.875 L 0.453125 -3.53125 C 0.421875 -3.4375 0.421875 -3.40625 0.421875 -3.40625 C 0.421875 -3.390625 0.4375 -3.296875 0.5625 -3.296875 C 0.65625 -3.296875 0.671875 -3.3125 0.734375 -3.515625 C 1.078125 -4.421875 1.296875 -4.734375 2.265625 -4.734375 L 2.9375 -4.734375 C 3.078125 -4.734375 3.09375 -4.734375 3.1875 -4.71875 L 2.1875 -0.640625 C 2.125 -0.4375 2.09375 -0.359375 1.890625 -0.328125 C 1.671875 -0.296875 1.25 -0.296875 1.234375 -0.296875 C 1.046875 -0.296875 1.03125 -0.296875 1 -0.28125 C 0.96875 -0.25 0.9375 -0.140625 0.9375 -0.109375 C 0.9375 -0.09375 0.953125 0 1.078125 0 C 1.28125 0 1.5 -0.015625 1.703125 -0.015625 C 2 -0.015625 2.1875 -0.03125 2.390625 -0.03125 C 2.609375 -0.03125 2.84375 -0.015625 3.0625 -0.015625 C 3.28125 -0.015625 3.515625 0 3.734375 0 C 3.796875 0 3.84375 0 3.875 -0.046875 C 3.890625 -0.078125 3.921875 -0.15625 3.921875 -0.1875 C 3.890625 -0.296875 3.84375 -0.296875 3.609375 -0.296875 C 3.453125 -0.296875 3.296875 -0.3125 3.125 -0.3125 C 2.953125 -0.328125 2.875 -0.328125 2.875 -0.453125 Z M 3.875 -4.484375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph4-2" overflow="visible">
+<path d="M 1.6875 -0.90625 C 1.40625 -0.484375 1.140625 -0.328125 0.734375 -0.296875 C 0.625 -0.296875 0.53125 -0.28125 0.53125 -0.109375 C 0.53125 -0.03125 0.59375 0 0.640625 0 C 0.859375 0 1.109375 -0.03125 1.3125 -0.03125 C 1.5 -0.03125 1.9375 0 2.109375 0 C 2.203125 0 2.28125 -0.03125 2.28125 -0.1875 C 2.28125 -0.296875 2.171875 -0.296875 2.15625 -0.296875 C 1.96875 -0.3125 1.8125 -0.34375 1.8125 -0.515625 C 1.8125 -0.609375 1.890625 -0.734375 1.921875 -0.78125 L 2.53125 -1.6875 L 4.765625 -1.6875 L 4.96875 -0.484375 C 4.96875 -0.296875 4.53125 -0.296875 4.453125 -0.296875 C 4.359375 -0.296875 4.234375 -0.296875 4.234375 -0.109375 C 4.234375 -0.078125 4.28125 0 4.375 0 C 4.59375 0 5.140625 -0.03125 5.359375 -0.03125 C 5.515625 -0.03125 5.65625 -0.015625 5.796875 -0.015625 C 5.953125 -0.015625 6.109375 0 6.25 0 C 6.296875 0 6.421875 0 6.421875 -0.1875 C 6.421875 -0.296875 6.328125 -0.296875 6.203125 -0.296875 C 5.75 -0.296875 5.734375 -0.34375 5.703125 -0.53125 L 4.96875 -5.125 C 4.9375 -5.25 4.9375 -5.328125 4.765625 -5.328125 C 4.609375 -5.328125 4.5625 -5.265625 4.5 -5.15625 Z M 2.71875 -1.984375 L 4.328125 -4.40625 L 4.71875 -1.984375 Z M 2.71875 -1.984375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph5-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph5-1" overflow="visible">
+<path d="M 4.484375 -6 C 4.578125 -6.359375 4.578125 -6.375 4.984375 -6.375 L 5.75 -6.375 C 6.78125 -6.375 6.890625 -6.046875 6.890625 -5.5625 C 6.890625 -5.3125 6.84375 -4.875 6.828125 -4.828125 C 6.8125 -4.71875 6.796875 -4.640625 6.796875 -4.609375 C 6.796875 -4.484375 6.890625 -4.453125 6.9375 -4.453125 C 7.046875 -4.453125 7.09375 -4.515625 7.125 -4.703125 L 7.390625 -6.5625 C 7.390625 -6.703125 7.265625 -6.703125 7.09375 -6.703125 L 1.25 -6.703125 C 1 -6.703125 0.984375 -6.703125 0.90625 -6.5 L 0.3125 -4.78125 C 0.28125 -4.734375 0.265625 -4.65625 0.265625 -4.59375 C 0.265625 -4.515625 0.328125 -4.453125 0.40625 -4.453125 C 0.515625 -4.453125 0.53125 -4.5 0.59375 -4.671875 C 1.15625 -6.265625 1.453125 -6.375 2.953125 -6.375 L 3.34375 -6.375 C 3.640625 -6.375 3.65625 -6.375 3.65625 -6.296875 C 3.65625 -6.265625 3.609375 -6.0625 3.609375 -6.015625 L 2.296875 -0.8125 C 2.203125 -0.4375 2.171875 -0.328125 1.140625 -0.328125 C 0.828125 -0.328125 0.71875 -0.328125 0.71875 -0.140625 C 0.71875 -0.125 0.71875 0 0.890625 0 C 1.15625 0 1.84375 -0.03125 2.109375 -0.03125 L 2.953125 -0.03125 C 3.234375 -0.03125 3.921875 0 4.203125 0 C 4.28125 0 4.4375 0 4.4375 -0.1875 C 4.4375 -0.328125 4.328125 -0.328125 4.0625 -0.328125 C 3.8125 -0.328125 3.734375 -0.328125 3.484375 -0.34375 C 3.171875 -0.375 3.125 -0.421875 3.125 -0.546875 C 3.125 -0.578125 3.140625 -0.625 3.171875 -0.71875 Z M 4.484375 -6 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="1dcB3FMCTtvatT_gpN4sCNtPNJg=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="6.535319" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-1" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="17.108966" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-2" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="97.255175" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-1" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="107.828822" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-2" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="122.071548" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph1-1" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="136.965856" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-1" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="147.539503" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-2" y="18.8883"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="96.870453" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-1" y="84.204484"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="107.444103" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph2-1" y="84.204484"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="113.115278" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-2" y="84.204484"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="127.357999" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph1-1" y="84.204484"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="142.252308" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph0-2" y="84.204484"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="153.186013" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph2-2" y="84.204484"></use>
+</g>
+<path d="M -48.152692 33.2656 L 7.445318 33.2656 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996691,0,0,-0.996691,82.696503,48.319603)"></path>
+<path d="M -2.485464 2.869377 C -2.030835 1.148841 -1.019677 0.333644 -0.000680258 0.000510497 C -1.019677 -0.336542 -2.030835 -1.14782 -2.485464 -2.868356 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996691,0,0,-0.996691,90.356147,15.164571)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="51.175138" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph3-1" y="9.991832"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="59.967203" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph4-1" y="11.660045"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="66.618367" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph4-2" y="11.660045"></use>
+</g>
+<path d="M 45.320628 22.566139 L 45.320628 -18.601314 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996691,0,0,-0.996691,82.696503,48.319603)"></path>
+<path d="M -2.487736 2.870095 C -2.033107 1.149559 -1.01803 0.334362 0.000966465 0.00122839 C -1.01803 -0.335824 -2.033107 -1.147102 -2.487736 -2.867638 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0,0.996691,0.996691,0,127.865963,67.096693)"></path>
+<path d="M -49.626317 23.81245 L 22.581333 -18.836467 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996691,0,0,-0.996691,82.696503,48.319603)"></path>
+<path d="M -2.486253 2.868421 C -2.033729 1.146483 -1.021005 0.333489 0.00042015 -0.000963208 C -1.018248 -0.334017 -2.031507 -1.146381 -2.485759 -2.866726 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.858151,0.506818,0.506818,-0.858151,105.406378,67.213804)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="42.015543" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph5-1" y="56.250278"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="49.622791" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph3-1" y="56.250278"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="58.414856" xlink:href="#1dcB3FMCTtvatT_gpN4sCNtPNJg=-glyph4-2" y="57.919736"></use>
+</g>
+</g>
+</svg></p>
+</div>
+</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>See <a href="#1Lab">1Lab</a>, <em>Strong idempotent monads</em>.</p>
+</div>
+</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>The free/forgetful adjunction between <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html"> groups</a> and <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html"> abelian groups</a> generates an idempotent monad.</li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/0/3/23079/content.html">idempotent monoid in a monoidal category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/3/3/3379/content.html">idempotent adjunction</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/8/9/8/8989/content.html">closure operator</a>, <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modality</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/0/4/4012/content.html">lax-idempotent 2-monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">idempotent (∞,1)-monad</a></p>
+</li>
+<li>
+<p>The analog in <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> theory of the localization at idempotent monad is the content of the <a class="existingWikiWord" href="../../../../7/2/7/17270/content.html">Bousfield-Friedlander theorem</a> (“<span class="newWikiWord">Quillen idempotent monad<a href="/nlab/new/Quillen+idempotent+monad">?</a></span>”).</p>
+</li>
+</ul>
+<h2 id="References">References</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/2/1/3/23126/content.html">Harry Appelgate</a>, <a class="existingWikiWord" href="../../../../../9/8/9/5/5989/content.html">Myles Tierney</a>, Section 6 in: <em>Categories with models</em>, p. 156-244 In: <a class="existingWikiWord" href="../../../../../4/5/0/7/7054/content.html">Beno Eckmann</a> (ed.) <em>Seminar on Triples and Categorical Homology Theory</em> Lecture Notes in Mathematics, <strong>80</strong>, Springer 1969 (<a href="https://doi.org/10.1007/BFb0083086">doi:10.1007/BFb0083086</a>, <a href="https://link.springer.com/content/pdf/10.1007/BFb0083086">pdf</a>)</li>
+</ul>
+<p>Textbook accounts:</p>
+<ul>
+<li id="Borceux">
+<p><a class="existingWikiWord" href="../../../../../6/1/4/4/4416/content.html">Francis Borceux</a>, <em><a class="existingWikiWord" href="../../../../../4/0/0/6/6004/content.html">Handbook of Categorical Algebra</a></em>, vol.2, p. 196.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em><a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Sketches of an Elephant</a></em>, A.4.3.11, p.194, B1.1.9, p.249</p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/5/0/3/3058/content.html">Pierre Gabriel</a>, <a class="existingWikiWord" href="../../../../../7/4/2/7/7247/content.html">Michel Zisman</a>, <em><a class="existingWikiWord" href="../../../../../5/3/4/3/3435/content.html">Calculus of fractions and homotopy theory</a></em></li>
+</ul>
+<p>The idempotent monad which exhibits the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> at the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-equivalences for a given monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is discussed in</p>
+<ul>
+<li id="ApplegateTierney70">
+<p><a class="existingWikiWord" href="../../../../../6/2/1/3/23126/content.html">Harry Applegate</a>, <a class="existingWikiWord" href="../../../../../9/8/9/5/5989/content.html">Myles Tierney</a>, <em>Iterated cotriples</em>, Lecture Notes in Math. <strong>137</strong> (1970) 56-99 (<a href="https://doi.org/10.1007/BFb0060440">doi:10.1007/BFb0060440</a>)</p>
+</li>
+<li id="Fakir70">
+<p>S. Fakir, <em>Monade idempotente associée à une monade</em>, C. R. Acad. Sci. Paris Ser. A-B 270 (1970), A99-A101. (<a href="http://gallica.bnf.fr/ark:/12148/bpt6k480298g/f103.image">gallica</a>)</p>
+</li>
+<li id="Day74">
+<p><a class="existingWikiWord" href="../../../../../1/5/1/6/6151/content.html">Brian Day</a>, <em>On adjoint-functor factorisation</em>, Lecture Notes in Math. 420 (1974), 1-19. (<a href="https://link.springer.com/content/pdf/10.1007/BFb0063097.pdf">springer</a>)</p>
+</li>
+<li id="CasacubertaFrei99">
+<p><a class="existingWikiWord" href="../../../../../3/9/0/5/5093/content.html">Carles Casacuberta</a>, Armin Frei, <em>Localizations as idempotent approximations to completions</em>, Journal of Pure and Applied Algebra 142 (1999) 25–33 (<a href="https://www.ub.edu/topologia/casacuberta/articles/cfre1.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>and for <a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriched category theory</a> in</p>
+<ul>
+<li id="LucyshynWright14"><a class="existingWikiWord" href="../../../../../3/7/3/5/15373/content.html">Rory Lucyshyn-Wright</a>, <em>Completion, closure, and density relative to a monad, with examples in functional analysis and sheaf theory</em>, Theory Appl. Cat. 29 (2014) 31, 896–928 <a href="http://emis.ams.org/journals/TAC/volumes/29/31/29-31abs.html">abs</a> <a href="http://arxiv.org/abs/1406.2361">arXiv:1406.2361</a></li>
+</ul>
+<p>Discussion in <a class="existingWikiWord" href="../../../../../3/3/7/1/1733/content.html">algebraic topology</a> (<a class="existingWikiWord" href="../../../../../4/0/7/0/10704/content.html">localization</a>, <a class="existingWikiWord" href="../../../../../3/3/1/3/23133/content.html">completion</a>):</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/7/2/7/7271/content.html">John Frank Adams</a>, <a class="existingWikiWord" href="../../../../../1/4/7/6/26741/content.html">Zbigniew Fiedorowicz</a>, <em>Localisation and Completion with an addendum on the use of Brown-Peterson homology in stable homotopy</em>, based on 1973 lectures by Adams [<a href="https://arxiv.org/abs/1012.5020">arXiv:1012.5020</a>]</li>
+</ul>
+<p>Extension of idempotent monads along subcategory inclusions is discussed in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/9/0/5/5093/content.html">Carles Casacuberta</a>, Armin Frei, Tan Geok Choo, <em>Extending localization functors</em> , Journal of Pure and Applied Algebra 103 (1995), 149-165 (<a href="http://atlas.mat.ub.es/personals/casac/articles/cft.pdf">pdf</a>)</p>
+</li>
+<li>
+<p>A. Deleanu, A. Frei, <a class="existingWikiWord" href="../../../../../8/6/1/5/5168/content.html">P. Hilton</a>, <em>Idempotent triples and completion</em>, Math. Z. <strong>143</strong> (1975) pp.91-104. (<a href="http://gdz-lucene.tc.sub.uni-goettingen.de/gcs/gcs?&amp;&amp;action=pdf&amp;metsFile=PPN266833020_0143&amp;divID=LOG_0014&amp;pagesize=original&amp;pdfTitlePage=http://gdz.sub.uni-goettingen.de/dms/load/pdftitle/?metsFile=PPN266833020_0143%7C&amp;targetFileName=PPN266833020_0143_LOG_0014.pdf&amp;">pdf</a>)</p>
+</li>
+</ul>
+<p>Discussion of idempotent comonads and their relation to adjoint strings is contained in</p>
+<ul>
+<li id="RosebrughWood95"><a class="existingWikiWord" href="../../../../../2/3/3/6/6332/content.html">Robert Rosebrugh</a>, <a class="existingWikiWord" href="../../../../../4/7/0/9/19074/content.html">Richard Wood</a> <em>Distributive adjoint strings</em>, Theory and applications of categories (1995) 119–145.</li>
+</ul>
+<p>Formalisation in <a class="existingWikiWord" href="../../../../../4/3/9/6/6934/content.html">cubical Agda</a>:</p>
+<ul>
+<li id="1Lab"><a class="existingWikiWord" href="../../../../../5/2/7/4/24725/content.html">1lab</a>, <em><a href="https://1lab.dev/Cat.Diagram.Monad.Idempotent.html">Idempotent monads</a></em></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

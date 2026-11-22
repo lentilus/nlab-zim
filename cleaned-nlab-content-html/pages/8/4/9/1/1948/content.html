@@ -1,0 +1,793 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      model structure on functors in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      model structure on functors
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#existence">Existence</a></li>
+<ul>
+<li><a href="#projective_case">Projective case</a></li>
+<li><a href="#accessible_case">Accessible case</a></li>
+<li><a href="#CombinatorialCase">Combinatorial case</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#relation_to_other_model_structures">Relation to other model structures</a></li>
+<li><a href="#FunctorialityInDomainAndCodomain">Functoriality in domain and codomain</a></li>
+<li><a href="#relation_to_homotopy_kan_extensionslimitscolimits">Relation to homotopy Kan extensions/limits/colimits</a></li>
+<li><a href="#RelationToInfinityFunctorCategories">Relation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-functor categories</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> structures on <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor categories</a> are models for <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categories of (∞,1)-functors</a>.</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small category</a> there are two “obvious” ways to put a <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> structure on the <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math>, called the <em>projective</em> and the <em>injective</em> model structures. For completely general <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, neither one need exist, but there are rather general conditions that ensure their existence. In particular, the projective model structure exists as long as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../7/8/1/1878/content.html">cofibrantly generated</a>, while both model structures exist if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../2/0/0/20028/content.html">accessible</a> (and in particular if it is <a class="existingWikiWord" href="../../../../../0/2/8/1/1820/content.html">combinatorial</a>). In the case of <a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched</a> diagrams, additional cofibrancy-type conditions are required on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>.</p>
+<p>A related kind of model structure is the <a class="existingWikiWord" href="../../../../../6/4/9/1/1946/content.html">Reedy model structure</a>/<a class="existingWikiWord" href="../../../../../1/0/4/7/7401/content.html">generalized Reedy model structure</a> on functor categories, which applies for <em>any</em> model category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, but requires <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> to be a very special sort of category, namely a <a class="existingWikiWord" href="../../../../../9/6/1/1/1169/content.html">Reedy category</a>/<a class="existingWikiWord" href="../../../../../6/0/3/1/1306/content.html">generalized Reedy category</a>.</p>
+<p>In the special case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">C = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a> is the <a class="existingWikiWord" href="../../../../6/2/7/17268/content.html">classical model structure on simplicial sets</a> the projective and injective model structure on the functor categories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>SSet</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,SSet]</annotation></semantics></math> are described in more detail at <a class="existingWikiWord" href="../../../../../3/5/7/1/1753/content.html">global model structure on simplicial presheaves</a> and <a class="existingWikiWord" href="../../../../../1/9/7/1/1791/content.html">model structure on sSet-enriched presheaves</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> that is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-enriched category. Usually we have either <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle><mo>=</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">\mathbf{S}=Set</annotation></semantics></math> or else <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/1/4/0/419/content.html">monoidal model category</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/6/3/1/1361/content.html">enriched model category</a>.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> denote the enriched <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a>, whose objects are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-enriched functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>⟶</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">D\longrightarrow C</annotation></semantics></math>.</p>
+<div class="num_defn" id="ProjectiveAndInjectiveStructure">
+<h6 id="definition_2">Definition</h6>
+<p>We define the following classes of maps in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math>:</p>
+<ul>
+<li>the <strong>projective weak equivalences</strong> and <strong>projective fibrations</strong> are the <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformations</a> that are objectwise such morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</li>
+<li>the <strong>injective weak equivalences</strong> and <strong>injective cofibrations</strong> are the <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformations</a> that are objectwise such morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</li>
+</ul>
+<p>If either of these choices defines a model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math>, we call it the <strong>projective model structure</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{proj}</annotation></semantics></math> or <strong>injective model structure</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math> respectively. Of course, the projective cofibrations and injective fibrations can then be characterized by lifting properties.</p>
+</div>
+<h2 id="existence">Existence</h2>
+<h3 id="projective_case">Projective case</h3>
+<p>The projective model structure can be regarded as a right-<a class="existingWikiWord" href="../../../../../3/7/6/3/3673/content.html">transferred model structure</a>. This yields the following basic result on its existence.</p>
+<p>
+<div class="num_theorem" id="ExistenceOfProjectiveStructureOnEnrichedFunctors">
+<h6>Theorem</h6>
+<p><strong>(existence and cofibrant generation of projective structure on enriched functors)</strong> <br/> Given</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../2/1/8/1/1812/content.html">cosmos for enrichment</a>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> a pair of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-enriched categories</p>
+</li>
+</ul>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> carries the <a class="existingWikiWord" href="../../../../0/7/7/7708/content.html">structure</a> of</p>
+<ol>
+<li>
+<p>a <a class="existingWikiWord" href="../../../../7/8/1/1878/content.html">cofibrantly generated model category</a>,</p>
+</li>
+<li>
+<p>which admits <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a> by the <a class="existingWikiWord" href="../../../../../2/5/2/0/252/content.html">hom-objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>∈</mo><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">D(x,y)\in \mathbf{S}</annotation></semantics></math>, which preserve <a class="existingWikiWord" href="../../../../../0/8/0/7/7080/content.html">acyclic cofibrations</a>.</p>
+<p>(This is the case for instance if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{S}=</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>, or if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/1/4/0/419/content.html">monoidal model category</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../1/6/3/1/1361/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mstyle mathvariant="bold">
+<mi>S</mi>
+</mstyle>
+</mrow>
+<annotation encoding="application/x-tex">\mathbf{S}</annotation>
+</semantics>
+</math>-model category</a>, and the <a class="existingWikiWord" href="../../../../../2/5/2/0/252/content.html">hom-objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(x,y)</annotation></semantics></math> are cofibrant in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>.)</p>
+</li>
+</ol>
+<p>Then the projective model structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{proj}</annotation></semantics></math> on the <a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a> exists, and is again cofibrantly generated.</p>
+</div>
+ (For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{S} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Sets</a> this is <a href="#Hirschhorn02">Hirschhorn 2002, Thm. 11.6.1</a>.). 
+<div class="proof">
+<h6>Proof</h6>
+<p>Assuming the existence of such copowers, for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ob</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x\in ob(D)</annotation></semantics></math> the “<a class="existingWikiWord" href="../../../../../7/8/8/5/5887/content.html">evaluation</a> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>” functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ev</mi> <mi>x</mi></msub><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo><mo>⟶</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">ev_x \colon [D,C]\longrightarrow C</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../0/2/0/1/1020/content.html">left adjoint</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>x</mi></msub></mrow><annotation encoding="application/x-tex">F_x</annotation></semantics></math> sending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A\in C</annotation></semantics></math> to the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>↦</mo><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>⊙</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">y\mapsto D(x,y)\odot A</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copower</a>. Now if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> are generating sets of cofibrations and trivial cofibrations for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">I^D</annotation></semantics></math> be the set of maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_x(i)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math>, for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">i\in I</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ob</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x\in ob(D)</annotation></semantics></math>, and similarly for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>. Then the projective fibrations and trivial fibrations are characterized by having the right lifting property with respect to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">J^D</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">I^D</annotation></semantics></math> respectively, while both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">I^D</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">J^D</annotation></semantics></math> permit the <a class="existingWikiWord" href="../../../../../9/4/5/0/549/content.html">small object argument</a> since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> do and colimits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> are pointwise. Since the trivial fibrations in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> clearly coincide with the fibrations that are weak equivalences, it remains only to show that all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">J^D</annotation></semantics></math>-cell complexes are weak equivalences. But a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>J</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">J^D</annotation></semantics></math>-cell complex is objectwise a cell complex built from cells <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>⊙</mo><mi>j</mi></mrow><annotation encoding="application/x-tex">D(x,y)\odot j</annotation></semantics></math> for maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><mi>J</mi></mrow><annotation encoding="application/x-tex">j\in J</annotation></semantics></math>, and the assumption ensures that these are trivial cofibrations in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, hence so is any cell complex built from them.</p>
+</div>
+</p>
+<p>There do exist projective model structures that do not fall under this theorem, however, such as the following.</p>
+<div class="un_theorem">
+<h6 id="theorem">Theorem</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../4/7/9/0/974/content.html">locally presentable</a> <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a> with its <a class="existingWikiWord" href="../../../../../7/1/2/7/7217/content.html">2-trivial model structure</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is a small 2-category, then the projective model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> exists.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>This follows from the result of <a href="#Lack06">Lack</a> on <a class="existingWikiWord" href="../../../../../3/7/6/3/3673/content.html">transferred model structures</a> for algebras over <a class="existingWikiWord" href="../../../../../0/9/5/1/1590/content.html">2-monads</a>, since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> is the category of algebras for an accessible 2-monad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mrow><mi>ob</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">C^{ob(D)}</annotation></semantics></math>.</p>
+</div>
+<p>Note that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> need not be cofibrantly generated (and the 2-trivial model structure often fails to be cofibrantly generated), so the generality of this result is not entirely included in the previous one.</p>
+<h3 id="accessible_case">Accessible case</h3>
+<p>In the case when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../2/0/0/20028/content.html">accessible model category</a>, i.e. it is a <a class="existingWikiWord" href="../../../../../4/7/9/0/974/content.html">locally presentable category</a> and its constituent <a class="existingWikiWord" href="../../../../../5/6/3/0/365/content.html">weak factorization systems</a> have <a class="existingWikiWord" href="../../../../../3/4/8/3/3843/content.html">accessible</a> realizations as <a class="existingWikiWord" href="../../../../../4/9/2/7/17294/content.html">functorial factorizations</a>, we have the following general result from <a href="#Moser">Moser</a> (the unenriched case appears in <a href="#HKRS15">HKRS15</a> and <a href="#GKR18">GKR18</a>).</p>
+<p>
+<div class="num_theorem" id="Accessible">
+<h6>Theorem</h6>
+<p>Let</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/7/9/0/974/content.html">locally presentable</a> <a class="existingWikiWord" href="../../../../../2/1/8/1/1812/content.html">cosmos</a></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-cocomplete locally <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-presentable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> that is an <a class="existingWikiWord" href="../../../../2/0/0/20028/content.html">accessible model category</a>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-category.</p>
+</li>
+</ul>
+<p>Then:</p>
+<ol>
+<li>
+<p>If <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a> by the <a class="existingWikiWord" href="../../../../../2/5/2/0/252/content.html">hom-objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(x,y)</annotation></semantics></math> preserve <a class="existingWikiWord" href="../../../../../0/8/0/7/7080/content.html">acyclic cofibrations</a>, then the projective model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> exists and is accessible.</p>
+</li>
+<li>
+<p>If <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a> by the hom-objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(x,y)</annotation></semantics></math> preserve <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibrations</a>, then the injective model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> exists and is accessible</p>
+</li>
+</ol>
+<p></p>
+</div>
+</p>
+<h3 id="CombinatorialCase">Combinatorial case</h3>
+<p>Every <a class="existingWikiWord" href="../../../../../0/2/8/1/1820/content.html">combinatorial model category</a> (i.e. locally presentable and cofibrantly generated) is accessible, so Theorem <a class="maruku-ref" href="#Accessible"></a> shows that both model structures exist, and Theorem <a class="maruku-ref" href="#CofGenProj"></a> shows that the projective model structure is cofibrantly generated, hence (by <a href="../../../../../4/7/9/0/974/content.html#PresheavesWithValuesInLocPresAreLocPres">this Prop.</a>) also <a class="existingWikiWord" href="../../../../../0/2/8/1/1820/content.html">combinatorial</a>.</p>
+<p>In fact the injective model structure is also combinatorial, although the proof is much more involved, because there is no explicit description of the generating cofibrations and acyclic cofibrations; they have to be produced by a cardinality argument. This was first proven by in <a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">HTT, prop. A.2.8.2 and A.3.3.2</a> under strong assumptions on the enriching category (in particular that all objects are cofibrant), and later generalized by <a href="#MakkaiRosický14">Makkai &amp; Rosický 2014</a> to essentially the following:</p>
+<p>
+<div class="num_theorem" id="Combinatorial">
+<h6>Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/7/9/0/974/content.html">locally presentable</a> <a class="existingWikiWord" href="../../../../../2/1/8/1/1812/content.html">cosmos</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-cocomplete locally <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-presentable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> that is a <a class="existingWikiWord" href="../../../../../0/2/8/1/1820/content.html">combinatorial model category</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> a small <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-category. Then:</p>
+<ol>
+<li>
+<p>If <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a> by the hom-objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(x,y)</annotation></semantics></math> preserve trivial cofibrations, then the projective model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> exists and is combinatorial.</p>
+</li>
+<li>
+<p>If <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a> by the hom-objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D(x,y)</annotation></semantics></math> preserve cofibrations, then the injective model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D,C]</annotation></semantics></math> exists and is combinatorial.</p>
+</li>
+</ol>
+<p></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>It suffices to construct the factorizations, which follows from <a href="#MakkaiRosický14">Makkai &amp; Rosický 2014, Remark 3.8</a> about left-lifting combinatorial weak factorization systems.</p>
+</div>
+</p>
+<h2 id="properties">Properties</h2>
+<h3 id="general">General</h3>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>The projective and injective structures <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{proj}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math>, def. <a class="maruku-ref" href="#ProjectiveAndInjectiveStructure"></a>, are (insofar as they exist):</p>
+<ul>
+<li>
+<p>right or left <a class="existingWikiWord" href="../../../../../0/2/7/1/1720/content.html">proper model categories</a> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is right or left proper, respectively.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/6/3/1/1361/content.html">enriched model categories</a> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-model category.</p>
+</li>
+</ul>
+</div>
+<p>The statement about properness appears as <a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">HTT, remark A.2.8.4</a>.</p>
+<div class="num_prop" id="PresentationOfInfinityFunctors">
+<h6 id="proposition_2">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/1/8/1/1819/content.html">combinatorial simplicial model category</a>, the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> <a class="existingWikiWord" href="../../../../../../../missing.html">presented by</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{proj}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math> under the above assumptions is the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category of (∞,1)-functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Func</mi><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><msup><mi>C</mi> <mo>∘</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Func(D,C^\circ)</annotation></semantics></math> from the ordinary category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category presented by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+</div>
+<p>See at <em><a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category of (∞,1)-functors</a></em> for more.</p>
+<h3 id="relation_to_other_model_structures">Relation to other model structures</h3>
+<div class="num_prop">
+<h6 id="proposition_3">Proposition</h6>
+<p>If <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a> by the hom-objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> preserve trivial cofibrations, then every fibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math> is in particular a fibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{proj}</annotation></semantics></math>. Similarly, if <a class="existingWikiWord" href="../../../../../6/1/4/0/416/content.html">powers</a> by the hom-objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> preserve trivial fibrations, then every cofibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{proj}</annotation></semantics></math> is in particular a cofibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math>. The hypotheses are satisfied if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is unenriched, or in the monoidal model category case if the hom-objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> are cofibrant.</p>
+</div>
+<p>This is argued in the beginning of the proof of <a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">HTT, lemma A.2.8.3</a>. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math>-enriched functors, this is (<a href="#Piacenza91">Piacenza 91, section 5</a>). For details see at <em><a href="../../../../../5/6/2/7/17265/content.html#ModelStructureOnTopEnrichedFunctors">classical model structure on topological spaces – Model structure on enriched functors</a></em>.</p>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mi>A</mi><mo>⟶</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">i:A\longrightarrow B</annotation></semantics></math> is a trivial cofibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ob</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x\in ob(D)</annotation></semantics></math>, then the first assumption implies that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>F</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>⟶</mo><msub><mi>F</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_x(i) : F_x(A) \longrightarrow F_x(B)</annotation></semantics></math>, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>D</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>⊙</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">F_x(A) (y) = D(x,y) \odot A</annotation></semantics></math> the left adjoint of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ev</mi> <mi>x</mi></msub><mo>:</mo><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo><mo>⟶</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">ev_x : [D,C] \longrightarrow C</annotation></semantics></math>, is a trivial cofibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math>. Thus, any fibration <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math> has the right lifting property with respect to it, which is to say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ev</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ev_x(p)</annotation></semantics></math> has the right lifting property with respect to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>. Since this is true for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>, each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ev</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ev_x(p)</annotation></semantics></math> is a fibration, i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> is a fibration in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">[D,C]_{inj}</annotation></semantics></math>. The other half is dual.</p>
+</div>
+<div class="num_cor">
+<h6 id="corollary">Corollary</h6>
+<p>The <a class="existingWikiWord" href="../../../../../6/9/3/1/1396/content.html">identity functors</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mover><munder><mo>⟶</mo><mi>Id</mi></munder><mover><mo>⟵</mo><mi>Id</mi></mover></mover><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">
+  [D,C]_{inj}
+    \stackrel{\overset{Id}{\longleftarrow}}{\underset{Id}{\longrightarrow}}
+  [D,C]_{proj}
+
+</annotation></semantics></math></div>
+<p>form a <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> (with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo>:</mo><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub><mo>⟶</mo><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">Id : [D,C]_{proj} \longrightarrow [D,C]_{inj}</annotation></semantics></math> being the left Quillen functor).</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/6/1/1/1169/content.html">Reedy category</a> this factors through the <a class="existingWikiWord" href="../../../../../6/4/9/1/1946/content.html">Reedy model structure</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mover><munder><mo>⟶</mo><mi>Id</mi></munder><mover><mo>⟵</mo><mi>Id</mi></mover></mover><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>Reedy</mi></msub><mover><munder><mo>⟶</mo><mi>Id</mi></munder><mover><mo>⟵</mo><mi>Id</mi></mover></mover><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">
+  [D,C]_{inj}
+    \stackrel{\overset{Id}{\longleftarrow}}{\underset{Id}{\longrightarrow}}
+  [D,C]_{Reedy}
+    \stackrel{\overset{Id}{\longleftarrow}}{\underset{Id}{\longrightarrow}}
+  [D,C]_{proj}
+
+</annotation></semantics></math></div></div>
+<h3 id="FunctorialityInDomainAndCodomain">Functoriality in domain and codomain</h3>
+<div class="num_prop" id="QuillenFunctorialityInCodomain">
+<h6 id="proposition_4">Proposition</h6>
+<p>The functor model structures depend <a class="existingWikiWord" href="../../../../../6/5/7/1/1756/content.html">Quillen-functorially</a> on their <a class="existingWikiWord" href="../../../../../4/1/1/0/114/content.html">codomain</a>, in that for</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mn>1</mn></msub><mover><munder><mo>⟶</mo><mi>R</mi></munder><mover><mo>⟵</mo><mi>L</mi></mover></mover><msub><mi>D</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">
+  D_1
+  \stackrel
+    {\overset{L}{\longleftarrow}}
+    {\underset{R}{\longrightarrow}}
+  D_2
+
+</annotation></semantics></math></div>
+<p>an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../7/5/2/2578/content.html">enriched Quillen adjunction</a> between <a class="existingWikiWord" href="../../../../../0/2/8/1/1820/content.html">combinatorial</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/6/3/1/1361/content.html">enriched model categories</a>, postcomposition induces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../7/5/2/2578/content.html">enriched Quillen adjunctions</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><msub><mi>D</mi> <mn>1</mn></msub><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub><mover><munder><mo>⟶</mo><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>R</mi><mo stretchy="false">]</mo></mrow></munder><mover><mo>⟵</mo><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>L</mi><mo stretchy="false">]</mo></mrow></mover></mover><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><msub><mi>D</mi> <mn>2</mn></msub><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">
+  [C,D_1]_{proj}
+    \stackrel
+      {\overset{[C,L]}{\longleftarrow}}
+      {\underset{[C,R]}{\longrightarrow}}
+  [C,D_2]_{proj}
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><msub><mi>D</mi> <mn>1</mn></msub><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mover><munder><mo>⟶</mo><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>R</mi><mo stretchy="false">]</mo></mrow></munder><mover><mo>⟵</mo><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>L</mi><mo stretchy="false">]</mo></mrow></mover></mover><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><msub><mi>D</mi> <mn>2</mn></msub><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [C,D_1]_{inj}
+    \stackrel
+      {\overset{[C,L]}{\longleftarrow}}
+      {\underset{[C,R]}{\longrightarrow}}
+  [C,D_2]_{inj}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Moreover, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L \dashv R)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a>, then so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>L</mi><mo stretchy="false">]</mo><mo>⊣</mo><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>R</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">([C,L] \dashv [C,R])</annotation></semantics></math>.</p>
+</div>
+<p>For the case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a small category this is [<a href="#Lurie">Lurie, remark A.2.8.6</a>], for the enriched case this is [<a href="#Lurie">Lurie, prop. A.3.3.6</a>].</p>
+<p>The Quillen-functoriality on the <a class="existingWikiWord" href="../../../../../2/6/5/2/2562/content.html">domain</a> is more asymmetric.</p>
+<p>
+<div class="num_prop" id="QuillenFunctorialityInDomain">
+<h6>Proposition</h6>
+<p><strong>(Quillen functoriality in the domain category)</strong> <br/> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo lspace="verythinmathspace">:</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>⟶</mo><msub><mi>C</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">p \colon C_1 \longrightarrow C_2</annotation></semantics></math> a functor between small categories or an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/0/3/0/303/content.html">enriched functor</a> between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>S</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{S}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched categories</a>, let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>p</mi> <mo>!</mo></msub><mo>⊣</mo><msup><mi>p</mi> <mo>*</mo></msup><mo>⊣</mo><msub><mi>p</mi> <mo>*</mo></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>C</mi> <mn>2</mn></msub><mo>,</mo><mi>D</mi><mo stretchy="false">]</mo><mover><mover><munder><mo>⟵</mo><mrow><msub><mi>p</mi> <mo>*</mo></msub></mrow></munder><mover><mo>⟶</mo><mrow><msup><mi>p</mi> <mo>*</mo></msup></mrow></mover></mover><mover><mo>⟵</mo><mrow><msub><mi>p</mi> <mo>!</mo></msub></mrow></mover></mover><mo stretchy="false">[</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>,</mo><mi>D</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  (p_! \dashv p^* \dashv p_*)
+  \;\colon\;
+  [C_2,D]
+  \stackrel{\overset{p_!}{\longleftarrow}}{\stackrel{\overset{p^*}{\longrightarrow}}{\underset{p_*}{\longleftarrow}}}
+ [C_1,D]
+
+</annotation></semantics></math></div>
+<p>be the <a class="existingWikiWord" href="../../../../../5/4/8/5/5845/content.html">adjoint triple</a> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">p^*</annotation></semantics></math> is precomposition with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> and where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">p_!</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">p_*</annotation></semantics></math> are left and right <a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">Kan extension</a> along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>, respectively.</p>
+<p>Then we have <a class="existingWikiWord" href="../../../../../6/5/7/1/1756/content.html">Quillen adjunctions</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>p</mi> <mo>!</mo></msub><mo>⊣</mo><msup><mi>p</mi> <mo>*</mo></msup><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>,</mo><mi>D</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub><mover><munder><mo>⟵</mo><mrow><msup><mi>p</mi> <mo>*</mo></msup></mrow></munder><mover><mo>⟶</mo><mrow><msub><mi>p</mi> <mo>!</mo></msub></mrow></mover></mover><mo stretchy="false">[</mo><msub><mi>C</mi> <mn>2</mn></msub><mo>,</mo><mi>D</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">
+  (p_! \dashv p^*) 
+  \;\colon\;
+  [C_1,D]_{proj} \stackrel{\overset{p_!}{\longrightarrow}}{\underset{p^*}{\longleftarrow}}
+  [C_2,D]_{proj}
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>p</mi> <mo>*</mo></msup><mo>⊣</mo><msub><mi>p</mi> <mo>*</mo></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>,</mo><mi>D</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mover><munder><mo>⟶</mo><mrow><msub><mi>p</mi> <mo>*</mo></msub></mrow></munder><mover><mo>⟵</mo><mrow><msup><mi>p</mi> <mo>*</mo></msup></mrow></mover></mover><mo stretchy="false">[</mo><msub><mi>C</mi> <mn>2</mn></msub><mo>,</mo><mi>D</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (p^* \dashv p_*)
+  \;\colon\;
+  [C_1,D]_{inj} \stackrel{\overset{p^*}{\longleftarrow}}{\underset{p_*}{\longrightarrow}}
+  [C_2,D]_{inj}
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> not enriched this appears as [<a href="#Lurie">Lurie, prop. A.2.8.7</a>], for the enriched case it appears as [<a href="#Lurie">Lurie, prop. A.3.3.7</a>].</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>In the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>-enriched case, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><msub><mi>D</mi> <mn>1</mn></msub><mo>⟶</mo><msub><mi>D</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">p : D_1 \longrightarrow D_2</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalence</a> in the <a class="existingWikiWord" href="../../../../../7/1/4/3/3417/content.html">model structure on sSet-categories</a>, then these two Quillen adjunctions are both <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a>s.</p>
+</div>
+<h3 id="relation_to_homotopy_kan_extensionslimitscolimits">Relation to homotopy Kan extensions/limits/colimits</h3>
+<p>Often functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>⟶</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">D \longrightarrow C</annotation></semantics></math> are thought of as <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagram</a>s in the model category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, and one is interested in obtaining their <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy limit</a> or <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimit</a> or, generally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mi>D</mi><mo>⟶</mo><mi>D</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">p : D \longrightarrow D'</annotation></semantics></math> any functor, their left and right <a class="existingWikiWord" href="../../../../../2/8/6/3/3682/content.html">homotopy Kan extension</a>.</p>
+<p>These are the left and right <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">derived functor</a>s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>HoLan</mi><mo>:</mo><mo>=</mo><mi>𝕃</mi><msub><mi>p</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">HoLan := \mathbb{L} p_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>HoRan</mi><mo>:</mo><mo>=</mo><mi>ℝ</mi><msub><mi>p</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">HoRan := \mathbb{R} p_*</annotation></semantics></math> of</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub><mover><mo>⟶</mo><mrow><msub><mi>p</mi> <mo>!</mo></msub></mrow></mover><mo stretchy="false">[</mo><mi>D</mi><mo>′</mo><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">
+  [D,C]_{proj} \stackrel{p_!}{\longrightarrow}  [D',C]_{proj}
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub><mover><mo>⟶</mo><mrow><msub><mi>p</mi> <mo>*</mo></msub></mrow></mover><mo stretchy="false">[</mo><mi>D</mi><mo>′</mo><mo>,</mo><mi>C</mi><msub><mo stretchy="false">]</mo> <mi>inj</mi></msub></mrow><annotation encoding="application/x-tex">
+  [D,C]_{inj} \stackrel{p_*}{\longrightarrow} [D',C]_{inj}
+
+</annotation></semantics></math></div>
+<p>respectively.</p>
+<p>For more on this see <a class="existingWikiWord" href="../../../../../2/8/6/3/3682/content.html">homotopy Kan extension</a>. For the case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>′</mo><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">D' = *</annotation></semantics></math> this reduces to <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy limit</a> and <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimit</a>.</p>
+<h3 id="RelationToInfinityFunctorCategories">Relation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-functor categories</h3>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p>For</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>C</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{C}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/1/8/1/1819/content.html">combinatorial simplicial model category</a></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>D</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{D}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small</a> <a class="existingWikiWord" href="../../../../../5/3/4/0/435/content.html">sSet-enriched category</a></p>
+</li>
+</ul>
+<p>then both the projective and the injective model structure on the <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sFunc</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>D</mi></mstyle><mo>,</mo><mstyle mathvariant="bold"><mi>C</mi></mstyle><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">sFunc(\mathbf{D}, \mathbf{C})</annotation></semantics></math> (which exist by the above discussion) <a class="existingWikiWord" href="../../../../../../../missing.html">present</a> the corresponding <a class="existingWikiWord" href="../../../../../7/6/3/1/1367/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-functors</a>. Concretely:</p>
+<p>The <a class="existingWikiWord" href="../../../../../4/1/4/1/1414/content.html">homotopy coherent nerve</a> of the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full</a> <a class="existingWikiWord" href="../../../../../5/3/4/0/435/content.html">sSet-enriched</a> <a class="existingWikiWord" href="../../../../../6/2/1/0/126/content.html">subcategory</a> of the functor model category on its <a class="existingWikiWord" href="../../../../../6/6/6/5/25666/content.html">bifibrant objects</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mstyle mathvariant="bold"><mi>sFunc</mi></mstyle><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>D</mi></mstyle><mo>,</mo><mstyle mathvariant="bold"><mi>C</mi></mstyle><mo stretchy="false">)</mo><msup><mo maxsize="1.2em" minsize="1.2em">)</mo> <mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">\big(\mathbf{sFunc}(\mathbf{D}, \mathbf{C})\big)^\circ</annotation></semantics></math>, is <a class="existingWikiWord" href="../../../../../5/7/0/2/2075/content.html">equivalent</a> to the <a class="existingWikiWord" href="../../../../../../../missing.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-functor</a> <a class="existingWikiWord" href="../../../../../9/5/2/0/259/content.html">quasi-category</a> between the <a class="existingWikiWord" href="../../../../../4/1/4/1/1414/content.html">homotopy coherent nerves</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mstyle mathvariant="bold"><mi>sFunc</mi></mstyle><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>D</mi></mstyle><mo>,</mo><mstyle mathvariant="bold"><mi>C</mi></mstyle><msup><mo stretchy="false">)</mo> <mo>∘</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><munder><mo>≃</mo><mi>qCat</mi></munder><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>Func</mi> <mn>∞</mn></msub><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>N</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>D</mi></mstyle><mo stretchy="false">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mstyle mathvariant="bold"><mi>C</mi></mstyle> <mo>∘</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  N \big( \mathbf{sFunc}(\mathbf{D}, \mathbf{C})^\circ \big)
+  \;\;
+  \underset{qCat}{\simeq}
+  \;\;
+  Func_\infty
+  \Big(
+    N(\mathbf{D})
+    ,\,
+    N\big( \mathbf{C}^\circ \big)
+  \Big)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+ This is due to <a href="#Lurie">Lurie (2009), Prop. 4.2.4.4</a>. See also the discussion <em><a href="../../../../../7/6/3/1/1367/content.html#ModelCategoryPresentation">here</a></em> at <em><a class="existingWikiWord" href="../../../../../7/6/3/1/1367/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-functors</a></em>.</p>
+<h2 id="examples">Examples</h2>
+<p>Examples of cofibrant objects in the projective model structure are discussed at <em><a class="existingWikiWord" href="../../../../9/5/7/7598/content.html">projectively cofibrant diagram</a></em>.</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a>)</strong> <br/> Model structures on <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-valued <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functors</a>, hence on <a class="existingWikiWord" href="../../../../7/6/0/678/content.html">simplicial presheaves</a>, play a central role in the theory of <a class="existingWikiWord" href="../../../../../0/2/8/1/1820/content.html">combinatorial model categories</a> and specifically in <a class="existingWikiWord" href="../../../../../4/6/6/8/8664/content.html">model topos</a>-theory presenting <a class="existingWikiWord" href="../../../../../0/0/1/1/1100/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-toposes</a>. See at <em><a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a></em> for more.</p>
+</div>
+</p>
+<p>Specifically:</p>
+<p>
+<div class="num_remark" id="BorelModelStructureOnSimplicialGroupActions">
+<h6>Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../2/5/1/11528/content.html">Borel model structure</a> on <a class="existingWikiWord" href="../../../../../4/4/8/2/22844/content.html">simplicial group actions</a>)</strong> <br/> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒢</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>Grp</mi><mo stretchy="false">(</mo><mi>sSet</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{G} \,\in\, Grp(sSet)</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../9/5/0/598/content.html">simplicial group</a> with <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../7/5/5/25578/content.html">enriched</a> <a class="existingWikiWord" href="../../../../../6/9/4/2/22496/content.html">delooping groupoid</a> denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>𝒢</mi><mo>∈</mo><mi>sSet</mi><mtext>-</mtext><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}\mathcal{G} \in sSet\text{-}Grpd</annotation></semantics></math>, an <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../../3/0/3/0/303/content.html">enriched functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>𝒢</mi><mo>⟶</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}\mathcal{G} \longrightarrow sSet</annotation></semantics></math> is equivalently a <a class="existingWikiWord" href="../../../../../4/4/8/2/22844/content.html">simplicial group action</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒢</mi></mrow><annotation encoding="application/x-tex">\mathcal{G}</annotation></semantics></math>.</p>
+<p>Under this identification, the projective model strcuture on <a class="existingWikiWord" href="../../../../../1/5/2/7/17251/content.html">simplicial functors</a> (Prop. <a class="maruku-ref" href="#ExistenceOfProjectiveStructureOnEnrichedFunctors"></a>) is equivalently the <em><a class="existingWikiWord" href="../../../../2/5/1/11528/content.html">Borel model structure</a></em> on <a class="existingWikiWord" href="../../../../../4/4/8/2/22844/content.html">simplicial group actions</a>, a context of Borel-<a class="existingWikiWord" href="../../../../../0/6/2/3/3260/content.html">equivariant homotopy theory</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sFunc</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>𝒢</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mi>proj</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>𝒢</mi><mi>Act</mi><mo stretchy="false">(</mo><mi>sSet</mi><msub><mo stretchy="false">)</mo> <mi>Borel</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  sFunc\big(
+    \mathbf{B}\mathcal{G}
+    ,\,
+    sSet
+  \big)_{proj}
+  \;\;
+  =
+  \;\;
+  \mathcal{G}Act(sSet)_{Borel}
+  \,.
+
+</annotation></semantics></math></div>
+<p>More generally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒳</mi><mo>∈</mo><mi>sSet</mi><mtext>-</mtext><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\mathcal{X} \in sSet\text{-}Grpd</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../7/5/5/25578/content.html">enriched groupoid</a> (Dwyer-Kan <a class="existingWikiWord" href="../../../../../9/0/6/0/609/content.html">simplicial groupoid</a>) with a single <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected component</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>𝒳</mi><mo stretchy="false">)</mo><mo>≃</mo><mo stretchy="false">{</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\pi_0(\mathcal{X}) \simeq \{[x]\}</annotation></semantics></math>, so that the inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ι</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo stretchy="false">(</mo><mi>𝒳</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></mphantom></mover><mi>𝒳</mi></mrow><annotation encoding="application/x-tex">
+  \iota 
+    \,\colon\, 
+  \mathbf{B}(\mathcal{X}(x,x))
+  \xhookrightarrow{\phantom{---}}
+  \mathcal{X}
+
+</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../../7/5/4/9/19457/content.html">enriched adjoint equivalence</a> (see discussion <a href="../../../../../9/0/6/0/609/content.html#RelationToSimplicialGroups">there</a>) the projective model structure on <a class="existingWikiWord" href="../../../../../1/5/2/7/17251/content.html">simplicial functors</a> from Prop. <a class="maruku-ref" href="#ExistenceOfProjectiveStructureOnEnrichedFunctors"></a> is <a class="existingWikiWord" href="../../../../../3/7/6/3/3673/content.html">transferred</a> under the induced <a class="existingWikiWord" href="../../../../../7/9/7/1/1797/content.html">adjoint equivalence</a> of <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor categories</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sFunc</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mi>proj</mi></msub><munderover><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mo>⊥</mo> <mo>≃</mo></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow><munder><mo>⟶</mo><mrow><msup><mi>ι</mi> <mo>*</mo></msup></mrow></munder><mover><mo>⟵</mo><mrow><msub><mi>ι</mi> <mo>!</mo></msub></mrow></mover></munderover><mi>sFunc</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><msub><mo maxsize="1.8em" minsize="1.8em">)</mo> <mi>proj</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mi>Act</mi><mo stretchy="false">(</mo><mi>sSet</mi><msub><mo stretchy="false">)</mo> <mi>Borel</mi></msub></mrow><annotation encoding="application/x-tex">
+  sFunc\big(
+    \mathcal{X}
+    ,\,
+    sSet
+  \big)_{proj}
+  \underoverset
+    {\underset{\iota^\ast}{\longrightarrow}}
+    {\overset{\iota_!}{\longleftarrow}}
+    {\;\; \bot_{\simeq} \;\;}
+  sFunc\Big(
+    \mathbf{B}\big(\mathcal{X}(x,x)\big)
+    ,\,
+    sSet
+  \Big)_{proj}
+  \;=\;
+  \big(\mathcal{X}(x,x)\big) Act(sSet)_{Borel}
+
+</annotation></semantics></math></div>
+<p>By <a href="../../../../../3/7/6/3/3673/content.html#RightTransferAlongAdjointEquivalence">this example</a> it follows that morphisms in all three classes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">W</mi><mo>,</mo><mi>Fib</mi><mo>,</mo><mi>Cof</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathrm{W}, Fib, Cof)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sFunc</mi><mo stretchy="false">(</mo><mi>𝒳</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><msub><mo stretchy="false">)</mo> <mi>proj</mi></msub></mrow><annotation encoding="application/x-tex">sFunc(\mathcal{X}, \, sSet)_{proj}</annotation></semantics></math> are those which restrict on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>Obj</mi><mo stretchy="false">(</mo><mi>𝒳</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \in Obj(\mathcal{X})</annotation></semantics></math> to the respective class in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mi>Act</mi><mo stretchy="false">(</mo><mi>sSet</mi><msub><mo stretchy="false">)</mo> <mi>Borel</mi></msub></mrow><annotation encoding="application/x-tex">\big(\mathcal{X}(x,x)\big) Act(sSet)_{Borel}</annotation></semantics></math>.</p>
+<p>It follows that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒳</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><mtext>-</mtext><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\mathcal{X} \,\in\, sSet\text{-}Grpd</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/0/6/0/609/content.html">simplicial groupoid</a> with any set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>𝒳</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_0(\mathcal{X})</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected components</a>, the projective model structure of simplicial functors over it is the <a href="../../../../../7/5/2/0/257/content.html#ProductModelStructure">product model structure</a> of the <a class="existingWikiWord" href="../../../../2/5/1/11528/content.html">Borel model structures</a> of <a class="existingWikiWord" href="../../../../../4/4/8/2/22844/content.html">simplicial group actions</a>, one for each connected component:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sFunc</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mi>proj</mi></msub><munderover><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mo>⊥</mo> <mo>≃</mo></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow><munder><mo>⟶</mo><mrow><msup><mi>ι</mi> <mo>*</mo></msup></mrow></munder><mover><mo>⟵</mo><mrow><msub><mi>ι</mi> <mo>!</mo></msub></mrow></mover></munderover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>𝒳</mi><mo stretchy="false">)</mo></mrow></munder><mi>sFunc</mi><mo maxsize="1.8em" minsize="1.8em">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo stretchy="false">(</mo><msub><mi>x</mi> <mi>i</mi></msub><mo>,</mo><msub><mi>x</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>sSet</mi><msub><mo maxsize="1.8em" minsize="1.8em">)</mo> <mi>proj</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>𝒳</mi><mo stretchy="false">)</mo></mrow></munder><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>𝒳</mi><mo stretchy="false">(</mo><msub><mi>x</mi> <mi>i</mi></msub><mo>,</mo><msub><mi>x</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mi>Act</mi><mo stretchy="false">(</mo><mi>sSet</mi><msub><mo stretchy="false">)</mo> <mi>Borel</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  sFunc\big(
+    \mathcal{X}
+    ,\,
+    sSet
+  \big)_{proj}
+  \underoverset
+    {\underset{\iota^\ast}{\longrightarrow}}
+    {\overset{\iota_!}{\longleftarrow}}
+    {\;\; \bot_{\simeq} \;\;}
+  \underset{i \in \pi_0(\mathcal{X})}{\prod}
+  sFunc\Big(
+    \mathbf{B}\big(\mathcal{X}(x_i,x_i)\big)
+    ,\,
+    sSet
+  \Big)_{proj}
+  \;=\;
+  \underset{i \in \pi_0(\mathcal{X})}{\prod}
+  \big(\mathcal{X}(x_i,x_i)\big) Act(sSet)_{Borel}
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/4/9/1/1946/content.html">Reedy model structure</a>, <a class="existingWikiWord" href="../../../../../1/0/4/7/7401/content.html">generalized Reedy model structure</a>,</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/6/1/0/20161/content.html">model structure on sections</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/2/7/17210/content.html">lim^1 and Milnor sequences</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/6/8/2/2865/content.html">model structure on homotopical presheaves</a>, <a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/8/1/7/17186/content.html">model structure for n-excisive functors</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The projective model structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Top</mi> <mi>Quillen</mi></msub></mrow><annotation encoding="application/x-tex">Top_{Quillen}</annotation></semantics></math>-enriched functors is discussed in</p>
+<ul>
+<li id="Piacenza91">
+<p><a class="existingWikiWord" href="../../../../../2/5/3/7/17352/content.html">Robert Piacenza</a> section 5 of <em>Homotopy theory of diagrams and CW-complexes over a category</em>, Can. J. Math. Vol 43 (4), 1991 (<a class="existingWikiWord" href="/nlab/files/Piazenza91.pdf" title="pdf">pdf</a>)</p>
+<p>also chapter VI of <a class="existingWikiWord" href="../../../../../7/1/5/0/517/content.html">Peter May</a> et al., <em>Equivariant homotopy and cohomology theory</em>, 1996 (<a href="http://www.math.uchicago.edu/~may/BOOKS/alaska.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/9/5/8/8593/content.html">Alex Heller</a>, <em>Homotopy in functor categories</em>, Transactions of the AMS, vol 272, Number 1, July 1982 (<a href="http://www.jstor.org/stable/1998955">JSTOR</a>)</li>
+</ul>
+<p>Textbook account of the projective model structure</p>
+<ul>
+<li id="Hirschhorn02"><a class="existingWikiWord" href="../../../../../3/9/3/1/21393/content.html">Philip Hirschhorn</a>, §11.6 in: <em><a class="existingWikiWord" href="../../../../7/0/2/22078/content.html">Model Categories and Their Localizations</a></em>, AMS Math. Survey and Monographs <strong>99</strong> (2002) [<a href="https://bookstore.ams.org/surv-99-s/">ISBN:978-0-8218-4917-0</a>, <a href="http://www.gbv.de/dms/goettingen/360115845.pdf">pdf toc</a>, <a href="https://people.math.rochester.edu/faculty/doug/otherpapers/pshmain.pdf">pdf</a>, <a href="http://www.maths.ed.ac.uk/~aar/papers/hirschhornloc.pdf">pdf</a>]</li>
+</ul>
+<p>The injective model structure for unenriched diagrams of simplicial sets was first constructed by</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/9/5/8/8593/content.html">Alex Heller</a>, <em>Homotopy theories</em></li>
+</ul>
+<p>Probably the first general construction of injective model structures for enriched diagrams in combinatorial model categories was in</p>
+<ul>
+<li id="Lurie"><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, sections A.2.8 (unenriched) and section A.3.3 (enriched) of <em><a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></em>, 2009</li>
+</ul>
+<p>The projective model structure for functors to <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a> on a <em><a class="existingWikiWord" href="../../../../../0/7/9/0/970/content.html">large</a></em> domain is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/6/9/0/10966/content.html">Boris Chorny</a>, <a class="existingWikiWord" href="../../../../../7/2/7/3/3727/content.html">William Dwyer</a>, <em>Homotopy theory of small diagrams over large categories</em>, <a href="http://arxiv.org/abs/math/0607117">arXiv:math/0607117</a></li>
+</ul>
+<p>The case of diagrams in a 2-category is a special case of</p>
+<ul>
+<li id="Lack06"><a class="existingWikiWord" href="../../../../../0/4/0/3/3040/content.html">Steve Lack</a>, <em>Homotopy-theoretic aspects of 2-monads</em>, <a href="http://arxiv.org/abs/math.CT/0607646">arXiv</a></li>
+</ul>
+<p>The use of accessible model structures to construct both projective and injective model structures on unenriched diagrams was introduced in</p>
+<ul>
+<li>
+<p>Marzieh Bayeh, <a class="existingWikiWord" href="../../../../../2/9/6/2/2692/content.html">Kathryn Hess</a>, <a class="existingWikiWord" href="../../../../../5/2/2/7/17225/content.html">Varvara Karpova</a>, Magdalena Kędziorek, <a class="existingWikiWord" href="../../../../../4/6/3/0/364/content.html">Emily Riehl</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, <em>Left-induced model structures and diagram categories</em> (<a href="http://arxiv.org/abs/1401.3651">arXiv:1401.3651</a>)</p>
+</li>
+<li id="HKRS15">
+<p><a class="existingWikiWord" href="../../../../../2/9/6/2/2692/content.html">Kathryn Hess</a>, Magdalena Kędziorek, <a class="existingWikiWord" href="../../../../../4/6/3/0/364/content.html">Emily Riehl</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, <em>A necessary and sufficient condition for induced model structures</em> (<a href="http://arxiv.org/abs/1509.08154">arXiv:1509.08154</a>). This paper contains an error, corrected by:</p>
+</li>
+<li id="GKR18">
+<p><a class="existingWikiWord" href="../../../../../5/5/8/2/2855/content.html">Richard Garner</a>, Magdalena Kedziorek, <a class="existingWikiWord" href="../../../../../4/6/3/0/364/content.html">Emily Riehl</a>, <em>Lifting accessible model structures</em>, <a href="https://arxiv.org/abs/1802.09889">arXiv:1802.09889</a></p>
+</li>
+</ul>
+<p>It was generalized to enriched diagrams in</p>
+<ul>
+<li id="Moser">Lyne Moser, <em>Injective and Projective Model Structures on Enriched Diagram Categories</em>, <a href="https://arxiv.org/abs/1710.11388">arXiv:1710.11388</a></li>
+</ul>
+<p>The more general result above on combinatoriality of injective model structures follows from Remark 3.8 of</p>
+<ul>
+<li id="MakkaiRosický14"><a class="existingWikiWord" href="../../../../../5/9/3/1/1395/content.html">M. Makkai</a>, <a class="existingWikiWord" href="../../../../../2/9/0/5/5092/content.html">J. Rosický</a>, <em>Cellular categories</em>, J. Pure Appl. Alg. <strong>218</strong> (2014) 1652-1664 [<a href="https://arxiv.org/abs/1304.7572">arXiv:1304.7572</a>, <a href="https://doi.org/10.1016/j.jpaa.2014.01.005">doi:10.1016/j.jpaa.2014.01.005</a>]</li>
+</ul>
+<p>See also</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/7/9/9/9972/content.html">David White</a>, <em>Modified projective model structure</em> (<a href="http://mathoverflow.net/questions/76160/acyclic-models-via-model-categories/104423#104423">MO comment</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

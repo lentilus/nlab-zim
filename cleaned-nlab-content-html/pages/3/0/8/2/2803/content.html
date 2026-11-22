@@ -1,0 +1,365 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Yoneda lemma for bicategories in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Yoneda lemma for bicategories
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#statement">Statement</a></li>
+<li><a href="#implications">Implications</a></li>
+<li><a href="#proof">Proof</a></li>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="statement">Statement</h2>
+<p>The <strong>Yoneda lemma for bicategories</strong> is a version of the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a> that applies to <a class="existingWikiWord" href="../../../../5/2/0/253/content.html">bicategories</a>, the most common algebraic sort of weak <a class="existingWikiWord" href="../../../../7/3/0/373/content.html">2-category</a>. It says that for any bicategory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, any object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">x\in C</annotation></semantics></math>, and any <a class="existingWikiWord" href="../../../../6/5/0/563/content.html">pseudofunctor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">F\colon C^{op}\to Cat</annotation></semantics></math>, there is an equivalence of categories</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>≃</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow></mpadded></mrow><annotation encoding="application/x-tex"> 
+  [C^{op},Cat]\big(C(-,x), F\big) \simeq F(x) 
+  \mathrlap{\,,}
+
+</annotation></semantics></math></div>
+<p>which is <a class="existingWikiWord" href="../../../../../5/3/3/4/4335/content.html">pseudonatural</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>, and which is given by <a class="existingWikiWord" href="../../../../../7/8/8/5/5887/content.html">evaluation</a> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mn>1</mn> <mi>x</mi></msub></mrow><annotation encoding="application/x-tex">1_x</annotation></semantics></math>, i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">\alpha\colon C(-,x)\to F</annotation></semantics></math> maps to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><msub><mn>1</mn> <mi>x</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\alpha_x(1_x)</annotation></semantics></math>.</p>
+<p>For bicategories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[A,B]</annotation></semantics></math> denotes the bicategory of <a class="existingWikiWord" href="../../../../6/5/0/563/content.html">pseudofunctors</a>, <a class="existingWikiWord" href="../../../../../5/3/3/4/4335/content.html">pseudonatural transformations</a>, and <a class="existingWikiWord" href="../../../../../9/7/6/1/1679/content.html">modifications</a> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>. Note that it is a strict 2-category as soon as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is.</p>
+<h2 id="implications">Implications</h2>
+<p>In particular, the Yoneda lemma for bicategories implies that there is a <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> for bicategories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">C\to [C^{op},Cat]</annotation></semantics></math> which is <span class="newWikiWord">2-fully-faithful<a href="/nlab/new/2-fully-faithful+functor">?</a></span>, i.e. an equivalence on hom-categories. Therefore, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalent</a> to a sub-bicategory of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C^{op},Cat]</annotation></semantics></math>. Since <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> is a <a class="existingWikiWord" href="../../../../../9/2/3/0/329/content.html">strict 2-category</a>, it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is equivalent to a strict 2-category, which is one form of the <span class="newWikiWord">strictification theorem for bicategories<a href="/nlab/new/strictification+theorem+for+bicategories">?</a></span>. (Conversely, another form of the strictification theorem can be used to prove the Yoneda lemma; see below.)</p>
+<h2 id="proof">Proof</h2>
+<p>Proofs of the bicategorical Yoneda lemma are discussed in:</p>
+<ul>
+<li>
+<p><a href="#Baković2015">Baković 2015 Th. 3.1</a></p>
+</li>
+<li>
+<p><a href="#JohnsonYau2020">Johnson &amp; Yau 2020, Chapter 8</a></p>
+</li>
+</ul>
+<p>Here is another one:</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>We will take it for granted that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C^{op},Cat]</annotation></semantics></math> is a well-defined bicategory; this is a basic fact having nothing to do with the Yoneda lemma. We also take it as given that “evaluation at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mn>1</mn> <mi>x</mi></msub></mrow><annotation encoding="application/x-tex">1_x</annotation></semantics></math>” functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> [C^{op},Cat](C(-,x), F) \to F(x) </annotation></semantics></math></div>
+<p>is well-defined and pseudonatural in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>; our goal is to prove that it is an equivalence. (Granted, these basic facts require a fair amount of verification as well.)</p>
+<p>We will use part of the <span class="newWikiWord">strictification theorem for pseudoalgebras<a href="/nlab/new/strictification+theorem+for+pseudoalgebras">?</a></span>, which says that for a suitably well-behaved strict <a class="existingWikiWord" href="../../../../../0/9/5/1/1590/content.html">2-monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>, the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Alg</mi> <mi>strict</mi></msub><mo>↪</mo><mi>Ps</mi></mrow><annotation encoding="application/x-tex">Alg_{strict} \hookrightarrow Ps</annotation></semantics></math>-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Alg</mi></mrow><annotation encoding="application/x-tex">Alg</annotation></semantics></math> of the 2-category of strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebras and strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-morphisms into the 2-category of pseudo <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebras and pseudo <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-morphisms has a left adjoint, usually written as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>′</mo></mrow><annotation encoding="application/x-tex">(-)'</annotation></semantics></math>. Moreover, for any pseudo <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, the unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">A\to A'</annotation></semantics></math> is an equivalence in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ps</mi></mrow><annotation encoding="application/x-tex">Ps</annotation></semantics></math>-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Alg</mi></mrow><annotation encoding="application/x-tex">Alg</annotation></semantics></math>.</p>
+<p>First, there is a 2-monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> such that strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebras are strict 2-categories, strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-morphisms are strict 2-functors, pseudo <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-algebras are <a class="existingWikiWord" href="../../../../../9/8/4/5/5489/content.html">unbiased bicategories</a>, and pseudo <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-morphisms are <a class="existingWikiWord" href="../../../../6/5/0/563/content.html">pseudofunctors</a>. By Mac Lane’s coherence theorem for bicategories, any ordinary bicategory can equally well be considered as an unbiased one. Thus, since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math> is a strict 2-category, for any bicategory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> there is a strict 2-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">C'</annotation></semantics></math> such that pseudofunctors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">C\to Cat</annotation></semantics></math> are in bijection with strict 2-functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">C'\to Cat</annotation></semantics></math>.</p>
+<p>Now note that a pseudonatural transformation between two pseudofunctors (resp. strict 2-functors) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">C\to D</annotation></semantics></math> is the same as a single pseudofunctor (resp. strict 2-functor) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mi>Cyl</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C\to Cyl(D)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cyl</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cyl(D)</annotation></semantics></math> is the bicategory whose objects are the 1-cells of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, whose 1-cells are squares in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> commuting up to isomorphism, and whose 2-cells are “cylinders” in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>. Likewise, a modification between two such transformations is the same as a single functor (of whichever sort) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mn>2</mn><mi>Cyl</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C\to 2Cyl(D)</annotation></semantics></math>, where the objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>Cyl</mi><mo stretchy="false">(</mo><mi>D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2Cyl(D)</annotation></semantics></math> are the 2-cells of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, and so on. Therefore, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">C'</annotation></semantics></math> classifies not only pseudofunctors out of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, but transformations and modifications between them; thus we have an isomorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><mo stretchy="false">]</mo><mo>≅</mo><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub></mrow><annotation encoding="application/x-tex">[C^{op},Cat] \cong [(C')^{op},Cat]_{strict,pseudo}</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>B</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub></mrow><annotation encoding="application/x-tex">[A,B]_{strict,pseudo}</annotation></semantics></math> denotes the 2-category of strict 2-functors, pseudonatural transformations, and modifications between two strict 2-categories. Thus we can equally well analyze the functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub><mo stretchy="false">(</mo><mover><mrow><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>¯</mo></mover><mo>,</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo>→</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> [(C')^{op},Cat]_{strict,pseudo}(\overline{C(-,x)}, \overline{F}) \to \overline{F}(x) = F(x) </annotation></semantics></math></div>
+<p>given by evaluation at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mn>1</mn> <mi>x</mi></msub></mrow><annotation encoding="application/x-tex">1_x</annotation></semantics></math>. Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mrow><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\overline{C(-,x)}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>F</mi><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\overline{F}</annotation></semantics></math> denote the strict 2-functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">(C')^{op}\to Cat</annotation></semantics></math> corresponding to the pseudofunctors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C(-,x)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> under the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>′</mo></mrow><annotation encoding="application/x-tex">(-)'</annotation></semantics></math> adjunction. However, we also have a strict 2-functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C'(-,x)</annotation></semantics></math>, and the equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>≃</mo><mi>C</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">C\simeq C'</annotation></semantics></math> induces an equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≃</mo><mover><mrow><mi>C</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">C'(-,x)\simeq \overline{C(-,x)}</annotation></semantics></math>. Therefore, it suffices to analyze the functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo>→</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex"> [(C')^{op},Cat]_{strict,pseudo}(C'(-,x), \overline{F}) \to \overline{F}(x). </annotation></semantics></math></div>
+<p>Now for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, we have an inclusion functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>B</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>strict</mi></mrow></msub><mo>→</mo><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>B</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub></mrow><annotation encoding="application/x-tex">[A,B]_{strict,strict} \to [A,B]_{strict,pseudo}</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>A</mi><mo>,</mo><mi>B</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>strict</mi></mrow></msub></mrow><annotation encoding="application/x-tex">[A,B]_{strict,strict}</annotation></semantics></math> denotes the 2-category of strict 2-functors, strict 2-natural transformations, and modifications. This functor is <a class="existingWikiWord" href="../../../../../8/6/3/0/368/content.html">bijective on objects</a> and <a class="existingWikiWord" href="../../../../../9/5/6/6/6659/content.html">locally fully faithful</a>. Moreover, the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>strict</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo>→</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex"> [(C')^{op},Cat]_{strict,strict}(C'(-,x), \overline{F}) \to [(C')^{op},Cat]_{strict,pseudo}(C'(-,x), \overline{F}) \to \overline{F}(x). </annotation></semantics></math></div>
+<p>is an <em>isomorphism</em>, by the <a class="existingWikiWord" href="../../../../../8/4/0/4/4048/content.html">enriched Yoneda lemma</a>, in the special case of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math>-enrichment. Since</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>strict</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Cat</mi><msub><mo stretchy="false">]</mo> <mrow><mi>strict</mi><mo>,</mo><mi>pseudo</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[(C')^{op},Cat]_{strict,strict}(C'(-,x), \overline{F}) \to [(C')^{op},Cat]_{strict,pseudo}(C'(-,x), \overline{F})</annotation></semantics></math></div>
+<p>is fully faithful, if we can show that it is essentially surjective, then the <a class="existingWikiWord" href="../../../../../9/4/6/5/5649/content.html">2-out-of-3 property</a> for equivalences of categories will imply that the desired functor is an equivalence.</p>
+<p>Here we at last descend to something concrete. Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><mover><mi>F</mi><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\alpha\colon C'(-,x)\to \overline{F}</annotation></semantics></math>, we have an obvious choice for a strict transformation for it to be equivalent to, namely <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math> whose components <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi> <mi>y</mi></msub><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>′</mo><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\beta_y\colon C'(y,x)\to \overline{F}(y)</annotation></semantics></math> is given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>↦</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f \mapsto \overline{F}(f)(a)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><msub><mi>α</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><msub><mn>1</mn> <mi>x</mi></msub><mo stretchy="false">)</mo><mo>∈</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = \alpha_x(1_x)\in \overline{F}(x)</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> is pseudonatural, for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>y</mi><mo>→</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">f\colon y\to x</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">C'</annotation></semantics></math> we have an isomorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi> <mi>y</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>α</mi> <mi>y</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo>∘</mo><msub><mn>1</mn> <mi>x</mi></msub><mo stretchy="false">)</mo><mo>≅</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi>α</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><msub><mn>1</mn> <mi>x</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mover><mi>F</mi><mo>¯</mo></mover><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>β</mi> <mi>y</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">\alpha_y(f) = \alpha_y(f\circ 1_x) \cong \overline{F}(f)(\alpha_x(1_x)) = \overline{F}(f)(a) = \beta_y(f).</annotation></semantics></math></div>
+<p>We then simply verify that these isomorphisms are the components of an (invertible) modification <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>≅</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha\cong \beta</annotation></semantics></math>. This completes the proof.</p>
+</div>
+</p>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/8/3/1/21380/content.html">Yoneda lemma for tricategories</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>Review:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/6/3/3654/content.html">Angelo Vistoli</a>; §3.6.2 in: <em>Grothendieck topologies, fibered categories and descent theory</em>, in: <em><a class="existingWikiWord" href="../../../../../0/0/5/3/3500/content.html">Fundamental algebraic geometry – Grothendieck's FGA explained</a></em>, Mathematical Surveys and Monographs <strong>123</strong>, Amer. Math. Soc. (2005) 1-104 [<a href="https://bookstore.ams.org/surv-123-s">ISBN:978-0-8218-4245-4</a>, <a href="http://arxiv.org/abs/math/0412512">math.AG/0412512</a>]</li>
+</ul>
+<p>Further discussion:</p>
+<ul>
+<li id="Baković2015">
+<p><a class="existingWikiWord" href="../../../../../6/3/4/4/4436/content.html">Igor Baković</a>: <em>Bicategorical Yoneda Lemma</em> (2015?) [<a class="existingWikiWord" href="/nlab/files/Bakovic-BicategoricalYoneda.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li id="JohnsonYau2020">
+<p><a class="existingWikiWord" href="../../../../../2/4/6/7/17642/content.html">Niles Johnson</a>, <a class="existingWikiWord" href="../../../../../5/0/8/8/8805/content.html">Donald Yau</a>; chapter 8 of: <em>2-Dimensional Categories</em>, Oxford University Press (2021) [<a href="http://arxiv.org/abs/2002.06055">arXiv:2002.06055</a>, <a href="https://oxford.universitypressscholarship.com/view/10.1093/oso/9780198871378.001.0001/oso-9780198871378">doi:10.1093/oso/9780198871378.001.0001</a>]</p>
+</li>
+</ul>
+<p>An account of <a class="existingWikiWord" href="../../../../../9/8/0/0/89/content.html">Morita equivalence</a> as a corollary of the Yoneda lemma for bicategories is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/4/6/7/17642/content.html">Niles Johnson</a>, <em>Morita Theory For Derived Categories: A Bicategorical Perspective</em> (<a href="http://arxiv.org/abs/0805.3673">arXiv:0805.3673</a>)</li>
+</ul>
+<p>The stricter case of 2-categories is detailed in</p>
+<ul>
+<li>Jonas Hedman, <em>2-Categories and Yoneda lemma</em> (<a href="http://www.diva-portal.org/smash/get/diva2:1064822/FULLTEXT01.pdf">pdf</a>)</li>
+<li>Max Kelly, <em>Basic Concepts of Enriched Category Theory</em> (<a href="http://www.tac.mta.ca/tac/reprints/articles/10/tr10abs.html">TAC</a>, <a href="http://www.tac.mta.ca/tac/reprints/articles/10/tr10.pdf">pdf</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

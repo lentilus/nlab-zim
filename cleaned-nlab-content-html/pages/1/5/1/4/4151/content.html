@@ -1,0 +1,450 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      basic localizer in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      basic localizer
+  </h1>
+<div id="revision">
+<h1 id="basic_localizers">Basic localizers</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#asphericity_and_local_equivalences">Asphericity and local equivalences</a></li>
+<li><a href="#selfduality">Self-duality</a></li>
+<li><a href="#cisinskis_theorem">Cisinski’s theorem</a></li>
+<ul>
+<li><a href="#theorem_cisinski">Theorem (Cisinski)</a></li>
+</ul>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>By a <em>basic localizer</em> one means a <a class="existingWikiWord" href="../../../../2/1/0/10121/content.html">localizer</a> on the category <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> of <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a>, hence a choice of a <a class="existingWikiWord" href="../../../../../9/7/3/1/1379/content.html">class</a> of <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functors</a> to be called the <em><a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalences</a></em>, subject to some conditions.</p>
+<p>These conditions ensure in particular that a basic localizer always contains the weak equivalences of the <a class="existingWikiWord" href="../../../../../6/5/0/1/1056/content.html">Thomason model structure</a> on <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> (see <a href="#Maltsiniotis11">Maltsiniotis 11, 1.2.1</a>), the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> at which is equivalent to the standard <a class="existingWikiWord" href="../../../../../4/6/2/0/264/content.html">homotopy category</a>. On the other hand, the standard <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalences of categories</a>, which are the weak equivalences in the <a class="existingWikiWord" href="../../../../../5/6/0/0/65/content.html">canonical model structure</a> on <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a>, do not form a basic localizer.</p>
+<p>Hence basic localizers are a tool for <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a> modeled on <a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">category theory</a>. In fact, their introduction by <a class="existingWikiWord" href="../../../../../3/8/7/0/783/content.html">Grothendieck</a> was motivated from the study of <a class="existingWikiWord" href="../../../../../4/4/3/3/3344/content.html">test categories</a> (see remark <a class="maruku-ref" href="#CitationOnTestCategories"></a> below).</p>
+<h2 id="definition">Definition</h2>
+<p>The definition is due to <a class="existingWikiWord" href="../../../../../3/8/7/0/783/content.html">Grothendieck</a>:</p>
+<div class="num_defn" id="BasicLocalizer">
+<h6 id="definition_2">Definition</h6>
+<p>A <strong>basic localizer</strong> is a <a class="existingWikiWord" href="../../../../../9/7/3/1/1379/content.html">class</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a> in <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> such that</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> contains all <a class="existingWikiWord" href="../../../../../7/1/4/8/18417/content.html">identities</a>, satisfies the <a class="existingWikiWord" href="../../../../../9/4/6/5/5649/content.html">2-out-of-3 property</a> and, for any functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">i\colon A\to B</annotation></semantics></math> such that there exists a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo lspace="verythinmathspace">:</mo><mi>B</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">r\colon B\to A</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>i</mi><mo>=</mo><msub><mn>1</mn> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">r i=1_A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">i r</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> (in the literature this is sometimes called being <em>weakly saturated</em>),</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a>, then the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">A\to 1</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, and</p>
+</li>
+<li>
+<p>Given a commutative triangle in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>A</mi></mtd> <mtd></mtd> <mtd><mover><mo>→</mo><mi>u</mi></mover></mtd> <mtd></mtd> <mtd><mi>B</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mo></mo><mi>v</mi></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><msub><mo>↙</mo> <mi>w</mi></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>C</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{ A &amp; &amp; \overset{u}{\to} &amp; &amp; B\\ &amp; _v \searrow &amp; &amp; \swarrow_w \\ &amp; &amp; C } </annotation></semantics></math></div>
+<p>if each induced functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo stretchy="false">/</mo><mi>c</mi><mo>→</mo><mi>w</mi><mo stretchy="false">/</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">v/c \to w/c</annotation></semantics></math> between <a class="existingWikiWord" href="../../../../../5/4/7/0/745/content.html">comma categories</a> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> is also in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>.</p>
+</li>
+</ol>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>The term in French is <strong>localisateur fondamental</strong>, which is sometimes translated as <strong>fundamental localizer</strong>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>One can show that basic localizers are stable under <a class="existingWikiWord" href="../../../../../0/0/7/0/700/content.html">retracts</a>; see Proposition 4.2.4 in (<a href="#Cisinski06">Cisinski 06</a>). They are also closed under small filtered colimits; see Corollaire 4.2.22 in (<a href="#Cisinski06">Cisinski 06</a>).</p>
+</div>
+<div class="num_remark" id="CitationOnTestCategories">
+<h6 id="remark_3">Remark</h6>
+<p>In <a class="existingWikiWord" href="../../../../../5/5/7/0/755/content.html">Pursuing Stacks</a> <a class="existingWikiWord" href="../../../../../3/8/7/0/783/content.html">Grothendieck</a> wrote about def. <a class="maruku-ref" href="#BasicLocalizer"></a> the following:</p>
+<blockquote>
+<p>These conditions are enough, I quickly checked this night, in order to validify all results developed so far on <a class="existingWikiWord" href="../../../../../4/4/3/3/3344/content.html">test categories</a>, <a class="existingWikiWord" href="../../../../../4/4/3/3/3344/content.html">weak test categories</a>, <a class="existingWikiWord" href="../../../../../4/4/3/3/3344/content.html">strict test categories</a>, weak test functors and test functors (with values in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Cat</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Cat)</annotation></semantics></math>) (of notably the review in par. 44, page 79–88), provided in the case of test functors we restrict to the case of loc. cit. when each of the categories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i(a)</annotation></semantics></math> has a final object. All this I believe is justification enough for the definition above.</p>
+</blockquote>
+</div>
+<div class="num_remark" id="weakBasicLocalizer">
+<h6 id="remark_4">Remark</h6>
+<p>Grothendieck’s comments above refer in fact to a weaker definition, in which in Definition <a class="maruku-ref" href="#BasicLocalizer"></a>, we replace the third condition with an analogue of Quillen’s Theorem A, namely: any functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f\colon A\to B</annotation></semantics></math> such that, for any object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, the induced functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">/</mo><mi>b</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">A/b\to 1</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>. This weaker notion is sometimes called a <strong>weak basic localizer</strong>.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>
+<p>The class of <em>all</em> functors between small categories is, of course, the maximal basic localizer.</p>
+</li>
+<li>
+<p>The class of functors inducing an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> on <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected components</a> is a basic localizer.</p>
+</li>
+<li>
+<p>The class of functors whose <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> is a <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a> is a basic localizer. (These are the <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalences</a> in the <a class="existingWikiWord" href="../../../../../6/5/0/1/1056/content.html">Thomason model structure</a>.)</p>
+</li>
+<li>
+<p>For any <a class="existingWikiWord" href="../../../../../4/4/3/2/2344/content.html">derivator</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, the class of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>-equivalences is a basic localizer. This includes all the previous examples.</p>
+</li>
+<li>
+<p>The class of <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalences of categories</a> is <em>not</em> a basic localizer (it fails the second condition). (These are the weak equivalences of the <a class="existingWikiWord" href="../../../../../5/6/0/0/65/content.html">canonical model structure</a>.)</p>
+</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="asphericity_and_local_equivalences">Asphericity and local equivalences</h3>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is a basic localizer, we define the following related classes. We sometimes refer to functors in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> as <em>weak equivalences</em>.</p>
+<ul>
+<li>A category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <strong>(<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-)aspherical</strong> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">A\to 1</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>. Thus the second axiom says exactly that any category with a terminal object is aspherical.</li>
+<li>A functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">u\colon A\to B</annotation></semantics></math> is <strong>(<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-)aspherical</strong> if for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b\in B</annotation></semantics></math>, the comma category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">/</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">u/b</annotation></semantics></math> is aspherical.</li>
+<li>When the hypotheses of the third axiom are satisfied, we say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> is a <strong>local weak equivalence over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></strong>. Thus the third axiom says exactly that every local weak equivalence is a weak equivalence.</li>
+</ul>
+<div class="num_example">
+<h6 id="example">Example</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><msub><mi>π</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">W = \pi_0</annotation></semantics></math>-equivalences, then a category is aspherical iff it is connected, and a functor is aspherical iff it is <a class="existingWikiWord" href="../../../../../4/2/2/1/1224/content.html">initial</a>.</p>
+</div>
+<div class="num_example">
+<h6 id="example_2">Example</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">W = </annotation></semantics></math> nerve equivalences, then a category is aspherical iff its nerve is contractible, and a functor is aspherical iff it is <a class="existingWikiWord" href="../../../../../0/8/6/3/3680/content.html">homotopy initial</a>.</p>
+</div>
+<p>We observe the following.</p>
+<ul>
+<li>
+<p>A category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is aspherical iff the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">A\to 1</annotation></semantics></math> is aspherical, since the only comma category involved in the latter assertion is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> itself.</p>
+</li>
+<li>
+<p>An aspherical functor is a weak equivalence. For if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">u\colon A\to B</annotation></semantics></math> is aspherical, then consider the triangle</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>A</mi></mtd> <mtd></mtd> <mtd><mover><mo>→</mo><mi>u</mi></mover></mtd> <mtd></mtd> <mtd><mi>B</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mo></mo><mi>u</mi></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><mo>↙</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{ A &amp; &amp; \overset{u}{\to} &amp; &amp; B\\ &amp; _u \searrow &amp; &amp; \swarrow \\ &amp; &amp; B } </annotation></semantics></math></div>
+<p>The third axiom tells us to consider, for a given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b\in B</annotation></semantics></math>, the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">/</mo><mi>b</mi><mo>→</mo><mi>B</mi><mo stretchy="false">/</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">u/b \to B/b</annotation></semantics></math>. But <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">/</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">u/b</annotation></semantics></math> is aspherical by assumption, while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">/</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">B/b</annotation></semantics></math> is aspherical by the second axiom since it has a terminal object. Thus, by 2-out-of-3, the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">/</mo><mi>b</mi><mo>→</mo><mi>B</mi><mo stretchy="false">/</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">u/b \to B/b</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, and thus by the third axiom <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> has a right adjoint, then it is aspherical. For in this case, each category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">/</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">u/b</annotation></semantics></math> has a terminal object, and thus is aspherical.</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../4/5/7/7/27754/content.html">interval category</a>, then for any category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> the projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>×</mo><mi>I</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A\times I\to A</annotation></semantics></math> has a right adjoint, hence is aspherical and thus a weak equivalence. By 2-out-of-3, the two injections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⇉</mo><mi>A</mi><mo>×</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">A \rightrightarrows A\times I</annotation></semantics></math> are also weak equivalences, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>×</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">A\times I</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../5/5/5/2/2555/content.html">cylinder object</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>. It follows that if we have a natural transformation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>→</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">f\to g</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> is. Moreover, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is a “homotopy equivalence” in the sense that it has an “inverse” <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">f g</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">g f</annotation></semantics></math> are connected to identities by arbitrary natural zigzags, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is a weak equivalence.</p>
+</li>
+<li>
+<p>In particular, any left or right adjoint is a weak equivalence.</p>
+</li>
+</ul>
+<h3 id="selfduality">Self-duality</h3>
+<p>It is a non-obvious fact that the notion of basic localizer is self-dual.</p>
+<div class="num_theorem">
+<h6 id="theorem">Theorem</h6>
+<p>A functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">u : A \to B</annotation></semantics></math> is in a basic localizer <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>u</mi> <mi>op</mi></msup><mo>:</mo><msup><mi>A</mi> <mi>op</mi></msup><mo>→</mo><msup><mi>B</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">u^{op} : A^{op} \to B^{op}</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>See Proposition 1.1.22 in (<a href="#Maltsiniotis05">Maltsiniotis 05</a>).</p>
+</div>
+<h3 id="cisinskis_theorem">Cisinski’s theorem</h3>
+<p>Since the definition consists merely of closure conditions, the intersection of any family of basic localizers is again a basic localizer. It follows that there is a unique <em>smallest</em> basic localizer. The following was conjectured by <a class="existingWikiWord" href="../../../../../3/8/7/0/783/content.html">Grothendieck</a> and proven by <a class="existingWikiWord" href="../../../../../9/0/7/2/2709/content.html">Denis-Charles Cisinski</a>.</p>
+<div class="num_theorem">
+<h6 id="theorem_cisinski">Theorem (Cisinski)</h6>
+<p>The class of functors whose <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> is a <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a> is the smallest basic localizer.</p>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>See Théorème 2.2.11 in (<a href="#Cisinski04">Cisinski 04</a>). A completely different proof is given in Corollaire 4.2.19 in (<a href="#Cisinski06">Cisinski 06</a>)</p>
+</div>
+<p>Note that this is a larger class than the class of “<a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalences</a>” considered above. For instance, the category generated by the graph</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo><mo>←</mo><mo>•</mo><mo>→</mo><mo>•</mo><mo>←</mo><mo>•</mo><mo>→</mo><mo>•</mo><mo>←</mo><mo>•</mo><mo>→</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">\bullet \leftarrow \bullet \rightarrow \bullet \leftarrow \bullet \rightarrow \bullet \leftarrow \bullet \rightarrow \cdots</annotation></semantics></math></div>
+<p>has a contractible nerve, but its identity functor is not connected to a constant one by any natural zigzag.</p>
+<div class="num_remark">
+<h6 id="remark_5">Remark</h6>
+<p>One can in fact prove that the class of functors whose nerve is a weak homotopy equivalence is the smallest weak basic localizer, as defined in Remark <a class="maruku-ref" href="#weakBasicLocalizer"></a>; see Théorème 6.1.18 in (<a href="#Cisinski06">Cisinski 06</a>). This refinement is related to the fact that weak homotopy equivalences are determined by the property that they induce equivalences of categories of locally constant presheaves; see Corollary 1.17 in (<a href="#Cisinski09">Cisinski 09</a>). This is also related to the fact that cohomology with coefficients in local systems determine weak homotopy equivalences; see Théorème 6.5.11 and Scholie 6.5.13 in (<a href="#Cisinski06">Cisinski 06</a>).</p>
+</div>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/6/0/0/65/content.html">canonical model structure</a>, <a class="existingWikiWord" href="../../../../../6/5/0/1/1056/content.html">Thomason model structure</a> on <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../3/2/4/4231/content.html">Cisinski model structure</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul id="Cisinski06">
+<li><a class="existingWikiWord" href="../../../../../9/0/7/2/2709/content.html">Denis-Charles Cisinski</a>, <em><a class="existingWikiWord" href="/joyalscatlab/published/Les+pr%C3%A9faisceaux+comme+type+d%27homotopie">Les préfaisceaux comme type d'homotopie</a></em>, Astérisque, Volume 308, Soc. Math. France (2006), 392 pages (<a href="http://www.numdam.org/item/AST_2006__308__R1_0/">numdam</a>)</li>
+</ul>
+<ul id="Cisinski04">
+<li><a class="existingWikiWord" href="../../../../../9/0/7/2/2709/content.html">Denis-Charles Cisinski</a>, <em>Le localisateur fondamental minimal</em>, Cahiers de Topologie et Géométrie Différentielle Catégoriques, Tome 45 (2004) no. 2, pp. 109-140, <a href="http://www.numdam.org/item/CTGDC_2004__45_2_109_0/">numdam</a></li>
+</ul>
+<ul id="Cisinski09">
+<li><a class="existingWikiWord" href="../../../../../9/0/7/2/2709/content.html">Denis-Charles Cisinski</a>, <em>Locally constant functors</em>, Math. Proc. Camb. Phil. Soc. Volume 147 (2009), pp. 593-614, <a href="https://arxiv.org/abs/0803.4342">arXiv</a></li>
+</ul>
+<ul id="Maltsiniotis05">
+<li><a class="existingWikiWord" href="../../../../../8/6/9/1/1968/content.html">Georges Maltsiniotis</a>, <em>La théorie de l’homotopie de Grothendieck</em>, Astérisque, Volume 301, Soc. Math. France (2005), 146 pages (<a href="http://www.numdam.org/item/AST_2005__301__R1_0/">numdam</a>)</li>
+</ul>
+<p>See also at <em><a class="existingWikiWord" href="../../../../3/2/4/4231/content.html">Cisinski model structure</a></em>.</p>
+<ul id="Maltsiniotis11">
+<li><a class="existingWikiWord" href="../../../../../8/6/9/1/1968/content.html">Georges Maltsiniotis</a>, <em>Homotopical exact squares and derivators</em> (<a href="http://arxiv.org/abs/1101.4144">arXiv:1101.4144</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

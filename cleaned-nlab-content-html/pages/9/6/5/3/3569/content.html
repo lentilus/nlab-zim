@@ -1,0 +1,408 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      internal logic of an (infinity,1)-topos in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      internal logic of an (infinity,1)-topos
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#TypeTheoryVersusLogic">Type theory versus logic</a></li>
+<li><a href="#the_type_theory_of_an_category">The type theory of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category</a></li>
+<ul>
+<li><a href="#intensional_identity_types_in_categories">Intensional identity types in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</a></li>
+<li><a href="#additional_axioms">Additional axioms</a></li>
+</ul>
+<li><a href="#logic_over_type_theory_in_an_category">Logic over type theory in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category</a></li>
+<li><a href="#the_problem_of_finiteness">The problem of finiteness</a></li>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#OfInfGrpd">Internal logic in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\infty Grpd</annotation></semantics></math></a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Just as an ordinary <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">elementary topos</a> comes with its <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a> formalized by <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a>, an <a class="existingWikiWord" href="../../../../../../../missing.html">elementary (∞,1)-topos</a> should come with its <em>internal “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-logic”</em> formalized by <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>.</p>
+<h2 id="TypeTheoryVersusLogic">Type theory versus logic</h2>
+<p>As remarked at <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a>, it is useful to distinguish between the internal type theory of a category and the internal logic which sits on top of that type theory. The type theory is about constructing objects, while the logic is about constructing <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a>. For instance, <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limits</a> and <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a>, <a class="existingWikiWord" href="../../../../../3/1/3/1/1313/content.html">exponentials</a>, and <a class="existingWikiWord" href="../../../../../2/2/3/2/2322/content.html">object classifiers</a> belong to the type theory, while <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">images</a>, <span class="newWikiWord">dual images<a href="/nlab/new/dual+image">?</a></span>, <a class="existingWikiWord" href="../../../../../5/9/5/0/595/content.html">intersections</a>, <a class="existingWikiWord" href="../../../../../4/9/5/0/594/content.html">unions</a>, and <a class="existingWikiWord" href="../../../../../6/0/3/0/306/content.html">subobject classifiers</a> belong to the logic. Thus, the semantics of (extensional) type theory naturally lies in a category with appropriate structure, while the semantics of logic over that type theory naturally lies in some indexed <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">poset</a> over that category. However, we commonly take this indexed poset to consist of the <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> in the category in question, in which case additional “logical” structure on the category is required, for instance that it be a <a class="existingWikiWord" href="../../../../../1/8/4/0/481/content.html">Heyting category</a>.</p>
+<p>In an elementary 1-topos, all of the “logical” structure is not usually included in the definition, because it comes for free once you have <a class="existingWikiWord" href="../../../../4/4/1/1449/content.html">power objects</a>. But object classifiers may not be as powerful as power objects in this respect, so for purposes of studying the internal logic (and not just the internal type theory) of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-topos, it’s good to keep in mind both the type-theoretic structure and the logical structure, and in particular both the object classifier and the subobject classifier.</p>
+<h2 id="the_type_theory_of_an_category">The type theory of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category</h2>
+<p>Amazingly, a variant of type theory that seems appropriate for interpretation in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category already exists, namely <em>intensional type theory</em> with <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a>s.</p>
+<h3 id="intensional_identity_types_in_categories">Intensional identity types in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</h3>
+<p>The usual sort of type theory that one interprets in a 1-category is <em>extensional type theory</em>. To explain what this means, consider how the categorical structure of finite limits is represented in the type theory. On the one hand, we have product types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>×</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A\times B</annotation></semantics></math>, which of course represent categorical <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">products</a>; thus to obtain finite limits it suffices to have <a class="existingWikiWord" href="../../../../../8/2/0/1/1028/content.html">equalizers</a>. We can obtain these from <em>identity types</em>, which supply for each type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and each pair of terms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x,y:A</annotation></semantics></math>, a dependent type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id_A(x,y)</annotation></semantics></math>, whose intended interpretation is that it is inhabited precisely when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x=y</annotation></semantics></math>. In terms of 1-categorical semantics, it is natural to require that any two elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id_A(x,y)</annotation></semantics></math> be equal, i.e. that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id_A(x,y)</annotation></semantics></math> be essentially a <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth value</a>/<a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a>. Then if we have two terms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">x:A\vdash f(x):B</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">x:A\vdash g(x):B</annotation></semantics></math> representing morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>,</mo><mi>g</mi><mo lspace="verythinmathspace">:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f,g\colon A\to B</annotation></semantics></math>, their equalizer is represented by the type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow></msub><msub><mi>Id</mi> <mi>B</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mi>g</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Sigma_{x:A} Id_B(f(x),g(x))</annotation></semantics></math>.</p>
+<p>However, for semantics in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category, it makes sense to use the same identity types, but now interpreted as a <a class="existingWikiWord" href="../../../../../0/6/9/3/3960/content.html">path space</a>. Now it will no longer be true that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id_A(x,y)</annotation></semantics></math> is a subsingleton, since two points can be connected by more than one path, so we must drop that axiom. This <em>intensional type theory</em> has been widely studied by type-theorists, although from a different point of view: assuming the <a class="existingWikiWord" href="../../../../../7/2/7/2/2727/content.html">propositions as types</a> approach, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>A</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id_A(x,y)</annotation></semantics></math> should be the type of <em>proofs</em> or <em>reasons</em> why <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x=y</annotation></semantics></math>, which can also of course have many different elements.</p>
+<p>Thus we suspect that intensional type theory may be a natural sort of type theory to have semantics in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category. According to the general framework of syntax/semantics, we would hope that</p>
+<ol>
+<li>From any intensional type theory, we can construct a syntactic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category, and</li>
+<li>In any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category, we can model an intensional type theory.</li>
+</ol>
+<p>Some work in both of these directions has been done. On the one hand, it is known that in any intensional type theory with identity types, for any type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../1/9/0/0/91/content.html">globular set</a> (or more accurately globular <a class="existingWikiWord" href="../../../../../7/8/5/0/587/content.html">context</a>) given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⇇</mo><msub><mi>Id</mi> <mi>A</mi></msub><mo>⇇</mo><msub><mi>Id</mi> <mrow><msub><mi>Id</mi> <mi>A</mi></msub></mrow></msub><mo>⇇</mo><mi>…</mi></mrow><annotation encoding="application/x-tex"> A \leftleftarrows Id_A \leftleftarrows Id_{Id_A} \leftleftarrows \dots </annotation></semantics></math></div>
+<p>has the structure of a <a class="existingWikiWord" href="../../../../../8/9/0/2/2098/content.html">Batanin ∞-groupoid</a>. This can be found in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/3/9/6/6937/content.html">Peter Lumsdaine</a>, <em>Weak omega-categories from intensional type theory</em>, <a href="http://arxiv.org/abs/0812.0409">arXiv:0812.0409</a>, and independently</li>
+<li><a class="existingWikiWord" href="../../../../../5/5/8/2/2855/content.html">Richard Garner</a> and <a class="existingWikiWord" href="../../../../../4/6/7/5/5764/content.html">Benno van den Berg</a>, <em>Types are weak omega-groupoids</em>, <a href="http://arxiv.org/abs/0812.0298">arXiv:0812.0298</a>).</li>
+</ul>
+<p>Moreover, the syntactic category of such a theory carries a natural <a class="existingWikiWord" href="../../../../../5/6/3/0/365/content.html">weak factorization system</a>, the <span class="newWikiWord">identity type weak factorization system<a href="/nlab/new/identity+type+weak+factorization+system">?</a></span>. However, there seems as yet to be no published work constructing a full syntactic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category.</p>
+<p>On the other hand, it is known that in any nice enough <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> (and in fact, in any category with a nice enough <a class="existingWikiWord" href="../../../../../5/6/3/0/365/content.html">weak factorization system</a>), one can model intensional type theory. This is studied in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/1/9/4/4913/content.html">Steve Awodey</a> and <a class="existingWikiWord" href="../../../../../8/6/9/6/6968/content.html">Michael Warren</a>, <em>Homotopy theoretic models of identity types</em>, <a href="http://arxiv.org/abs/0709.0248">arXiv:0709.0248</a></li>
+<li><a class="existingWikiWord" href="../../../../../8/6/9/6/6968/content.html">Michael Warren</a>, <em>Homotopy theoretic aspects of constructive type theory</em>, <a href="http://aix1.uottawa.ca/~mwarren/Papers/phd.pdf">Ph.D. thesis</a>.</li>
+</ul>
+<p><a class="existingWikiWord" href="../../../../../5/8/7/1/1785/content.html">Vladimir Voevodsky</a> has also studied the particular model of intensional type theory in simplicial sets, which he calls the <em>univalent model</em>; see his <a href="http://www.math.ias.edu/~vladimir/Site3/home.html">website</a>.</p>
+<h3 id="additional_axioms">Additional axioms</h3>
+<p>Although intensional type theory has semantics in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories, one can naturally expect that these models will all satisfy additional axioms. This is especially true if we want to add additional structure to our <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories.</p>
+<ul>
+<li>
+<p>Exponential (and dependent product) types can probably be modeled by (locally) cartesian closed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories. However, although exponentials in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category are not strictly extensional the way they are in a 1-category, they are still extensional “up to coherent higher homotopies,” which (unlike the case for identity types) is seemingly not guaranteed by the type-theoretic structure. Thus, there may be an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-extensionality axiom to be added.</p>
+</li>
+<li>
+<p>Disjoint sum types may be expected to correspond to coproducts in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category.</p>
+</li>
+<li>
+<p>The usual notions of <em>quotient type</em> make little sense without extensional identity types. In the 1-categorical world, quotient types correspond to <a class="existingWikiWord" href="../../../../../5/8/4/0/485/content.html">exact categories</a>, while the appropriate notion of “exactness” for an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category deals with <a class="existingWikiWord" href="../../../../../../../missing.html">groupoid objects in an (∞,1)-category</a>. It remains to be seen how to phrase a corresponding axiom in the type theory.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../2/2/3/2/2322/content.html">object classifier</a> in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-topos does in fact correspond to a well-known concept in type theory, namely that of a <em>universe</em> such as the type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Type</mi></mrow><annotation encoding="application/x-tex">Type</annotation></semantics></math>. However, as a universe, the object classifier in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-topos has the special property that the <em>paths</em> between two types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> as elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Type</mi></mrow><annotation encoding="application/x-tex">Type</annotation></semantics></math> (that is, the path space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>Type</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id_{Type}(A,B)</annotation></semantics></math>) is equivalent to the space of equivalences between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> as types (an appropriate subspace of the exponential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi> <mi>A</mi></msup></mrow><annotation encoding="application/x-tex">B^A</annotation></semantics></math>). A type-theoretic axiom asserting this equivalence was introduced by <a class="existingWikiWord" href="../../../../../5/8/7/1/1785/content.html">Voevodsky</a> under the name of the <em>equivalence axiom</em>.</p>
+</li>
+</ul>
+<h2 id="logic_over_type_theory_in_an_category">Logic over type theory in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category</h2>
+<p>Now when we go to add <em>logic</em> to the type theory of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category, it seems natural by analogy that it will deal with <em>subobjects</em>, i.e. with <a class="existingWikiWord" href="../../../../../../../missing.html">monomorphisms in an (∞,1)-category</a>. That is, a proposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varphi(x)</annotation></semantics></math> with a variable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x:A</annotation></semantics></math> will be interpreted by a monomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>φ</mi><mo stretchy="false">]</mo><mo>↣</mo><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\varphi] \rightarrowtail [A]</annotation></semantics></math>. Just as in the <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a> of a 1-category and of a <a class="existingWikiWord" href="/michaelshulman/show/2-categorical+logic">2-category</a>, in order to interpret the logical connectives and quantifiers we will then need suitable structure on the posets of subobjects in our <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category. It is naturally to be expected that any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-topos will have this necessary structure.</p>
+<p>Again, the requisite type theory more or less exists, namely intensional type theory together with a sort of propositions that can depend on types. In fact, this type theory is very closely related to the <a class="existingWikiWord" href="../../../../../2/1/6/3/3612/content.html">calculus of constructions</a> used in the proof assistant <a href="http://coq.inria.fr/">Coq</a>, making Coq a very convenient place to play around with the type theory that ought to be valid in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-topos. In particular, Voevodsky has written out a Coq script up to the statement of his equivalence axiom, to be found on his <a href="http://www.math.ias.edu/~vladimir/Site3/home.html">website</a>.</p>
+<h2 id="the_problem_of_finiteness">The problem of finiteness</h2>
+<p>In describing the internal type theory and logic of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category we encounter the problem that many structures in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category require a (countably) infinite amount of data to describe. For instance, when looking for a way to state the “exactness” property one has to say what is meant by a groupoid object, but since this really means a “coherent” or “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">A_\infty</annotation></semantics></math>” groupoid object, it involves an infinite amount of data. By contrast, the most common type theories are purely finitary systems.</p>
+<p>There is the one amazing fact that the entire complicated infinitary structure of a Batanin <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>-groupoid can be recovered from the simple finitary rules of identity types. It is not clear, however, whether we can expect this happy occurrence to continue. We might have to bite the bullet and work with an infinitary type theory, i.e. one allowing derivation rules taking as input an infinite list of hypotheses. In fact, this is almost certainly what we will need if we want a good notion of a <a class="existingWikiWord" href="../../../../../4/0/0/3/3004/content.html">geometric theory</a> in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-case, since that involves infinitary logic even in the 1-categorical case.</p>
+<p>However, such a type theory would obviously no longer have “computational content” and couldn’t be modeled in a proof assistant such as Coq, and also wouldn’t provide a fully “elementary,” i.e. finitary first-order, theory such as <a class="existingWikiWord" href="../../../../../7/1/2/0/217/content.html">ETCS</a> provides in the 1-categorical case. It might be helpful to note that infinitary structures can at least sometimes be finitarily described using <a class="existingWikiWord" href="../../../../../5/3/9/6/6935/content.html">inductive type</a>s and/or <a class="existingWikiWord" href="../../../../../4/2/6/8/8624/content.html">coinductive type</a>s, but it is not clear yet whether this is useful in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categorical context.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="OfInfGrpd">Internal logic in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\infty Grpd</annotation></semantics></math></h3>
+<p>The archetypical <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-topos</a> is <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a>. This is to be thought of as the <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">(∞,1)-categorification</a> of the archetypical 1-<a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>.</p>
+<p>At <a href="../../../../../3/8/5/0/583/content.html#LogicOfSet">internal logic - in Set</a> is a step-by-step discussion of how ordinary logic is recovered from the point of view of the <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a> of a topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> when choosing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi><mo>:</mo><mo>=</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">\mathcal{T} := Set</annotation></semantics></math>.</p>
+<p>Here we look at the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categorical analog of that discussion, step-by-step, now everything internal to <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a>.</p>
+<ul>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\infty Grpd</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../8/7/4/0/478/content.html">the</a> <a class="existingWikiWord" href="../../../../3/0/1/1039/content.html">contractible</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math>.</p>
+<p>This <em>generates</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\infty Grpd</annotation></semantics></math> under <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a>s: every small <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid is a colimit over a small diagram consisting only of copies of the terminal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid.</p>
+</li>
+<li>
+<p>The <em>subobject classifier</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\infty Grpd</annotation></semantics></math> is</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo>=</mo><mo stretchy="false">{</mo><mo>⊤</mo><mo>,</mo><mo>⊥</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\Omega = \{\top, \bottom\}</annotation></semantics></math></p>
+<p>The <em>object</em> classifier should be the <a class="existingWikiWord" href="../../../../../4/4/6/1/1644/content.html">core</a> of the <a class="existingWikiWord" href="../../../../../0/6/0/2/2060/content.html">universal left fibration</a>.</p>
+<p>See <a class="existingWikiWord" href="../../../../../../../missing.html">(sub)object classifier in an (∞,1)-topos</a>.</p>
+</li>
+</ul>
+<p>Now…</p>
+<p>…</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a>, <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a>, <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/6/7/7636/content.html">relation between type theory and category theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/0/2/0/20201/content.html">Awodey's conjecture</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../5/1/4/24159/content.html">model of type theory in an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-topos</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Chris Kapulkin</a>, <em>Internal Languages of Higher Categories</em>, <a href="https://golem.ph.utexas.edu/category/2015/07/internal_languages_of_higher_c.html">blog post</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/4/4/9/9440/content.html">Chris Kapulkin</a>, <em>Internal Languages of Higher Categories II</em>, <a href="https://golem.ph.utexas.edu/category/2017/11/internal_languages_of_higher_c_1.html">blog post</a></p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

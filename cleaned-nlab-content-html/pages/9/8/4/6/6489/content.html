@@ -1,0 +1,761 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Bridgeland stability condition in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Bridgeland stability condition
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#AsStabilityOfBPSDBranes">As stability of BPS D-branes</a></li>
+</ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#in_terms_of_hearts_of_tstructures">In terms of hearts of t-structures</a></li>
+<li><a href="#LemmaSchur">Schur’s lemma</a></li>
+<li><a href="#SpaceOfStabilityConditions">Space of stability conditions</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#SlopeStabilityOfVectorBundles">Slope-stability of vector bundles / coherent sheaves</a></li>
+<li><a href="#OverResolutionsOfADESingularities">Over resolutions of ADE-singularities</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general_2">General</a></li>
+<li><a href="#introduction_and_review">Introduction and review</a></li>
+<li><a href="#examples_2">Examples</a></li>
+<li><a href="#RelationToStableBranesInStringTheory">Relation to stable branes in string theory</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<h3 id="general">General</h3>
+<p>A <em>stability condition</em> (<a href="#Bridgeland02">Bridgeland 02</a>) on a <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated category</a> (<a href="../../../../../6/7/0/1/1076/content.html#FromStableModelCategories">hence</a> on a <a class="existingWikiWord" href="../../../../../1/8/2/3/3281/content.html">stable model category</a>/<a class="existingWikiWord" href="../../../../../../../missing.html">stable (∞,1)-category</a>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> (Def. <a class="maruku-ref" href="#StabilityCondition"></a> below) singles out some of its <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a>, to be called the “stable objects” (Def. <a class="maruku-ref" href="#StableObjects"></a> below), that behave, to some extent, like <a class="existingWikiWord" href="../../../../../0/9/5/4/4590/content.html">indecomposable objects</a> (whence “stable”), in that a version of <a class="existingWikiWord" href="../../../../../4/3/1/2/2134/content.html">Schur's lemma</a> applies to them (Prop. <a class="maruku-ref" href="#SchurLemma"></a> below).</p>
+<p>Indeed, in the degenerate case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../0/7/0/1/1070/content.html">derived category</a> of a <a class="existingWikiWord" href="../../../../../2/0/5/1/1502/content.html">semisimple category</a>, the stable objects are just the <a class="existingWikiWord" href="../../../../../6/4/0/2/2046/content.html">irreducible objects</a>.</p>
+<p>In the case where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> is the bounded <a class="existingWikiWord" href="../../../../../0/7/0/1/1070/content.html">derived category</a> of <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaves</a> on some <a class="existingWikiWord" href="../../../../../0/3/7/5/5730/content.html">complex manifold</a>, the general notion of stability reduces to the classical notion of <a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a>-<a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stability of coherent sheaves</a> (“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math>-stability”, see Example <a class="maruku-ref" href="#SlopeStability"></a> below).</p>
+<p>In other examples Bridgeland stability reproduces the derived analogue of <a class="existingWikiWord" href="../../../../../4/7/7/3/3774/content.html">David Mumford</a>‘s concept of <a class="existingWikiWord" href="../../../3/5/15389/content.html">stability</a> in <a class="existingWikiWord" href="../../../../7/1/7/7179/content.html">geometric invariant theory</a> (<a href="#King94">King 94</a>).</p>
+<p>There are in general different stability conditions on one and the same <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated category</a>, in fact their <a class="existingWikiWord" href="../../../../../1/0/4/2/2401/content.html">moduli space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(\mathcal{D})</annotation></semantics></math> forms a <a class="existingWikiWord" href="../../../../../0/3/7/5/5730/content.html">complex manifold</a> (Prop. <a class="maruku-ref" href="#SpaceOfStabilityConditions"></a> below). The collection of stable objects in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> in general depends on the choice of stability conditions, hence of the choice of point in this <a class="existingWikiWord" href="../../../../../1/0/4/2/2401/content.html">moduli space</a>: There are in general <a class="existingWikiWord" href="../../../../../2/3/7/5/5732/content.html">codimension</a>-1 <a class="existingWikiWord" href="../../../../../0/7/1/6/6170/content.html">submanifolds</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(\mathcal{D})</annotation></semantics></math>, called <em>walls</em>, such that the set of stable objects is constant close to both sides of these walls, but changes as the wall is crossed. This phenomenon is hence known as <em><a class="existingWikiWord" href="../../../../../0/7/2/3/3270/content.html">wall crossing</a></em>.</p>
+<p>The purely mathematical motivation for these definitions is, to a large extent, just their intrinsic richness. The concept finds its meaning in the concept of stability of <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> in <a class="existingWikiWord" href="../../../../../7/0/4/1/1407/content.html">string theory</a> and was abstracted from informal considerations about <a class="existingWikiWord" href="../../../../../7/3/7/1/11737/content.html">B-branes</a> of the <a class="existingWikiWord" href="../../../../../2/4/2/4/4242/content.html">B-model</a> <a class="existingWikiWord" href="../../../../../4/6/5/7/7564/content.html">topological string</a> due to (<a href="#DouglasFiolRomerlsberger00">Douglas-Fiol-Romerlsberger 00</a>) and followups (“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi></mrow><annotation encoding="application/x-tex">\Pi</annotation></semantics></math>-stability”).</p>
+<p>This <a class="existingWikiWord" href="../../../../../7/0/4/1/1407/content.html">string-theoretic</a> interpretation also sheds light on the older notion of <a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a>-<a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stability of coherent sheaves</a>, we discuss this <a href="#AsStabilityOfBPSDBranes">below</a>.</p>
+<h3 id="AsStabilityOfBPSDBranes">As stability of BPS D-branes</h3>
+<p>We explain here how to understand the mathematical formulation of stability conditions as a formalization of the concept of stable <a class="existingWikiWord" href="../../../../../4/2/1/2/2124/content.html">BPS states</a> of <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a>, hence of <a class="existingWikiWord" href="../../../../../1/1/5/9/19511/content.html">extremal</a> <a class="existingWikiWord" href="../../../../../3/1/8/6/6813/content.html">black branes</a>. This yields a very simple and beautiful picture, which may be hard to extract from the original proposal due to <a href="#DouglasFiolRomerlsberger00">Douglas-Fiol-Romerlsberger 00</a> (as witnessed by various reviews of the concept, see for instance <a href="#Stellari15">Stellari 15, slide 9</a>).</p>
+<p>A key point to notice is that <em><a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaves</a></em> and with them most of the kinds of <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a> in <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated categories</a> of relevance here, may be thought of as models for <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> carrying <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane charge</a>.</p>
+<p>Specifically, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../5/3/1/2/2135/content.html">space</a>, to be thought of as <a class="existingWikiWord" href="../../../../../4/8/7/3/3784/content.html">spacetime</a>, a <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaf</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> may be thought of as an <a class="existingWikiWord" href="../../../../../3/7/0/1/1073/content.html">abelian sheaf</a> of <a class="existingWikiWord" href="../../../../../4/0/7/0/704/content.html">sections</a> of a kind of <a class="existingWikiWord" href="../../../../../6/0/8/8/8806/content.html">complex vector bundle</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, whose <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fiber</a> <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimension</a> is allowed to jump in some controlled way. Hence coherent sheaves are a slight generalization of <em><a class="existingWikiWord" href="../../../../../6/0/8/8/8806/content.html">complex vector bundles</a></em>.</p>
+<p>When considering <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, such coherent sheaves/vector bundles <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> appear as the <a class="existingWikiWord" href="../../../../3/0/6/6039/content.html">Chan-Paton gauge fields</a> on the D-brane.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>object</mtext><mspace width="thinmathspace"></mspace><mi>E</mi><mphantom><mi>AA</mi></mphantom><mo>↔</mo><mphantom><mi>AA</mi></mphantom><mtext>D-brane carrying mass and charge</mtext></mrow><annotation encoding="application/x-tex">
+  \text{object}\, E
+  \phantom{AA}\leftrightarrow\phantom{AA}
+  \text{D-brane carrying mass and charge}
+
+</annotation></semantics></math></div>
+<p>From this perspective, the <a class="existingWikiWord" href="../../../../4/3/5/5349/content.html">rank</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>rank</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">
+  rank(E)
+  \;\in\;
+  \mathbb{R}
+
+</annotation></semantics></math></div>
+<p>of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is the number of coincident D-branes (there may be <a class="existingWikiWord" href="../../../../../6/5/3/0/10356/content.html">fractional D-branes</a>, and, once we pass to the <a class="existingWikiWord" href="../../../../../0/7/0/1/1070/content.html">derived category</a>, there may be <a class="existingWikiWord" href="../../../../../2/3/8/7/17832/content.html">anti D-branes</a>, so that this number need not be a <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">positive integer</a>).</p>
+<p>The <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> have a fixed <a class="existingWikiWord" href="../../../../../7/4/0/6/6047/content.html">tension</a> and hence a fixed <a class="existingWikiWord" href="../../../../4/2/4/4249/content.html">mass</a>-density, so that the total <a class="existingWikiWord" href="../../../../4/2/4/4249/content.html">mass</a> of the D-branes corresponding to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is proportional to this rank. Ignoring the constant proportionality factor, we make this explicit by re-writing the rank as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>rank</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  M(E)
+  \;\coloneqq\;
+  rank(E)
+  \,.
+
+</annotation></semantics></math></div>
+<p>In addition to their mass, the D-branes carry <a class="existingWikiWord" href="../../../../../8/8/1/9/9188/content.html">charge</a>, called <a class="existingWikiWord" href="../../../../../6/6/8/1/1866/content.html">RR-charge</a>. This is a generalization of the classical <a class="existingWikiWord" href="../../../../../1/5/8/1/1851/content.html">magnetic charge</a> known from <a class="existingWikiWord" href="../../../../4/6/8/8649/content.html">Dirac charge quantization</a>. As explained there, magnetic charge reflected in a <a class="existingWikiWord" href="../../../../../1/9/2/2/2291/content.html">complex line bundle</a>, as sourced by magnetic <a class="existingWikiWord" href="../../../../../4/0/7/9/9704/content.html">monopoles</a> (<a class="existingWikiWord" href="../../../../../6/0/8/6/6806/content.html">D0-branes</a>) is measured by the <a class="existingWikiWord" href="../../../../../6/9/0/7/7096/content.html">first Chern class</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c_1(E)</annotation></semantics></math>. In generalization of this, the total <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane charge</a> reflected in a <a class="existingWikiWord" href="../../../../3/0/6/6039/content.html">Chan-Paton gauge field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is proportional its <a class="existingWikiWord" href="../../../../../0/3/1/3/3130/content.html">Chern character</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ch</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ch(E)</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mi>ℝ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Q(E) 
+    \;\in\;
+  \mathbb{R}
+  \,.
+
+</annotation></semantics></math></div>
+<p>For coherent sheaves this is essentially what is classically called the <em><a class="existingWikiWord" href="../../../../../8/7/6/1/11678/content.html">degree of a coherent sheaf</a></em>. Interpreting this as the <a class="existingWikiWord" href="../../../../../8/8/1/9/9188/content.html">charge</a> carried by the D-brane, we may write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>degree</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Q(E)
+  \;=\;
+  degree(E)
+
+</annotation></semantics></math></div>
+<p>Accordingly, <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> have a <em>charge density</em> proportional to</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ChargeDensity</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mfrac><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mfrac><mrow><mi>degree</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mrow><mi>rank</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>slope</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  ChargeDensity(E) 
+    \;\coloneqq\; 
+  \frac{ Q(E) }{ M(E) }
+    \;=\;
+  \frac{ degree(E) }{ rank(E) }
+    \;=\;
+   slope(E)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This quotient is what is classically called the <em><a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a></em>, as shown on the right. The terminology comes from thinking of the <a class="existingWikiWord" href="../../../../1/9/8/8919/content.html">pair</a> (<a class="existingWikiWord" href="../../../../4/2/4/4249/content.html">mass</a>, <a class="existingWikiWord" href="../../../../../8/8/1/9/9188/content.html">charge</a>), hence the pair (<a class="existingWikiWord" href="../../../../../0/8/6/1/11680/content.html">rank</a>, <a class="existingWikiWord" href="../../../../../8/7/6/1/11678/content.html">degree</a>) as specifying a <a class="existingWikiWord" href="../../../../../7/1/0/1/1017/content.html">point</a> in the <a class="existingWikiWord" href="../../../../../0/7/0/5/5070/content.html">plane</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="thickmathspace"></mspace><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>rank</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="thickmathspace"></mspace><mi>degree</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><msup><mi>ℝ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
+  (M(E), \; Q(E))
+   \;=\;
+  ( rank(E), \; degree(E) )
+  \;\in\;
+  \mathbb{R}^2
+
+</annotation></semantics></math></div>
+<p>Under this identification the charge density is the <a class="existingWikiWord" href="../../../../../7/4/7/9/19747/content.html">slope of a line</a> of the <a class="existingWikiWord" href="../../../../3/6/4/4639/content.html">line</a> in the <a class="existingWikiWord" href="../../../../../5/5/1/2/2155/content.html">Cartesian</a> <a class="existingWikiWord" href="../../../../../0/7/0/5/5070/content.html">plane</a> which goes through <a class="existingWikiWord" href="../../../../../7/4/3/4/4347/content.html">zero</a> and through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>,</mo><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(M(E), Q(E))</annotation></semantics></math>, whence the term <em><a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope of a coherent sheaf</a></em>. But understanding this not as a slope but as a <em>charge density</em> reveals why this has anything to do with “stability”, as we proceed to explain now.</p>
+<p>First notice that, alternatively, we may identify the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../0/7/0/5/5070/content.html">plane</a> with the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex plane</a> and thus unify the <a class="existingWikiWord" href="../../../../4/2/4/4249/content.html">mass</a> and <a class="existingWikiWord" href="../../../../../8/8/1/9/9188/content.html">charge</a> of <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> into a single <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex number</a></p>
+<div class="maruku-equation" id="eq:TheComplexifiedMassInIdeaSection"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>+</mo><mi>i</mi><mspace width="thinmathspace"></mspace><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>m</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>exp</mi><mo stretchy="false">(</mo><mi>i</mi><mi>π</mi><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mi>ℂ</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \begin{aligned}
+    Z(E)
+    &amp; \coloneqq\;
+    M(E) + i \, Q(E)
+    \\
+    &amp; = m(E) \, \exp( i \pi \phi(E) )
+    \;\in\;
+    \mathbb{C}
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>with an <a class="existingWikiWord" href="../../../../../6/1/1/7/7116/content.html">absolute value</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m(E)</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../1/9/4/9/9491/content.html">complex phase</a> (modulo <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi(E)</annotation></semantics></math>.</p>
+<p>(Such unification of two different quantities into a single complex quantity appears all over <a class="existingWikiWord" href="../../../../../2/2/5/2/2522/content.html">supersymmetric</a> theory, for instance also in the definition of <a class="existingWikiWord" href="../../../../../0/3/6/6/16630/content.html">complex volume</a> or the complex coupling constant appearing in the context of <a class="existingWikiWord" href="../../../../7/1/6/6179/content.html">S-duality</a>.)</p>
+<p>Finally to see what all this has to do with “stability”:</p>
+<p>In a <a class="existingWikiWord" href="../../../../../2/2/5/2/2522/content.html">supersymmetric</a> theory such as <a class="existingWikiWord" href="../../../../../7/0/4/1/1407/content.html">superstring theory</a> the stable states are supposed to be the <a class="existingWikiWord" href="../../../../../4/2/1/2/2124/content.html">BPS-states</a>. When thinking of <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> as <a class="existingWikiWord" href="../../../../../3/1/8/6/6813/content.html">black branes</a>, being higher dimensional generalizations of charged <a class="existingWikiWord" href="../../../../../6/8/2/4/4286/content.html">black holes</a>, the BPS states correspond to the higher dimensional analog of the <em><a class="existingWikiWord" href="../../../../../1/1/5/9/19511/content.html">extremal black holes</a></em>, namely those that carry maximum <a class="existingWikiWord" href="../../../../../8/8/1/9/9188/content.html">charge</a> for given <a class="existingWikiWord" href="../../../../4/2/4/4249/content.html">mass</a>, hence that <em>maximize their charge density</em></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>stable D-brane</mtext><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⇔</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext>BPS/extremal black D-brane</mtext><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⇔</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext> maximum charge density </mtext><mspace width="thinmathspace"></mspace><mi>Q</mi><mo stretchy="false">/</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">
+  \text{stable D-brane}
+  \;\;\Leftrightarrow\;\;
+  \text{BPS/extremal black D-brane}
+  \;\;\Leftrightarrow\;\;
+  \text{ maximum charge density }\, Q/M   
+
+</annotation></semantics></math></div>
+<p>Now it is plausible that a D-brane <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> maximizes its potential charge density if removing any part <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> of it reveals that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> by itself has lower charge density.</p>
+<p>More formally, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> should maximize its charge density <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(E)/M(E)</annotation></semantics></math> and hence be <em>stable</em> if for all sub-parts</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>⊂</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">
+  e \subset E
+
+</annotation></semantics></math></div>
+<p>hence for all <em><a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a></em> in the relevant <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> (such as that of <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaves</a>) we have that the charge density of the part is smaller than the charge density of the whole:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></mfrac><mspace width="thickmathspace"></mspace><mo>&lt;</mo><mspace width="thickmathspace"></mspace><mfrac><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+  \frac{Q(e)}{M(e)}
+  \;\lt\; 
+   \frac{ Q(E) }{ M(E) }
+
+</annotation></semantics></math></div>
+<p>Conversely, this means that a D-brane state <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> can increase its charge density, hence get close to being BPS and hence stable, by forming a <a class="existingWikiWord" href="../../../../../5/0/3/0/10305/content.html">bound state</a> to be come an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+<p>In the case of coherent sheaves, where the D-brane charge density is called the <em><a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope of a coherent sheaf</a></em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>slope</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>=</mo><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">slope(E) = Q(E)/M(E)</annotation></semantics></math>, as above, this says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stable coherent sheaf</a> precisely if for all <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>⊂</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">e \subset E</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>slope</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>&lt;</mo><mspace width="thickmathspace"></mspace><mi>slope</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  slope(e) \;\lt\; slope(E)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the classical formulation of <em><a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">slope stability</a></em> or <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math>-stability</em> of <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaves</a>.</p>
+<p>Of course we may equivalently re-express in terms of the <a class="existingWikiWord" href="../../../../../1/9/4/9/9491/content.html">complex phase</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi(E)</annotation></semantics></math> induced by the complexified mass/charge from <a class="maruku-eqref" href="#eq:TheComplexifiedMassInIdeaSection">(1)</a>. Since the slope of a <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex number</a> (regarded as a <a class="existingWikiWord" href="../../../../../8/8/0/6/6088/content.html">vector</a> in the <a class="existingWikiWord" href="../../../../../0/7/0/5/5070/content.html">plane</a>) equals the <a class="existingWikiWord" href="../../../../../4/0/8/8/18804/content.html">tan</a> of its <a class="existingWikiWord" href="../../../../../1/9/4/9/9491/content.html">complex phase</a> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>tan</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \frac{Q(E)}{M(E)}
+  \;=\;
+  tan\big( \phi(E)/2 \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>But since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tan</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">tan((-)/2)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/7/0/2/2077/content.html">monotone function</a> on the <a class="existingWikiWord" href="../../../../../2/6/5/2/2562/content.html">domain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>π</mi><mo stretchy="false">/</mo><mn>2</mn><mo>,</mo><mi>π</mi><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-\pi/2, \pi/2)</annotation></semantics></math>, then if we agree to regard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> as taking values in that <a class="existingWikiWord" href="../../../../../3/2/0/2/2023/content.html">interval</a>, then the above stability condition becomes equivalently the statement that for all <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>↪</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">e \hookrightarrow E</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>&lt;</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \phi(e) \;\lt\; \phi(E)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the form in which <a href="#Bridgeland02">Bridgeland 02</a> phrases the stability condition, see Def. <a class="maruku-ref" href="#StableObjects"></a> below.</p>
+<p>But the upshot is that this is still equivalent to saying that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is stable precisely if it maximizes its <a class="existingWikiWord" href="../../../../../8/8/1/9/9188/content.html">charge</a>- over <a class="existingWikiWord" href="../../../../4/2/4/4249/content.html">mass</a>-density, as befits an <a class="existingWikiWord" href="../../../../../1/1/5/9/19511/content.html">extremal black hole</a> and, more generally, a <a class="existingWikiWord" href="../../../../../4/2/1/2/2124/content.html">BPS</a> <a class="existingWikiWord" href="../../../../../3/1/8/6/6813/content.html">black brane</a>.</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">\,</annotation></semantics></math></p>
+<h2 id="definition">Definition</h2>
+<div class="num_defn" id="StabilityFunction">
+<h6 id="definition_2">Definition</h6>
+<p><strong>(stability function)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../5/3/0/1/1035/content.html">additive category</a>.</p>
+<p>A <strong>stability function</strong> (sometimes also called a <em>central charge</em>) is a <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear map</a></p>
+<div class="maruku-equation" id="eq:StabilityFunction"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>K</mi><mo stretchy="false">(</mo><mi>𝒜</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">
+  
+  Z 
+  \;\colon\; 
+  K(\mathcal{A})
+  \longrightarrow 
+  \mathbb{C}
+
+</annotation></semantics></math></div>
+<p>from <a class="existingWikiWord" href="../../../../../4/7/9/1/1974/content.html">Grothendieck group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>𝒜</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K(\mathcal{A})</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../2/2/0/229/content.html">additive group</a> of <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a>, such that for all non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">E \in \mathcal{A}</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z(E)</annotation></semantics></math> lies in the <a class="existingWikiWord" href="../../../../../7/8/5/0/10587/content.html">semi-upper half plane</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">{</mo><mi>r</mi><mi>exp</mi><mo stretchy="false">(</mo><mi>i</mi><mi>π</mi><mi>ϕ</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mi>r</mi><mo>&gt;</mo><mn>0</mn><mspace width="thickmathspace"></mspace><mtext>and</mtext><mspace width="thickmathspace"></mspace><mn>0</mn><mo>&lt;</mo><mi>ϕ</mi><mo>≤</mo><mn>1</mn><mo maxsize="1.2em" minsize="1.2em">}</mo></mrow><annotation encoding="application/x-tex">
+  H
+  \;=\;
+  \big\{
+    r exp(i\pi \phi) 
+    \;\vert\; 
+    r \gt 0
+    \;\text{and}\;
+    0 \lt \phi \leq 1
+  \big\}
+
+</annotation></semantics></math></div>
+<p>The <em>phase</em></p>
+<div class="maruku-equation" id="eq:PhaseOfAnObject"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mstyle displaystyle="false"><mfrac><mn>1</mn><mi>π</mi></mfrac></mstyle><mi>arg</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  
+  \phi(E)
+  \;\coloneqq\;
+  \tfrac{1}{\pi}
+  arg\big( 
+    Z(E)
+  \big)
+  \;\in\;
+  (0,1]
+
+</annotation></semantics></math></div>
+<p>of an non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">E \in \mathcal{A}</annotation></semantics></math> is just the <a class="existingWikiWord" href="../../../../../1/9/4/9/9491/content.html">complex phase</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> that occurs in the representation from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>. Alternatively, by plotting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z(E)</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex plane</a>, the phase is the argument (slope) divided by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math>.</p>
+</div>
+<p>(<a href="#Bridgeland02">Bridgeland 02, Def. 2.1</a>)</p>
+<div class="num_defn" id="StableObjects">
+<h6 id="definition_3">Definition</h6>
+<p><strong>((semi-)stable objects)</strong></p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> equipped with a stability function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>=</mo><mi>r</mi><mi>exp</mi><mo stretchy="false">(</mo><mi>i</mi><mi>π</mi><mi>ϕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z = r exp(i\pi \phi)</annotation></semantics></math> (Def. <a class="maruku-ref" href="#StabilityFunction"></a>). Then a non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">E \in \mathcal{A}</annotation></semantics></math> is called</p>
+<ol>
+<li>
+<p>a <em>semi-stable object</em> if for all non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero</a> <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>⊂</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">F\subset E</annotation></semantics></math> the phase <a class="maruku-eqref" href="#eq:PhaseOfAnObject">(3)</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is smaller or equal that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></p>
+<div class="maruku-equation" id="eq:SemiStability"><span class="maruku-eq-number">(4)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≤</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  \phi(F)
+    \;\leq\; 
+  \phi(E)
+
+</annotation></semantics></math></div></li>
+<li>
+<p>a <em>stable object</em> if for all non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero</a>, proper <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>⊂</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">F \subset E</annotation></semantics></math> the phase <a class="maruku-eqref" href="#eq:PhaseOfAnObject">(3)</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is strictly smaller than that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>:</p>
+<div class="maruku-equation" id="eq:Stability"><span class="maruku-eq-number">(5)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>&lt;</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \phi(F) 
+    \;\lt\;
+  \phi(E)
+  \,.
+
+</annotation></semantics></math></div></li>
+</ol>
+</div>
+<p>(<a href="#Bridgeland02">Bridgeland 02, Def. 2.2</a>)</p>
+<div class="num_defn" id="HarderNarasimhanProperty">
+<h6 id="definition_4">Definition</h6>
+<p><strong>(Harder-Narasimhan property)</strong></p>
+<p>A stability function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>K</mi><mo stretchy="false">(</mo><mi>𝒜</mi><mo stretchy="false">)</mo><mo>→</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">Z \;\colon\; K(\mathcal{A})\to \mathbb{C}</annotation></semantics></math> (Def. <a class="maruku-ref" href="#StabilityFunction"></a>) is said to have the <em>Harder-Narasimhan property</em> if for any non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> there exists a finite <a class="existingWikiWord" href="../../../../../1/6/1/8/8161/content.html">filtration</a> by <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>=</mo><msub><mi>E</mi> <mn>0</mn></msub><mo>⊂</mo><msub><mi>E</mi> <mn>1</mn></msub><mo>⊂</mo><mi>⋯</mi><mo>⊂</mo><msub><mi>E</mi> <mi>n</mi></msub><mo>=</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">
+  0=E_0 \subset E_1 \subset \cdots \subset E_n =E
+
+</annotation></semantics></math></div>
+<p>such that the <a class="existingWikiWord" href="../../../../../1/9/8/0/891/content.html">quotients</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>i</mi></msub><mo>=</mo><msub><mi>E</mi> <mi>i</mi></msub><mo stretchy="false">/</mo><msub><mi>E</mi> <mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">
+  F_i
+   =
+  E_i/E_{i-1}
+
+</annotation></semantics></math></div>
+<p>are all semi-stable <a class="maruku-eqref" href="#eq:SemiStability">(4)</a> and satisfy</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><msub><mi>F</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>&gt;</mo><mi>ϕ</mi><mo stretchy="false">(</mo><msub><mi>F</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>&gt;</mo><mi>⋯</mi><mo>&gt;</mo><mi>ϕ</mi><mo stretchy="false">(</mo><msub><mi>F</mi> <mi>n</mi></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \phi(F_1) \gt \phi(F_2) \gt \cdots \gt\phi(F_n)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(<a href="#Bridgeland02">Bridgeland 02, Def. 2.3</a>)</p>
+<div class="num_defn" id="Slicing">
+<h6 id="definition_5">Definition</h6>
+<p><strong>(slicing)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated category</a> (usually arising as the <a class="existingWikiWord" href="../../../../../0/7/0/1/1070/content.html">derived category</a> of some <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a>).</p>
+<p>A <em>slicing</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒫</mi></mrow><annotation encoding="application/x-tex">\mathcal{P}</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> is a choice of <a class="existingWikiWord" href="../../../../../5/3/0/1/1035/content.html">additive</a> <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategories</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo>⊂</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{P}(\phi) \subset \mathcal{D}</annotation></semantics></math> for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\phi \in \mathbb{R}</annotation></semantics></math> satisfying</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathcal{P}(\phi +1)=\mathcal{P}(\phi)[1]</annotation></semantics></math></p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mn>1</mn></msub><mo>&gt;</mo><msub><mi>ϕ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\phi_1 \gt \phi_2</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mi>j</mi></msub><mo>∈</mo><mi>𝒫</mi><mo stretchy="false">(</mo><msub><mi>ϕ</mi> <mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A_j\in \mathcal{P}(\phi_j)</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Hom</mi><mo stretchy="false">(</mo><msub><mi>A</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>A</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">Hom(A_1, A_2)=0</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Any object has a finite <a class="existingWikiWord" href="../../../../../1/6/1/8/8161/content.html">filtration</a> by the slicing:</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">E\in \mathcal{D}</annotation></semantics></math>, then there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mn>1</mn></msub><mo>&gt;</mo><mi>⋯</mi><mo>&gt;</mo><msub><mi>ϕ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\phi_1 \gt \cdots \gt \phi_n</annotation></semantics></math> and a sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>=</mo><msub><mi>E</mi> <mn>0</mn></msub><mo>→</mo><msub><mi>E</mi> <mn>1</mn></msub><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>E</mi> <mi>n</mi></msub><mo>=</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">0=E_0\to E_1 \to \cdots \to E_n = E</annotation></semantics></math> such that the <a class="existingWikiWord" href="../../../../../4/8/0/1/1084/content.html">mapping cone</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>→</mo><msub><mi>E</mi> <mi>j</mi></msub><mo>→</mo><msub><mi>F</mi> <mi>j</mi></msub><mo>→</mo><msub><mi>E</mi> <mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">E_{j-1}\to E_j \to F_j \to E_{j-1}[1]</annotation></semantics></math> satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>j</mi></msub><mo>∈</mo><mi>𝒫</mi><mo stretchy="false">(</mo><msub><mi>ϕ</mi> <mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_j\in \mathcal{P}(\phi_j)</annotation></semantics></math>.</p>
+</li>
+</ol>
+</div>
+<p>(<a href="#Bridgeland02">Bridgeland 02, Def. 3.3</a>)</p>
+<div class="num_defn" id="StabilityCondition">
+<h6 id="definition_6">Definition</h6>
+<p><strong>(stability condition)</strong></p>
+<p>A <strong>stability condition</strong> on a <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../1/9/8/8919/content.html">pair</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mo stretchy="false">(</mo><mi>Z</mi><mo>,</mo><mi>𝒫</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma = (Z, \mathcal{P})</annotation></semantics></math> consisting of</p>
+<ol>
+<li>
+<p>a stability function (Def. <a class="maruku-ref" href="#StabilityFunction"></a>)</p>
+</li>
+<li>
+<p>a slicing (Def. <a class="maruku-ref" href="#Slicing"></a>)</p>
+</li>
+</ol>
+<p>satisfying the relation that given a non-<a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E\in \mathcal{P}(\phi)</annotation></semantics></math>, then there is a <a class="existingWikiWord" href="../../../../../3/9/4/9/9493/content.html">positive</a> <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real number</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m(E)</annotation></semantics></math> such that the value <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z(E)</annotation></semantics></math> of the stability function (Def. <a class="maruku-ref" href="#StabilityCondition"></a>) is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>m</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>exp</mi><mo stretchy="false">(</mo><mi>i</mi><mi>π</mi><mi>ϕ</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Z(E)
+  \;=\; 
+  m(E)
+  \,
+  exp(i\pi \phi)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(<a href="#Bridgeland02">Bridgeland 02, Def. 5.1</a>)</p>
+<p>This justifies the repeated notation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>, since this says that if an object lies in a particular slice <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{P}(\phi)</annotation></semantics></math>, then it must also have <a class="existingWikiWord" href="../../../../../1/9/4/9/9491/content.html">complex phase</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>.</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">\,</annotation></semantics></math></p>
+<h2 id="properties">Properties</h2>
+<h3 id="in_terms_of_hearts_of_tstructures">In terms of hearts of t-structures</h3>
+<p>Bridgeland proves that an equivalent way to give a stability is to specify a heart of a bounded <a class="existingWikiWord" href="../../../../../1/7/2/8/8271/content.html">t-structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> and give a stability function the heart that satisfies the Harder-Narasimhan property.</p>
+<h3 id="LemmaSchur">Schur’s lemma</h3>
+<div class="num_prop" id="SchurLemma">
+<h6 id="proposition">Proposition</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../4/3/1/2/2134/content.html">Schur's lemma</a>)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> equipped with a stability condition (Def. <a class="maruku-ref" href="#StabilityCondition"></a>).</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">E \in \mathcal{A}</annotation></semantics></math> a stable object (Def <a class="maruku-ref" href="#StableObjects"></a>), every <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphism</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is either the <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero morphism</a> or is an <a class="existingWikiWord" href="../../../../2/0/0/29/content.html">isomorphism</a>; in particular if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched</a> in <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> over an <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">End(E) \simeq k</annotation></semantics></math>.</p>
+<p>More generally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>E</mi> <mn>2</mn></msub><mo>∈</mo><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">E_1, E_2 \in \mathcal{A}</annotation></semantics></math> two stable objects of the same slope/phase, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><msub><mi>E</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>ϕ</mi><mo stretchy="false">(</mo><msub><mi>E</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi(E_1) =\phi(E_2)</annotation></semantics></math>, any <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>E</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">E_1 \to E_2</annotation></semantics></math> is either the <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero morphism</a> or is an <a class="existingWikiWord" href="../../../../2/0/0/29/content.html">isomorphism</a>.</p>
+</div>
+<p>e.g. (<a href="#Bayer11">Bayer 11, 2.3 Exercise 1</a>, <a href="#Martinez13">Martinez 13, prop. 3</a>)</p>
+<h3 id="SpaceOfStabilityConditions">Space of stability conditions</h3>
+<div class="num_prop" id="SpaceOfStabilityConditions">
+<h6 id="proposition_2">Proposition</h6>
+<p><strong>(space of stability conditions)</strong></p>
+<p>Under reasonable hypotheses (…), one can put a natural <a class="existingWikiWord" href="../../../../../4/8/6/4/4684/content.html">topology</a> on the space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(\mathcal{D})</annotation></semantics></math> of all stability conditions (Def. <a class="maruku-ref" href="#StabilityCondition"></a>) , under which the space becomes a <a class="existingWikiWord" href="../../../../../0/3/7/5/5730/content.html">complex manifold</a>.</p>
+</div>
+<p>(<a href="#Bridgeland02">Bridgeland 02, theorem 1.2</a>, reviewed in <a href="#Bridgeland09">Bridgeland 09, 3.2</a>)</p>
+<p>Most work using this fact has been done in the case of the <a class="existingWikiWord" href="../../../../../1/0/5/0/10501/content.html">bounded derived category of coherent sheaves</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi><mo>=</mo><msup><mi>D</mi> <mi>b</mi></msup><mo stretchy="false">(</mo><mi>Coh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{D}=D^b(Coh(X))</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a smooth, projective <a class="existingWikiWord" href="../../../../../4/1/1/2/2114/content.html">variety</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{D}</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math>-linear and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K(\mathcal{D})</annotation></semantics></math> is finitely generated.</p>
+<p>The space of stability conditions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(X)</annotation></semantics></math> has a locally finite wall and chamber decomposition. The philosophy is that if one fixes a numerical condition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math> and considers the <a class="existingWikiWord" href="../../../../../1/0/4/2/2401/content.html">moduli space</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>-stable sheaves as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> varies through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Stab</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Stab(X)</annotation></semantics></math>, then the moduli spaces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>σ</mi></msub><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>M</mi> <mrow><mi>σ</mi><mo>′</mo></mrow></msub><mo stretchy="false">(</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M_\sigma(v)\simeq M_{\sigma '}(v)</annotation></semantics></math> should be isomorphic if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\sigma'</annotation></semantics></math> are in the same chamber. Bayer and Macri have shown this is true for K3 surfaces, and upon <a class="existingWikiWord" href="../../../../../0/7/2/3/3270/content.html">crossing a wall</a> the moduli spaces are related by a <a class="existingWikiWord" href="../../../../../1/8/0/4/4081/content.html">birational map</a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="SlopeStabilityOfVectorBundles">Slope-stability of vector bundles / coherent sheaves</h3>
+<p>A motivating example for the concept of Bridgeland stability is the following classical notion.</p>
+<div class="num_example" id="SlopeStability">
+<h6 id="example">Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a>-<a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stability of coherent sheaves</a>)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a non-singular, <a class="existingWikiWord" href="../../../../../1/5/5/8/8551/content.html">projective curve</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math>. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi><mo>=</mo><mi>Coh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{A}=Coh(X)</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>In this case the standard stability function (Def. <a class="maruku-ref" href="#StabilityFunction"></a>) is</p>
+<div class="maruku-equation" id="eq:StandardStabilityFunctionForVectorBundles"><span class="maruku-eq-number">(6)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo>−</mo><mi>deg</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>+</mo><mi>i</mi><mi>rk</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  Z(E)
+    \;\coloneqq\;
+  -deg(E) + i rk(E)
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>deg</mi></mrow><annotation encoding="application/x-tex">deg</annotation></semantics></math> is the <em><a class="existingWikiWord" href="../../../../../8/7/6/1/11678/content.html">degree</a></em> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>rk</mi></mrow><annotation encoding="application/x-tex">rk</annotation></semantics></math> the <em><a class="existingWikiWord" href="../../../../../0/8/6/1/11680/content.html">rank</a></em> of a <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaf</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+<p>The classical notion of the <em><a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a> of a vector bundle is</em></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mfrac><mrow><mi>deg</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><mrow><mi>rk</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+  \mu(E)
+  \;\coloneqq\;
+  \frac{deg(E)}{rk(E)}
+
+</annotation></semantics></math></div>
+<p>When constructing a <a class="existingWikiWord" href="../../../../../1/0/4/2/2401/content.html">moduli space</a> of vector bundles using <a class="existingWikiWord" href="../../../../7/1/7/7179/content.html">GIT</a> one needs to consider only <a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a> (semi-)<a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stable vector bundles</a> (see e.g. <a href="#Reineke08">Reineke 08, sections 3 and 4</a>).</p>
+<p>One can immediately see that a <a class="existingWikiWord" href="../../../../../7/4/5/1/1547/content.html">vector bundle</a>/<a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaf</a> is <a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a> (semi-)<a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stable</a> if and only if it is (semi-)stable with respect to this stability function <a class="maruku-eqref" href="#eq:StandardStabilityFunctionForVectorBundles">(6)</a>.</p>
+</div>
+<p>Thus Bridgeland stability generalizes the classical notions of <a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stability of vector bundles</a>.</p>
+<h3 id="OverResolutionsOfADESingularities">Over resolutions of ADE-singularities</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mi>ADE</mi></msub><mo>⊂</mo><mi>SU</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G_{ADE} \subset SU(2)</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../3/1/1/9/19113/content.html">finite subgroup of SU(2)</a>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>X</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde X</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../2/6/7/6/16762/content.html">resolution</a> of the corresponding <a class="existingWikiWord" href="../../../../../7/5/7/6/16757/content.html">ADE-singularity</a>.</p>
+<p>Then the <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected component</a> of the space of stability conditions (Def. <a class="maruku-ref" href="#StabilityCondition"></a>) on the bounded <a class="existingWikiWord" href="../../../../../0/7/0/1/1070/content.html">derived category</a> of <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaves</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>X</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde X</annotation></semantics></math> can be described explicitly (<a href="#Thomas02">Thomas 02</a>, <a href="#Bridgeland05">Bridgeland 05</a>, <a href="#BravThomas09">Brav-Thomas 09</a>).</p>
+<p>Specifically for type-A singularities the space of stability conditions (Prop. <a class="maruku-ref" href="#SpaceOfStabilityConditions"></a>) is in fact <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected</a> and <a class="existingWikiWord" href="../../../../../5/6/0/3/3065/content.html">simply-connected topological space</a> (<a href="#IshiiUedaUehara10">Ishii-Ueda-Uehara 10</a>). In fact spaces of stability structures over <a class="existingWikiWord" href="../../../../../5/3/7/9/19735/content.html">Dynkin quivers</a> are <a class="existingWikiWord" href="../../../../3/0/1/1039/content.html">contractible</a> (<a href="#QiuWoold14">Qiu-Woold 14</a>)</p>
+<p>Brief review is in <a href="#Bridgeland09">Bridgeland 09, section 6.3</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/1/2/2124/content.html">BPS states</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/7/2/3/3270/content.html">wall crossing</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../7/1/7/7179/content.html">geometric invariant theory</a></p>
+</li>
+</ul>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">\,</annotation></semantics></math></p>
+<h2 id="references">References</h2>
+<h3 id="general_2">General</h3>
+<p>The general definition is due to</p>
+<ul>
+<li id="Bridgeland02"><a class="existingWikiWord" href="../../../../../2/2/0/8/8022/content.html">Tom Bridgeland</a>, <em>Stability conditions on triangulated categories</em>, Ann. of Math. 166 (2007) 317–345 (<a href="http://arxiv.org/abs/math/0212237">math.AG/0212237</a>)</li>
+</ul>
+<p>generalizing the classical concept of <a class="existingWikiWord" href="../../../../7/6/1/11679/content.html">slope</a>-<a class="existingWikiWord" href="../../../../../0/1/8/8/8810/content.html">stability of vector bundles</a> and of <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a> as in</p>
+<ul>
+<li id="King94"><a class="existingWikiWord" href="../../../../../1/1/7/9/19711/content.html">Alastair King</a>, <em>Moduli of representations of finite dimensional algebras</em>, The Quarterly Journal of Mathematics 45.4 (1994): 515-530 (<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.623.649&amp;rep=rep1&amp;type=pdf">pdf</a>)</li>
+</ul>
+<p>and motivated by informal arguments in <a class="existingWikiWord" href="../../../../../7/0/4/1/1407/content.html">string theory</a> about the “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi></mrow><annotation encoding="application/x-tex">\Pi</annotation></semantics></math>-stability” for <a class="existingWikiWord" href="../../../../../7/3/7/1/11737/content.html">B-branes</a> of the <a class="existingWikiWord" href="../../../../../2/4/2/4/4242/content.html">B-model</a> <a class="existingWikiWord" href="../../../../../4/6/5/7/7564/content.html">topological string</a>, due to <a href="#DouglasFiolRomerlsberger00">Douglas-Fiol-Römerlsberger 00</a> and expanded on in <a href="#Douglas01">Douglas 01</a>, <a href="#Douglas02">Douglas 02</a>, <a href="#Aspinwall04">Aspinwall 04</a> and other articles.</p>
+<p>Further developments include</p>
+<ul>
+<li>
+<p>R. Pandharipande, R.P. Thomas, <em>Stable pairs and BPS invariants</em>, <a href="http://arxiv.org/abs/0711.3899">arXiv:0711.3899</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/7/2/2/2271/content.html">Maxim Kontsevich</a>, <a class="existingWikiWord" href="../../../../../5/8/8/2/2885/content.html">Yan Soibelman</a>, <em>Stability structures, motivic Donaldson-Thomas invariants and cluster transformations</em>, <a href="http://arxiv.org/abs/0811.2435">arXiv:0811.2435</a></p>
+</li>
+<li>
+<p>Rina Anno, Roman Bezrukavnikov, Ivan Mirković, <em>A thin stringy moduli space for Slodowy slices</em>, <a href="http://arxiv.org/abs/1108.1563">arxiv/1108.1563</a></p>
+</li>
+<li>
+<p>Arend Bayer, Emaneule Macri, <em>Projectivity and Birational Geometry of Bridgeland Moduli Spaces</em> (<a href="http://arxiv.org/abs/1203.4613">arXiv:1203.4613</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/0/8/8022/content.html">Tom Bridgeland</a>, Ivan Smith, <em>Quadratic differentials as stability conditions</em>, <a href="http://arxiv.org/abs/1302.7030">arxiv/1302.7030</a></p>
+</li>
+<li id="Martinez13">
+<p>Cristian Martinez, <em>Duality, Bridgeland wall-crossing and flips of secant varieties</em> (<a href="https://arxiv.org/abs/1311.1183">arXiv:1311.1183</a>)</p>
+</li>
+</ul>
+<h3 id="introduction_and_review">Introduction and review</h3>
+<ul>
+<li id="Bridgeland09">
+<p><a class="existingWikiWord" href="../../../../../2/2/0/8/8022/content.html">Tom Bridgeland</a>, <em>Spaces of stability conditions</em>, Proc. of symposia in pure math. <strong>80</strong>, 2009 (<a href="http://arxiv.org/abs/math/0611510">math/0611510</a>)</p>
+</li>
+<li id="Reineke08">
+<p>Markus Reineke, <em>Moduli of representations of quivers</em> (<a href="https://arxiv.org/abs/0802.2147">arXiv:0802.2147</a>)</p>
+</li>
+<li id="Bayer11">
+<p>Arend Bayer, <em>A tour to stability conditions on derived categories</em>, 2011 (<a href="https://www.maths.ed.ac.uk/~abayer/dc-lecture-notes.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/5/8/3/3850/content.html">Daniel Huybrechts</a>, <em>Introduction to stability conditions</em> (<a href="https://arxiv.org/abs/1111.1745">arXiv:1111.1745</a>)</p>
+</li>
+<li>
+<p>Jan Engenhorst, <em>Bridgeland Stability Conditions in Algebra, Geometry and Physics</em>, 2014 (<a href="https://www.freidok.uni-freiburg.de/fedora/objects/freidok:9595/datastreams/FILE1/content">pdf</a>)</p>
+</li>
+<li id="Stellari15">
+<p>Paolo Stellari, <em>A tour on Bridgeland stability</em>, 2015 (<a href="https://users.unimi.it/stellari/Research/Slides/LucidiStabCondBeamer.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/4/5/25454/content.html">Franco Rota</a>, <em>An introduction to stability conditions</em>, lecture notes [<a href="https://drive.google.com/file/d/1sJSwN-JTOr77fpIgRWfDXkidYZmrJ0jC/view">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Rota-StabilityConditions.pdf" title="pdf">pdf</a>]</p>
+</li>
+</ul>
+<h3 id="examples_2">Examples</h3>
+<p>Discussion of examples of stability conditions</p>
+<p>over <a class="existingWikiWord" href="../../../../../2/6/7/6/16762/content.html">resolutions</a> of <a class="existingWikiWord" href="../../../../../7/5/7/6/16757/content.html">ADE-singularities</a>:</p>
+<ul>
+<li id="Thomas02">
+<p>R. P. Thomas, <em>Stability conditions and the braid group</em>, Communications in Analysis and Geometry 14, 135-161, 2006 (<a href="https://arxiv.org/abs/math/0212214">arXiv:math/0212214</a>)</p>
+</li>
+<li id="Bridgeland05">
+<p><a class="existingWikiWord" href="../../../../../2/2/0/8/8022/content.html">Tom Bridgeland</a>, <em>Stability conditions and Kleinian singularities</em>, International Mathematics Research Notices 2009.21 (2009): 4142-4157 (<a href="https://arxiv.org/abs/math/0508257">arXiv:0508257</a>)</p>
+</li>
+<li id="IshiiUedaUehara10">
+<p>Akira Ishii, Kazushi Ueda, Hokuto Uehara, <em>Stability conditions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A_n</annotation></semantics></math>-singularities</em>, Journal of Differential Geometry 84 (2010) 87-126 (<a href="https://arxiv.org/abs/math/0609551">arXiv:math/0609551</a>)</p>
+</li>
+<li id="BravThomas09">
+<p><a class="existingWikiWord" href="../../../../../3/5/4/1/1453/content.html">Christopher Brav</a>, Hugh Thomas, <em>Braid groups and Kleinian singularities</em> (<a href="https://arxiv.org/abs/0910.2521">arXiv:0910.2521</a>)</p>
+</li>
+<li id="QiuWoold14">
+<p><a class="existingWikiWord" href="../../../../../7/3/7/9/19737/content.html">Yu Qiu</a>, Jon Woolf, <em>Contractible stability spaces and faithful braid group actions</em> (<a href="https://arxiv.org/abs/1407.5986">arXiv:1407.5986</a>)</p>
+</li>
+<li id="Qiu15">
+<p><a class="existingWikiWord" href="../../../../../7/3/7/9/19737/content.html">Yu Qiu</a>, Def. 2.1 <em>Stability conditions and quantum dilogarithm identities for Dynkin quivers</em>, Adv. Math., 269 (2015), pp 220-264 (<a href="https://arxiv.org/abs/1111.1010">arXiv:1111.1010</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/0/8/8022/content.html">Tom Bridgeland</a>, <a class="existingWikiWord" href="../../../../../7/3/7/9/19737/content.html">Yu Qiu</a>, Tom Sutherland, <em>Stability conditions and the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">A_2</annotation></semantics></math> quiver</em> (<a href="https://arxiv.org/abs/1406.2566">arXiv:1406.2566</a>)</p>
+</li>
+</ul>
+<h3 id="RelationToStableBranesInStringTheory">Relation to stable branes in string theory</h3>
+<p>The proposal that slope-stability of vector bundles should generalize to a notion of stability (“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi></mrow><annotation encoding="application/x-tex">\Pi</annotation></semantics></math>-stability”) of <a class="existingWikiWord" href="../../../../../7/3/7/1/11737/content.html">B-branes</a>/<a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-branes</a> originates with</p>
+<ul>
+<li id="DouglasFiolRomerlsberger00"><a class="existingWikiWord" href="../../../../../1/5/3/6/6351/content.html">Michael Douglas</a>, Bartomeu Fiol, Christian Römelsberger, <em>Stability and BPS branes</em>, JHEP 0509:006, 2005 (<a href="https://arxiv.org/abs/hep-th/0002037">arXiv:hep-th/0002037</a> <a href="https://doi.org/10.1088/1126-6708/2005/09/006">doi</a>)</li>
+</ul>
+<p>In terms of stability (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi></mrow><annotation encoding="application/x-tex">\Pi</annotation></semantics></math>-stability) of <a class="existingWikiWord" href="../../../../../7/3/7/1/11737/content.html">B-branes</a> of the <a class="existingWikiWord" href="../../../../../2/4/2/4/4242/content.html">B-model</a> <a class="existingWikiWord" href="../../../../../4/6/5/7/7564/content.html">topological string</a>:</p>
+<ul>
+<li id="Douglas01">
+<p><a class="existingWikiWord" href="../../../../../1/5/3/6/6351/content.html">Michael Douglas</a>, <em>D-branes, categories and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N=1</annotation></semantics></math> supersymmetry, J.Math.Phys. <strong>42</strong> (2001) 2818–2843;</em></p>
+</li>
+<li id="Douglas02">
+<p><a class="existingWikiWord" href="../../../../../1/5/3/6/6351/content.html">Michael Douglas</a>, <em>Dirichlet branes, homological mirror symmetry, and stability</em>, Proc. ICM, Vol. III (Beijing, 2002), 395–408, Higher Ed. Press, Beijing, 2002</p>
+</li>
+<li id="Aspinwall04">
+<p><a class="existingWikiWord" href="../../../../../3/0/9/3/3903/content.html">Paul Aspinwall</a>, <em>D-Branes on Calabi-Yau Manifolds</em> (<a href="https://arxiv.org/abs/hep-th/0403166">arXiv:hep-th/0403166</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/4/7/1/11741/content.html">Aaron Bergman</a>, <em>Stability Conditions and Branes at Singularities</em>, Journal of High Energy Physics 2008.10 (2008): 07 (<a href="http://arxiv.org/abs/hep-th/0702092">arXiv:hep-th/0702092</a>)</p>
+</li>
+<li id="MalyshevVerlinde07">
+<p>Dmitry Malyshev, <a class="existingWikiWord" href="../../../../../2/1/2/8/8212/content.html">Herman Verlinde</a>, <em>D-branes at Singularities and String Phenomenology</em>, Nucl.Phys.Proc.Suppl.171:139-163, 2007 (<a href="https://arxiv.org/abs/0711.2451">arXiv:0711.2451</a>)</p>
+</li>
+</ul>
+<p>On marginally stable branes:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/0/9/3/3903/content.html">Paul Aspinwall</a>, Alexander Maloney, Aaron Simons, <em>Black Hole Entropy, Marginal Stability and Mirror Symmetry</em>, JHEP0707:034, 2007 (<a href="https://arxiv.org/abs/hep-th/0610033">arxiv:hep-th/0610033</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

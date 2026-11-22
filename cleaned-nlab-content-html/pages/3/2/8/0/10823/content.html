@@ -1,0 +1,583 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Introduction to Étale Cohomology in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Introduction to Étale Cohomology
+  </h1>
+<div id="revision">
+<p>This page collects links related to the textbook</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/8/0/10824/content.html">Günter Tamme</a>:</p>
+<p><br/></p>
+<p><strong>Introduction to Étale Cohomology</strong></p>
+<p><br/></p>
+<p>Speinger (1994)</p>
+<p><a href="https://doi.org/10.1007/978-3-642-78421-7">doi:10.1007/978-3-642-78421-7</a></p>
+</li>
+</ul>
+<p>on <a class="existingWikiWord" href="../../../../8/8/2/2883/content.html">étale cohomology</a>.</p>
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#chapter_0_preliminaries">Chapter 0 Preliminaries</a></li>
+<ul>
+<li><a href="#1_abelian_categories">1. Abelian categories</a></li>
+<li><a href="#2_homological_algebra_in_abelian_categories">2. Homological algebra in abelian categories</a></li>
+<ul>
+<li><a href="#21_functors">2.1 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math>-Functors</a></li>
+<li><a href="#22_derived_functors">2.2 Derived functors</a></li>
+<li><a href="#23_spectral_sequences">2.3 Spectral sequences</a></li>
+</ul>
+<li><a href="#3_inductive_limits">3. Inductive limits</a></li>
+</ul>
+<li><a href="#chapter_i_topologies_and_sheaves">Chapter I Topologies and sheaves</a></li>
+<ul>
+<li><a href="#1_topologies">1. Topologies</a></li>
+<li><a href="#2_abelian_presheaves_on_topologies">2. Abelian presheaves on topologies</a></li>
+<ul>
+<li><a href="#21_the_category_of_abelian_presheaves">2.1 The category of abelian presheaves</a></li>
+<li><a href="#22_cech_cohomology">2.2 Cech cohomology</a></li>
+<li><a href="#23_the_functors__and_">2.3 The functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>p</mi></msup></mrow><annotation encoding="application/x-tex">f^p</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>p</mi></msub></mrow><annotation encoding="application/x-tex">f_p</annotation></semantics></math></a></li>
+</ul>
+<li><a href="#3_abelian_sheaves_on_topologies">3. Abelian sheaves on topologies</a></li>
+<ul>
+<li><a href="#31_the_associated_sheaf_of_a_presheaf">3.1 The associated sheaf of a presheaf</a></li>
+<li><a href="#32_the_category_of_abelian_sheaves">3.2 The category of abelian sheaves</a></li>
+<li><a href="#33_cohomology_of_abelian_sheaves">3.3 Cohomology of abelian sheaves</a></li>
+<li><a href="#34_the_spectral_sequences_for_cech_cohomology">3.4 The spectral sequences for Cech cohomology</a></li>
+<li><a href="#35_flabby_sheaves">3.5 Flabby sheaves</a></li>
+<li><a href="#36_the_functors__and_">3.6 The functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>s</mi></msup></mrow><annotation encoding="application/x-tex">f^s</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>s</mi></msub></mrow><annotation encoding="application/x-tex">f_s</annotation></semantics></math></a></li>
+<li><a href="#37_the_leray_spectral_sequence">3.7 The Leray spectral sequence</a></li>
+<li><a href="#38_localization">3.8 Localization</a></li>
+<li><a href="#39_the_comparison_lemma">3.9 The comparison lemma</a></li>
+<li><a href="#310_noetherian_topologies">3.10 Noetherian topologies</a></li>
+<li><a href="#311_commutation_of_the_functors__with_pseudofiltered_inductive_limits">3.11 Commutation of the functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>q</mi></msup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^q(U,-)</annotation></semantics></math> with pseudofiltered inductive limits</a></li>
+</ul>
+</ul>
+<li><a href="#chapter_ii_tale_cohomology">Chapter II Étale Cohomology</a></li>
+<ul>
+<li><a href="#1_the_tale_site_of_a_scheme">1. The Étale site of a scheme</a></li>
+<ul>
+<li><a href="#11_tale_morphisms">1.1 Étale morphisms</a></li>
+<li><a href="#12_tale_site">1.2 Étale site</a></li>
+<li><a href="#13_relation_between_tale_and_zariski_cohomology">1.3 Relation between Étale and Zariski cohomology</a></li>
+<li><a href="#14_the_functors__and_">1.4 The functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">f_\ast</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">f^\ast</annotation></semantics></math></a></li>
+<li><a href="#15_the_restricted_tale_site">1.5 The restricted Étale site</a></li>
+</ul>
+<li><a href="#2_the_case_">2. The case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = Spec(k)</annotation></semantics></math></a></li>
+<li><a href="#3_examples_of_tale_sheaves">3. Examples of étale sheaves</a></li>
+<ul>
+<li><a href="#31_representable_sheaves">3.1 Representable sheaves</a></li>
+<li><a href="#32_tale_sheaves_of_modules">3.2 Étale sheaves of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_X</annotation></semantics></math>-modules</a></li>
+<li><a href="#33_big_tale_site">3.3 Big étale site</a></li>
+</ul>
+<li><a href="#4_the_theories_of_artinschreier_and_of_kummer">4. The theories of Artin-Schreier and of Kummer</a></li>
+<ul>
+<li><a href="#41_the_groups_">4.1 The groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>q</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mo stretchy="false">(</mo><msub><mi>𝔾</mi> <mi>a</mi></msub><msub><mo stretchy="false">)</mo> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^q(X, (\mathbb{G}_a)_X)</annotation></semantics></math></a></li>
+<li><a href="#42_the_artinschreier_sequence">4.2 The Artin-Schreier sequence</a></li>
+<li><a href="#43_the_groups_">4.3 The groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>q</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mo stretchy="false">(</mo><msub><mi>𝔾</mi> <mi>m</mi></msub><msub><mo stretchy="false">)</mo> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^q(X, (\mathbb{G}_m)_X)</annotation></semantics></math></a></li>
+<li><a href="#44_the_kummer_sequence">4.4 The Kummer sequence</a></li>
+<li><a href="#45_the_sheaf_of_divisors_on_">4.5 The sheaf of divisors on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>et</mi></msub></mrow><annotation encoding="application/x-tex">X_{et}</annotation></semantics></math></a></li>
+</ul>
+<li><a href="#5_stalks_of_tale_sheaves">5. Stalks of étale sheaves</a></li>
+<li><a href="#6_strict_localizations">6. Strict localizations</a></li>
+<ul>
+<li><a href="#61_henselian_rings_and_strictly_local_rings">6.1 Henselian rings and strictly local rings</a></li>
+</ul>
+<li><a href="#62_strict_localization_of_a_scheme">6.2 Strict localization of a scheme</a></li>
+<li><a href="#63_tale_cohomology_on_projective_limits_of_schemes">6.3 Étale cohomology on projective limits of schemes</a></li>
+<li><a href="#7_the_artin_spectral_sequence">7. The Artin spectral sequence</a></li>
+<li><a href="#8_the_decomposition_theorem_relative_cohomology">8. The decomposition theorem. Relative cohomology</a></li>
+<li><a href="#9_torsion_sheaves_locally_constant_sheaves_constructible_sheaves">9. Torsion sheaves, locally constant sheaves, constructible sheaves</a></li>
+<li><a href="#10_tale_cohomology_of_curves">10. Étale cohomology of curves</a></li>
+<li><a href="#11_general_theorems_in_tale_cohomology_theory">11. General theorems in étale cohomology theory</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="chapter_0_preliminaries">Chapter 0 Preliminaries</h2>
+<h3 id="1_abelian_categories">1. Abelian categories</h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a></li>
+</ul>
+<h3 id="2_homological_algebra_in_abelian_categories">2. Homological algebra in abelian categories</h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/6/0/1/1065/content.html">homological algebra</a></li>
+</ul>
+<h4 id="21_functors">2.1 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math>-Functors</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/2/2/8/8222/content.html">delta-functor</a></li>
+</ul>
+<h4 id="22_derived_functors">2.2 Derived functors</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">derived functor</a></li>
+</ul>
+<h4 id="23_spectral_sequences">2.3 Spectral sequences</h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/8/6/1/1686/content.html">spectral sequence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/8/0/10829/content.html">edge morphism</a></p>
+</li>
+<li>
+<p>(2.3.5) <a class="existingWikiWord" href="../../../../../5/8/6/1/1685/content.html">Grothendieck spectral sequence</a></p>
+</li>
+</ul>
+<h3 id="3_inductive_limits">3. Inductive limits</h3>
+<h2 id="chapter_i_topologies_and_sheaves">Chapter I Topologies and sheaves</h2>
+<h3 id="1_topologies">1. Topologies</h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/4/3/0/349/content.html">Grothendieck topology</a></li>
+</ul>
+<h3 id="2_abelian_presheaves_on_topologies">2. Abelian presheaves on topologies</h3>
+<h4 id="21_the_category_of_abelian_presheaves">2.1 The category of abelian presheaves</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/1/1/1/1118/content.html">group object</a></li>
+</ul>
+<h4 id="22_cech_cohomology">2.2 Cech cohomology</h4>
+<h4 id="23_the_functors__and_">2.3 The functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>p</mi></msup></mrow><annotation encoding="application/x-tex">f^p</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>p</mi></msub></mrow><annotation encoding="application/x-tex">f_p</annotation></semantics></math></h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/8/3/8/8385/content.html">morphism of sites</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/1/1/1137/content.html">direct image</a>, <a class="existingWikiWord" href="../../../../../8/3/1/1/1138/content.html">inverse image</a> (here: on <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a>)</p>
+</li>
+</ul>
+<h3 id="3_abelian_sheaves_on_topologies">3. Abelian sheaves on topologies</h3>
+<h4 id="31_the_associated_sheaf_of_a_presheaf">3.1 The associated sheaf of a presheaf</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/9/0/1/1094/content.html">sheafification</a></li>
+</ul>
+<h4 id="32_the_category_of_abelian_sheaves">3.2 The category of abelian sheaves</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/2/2/8/8224/content.html">sheaf of abelian groups</a></li>
+</ul>
+<h4 id="33_cohomology_of_abelian_sheaves">3.3 Cohomology of abelian sheaves</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/4/1/1/1148/content.html">abelian sheaf cohomology</a></li>
+</ul>
+<h4 id="34_the_spectral_sequences_for_cech_cohomology">3.4 The spectral sequences for Cech cohomology</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/7/7/1/1778/content.html">Cech cohomology</a></li>
+</ul>
+<h4 id="35_flabby_sheaves">3.5 Flabby sheaves</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/8/0/2/2081/content.html">flabby sheaf</a></li>
+</ul>
+<h4 id="36_the_functors__and_">3.6 The functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mi>s</mi></msup></mrow><annotation encoding="application/x-tex">f^s</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>s</mi></msub></mrow><annotation encoding="application/x-tex">f_s</annotation></semantics></math></h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/8/3/8/8385/content.html">morphism of sites</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/1/1/1137/content.html">direct image</a>, <a class="existingWikiWord" href="../../../../../8/3/1/1/1138/content.html">inverse image</a></p>
+</li>
+</ul>
+<h4 id="37_the_leray_spectral_sequence">3.7 The Leray spectral sequence</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/5/1/8/8151/content.html">Leray spectral sequence</a></li>
+</ul>
+<h4 id="38_localization">3.8 Localization</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a></li>
+</ul>
+<h4 id="39_the_comparison_lemma">3.9 The comparison lemma</h4>
+<h4 id="310_noetherian_topologies">3.10 Noetherian topologies</h4>
+<h4 id="311_commutation_of_the_functors__with_pseudofiltered_inductive_limits">3.11 Commutation of the functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>q</mi></msup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^q(U,-)</annotation></semantics></math> with pseudofiltered inductive limits</h4>
+<h2 id="chapter_ii_tale_cohomology">Chapter II Étale Cohomology</h2>
+<h3 id="1_the_tale_site_of_a_scheme">1. The Étale site of a scheme</h3>
+<h4 id="11_tale_morphisms">1.1 Étale morphisms</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/5/4/3/3457/content.html">étale morphism</a></li>
+</ul>
+<h4 id="12_tale_site">1.2 Étale site</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/3/5/5354/content.html">étale site</a></li>
+</ul>
+<h4 id="13_relation_between_tale_and_zariski_cohomology">1.3 Relation between Étale and Zariski cohomology</h4>
+<ul>
+<li><a href="../../../../8/8/2/2883/content.html#RelationZariskiEtaleCohomology">relation to Zariski cohomology</a></li>
+</ul>
+<h4 id="14_the_functors__and_">1.4 The functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">f_\ast</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">f^\ast</annotation></semantics></math></h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/1/1/1137/content.html">direct image</a>, <a class="existingWikiWord" href="../../../../../8/3/1/1/1138/content.html">inverse image</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/9/0/1/1091/content.html">base change</a></p>
+</li>
+</ul>
+<h4 id="15_the_restricted_tale_site">1.5 The restricted Étale site</h4>
+<h3 id="2_the_case_">2. The case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = Spec(k)</annotation></semantics></math></h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/3/8/7/7831/content.html">Galois group</a></li>
+</ul>
+<h3 id="3_examples_of_tale_sheaves">3. Examples of étale sheaves</h3>
+<h4 id="31_representable_sheaves">3.1 Representable sheaves</h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../4/1/0/143/content.html">sheaf</a>, <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/5/4/5/5450/content.html">étale topos</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable presheaf</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/0/1/3/3104/content.html">canonical topology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/3/6/4/4639/content.html">additive group</a>, <a class="existingWikiWord" href="../../../../../9/3/6/4/4639/content.html">multiplicative group</a>, <a class="existingWikiWord" href="../../../../../2/3/7/1/11732/content.html">roots of unity</a></p>
+</li>
+</ul>
+<h4 id="32_tale_sheaves_of_modules">3.2 Étale sheaves of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>X</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_X</annotation></semantics></math>-modules</h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/0/2/2021/content.html">sheaf of coherent modules</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/8/7/0/10787/content.html">constructible sheaf</a></p>
+</li>
+</ul>
+<h4 id="33_big_tale_site">3.3 Big étale site</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/7/1/4/4170/content.html">big site</a></li>
+</ul>
+<h3 id="4_the_theories_of_artinschreier_and_of_kummer">4. The theories of Artin-Schreier and of Kummer</h3>
+<h4 id="41_the_groups_">4.1 The groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>q</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mo stretchy="false">(</mo><msub><mi>𝔾</mi> <mi>a</mi></msub><msub><mo stretchy="false">)</mo> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^q(X, (\mathbb{G}_a)_X)</annotation></semantics></math></h4>
+<h4 id="42_the_artinschreier_sequence">4.2 The Artin-Schreier sequence</h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/6/7/7677/content.html">Frobenius morphism</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/8/0/10826/content.html">Artin-Schreier sequence</a></p>
+</li>
+</ul>
+<h4 id="43_the_groups_">4.3 The groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>q</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mo stretchy="false">(</mo><msub><mi>𝔾</mi> <mi>m</mi></msub><msub><mo stretchy="false">)</mo> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^q(X, (\mathbb{G}_m)_X)</annotation></semantics></math></h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/6/8/8611/content.html">Hilbert's theorem 90</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/0/2/2034/content.html">Azumaya algebra</a>, <a class="existingWikiWord" href="../../../../../9/5/8/7/7859/content.html">Brauer group</a></p>
+</li>
+</ul>
+<h4 id="44_the_kummer_sequence">4.4 The Kummer sequence</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/2/8/0/10827/content.html">Kummer sequence</a></li>
+</ul>
+<h4 id="45_the_sheaf_of_divisors_on_">4.5 The sheaf of divisors on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>et</mi></msub></mrow><annotation encoding="application/x-tex">X_{et}</annotation></semantics></math></h4>
+<h3 id="5_stalks_of_tale_sheaves">5. Stalks of étale sheaves</h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/1/6/1/1617/content.html">stalk</a></li>
+</ul>
+<h3 id="6_strict_localizations">6. Strict localizations</h3>
+<h4 id="61_henselian_rings_and_strictly_local_rings">6.1 Henselian rings and strictly local rings</h4>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/4/5/5406/content.html">Henselian ring</a></p>
+</li>
+<li>
+<p><span class="newWikiWord">strictly local ring<a href="/nlab/new/strictly+local+ring">?</a></span></p>
+</li>
+</ul>
+<h3 id="62_strict_localization_of_a_scheme">6.2 Strict localization of a scheme</h3>
+<h3 id="63_tale_cohomology_on_projective_limits_of_schemes">6.3 Étale cohomology on projective limits of schemes</h3>
+<h3 id="7_the_artin_spectral_sequence">7. The Artin spectral sequence</h3>
+<ul>
+<li><span class="newWikiWord">Artin spectral sequence<a href="/nlab/new/Artin+spectral+sequence">?</a></span></li>
+</ul>
+<h3 id="8_the_decomposition_theorem_relative_cohomology">8. The decomposition theorem. Relative cohomology</h3>
+<h3 id="9_torsion_sheaves_locally_constant_sheaves_constructible_sheaves">9. Torsion sheaves, locally constant sheaves, constructible sheaves</h3>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/2/8/0/10825/content.html">torsion sheaf</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/8/7/0/10787/content.html">constructible sheaf</a></p>
+</li>
+</ul>
+<h3 id="10_tale_cohomology_of_curves">10. Étale cohomology of curves</h3>
+<h3 id="11_general_theorems_in_tale_cohomology_theory">11. General theorems in étale cohomology theory</h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/1/8/0/10816/content.html">proper base change theorem</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

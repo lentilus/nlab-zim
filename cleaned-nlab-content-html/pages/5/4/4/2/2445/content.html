@@ -1,0 +1,779 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Clifford algebra in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Clifford algebra
+  </h1>
+<div id="revision">
+<blockquote>
+<p>(For the “<a class="existingWikiWord" href="../../../../../4/0/6/7/27604/content.html">Clifford group</a>” in <a class="existingWikiWord" href="../../../../../1/0/6/3/3601/content.html">quantum information theory</a> see instead there.)</p>
+</blockquote>
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#Classification">Classification and Relation to matrix algebras</a></li>
+<ul>
+<li><a href="#ClassificationOverTheComplexNumbers">Over the complex numbers</a></li>
+<li><a href="#ClassificationOverTheRealNumbers">Over the real numbers</a></li>
+</ul>
+<li><a href="#as_a_superalgebra">As a superalgebra</a></li>
+<li><a href="#RelationToOrthogonalLieAlgebras">Relation to orthogonal Lie algebras</a></li>
+<li><a href="#relation_to__groups">Relation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spin</mi></mrow><annotation encoding="application/x-tex">Spin</annotation></semantics></math> groups</a></li>
+<li><a href="#AsQuantizedExteriorAlgebra">Relation to exterior algebra (quantization)</a></li>
+</ul>
+<li><a href="#spinors">Spinors</a></li>
+<li><a href="#warnings">Warnings</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="definition">Definition</h2>
+<p>Given a <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">commutative ring</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">module</a>s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math>, an <strong><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/7/7/3/23772/content.html">quadratic function</a></strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> with values in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> is a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>:</mo><mi>M</mi><mo>→</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">q: M \to N</annotation></semantics></math> such that the following properties hold:</p>
+<ul>
+<li>
+<p>(cube relation) For any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>∈</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">x,y,z \in M</annotation></semantics></math>, we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo stretchy="false">)</mo><mo>−</mo><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo><mo>−</mo><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>z</mi><mo stretchy="false">)</mo><mo>−</mo><mi>q</mi><mo stretchy="false">(</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo stretchy="false">)</mo><mo>+</mo><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>q</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>+</mo><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">q(x+y+z) - q(x+y) - q(x+z) - q(y+z) + q(x) + q(y) + q(z) = 0.</annotation></semantics></math></div></li>
+<li>
+<p>(homogeneous of degree 2) For any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">x \in M</annotation></semantics></math> and any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">r \in R</annotation></semantics></math>, we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>r</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>r</mi> <mn>2</mn></msup><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">q(r x) = r^2q(x).</annotation></semantics></math></div></li>
+</ul>
+<p>A <strong>quadratic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module</strong> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> equipped with a <strong><a class="existingWikiWord" href="../../../../../8/6/1/7/7168/content.html">quadratic form</a></strong>: an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-quadratic function on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> with values in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>.</p>
+<p>The <strong>Clifford algebra</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cl(M,q)</annotation></semantics></math> of a quadratic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(M,q)</annotation></semantics></math> can be defined as the <a class="existingWikiWord" href="../../../../../1/9/8/0/891/content.html">quotient</a> of the <a class="existingWikiWord" href="../../../../0/3/4/4305/content.html">tensor algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi> <mi>R</mi></msub><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T_R(M)</annotation></semantics></math> by the <a class="existingWikiWord" href="../../../../../8/6/5/1/1568/content.html">ideal</a> generated by the relations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>⊗</mo><mi>x</mi><mo>−</mo><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \otimes x - q(x)</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">x \in M</annotation></semantics></math>.</p>
+<p>Equivalently, it is the <a class="existingWikiWord" href="../../../../../2/7/3/0/372/content.html">initial object</a> in the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> whose <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a>s are pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>ϕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A,\phi)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is an associative unital <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">algebra</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>:</mo><mi>M</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\phi: M \to A</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear map</a> satisfying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>=</mo><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><msub><mn>1</mn> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\phi(x)^2 = q(x) 1_A</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">x \in M</annotation></semantics></math>, and whose morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>A</mi><mo>′</mo><mo>,</mo><mi>ϕ</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A,\phi)\to (A',\phi')</annotation></semantics></math> are the associative <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-algebra maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\chi: A\to A'</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo>∘</mo><mi>ϕ</mi><mo>=</mo><mi>ϕ</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\chi\circ\phi=\phi'</annotation></semantics></math>.</p>
+<h2 id="examples">Examples</h2>
+<p>Examples in low <a class="existingWikiWord" href="../../../../../9/4/3/5/5349/content.html">rank</a> can be calculated easily. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is freely generated by a single element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math>, with quadratic form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q(e) = 1</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo><mo>=</mo><mi>R</mi><mo stretchy="false">[</mo><mi>e</mi><mo stretchy="false">]</mo><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msup><mi>e</mi> <mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cl(M,q) = R[e]/(e^2-1)</annotation></semantics></math>. Note that the opposite sign convention is often used in the differential geometry literature, so one may see the assertion that the Clifford algebra of the real line with a positive definite metric is isomorphic to the complex numbers <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo stretchy="false">[</mo><mi>e</mi><mo stretchy="false">]</mo><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msup><mi>e</mi> <mn>2</mn></msup><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}[e]/(e^2+1)</annotation></semantics></math>. Similarly, the Clifford algebra of a negative definite two dimensional real vector space is isomorphic to the (non-split) quaternions in our convention, but one may see the assertion that it is isomorphic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M_2(\mathbb{R})</annotation></semantics></math>. Complexification removes the difference between positive definite and negative definite, and the two complexified algebras are isomorphic.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>L</mi><mo>⊕</mo><msup><mi>L</mi> <mo>∨</mo></msup></mrow><annotation encoding="application/x-tex">M = L \oplus L^\vee</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> projective of rank <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mo>∨</mo></msup><mo>=</mo><msub><mi>Hom</mi> <mi>R</mi></msub><mo stretchy="false">(</mo><mi>L</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L^\vee = Hom_R(L,R)</annotation></semantics></math> the dual module. One can define the canonical quadratic form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>f</mi><mo>+</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q(f+x) = f(x)</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∈</mo><msup><mi>L</mi> <mo>∨</mo></msup></mrow><annotation encoding="application/x-tex">f \in L^\vee</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math>. In this case, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo><mo>≅</mo><msub><mi>M</mi> <mrow><msup><mn>2</mn> <mi>d</mi></msup></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cl(M,q) \cong M_{2^d}(R)</annotation></semantics></math>. In general, the Clifford algebra arising from a nondegenerate form is flat-locally (on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="0em" rspace="thinmathspace">Spec</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\operatorname{Spec} R</annotation></semantics></math>) isomorphic to a matrix algebra (when rank is even) or a direct sum of two matrix algebras (when rank is odd).</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is a projective <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module of rank <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>, then independently of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math>, the Clifford algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cl(M,q)</annotation></semantics></math> is projective of rank <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn> <mi>d</mi></msup></mrow><annotation encoding="application/x-tex">2^d</annotation></semantics></math>, and is (noncanonically) isomorphic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="thinmathspace" rspace="thinmathspace">⋀</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">\bigwedge M</annotation></semantics></math> as an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module equipped with a map from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>. The Clifford algebra is isomorphic to the exterior algebra (as algebras equipped with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module maps from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>) if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q = 0</annotation></semantics></math>.</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is the ring of smooth functions on a pseudo-Riemannian manifold <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module of sections of the tangent bundle, then the metric endows <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> with a quadratic structure, and one can form the Clifford algebra of the tangent bundle.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="Classification">Classification and Relation to matrix algebras</h3>
+<h4 id="ClassificationOverTheComplexNumbers">Over the complex numbers</h4>
+<div class="num_theorem">
+<h6 id="theorem">Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> over the <a class="existingWikiWord" href="../../../../6/1/2/2165/content.html">complex numbers</a> of complex <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimension</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>, equipped with non-degenerate <a class="existingWikiWord" href="../../../../../7/2/8/5/5827/content.html">bilinear form</a>, unique up to <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>. The Clifford algebra</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mi>d</mi></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo><mo>≔</mo><mi>Cl</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Cl_{d}(\mathbb{C}) \coloneqq Cl(V)
+
+</annotation></semantics></math></div>
+<p>is <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a>, as a complex <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebra</a> to a <a class="existingWikiWord" href="../../../../../4/3/5/9/9534/content.html">matrix algebra</a> as follows:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mi>d</mi></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo><mo>≃</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><msub><mi>Mat</mi> <mrow><msup><mn>2</mn> <mstyle displaystyle="false"><mfrac><mi>d</mi><mn>2</mn></mfrac></mstyle></msup></mrow></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo></mtd> <mtd><mi>for</mi><mspace width="thinmathspace"></mspace><mi>d</mi><mspace width="thinmathspace"></mspace><mi>even</mi></mtd></mtr> <mtr><mtd><msub><mi>Mat</mi> <mrow><msup><mn>2</mn> <mstyle displaystyle="false"><mfrac><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></mfrac></mstyle></msup></mrow></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo><mo>⊕</mo><msub><mi>Mat</mi> <mrow><msup><mn>2</mn> <mstyle displaystyle="false"><mfrac><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></mfrac></mstyle></msup></mrow></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo></mtd> <mtd><mi>for</mi><mspace width="thinmathspace"></mspace><mi>d</mi><mspace width="thinmathspace"></mspace><mi>odd</mi></mtd></mtr></mtable></mrow></mrow></mrow><annotation encoding="application/x-tex">
+  Cl_d(\mathbb{C})
+  \simeq
+  \left\{
+    \array{
+       Mat_{2^{\tfrac{d}{2}}}(\mathbb{C}) &amp; for \, d \, even
+       \\
+       Mat_{2^{\tfrac{d-1}{2}}}(\mathbb{C}) \oplus Mat_{2^{\tfrac{d-1}{2}}}(\mathbb{C}) 
+       &amp; for \, d \,  odd
+    }
+  \right.
+
+</annotation></semantics></math></div></div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>This is one of the incarnations of <a class="existingWikiWord" href="../../../../../7/5/2/0/10257/content.html">Bott periodicity</a>.</p>
+</div>
+<h4 id="ClassificationOverTheRealNumbers">Over the real numbers</h4>
+<p>We discuss the classification of Clifford algebras over the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a> and their relation to <a class="existingWikiWord" href="../../../../../4/3/5/9/9534/content.html">matrix algebras</a> over the real numbers. A key statement is that of the mod-8 <a class="existingWikiWord" href="../../../../../7/5/2/0/10257/content.html">Bott periodicity</a> of this classification (prop. <a class="maruku-ref" href="#RealBottPeriodicity"></a> below).</p>
+<p>In the following we write</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="0em" rspace="thinmathspace">Cl</mo> <mrow><mi>s</mi><mo>,</mo><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\Cl_{s,t}</annotation></semantics></math> for the Clifford algebra of a vector space over the real numbers with</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> generators squaring to -1</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> generators squaring to +1</p>
+</li>
+</ul>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../6/1/2/2165/content.html">complex numbers</a> regarded as an <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebra</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℍ</mi></mrow><annotation encoding="application/x-tex">\mathbb{H}</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../3/9/7/4/4793/content.html">quaternions</a> regarded as an <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebra</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕂</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>≔</mo><msub><mi>Mat</mi> <mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow></msub><mo stretchy="false">(</mo><mi>𝕂</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{K}[n] \coloneqq Mat_{n \times n}(\mathbb{K})</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../4/3/5/9/9534/content.html">matrix algebra</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \times n</annotation></semantics></math> matrices with <a class="existingWikiWord" href="../../../../../6/8/2/8/8286/content.html">coefficients</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕂</mi></mrow><annotation encoding="application/x-tex">\mathbb{K}</annotation></semantics></math>.</p>
+</li>
+</ul>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>For low dimensions of real Clifford algebras, there are the following isomorphisms of <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebras</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>≃</mo><mi>ℝ</mi><mo>⊕</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">
+  Cl_{0,1}
+  \simeq
+  \mathbb{R} \oplus \mathbb{R}
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>≃</mo><mi>ℝ</mi><mo stretchy="false">[</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  Cl_{1,1}
+   \simeq
+  \mathbb{R}[2]
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mn>1</mn><mo>,</mo><mn>0</mn></mrow></msub><mo>≃</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">
+   Cl_{1,0}
+    \simeq
+   \mathbb{C}
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mn>2</mn><mo>,</mo><mn>0</mn></mrow></msub><mo>≃</mo><mi>ℍ</mi></mrow><annotation encoding="application/x-tex">
+  Cl_{2,0} \simeq \mathbb{H}
+
+</annotation></semantics></math></div></div>
+<p>(e. g. <a href="#FigueroaOFarrill">Figueroa-O’Farrill, lemma32</a>)</p>
+<div class="num_prop" id="Smooth0TypeIsSheavesOnSmoothMfd">
+<h6 id="proposition_2">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>,</mo><mi>q</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">p,q \in \mathbb{N}</annotation></semantics></math> then there are the following <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a> of <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebras</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mi>q</mi><mo>+</mo><mn>2</mn><mo>,</mo><mi>p</mi></mrow></msub><mo>≃</mo><msub><mi>Cl</mi> <mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow></msub><msub><mo>⊗</mo> <mi>ℝ</mi></msub><msub><mi>Cl</mi> <mrow><mn>2</mn><mo>,</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">
+  Cl_{q+2,p} \simeq Cl_{p,q} \otimes_{\mathbb{R}} Cl_{2,0}
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mi>q</mi><mo>,</mo><mi>p</mi><mo>+</mo><mn>2</mn></mrow></msub><mo>≃</mo><msub><mi>Cl</mi> <mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow></msub><msub><mo>⊗</mo> <mi>ℝ</mi></msub><msub><mi>Cl</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">
+  Cl_{q,p+2} \simeq Cl_{p,q} \otimes_{\mathbb{R}} Cl_{0,2}
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mi>p</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>q</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>≃</mo><msub><mi>Cl</mi> <mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow></msub><msub><mo>⊗</mo> <mi>ℝ</mi></msub><msub><mi>Cl</mi> <mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">
+  Cl_{p+1,q+1} \simeq Cl_{p,q} \otimes_{\mathbb{R}} Cl_{1,1}
+
+</annotation></semantics></math></div></div>
+<p>(e.g. <a href="#LawsonMichelsohn89">Lawson &amp; Michelsohn 1989, Theorem 4.1</a> and <a href="#FigueroaOFarrill">Figueroa-O’Farrill, Lemma 2</a> for special cases where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> is zero, and <a href="#BudinichTrautman">Budinich &amp; Trautman 1988 19, Eqs. 7.8b and 7.9</a> for the general case)</p>
+<div class="num_prop" id="Smooth0TypeIsSheavesOnSmoothMfd">
+<h6 id="proposition_3">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>,</mo><msub><mi>n</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>n</mi> <mn>2</mn></msub><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n,n_1, n_2 \in \mathbb{N}</annotation></semantics></math> there are the following <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a> of <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebras</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo stretchy="false">[</mo><msub><mi>n</mi> <mn>1</mn></msub><mo stretchy="false">]</mo><msub><mo>⊗</mo> <mi>ℝ</mi></msub><mi>ℝ</mi><mo stretchy="false">[</mo><msub><mi>n</mi> <mn>2</mn></msub><mo stretchy="false">]</mo><mo>≃</mo><mi>ℝ</mi><mo stretchy="false">[</mo><msub><mi>n</mi> <mn>1</mn></msub><msub><mi>n</mi> <mn>2</mn></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}[n_1] \otimes_{\mathbb{R}} \mathbb{R}[n_2] \simeq \mathbb{R}[n_1 n_2]</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><msub><mo>⊗</mo> <mi>ℝ</mi></msub><mi>𝕂</mi><mo>≃</mo><mi>𝕂</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}[n] \otimes_{\mathbb{R}} \mathbb{K} \simeq \mathbb{K}[n]</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi><msub><mo>⊗</mo> <mi>ℝ</mi></msub><mi>ℂ</mi><mo>≃</mo><mi>ℂ</mi><mo>⊕</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C} \otimes_{\mathbb{R}} \mathbb{C} \simeq \mathbb{C} \oplus \mathbb{C}</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi><msub><mo>⊗</mo> <mi>ℝ</mi></msub><mi>ℍ</mi><mo>≃</mo><mi>ℂ</mi><mo stretchy="false">[</mo><mn>2</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{C} \otimes_{\mathbb{R}} \mathbb{H} \simeq \mathbb{C}[2]</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℍ</mi><msub><mo>⊗</mo> <mi>ℝ</mi></msub><mi>ℍ</mi><mo>≃</mo><mi>ℝ</mi><mo stretchy="false">[</mo><mn>4</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{H} \otimes_{\mathbb{R}} \mathbb{H} \simeq \mathbb{R}[4]</annotation></semantics></math></p>
+</li>
+</ul>
+</div>
+<p>(e.g. <a href="#LawsonMichelsohn89">Lawson-Michelsohn 89, proposition 4.2</a>)</p>
+<p>Now the incarnation in Clifford algebras of <a class="existingWikiWord" href="../../../../../7/5/2/0/10257/content.html">Bott periodicity</a> over the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a> is the following:</p>
+<div class="num_prop" id="RealBottPeriodicity">
+<h6 id="proposition_4">Proposition</h6>
+<p>For all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> there are <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a> of <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebras</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> as follows:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mi>n</mi><mo>+</mo><mn>8</mn><mo>,</mo><mn>0</mn></mrow></msub><mo>≃</mo><msub><mi>Cl</mi> <mrow><mi>n</mi><mo>,</mo><mn>0</mn></mrow></msub><msub><mo>⊗</mo> <mi>ℝ</mi></msub><msub><mi>Cl</mi> <mrow><mn>8</mn><mo>,</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">Cl_{n+8,0} \simeq Cl_{n,0} \otimes_{\mathbb{R}} Cl_{8,0}</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mn>0</mn><mo>,</mo><mi>n</mi><mo>+</mo><mn>8</mn></mrow></msub><mo>≃</mo><msub><mi>Cl</mi> <mrow><mn>0</mn><mo>,</mo><mi>n</mi></mrow></msub><msub><mo>⊗</mo> <mi>ℝ</mi></msub><msub><mi>Cl</mi> <mrow><mn>0</mn><mo>,</mo><mn>8</mn></mrow></msub></mrow><annotation encoding="application/x-tex">Cl_{0,n+8} \simeq Cl_{0,n} \otimes_{\mathbb{R}} Cl_{0,8}</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>where</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cl</mi> <mrow><mn>8</mn><mo>,</mo><mn>0</mn></mrow></msub><mo>≃</mo><msub><mi>Cl</mi> <mrow><mn>0</mn><mo>,</mo><mn>8</mn></mrow></msub><mo>≃</mo><mi>ℝ</mi><mo stretchy="false">[</mo><mn>16</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">Cl_{8,0} \simeq Cl_{0,8} \simeq \mathbb{R}[16]</annotation></semantics></math>.</li>
+</ul>
+</div>
+<p>(e.g. <a href="#LawsonMichelsohn89">Lawson-Michelsohn 89, theorem 4.3</a>)</p>
+<h3 id="as_a_superalgebra">As a superalgebra</h3>
+<p>While the <a class="existingWikiWord" href="../../../../0/3/4/4305/content.html">tensor algebra</a> of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> has a natural <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integer</a> grading, the quadratic relation collapses this to a natural <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">/</mo><mn>2</mn><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}/2\mathbb{Z}</annotation></semantics></math>-grading on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cl(M,q)</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo><mo>=</mo><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><msup><mo stretchy="false">)</mo> <mi>ev</mi></msup><mo>⊕</mo><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><msup><mo stretchy="false">)</mo> <mi>odd</mi></msup></mrow><annotation encoding="application/x-tex">
+  Cl(M,q) = Cl(M,q)^{ev} \oplus Cl(M,q)^{odd}
+
+</annotation></semantics></math></div>
+<p>When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is projective of rank <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>, each homogeneous piece is projective of rank <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn> <mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{d-1}</annotation></semantics></math>. When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> is nondegenerate, the even part of the Clifford algebra is also flat-locally isomorphic to a matrix ring or a sum of two matrix rings.</p>
+<p>One can view the Clifford algebra multiplication as a quantization of the commutative <a class="existingWikiWord" href="../../../../../9/3/4/2/2439/content.html">super algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋀</mo> <mi>R</mi></msub><mi>M</mi></mrow><annotation encoding="application/x-tex">\bigwedge_R M</annotation></semantics></math>.</p>
+<p><br/></p>
+<h3 id="RelationToOrthogonalLieAlgebras">Relation to orthogonal Lie algebras</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>Γ</mi> <mi>a</mi></msub><msubsup><mo stretchy="false">}</mo> <mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow> <mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">\{\Gamma_{a}\}_{a = 1}^n</annotation></semantics></math> be the generators of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-dimensional <a class="existingWikiWord" href="content.html">Clifford algebra</a> over the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a> corresponding to an <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a>/metric <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math>, hence with this <a class="existingWikiWord" href="../../../../../9/6/8/7/17869/content.html">anti-commutator</a>:</p>
+<div class="maruku-equation" id="eq:CliffordGeneratorsAnticommutator"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">{</mo><msub><mi>Γ</mi> <mi>a</mi></msub><mo>,</mo><mspace width="thickmathspace"></mspace><msub><mi>Γ</mi> <mi>b</mi></msub><mo maxsize="1.2em" minsize="1.2em">}</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><msub><mi>g</mi> <mrow><mi>a</mi><mi>b</mi></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \big\{
+    \Gamma_{a}
+    ,\;
+    \Gamma_b
+  \big\}
+  \;=\;
+  2 g_{a b}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Then:</p>
+<div class="num_prop">
+<h6 id="proposition_5">Proposition</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../9/7/6/4/4679/content.html">special orthogonal Lie algebra</a> via <a class="existingWikiWord" href="content.html">Clifford algebra</a>)</strong></p>
+<p>The elements of the Clifford algera <a class="maruku-eqref" href="#eq:CliffordGeneratorsAnticommutator">(1)</a> given by</p>
+<div class="maruku-equation" id="eq:CliffordLieAlgebra"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi>r</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub></mtd> <mtd><mo>≔</mo><mspace width="thickmathspace"></mspace><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo maxsize="1.2em" minsize="1.2em">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo maxsize="1.2em" minsize="1.2em">]</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub></mtd> <mtd><mo stretchy="false">|</mo></mtd> <mtd><msub><mi>a</mi> <mn>1</mn></msub><mo>≠</mo><msub><mi>a</mi> <mn>2</mn></msub></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><mo stretchy="false">|</mo></mtd> <mtd><mi>otherwise</mi></mtd></mtr></mtable></mrow></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \begin{aligned}
+    r_{a_1 a_2}
+    &amp; \coloneqq\;
+    \tfrac{1}{4}
+    \big[
+      \Gamma_{a_1},
+      \Gamma_{a_2} 
+    \big]
+    \\
+    &amp; =
+    \left\{
+    \array{
+      \tfrac{1}{2}
+      \Gamma_{a_1}
+      \Gamma_{a_2}
+      &amp;\vert&amp;
+      a_1 \neq a_2
+      \\
+      0 &amp;\vert&amp; otherwise
+    }
+    \right.
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>a</mi> <mn>2</mn></msub><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mi>n</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">a_1, a_2 \;\in\; \{1, \cdots, n\}</annotation></semantics></math>,</p>
+<p>and equipped with the <a class="existingWikiWord" href="../../../../../1/0/3/4/4301/content.html">commutator bracket</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo><mo>≔</mo><mi>a</mi><mi>b</mi><mo>−</mo><mi>b</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">[a,b] \coloneqq a b - b a</annotation></semantics></math></p>
+<p><a class="existingWikiWord" href="../../../../../7/2/1/8/8127/content.html">span</a> a <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebra</a> which is <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a> to the <a class="existingWikiWord" href="../../../../../9/7/6/4/4679/content.html">special orthogonal Lie algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔰𝔬</mi><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathfrak{so}(n,g)</annotation></semantics></math> with respect to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math>, in that their <a class="existingWikiWord" href="../../../../../1/0/3/4/4301/content.html">commutator</a> <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie bracket</a> is:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">[</mo><msub><mi>r</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mspace width="thinmathspace"></mspace><mo>,</mo><msub><mi>r</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><msub><mi>r</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo>−</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><msub><mi>r</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo>+</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><msub><mi>r</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>−</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><msub><mi>r</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub></mrow><annotation encoding="application/x-tex">
+  \big[
+    r_{a_1 a_2}
+    \,,
+    r_{b_1 b_2}
+  \big]
+  \;=\;
+    g_{a_2 b_1}
+    r_{a_1 b_2}
+    -
+    g_{a_1 b_1}
+    r_{a_2 b_2}
+    +
+    g_{a_2 b_2}
+    r_{b_1 a_1}
+    -
+    g_{a_1 b_2}
+    r_{b_1 a_2} 
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>First observe that</p>
+<div class="maruku-equation" id="eq:CliffordLieActionOnVectorsInComponents"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo maxsize="1.2em" minsize="1.2em">[</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo>,</mo><mspace width="thickmathspace"></mspace><msub><mi>Γ</mi> <mi>b</mi></msub><mo maxsize="1.2em" minsize="1.2em">]</mo></mtd> <mtd><mo>=</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo maxsize="1.2em" minsize="1.2em">{</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo>,</mo><mspace width="thickmathspace"></mspace><msub><mi>Γ</mi> <mi>b</mi></msub><mo maxsize="1.2em" minsize="1.2em">}</mo><mo>−</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo maxsize="1.2em" minsize="1.2em">{</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><mspace width="thickmathspace"></mspace><msub><mi>Γ</mi> <mi>b</mi></msub><mo maxsize="1.2em" minsize="1.2em">}</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub><mi>b</mi></mrow></msub><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>−</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><mi>b</mi></mrow></msub><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \begin{aligned}
+  \big[
+    \tfrac{1}{2}
+    \Gamma_{a_1} \Gamma_{a_2}
+    ,\;
+    \Gamma_b
+  \big]
+  &amp; 
+  = 
+  \tfrac{1}{2}
+  \Gamma_{a_1}
+  \big\{
+    \Gamma_{a_2},
+    \;
+    \Gamma_b
+  \big\}
+  - 
+  \tfrac{1}{2}
+  \big\{
+    \Gamma_{a_1},
+    \;
+    \Gamma_b
+  \big\}
+  \Gamma_{a_2}
+  \\
+  &amp; =
+  g_{a_2 b}
+  \Gamma_{a_1}
+  -
+  g_{a_1 b}
+  \Gamma_{a_2}
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>Here the first step may be thought of as the <em>graded</em> <a class="existingWikiWord" href="../../../../../6/3/5/4/4536/content.html">Jacobi identity</a> in the Clifford <a class="existingWikiWord" href="../../../../../0/4/4/2/2440/content.html">super Lie algebra</a>, but it is also immediately verified by inspection. The second step evaluates the defining anti-commutators <a class="maruku-eqref" href="#eq:CliffordLieActionOnVectorsInComponents">(3)</a>.</p>
+<p>With this we compute as follows, assuming, without restriction of generality, that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi> <mn>1</mn></msub><mo>≠</mo><msub><mi>a</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">a_1 \neq a_2</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi> <mn>1</mn></msub><mo>≠</mo><msub><mi>b</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">b_1 \neq b_2</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo maxsize="1.2em" minsize="1.2em">[</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo>,</mo><mspace width="thickmathspace"></mspace><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">]</mo></mtd> <mtd><mo>=</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo maxsize="1.8em" minsize="1.8em">[</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo>,</mo><mspace width="thinmathspace"></mspace><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo maxsize="1.2em" minsize="1.2em">]</mo><mo>,</mo><mspace width="thinmathspace"></mspace><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo maxsize="1.8em" minsize="1.8em">]</mo><mo>+</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo maxsize="1.8em" minsize="1.8em">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><mo maxsize="1.2em" minsize="1.2em">[</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo>,</mo><mspace width="thinmathspace"></mspace><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo maxsize="1.2em" minsize="1.2em">]</mo><mo maxsize="1.8em" minsize="1.8em">]</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo>−</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo>+</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub></mrow></msub><mo stretchy="false">]</mo><mo>−</mo><msub><mi>g</mi> <mrow><msub><mi>a</mi> <mn>1</mn></msub><msub><mi>b</mi> <mn>2</mn></msub></mrow></msub><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mrow><msub><mi>b</mi> <mn>1</mn></msub></mrow></msub><mo>,</mo><msub><mi>Γ</mi> <mrow><msub><mi>a</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">]</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    \big[
+      \tfrac{1}{4}
+      [\Gamma_{a_1}, \Gamma_{a_2}]
+      ,
+      \;
+      \tfrac{1}{4}
+      [\Gamma_{b_1}, \Gamma_{b_2}]
+    \big]
+    &amp; =
+    \tfrac{1}{4}
+    \Big[
+      \big[
+        \tfrac{1}{4}
+        [\Gamma_{a_1},\Gamma_{a_2}]
+        ,\,
+        \Gamma_{b_1} 
+      \big]
+      ,\,
+      \Gamma_{b_2}
+    \Big]
+    + 
+    \tfrac{1}{4}
+    \Big[
+      \Gamma_{b_1},
+      \big[
+        \tfrac{1}{4}
+        [\Gamma_{a_1},\Gamma_{a_2}]
+        ,\,
+        \Gamma_{b_2}
+      \big]
+    \Big]
+    \\
+    &amp; =    
+    g_{a_2 b_1}
+    \tfrac{1}{4}
+    [\Gamma_{a_1},\Gamma_{b_2}]
+    -
+    g_{a_1 b_1}
+    \tfrac{1}{4}
+    [\Gamma_{a_2},\Gamma_{b_2}]
+    +
+    g_{a_2 b_2}
+    \tfrac{1}{4}
+    [\Gamma_{b_1},\Gamma_{a_1}]
+    -
+    g_{a_1 b_2}
+    \tfrac{1}{4}
+    [\Gamma_{b_1}, \Gamma_{a_2}]
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>Here the first step is again the graded <a class="existingWikiWord" href="../../../../../6/3/5/4/4536/content.html">Jacobi identity</a> (and is again also immediely checked by inspection), while the second step uses <a class="maruku-eqref" href="#eq:CliffordLieActionOnVectorsInComponents">(3)</a>.</p>
+</div>
+<p><br/></p>
+<h3 id="relation_to__groups">Relation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spin</mi></mrow><annotation encoding="application/x-tex">Spin</annotation></semantics></math> groups</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> be a projective <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module of finite <a class="existingWikiWord" href="../../../../../9/4/3/5/5349/content.html">rank</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> be nondegenerate. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><msup><mo stretchy="false">)</mo> <mo>×</mo></msup></mrow><annotation encoding="application/x-tex">Cl(M,q)^\times</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../3/2/1/6/6123/content.html">group of units</a> of the Clifford algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cl(M,q)</annotation></semantics></math>.</p>
+<p>The <strong>Clifford group</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Γ</mi> <mrow><mi>M</mi><mo>,</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma_{M,q}(R)</annotation></semantics></math> is the subgroup of elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> for which twisted conjugation stabilizes the submodule <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>⊂</mo><mi>Cl</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M \subset Cl(M,q)</annotation></semantics></math>. Here, twisted conjugation is defined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>↦</mo><mi>x</mi><mi>y</mi><mi>α</mi><mo stretchy="false">(</mo><mi>x</mi><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">y \mapsto x y\alpha(x)^{-1}</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> is the automorphism of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CL</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CL(M,q)</annotation></semantics></math> induced by the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math> map on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>. Since twisted conjugation by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>-stabilizing elements amounts to reflection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>↦</mo><mi>y</mi><mo>−</mo><mn>2</mn><mfrac><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac><mi>x</mi></mrow><annotation encoding="application/x-tex">y \mapsto y - 2\frac{(x,y)}{q(x)}x</annotation></semantics></math>, there is a canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Γ</mi> <mrow><mi>M</mi><mo>,</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma_{M,q}(R) \to O(M,q)</annotation></semantics></math>, and the Clifford group is in fact a central extension of the orthogonal group by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi> <mo>×</mo></msup></mrow><annotation encoding="application/x-tex">R^\times</annotation></semantics></math>.</p>
+<p>The Clifford group is made of homogeneous elements in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">/</mo><mn>2</mn><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}/2\mathbb{Z}</annotation></semantics></math>-grading, and the subgroup of even elements is a normal subgroup of index two. One also has a <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinor</a> norm <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>:</mo><msub><mi>Γ</mi> <mrow><mi>M</mi><mo>,</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>R</mi> <mo>×</mo></msup></mrow><annotation encoding="application/x-tex">Q: \Gamma_{M,q}(R) \to R^\times</annotation></semantics></math> on the Clifford group, defined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>x</mi> <mi>t</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">Q(x) = x^t x</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>↦</mo><msup><mi>x</mi> <mi>t</mi></msup></mrow><annotation encoding="application/x-tex">x \mapsto x^t</annotation></semantics></math> is the anti-involution of the Clifford algebra defined by opposite multiplication in the tensor algebra.</p>
+<p>The <a class="existingWikiWord" href="../../../../../2/2/8/6/6822/content.html">Pin group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Pin</mi> <mrow><mi>M</mi><mo>,</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Pin_{M,q}(R)</annotation></semantics></math> is the group elements of the Clifford group with <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinor</a> norm 1. The <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">Spin group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Spin</mi> <mrow><mi>M</mi><mo>,</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Spin_{M,q}(R)</annotation></semantics></math> is the group of elements in the even subgroup of the Clifford group with <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinor</a> norm 1.</p>
+<p>The restriction of the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Γ</mi> <mrow><mi>M</mi><mo>,</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>M</mi><mo>,</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma_{M,q}(R) \to O(M,q)</annotation></semantics></math> to the Pin group may not be surjective, but it is for positive definite real vector spaces. The kernel is the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mu_2(R)</annotation></semantics></math> of elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> that square to 1. Similarly, the <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">Spin group</a> has a map to the special orthogonal group with kernel <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mu_2(R)</annotation></semantics></math>, but it may not be surjective in general.</p>
+<p>One can use base change to define the groups given above as functors on commutative <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-algebras.</p>
+<h3 id="AsQuantizedExteriorAlgebra">Relation to exterior algebra (quantization)</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product space</a>, the <a class="existingWikiWord" href="../../../../../7/7/5/6/6577/content.html">symbol map</a> (see there) constitutes an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> of the underlying <a class="existingWikiWord" href="../../../../../6/3/4/2/2436/content.html">super vector space</a>s of the Clifford algebra with the <a class="existingWikiWord" href="../../../../../7/5/9/1/1957/content.html">exterior algebra</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>.</p>
+<p>One may understand the Clifford algebra as the <a class="existingWikiWord" href="../../../../../4/0/1/2/2104/content.html">quantization</a> <a class="existingWikiWord" href="../../../../../7/5/9/1/1957/content.html">Grassmann algebra</a> induced from the <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a> regarded as an odd <a class="existingWikiWord" href="../../../../../0/3/1/2/2130/content.html">symplectic form</a>.</p>
+<h2 id="spinors">Spinors</h2>
+<p>For nondegenerate <a class="existingWikiWord" href="../../../../../8/6/1/7/7168/content.html">quadratic forms</a> on real vector spaces, <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinors</a>/<a class="existingWikiWord" href="../../../../../0/3/9/7/7930/content.html">spin representations</a> are distinguished linear representations of <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">Spin groups</a> that are not pulled back from the corresponding special orthogonal groups. In other words, the central element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math> acts nontrivially. They can be realized as restrictions of representations of the even parts of Clifford algebras. Since even parts of Clifford algebras are (up to complexification) the sum of one or two matrix rings, their representation theory is quite simple.</p>
+<p>The specific nature of spinor representations possible depends on the signature of the vector space modulo 8. This is a manifestation of Bott periodicity. One always has a Dirac spinor - the fundamental (spin) representation of the complexified Clifford algebra. In even dimensions, this splits into two Weyl spinors (called half-spin representations). One may also have real representations called Majorana spinors, and these may decompose into Majorana-Weyl spinors.</p>
+<p>There are infinite dimensional Clifford algebra constructions that appear in conformal field theory. One may extend the above discussion to topological <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules and continuous quadratic forms, and one obtains canonical central extensions of infinite dimensional groups and algebras by a relative determinant construction. Semi-infinite wedge spaces are spinor modules for Clifford algebras of quadratic Tate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules.</p>
+<h2 id="warnings">Warnings</h2>
+<p>There is a difference of sign convention between differential geometers (following Atiyah) and everyone else.</p>
+<p>Clifford algebras are often defined using bilinear forms instead of quadratic forms (and one often sees incorrect definitions of quadratic forms in terms of bilinear forms). Such definitions will yield wrong (or boring) objects when 2 is not invertible.</p>
+<p>Special orthogonal groups are often defined as the kernel of the determinant map on the corresponding orthogonal groups, but in characteristic 2, the determinant is trivial, while the Clifford grading (called the Dickson invariant) is not.</p>
+<p>The Clifford group is sometimes defined without the twist in the conjugation, and this means the map to the orthogonal group may not be a surjection, and the action on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is by negative reflections.</p>
+<p>The spinor norm is sometimes defined with the opposite sign.</p>
+<p>Special orthogonal groups over the reals are sometimes defined to be the connected component of the identity in the orthogonal group. In indefinite signature, this defines an index two subgroup of the special orthogonal group.</p>
+<p>Spin groups in signature <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(m,n)</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>,</mo><mi>n</mi><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">m,n \geq 2</annotation></semantics></math> have fundamental groups of order two. They are simply connected when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> is at most one.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/6/8/7/17867/content.html">geometric algebra</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/0/7/7/7703/content.html">Clifford module</a>,</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../0/0/6/16005/content.html">Clifford bundle</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/8/0/0/10086/content.html">Clifford module bundle</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/5/7/9/9758/content.html">Fierz identity</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/9/7/4/4794/content.html">spin geometry</a>, <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">spin group</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/3/7/9/9730/content.html">2-Clifford algebra</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/8/6/8/18686/content.html">Feynman slash notation</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/1/8/3/23819/content.html">Clifford ring</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../8/7/2/22785/content.html">Pythagorean ring</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The notion of Clifford algebra is due to</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/1/7/1/11714/content.html">William Clifford</a>, <em>Applications of Grassmann’s extensive algebra</em>, American Journal of Mathematics <strong>1</strong> 4 (1878) 350-358 [<a href="https://doi.org/10.2307/2369379">doi:10.2307/2369379</a>, <a href="https://www.jstor.org/stable/2369379">jstor:2369379</a>]
+<blockquote>
+<p>(referring to <a class="existingWikiWord" href="../../../../../3/1/7/1/11713/content.html">Hermann Grassmann</a>‘s <em><a class="existingWikiWord" href="../../../../../4/2/3/6/16324/content.html">Ausdehnungslehre</a></em>)</p>
+</blockquote>
+</li>
+</ul>
+<p>Further early discussion:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/7/2/8/8273/content.html">Emil Artin</a>, §V.4 in: <em><a class="existingWikiWord" href="../../../../6/5/6/6565/content.html">Geometric Algebra</a></em>, Wiley 1957 (1988) [<a href="https://www.wiley.com/en-ae/Geometric+Algebra-p-9781118164549">ISBN:978-1-118-16454-9</a>, <a href="https://en.wikipedia.org/wiki/Geometric_Algebra_(book)">Wikipedia entry</a>, <a href="https://archive.org/details/geometricalgebra033556mbp/page/n5/mode/2upa">ark:/13960/t4nk37034</a>]</p>
+</li>
+<li id="Cartan66">
+<p><a class="existingWikiWord" href="../../../../../2/7/1/3/3172/content.html">Élie Cartan</a>, <em>Theory of Spinors</em>, Dover, (1966)</p>
+</li>
+</ul>
+<p>Brief introductions:</p>
+<ul>
+<li id="CastellaniDAuriaFre">
+<p><a class="existingWikiWord" href="../../../../../9/0/5/2/2509/content.html">Leonardo Castellani</a>, <a class="existingWikiWord" href="../../../../../0/1/5/2/2510/content.html">Riccardo D'Auria</a>, <a class="existingWikiWord" href="../../../../../1/1/5/2/2511/content.html">Pietro Fré</a>, Ch II.7 in: <em><a class="existingWikiWord" href="../../../../../8/0/5/2/2508/content.html">Supergravity and Superstrings - A Geometric Perspective</a></em>, World Scientific (1991) [<a href="https://doi.org/10.1142/0224">doi:10.1142/0224</a>, toc: <a class="existingWikiWord" href="/nlab/files/CDF91-TOC.pdf" title="pdf">pdf</a>, chII.7: <a class="existingWikiWord" href="/nlab/files/CastellaniDAuriaFre-ChII7.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/5/8/7/17852/content.html">Jean Gallier</a>, <em>Clifford Algebras, Clifford Groups, and a Generalization of the Quaternions</em> (<a href="https://arxiv.org/abs/0805.0311">arXiv:0805.0311</a>)</p>
+</li>
+<li>
+<p>Marc Lachieze-Rey, <em>Spin and Clifford algebras, an introduction</em> (<a href="https://arxiv.org/abs/1007.2481">arXiv:1007.2481</a>)</p>
+</li>
+</ul>
+<p>Standard textbook accounts:</p>
+<ul>
+<li id="LawsonMichelsohn89">
+<p><a class="existingWikiWord" href="../../../../../9/6/2/0/10269/content.html">H. Blaine Lawson</a>, <a class="existingWikiWord" href="../../../../../8/6/2/0/10268/content.html">Marie-Louise Michelsohn</a>, <em><a class="existingWikiWord" href="../../../../../7/6/2/0/10267/content.html">Spin geometry</a></em>, Princeton University Press (1989) [<a href="https://press.princeton.edu/books/hardcover/9780691085425/spin-geometry-pms-38-volume-38">ISBN 9780691085425</a>]</p>
+</li>
+<li id="Lounesto">
+<p><a class="existingWikiWord" href="../../../../../1/5/8/7/17851/content.html">Pertti Lounesto</a>, <em>Clifford Algebras and Spinors</em>, London Mathematical Society <strong>286</strong>, Cambridge University Press (2001) [<a href="https://doi.org/10.1017/CBO9780511526022">doi:10.1017/CBO9780511526022</a>]</p>
+</li>
+<li id="BudinichTrautman">
+<p>P. Budinich, Andrej Trautman: <em>The Spinorial Chessboard</em>, Springer (1998) [<a href="https://doi.org/10.1007/978-3-642-83407-3">doi:10.1007/978-3-642-83407-3</a>]</p>
+</li>
+<li>
+<p>Jayme Vaz, Jr., Roldão da Rocha, <em>An Introduction to Clifford algebras and Spinors</em>, Oxford University Press, 2019. xiv+242 pp. ISBN: 978-0-19-883628-5, 978-0-19-878292-6. <a href="https://doi.org/10.1093/acprof:oso/9780198782926.001.0001">DOI</a>.</p>
+</li>
+<li>
+<p>D. J. H. Garling, <em>Clifford Algebras: an Introduction</em>, London Mathematical Society Student Texts, 78. Cambridge University Press, Cambridge, 2011. viii+200 pp. ISBN: 978-1-107-42219-3. <a href="https://doi.org/10.1017/CBO9780511972997">DOI</a>.</p>
+</li>
+<li>
+<p>Jacques Helmstetter, Artibano Micali, <em>Quadratic Mappings and Clifford Algebras</em>, Birkhäuser Verlag, Basel, 2008. xiv+504 pp. ISBN: 978-3-7643-8605-4. <a href="https://doi.org/10.1007/978-3-7643-8606-1">DOI</a>.</p>
+</li>
+</ul>
+<p><a class="existingWikiWord" href="../../../../../0/5/6/8/8650/content.html">Mathematica</a> packages for Clifford algebra:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/2/5/6/16527/content.html">Ulf Gran</a>: <em>Gamma</em> (2014) [<a href="https://fy.chalmers.se/~ulfgran/GAMMA/GAMMA.m">Gamma.m</a>, <a class="existingWikiWord" href="/nlab/files/Gamma.m" title="https://fy.chalmers.se/~ulfgran/gamma.htm">Gamma.m</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/7/5/6/6578/content.html">Eckhard Meinrenken</a>: <em>Clifford algebras and Lie groups</em>, Ergebn. Mathem. &amp; Grenzgeb., Springer (2013) [<a href="https://doi.org/10.1007/978-3-642-36216-3">doi:10.1007/978-3-642-36216-3</a>]</li>
+</ul>
+<p>On <a class="existingWikiWord" href="../../../../../7/5/2/0/10257/content.html">Bott periodicity</a> for Clifford algebras:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/4/5/7/17541/content.html">Dexter Chua</a>: <em>Clifford Algebras and Bott Periodicity</em> [<a href="https://dec41.user.srcf.net/exp/clifford/clifford.pdf">pdf</a>]</p>
+</li>
+<li>
+<p>Ben Slater: <em>Clifford Algebras and Bott Periodicity</em>, presentation at <em><a href="https://math.uchicago.edu/~may/REU2023/REUPapers/Slater.pdf">REU 2023</a></em>, Chicago (2023) [<a href="https://math.uchicago.edu/~may/REU2023/REUPapers/Slater.pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>For a program that promotes the use of Clifford algebra as a good expositional tool in introductory <a class="existingWikiWord" href="../../../../3/3/6/6335/content.html">mechanics</a> see <em><a class="existingWikiWord" href="../../../../6/5/6/6565/content.html">Geometric Algebra</a></em>.</p>
+<p>See also the discussion of <a class="existingWikiWord" href="../../../../../1/3/7/7/17731/content.html">Majorana spinors</a></p>
+<ul>
+<li id="FigueroaOFarrill"><a class="existingWikiWord" href="../../../../../3/4/8/6/6843/content.html">José Figueroa-O'Farrill</a>, <em>Majorana spinors</em> (<a href="http://www.maths.ed.ac.uk/~jmf/Teaching/Lectures/Majorana.pdf">pdf</a>)</li>
+</ul>
+<p>On <a class="existingWikiWord" href="../../../../../2/5/2/3/3252/content.html">subgroups</a> of Clifford algebras reminiscent of <a class="existingWikiWord" href="../../../../../2/3/3/4/4332/content.html">gauge groups</a> of relevance in the <a class="existingWikiWord" href="../../../../../4/1/8/3/3814/content.html">standard model of particle physics</a> and <a class="existingWikiWord" href="../../../../../1/4/2/1/1241/content.html">grand unified theories</a> thereof:</p>
+<ul>
+<li id="Wilson20">
+<p><a class="existingWikiWord" href="../../../../../9/1/4/0/20419/content.html">Robert A. Wilson</a>, <em>A group-theorist’s perspective on symmetry groups in physics</em> (<a href="https://arxiv.org/abs/2009.14613">arXiv:2009.14613</a>)</p>
+</li>
+<li id="Wilson21">
+<p><a class="existingWikiWord" href="../../../../../9/1/4/0/20419/content.html">Robert A. Wilson</a>, <em>On the Problem of Choosing Subgroups of Clifford Algebras for Applications in Fundamental Physics</em>, Adv. Appl. Clifford Algebras 31, 59 (2021) (<a href="https://doi.org/10.1007/s00006-021-01160-5">doi:10.1007/s00006-021-01160-5</a>)</p>
+</li>
+</ul>
+<p>(For similar investigations, see also <a href="../../../../../2/4/5/0/10542/content.html#ReferencesRelationStandardModel">here</a> at <em><a class="existingWikiWord" href="../../../../../2/4/5/0/10542/content.html">Albert algebra</a></em>.)</p>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,401 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Kendall tau distance in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Kendall tau distance
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>An adaptation of the <span class="newWikiWord">Kendall tau rank correlation<a href="/nlab/new/Kendall+tau+rank+correlation">?</a></span>, the <em>Kendall tau distance</em> between two <a class="existingWikiWord" href="../../../../../1/8/3/3/3381/content.html">permutations</a> is the <a class="existingWikiWord" href="../../../../../5/7/1/7/7175/content.html">minimum</a> <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">number</a> of <a class="existingWikiWord" href="../../../../../3/2/4/2/22423/content.html">transpositions</a> (swaps) of <em>adjacent</em> elements needed to turn one into the other. This quantity can also be defined as the total number of <span class="newWikiWord">discordant pairs<a href="/nlab/new/discordant+pairs">?</a></span> between the two <a class="existingWikiWord" href="../../../../../1/8/3/3/3381/content.html">permutations</a>.</p>
+<p>(This is in contrast to the <a class="existingWikiWord" href="../../../../../1/3/4/2/22431/content.html">Cayley distance</a> which counts the minimum number of <a class="existingWikiWord" href="../../../../../3/2/4/2/22423/content.html">transpositions</a> of any pairs of elements, not necessarily adjacent.)</p>
+<p>This quantity is also referred to as the <em>bubble sort distance</em>, since bubble sorting algorithms repeatedly iterate over a list and swap adjacent elements if they are out of order.</p>
+<h2 id="definition">Definition</h2>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> consider the <a class="existingWikiWord" href="../../../../../5/5/7/9/19755/content.html">symmetric group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sym(n)</annotation></semantics></math> with its <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> as a <a class="existingWikiWord" href="../../../../../1/2/4/2/22421/content.html">finitely generated group</a> exhibited by the <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite set</a> of <a class="existingWikiWord" href="../../../../../5/8/6/9/9685/content.html">generators</a> given by the <em>adjacent</em> <a class="existingWikiWord" href="../../../../../3/2/4/2/22423/content.html">transposition permutations</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Gen</mi><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">{</mo><msub><mi>σ</mi> <mrow><mi>i</mi><mo>,</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mspace width="thinmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mn>1</mn><mo>≤</mo><mi>i</mi><mo>&lt;</mo><mi>n</mi><mo maxsize="1.2em" minsize="1.2em">}</mo><mspace width="thickmathspace"></mspace><mo>⊂</mo><mspace width="thickmathspace"></mspace><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Gen
+  \;\coloneqq\;
+  \big\{
+    \sigma_{i,i+1}
+    \,\vert\,
+    1 \leq i \lt n
+  \big\}
+  \;\subset\;
+  Sym(n)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Then the <em>Kendall tau distance</em> (<a href="#Kendall1938">Kendall 1938</a>, see also <a href="#Diaconis88">Diaconis 88, p. 112</a>) is the <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">distance</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sym(n)</annotation></semantics></math> which is the <a class="existingWikiWord" href="../../../../../2/2/4/2/22422/content.html">graph distance</a> of the corresponding <a class="existingWikiWord" href="../../../../../7/2/5/9/19527/content.html">Cayley graph</a>, hence the <a class="existingWikiWord" href="../../../../9/1/0/196/content.html">function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>K</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>ℕ</mi><mo>↪</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">
+  d_K(-,-)
+  \;\colon\;
+   Sym(n) \times Sym(n)
+ \longrightarrow
+ \mathbb{N}
+    \hookrightarrow
+  \mathbb{R} 
+
+</annotation></semantics></math></div>
+<p>which sends any <a class="existingWikiWord" href="../../../../../9/1/9/8/8919/content.html">pair</a> of <a class="existingWikiWord" href="../../../../../1/8/3/3/3381/content.html">permutations</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>σ</mi> <mn>2</mn></msub><mo>∈</mo><mi>Sym</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_1, \sigma_2 \in Sym(n)</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../5/7/1/7/7175/content.html">minimum</a> <a class="existingWikiWord" href="../../../../../9/1/2/1/11219/content.html">number</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo stretchy="false">(</mo><msub><mi>σ</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>σ</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">d(\sigma_1, \sigma_2) \in \mathbb{N}</annotation></semantics></math> of adjacent <a class="existingWikiWord" href="../../../../../3/2/4/2/22423/content.html">transpositions</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi> <mrow><msub><mi>i</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>i</mi> <mn>1</mn></msub><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>σ</mi> <mrow><msub><mi>i</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>i</mi> <mn>2</mn></msub><mo>+</mo><mn>1</mn></mrow></msub><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mi>σ</mi> <mrow><msub><mi>i</mi> <mi>d</mi></msub><mo>,</mo><msub><mi>i</mi> <mi>d</mi></msub><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\sigma_{i_1, i_1 + 1}, \sigma_{i_2, i_2 + 1}, \cdots, \sigma_{i_d, i_d+1}</annotation></semantics></math> such that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi> <mn>2</mn></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>σ</mi> <mrow><msub><mi>i</mi> <mi>d</mi></msub><mo>,</mo><msub><mi>i</mi> <mi>d</mi></msub><mo>+</mo><mn>1</mn></mrow></msub><mo>∘</mo><mi>⋯</mi><mo>∘</mo><msub><mi>σ</mi> <mrow><msub><mi>i</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>i</mi> <mn>2</mn></msub><mo>+</mo><mn>1</mn></mrow></msub><mo>∘</mo><msub><mi>σ</mi> <mrow><msub><mi>i</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>i</mi> <mn>1</mn></msub><mo>+</mo><mn>1</mn></mrow></msub><mo>∘</mo><msub><mi>σ</mi> <mn>1</mn></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \sigma_2
+  \;=\;
+  \sigma_{i_d, i_d+1}
+  \circ
+  \cdots
+  \circ
+  \sigma_{i_2, i_2 + 1}
+  \circ
+  \sigma_{i_1, i_1 + 1}
+  \circ
+  \sigma_1
+  \,.
+
+</annotation></semantics></math></div>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>∈</mo><msub><mi>ℝ</mi> <mrow><mo>≥</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\beta \in \mathbb{R}_{\geq 0}</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../9/6/7/4/4769/content.html">exponential</a> of this distance weighted by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">- \beta</annotation></semantics></math> is known as the <em>Mallows kernel</em>:</p>
+<div class="maruku-equation" id="eq:MallowsKernel"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>σ</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>σ</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>exp</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>β</mi><msub><mi>d</mi> <mi>K</mi></msub><mo stretchy="false">(</mo><msub><mi>σ</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>σ</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  (\sigma_1,\sigma_2)
+  \;\mapsto\;
+  \exp
+  \big(
+    - \beta d_K(\sigma_1, \sigma_2)
+  \big)
+
+</annotation></semantics></math></div>
+<h2 id="properties">Properties</h2>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>The Mallows kernel <a class="maruku-eqref" href="#eq:MallowsKernel">(1)</a> is <a class="existingWikiWord" href="../../../../../7/2/8/5/5827/content.html">positive definite</a> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\beta \geq 0</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>(<a href="#JiaoVert18">Jiao-Vert 18, Theorem 1</a>)</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/4/2/22431/content.html">Cayley distance</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="content.html">Mallows kernel</a>,</p>
+<p><a class="existingWikiWord" href="../../../../../3/4/4/2/22443/content.html">Cayley distance kernel</a></p>
+<p><a class="existingWikiWord" href="../../../../../9/6/4/6/26469/content.html">Markov kernel</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/3/4/2/22439/content.html">kernel method</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The distance function is due to:</p>
+<ul>
+<li id="Kendall1938"><a class="existingWikiWord" href="../../../../../9/2/4/2/22429/content.html">Maurice Kendall</a>, <em>A new measure of rank correlation</em>, Biometrika, Volume 30, Issue 1-2, June 1938, Pages 81–93 (<a href="https://doi.org/10.1093/biomet/30.1-2.81">doi:10.1093/biomet/30.1-2.81</a>)</li>
+</ul>
+<p>The corresponding exponential kernel is named after</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/3/4/2/22430/content.html">C. L. Mallows</a>, <em>Non-Null Ranking Models. I</em>, Biometrika Vol. 44, No. 1/2 (Jun., 1957), pp. 114-130 (<a href="https://www.jstor.org/stable/2333244">jstor:2333244</a>)</li>
+</ul>
+<p>Textbook account:</p>
+<ul>
+<li id="Diaconis88"><a class="existingWikiWord" href="../../../../../2/9/5/6/16592/content.html">Persi Diaconis</a>, Chapter 6B of: <em>Group Representations in Probability and Statistics</em>, IMS Lecture Notes Monogr. Ser., 11: 198pp. (1988) (<a href="https://www.jstor.org/stable/i397389">jstor:i397389</a>, <a href="https://projecteuclid.org/ebooks/institute-of-mathematical-statistics-lecture-notes-monograph-series/Group-representations-in-probability-and-statistics/toc/10.1214/lnms/1215467407">ISBN: 0940600145</a>, <a href="https://jdc.math.uwo.ca/M9140a-2012-summer/Diaconis.pdf">pdf</a>)</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Kendall_tau_distance">Kendall tau distance</a></em></p>
+</li>
+<li>
+<p>Cicirello_2020, <em>Kendall tau sequence distance: Extending Kendall tau from ranks to sequences</em>, EAI Endorsed Transactions on Industrial Networks and Intelligent Systems, vol. 7, no.23, (<a href="http://dx.doi.org/10.4108/eai.13-7-2018.163925">DOI=10.4108/eai.13-7-2018.163925</a>)</p>
+</li>
+</ul>
+<p>Review and <a class="existingWikiWord" href="../../../../../0/8/9/6/6980/content.html">proof</a> that the exponentiated negative Kendall tau distance (the <a class="existingWikiWord" href="content.html">Mallows kernel</a>) is a <a class="existingWikiWord" href="../../../../../7/2/8/5/5827/content.html">positive definite bilinear form</a>:</p>
+<ul>
+<li id="JiaoVert18"><a class="existingWikiWord" href="../../../../../7/2/4/2/22427/content.html">Yunlong Jiao</a>, <a class="existingWikiWord" href="../../../../../8/2/4/2/22428/content.html">Jean-Philippe Vert</a>, <em>The Kendall and Mallows Kernels for Permutations</em>, IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 40, no. 7, pp. 1755-1769, 1 July 2018 (<a href="https://doi.org/10.1109/TPAMI.2017.2719680">doi:10.1109/TPAMI.2017.2719680</a>, <a href="https://hal.archives-ouvertes.fr/hal-01279273/document">hal:01279273</a>)</li>
+</ul>
+<p>Discussion of weighted variants:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/2/4/2/22427/content.html">Yunlong Jiao</a>, <a class="existingWikiWord" href="../../../../../8/2/4/2/22428/content.html">Jean-Philippe Vert</a>, <em>The Weighted Kendall and High-order Kernels for Permutations</em>, Proceedings of the 35th International Conference on Machine Learning, PMLR 80:2314-2322, 2018 (<a href="https://arxiv.org/abs/1802.08526">arXiv:1802.08526</a>, <a href="http://proceedings.mlr.press/v80/jiao18a.html">mlr:v80/jiao18a</a>, <a href="https://hal.inria.fr/hal-01717385">hal:hal-01717385</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

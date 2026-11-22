@@ -1,0 +1,583 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Lie differentiation in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Lie differentiation
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#ForDeformationContexts">For deformation contexts</a></li>
+<li><a href="#ForCohesiveContexts">For cohesive contexts</a></li>
+</ul>
+<li><a href="#Examples">Examples</a></li>
+<ul>
+<li><a href="#examples_of_contexts_for_lie_differentiation">Examples of contexts for Lie differentiation</a></li>
+<ul>
+<li><a href="#dggeometry">dg-Geometry</a></li>
+<li><a href="#ExampleContextSyntheticDifferential">Synthetic-differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids</a></li>
+</ul>
+<li><a href="#examples_of_lie_differentiation">Examples of Lie differentiation</a></li>
+<ul>
+<li><a href="#of_a_lie_group">Of a Lie group</a></li>
+<li><a href="#of_a_lie_groupoid">Of a Lie groupoid</a></li>
+</ul>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Lie differentiation</em> is the process reverse to <a class="existingWikiWord" href="../../../../../7/5/0/0/57/content.html">Lie integration</a>. It sends a <a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie group</a> to its <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebra</a> and more generally a <a class="existingWikiWord" href="../../../../3/0/0/35/content.html">Lie groupoid</a> to its <a class="existingWikiWord" href="../../../../5/0/0/55/content.html">Lie algebroid</a> and a <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">smooth ∞-group</a> to its <a class="existingWikiWord" href="../../../../../4/9/0/0/94/content.html">L-∞ algebra</a>.</p>
+<ul>
+<li>
+<p>For the moment, for ordinary <a class="existingWikiWord" href="../../../../../8/3/0/0/38/content.html">Lie theory</a> see at <em><a class="existingWikiWord" href="../../../../../0/5/0/0/50/content.html">Lie's three theorems</a></em>.</p>
+</li>
+<li>
+<p>For <a class="existingWikiWord" href="../../../../../7/2/4/4/4427/content.html">infinity-Lie theory</a> see at <em><a href="../../../../../4/2/5/5/5524/content.html#LieDifferentiation">synthetic differential infinity-groupoid – Lie differentiation</a></em> .</p>
+</li>
+</ul>
+<h2 id="definition">Definition</h2>
+<p>A formalization of the notion Lie differentiation in <a class="existingWikiWord" href="../../../../../9/9/2/2/2299/content.html">higher geometry</a> has been given in (<a href="#Lurie">Lurie</a>), inspired by and building on results discussed at <em><a class="existingWikiWord" href="../../../../../2/6/0/6/6062/content.html">model structure for L-∞ algebras</a></em>. This we discuss in</p>
+<ul>
+<li><a href="#ForDeformationContexts">For deformation contexts</a></li>
+</ul>
+<p>We then specialize this to those <em><a class="existingWikiWord" href="../../../../0/3/9/9305/content.html">deformation contexts</a></em>, def. <a class="maruku-ref" href="#DeformationContext"></a>, that arise in the formalization of <a class="existingWikiWord" href="../../../../../7/0/3/9/9307/content.html">higher differential geometry</a> by <a class="existingWikiWord" href="../../../../../1/6/8/5/5861/content.html">differential cohesion</a>:</p>
+<ul>
+<li><a href="#ForCohesiveContexts">For cohesive contexts</a></li>
+</ul>
+<p>This is the context in which one has a natural formulation of ordinary Lie differentiation of ordinary <a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie groups</a> to <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebras</a> and its generalization to the Lie differentiation of <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">smooth ∞-groups</a> to <a class="existingWikiWord" href="../../../../../4/9/0/0/94/content.html">L-∞ algebras</a>. See the discussion of <em><a href="#Examples">Examples</a></em> below for more.</p>
+<h3 id="ForDeformationContexts">For deformation contexts</h3>
+<div class="num_defn" id="DeformationContext">
+<h6 id="definition_2">Definition</h6>
+<p>A <strong><a class="existingWikiWord" href="../../../../0/3/9/9305/content.html">deformation context</a></strong> is an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Sp_*</annotation></semantics></math> such that</p>
+<ol>
+<li>
+<p>it is a <a class="existingWikiWord" href="../../../../../../../missing.html">presentable (∞,1)-category</a>;</p>
+</li>
+<li>
+<p>it contains an <a class="existingWikiWord" href="../../../../../../../missing.html">initial object</a></p>
+</li>
+</ol>
+<p>and</p>
+<ul>
+<li>
+<p>equipped with a <a class="existingWikiWord" href="../../../../9/1/0/195/content.html">set</a> of <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><mo>∈</mo><mi>Stab</mi><mo stretchy="false">(</mo><msubsup><mi>Sp</mi> <mo>*</mo> <mi>op</mi></msubsup><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">
+  \{E_\alpha \in Stab(Sp_*^{op})\}
+
+</annotation></semantics></math></div>
+<p>in the <a class="existingWikiWord" href="../../../../../1/2/1/3/3121/content.html">stabilization</a> of the <a class="existingWikiWord" href="../../../../../../../missing.html">opposite (∞,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>op</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{op}</annotation></semantics></math>.</p>
+</li>
+</ul>
+</div>
+<p>This is (<a href="#Lurie">Lurie, def. 1.1.3</a>) together with the assumption of a terminal object in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>op</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{op}</annotation></semantics></math> stated on p.9 (and later implicialy used).</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>Definition <a class="maruku-ref" href="#DeformationContext"></a> is meant to be read as follows:</p>
+<p>We think of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Sp_*</annotation></semantics></math> as an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> of <a class="existingWikiWord" href="../../../../../9/0/5/0/509/content.html">pointed</a> <a class="existingWikiWord" href="../../../../3/1/2/2135/content.html">spaces</a> in some <a class="existingWikiWord" href="../../../../../9/9/2/2/2299/content.html">higher geometry</a>. The point is the initial object. We think of the formal duals of the objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><msub><mo stretchy="false">}</mo> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\{E_\alpha\}_\alpha</annotation></semantics></math> as a set of generating <a class="existingWikiWord" href="../../../../7/8/4/4875/content.html">infinitesimally thickened points</a> (points in <a class="existingWikiWord" href="../../../../../8/9/6/8/8698/content.html">formal geometry</a>).</p>
+</div>
+<p>The following construction generates the “<a class="existingWikiWord" href="../../../../../8/1/7/5/5718/content.html">jets</a>” induced by the generating infinitesimally thickened points.</p>
+<div class="num_defn" id="SmallObjects">
+<h6 id="definition_3">Definition</h6>
+<p>Given a <a class="existingWikiWord" href="../../../../0/3/9/9305/content.html">deformation context</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>Sp</mi> <mo>*</mo></msub><mo>,</mo><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><msub><mo stretchy="false">}</mo> <mi>α</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Sp_*, \{E_\alpha\}_\alpha)</annotation></semantics></math>, we say</p>
+<ul>
+<li>
+<p>a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>op</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{op}</annotation></semantics></math> is an <strong>elementary morphism</strong> if it is the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber</a> to a map into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ω</mi> <mrow><mn>∞</mn><mo>−</mo><mi>n</mi></mrow></msup><msub><mi>E</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\Omega^{\infty -n}E_\alpha</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{Z}</annotation></semantics></math> and some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>a morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>op</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{op}</annotation></semantics></math> is a <strong>small morphism</strong> if it is the composite of <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finitely</a> many elementary morphisms.</p>
+</li>
+</ul>
+<p>We write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup><mo>↪</mo><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">
+  Sp_*^{inf} \hookrightarrow Sp_*
+
+</annotation></semantics></math></div>
+<p>for the full <a class="existingWikiWord" href="../../../../../../../missing.html">sub-(∞,1)-category</a> on those objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> for which the essentially unique map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">A \to *</annotation></semantics></math> is small.</p>
+</div>
+<p>(<a href="#Lurie">Lurie, def. 1.1.8</a>)</p>
+<div class="num_defn" id="FormalModuliProblem">
+<h6 id="definition_4">Definition</h6>
+<p>Given a <a class="existingWikiWord" href="../../../../0/3/9/9305/content.html">deformation context</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>Sp</mi> <mo>*</mo></msub><mo>,</mo><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><msub><mo stretchy="false">}</mo> <mi>α</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Sp_*, \{E_\alpha\}_\alpha)</annotation></semantics></math>, def. <a class="maruku-ref" href="#DeformationContext"></a>, the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> of <strong><a class="existingWikiWord" href="../../../../../6/0/3/9/9306/content.html">formal moduli problems</a></strong> over it is the full <a class="existingWikiWord" href="../../../../../../../missing.html">sub-(∞,1)-category</a> of the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category of (∞,1)-presheaves</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{inf}</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>FormalModuli</mi> <mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow></msup><mo>↪</mo><msub><mi>PSh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  FormalModuli^{Sp_*}
+  \hookrightarrow
+  PSh_\infty(Sp_*^{inf})
+
+</annotation></semantics></math></div>
+<p>on those <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>→</mo><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">X \colon (Sp_*^{inf})^{op} \to \infty Grpd</annotation></semantics></math> such that</p>
+<ol>
+<li>
+<p>over the <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a> they are <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible</a>: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>≃</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">X(*) \simeq *</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>they sends <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-colimits</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{inf}</annotation></semantics></math> to <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-limits</a> in <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a>.</p>
+</li>
+</ol>
+</div>
+<p>(<a href="#Lurie">Lurie, def. 1.1.14</a>)</p>
+<p>(<a href="#Lurie">Lurie, remark 1.1.7</a>).</p>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>This means that a “formal deformation problem” is a <a class="existingWikiWord" href="../../../../3/1/2/2135/content.html">space</a> in <a class="existingWikiWord" href="../../../../../9/9/2/2/2299/content.html">higher geometry</a> whose geometric structure is detected by the “test spaces” in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{inf}</annotation></semantics></math> in a way that respects gluing (<a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a>) in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Sp</mi> <mo>*</mo> <mi>inf</mi></msubsup></mrow><annotation encoding="application/x-tex">Sp_*^{inf}</annotation></semantics></math> as given by <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-colimits</a> there. The first condition requires that there is an essentially unique such probe by the point, hence that these higher geometric space have essentially a single global point. This is the condition that reflects the infinitesimal nature of the deformation problem.</p>
+</div>
+<p>We will often just write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Sp_*</annotation></semantics></math> for a deformation context <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>Sp</mi> <mo>*</mo></msub><mo>,</mo><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><msub><mo stretchy="false">}</mo> <mi>α</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Sp_*, \{E_\alpha\}_\alpha)</annotation></semantics></math>, when the objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{E_\alpha\}</annotation></semantics></math> are understood.</p>
+<div class="num_prop" id="FormalModuliIsPresentableCategory">
+<h6 id="proposition">Proposition</h6>
+<p>The <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>FormalModuli</mi> <mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow></msup></mrow><annotation encoding="application/x-tex">FormalModuli^{Sp_*}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../6/0/3/9/9306/content.html">formal moduli problems</a> is a <a class="existingWikiWord" href="../../../../../../../missing.html">presentable (∞,1)-category</a>. Moreover it is a <a class="existingWikiWord" href="../../../../../../../missing.html">reflective sub-(∞,1)-category</a> of the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category of (∞,1)-presheaves</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>FormalModuli</mi> <mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow></msup><mover><mo>↪</mo><mo>←</mo></mover><msub><mi>PSh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><msub><mi>Sp</mi> <mo>*</mo></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  FormalModuli^{Sp_*}
+  \stackrel{\leftarrow}{\hookrightarrow}
+  PSh_{\infty}(Sp_*)
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_prop" id="LieDifferentiationFunctor">
+<h6 id="proposition_2">Proposition</h6>
+<p>Given a <a class="existingWikiWord" href="../../../../0/3/9/9305/content.html">deformation context</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Sp_*</annotation></semantics></math>, the restricted <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-Yoneda embedding</a> gives an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Lie</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>Sp</mi> <mo>*</mo></msub><mo>→</mo><msup><mi>FormalModuli</mi> <mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Lie \;\colon\; Sp_* \to FormalModuli^{Sp_*}
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_remark">
+<h6 id="remark_3">Remark</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>∈</mo><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">(X,x) \in Sp_*</annotation></semantics></math>, the object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Lie</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Lie(X,x)</annotation></semantics></math> represents the <em><a class="existingWikiWord" href="../../../../../8/9/6/8/8698/content.html">formal neighbourhood</a></em> of the basepoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> as seen by the infinitesimally thickened points dual to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>E</mi> <mi>α</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{E_\alpha\}</annotation></semantics></math>.</p>
+<p>Hence we may call this the operation of <strong>Lie differentiation</strong> of spaces in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">Sp_*</annotation></semantics></math> around their given base point.</p>
+<p>In the archetypical implementation of these axiomatics, discuss <a href="#Examples">below</a>, there is an <a class="existingWikiWord" href="../../../../../../../missing.html">equivalence of (∞,1)-categories</a> of <a class="existingWikiWord" href="../../../../../6/0/3/9/9306/content.html">formal moduli problems</a> with <a class="existingWikiWord" href="../../../../../4/9/0/0/94/content.html">L-∞ algebras</a> and the Lie differentiation of the <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a>/<a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli ∞-stack</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> of a <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">smooth ∞-group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is its <a class="existingWikiWord" href="../../../../../4/9/0/0/94/content.html">L-∞ algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔤</mi></mrow><annotation encoding="application/x-tex">\mathfrak{g}</annotation></semantics></math>: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Lie</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo><mo>≃</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>𝔤</mi></mrow><annotation encoding="application/x-tex">Lie(\mathbf{B}G) \simeq \mathbf{B}\mathfrak{g}</annotation></semantics></math>.</p>
+</div>
+<div class="num_prop" id="LieDifferentiationPreservesLimits">
+<h6 id="proposition_3">Proposition</h6>
+<p>The Lie differentiation functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Lie</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>Sp</mi> <mo>*</mo></msub><mo>→</mo><msup><mi>FormalModuli</mi> <mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow></msup></mrow><annotation encoding="application/x-tex">
+  Lie 
+  \;
+  \colon
+  \;
+  Sp_* \to FormalModuli^{Sp_*}
+
+</annotation></semantics></math></div>
+<p>of prop. <a class="maruku-ref" href="#LieDifferentiationFunctor"></a> preserves <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-limits</a>.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>By prop. <a class="maruku-ref" href="#FormalModuliIsPresentableCategory"></a> the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-limits</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>FormalModuli</mi> <mrow><msub><mi>Sp</mi> <mo>*</mo></msub></mrow></msup></mrow><annotation encoding="application/x-tex">FormalModuli^{Sp_*}</annotation></semantics></math> may be computed in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>PSh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><msub><mi>Sp</mi> <mo>*</mo></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh_\infty(Sp_*)</annotation></semantics></math>. There the statement is that of the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-Yoneda embedding</a>, or rather just the statement that the <a class="existingWikiWord" href="../../../../../9/6/9/1/1969/content.html">(∞,1)-hom (∞,1)-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sp</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sp_*(D,-)</annotation></semantics></math> preserves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-limits.</p>
+</div>
+<h3 id="ForCohesiveContexts">For cohesive contexts</h3>
+<blockquote>
+<p>under construction</p>
+</blockquote>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{H}_{th}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../../../missing.html">cohesive (∞,1)-topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ʃ</mi><mo>⊣</mo><mo>♭</mo><mo>⊣</mo><mo>♯</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(&amp;#643; \dashv \flat \dashv \sharp)</annotation></semantics></math> equipped with <a class="existingWikiWord" href="../../../../../1/6/8/5/5861/content.html">differential cohesion</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Red</mi><mo>⊣</mo><msub><mi>ʃ</mi> <mi>inf</mi></msub><mo>⊣</mo><msub><mo>♭</mo> <mi>inf</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Red \dashv &amp;#643;_{inf} \dashv \flat_{inf})</annotation></semantics></math>.</p>
+<div class="num_defn" id="ExhibitingInfinitesimalCohesion">
+<h6 id="definition_5">Definition</h6>
+<p>A set of objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>D</mi> <mi>α</mi></msub><mo>∈</mo><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><msub><mo stretchy="false">}</mo> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">\{D_\alpha \in \mathbf{H}_{th}\}_\alpha</annotation></semantics></math> is said to <strong>exhibit the differential structure</strong> or <strong>exhibit the infinitesimal thickening</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{H}_{th}</annotation></semantics></math> if the <a class="existingWikiWord" href="../../../../../../../missing.html">localization</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mrow><mo stretchy="false">{</mo><msub><mi>D</mi> <mi>α</mi></msub><mo stretchy="false">}</mo></mrow></msub><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mover><mo>↪</mo><mo>←</mo></mover><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub></mrow><annotation encoding="application/x-tex">
+  L_{\{D_\alpha\}} \mathbf{H}_{th}
+  \stackrel{\leftarrow}{\hookrightarrow}
+  \mathbf{H}_{th}
+
+</annotation></semantics></math></div>
+<p>of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{H}_{th}</annotation></semantics></math> at the morphisms of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi> <mi>α</mi></msub><mo>×</mo><mi>X</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">D_\alpha \times X \to X</annotation></semantics></math> is exhibited by the <a class="existingWikiWord" href="../../../../../2/2/1/9/9122/content.html">infinitesimal shape modality</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ʃ</mi> <mi>inf</mi></msub><mo>≔</mo><msup><mi>i</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">&amp;#643;_{inf} \coloneqq i^* i_*</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>≃</mo><msub><mi>L</mi> <mrow><mo stretchy="false">{</mo><msub><mi>D</mi> <mi>α</mi></msub><mo stretchy="false">}</mo></mrow></msub><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mover><munder><mo>↪</mo><mrow><msub><mi>i</mi> <mo>*</mo></msub></mrow></munder><mover><mo>←</mo><mrow><msup><mi>i</mi> <mo>*</mo></msup></mrow></mover></mover><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{H} 
+  \simeq 
+  L_{\{D_\alpha\}} \mathbf{H}_{th}
+  \stackrel{\overset{i^*}{\leftarrow}}{\underset{i_*}{\hookrightarrow}}
+  \mathbf{H}_{th}
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_Remark">
+<h6 id="remark_4">Remark</h6>
+<p>Def. <a class="maruku-ref" href="#ExhibitingInfinitesimalCohesion"></a> expresses the <a class="existingWikiWord" href="../../../../../7/3/5/0/10537/content.html">infinitesimal</a> analog of the notion of objects exhibiting <a class="existingWikiWord" href="../../../../../1/0/4/5/5401/content.html">cohesion</a>, see at <a href="../../../../6/8/5/5865/content.html">structures in cohesion – A1-homotopy and the continuum</a>, hence an infinitesimal notion of <a class="existingWikiWord" href="../../../../../0/5/5/2/2550/content.html">A1-homotopy theory</a>.</p>
+</div>
+<div class="num_prop" id="ObjectsExhibitingDifferentialCohesionAreUniquelyPointed">
+<h6 id="proposition_4">Proposition</h6>
+<p>If objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>D</mi> <mi>α</mi></msub><mo>∈</mo><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{D_\alpha \in \mathbf{H}_{th}\}</annotation></semantics></math> exhibit the differential cohesion of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{H}_{th}</annotation></semantics></math>, then they are essentially uniquely pointed.</p>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>The localizing objects are in particular themselves <a class="existingWikiWord" href="../../../../../2/3/3/1/1332/content.html">local objects</a> so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ʃ</mi> <mi>inf</mi></msub><msub><mi>D</mi> <mi>α</mi></msub><mo>≃</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">&amp;#643;_{inf} D_\alpha \simeq *</annotation></semantics></math>. By the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Red</mi><mo>⊣</mo><msub><mi>ʃ</mi> <mi>inf</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Red \dashv &amp;#643;_{inf})</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunctions</a> this means that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><msub><mi>D</mi> <mi>α</mi></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>≃</mo><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mo stretchy="false">(</mo><mi>Red</mi><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>,</mo><msub><mi>D</mi> <mi>α</mi></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><msub><mi>ʃ</mi> <mi>inf</mi></msub><msub><mi>D</mi> <mi>α</mi></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><mo>*</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    \mathbf{H}_{th}(*, D_\alpha)
+    &amp; \simeq \mathbf{H}_{th}(Red(*), D_\alpha)
+    \\
+    &amp; \simeq \mathbf{H}_{th}(*, &amp;#643;_{inf} D_\alpha)
+    \\
+    &amp; \simeq \mathbf{H}_{th}(*, *)
+    \\
+    &amp; \simeq *
+  \end{aligned}
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>We now consider <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msubsup><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup><mo>,</mo><mo stretchy="false">{</mo><msub><mi>D</mi> <mi>α</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbf{H}_{th}^{\ast/}, \{D_\alpha\})</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../0/3/9/9305/content.html">deformation context</a>, def. <a class="maruku-ref" href="#DeformationContext"></a>.</p>
+<div class="num_defn" id="LieDifferentiationInCohesion">
+<h6 id="definition_6">Definition</h6>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Lie</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msubsup><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup><mo>→</mo><msup><mi>FormalModuli</mi> <mrow><msubsup><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup></mrow></msup><mo>↪</mo><msub><mi>PSh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><msubsup><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Lie 
+  \;\colon\;
+  \mathbf{H}_{th}^{\ast/}
+  \to
+  FormalModuli^{\mathbf{H}_{th}^{*/}}
+  \hookrightarrow
+  PSh_\infty(\mathbf{H}_{th}^{*/})
+
+</annotation></semantics></math></div>
+<p>for the Lie differentiaon <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-functor</a>, def. <a class="maruku-ref" href="#LieDifferentiationFunctor"></a>, which sends <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo lspace="verythinmathspace">:</mo><mo>*</mo><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo><mo>∈</mo><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mi>th</mi></msub></mrow><annotation encoding="application/x-tex">(x \colon * \to X) \in \mathbf{H}_{th}</annotation></semantics></math> to</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Lie</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>D</mi><mo>↦</mo><msup><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mrow><mo>*</mo><mo stretchy="false">/</mo></mrow></msup><mo stretchy="false">(</mo><mi>D</mi><mo>,</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Lie(X,x) 
+   \;\colon\;
+  D
+  \mapsto \mathbf{H}^{\ast/}(D,(X,x))
+  \,.
+
+</annotation></semantics></math></div></div>
+<h2 id="Examples">Examples</h2>
+<h3 id="examples_of_contexts_for_lie_differentiation">Examples of contexts for Lie differentiation</h3>
+<h4 id="dggeometry">dg-Geometry</h4>
+<p><a class="existingWikiWord" href="../../../../../4/7/3/5/5374/content.html">dg-geometry</a> (the running example in (<a href="#Lurie">Lurie</a>)).</p>
+<h4 id="ExampleContextSyntheticDifferential">Synthetic-differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids</h4>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/2/5/5/5524/content.html">SynthDiff∞Grpd</a></li>
+</ul>
+<p>(…)</p>
+<p><em><a href="../../../../../4/2/5/5/5524/content.html#LieDifferentiation">synthetic differential infinity-groupoid – Lie differentiation</a></em></p>
+<p>(…)</p>
+<h3 id="examples_of_lie_differentiation">Examples of Lie differentiation</h3>
+<h4 id="of_a_lie_group">Of a Lie group</h4>
+<p>(…)</p>
+<h4 id="of_a_lie_groupoid">Of a Lie groupoid</h4>
+<p>Given a Lie groupoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mn>1</mn></msub><mo>⇒</mo><msub><mi>G</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">G_1\Rightarrow G_0</annotation></semantics></math>, we take the vector bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ker</mi><mi>Ts</mi><msub><mo stretchy="false">|</mo> <mrow><msub><mi>G</mi> <mn>0</mn></msub></mrow></msub></mrow><annotation encoding="application/x-tex">ker Ts|_{G_0}</annotation></semantics></math> restricted on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">G_0</annotation></semantics></math>, then we show that there is a <a class="existingWikiWord" href="../../../../5/0/0/55/content.html">Lie algebroid</a> structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><mo>=</mo><mi>ker</mi><mi>Ts</mi><msub><mo stretchy="false">|</mo> <mrow><msub><mi>G</mi> <mn>0</mn></msub></mrow></msub><mo>→</mo><msub><mi>G</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A:=ker Ts|_{G_0} \to G_0</annotation></semantics></math>. First of all, the anchor map is given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ker</mi><msub><mi>Ts</mi> <mrow><msub><mi>G</mi> <mn>0</mn></msub></mrow></msub><mover><mo>→</mo><mi>Tt</mi></mover><msub><mi>G</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">ker Ts_{G_0} \xrightarrow{Tt} G_0</annotation></semantics></math>. Secondly, to define the Lie bracket, one shows that a section <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> may be right translated to a vector field on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">G_1</annotation></semantics></math>, which is right invariant. Then Jacobi identity implies that right invariant vector fields are closed under Lie bracket. Thus Lie brackets on vector fields on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">G_1</annotation></semantics></math> induces a Lie bracket on sections of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<div>
+<p><strong>Examples of sequences of local structures</strong></p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../2/3/3/0/332/content.html">geometry</a></th><th>point</th><th>first order <a class="existingWikiWord" href="../../../../../4/6/1/2/2164/content.html">infinitesimal</a></th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></th><th><a class="existingWikiWord" href="../../../../../8/9/6/8/8698/content.html">formal</a> = arbitrary order infinitesimal</th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></th><th>local = <a class="existingWikiWord" href="../../../../../7/1/6/1/1617/content.html">stalk</a>wise</th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></th><th>finite</th></tr></thead><tbody><tr><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math> <strong><a class="existingWikiWord" href="../../../../../6/5/9/4/4956/content.html">differentiation</a></strong></td><td style="text-align: left;"></td><td style="text-align: left;"><strong><a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integration</a></strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/5/9/3/3959/content.html">smooth functions</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/2/7/3/23721/content.html">derivative</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/9/2/4/4293/content.html">Taylor series</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/4/0/2/2041/content.html">germ</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/5/9/3/3959/content.html">smooth function</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/4/0/6/6040/content.html">curve</a> (path)</td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/6/9/1/1961/content.html">tangent vector</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/1/7/5/5718/content.html">jet</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/4/0/2/2041/content.html">germ</a> of <a class="existingWikiWord" href="../../../../../0/4/0/6/6040/content.html">curve</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/4/0/6/6040/content.html">curve</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/7/7/1/1770/content.html">smooth space</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/9/2/7/7298/content.html">infinitesimal neighbourhood</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/7/4/1/11470/content.html">formal neighbourhood</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/0/0/6/16002/content.html">germ of a space</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/3/6/1/1634/content.html">open neighbourhood</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/9/2/9/9292/content.html">function algebra</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/4/8/0/10843/content.html">square-0 ring extension</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/4/8/0/10843/content.html">nilpotent ring extension</a>/<a class="existingWikiWord" href="../../../../../6/2/0/7/17026/content.html">formal completion</a></td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/8/8/7/7884/content.html">ring extension</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/6/1/3/3164/content.html">arithmetic geometry</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔽</mi> <mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{F}_p</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../3/2/5/8/8523/content.html">finite field</a></td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_p</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../3/4/2/7/7243/content.html">p-adic integers</a></td><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_{(p)}</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../7/7/6/8/8677/content.html">localization at (p)</a></td><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integers</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/3/0/0/38/content.html">Lie theory</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebra</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/5/2/2/2254/content.html">formal group</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/7/1/3/3173/content.html">local Lie group</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/9/5/1/1598/content.html">Lie group</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/0/1/2/2106/content.html">symplectic geometry</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/7/2/2/2272/content.html">Poisson manifold</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../1/7/3/3715/content.html">formal deformation quantization</a></td><td style="text-align: left;"></td><td style="text-align: left;">local strict deformation quantization</td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/0/0/8/8008/content.html">strict deformation quantization</a></td></tr>
+</tbody></table>
+</div>
+<h2 id="references">References</h2>
+<p>On Lie differentiation of <a class="existingWikiWord" href="../../../../../7/1/0/7/17017/content.html">Lie n-groupoids</a>/<a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">smooth <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-groupoids</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/1/7/2/2718/content.html">Pavol Ševera</a>: <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math> algebras as 1-jets of simplicial manifolds (and a bit beyond)</em> [<a href="http://arxiv.org/abs/math/0612349">arXiv:0612349</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>; <a href="https://arxiv.org/pdf/1310.7930v1#page=552">§4.5.1</a> in <em><a class="existingWikiWord" href="/schreiber/show/differential+cohomology+in+a+cohesive+topos">Differential Cohomology in a Cohesive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-Topos</a></em> [<a href="https://arxiv.org/abs/1310.7930">arXiv:1310.7930</a>]</p>
+</li>
+<li>
+<p>Du Li; theorem 8.28 of: <em>Higher Groupoid Actions, Bibundles, and Differentiation</em> [<a href="http://arxiv.org/abs/1512.04209">arXiv:1512.04209</a>]</p>
+</li>
+<li>
+<p>Lory Aintablian: <em>Differentiation of higher groupoid objects in tangent categories</em>, PhD thesis, Bonn (2024) [<a href="https://doi.org/10.48565/bonndoc-711">doi:10.48565/bonndoc-711</a>, <a href="https://bonndoc.ulb.uni-bonn.de/xmlui/bitstream/handle/20.500.11811/13688/8299.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/7/8/18713/content.html">Severin Bunk</a>, <a class="existingWikiWord" href="../../../../../4/8/0/2/22084/content.html">Lukas Müller</a>, <a class="existingWikiWord" href="../../../../../9/0/1/0/10109/content.html">Joost Nuiten</a>, <a class="existingWikiWord" href="../../../../../7/4/0/5/5047/content.html">Richard J. Szabo</a>: <em>Lie differentiation and infinitesimal symmetries</em>, section 3 in: <em>Symmetries and Higher-Form Connections in Derived Differential Geometry</em> [<a href="https://arxiv.org/abs/2602.03441">arXiv:2602.03441</a>]</p>
+</li>
+</ul>
+<p>Lie differentiation <a href="#ForDeformationContexts">in deformation contexts</a>:</p>
+<ul>
+<li id="Lurie"><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>; section 1 of: <em><a class="existingWikiWord" href="../../../../../1/4/0/5/5041/content.html">Formal moduli problems</a></em> (2011)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

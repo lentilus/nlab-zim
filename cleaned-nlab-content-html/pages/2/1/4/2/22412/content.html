@@ -1,0 +1,391 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      automatic differentiation in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      automatic differentiation
+  </h1>
+<div id="revision">
+<h2 id="contents">Contents</h2>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#forward_and_reverse_automatic_differentiation">Forward and reverse automatic differentiation</a></li>
+<li><a href="#combinatory_homomorphic_automatic_differentiation_chad__a_categorical_take_on_ad">Combinatory Homomorphic Automatic Differentiation (CHAD) - a categorical take on AD</a></li>
+<ul>
+<li><a href="#the_source_language">The source language</a></li>
+<li><a href="#the_target_language_and_deriving_ad">The target language and deriving AD</a></li>
+<li><a href="#semantics_of_the_source_and_target_languages">Semantics of the source and target languages</a></li>
+<li><a href="#correctness_of_chad">Correctness of CHAD</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Automatic differentiation</em> (AD) is a technique for computing (<a class="existingWikiWord" href="../../../../../4/2/7/7/7724/content.html">transposed</a>) <a class="existingWikiWord" href="../../../../../1/2/7/3/23721/content.html">derivatives</a> of functions implemented by computer programs, essentially by applying the chain-rule across program code. It is typically the method of choice for computing derivatives in machine learning and scientific computing because of its efficiency and numerical stability.</p>
+<h2 id="forward_and_reverse_automatic_differentiation">Forward and reverse automatic differentiation</h2>
+<p>AD works by calculating the (transposed) derivative of a composite program in terms of the (transposed) derivatives of the parts, by using the chain-rule. The distinction between derivatives and transposed derivatives leads to the main distinction in automatic differentiation modes:</p>
+<ul>
+<li>
+<p><em>forward mode AD</em>: this implements the <a class="existingWikiWord" href="../../../../../1/6/9/1/1961/content.html">tangent bundle</a> functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> and calculates derivatives by a forward pass to calculate function values (primals), followed by another forward pass to calculate derivative values (tangents); these two forward passes can be interleaved into a single forward pass for efficiency.</p>
+</li>
+<li>
+<p><em>reverse mode AD</em>: this implements the <a class="existingWikiWord" href="../../../../../8/5/9/1/1958/content.html">cotangent bundle</a> functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">T^*</annotation></semantics></math> and calculates transposed derivatives by a forward pass to calculate function values (primals), followed by a <em>reverse</em> pass (inverting the control flow of the original program) to calculate transposed derivative values (cotangents); these two passes cannot easily be interleaved due to their differing direction.</p>
+</li>
+</ul>
+<p>When calculating a derivative of a program that implements a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><msup><mi>R</mi> <mi>n</mi></msup><mo>→</mo><msup><mi>R</mi> <mi>m</mi></msup></mrow><annotation encoding="application/x-tex">f:R^n\to R^m</annotation></semantics></math>, reverse mode tends to be the more efficient algorithm if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≫</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n \gg m</annotation></semantics></math> and forward mode tends to be more efficient if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≪</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\ll m</annotation></semantics></math>. Seeing that many tasks in machine learning and statistics require the calculation of derivatives (for use in gradient-based optimization or Monte-Carlo sampling) of functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><msup><mi>R</mi> <mi>n</mi></msup><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">f:R^n\to R</annotation></semantics></math> (e.g. probability density functions) for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> very large, reverse mode AD tends to be the most popular algorithm.</p>
+<h2 id="combinatory_homomorphic_automatic_differentiation_chad__a_categorical_take_on_ad">Combinatory Homomorphic Automatic Differentiation (CHAD) - a categorical take on AD</h2>
+<p>Let us fix some class of categories with <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">stuff</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>. We will call its members <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories. For example, for our purposes, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> might include <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">properties</a> like</p>
+<ul>
+<li>closure under finite <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">products</a> (aka tuples, in programming-speak);</li>
+<li><a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">Cartesian closure</a> (aka higher-order functions);</li>
+<li>closure under finite <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproducts</a> (aka sum or variant types);</li>
+</ul>
+<p>and <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> like</p>
+<ul>
+<li>designated objects like <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math> (which we think of as real numbers and integers)</li>
+<li>designated morphisms like <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">sin:R\to R</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">cos: R\to R</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mo stretchy="false">)</mo><mo>:</mo><mi>R</mi><mo>×</mo><mi>R</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">(+): R\times R\to R</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>:</mo><mi>R</mi><mo>×</mo><mi>R</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">(*):R\times R\to R</annotation></semantics></math> (which we think of as the corresponding mathematical operations).</li>
+</ul>
+<p>The idea behind CHAD will be to view forward and reverse AD as the unique structure (stuff) preserving functor (homomorphism of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories) from the initial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Syn</mi></mrow><annotation encoding="application/x-tex">Syn</annotation></semantics></math> to two suitably chosen <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>CSyn</mi></msub><mi>LSyn</mi></mrow><annotation encoding="application/x-tex">\Sigma_{CSyn}LSyn</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>CSyn</mi></msub><msup><mi>LSyn</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Sigma_{CSyn}LSyn^{op}</annotation></semantics></math>.</p>
+<h3 id="the_source_language">The source language</h3>
+<p>Consider the initial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Syn</mi></mrow><annotation encoding="application/x-tex">Syn</annotation></semantics></math> (put differently, the S-properties category that is freely generated from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-structure). We can think of this category as a programming language: its objects are types and its morphisms are programs modulo <a class="existingWikiWord" href="../../../../../6/0/5/7/7506/content.html">beta-equivalence</a> and <a class="existingWikiWord" href="../../../../../7/0/5/7/7507/content.html">eta-equivalence</a>. In fact, for a wide class of programming languages, we can find a suitable choice of stuff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, such that the programming language arises as the initial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category. We will refer to this category as the <em>source language</em> of our AD transformation: its morphisms are the programs we want to differentiate.</p>
+<p>For example, if we choose the property part of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> to consist of Cartesian closure and the structure part of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> consists of designated objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math> and morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi></mrow><annotation encoding="application/x-tex">sin</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi></mrow><annotation encoding="application/x-tex">cos</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(+)</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(*)</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Syn</mi></mrow><annotation encoding="application/x-tex">Syn</annotation></semantics></math> is the simply typed <a class="existingWikiWord" href="../../../../../8/9/9/5/5998/content.html">lambda-calculus</a> with base types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math> and the primitive operations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi></mrow><annotation encoding="application/x-tex">sin</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi></mrow><annotation encoding="application/x-tex">cos</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(+)</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(*)</annotation></semantics></math>.</p>
+<h3 id="the_target_language_and_deriving_ad">The target language and deriving AD</h3>
+<p>Given a strictly <a class="existingWikiWord" href="../../../../../8/7/1/5/5178/content.html">indexed category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">L:C^{op}\to Cat</annotation></semantics></math>, we can form its <a class="existingWikiWord" href="../../../../../6/3/5/1/1536/content.html">Grothendieck construction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>C</mi></msub><mi>L</mi></mrow><annotation encoding="application/x-tex">\Sigma_C L</annotation></semantics></math>, which is a <a class="existingWikiWord" href="../../../../5/1/3/3152/content.html">split fibration</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. Similarly, we can take the <a class="existingWikiWord" href="../../../../../5/2/3/0/325/content.html">opposite category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mi>op</mi></msup><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">L^{op}:C^{op}\to Cat</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> and form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>C</mi></msub><msup><mi>L</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Sigma_C L^{op}</annotation></semantics></math> from that.</p>
+<p>For most natural choices of stuff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, we can find elegant sufficient conditions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> that guarantee that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>C</mi></msub><mi>L</mi></mrow><annotation encoding="application/x-tex">\Sigma_C L</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>C</mi></msub><msup><mi>L</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Sigma_C L^{op}</annotation></semantics></math> are both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories. Let us call a strictly indexed category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">L:C^{op}\to Cat</annotation></semantics></math> satisfying these conditions a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math>-category (where we think of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math> again as <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">stuff</a>). We give the corresponding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math> for some examples for different choices of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>:</p>
+<ul>
+<li>for the property of closure under finite products, we demand that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> has finite products and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> has finite (<span class="newWikiWord">indexed<a href="/nlab/new/indexed">?</a></span>) <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproducts</a> (or, equivalently, that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> has finite products and is enriched over <a class="existingWikiWord" href="../../../../../6/6/5/1/1566/content.html">commutative monoids</a>); (this can be extended with conditions to guarantee Cartesian closure; see the CHAD paper below;)</li>
+<li>for the property of closure under finite coproducts, we demand that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> has finite coproducts and that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../4/5/8/0/10854/content.html">extensive</a>, in the sense that the canonical functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">L(0)\to 1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mi>L</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>×</mo><mi>L</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(A+B)\to L(A)\times L(B)</annotation></semantics></math> are isomorphisms of categories;</li>
+<li>for structure like distinguished objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, we need to have chosen distinguished objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">R'</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">T R'</annotation></semantics></math> (which we think of as the tangent bundle of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">R'</annotation></semantics></math>) of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(R')</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mo>*</mo></msup><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">T^* R'</annotation></semantics></math> (the cotangent bundle of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">R'</annotation></semantics></math>) of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(R')</annotation></semantics></math>;</li>
+<li>for structure like distinguished morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>:</mo><mi>R</mi><mo>×</mo><mi>R</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">(*):R\times R\to R</annotation></semantics></math>, we need to have chosen distinguished morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>′</mo></mrow><annotation encoding="application/x-tex">(*)'</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo>×</mo><mi>R</mi><mo>′</mo><mo>,</mo><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C(R'\times R', R')</annotation></semantics></math> (the primal computation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(*)</annotation></semantics></math>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>′</mo></mrow><annotation encoding="application/x-tex">T(*)'</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo>×</mo><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>T</mi><mi>R</mi><mo>′</mo><mo>×</mo><mi>T</mi><mi>R</mi><mo>′</mo><mo>,</mo><mi>T</mi><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(R'\times R')(T R'\times T R', T R')</annotation></semantics></math> (the derivative of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(*)</annotation></semantics></math>) and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo>′</mo></mrow><annotation encoding="application/x-tex">T^*(*)'</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo>×</mo><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>T</mi><mi>R</mi><mo>′</mo><mo>,</mo><mi>T</mi><mi>R</mi><mo>′</mo><mo>×</mo><mi>T</mi><mi>R</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(R'\times R')(T R', T R'\times T R')</annotation></semantics></math> (the transposed derivative of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(*)</annotation></semantics></math>).</li>
+</ul>
+<p>Let us write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>LSyn</mi><mo>:</mo><msup><mi>CSyn</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">LSyn:CSyn^{op}\to Cat</annotation></semantics></math> for the initial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math>-category. We think of this category as the <em>target language</em> of automatic differentiation, in the sense that the forward/reverse derivatives of programs (morphisms) in the source language <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Syn</mi></mrow><annotation encoding="application/x-tex">Syn</annotation></semantics></math> with consist of an associated primal program that is a morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CSyn</mi></mrow><annotation encoding="application/x-tex">CSyn</annotation></semantics></math> and an associated tangent/cotangent program that is a morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>LSyn</mi></mrow><annotation encoding="application/x-tex">LSyn</annotation></semantics></math>/<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>LSyn</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">LSyn^{op}</annotation></semantics></math>. As a programming language, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>LSyn</mi></mrow><annotation encoding="application/x-tex">LSyn</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">linear dependent type theory</a> over the Cartesian type theory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CSyn</mi></mrow><annotation encoding="application/x-tex">CSyn</annotation></semantics></math>.</p>
+<p>Indeed, as for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">L:C^{op}\to Cat</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>C</mi></msub><mi>L</mi></mrow><annotation encoding="application/x-tex">\Sigma_C L</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>C</mi></msub><msup><mi>L</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Sigma_C L^{op}</annotation></semantics></math> are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories, it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>CSyn</mi></msub><mi>LSyn</mi></mrow><annotation encoding="application/x-tex">\Sigma_{CSyn} LSyn</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>CSyn</mi></msub><msup><mi>LSyn</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\Sigma_{CSyn} LSyn^{op}</annotation></semantics></math> are, in particular, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories. Seeing that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Syn</mi></mrow><annotation encoding="application/x-tex">Syn</annotation></semantics></math> is the initial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category, we obtain unique morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-categories:</p>
+<ul>
+<li>forward AD: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Df</mi><mo>:</mo><mi>Syn</mi><mo>→</mo><msub><mi>Σ</mi> <mi>CSyn</mi></msub><mi>LSyn</mi></mrow><annotation encoding="application/x-tex">Df:Syn\to \Sigma_{CSyn} LSyn</annotation></semantics></math>;</li>
+<li>reverse AD: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Dr</mi><mo>:</mo><mi>Syn</mi><mo>→</mo><msub><mi>Σ</mi> <mi>CSyn</mi></msub><msup><mi>LSyn</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">Dr:Syn\to \Sigma_{CSyn} LSyn^{op}</annotation></semantics></math>.</li>
+</ul>
+<h3 id="semantics_of_the_source_and_target_languages">Semantics of the source and target languages</h3>
+<p>The category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a> and functions gives another example of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category, for a lot of choices of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> (if we choose the sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[[R]]</annotation></semantics></math> and functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>op</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[[op]]</annotation></semantics></math> that we would like to denote with the types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and operations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>op</mi></mrow><annotation encoding="application/x-tex">op</annotation></semantics></math> in the structure part of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>). Moreover, the strictly indexed category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Fam</mi><mo stretchy="false">(</mo><mi>CMon</mi><mo stretchy="false">)</mo><mo>:</mo><msup><mi>Set</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Fam(CMon):Set^{op}\to Cat</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">families</a> of <a class="existingWikiWord" href="../../../../../6/6/5/1/1566/content.html">commutative monoids</a> tends to give an example of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math>-category. By initiality of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Syn</mi></mrow><annotation encoding="application/x-tex">Syn</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>LSyn</mi><mo>:</mo><msup><mi>CSyn</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">LSyn:CSyn^{op}\to Cat</annotation></semantics></math>, we obtain</p>
+<ul>
+<li>the semantics of the source language: the unique <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>:</mo><mi>Syn</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">[[-]]:Syn\to Set</annotation></semantics></math>;</li>
+<li>the semantics of the target language: the unique <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">S'</annotation></semantics></math>-functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>:</mo><mo stretchy="false">(</mo><mi>CSyn</mi><mo>,</mo><mi>LSyn</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>Set</mi><mo>,</mo><mi>Fam</mi><mo stretchy="false">(</mo><mi>CMon</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[[-]]:(CSyn,LSyn)\to (Set,Fam(CMon))</annotation></semantics></math> (with a slight abuse of notation).</li>
+</ul>
+<p>In particular, we see that source language programs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mi>Syn</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t\in Syn(A, B)</annotation></semantics></math> get interpreted as a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>∈</mo><mi>Set</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[[t]]\in Set([[A]], [[B]])</annotation></semantics></math>. Similarly, programs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mi>CSyn</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t\in CSyn(A, B)</annotation></semantics></math> in the target language with <em>Cartesian</em> type get interpreted as a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>∈</mo><mi>Set</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[[t]]\in Set([[A]], [[B]])</annotation></semantics></math>. Finally, programs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mi>LSyn</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t\in LSyn(A)(B,C)</annotation></semantics></math> in the target language with <em>linear</em> type get interpreted as a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>∈</mo><mi>Fam</mi><mo stretchy="false">(</mo><mi>CMon</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>C</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[[t]] \in Fam(CMon)([[A]])([[B]],[[C]])</annotation></semantics></math>: families of monoid homomorphisms.</p>
+<h3 id="correctness_of_chad">Correctness of CHAD</h3>
+<p>We say that CHAD calculates the correct derivative (resp. transposed derivative) of a program <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> if the <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantics</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Df</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[[Df(s)]]</annotation></semantics></math> of the program <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Df</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Df(s)</annotation></semantics></math> (resp. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Dr</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Dr(s)</annotation></semantics></math>) equals the pair of the semantics <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[[s]]</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> and the derivative <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">T[[s]]</annotation></semantics></math> (resp. transposed derivative <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mo>*</mo></msup><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">T^*[[s]]</annotation></semantics></math>) of the semantics <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[[s]]</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math>. CHAD is correct in the sense that it calculates the correct (transposed) derivative of any composite (possibly higher-order) program between first-order types (meaning: types built using only <a class="existingWikiWord" href="../../../../../5/0/5/7/7505/content.html">positive type</a> formers), provided that it calculates the correct (transposed) derivatives of all primitive operations like <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(*)</annotation></semantics></math> that we used to generate the source language. That is, CHAD is a valid way for compositionally calculating (transposed) derivatives of composite computer programs, as long as we correctly implement the derivatives for all primitive operations (basic mathematical functions like multiplication, addition, sine, cosine) in the language.</p>
+<p>We can prove this by a standard <a class="existingWikiWord" href="../../../../7/6/9/9672/content.html">logical relations</a> argument, relating smooth curves to their primal and (co)tangent curves. Viewed more abstractly, the proof follows automatically because the <a class="existingWikiWord" href="../../../../../5/2/1/7/7125/content.html">Artin gluing</a> along a representable functor (like the hom out of the real numbers) of an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category is itself again an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-category, for common most choices of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/1/4/2/22414/content.html">differential programming</a></li>
+<li><a class="existingWikiWord" href="../../../../../5/1/4/2/22415/content.html">backpropagation</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>Forward mode automatic differentiation was introduced by Robert Edwin Wengert in</p>
+<ul>
+<li><span class="newWikiWord">Robert Edwin Wengert<a href="/nlab/new/Robert+Edwin+Wengert">?</a></span>, A simple automatic derivative evaluation program. Communications of the ACM 7.8. 1964.</li>
+</ul>
+<p>An early description of reverse mode automatic differentiation can be found in</p>
+<ul>
+<li><span class="newWikiWord">Bert Speelpenning<a href="/nlab/new/Bert+Speelpenning">?</a></span>, Compiling fast partial derivatives of functions given by algorithms. Illinois Univ., Urbana (USA). Dept. of Computer Science. Technical report. 1980.</li>
+</ul>
+<p>but it was already described earlier by others such as Seppo Linnainmaa:</p>
+<ul>
+<li><span class="newWikiWord">Seppo Linnainmaa<a href="/nlab/new/Seppo+Linnainmaa">?</a></span>, The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors. Master’s Thesis (in Finnish), Univ. Helsinki. 1970.</li>
+</ul>
+<p>A categorical analysis of (non-interleaved) forward and reverse AD (CHAD) is given by</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/8/4/0/10488/content.html">Matthijs Vákár</a>, Reverse AD at Higher Types: Pure, Principled and Denotationally Correct 2021. <a href="https://arxiv.org/abs/2007.05283">arXiv preprint 2007.05283</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/6/0/5/25061/content.html">Fernando Lucatelli Nunes</a>, <a class="existingWikiWord" href="../../../../../8/8/4/0/10488/content.html">Matthijs Vákár</a>, CHAD for Expressive Total Languages. 2021. <a href="https://arxiv.org/abs/2110.00446">arXiv preprint 2110.00446</a>, <a href="https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/chad-for-expressive-total-languages/930FC0D594612D06166D836FBA596F8F?utm_campaign=shareaholic&amp;utm_medium=copy_link&amp;utm_source=bookmark">Math. Struct. Comput. Sci. 33, No. 4–5, 311–426 (2023)</a>.</p>
+</li>
+</ul>
+<p>CHAD was extended to languages featuring non-termination (and iteration) in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/6/0/5/25061/content.html">Fernando Lucatelli Nunes</a>, <a class="existingWikiWord" href="../../../../9/3/8/8392/content.html">Gordon Plotkin</a>, <a class="existingWikiWord" href="../../../../../8/8/4/0/10488/content.html">Matthijs Vákár</a>, Unraveling the iterative CHAD. 2025. <a href="https://www.arxiv.org/abs/2505.15002">arXiv preprint 2505.15002</a></li>
+</ul>
+<p>A categorical analysis of (interleaved) forward mode (dual numbers) AD for calculating higher order derivatives is given by</p>
+<ul>
+<li><span class="newWikiWord">Mathieu Huot<a href="/nlab/new/Mathieu+Huot">?</a></span>, <a class="existingWikiWord" href="../../../../0/7/7/17702/content.html">Sam Staton</a>, <a class="existingWikiWord" href="../../../../../8/8/4/0/10488/content.html">Matthijs Vákár</a>, Higher Order AD of Higher Order Functions. 2021. <a href="https://arxiv.org/abs/2101.06757">arXiv preprint 2101.06757</a></li>
+</ul>
+<p>The extension of the work above to reversed mode (dual numbers) and to (realistic) languages featuring recursive types can be found in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/6/0/5/25061/content.html">Fernando Lucatelli Nunes</a>, <a class="existingWikiWord" href="../../../../../8/8/4/0/10488/content.html">Matthijs Vákár</a>, Automatic Differentiation for ML-family languages: correctness via logical relations. 2022. <a href="https://arxiv.org/abs/2210.07724">arXiv preprint 2210.07724</a>, <a href="https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/automatic-differentiation-for-mlfamily-languages-correctness-via-logical-relations/6D01A27CF59D9C53DF327B7A998D4FCA?utm_campaign=shareaholic&amp;utm_medium=copy_link&amp;utm_source=bookmark">Math. Struct. Comput. Sci. 34, No. 8, 747–806 (2024)</a>.</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,453 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      derived stack in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      derived stack
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#central_motivation_derived_stacks_have_good_limits">Central motivation: derived stacks have good limits</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<ul>
+<li><a href="#derived_yoneda_embedding">Derived Yoneda embedding</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>A <em>derived stack</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a> – an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-sheaf</a> – on an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. For example, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is most often the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> of <a class="existingWikiWord" href="../../../../../4/4/1/3/3144/content.html">simplicial commutative rings</a> or <a class="existingWikiWord" href="../../../../../2/8/3/1/1382/content.html">E-∞ ring spectra</a> (with the <a class="existingWikiWord" href="../../../../../8/5/1/8/18158/content.html">Zariski</a> or <a class="existingWikiWord" href="../../../../../4/5/3/5/5354/content.html">etale</a> topology).</p>
+<p>One says <em>derived stack</em> in order to distinguish from the more restrictive notion of an <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a> on a 1-categorical <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a>, such as for instance described at <a class="existingWikiWord" href="../../../../../1/2/4/8/18421/content.html">topological ∞-groupoid</a>.</p>
+<p>For recall that a <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> is a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F : C^{op} \to Set</annotation></semantics></math> satisfying some <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a> condition. So there are two steps in which the notion of <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> may be <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorified</a>:</p>
+<ol>
+<li>the codomain is categorified and the domain remains a 1-category</li>
+<li>the codomain and the domain are categorified.</li>
+</ol>
+<p>The categorification of the codomain leads to the notion of <a class="existingWikiWord" href="../../../../../2/4/1/0/142/content.html">stack</a>s when <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> is replaced by <a class="existingWikiWord" href="../../../../../7/8/6/0/687/content.html">Grpd</a>, and further to <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a>s, when sets are replaced by <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a>s.</p>
+<p>But there is no natural reason why the domain should in general remain a 1-category if one passes to an <a class="existingWikiWord" href="../../../../../2/5/3/0/352/content.html">∞-categorical</a>-context. A <em>derived stack</em> is a generalization of the notion of sheaf where both domain and codomain are taken to be <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-categorical.</p>
+<p>Following the general logic of <a class="existingWikiWord" href="../../../../../../../missing.html">models for ∞-stack (∞,1)-toposes</a>, derived stacks are typically <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">modeled</a> by the <a class="existingWikiWord" href="../../../../../1/9/7/1/1791/content.html">model structure on SSet-enriched presheaves</a> on an <a class="existingWikiWord" href="../../../../../4/1/2/3/3214/content.html">SSet-site</a> or <a class="existingWikiWord" href="../../../../../5/1/2/3/3215/content.html">model site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. In such a model a derived stack is represented by an <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>-<a class="existingWikiWord" href="../../../../../3/0/3/0/303/content.html">enriched functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>SSet</mi></mrow><annotation encoding="application/x-tex">F : C^{op} \to SSet</annotation></semantics></math> from an <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> to <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a> that satisfies a <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a> condition.</p>
+<h2 id="central_motivation_derived_stacks_have_good_limits">Central motivation: derived stacks have good limits</h2>
+<p>One general idea for the use of higher and derived stacks is that</p>
+<ul>
+<li>
+<p>passing to a higher categorical codomain – i.e. from Set-values <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> to higher <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoid</a> valued sheaves – is a means to obtain <em>good colimits</em>, <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a>s that do not lose information. For instance</p>
+<ul>
+<li>
+<p>in the category <a class="existingWikiWord" href="../../../../../1/8/4/1/21481/content.html">Diff</a> of manifolds the quotient by a non-free action of a group may not exist</p>
+</li>
+<li>
+<p>in <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>Diff</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[Diff^{op},Set]</annotation></semantics></math> it will exist, but will have the wrong properties in general with respect to some operations such as taking cohomology,</p>
+</li>
+<li>
+<p>while finally in <a class="existingWikiWord" href="../../../../../2/4/1/0/142/content.html">stack</a>s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>Diff</mi> <mi>op</mi></msup><mo>,</mo><mi>Grpd</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[Diff^{op}, Grpd]</annotation></semantics></math> it exists as the corresponding smooth <a class="existingWikiWord" href="../../../../3/2/0/236/content.html">action groupoid</a> or <a class="existingWikiWord" href="../../../../../4/9/5/1/1594/content.html">orbifold</a> and in this form remembers in terms of the isomorphisms how the quotient was obtained. The cohomology of the stack is then indeed the equivariant cohomology of the original manifold.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>similarly passing to higher categorical domain – i.e. from presheaves on categories to presheaves on higher categories, is analogously a means to ensure that good <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a>s exist.</p>
+</li>
+</ul>
+<p>A detailed illustration and motivation of the need of these “good limits” that don’t forget the way they were formed is</p>
+<ul>
+<li>
+<p>in the introductory section of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../2/0/3/2/2302/content.html">Structured Spaces</a></em></li>
+</ul>
+</li>
+<li>
+<p>in the introductory section of</p>
+<ul>
+<li>David Spivak, <em><a href="http://math.berkeley.edu/~dspivak/thesis2.pdf">Quasi-smooth derived manifolds</a></em></li>
+</ul>
+</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>
+<p>A derived refinement of the ordinary <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <a class="existingWikiWord" href="../../../../../5/3/4/1/1435/content.html">CRing</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow></mrow> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">{}^{op}</annotation></semantics></math> of formal duals to commutative tings is the <a class="existingWikiWord" href="../../../../../4/1/2/3/3214/content.html">SSet-site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>SCRing</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">SCRing^{op}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../4/4/1/3/3144/content.html">simplicial ring</a>s. Derived stacks on this site are studied in <a class="existingWikiWord" href="../../../../../3/9/2/2/2293/content.html">derived algebraic geometry</a>.</p>
+<p>An introduction to this is for instance in <a href="http://www.crm.cat/HigherCategories/hc1.pdf#page=135">chapter 5</a> of the lecture notes</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toen</a>, <em>Simplicial presheaves and derived algebraic geometry</em> course on <a href="http://www.crm.cat/HigherCategories/">Simplicial Methods in Higher Categories</a> (<a href="http://www.crm.cat/HigherCategories/hc1.pdf#page=99">pdf</a>)</li>
+</ul>
+<p>There are various slight variations of this. For instance using the <a class="existingWikiWord" href="../../../../../5/2/1/2/2125/content.html">monoidal Dold-Kan correspondence</a>, simplicial rings may be replaced with non-positively graded cochain <a class="existingWikiWord" href="../../../../../3/0/1/1/1103/content.html">dg-algebra</a>s.</p>
+<p>One application of derived stacks on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>dgAlg</mi> <mo>−</mo></msup><msup><mo stretchy="false">)</mo> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">(dgAlg^-)^{op}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../0/0/86/content.html">BV-BRST formalism</a> in <a class="existingWikiWord" href="../../../../../1/8/0/0/81/content.html">physics</a>.</p>
+</li>
+<li>
+<p>A derived refinement of the ordinary <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕃</mi></mrow><annotation encoding="application/x-tex">\mathbb{L}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../8/3/5/2/2538/content.html">smooth loci</a> is the <a class="existingWikiWord" href="../../../../../4/1/2/3/3214/content.html">SSet-site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cs</mi><mi>𝕃</mi></mrow><annotation encoding="application/x-tex">cs \mathbb{L}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../3/5/2/6/16253/content.html">cosimplicial</a> <a class="existingWikiWord" href="../../../../../8/3/5/2/2538/content.html">smooth loci</a>. Derived stacks on this are the objects in a theory that could be called <span class="newWikiWord">derived synthetic differential geometry<a href="/nlab/new/derived+synthetic+differential+geometry">?</a></span>.</p>
+</li>
+</ul>
+<h2 id="remarks">Remarks</h2>
+<h3 id="derived_yoneda_embedding">Derived Yoneda embedding</h3>
+<p>One obvious but notable phenomenon that occurs in derived stacks in general, but not in <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a>s over a 1-categorical site, is that under the <a class="existingWikiWord" href="../../../../../../../missing.html">Yoneda embedding for (∞,1)-categories</a> a categorically discrete object, i,e. a <a class="existingWikiWord" href="../../../../../../../missing.html">0-truncated object</a> may be mapped to a higher categorical object.</p>
+<p>Consider specifically an ordinary <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>csC</mi><mo>=</mo><mo stretchy="false">[</mo><mi>Δ</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">csC = [\Delta,C]</annotation></semantics></math> be the corresponding <a class="existingWikiWord" href="../../../../../4/1/2/3/3214/content.html">SSet-site</a> of <a class="existingWikiWord" href="../../../../../3/5/2/6/16253/content.html">cosimplicial object</a>s. Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle><mo>:</mo><mi>C</mi><mo>↪</mo><mo stretchy="false">[</mo><mi>Δ</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo><mover><mo>→</mo><mrow><mi>ℝ</mi><mi>Y</mi></mrow></mover><mo stretchy="false">[</mo><mo stretchy="false">[</mo><mi>Δ</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo><mo>,</mo><mi>SSet</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{Y} : C \hookrightarrow [\Delta,C] \stackrel{\mathbb{R}Y}{\to}
+  [[\Delta,C],SSet]
+
+</annotation></semantics></math></div>
+<p>for the composite that first regards objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> as constant cosimplicial objects and then applies the <a class="existingWikiWord" href="../../../../../5/6/2/0/265/content.html">derived functor</a> of the <a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriched</a> <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a>, i.e. the functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mi>Y</mi><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>,</mo><mi>P</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \mathbb{R}Y = Y(Q(-), P(-))
+
+</annotation></semantics></math></div>
+<p>for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math> a fibrant and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> a cofibrant replacement functor. Then of course the simplicial presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Y}(U)</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">U \in C</annotation></semantics></math> may in general take values in <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a>s with nontrivial higher <a class="existingWikiWord" href="../../../../../5/3/6/1/1635/content.html">simplicial homotopy group</a>s, to the extent that the <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">SSet</a>-<a class="existingWikiWord" href="../../../../../2/5/2/0/252/content.html">hom-object</a>s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Y</mi></mstyle><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>:</mo><mi>V</mi><mo>↦</mo><mo stretchy="false">[</mo><mi>Δ</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Y}(U) : V \mapsto [\Delta,C](V,U)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>Δ</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\Delta,C]</annotation></semantics></math> are nontrivial.</p>
+<p>This cannot happen for <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a>s over 1-categorical site. For instance a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> regarded as a <a class="existingWikiWord" href="../../../../../1/2/4/8/18421/content.html">topological ∞-groupoid</a> is always an <a class="existingWikiWord" href="../../../../../../../missing.html">0-truncated object</a> as an <a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">∞-stack</a>.</p>
+<p>A notable example of this is the case where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">C = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../5/3/4/1/1435/content.html">CRing</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><mi>Spec</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">U = Spec R</annotation></semantics></math>. While ordinarily this is 0-categorical, when regarded as a derived stack on formal duals of <a class="existingWikiWord" href="../../../../../4/4/1/3/3144/content.html">simplicial ring</a>s this has in general a nontrivial <a class="existingWikiWord" href="../../../../../3/3/3/3/3333/content.html">free loop space object</a>, i.e. a nontrivial <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo lspace="0em" rspace="thinmathspace">Spec</mo><msubsup><mi>Ω</mi> <mi>K</mi> <mo>•</mo></msubsup><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Spec</mi><mi>R</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><mo stretchy="false">(</mo><mi>Id</mi><mo>,</mo><mi>Id</mi><mo stretchy="false">)</mo></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>Spec</mi><mi>R</mi></mtd> <mtd><mover><mo>→</mo><mrow><mo stretchy="false">(</mo><mi>Id</mi><mo>,</mo><mi>Id</mi><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><mi>Spec</mi><mi>R</mi><mo>×</mo><mi>Spec</mi><mi>R</mi></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    \Spec \Omega^\bullet_K(R) &amp;\to&amp; Spec R
+    \\
+    \downarrow &amp;&amp; \downarrow^{\mathrlap{(Id,Id)}}
+    \\
+    Spec R &amp;\stackrel{(Id,Id)}{\to}&amp; Spec R \times Spec R
+  }
+  \,,
+
+</annotation></semantics></math></div>
+<p>where, as indicated, the free loop space object is something like the <a class="existingWikiWord" href="../../../../../5/8/3/2/2385/content.html">de Rham space</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spec</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">Spec R</annotation></semantics></math>. This means that regarded as a derived stack, the space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spec</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">Spec R</annotation></semantics></math> becomes an <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a> whose morphisms are given by <a class="existingWikiWord" href="../../../../../4/6/1/2/2164/content.html">infinitesimal paths</a> in the original space.</p>
+<p>By the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-erspective on <a class="existingWikiWord" href="../../../../../8/9/2/3/3298/content.html">Hochschild cohomology</a> (as discussed there) this implies a bunch of nice relations. Details are in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toen</a><a class="existingWikiWord" href="../../../../../0/1/2/3/3210/content.html">Gabriele Vezzosi</a>, <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">S^1</annotation></semantics></math>-Equivariant simplicial algebras and de Rham theory</em> (<a href="http://arxiv.org/abs/0904.3256">arXiv:0904.3256</a>)</li>
+</ul>
+<p>The fact is also mentioned and used in passing every now and then (e.g. p. 9) in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/6/4/0/463/content.html">David Ben-Zvi</a>, <a class="existingWikiWord" href="../../../../../9/9/2/3/3299/content.html">David Nadler</a>, <a class="existingWikiWord" href="../../../../../0/2/2/3/3220/content.html">John Francis</a>, <em><a class="existingWikiWord" href="../../../../../2/8/1/1/1182/content.html">Integral transforms etc.</a></em></li>
+</ul>
+<p>But there must be a better reference, somewhere.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/4/4/1/1440/content.html">derived manifold</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/7/1/0/172/content.html">infinity-stack</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>An overview is provided in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toën</a>, <em>Higher and derived stacks: a global overview</em>, In: <em>Algebraic Geometry Seattle 2005</em>, Proceedings of Symposia in Pure Mathematics, Vol. 80.1, AMS 2009 (<a href="http://arxiv.org/abs/math/0604504">arXiv:math/0604504</a>, <a href="https://doi.org/10.1090/pspum/080.1">doi:10.1090/pspum/080.1</a>)</li>
+</ul>
+<p>A set of lecture notes on the <a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a> with an eye towards algebraic sites and derived algebraic geometry is</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toën</a>, <em>Simplicial presheaves and derived algebraic geometry</em> , lecture at <a href="http://www.crm.es/HigherCategories/">Simplicial methods in higher categories</a> (<a href="http://www.crm.cat/HigherCategories/hc1.pdf">pdf</a>)</li>
+</ul>
+<p>Details modeled on <a class="existingWikiWord" href="../../../../../5/3/4/0/435/content.html">simplicial categories</a> have been developed in the series of articles by Toën and Vezossi.</p>
+<p>This article generalizes the notion of <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> and <a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a> from 1-categorical sites to <a class="existingWikiWord" href="../../../../../5/3/4/0/435/content.html">simplicial sites</a> and hence to a <a class="existingWikiWord" href="../../../../../1/9/7/1/1791/content.html">model structure on SSet-enriched presheaves</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toën</a>, <a class="existingWikiWord" href="../../../../../0/1/2/3/3210/content.html">Gabriele Vezzosi</a>, <em>Homotopical Algebraic Geometry I: Topos theory</em> (<a href="http://arxiv.org/abs/math.AG/0207028">arXiv</a>)</li>
+</ul>
+<p>Of central interest in derived algebraic geometry is the simplicial site of <em>simplicial algebras</em>, which generalizes the familiar site of algebra used in algebraic geometry. This is introduced and studied in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toën</a>, <a class="existingWikiWord" href="../../../../../0/1/2/3/3210/content.html">Gabriele Vezzosi</a>, <em>Homotopical Algebraic Geometry II: geometric stacks and applications</em> (<a href="http://arxiv.org/abs/math.AG/0404373">arXiv</a>)</li>
+</ul>
+<p>Further developments in this direction are in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toën</a>, <a class="existingWikiWord" href="../../../../../0/1/2/3/3210/content.html">Gabriele Vezzosi</a>, <em>From HAG to DAG: derived moduli stacks</em> in Axiomatic, enriched
+<p>and motivic homotopy theory, 173–216, NATO Sci. Ser. II Math. Phys. Chem., 131, Kluwer Acad. Publ., Dordrecht, 2004. (<a href="http://arxiv.org/abs/math.AG/0210407">arXiv</a>)</p>
+</li>
+</ul>
+<p>The unifying picture, in particular independent of the choice of model for the <a class="existingWikiWord" href="../../../../../4/8/2/0/284/content.html">(infinity,1)-categories</a> is presented in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></em></li>
+</ul>
+<p>Derived (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-)stacks are currently mostly, maybe exclusively, studied on algebraic sites <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, where the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mi>op</mi></msup><mo>:</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">S^{op} := </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/1/2/0/212/content.html">Alg</a> is replaced with a category of “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-algebras” of sorts. The theory of these <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-algebras is described in great detail in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../8/7/3/1/1378/content.html">Noncommutative and Commutative algebra</a></em></li>
+</ul>
+<p>Concretely the need for the site of simplicial ring objects is discussed in the introduction of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../2/0/3/2/2302/content.html">Structured Spaces</a></em></li>
+</ul>
+<p>and in the introduction of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/2/3/3212/content.html">David Spivak</a>, <em><a href="http://math.berkeley.edu/~dspivak/thesis2.pdf">Quasi-smooth derived manifolds</a></em> .</li>
+</ul>
+<p>The proof that <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial</a> <a class="existingWikiWord" href="../../../../0/2/0/206/content.html">algebra</a>s are Quillen equivalent of <a class="existingWikiWord" href="../../../../../3/0/1/1/1103/content.html">differential graded algebra</a>s – so that derived stacks on simplicial algebras are the same as derived stacks on DGAs – is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, <em>Equivalences of monoidal model categories</em> , Algebr. Geom. Topol. 3 (2003), 287–334 (<a href="http://arxiv.org/abs/math.AT/0209342">arXiv</a>) .</li>
+</ul>
+<p>Further developments:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/5/4/5/25451/content.html">Gregory Taroyan</a>, <em>Equivalent models of derived stacks</em> [<a href="https://arxiv.org/abs/2303.12699">arXiv:2303.12699</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

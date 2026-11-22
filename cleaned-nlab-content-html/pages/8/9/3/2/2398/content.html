@@ -1,0 +1,476 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      de Rham theorem in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      de Rham theorem
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<ul>
+<li><a href="#on_cohomology">On cohomology</a></li>
+<li><a href="#OnCochains">On cochains</a></li>
+<li><a href="#SyntheticVersion">Synthetic version</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#on_cohomology_2">On cohomology</a></li>
+<li><a href="#ReferencesdeRhamTheoremOnCocycles">On cocycles</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<h3 id="on_cohomology">On cohomology</h3>
+<p>The <strong>de Rham theorem</strong> (named after <a class="existingWikiWord" href="../../../../../4/2/4/7/7424/content.html">Georges de Rham</a>) asserts that the <a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">de Rham cohomology</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>H</mi> <mi>dR</mi> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^n_{dR}(X)</annotation></semantics></math> of a smooth <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> (without boundary) is <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a> to the <a class="existingWikiWord" href="../../../../../9/2/5/0/20529/content.html">real cohomology</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^n(X, \mathbb{R})</annotation></semantics></math>, hence its <a class="existingWikiWord" href="../../../../../6/5/6/5/5656/content.html">ordinary cohomology</a> with <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real number</a> <a class="existingWikiWord" href="../../../../../6/8/2/8/8286/content.html">coefficients</a>, as computed for instance by the <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular</a> or <a class="existingWikiWord" href="../../../../7/7/1/1778/content.html">Čech cohomology</a> with real coefficients.</p>
+<p>The theorem has several dozens of different proofs. For example in the Čech approach one can make a double complex whose first row is the Čech complex of a covering and first column is the de Rham complex and other entries are mixed and use spectral sequence argument (cf. <a href="#BottTu82">Bott &amp; Tu 1982</a>, <a href="#Postnikov89">Postnikov 1989</a>).</p>
+<p>This is maybe best formulated, understood and proven in the context of <a class="existingWikiWord" href="../../../../4/1/1/1148/content.html">abelian sheaf cohomology</a>:</p>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℝ</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{R}_c</annotation></semantics></math> for</p>
+<ul>
+<li>
+<p>the abelian group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></p>
+</li>
+<li>
+<p>regarded not as a <a class="existingWikiWord" href="../../../5/1/1598/content.html">Lie group</a> with the standard <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a> structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> but as a topologically discrete group on the underlying set of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></p>
+</li>
+<li>
+<p>and then regarded as a <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>: the <a class="existingWikiWord" href="../../../../../6/4/4/3/3446/content.html">constant sheaf</a> that sends connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U \subset X</annotation></semantics></math> to the set of <em>constant</em> maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>→</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">U \to \mathbb{R}</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><msub><mi>ℝ</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{B}^n \mathbb{R}_c</annotation></semantics></math> for the corresponding <a class="existingWikiWord" href="../../../../../7/5/7/1/1757/content.html">Eilenberg-MacLane object</a> in <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complex</a>es of sheaves of abelian groups: this is the complex of sheaves with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℝ</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{R}_c</annotation></semantics></math> in degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><msub><mi>ℝ</mi> <mi>c</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mi>⋯</mi><mo>→</mo><mn>0</mn><mo>→</mo><msub><mi>ℝ</mi> <mi>c</mi></msub><mo>→</mo><mn>0</mn><mo>→</mo><mi>⋯</mi><mo>→</mo><mn>0</mn><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{B}^n \mathbb{R}_c
+  = 
+  (\cdots \to 0 \to \mathbb{R}_c \to 0 \to \cdots \to 0) 
+  \,.
+
+</annotation></semantics></math></div>
+<p>Next, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo stretchy="false">¯</mo></mover> <mi>n</mi></msup><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\bar \mathbf{B}^n \mathbb{R}</annotation></semantics></math> (without the subscript <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>!) for the <a class="existingWikiWord" href="../../../../5/1/1/1158/content.html">Deligne complex</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo stretchy="false">¯</mo></mover> <mi>n</mi></msup><mi>ℝ</mi><mo>=</mo><mo stretchy="false">(</mo><msup><mi>C</mi> <mn>∞</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>ℝ</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>d</mi> <mi>dR</mi></msub></mrow></mover><msup><mi>Ω</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>d</mi> <mi>dR</mi></msub></mrow></mover><msup><mi>Ω</mi> <mn>2</mn></msup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>d</mi> <mi>dR</mi></msub></mrow></mover><mi>⋯</mi><mover><mo>→</mo><mrow><msub><mi>d</mi> <mi>dR</mi></msub></mrow></mover><msubsup><mi>Ω</mi> <mi>closed</mi> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \bar \mathbf{B}^n \mathbb{R}
+  = 
+  (C^\infty(-,\mathbb{R}) \stackrel{d_{dR}}{\to}
+    \Omega^1(-) \stackrel{d_{dR}}{\to}
+    \Omega^2(-) \stackrel{d_{dR}}{\to} \cdots \stackrel{d_{dR}}{\to} \Omega^n_{closed}(-)) 
+  \,.
+
+</annotation></semantics></math></div>
+<p>(The notation here is borrowed from that used at <a class="existingWikiWord" href="../../../../../2/1/4/1/1412/content.html">motivation for sheaves, cohomology and higher stacks</a>: we can think of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo stretchy="false">¯</mo></mover> <mi>n</mi></msup><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\bar \mathbf{B}^n \mathbb{R}</annotation></semantics></math> as a differential refinement of the object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><msub><mi>ℝ</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{B}^n \mathbb{R}_c</annotation></semantics></math>).</p>
+<p>Then we have:</p>
+<ul>
+<li>
+<p>“ordinary” <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>-valued cohomology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../4/1/1/1148/content.html">abelian sheaf cohomology</a> with coefficients in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><msub><mi>ℝ</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{B}^n \mathbb{R}_c</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">de Rham cohomology</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../4/1/1/1148/content.html">abelian sheaf cohomology</a> with coefficients in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo stretchy="false">¯</mo></mover> <mi>n</mi></msup><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\bar \mathbf{B}^n \mathbb{R}</annotation></semantics></math> (this is semi-obvious, requires a bit more discussion).</p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../3/2/2/4/4223/content.html">Poincare lemma</a> says that every closed <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential form</a> is locally exact, and hence there is a <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphism</a> of chain complexes of sheaves</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mi>n</mi></msup><msub><mi>ℝ</mi> <mi>c</mi></msub><mover><mo>→</mo><mo>≃</mo></mover><msup><mover><mstyle mathvariant="bold"><mi>B</mi></mstyle><mo stretchy="false">¯</mo></mover> <mi>n</mi></msup><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">
+  \mathbf{B}^n \mathbb{R}_c \stackrel{\simeq}{\to}
+  \bar \mathbf{B}^n \mathbb{R}
+
+</annotation></semantics></math></div>
+<p>given by injecting for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U \subset X</annotation></semantics></math> the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> as the constant functions into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mn>∞</mn></msup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C^\infty(U,\mathbb{R})</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>It is this quasi-isomorphism of coefficient objects that induces the de Rham isomorphism of <a class="existingWikiWord" href="../../../../4/1/1/1148/content.html">abelian sheaf</a> <a class="existingWikiWord" href="../../../../../5/4/7/1/1745/content.html">cohomology group</a>s, which is ordinarily written as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℝ</mi><mo stretchy="false">)</mo><mo>≃</mo><msubsup><mi>H</mi> <mi>dR</mi> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  H^n(X,\mathbb{R}) \simeq 
+  H^n_{dR}(X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>…</p>
+<h3 id="OnCochains">On cochains</h3>
+<p>The equivalence on cohomology asserted by the de Rham theorem is but a <a class="existingWikiWord" href="../../../../0/9/1/1908/content.html">decategorification</a> of a more refined statement: a <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphism</a> of <a class="existingWikiWord" href="../../../../../6/2/3/1/1326/content.html">cochain complex</a>es. This even respects the product structure:</p>
+<p>for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../5/9/3/3958/content.html">smooth manifold</a> there is an <a class="existingWikiWord" href="../../../../2/7/3/3728/content.html">equivalence</a> of <a class="existingWikiWord" href="../../../../../4/4/5/0/544/content.html">A-infinity algebra</a>s</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>Ω</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>d</mi> <mi>dR</mi></msub><mo stretchy="false">)</mo><mover><mo>→</mo><mo>≃</mo></mover><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mo>∪</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  (\Omega^\bullet(X), d_{dR})
+  \stackrel{\simeq}{\to}
+  (C(X), \cup)
+
+</annotation></semantics></math></div>
+<p>between the <a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">de Rham complex</a> and the collection of <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular cochain</a>s equipped with the <a class="existingWikiWord" href="../../../../../3/5/8/1/1853/content.html">cup product</a>.</p>
+<p>This is due to (<a href="#Gugenheim">Gugenheim, 1977</a>).</p>
+<p>Furthermore, the <a class="existingWikiWord" href="../../../../../9/3/1/5/5139/content.html">E-infinity algebra</a> structure on <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential forms</a> (trivially induced by the <span class="newWikiWord">commutative dga<a href="/nlab/new/commutative+dga">?</a></span> structure) and <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular cochains</a> (as witnessed by the action of the <a class="existingWikiWord" href="../../../../../7/6/1/1/21167/content.html">sequence operad</a> of McClure and Smith on <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular cochains</a>) is also preserved.</p>
+<h3 id="SyntheticVersion">Synthetic version</h3>
+<p>The de Rham theorem also holds internally in the context of suitable <a class="existingWikiWord" href="../../../../../9/1/5/2/2519/content.html">smooth topos</a>es <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> modelling the axioms of <a class="existingWikiWord" href="../../../../../0/5/4/1/1450/content.html">synthetic differential geometry</a>.</p>
+<p>Specifically</p>
+<ul>
+<li>
+<p>the internal <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular chain complex</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> is given as the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-linear dual of the free internal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module on the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mo>,</mo><mi>X</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\Delta^n,X]</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is the internal incarnation of the real numbers;</p>
+</li>
+<li>
+<p>the de Rham complex is given by <a class="existingWikiWord" href="../../../../../0/9/9/1/1990/content.html">differential forms in synthetic differential geometry</a>.</p>
+</li>
+</ul>
+<p>The de Rham theorem in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> then asserts that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a manifold regarded as an object in the well-adapted smooth topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> the morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="false"><mo>∫</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>H</mi> <mi>p</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>p</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>R</mi><msup><mo stretchy="false">)</mo> <mo>*</mo></msup></mstyle></mrow><annotation encoding="application/x-tex">
+  \textstyle{\int} \;\colon\; H^p(X) \to H_p(X,R)^*
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">p \in \mathbb{N}</annotation></semantics></math>. This implies the standard (external) de Rham theorem.</p>
+<p>This is discussed in chapter IV of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, <a class="existingWikiWord" href="../../../../5/2/2/2258/content.html">Gonzalo Reyes</a>, <em><a class="existingWikiWord" href="../../../../../3/8/9/1/1983/content.html">Models for Smooth Infinitesimal Analysis</a></em> for the toposes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi><mo>=</mo><mi>𝒢</mi><mo>,</mo><mi>ℱ</mi></mrow><annotation encoding="application/x-tex">\mathcal{T} = \mathcal{G}, \mathcal{F}</annotation></semantics></math> (see <a href="../../../../../3/8/9/1/1983/content.html#Models">models</a>).</li>
+</ul>
+<p>Discussion for <a class="existingWikiWord" href="../../../../1/2/1/1218/content.html">diffeological spaces</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/3/8/3/3835/content.html">Patrick Iglesias-Zemmour</a>, <em>De Rham calculus</em> (<a href="http://math.huji.ac.il/~piz/documents/D6.pdf">pdf</a>)</li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/7/6/1/21676/content.html">PL de Rham theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/8/9/9807/content.html">equivariant de Rham theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/7/1/21724/content.html">equivariant PL de Rham theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/2/2/4/4223/content.html">Poincaré lemma</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/4/8/4/4840/content.html">Stokes theorem</a></p>
+</li>
+<li>
+<p><strong>de Rham theorem</strong></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/2/7/8/18729/content.html">kernel of integration is the exact differential forms</a></li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/9/7/1/11794/content.html">Dolbeault theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/5/0/9/9050/content.html">Hodge theorem</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="on_cohomology_2">On cohomology</h3>
+<p>Textbook accounts:</p>
+<ul>
+<li id="BottTu82">
+<p><a class="existingWikiWord" href="../../../../../0/9/1/3/3190/content.html">Raoul Bott</a>, <a class="existingWikiWord" href="../../../../../1/1/1/6/6111/content.html">Loring Tu</a>, Thm. 8.9 &amp; Prop. 10.6 of: <em><a class="existingWikiWord" href="../../../../../0/1/1/6/6110/content.html">Differential Forms in Algebraic Topology</a></em>, Springer (1982) [<a href="https://link.springer.com/book/10.1007/978-1-4757-3951-0">doi:10.1007/978-1-4757-3951-0</a>]</p>
+</li>
+<li id="Postnikov89">
+<p><a class="existingWikiWord" href="../../../../../7/1/8/1/1817/content.html">M M Postnikov</a>, <em>Differentiable manifolds</em>, vol. III of: <em>Lectures on geometry</em> (1989) [<a href="https://archive.org/details/postnikov-lectures-in-geometry-semester-3-smooth-manifolds-mir-1989/page/7/mode/2up">ark:/13960/s2ccbwqpt99</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/5/8/7/17852/content.html">Jean Gallier</a>, <a class="existingWikiWord" href="../../../../../9/7/9/5/25979/content.html">Jocelyn Quaintance</a>, Ch. 9 in: <em>Homology, Cohomology, and Sheaf Cohomology for Algebraic Topology, Algebraic Geometry, and Differential Geometry</em>, World Scientific (2022) [<a href="https://doi.org/10.1142/12495">doi:10.1142/12495</a>, <a href="https://www.cis.upenn.edu/~jean/gbooks/sheaf-coho.html">webpage</a>]</p>
+</li>
+</ul>
+<p>Exposition:</p>
+<ul>
+<li>Arne Lorenz, <em>Abstract de Rham theorem</em>, <a href="http://wwwb.math.rwth-aachen.de/~arne/Talks/deRham.pdf">pdf slides</a></li>
+</ul>
+<p>In the context of <a class="existingWikiWord" href="../../../../../4/4/1/1/1144/content.html">rational homotopy theory</a>:</p>
+<ul>
+<li id="FelixHalperinThomas00"><a class="existingWikiWord" href="../../../../../6/8/5/7/17586/content.html">Yves Félix</a>, <a class="existingWikiWord" href="../../../../../2/8/2/6/6282/content.html">Stephen Halperin</a>, <a class="existingWikiWord" href="../../../../../0/3/7/0/20730/content.html">Jean-Claude Thomas</a>, Theorem 10.15 in: <em>Rational Homotopy Theory</em>, Graduate Texts in Mathematics, 205, Springer-Verlag, 2000 (<a href="https://link.springer.com/book/10.1007/978-1-4613-0105-9">doi:10.1007/978-1-4613-0105-9</a>)</li>
+</ul>
+<p>In <a class="existingWikiWord" href="../../../../../2/5/1/2/2152/content.html">analytic geometry</a>:</p>
+<ul>
+<li>M. E. Herrera, <em>De Rham theorems on semianalytic sets</em>, Bull. Amer. Math. Soc. <strong>7</strong> 3 (1967) 414–418, <a href="http://dx.doi.org/10.1090/S0002-9904-1967-11772-5">doi</a>, <a href="http://www.ams.org/mathscinet-getitem?mr=214094">MR214094</a></li>
+</ul>
+<p>In the generality of <a class="existingWikiWord" href="../../../../1/2/1/1218/content.html">diffeological spaces</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/3/8/3/3835/content.html">Patrick Iglesias-Zemmour</a>, <em>Une cohomologie de Čech pour les espaces differentiables et sa relation a la cohomologie de De Rham</em> (1988) [<a href="https://math.huji.ac.il/~piz/documents/UCDCPLEDESRALCDDR.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/IglesiasZemmour-CechDeRham.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/3/8/3/3835/content.html">Patrick Iglesias-Zemmour</a>, <em>Čech–De Rham bicomplex in diffeology</em>, Israel Journal of Mathematics (2023) 1–38 [<a href="https://doi.org/10.1007/s11856-023-2486-8">doi:10.1007/s11856-023-2486-8</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/8/5/5/25585/content.html">Emilio Minichiello</a>, <em>The Diffeological Čech-de Rham Obstruction</em> [<a href="https://arxiv.org/abs/2401.09400">arXiv:2401.09400</a>]</p>
+</li>
+</ul>
+<h3 id="ReferencesdeRhamTheoremOnCocycles">On cocycles</h3>
+<p>The refinement of the de Rham theorem from an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> of <a class="existingWikiWord" href="../../../../../5/4/7/1/1745/content.html">cohomology group</a>s to an <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a> of <a class="existingWikiWord" href="../../../../../4/4/5/0/544/content.html">A-∞ algebras</a> of cochains and forms was first stated in</p>
+<ul id="Gugenheim">
+<li><a class="existingWikiWord" href="../../../../../4/2/0/7/7024/content.html">Victor Gugenheim</a>, <em>On Chen’s iterated integrals</em>, Illinois J. Math. <strong>21</strong> 3 (1977) 703-715 [<a href="https://doi.org/10.1215/ijm/1256049021">doi:10.1215/ijm/1256049021</a>]</li>
+</ul>
+<p>proven using Chen’s <a class="existingWikiWord" href="../../../../../4/6/0/0/10064/content.html">iterated integral</a>s.</p>
+<p>A review is in section 3 of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/4/3/5/5342/content.html">Camilo Arias Abad</a>, <a class="existingWikiWord" href="../../../../../3/4/3/5/5343/content.html">Florian Schätz</a>, <em>The <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">A_\infty</annotation></semantics></math> de Rham theorem and integration of representations up to homotopy</em>, Int. Math. Res. Not. <strong>2013</strong> 16 (2013) 3790-3855 [<a href="http://arxiv.org/abs/1011.4693">arXiv:1011.4693</a>, <a href="https://doi.org/10.1093/imrn/rns166">doi:10.1093/imrn/rns166</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,382 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Homotopy Type System in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Homotopy Type System
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#Specifiation">Specification</a></li>
+<li><a href="#implementation">Implementation</a></li>
+<li><a href="#remarks_and_variations">Remarks and Variations</a></li>
+<ul>
+<li><a href="#points_that_are_homotopic_but_not_strictly_equal">Points that are homotopic but not strictly equal</a></li>
+<li><a href="#the_universe_of_nonfibrant_types">The universe of non-fibrant types</a></li>
+<li><a href="#fibrant_replacement">Fibrant replacement</a></li>
+<li><a href="#fibrancy_of_inductive_types">Fibrancy of inductive types</a></li>
+<li><a href="#semisimplicial_types">Semisimplicial types</a></li>
+<li><a href="#voevodskys_conjecture">Voevodsky’s conjecture</a></li>
+<li><a href="#model_invariance">Model invariance</a></li>
+</ul>
+<li><a href="#see_also">See also</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Proposed by <a class="existingWikiWord" href="../../../../../5/8/7/1/1785/content.html">Vladimir Voevodsky</a>, <strong>Homotopy Type System (HTS)</strong> is a type theory with two equality types, an “exact” or “strict” one which satisfies a <span class="newWikiWord">reflection rule<a href="/nlab/new/reflection+rule">?</a></span>, and a “path” or “homotopical” one which does not. It also distinguishes between “<a class="existingWikiWord" href="../../../../../9/7/0/7/7079/content.html">fibrant</a>” and “non-fibrant” types: the path type only eliminates into fibrant types.</p>
+<h2 id="Specifiation">Specification</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/8/7/1/1785/content.html">Vladimir Voevodsky</a>, <em>A type system with two kinds of identity types</em> (Feb. 2013) [<a class="existingWikiWord" href="/nlab/files/Voevodsky-HTS.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/8/7/1/1785/content.html">Vladimir Voevodsky</a>, <em>A simple type system</em> (Jan 2013) [<a class="existingWikiWord" href="/nlab/files/Voevodsky-TTS.pdf" title="pdf">pdf</a>, <a href="https://github.com/DanGrayson/checker">Implementation</a>]</p>
+</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<ul>
+<li>In progress: <a href="https://github.com/andrejbauer/andromeda">https://github.com/andrejbauer/andromeda</a></li>
+</ul>
+<h2 id="remarks_and_variations">Remarks and Variations</h2>
+<h3 id="points_that_are_homotopic_but_not_strictly_equal">Points that are homotopic but not strictly equal</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> be the type of pointed fibrant types that are merely equal to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Bool</mi></mrow><annotation encoding="application/x-tex">Bool</annotation></semantics></math>, i.e.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mo stretchy="false">(</mo><mi>A</mi><mo>:</mo><msub><mi>U</mi> <mi>F</mi></msub><mo stretchy="false">)</mo></mrow></munder><mi>A</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">I = \sum_{(A:U_F)} A. </annotation></semantics></math></div>
+<p>Define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>zero</mi><mo>,</mo><mi>one</mi><mo>:</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">zero,one:I</annotation></semantics></math> by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>zero</mi><mo>=</mo><mo stretchy="false">(</mo><mi>Bool</mi><mo>,</mo><mi>false</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">zero = (Bool,false)</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>one</mi><mo>=</mo><mo stretchy="false">(</mo><mi>Bool</mi><mo>,</mo><mi>true</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">one = (Bool,true)</annotation></semantics></math></div>
+<p>Then we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi><mo stretchy="false">(</mo><mi>zero</mi><mo>,</mo><mi>one</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Paths(zero,one)</annotation></semantics></math>, since by univalence we have a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mi>Paths</mi><mo stretchy="false">(</mo><mi>Bool</mi><mo>,</mo><mi>Bool</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p:Paths(Bool,Bool)</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>false</mi><mo stretchy="false">)</mo><mo>=</mo><mi>true</mi></mrow><annotation encoding="application/x-tex">p_*(false) = true</annotation></semantics></math>.</p>
+<p>However, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>:</mo><mi>Id</mi><mo stretchy="false">(</mo><mi>zero</mi><mo>,</mo><mi>one</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">e:Id(zero,one)</annotation></semantics></math>, then by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>apd</mi></mrow><annotation encoding="application/x-tex">apd</annotation></semantics></math> for strict equality, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo stretchy="false">(</mo><msub><mi>q</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>false</mi><mo stretchy="false">)</mo><mo>,</mo><mi>true</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id(q_*(false),true)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> is the image of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> under the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>proj</mi> <mn>1</mn></msub><mo>:</mo><mi>I</mi><mo>→</mo><msub><mi>U</mi> <mi>F</mi></msub></mrow><annotation encoding="application/x-tex">proj_1:I \to U_F</annotation></semantics></math>. But all strict equalities are equal to reflexivity, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo stretchy="false">(</mo><msub><mi>q</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>false</mi><mo stretchy="false">)</mo><mo>,</mo><mi>false</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id(q_*(false),false)</annotation></semantics></math>, and thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo stretchy="false">(</mo><mi>false</mi><mo>,</mo><mi>true</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Id(false,true)</annotation></semantics></math>, a contradiction.</p>
+<p>Therefore, the fibrant type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> contains two points <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>zero</mi><mo>,</mo><mi>one</mi></mrow><annotation encoding="application/x-tex">zero,one</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi><mo stretchy="false">(</mo><mi>zero</mi><mo>,</mo><mi>one</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Paths(zero,one)</annotation></semantics></math>, but <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>Id</mi><mo stretchy="false">(</mo><mi>zero</mi><mo>,</mo><mi>one</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\neg Id(zero,one)</annotation></semantics></math> (both provable inside the theory).</p>
+<h3 id="the_universe_of_nonfibrant_types">The universe of non-fibrant types</h3>
+<p>The universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> of non-fibrant types is itself <em>fibrant</em>. Moreover, in standard models (such as the simplicial set model, and other model-category-theoretic models) it is <em><a class="existingWikiWord" href="../../../../../5/6/0/7/7065/content.html">contractible</a></em> (in the usual sense of homotopy type theory, with respect to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi></mrow><annotation encoding="application/x-tex">Paths</annotation></semantics></math> identity type).</p>
+<p>The reason that the universe of non-fibrant types (type families) is contractible is that if you have a type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> with two objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>b</mi><mo>:</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">a b : I</annotation></semantics></math> and an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>:</mo><msub><mi>Paths</mi> <mi>I</mi></msub><mi>a</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">e : Paths_I a b</annotation></semantics></math> such that for any two types <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A, B</annotation></semantics></math> there is a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">(A \coprod B ) \to I</annotation></semantics></math> whose strict fiber over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math> is isomorphic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and strict fiber over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math> is isomorphic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> then the family of fibers of this function gives a map from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> to the universe of all types which, when applied to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math>, gives an isomorphism in this universe from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>. This is sufficient to create a path from a type which is isomorphic to empty to a type which is isomorphic to unit and therefore a path from 0 to 1 in nat.</p>
+<p>It is not <em>provably</em> contractible in the theory, since we can take its coproduct with pretty much any other type and still have a universe of non-fibrant types. However, it is “almost” contractible by the following argument. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> be arbitrary types, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>,</mo><mi>zero</mi><mo>,</mo><mi>one</mi></mrow><annotation encoding="application/x-tex">I,zero,one</annotation></semantics></math> be as defined above. Define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>→</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">f:A+B \to I</annotation></semantics></math> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>inl</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>zero</mi></mrow><annotation encoding="application/x-tex">f(inl(a)) = zero</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>inr</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>one</mi></mrow><annotation encoding="application/x-tex">f(inr(b)) = one</annotation></semantics></math>, and define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>:</mo><mi>I</mi><mo>→</mo><msub><mi>U</mi> <mi>S</mi></msub></mrow><annotation encoding="application/x-tex">P:I\to U_S</annotation></semantics></math> (the universe of non-fibrant types) by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>x</mi><mo>:</mo><mi>A</mi><mo>+</mo><mi>B</mi></mrow></munder><mi>Id</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">P(i) = \sum_{x:A+B} Id(f(x),i). </annotation></semantics></math></div>
+<p>In other words, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(i)</annotation></semantics></math> is the fiber of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>, computed using strict equality. It’s straightforward to show that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>zero</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">P(zero) \cong A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>one</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">P(one)\cong B</annotation></semantics></math>. However, since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>S</mi></msub></mrow><annotation encoding="application/x-tex">U_S</annotation></semantics></math> are both fibrant, we can apply <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> to the path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi><mo stretchy="false">(</mo><mi>zero</mi><mo>,</mo><mi>one</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Paths(zero,one)</annotation></semantics></math> to obtain a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>zero</mi><mo stretchy="false">)</mo><mo>,</mo><mi>P</mi><mo stretchy="false">(</mo><mi>one</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Paths(P(zero),P(one))</annotation></semantics></math>. This is not the same as a path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Paths(A,B)</annotation></semantics></math>, of course.</p>
+<h3 id="fibrant_replacement">Fibrant replacement</h3>
+<p>It is natural to wonder whether we can have a “fibrant replacement” type former which makes non-fibrant types into fibrant ones. However, surprisingly, this is actually inconsistent, essentially because it cannot be made to respect substitution.</p>
+<p>Suppose we had a type forming rule</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mspace width="thinmathspace"></mspace><mi>Type</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mi>R</mi><mi>A</mi><mspace width="thinmathspace"></mspace><mi>Fib</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A \, Type}{\Gamma \vdash R A \, Fib} </annotation></semantics></math></div>
+<p>with introduction rule</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mi>r</mi><mi>a</mi><mo>:</mo><mi>R</mi><mi>A</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash a:A}{\Gamma \vdash r a : R A} </annotation></semantics></math></div>
+<p>and elimination rule</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>,</mo><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>R</mi><mi>A</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>T</mi><mspace width="thinmathspace"></mspace><mi>Fib</mi><mspace width="2em"></mspace><mi>Γ</mi><mo>,</mo><mo stretchy="false">(</mo><mi>a</mi><mo>:</mo><mi>A</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>t</mi><mo>:</mo><mi>T</mi><mo stretchy="false">[</mo><mi>x</mi><mo>:</mo><mo>=</mo><mi>r</mi><mi>a</mi><mo stretchy="false">]</mo></mrow><mrow><mi>Γ</mi><mo>,</mo><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>R</mi><mi>A</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>Relim</mi><mo stretchy="false">(</mo><mi>a</mi><mo>.</mo><mi>t</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><mi>T</mi></mrow></mfrac><mo>.</mo></mrow><annotation encoding="application/x-tex">\frac{\Gamma,(x:R A) \vdash T\, Fib\qquad \Gamma,(a:A) \vdash t:T[x:=r a]}{\Gamma,(x:R A) \vdash Relim(a.t,x) : T}. </annotation></semantics></math></div>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">A=0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">B=1</annotation></semantics></math>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>:</mo><mi>I</mi><mo>→</mo><msub><mi>U</mi> <mi>S</mi></msub></mrow><annotation encoding="application/x-tex">P:I\to U_S</annotation></semantics></math> be defined as above, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>zero</mi><mo stretchy="false">)</mo><mo>≅</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">P(zero) \cong 0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>one</mi><mo stretchy="false">)</mo><mo>≅</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P(one)\cong 1</annotation></semantics></math>. Now consider</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>:</mo><mi>I</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>R</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>Fib</mi><mo>.</mo></mrow><annotation encoding="application/x-tex"> (x:I) \vdash R(P(x))\,Fib. </annotation></semantics></math></div>
+<p>Since this is a fibrant type family over a fibrant type, we can transport the element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false">(</mo><mo>⋆</mo><mo stretchy="false">)</mo><mo>:</mo><mi>R</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>one</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r(\star) : R(P(one))</annotation></semantics></math> along the known <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Paths</mi><mo stretchy="false">(</mo><mi>zero</mi><mo>,</mo><mi>one</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Paths(zero,one)</annotation></semantics></math> to obtain an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>zero</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(P(zero))</annotation></semantics></math>. However, by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Relim</mi></mrow><annotation encoding="application/x-tex">Relim</annotation></semantics></math>, we can define a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>zero</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">R(P(zero))\to 0</annotation></semantics></math> by defining a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>zero</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">P(zero)\to 0</annotation></semantics></math>, which we have. Thus, we obtain an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math>.</p>
+<p>It does, however, seem to be possible to allow fibrant replacement of types in the empty context. In other words, we could have a rule</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo>⊢</mo><mi>A</mi><mspace width="thinmathspace"></mspace><mi>Type</mi></mrow><mrow><mo>⊢</mo><mi>R</mi><mi>A</mi><mspace width="thinmathspace"></mspace><mi>Fib</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\vdash A \, Type}{\vdash R A \, Fib} </annotation></semantics></math></div>
+<p>and so on. Of course, this does not fit very well in the usual framework of type theory.</p>
+<h3 id="fibrancy_of_inductive_types">Fibrancy of inductive types</h3>
+<p><a class="existingWikiWord" href="../../../../../7/4/2/0/247/content.html">Mike Shulman</a> has argued that rather than assuming the natural numbers type to be fibrant and yet able to eliminate into non-fibrant types, there should be two natural numbers types: a fibrant one which can only eliminate into fibrant types, and a non-fibrant one which can eliminate into all types. The same applies to other positive inductive types such as coproducts (even coproducts of fibrant types) and the empty type.</p>
+<p>This is because while these types in simplicial sets happens to be fibrant, that is not the case in other categorical models. It may also pose similar problems for constructing new models of HTS out of old ones.</p>
+<h3 id="semisimplicial_types">Semisimplicial types</h3>
+<p><a class="existingWikiWord" href="../../../../../5/8/7/1/1785/content.html">Vladimir Voevodsky</a> claims that HTS allows a definition of <a class="existingWikiWord" href="../../../../../3/1/2/4/24213/content.html">semisimplicial types</a> and other infinite objects, in which diagrams of types commute strictly using the exact equality. See the comments in the file:</p>
+<ul>
+<li><a class="existingWikiWord" href="/nlab/files/hts-semisimplicial.v" title="Semisimplicial types in HTS">Semisimplicial types in HTS</a></li>
+</ul>
+<h3 id="voevodskys_conjecture">Voevodsky’s conjecture</h3>
+<p>Voevodsky has conjectured that any fibrant type definable in HTS is equivalent to one definable in <span class="newWikiWord">MLTT<a href="/nlab/new/Martin-L%C3%B6f+Type+Theory">?</a></span>, i.e. without using the strict equality.</p>
+<h3 id="model_invariance">Model invariance</h3>
+<p>The <a class="existingWikiWord" href="../../../../../6/6/1/4/24166/content.html">model invariance problem</a> seems more likely to fail for HTS than for theories that do not include strict equality. In other words, distinct model categories presenting the same <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-topos might have different “internal languages” according to HTS. This can obviously happen if by “internal language” we include the non-fibrant types, but if we restrict to the fibrant types the answer is unclear. It may be related to Voevodsky’s conjecture above.</p>
+<p>The following argument, however, shows that model invariance (even for fibrant types) definitely fails if we include fibrant replacement (of types in the empty context), and split inductive types into fibrant and non-fibrant versions (or simply don’t include inductive types in the system).</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> be the poset with four objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">a,b,c,d</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>&lt;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">d\lt a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">d\lt b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>&lt;</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">d\lt c</annotation></semantics></math> are the only nonidentity relations; thus an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-diagram is four objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>a</mi></msub></mrow><annotation encoding="application/x-tex">X_a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">X_b</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">X_c</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>d</mi></msub></mrow><annotation encoding="application/x-tex">X_d</annotation></semantics></math> with maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>d</mi></msub><mo>→</mo><msub><mi>X</mi> <mi>a</mi></msub></mrow><annotation encoding="application/x-tex">X_d \to X_a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>d</mi></msub><mo>→</mo><msub><mi>X</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">X_d \to X_b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>d</mi></msub><mo>→</mo><msub><mi>X</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">X_d \to X_c</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../0/6/6/3/3660/content.html">inverse category</a>, there is a <a class="existingWikiWord" href="../../../../../6/4/9/1/1946/content.html">Reedy model structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>sSet</mi> <mi>E</mi></msup></mrow><annotation encoding="application/x-tex">sSet^E</annotation></semantics></math> in which the cofibrations are levelwise monomorphisms, the weak equivalences are levelwise weak equivalences, and the fibrant objects are diagrams such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>a</mi></msub></mrow><annotation encoding="application/x-tex">X_a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">X_b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">X_c</annotation></semantics></math> are fibrant and the induced map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>d</mi></msub><mo>→</mo><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>a</mi></msub><mo>×</mo><msub><mi>X</mi> <mi>b</mi></msub><mo>×</mo><msub><mi>X</mi> <mi>c</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X_d \to (X_a \times X_b \times X_c)</annotation></semantics></math> is a fibration. Moreover, this model has <a class="existingWikiWord" href="../../../../../5/0/0/7/7005/content.html">univalent</a> <a class="existingWikiWord" href="../../../../../0/4/8/7/27840/content.html">universes</a> induced from those of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>: if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is a univalent universe in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> is a univalent universe in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>sSet</mi> <mi>E</mi></msup></mrow><annotation encoding="application/x-tex">sSet^E</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>a</mi></msub><mo>=</mo><msub><mi>V</mi> <mi>b</mi></msub><mo>=</mo><msub><mi>V</mi> <mi>c</mi></msub><mo>=</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">V_a = V_b = V_c = U</annotation></semantics></math>, and the fiber of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>d</mi></msub></mrow><annotation encoding="application/x-tex">V_d</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A,B,C)</annotation></semantics></math> is the type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">A \to B \to C \to U</annotation></semantics></math>.</p>
+<p>Now we can <a class="existingWikiWord" href="../../../../../7/5/7/0/757/content.html">localize</a> this Reedy model structure at the maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">0\to a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">0\to b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">0\to c</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> denote the corresponding <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representables</a>. A local object is a fibrant object such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>a</mi></msub></mrow><annotation encoding="application/x-tex">X_a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">X_b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>c</mi></msub></mrow><annotation encoding="application/x-tex">X_c</annotation></semantics></math> are contractible, and the local weak equivalences are just the maps that induce a weak equivalence on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-components. In particular, the homotopy category of the localized model structure is equivalent to that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>. Moreover, locality and localization (of fibrant objects) can be represented internally as a subobject and an endomorphism, respectively, of the universe <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>. Because localization is left exact, the subuniverse of local objects is itself local, and thus provides a univalent universe for the localized model structure.</p>
+<p>In conclusion, we have two model structures, one on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math> and one on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>sSet</mi> <mi>E</mi></msup></mrow><annotation encoding="application/x-tex">sSet^E</annotation></semantics></math>, which both model homotopy type theory with univalent universes, and have equivalent homotopy categories. Both model HTS as well, although their inductive types come in fibrant and non-fibrant versions.</p>
+<p>Now, inside HTS, define a (non-fibrant) type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> to be a “strict <a class="existingWikiWord" href="../../../../../9/1/0/7/7019/content.html">hprop</a>” if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow></msub><mi>Id</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\prod_{(x,y:Y)} Id(x,y)</annotation></semantics></math>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sProp</mi></mrow><annotation encoding="application/x-tex">sProp</annotation></semantics></math> for the subtype of the universe of non-fibrant types determined by the strict hprops. Consider the following type</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>P</mi><mo>,</mo><mi>Q</mi><mo>,</mo><mi>R</mi><mo>:</mo><mi>sProp</mi></mrow></munder><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mo stretchy="false">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>∨</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\prod_{P,Q,R:sProp} (\neg P \to (Q \vee R)) \to ((\neg P \to Q) \vee (\neg P \to R)) </annotation></semantics></math></div>
+<p>Call this type KP (for Kreisel-Putnam). Note that “false” and “or” for strict hprops can be defined impredicatively by quantification over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sProp</mi></mrow><annotation encoding="application/x-tex">sProp</annotation></semantics></math>.</p>
+<p>For semantics of HTS in a model category whose underlying category is a topos, the type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sProp</mi></mrow><annotation encoding="application/x-tex">sProp</annotation></semantics></math> will be interpreted by the <a class="existingWikiWord" href="../../../../../6/0/3/0/306/content.html">subobject classifier</a> <em>of that topos</em> (independently of what the model structure might look like). Thus, KP will be interpreted by the assertion, in the internal language of that topos (again independently of the model structure), that the Kreisel-Putnam axiom holds.</p>
+<p>Now as pointed out by <a href="http://mathoverflow.net/questions/159989/internal-logic-of-the-topos-of-simplicial-sets/">Francois Dorais</a>, the Kreisel-Putnam axiom holds in the internal logic of (the 1-topos) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>; thus the interpretation of KP there is globally inhabited. However, the Kreisel-Putnam axiom does not hold in the internal logic of (the 1-topos) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>sSet</mi> <mi>E</mi></msup></mrow><annotation encoding="application/x-tex">sSet^E</annotation></semantics></math>. For this it suffices to exhibit subterminal objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>,</mo><mi>Q</mi><mo>,</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">P,Q,R</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mo stretchy="false">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\neg P \to (Q
+\vee R))</annotation></semantics></math> is not contained in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>∨</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">((\neg P \to Q) \vee (\neg P \to R))</annotation></semantics></math>. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">P = a</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">Q = b</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">R = c</annotation></semantics></math>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">(\neg P) = (Q \vee R) = \{b,c\}</annotation></semantics></math>, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mo stretchy="false">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">(\neg P \to (Q \vee R)) = 1 = \{a,b,c,d\}</annotation></semantics></math>, but <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">(\neg P \to Q) = \{a,b\}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo>,</mo><mi>c</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">(\neg P \to R) = \{a,c\}</annotation></semantics></math>, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>∨</mo><mo stretchy="false">(</mo><mo>¬</mo><mi>P</mi><mo>→</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">((\neg P \to Q) \vee (\neg P \to R)) = \{a,b,c\}</annotation></semantics></math>. Thus, the interpretation of KP in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>sSet</mi> <mi>E</mi></msup></mrow><annotation encoding="application/x-tex">sSet^E</annotation></semantics></math> is not globally inhabited.</p>
+<p>It follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>KP</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(KP)</annotation></semantics></math> is a fibrant type which is inhabited in the model in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math>, but not in the model in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>sSet</mi> <mi>E</mi></msup></mrow><annotation encoding="application/x-tex">sSet^E</annotation></semantics></math>.</p>
+<h2 id="see_also">See also</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/9/1/9/19195/content.html">two-level type theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/2/4/24213/content.html">semi-simplicial types in homotopy type theory</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/4/6/5/25646/content.html">Danil Annenkov</a>, <a class="existingWikiWord" href="../../../../../2/6/4/8/18462/content.html">Paolo Capriotti</a>, <a class="existingWikiWord" href="../../../../../9/9/4/8/8499/content.html">Nicolai Kraus</a>, <a class="existingWikiWord" href="../../../../../6/4/3/8/18346/content.html">Christian Sattler</a>: <em>Two-Level Type Theory and Applications</em> [<a href="https://arxiv.org/abs/1705.03307">arXiv:1705.03307</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

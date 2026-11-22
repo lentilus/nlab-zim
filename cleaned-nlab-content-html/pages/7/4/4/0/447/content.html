@@ -1,0 +1,632 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      geometric realization in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="http://localhost/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="http://localhost/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      geometric realization
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#OfSimplicialSets">Of cell complexes such as simplicial sets</a></li>
+<li><a href="#OfSimplicialTopologicalSpaces">Of simplicial topological spaces</a></li>
+<li><a href="#OfCohesiveInfinityGroupoids">Of cohesive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids</a></li>
+<li><a href="#OfSimplicialObjects">Of simplicial objects in a category</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#realizations_as_cw_complexes">Realizations as CW complexes</a></li>
+<li><a href="#GeometricRealizationIsLeftExact">Theorem: Geometric realization is left exact</a></li>
+<ul>
+<li><a href="#geometric_realization_preserves_equalizers">Geometric realization preserves equalizers</a></li>
+<li><a href="#TopologicalRealizationPreservesFiniteProducts">Geometric realization preserves finite products</a></li>
+</ul>
+<li><a href="#a_construction_of_drinfeld_of_geometric_realization_as_hom01">A construction of Drinfeld of geometric realization as Hom([0,1],-)</a></li>
+<li><a href="#geometric_realization_preserves_fibrations">Geometric realization preserves fibrations</a></li>
+<li><a href="#induced_properties_of_the_fibrant_replacement">Induced properties of the fibrant replacement</a></li>
+<li><a href="#geometric_realization_of_barycentric_subdivisions">Geometric realization of barycentric subdivisions</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#compatibility_with_homotopy_limits">Compatibility with homotopy limits</a></li>
+<li><a href="#geometric_realization_of_barycentric_subdivisions_2">Geometric realization of barycentric subdivisions</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>What is commonly called <em>geometric realization</em> (or, less commonly but more accurately: <em>topological realization</em>,see Rem. <a class="maruku-ref" href="#OnTerminology"></a>) is the operation that builds from a <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">|X|</annotation></semantics></math> obtained by interpreting each element in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">X_n</annotation></semantics></math> – each abstract <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>n</mi>
+</mrow>
+<annotation encoding="application/x-tex">n</annotation>
+</semantics>
+</math>-simplex</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> – as one copy of the standard topological <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Δ</mi> <mi>Top</mi> <mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">\Delta^n_{Top}</annotation></semantics></math> and then gluing together all these along their <a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundaries</a> to a big topological space, using the information encoded in the <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">face and degeneracy maps</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> on how these simplices are supposed to be stuck together. This procedure generalises the geometric realization of <a class="existingWikiWord" href="../../../../../8/4/4/0/448/content.html">simplicial complexes</a> as described at that entry.</p>
+<p>Geometric realization is the special case of the general notion of <a class="existingWikiWord" href="../../../../../3/1/8/1/1813/content.html">nerve and realization</a> that is induced from the standard <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">cosimplicial</a> <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>↦</mo><msubsup><mi>Δ</mi> <mi>Top</mi> <mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">[n] \mapsto \Delta^n_{Top}</annotation></semantics></math>. (N.B.: in this article, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[n]</annotation></semantics></math> denotes the ordinal with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math> elements. The corresponding contravariant representable is denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Delta(-, n)</annotation></semantics></math>.) Analogous constrtuctions yield <a class="existingWikiWord" href="../../../../../9/4/0/2/22049/content.html">cubical geometric realization</a>, etc.</p>
+<p>In the context of <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a> geometric realization plays a notable role in the <a class="existingWikiWord" href="../../../../../8/5/5/0/558/content.html">homotopy hypothesis</a>, where it is part of the <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> between the <a class="existingWikiWord" href="../../../../../5/6/2/7/17265/content.html">classical model structure on topological spaces</a> and the <a class="existingWikiWord" href="../../../../../8/6/2/7/17268/content.html">classical model structure on simplicial sets</a>.</p>
+<p>The construction generalizes naturally to a map from <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial</a> <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a> to plain topological spaces. For more on that see <em><a class="existingWikiWord" href="../../../../../4/1/6/4/4614/content.html">geometric realization of simplicial spaces</a></em>.</p>
+<p>The dual concept is <em><a class="existingWikiWord" href="../../../../../4/6/4/6/6464/content.html">totalization</a></em> .</p>
+<p>
+<div class="num_remark" id="OnTerminology">
+<h6>Remark</h6>
+<p><strong>(alternative terminology: “topological realization”)</strong> <br/> While the term <em>geometric realization</em> is classical (<a href="#Quillen68">Quillen 1968</a>) and in common use by <a class="existingWikiWord" href="../../../../../3/3/7/1/1733/content.html">algebraic topologists</a> (e.g. <a href="#GoerssJardine09">Goerss &amp; Jardine 2009, §VII.3</a>), it is somewhat inaccurate or at least misleading, in that the bare <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a> produced by the realization construction are not yet what <a class="existingWikiWord" href="../../../../../2/3/3/0/332/content.html">geometers</a> would commonly regard as reflecting <a class="existingWikiWord" href="../../../../../2/3/3/0/332/content.html">geometric</a> <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a>: <a class="existingWikiWord" href="../../../../../2/3/3/0/332/content.html">Geometry</a> on a topological space is instead typically taken to be the <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">extra structure</a> of a <a class="existingWikiWord" href="../../../../../4/2/7/4/4724/content.html">differentiable manifold</a> (e.g. <a class="existingWikiWord" href="../../../../../3/2/7/4/4723/content.html">smooth structure</a>) together with some kind of <a class="existingWikiWord" href="../../../../../4/9/8/3/3894/content.html">G-structure</a> (such as <a class="existingWikiWord" href="../../../../../6/2/4/2/2426/content.html">Riemannian structure</a>, <a class="existingWikiWord" href="../../../../../4/7/2/6/6274/content.html">conformal structure</a>, etc.). This terminological mismatch is quite stark in the main application to <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a>, where one cares only about the (<a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">weak</a>) <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a> of the realization, which is the most non-geometric aspect of any notion of “<a class="existingWikiWord" href="../../../../../5/3/1/2/2135/content.html">space</a>”. This becomes a real issue in contexts of <a class="existingWikiWord" href="../../../../../1/1/0/2/2011/content.html">differential topology</a> and more generally of <a class="existingWikiWord" href="../../../../../6/2/4/0/10426/content.html">geometric homotopy theory</a> (such as for <a class="existingWikiWord" href="../../../../../8/7/2/1/1278/content.html">differential cohomology theories</a>) where realizations of simplicial sets to genuine geometric spaces richer than topological spaces do play a role (e.g. already for the notion of smooth/<a class="existingWikiWord" href="../../../../../1/7/1/0/20171/content.html">equivariant</a> <a class="existingWikiWord" href="../../../../../2/1/8/3/3812/content.html">triangulations</a> of <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifolds</a>).</p>
+<p>In conclusion, a more accurate and more descriptive term for the realization operation discussed here would be <strong>topological realization</strong>. References which use this terminology include <a href="#Simpson96">Simpson 1996</a>, <a href="../../../../../6/7/0/1/11076/content.html#Jardine04">Jardine 2004</a>, <a href="#Lackenby08">Lackenby 2008, §I.2</a>. In <a href="../../../../../2/2/3/0/322/content.html#FresseHOGTG">Fresse 2017</a> the term “topological realization” is used in the pdf draft but is replaced by “geometric realization” in the published version.</p>
+</div>
+</p>
+<h2 id="definition">Definition</h2>
+<p>There are various levels of generality in which the notion of (topological) geometric realization makes sense. The basic definition is</p>
+<ul>
+<li><a href="#OfSimplicialSets">For cell complexes such as simplicial sets</a>.</li>
+</ul>
+<p>A generalization of this of central importance is the</p>
+<ul>
+<li><a href="#OfSimplicialTopologicalSpaces">Geometric realization of simplicial topological spaces</a></li>
+</ul>
+<p>Up to homotopy, this is a special case of a general notion of</p>
+<ul>
+<li><a href="#OfCohesiveInfinityGroupoids">Geometric realization of cohesive ∞-groupoids</a>.</li>
+</ul>
+<p>At the point-set level, it is also a special case of a general notion of</p>
+<ul>
+<li><a href="#OfSimplicialObjects">Geometric realization of simplicial objects</a>.</li>
+</ul>
+<h3 id="OfSimplicialSets">Of cell complexes such as simplicial sets</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> be one of the categories of <a class="existingWikiWord" href="../../../../6/2/0/267/content.html">geometric shapes for higher structures</a>, such as the <a class="existingWikiWord" href="../../../../0/4/0/407/content.html">globe category</a> or the <a class="existingWikiWord" href="../../../../../6/8/3/0/386/content.html">simplex category</a> or the <a class="existingWikiWord" href="../../../../../5/0/4/0/405/content.html">cube category</a>.</p>
+<p>There is an obvious functor</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>st</mi><mo>:</mo><mi>S</mi><mo>→</mo></mrow><annotation encoding="application/x-tex"> st : S \to </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a></p>
+<p>which sends the standard <em>cellular</em> shape <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[n]</annotation></semantics></math> (the standard cellular <a class="existingWikiWord" href="../../../../../0/9/0/0/90/content.html">globe</a>, <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> or <a class="existingWikiWord" href="../../../../../0/2/4/0/420/content.html">cube</a>, respectively) to the corresponding standard <em>topological</em> shape (for instance the standard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>st</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>1</mn></msub><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mi>x</mi> <mi>n</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">|</mo><msubsup><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow> <mi>n</mi></msubsup><msub><mi>x</mi> <mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><msub><mi>x</mi> <mi>i</mi></msub><mo>≥</mo><mn>0</mn><mo stretchy="false">}</mo><mo>⊂</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex"> st([n]) := \{ (x_1, \cdots, x_n) | \sum_{i=1}^n x_i = 1, x_i \geq 0 \} \subset \mathbb{R}^{n}</annotation></semantics></math> ) with the obvious induced face and boundary maps.</p>
+<p>Using this, in cases where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math> can be regarded as <a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched</a> over and <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">tensored</a> over a base category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>, the <strong>geometric realization</strong> of a <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>K</mi> <mo>•</mo></msup><mo>:</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">K^\bullet : S^{op} \to V</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> – e.g., of a <a class="existingWikiWord" href="../../../../../1/9/0/0/91/content.html">globular set</a>, a <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> or a <a class="existingWikiWord" href="../../../../../9/6/2/0/269/content.html">cubical set</a>, respectively (when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">V= Set</annotation></semantics></math>) – is the <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> given by the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a>, <a class="existingWikiWord" href="../../../../../6/1/8/0/816/content.html">weighted colimit</a>, or <a class="existingWikiWord" href="../../../../../0/4/5/6/16540/content.html">tensor product of functors</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><msup><mi>K</mi> <mo>•</mo></msup><mo stretchy="false">|</mo><mo>=</mo><msup><mo>∫</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>∈</mo><mi>S</mi></mrow></msup><mi>st</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>⋅</mo><msup><mi>K</mi> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  |K^\bullet| = \int^{[n] \in S} st([n]) \cdot K^n
+  \,.
+
+</annotation></semantics></math></div>
+<p>In the case of <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a>, see for more discussion also</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a>, <a class="existingWikiWord" href="../../../../../8/5/5/0/558/content.html">homotopy hypothesis</a>.</li>
+</ul>
+<p>Via simplicial <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> functors geometric realization of simplicial sets induces geometric realizations of many other structures, for instance</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization of categories</a></li>
+</ul>
+<p>For the case of <a class="existingWikiWord" href="../../../../../9/6/2/0/269/content.html">cubical sets</a>, see <a class="existingWikiWord" href="../../../../../9/4/0/2/22049/content.html">cubical geometric realisation</a>.</p>
+<h3 id="OfSimplicialTopologicalSpaces">Of simplicial topological spaces</h3>
+<p>See</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/1/6/4/4614/content.html">geometric realization of simplicial topological spaces</a></li>
+</ul>
+<h3 id="OfCohesiveInfinityGroupoids">Of cohesive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids</h3>
+<p>Every <a class="existingWikiWord" href="../../../../../../../missing.html">cohesive (∞,1)-topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math> (in fact every <a class="existingWikiWord" href="../../../../../../../missing.html">locally ∞-connected (∞,1)-topos</a>) comes with its intrinsic notion of geometric realization.</p>
+<p>The general abstract definition is at <a class="existingWikiWord" href="../../../../../../../missing.html">cohesive (∞,1)-topos</a> in the section <a href="../../../../../5/6/8/5/5865/content.html#Homotopy">Geometric homotopy</a>.</p>
+<p>For the choice <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a> this reproduces the <a href="#OfSimplicialSets">geometric realization of simplicial sets</a>, see at <a class="existingWikiWord" href="../../../../../5/2/5/5/5525/content.html">discrete ∞-groupoid</a> the section <a href=""></a></p>
+<p>For the choice <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/8/1/3/3182/content.html">ETop∞Grpd</a> and <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">Smooth∞Grpd</a> this reproduces <a href="#OfSimplicialTopologicalSpaces">geometric realization of simplicial topological spaces</a>. See the sections <a href="../../../../../2/8/1/3/3182/content.html#GeometricHomotopy">ETop∞Grpd – Geometric homotopy</a> and <a href="../../../../../8/7/1/0/178/content.html#StrucGeometricHomotopy">Smooth ∞-groupoid – Geometric homotopy</a></p>
+<h3 id="OfSimplicialObjects">Of simplicial objects in a category</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../1/9/5/0/591/content.html">cocomplete</a> <a class="existingWikiWord" href="../../../../../5/3/4/0/435/content.html">simplicially enriched category</a> with <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copowers</a>. A <strong><a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a></strong> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>:</mo><msup><mi>Δ</mi> <mi>op</mi></msup><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">X:\Delta^{op}\to M</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../6/8/3/0/386/content.html">simplex category</a>. Its <strong>geometric realization</strong> is defined similarly to the classical case as a <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo><mo>=</mo><msup><mo>∫</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>∈</mo><mi>Δ</mi></mrow></msup><mi>Δ</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>⊙</mo><msub><mi>X</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex"> |X| = \int^{[n]\in\Delta} \Delta[n] \odot X_n </annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊙</mo></mrow><annotation encoding="application/x-tex">\odot</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">copower</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>. This operation is a left adjoint which is even a simplicially enriched functor; see <a class="existingWikiWord" href="../../../../6/3/0/367/content.html">simplicial object</a> for more details.</p>
+<h2 id="properties">Properties</h2>
+<p>In this section we consider topological <a href="#OfSimplicialSets">geometric realization of simplicial sets</a>, which is the best studied and perhaps most significant case.</p>
+<h3 id="realizations_as_cw_complexes">Realizations as CW complexes</h3>
+<p>Each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|X|}</annotation></semantics></math> is a CW complex (see lemma <a class="maruku-ref" href="#mono"></a> below), and so geometric realization <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">{|(-)|}: Set^{\Delta^{op}} \to Top</annotation></semantics></math> takes values in the full subcategory of CW complexes, and therefore in any <a class="existingWikiWord" href="../../../../../3/4/9/0/943/content.html">convenient category of topological spaces</a>, for example in the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CGHaus</mi></mrow><annotation encoding="application/x-tex">CGHaus</annotation></semantics></math> of compactly generated Hausdorff spaces. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math> be any convenient category of topological spaces, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>Space</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">i \colon Space \to Top</annotation></semantics></math> denote the inclusion.</p>
+<div class="un_prop">
+<h6 id="proposition">Proposition</h6>
+<p>For any simplicial set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, there is a natural isomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo stretchy="false">(</mo><msup><mo>∫</mo> <mrow><mi>n</mi><mo>:</mo><mi>Δ</mi></mrow></msup><mi>X</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>≅</mo><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">i(\int^{n: \Delta} X(n) \cdot \sigma(n)) \cong {|X|}</annotation></semantics></math>, where the coend on the left is computed in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math>.</p>
+</div>
+<p>This is obvious: more generally, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>J</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">F: J \to A</annotation></semantics></math> is a diagram and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mi>A</mi><mo>↪</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">i: A \hookrightarrow B</annotation></semantics></math> is a full replete subcategory, and if the colimit in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∘</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">i \circ F</annotation></semantics></math> lands in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, then this is also the colimit of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>. (The dual statement also holds, with limits instead of colimits.)</p>
+<p>Below, we let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Space</mi></mrow><annotation encoding="application/x-tex">R: Set^{\Delta^{op}} \to Space</annotation></semantics></math> denote the geometric realization when considered as landing in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math>.</p>
+<h3 id="GeometricRealizationIsLeftExact">Theorem: Geometric realization is left exact</h3>
+<p>We continue to assume <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math> is any <a class="existingWikiWord" href="../../../../../3/4/9/0/943/content.html">convenient category of topological spaces</a>. In this section we prove that geometric realization</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Space</mi></mrow><annotation encoding="application/x-tex">R: Set^{\Delta^{op}} \to Space</annotation></semantics></math></div>
+<p>is a left <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">exact functor</a> in that it preserves <a class="existingWikiWord" href="../../../../../2/7/0/4/4072/content.html">finite limits</a>.</p>
+<p>It is important that we use some such “<a class="existingWikiWord" href="../../../../../3/4/9/0/943/content.html">convenience</a>” assumption, because for example</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">|</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">|</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>⟶</mo><mi>Top</mi><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow></mpadded></mrow><annotation encoding="application/x-tex">
+  \big|(-)\big| 
+    \;\colon\; 
+  Set^{\Delta^{op}} 
+    \longrightarrow 
+  Top
+  \mathrlap{\,,}
+
+</annotation></semantics></math></div>
+<p>valued in general <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>, does not preserve products. (To get a correct statement, one usual procedure is to “kelley-fy” products by applying the coreflection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo lspace="verythinmathspace">:</mo><mi>Haus</mi><mo>→</mo><mi>CGHaus</mi></mrow><annotation encoding="application/x-tex">k \colon Haus \to CGHaus</annotation></semantics></math> to <a class="existingWikiWord" href="../../../../../4/7/4/1/1474/content.html">Hausdorff</a> and <a class="existingWikiWord" href="../../../../../0/1/9/0/910/content.html">compactly generated topological spaces</a>. This gives the correct isomorphism in the case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi><mo>=</mo><mi>CGHaus</mi></mrow><annotation encoding="application/x-tex">Space = CGHaus</annotation></semantics></math>, where we have that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">|</mo></mrow><mo>≅</mo><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow><msub><mo>×</mo> <mi>k</mi></msub><mrow><mo stretchy="false">|</mo><mi>Y</mi><mo stretchy="false">|</mo></mrow><mo>≔</mo><mi>k</mi><mo stretchy="false">(</mo><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow><mo>×</mo><mrow><mo stretchy="false">|</mo><mi>Y</mi><mo stretchy="false">|</mo></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">{|X \times Y|} \cong {|X|} \times_k {|Y|} \coloneqq k({|X|} \times {|Y|})</annotation></semantics></math>; the product on the right has been “kelleyfied” to the product appropriate for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CGHaus</mi></mrow><annotation encoding="application/x-tex">CGHaus</annotation></semantics></math>.)</p>
+<p>We reiterate that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> denotes the geometric realization functor considered as valued in a convenient category of spaces, whereas <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|(-)|}</annotation></semantics></math> is geometric realization viewed as taking values in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math>.</p>
+<div class="num_theorem" id="leftexact">
+<h6 id="theorem">Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><mi>hom</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>:</mo><mi>Space</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">U = \hom(1, -): Space \to Set</annotation></semantics></math> be the underlying-set functor. Then the composite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mi>R</mi><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">U R: Set^{\Delta^{op}} \to Set</annotation></semantics></math> is left exact.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>As described at the nLab article on triangulation <a href="../../../../../2/1/8/3/3812/content.html#StandardAffineSimplexFunctor">here</a>, the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mover><mo>→</mo><mi>σ</mi></mover><mi>Space</mi><mover><mo>→</mo><mi>U</mi></mover><mi>Set</mi></mrow><annotation encoding="application/x-tex">\Delta \stackrel{\sigma}{\to} Space \stackrel{U}{\to} Set</annotation></semantics></math></div>
+<p>can be described as the functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo>≅</mo><msup><mi>FinInt</mi> <mi>op</mi></msup><mo>↪</mo><msup><mi>Int</mi> <mi>op</mi></msup><mover><mo>→</mo><mrow><mi>Int</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>I</mi><mo stretchy="false">)</mo></mrow></mover><mi>Set</mi></mrow><annotation encoding="application/x-tex">\Delta \cong FinInt^{op} \hookrightarrow Int^{op} \stackrel{Int(-, I)}{\to} Set</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Int</mi></mrow><annotation encoding="application/x-tex">Int</annotation></semantics></math> is the category of intervals (linearly ordered sets with distinct top and bottom). Because every interval, in particular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math>, is a <a class="existingWikiWord" href="../../../../../6/4/9/2/2946/content.html">filtered colimit</a> of finite intervals, and because finite intervals are finitely presentable intervals, it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mi>σ</mi><mo lspace="verythinmathspace">:</mo><mi>Δ</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">U \sigma \colon \Delta \to Set</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/1/4/1/1416/content.html">flat functor</a> (a <a class="existingWikiWord" href="../../../../../6/4/9/2/2946/content.html">filtered colimit</a> of representables). But on general grounds, <a class="existingWikiWord" href="../../../../../5/1/4/0/415/content.html">tensoring</a> with a flat functor is left exact, which in this case means</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mi>R</mi><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>U</mi><mi>σ</mi><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">U R = - \otimes_\Delta U \sigma: Set^{\Delta^{op}} \to Set</annotation></semantics></math></div>
+<p>is left exact.</p>
+</div>
+<p>Obviously the preceding proof is not sensitive to whether we use <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math>.</p>
+<h4 id="geometric_realization_preserves_equalizers">Geometric realization preserves equalizers</h4>
+<div class="num_lemma" id="mono">
+<h6 id="lemma">Lemma</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">i: X \to Y</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monomorphism</a> of simplicial sets, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>:</mo><mi>R</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(i): R(X) \to R(Y)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed subspace</a> inclusion, in fact a <a class="existingWikiWord" href="../../../../../4/8/3/0/384/content.html">relative CW-complex</a>. In particular, taking <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>∅</mi></mrow><annotation encoding="application/x-tex">X = \emptyset</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(Y)</annotation></semantics></math> is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CW</mi></mrow><annotation encoding="application/x-tex">CW</annotation></semantics></math>-complex.</p>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>Any monomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">i \colon X \to Y</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{\Delta^{op}}</annotation></semantics></math> can be seen as the result of iteratively adjoining nondegenerate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplices. In other words, there is a chain of inclusions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>↪</mo><mi>F</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>↪</mo><mi>…</mi><mi>Y</mi><mo>=</mo><msub><mi>colim</mi> <mi>i</mi></msub><mi>F</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X = F(0) \hookrightarrow F(1) \hookrightarrow \ldots Y = colim_i F(i)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>κ</mi><mo>→</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">F: \kappa \to Set^{\Delta^{op}}</annotation></semantics></math> is a functor from some ordinal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>≤</mo><mn>1</mn><mo>≤</mo><mi>…</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\kappa = \{0 \leq 1\leq \ldots\}</annotation></semantics></math> (as <a class="existingWikiWord" href="../../../../../9/1/1/0/119/content.html">preorder</a>) that preserves directed colimits, and each inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo>≤</mo><mi>α</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>:</mo><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(\alpha \leq \alpha + 1): F(\alpha) \to F(\alpha + 1)</annotation></semantics></math> fits into a pushout diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo>∂</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mpadded lspace="-100%width" width="0"><mi>j</mi></mpadded><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{
+\partial \Delta(-, n) &amp; \to &amp; F(\alpha) \\
+\mathllap{j} \downarrow &amp; &amp; \downarrow \\
+\Delta(-, n) &amp; \to &amp; F(\alpha+1)
+}
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math> is the inclusion. Now <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(j)</annotation></semantics></math> is identifiable as the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>→</mo><msup><mi>D</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">S^{n-1} \to D^n</annotation></semantics></math>, and since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> preserves pushouts (which are calculated as they are in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math>), we see by <a href="../../../../../4/9/0/3/3094/content.html#pushout">this lemma</a> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>→</mo><mi>R</mi><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R F(\alpha) \to R F(\alpha+1)</annotation></semantics></math> is a closed subspace inclusion and evidently a <a class="existingWikiWord" href="../../../../../4/8/3/0/384/content.html">relative CW-complex</a>. By <a href="../../../../../4/9/0/3/3094/content.html#transfinite">another lemma</a>, it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \to Y</annotation></semantics></math> is also a closed inclusion and indeed a relative CW-complex.</p>
+</div>
+<div class="num_cor">
+<h6 id="corollary">Corollary</h6>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Space</mi></mrow><annotation encoding="application/x-tex">R: Set^{\Delta^{op}} \to Space</annotation></semantics></math> preserves <a class="existingWikiWord" href="../../../../../8/2/0/1/1028/content.html">equalizers</a>.</p>
+</div>
+<div class="proof">
+<h6 id="proof_3">Proof</h6>
+<p>The equalizer of a pair of maps in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math> is computed as the equalizer on the level of underlying sets, equipped with the subspace topology. So if</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mover><mo>→</mo><mi>i</mi></mover><mi>X</mi><mover><munder><mo>⟶</mo><mi>g</mi></munder><mover><mo>⟶</mo><mi>f</mi></mover></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">E \stackrel{i}{\to} X \stackrel{\overset{f}{\longrightarrow}}{\underset{g}{\longrightarrow}} Y</annotation></semantics></math></div>
+<p>is an equalizer diagram in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{\Delta^{op}}</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>i</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|i|}</annotation></semantics></math> is the equalizer of the pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|f|}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>g</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|g|}</annotation></semantics></math>, because the underlying function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mrow><mo stretchy="false">|</mo><mi>i</mi><mo stretchy="false">|</mo></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U({|i|})</annotation></semantics></math> is the equalizer of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mrow><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">|</mo></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U({|f|})</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mrow><mo stretchy="false">|</mo><mi>g</mi><mo stretchy="false">|</mo></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U({|g|})</annotation></semantics></math> on the underlying set level by the preceding theorem, and because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>i</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|i|}</annotation></semantics></math> is a (closed) subspace inclusion by lemma <a class="maruku-ref" href="#mono"></a>. But this <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math>-equalizer <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>i</mi><mo stretchy="false">|</mo></mrow><mo>:</mo><mrow><mo stretchy="false">|</mo><mi>E</mi><mo stretchy="false">|</mo></mrow><mo>→</mo><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{{|i|}}: {{|E|}} \to {{|X|}}</annotation></semantics></math> lives in the full subcategory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math>, and therefore <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="false">|</mo><mi>i</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">R(i) = {|i|}</annotation></semantics></math> is the equalizer of the pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">R(f) = {|f|}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo stretchy="false">|</mo><mi>g</mi><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">R(g) = {|g|}</annotation></semantics></math>.</p>
+</div>
+<p>As the proof indicates, that realization preserves equalizers is not at all sensitive to whether we use <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math> or a convenient category of spaces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math>.</p>
+<h4 id="TopologicalRealizationPreservesFiniteProducts">Geometric realization preserves finite products</h4>
+<p>That geometric realization preserves products <em>is</em> sensitive to whether we think of it as valued in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math> or in a convenient category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math>. In particular, the proof uses <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closure</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math> in an essential way (in the form that <a class="existingWikiWord" href="../../../../../2/9/7/7/17792/content.html">finite products</a> distribute over arbitrary <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a>).</p>
+<p>First, an easy result on products of simplices.</p>
+<div class="num_lemma" id="product">
+<h6 id="lemma_2">Lemma</h6>
+<p>The realization of a product of two representables <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Delta(-, m) \times \Delta(-, n)</annotation></semantics></math> is compact.</p>
+</div>
+<div class="proof">
+<h6 id="proof_4">Proof</h6>
+<p>It suffices to observe that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mo>×</mo><mi>Δ</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Delta[m] \times \Delta[n]</annotation></semantics></math> has finitely many non-degenerate simplices. That is clear since non-degenerate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-simplices in the nerve of a poset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> are exactly injective order preserving maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">[k] \to P</annotation></semantics></math>.</p>
+</div>
+<div class="num_lemma" id="canonical">
+<h6 id="lemma_3">Lemma</h6>
+<p>The canonical map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo>→</mo><mrow><mo stretchy="false">|</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo>×</mo><mrow><mo stretchy="false">|</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{|\Delta(-, m) \times \Delta(-, n)|} \to {|\Delta(-, m)|} \times {|\Delta(-, n)|}</annotation></semantics></math></div>
+<p>is a homeomorphism.</p>
+</div>
+<div class="proof">
+<h6 id="proof_5">Proof</h6>
+<p>The canonical map is continuous, and a bijection at the underlying set level by theorem <a class="maruku-ref" href="#leftexact"></a>. The codomain is the compact Hausdorff space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>×</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma(m) \times \sigma(n)</annotation></semantics></math>, and the domain is compact by Lemma <a class="maruku-ref" href="#product"></a>. But a continuous bijection from a compact space to a Hausdorff space is a homeomorphism.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>The key properties of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> needed for this subsection are (1) the fact it is compact Hausdorff, and (2) the order relation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math> on the interval <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> defines a closed subset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>×</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">I \times I</annotation></semantics></math>. These properties ensure that the affine <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi> <mi>n</mi></msub><mo stretchy="false">)</mo><mo>∈</mo><msup><mi>I</mi> <mi>n</mi></msup><mo>:</mo><msub><mi>x</mi> <mn>1</mn></msub><mo>≤</mo><mi>…</mi><mo>≤</mo><msub><mi>x</mi> <mi>n</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(x_1, \ldots, x_n) \in I^n: x_1 \leq \ldots \leq x_n\}</annotation></semantics></math> is itself compact Hausdorff, so that the proof of lemma <a class="maruku-ref" href="#canonical"></a> goes through. The point is that in place of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math>, we can really use any interval <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> that satisfies these properties, thus defining an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math>-based geometric realization instead of the standard (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math>-based) geometric realization being developed here.</p>
+</div>
+<div class="num_theorem">
+<h6 id="theorem_2">Theorem</h6>
+<p>The functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>:</mo><msup><mi>Set</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mo>→</mo><mi>Space</mi></mrow><annotation encoding="application/x-tex">R: Set^{\Delta^{op}} \to Space</annotation></semantics></math> preserves products.</p>
+</div>
+<div class="proof">
+<h6 id="proof_6">Proof</h6>
+<p>The proof is purely formal. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> be simplicial sets. By the <a class="existingWikiWord" href="../../../../../8/2/2/1/1228/content.html">co-Yoneda lemma</a>, we have isomorphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>≅</mo><msup><mo>∫</mo> <mi>m</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mi>Y</mi><mo>≅</mo><msup><mo>∫</mo> <mi>n</mi></msup><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \cong \int^m X(m) \cdot \Delta(-, m)  \qquad Y \cong \int^n Y(n) \cdot \Delta(-, n)</annotation></semantics></math></div>
+<p>and so we calculate</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>R</mi><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><msup><mo>∫</mo> <mi>m</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><msup><mo>∫</mo> <mi>n</mi></msup><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><msup><mo>∫</mo> <mi>m</mi></msup><msup><mo>∫</mo> <mi>n</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><msup><mo>∫</mo> <mi>m</mi></msup><msup><mo>∫</mo> <mi>n</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo>×</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><msup><mo>∫</mo> <mi>m</mi></msup><msup><mo>∫</mo> <mi>n</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><msup><mo>∫</mo> <mi>m</mi></msup><msup><mo>∫</mo> <mi>n</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>×</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mo stretchy="false">(</mo><msup><mo>∫</mo> <mi>m</mi></msup><mi>X</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><msup><mo>∫</mo> <mi>n</mi></msup><mi>Y</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>×</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{
+R(X \times Y) &amp; \cong &amp; R((\int^m X(m) \cdot \Delta(-, m)) \times (\int^n Y(n) \cdot \Delta(-, n))) \\
+ &amp; \cong &amp; R(\int^m \int^n X(m) \cdot Y(n) \cdot (\Delta(-, m) \times \Delta(-, n))) \\
+ &amp; \cong &amp; \int^m \int^n X(m) \cdot Y(n) \cdot R(\Delta(-, m) \times \Delta(-, n)) \\
+ &amp; \cong &amp; \int^m \int^n X(m) \cdot Y(n) \cdot (R(\Delta(-, m)) \times R(\Delta(-, n)) \\
+ &amp; \cong &amp; \int^m \int^n X(m) \cdot Y(n) \cdot (\sigma(m) \times \sigma(n)) \\
+ &amp; \cong &amp; (\int^m X(m) \cdot \sigma(m)) \times (\int^n Y(n) \cdot \sigma(n)) \\
+ &amp; \cong &amp; R(X) \times R(Y)
+}
+</annotation></semantics></math></div>
+<p>where in each of the second and penultimate lines, we twice used the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>×</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">- \times -</annotation></semantics></math> preserves colimits in its separate arguments (i.e., the fact that the nice category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Space</mi></mrow><annotation encoding="application/x-tex">Space</annotation></semantics></math> is cartesian closed), and the remaining lines used the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> preserves colimits, and also products of representables by lemma <a class="maruku-ref" href="#canonical"></a>.</p>
+</div>
+<ul>
+<li>A slightly higher-level rendition of the proof might look like this:<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>R</mi><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>X</mi><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>hom</mi><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mi>Y</mi><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>hom</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mrow><mi>Δ</mi><mo>×</mo><mi>Δ</mi></mrow></msub><mo stretchy="false">(</mo><mi>hom</mi><mo>×</mo><mi>hom</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mrow><mi>Δ</mi><mo>×</mo><mi>Δ</mi></mrow></msub><mi>R</mi><mo stretchy="false">(</mo><mi>hom</mi><mo>×</mo><mi>hom</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mrow><mi>Δ</mi><mo>×</mo><mi>Δ</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">(</mo><mi>hom</mi><mo stretchy="false">)</mo><mo>×</mo><mi>R</mi><mo stretchy="false">(</mo><mi>hom</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>X</mi><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>R</mi><mo stretchy="false">(</mo><mi>hom</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mi>Y</mi><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>R</mi><mo stretchy="false">(</mo><mi>hom</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><mi>X</mi><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>hom</mi><mo stretchy="false">)</mo><mo>×</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Y</mi><msub><mo>⊗</mo> <mi>Δ</mi></msub><mi>hom</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo></mtd> <mtd><mi>R</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>×</mo><mi>R</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{
+R(X \times Y) &amp; \cong &amp; R((X \otimes_{\Delta} \hom) \times (Y \otimes_{\Delta} \hom)) \\
+&amp; \cong &amp; R((X \times Y) \otimes_{\Delta \times \Delta} (\hom \times \hom)) \\
+&amp; \cong &amp; (X \times Y) \otimes_{\Delta \times \Delta} R(\hom \times \hom) \\
+&amp; \cong &amp; (X \times Y) \otimes_{\Delta \times \Delta} (R(\hom) \times R(\hom)) \\
+&amp; \cong &amp; (X \otimes_{\Delta} R(\hom)) \times (Y \otimes_{\Delta} R(\hom)) \\
+&amp; \cong &amp; R(X \otimes_{\Delta} \hom) \times R(Y \otimes_{\Delta} \hom) \\
+&amp; \cong &amp; R(X) \times R(Y)
+}
+</annotation></semantics></math></div></li>
+</ul>
+<h3 id="a_construction_of_drinfeld_of_geometric_realization_as_hom01">A construction of Drinfeld of geometric realization as Hom([0,1],-)</h3>
+<p><a href="https://arxiv.org/abs/math/0304064">Drinfeld, On the notion of geometric realization</a> provides a conceptual explanation of preserving finite limits, and “reformulates the definitions so that the following facts become obvious:</p>
+<ul>
+<li>
+<p>geometric realization commutes with finite projective limits (e.g., with Cartesian products);</p>
+</li>
+<li>
+<p>the geometric realization of a simplicial set … (resp. cyclic set) is equipped with an action of the group of orientation preserving homeomorphisms of the segment <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>:</mo><mo>=</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">I := [0, 1]</annotation></semantics></math> … (resp. the circle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">S^ 1</annotation></semantics></math>).“ (quote from the paper)</p>
+</li>
+</ul>
+<p>A draft <a href="http://mishap.sdf.org/Skorokhod_Geometric_Realisation.pdf">M.Gavrilovich, K.Pimenov. Geometric realisation as a Skorokhod semi-continuous path space endofunctor</a> attempts to further reformulate this by showing that, in a certain precise sense, geometric realisation is an endofunctor of a certain category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi></mrow><annotation encoding="application/x-tex">sF</annotation></semantics></math> of simplicial sets equipped with extra structure of topological nature (a notion of smallness). The underlying endofunctor of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSets</mi></mrow><annotation encoding="application/x-tex">sSets</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>HHom</mi><mo stretchy="false">(</mo><msub><mi>Hom</mi> <mi>preorders</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><msub><mo stretchy="false">]</mo> <mo>≤</mo></msub><mo stretchy="false">)</mo><mo>,</mo><msub><mi>Y</mi> <mo>.</mo></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">HHom ( Hom_{preorders}(-, [0,1]_\leq), Y_.) </annotation></semantics></math></div>
+<p>The category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi></mrow><annotation encoding="application/x-tex">sF</annotation></semantics></math> contains simplicial sets, topological and uniform spaces as full subcategories, and has forgetful functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi><mo>→</mo><mi>sSets</mi></mrow><annotation encoding="application/x-tex">sF\to sSets</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">sF\to Top</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi><mo>→</mo><mi>UniformSpaces</mi></mrow><annotation encoding="application/x-tex">sF\to UniformSpaces</annotation></semantics></math> such that the following compositions are identity: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSets</mi><mo>→</mo><mi>sF</mi><mo>→</mo><mi>sSets</mi></mrow><annotation encoding="application/x-tex">sSets\to sF\to sSets</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi><mo>→</mo><mi>sF</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top\to sF\to Top</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>UniformSpaces</mi><mo>→</mo><mi>sF</mi><mo>→</mo><mi>UniformSpaces</mi></mrow><annotation encoding="application/x-tex">UniformSpaces\to sF\to UniformSpaces</annotation></semantics></math>. Moreover, this endofunctor seems to have the right adjoint, defined by the usual construction.</p>
+<p>Here are some details. The category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi></mrow><annotation encoding="application/x-tex">sF</annotation></semantics></math> may be thought as the category of simplicial sets with extra structure of topological nature, a notion of smallness. Formally it is just the category of simplicial objects in the category of <a class="existingWikiWord" href="../../../../../5/9/9/0/995/content.html">filters</a>. The endofunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>HHom</mi><mo stretchy="false">(</mo><msub><mi>Hom</mi> <mi>preorders</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><msub><mo stretchy="false">]</mo> <mo>≤</mo></msub><mo stretchy="false">)</mo><mo>,</mo><msub><mi>Y</mi> <mo>.</mo></msub><mo stretchy="false">)</mo><mo>:</mo><mi>sF</mi><mo>→</mo><mi>sF</mi></mrow><annotation encoding="application/x-tex">HHom ( Hom_{preorders}(-, [0,1]_\leq), Y_.):sF\to sF </annotation></semantics></math> above is the inner hom of sSets equipped with an extra structure motivated by Skorokhod/Levi-Prokhorov convergence. The precise claim is that the geometric realisation of sSets factors as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSets</mi><mo>→</mo><mi>sF</mi><mo>→</mo><mi>sF</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex"> sSets  \to sF \to sF \to Top </annotation></semantics></math></div>
+<p>To gain some intuition, consider <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi> <mo>.</mo></msub><mo>=</mo><msub><mi>Δ</mi> <mi>n</mi></msub><mo>=</mo><mi>Hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y_.=\Delta_n=Hom(-,[n])</annotation></semantics></math> the standard simplex. Then by Remark 2.4.1-2 of <a href="http://www.math.uiuc.edu/~dan/Courses/2003/Spring/416/GraysonKtheory.pdf">Grayson</a> the standard geometric simplex is the set of monotone functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0.1</mn><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0.1]\to [n]</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mi>preorders</mi></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><msub><mo stretchy="false">]</mo> <mo>≤</mo></msub><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>=</mo><mi>Hom</mi><mo stretchy="false">(</mo><msub><mi>Hom</mi> <mi>preorders</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><msub><mo stretchy="false">]</mo> <mo>≤</mo></msub><mo stretchy="false">)</mo><mo>,</mo><msub><mi>Δ</mi> <mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom_{preorders}([0,1]_\leq), [n] ) = Hom ( Hom_{preorders}(-, [0,1]_\leq), \Delta_n )</annotation></semantics></math></div>
+<p>equipped with a metric</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="0em" rspace="thinmathspace">dist</mo><mo stretchy="false">(</mo><mi>f</mi><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><mi>inf</mi><mo stretchy="false">{</mo><mi>ϵ</mi><mo>:</mo><mo>∀</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>∧</mo><mo>∀</mo><mi>y</mi><mo>∃</mo><mi>x</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\dist(f,g)=\inf \{ \epsilon: \forall x \exists y ( f(x)=f(y) ) \wedge  \forall y \exists x ( f(x)=g(y) ) \}</annotation></semantics></math></div>
+<p>reminiscent of Skorokhod metric in probability theory. Now instead of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\Delta_n</annotation></semantics></math> take an arbitrary simplicial set, and rewrite the definition of Skorokhod convergence in terms of the notion of smallness in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sF</mi></mrow><annotation encoding="application/x-tex">sF</annotation></semantics></math>.</p>
+<h3 id="geometric_realization_preserves_fibrations">Geometric realization preserves fibrations</h3>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>The geometric realization of a <a class="existingWikiWord" href="../../../../../2/9/4/0/492/content.html">Kan fibration</a> is a <a class="existingWikiWord" href="../../../../../0/9/0/3/3090/content.html">Serre fibration</a>.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>This is shown in <a href="#Quillen68">Quillen 68</a>.</p>
+</div>
+</p>
+<p>This result implies that the geometric realization functor preserves all five classes of maps in a <a class="existingWikiWord" href="../../../../5/2/0/257/content.html">model category</a>: <a class="existingWikiWord" href="../../../../../6/8/7/0/786/content.html">weak equivalences</a>, <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibrations</a>, <a class="existingWikiWord" href="../../../../../0/8/0/7/7080/content.html">acyclic cofibrations</a>, <a class="existingWikiWord" href="../../../../../1/6/5/0/561/content.html">fibrations</a>, and <a class="existingWikiWord" href="../../../../../0/8/0/7/7080/content.html">acyclic fibrations</a>.</p>
+<p>In fact the geometric realization of a Kan fibration is even a <a class="existingWikiWord" href="../../../../../9/1/8/2/2819/content.html">Hurewicz fibration</a> (at least relative to a <a class="existingWikiWord" href="../../../../../3/4/9/0/943/content.html">convenient category of spaces</a> in which it lives). This follows from the fact that <a class="existingWikiWord" href="../../../../../4/4/0/0/20044/content.html">a Serre fibration between CW-complexes is a Hurewicz fibration</a>; a direct proof along the lines of Quillen’s can be found in <a href="#FP90">Fritch and Piccinini, Theorem 4.5.25</a>.</p>
+<h3 id="induced_properties_of_the_fibrant_replacement">Induced properties of the fibrant replacement</h3>
+<p>The previous two sections show that the geometric realization preserves finite limits and fibrations. Since its right adjoint, the singular complex functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">Top \to sSet</annotation></semantics></math>, also preserves both (much more trivially), and since all objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Top</mi></mrow><annotation encoding="application/x-tex">Top</annotation></semantics></math> are fibrant and the adjunction is simplicially enriched, it follows that the composite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi><mo>→</mo><mi>Top</mi><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet \to Top \to sSet</annotation></semantics></math> is a simplicially enriched <a class="existingWikiWord" href="../../../../../9/0/5/4/4509/content.html">fibrant replacement functor</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sSet</annotation></semantics></math> that additionally preserves both finite limits and fibrations.</p>
+<h3 id="geometric_realization_of_barycentric_subdivisions">Geometric realization of barycentric subdivisions</h3>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>(<a href="#FP1967">Fritsch–Puppe, 1967</a>; <a href="#F1974">Fritsch 1974</a>.) There is a <a class="existingWikiWord" href="../../../../../9/2/6/1/1629/content.html">homeomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>Sd</mi><mi>X</mi><mo stretchy="false">|</mo><mo>→</mo><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">|Sd X| \to |X|</annotation></semantics></math></div>
+<p>from the <a class="existingWikiWord" href="content.html">geometric realization</a> of the <a class="existingWikiWord" href="../../../../../0/3/1/4/4130/content.html">barycentric subdivision</a> of a <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the geometric realization of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. This homeomorphism is homotopic to the geometric realization of the last vertex map. The homeomorphism turns the <a class="existingWikiWord" href="../../../../../4/8/3/0/384/content.html">CW-complex</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>Sd</mi><mi>X</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">|Sd X|</annotation></semantics></math> into a subdivision of the <a class="existingWikiWord" href="../../../../../4/8/3/0/384/content.html">CW-complex</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>X</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">|X|</annotation></semantics></math>. The statement also holds relative a simplicial subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A\subset X</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>For an expository account, see <a href="#FP1990">Fritsch–Piccinini</a>.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math>, its one-object <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoid</a> obtained by <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N(\mathbf{B}G)</annotation></semantics></math> the corresponding simplicial <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> <a class="existingWikiWord" href="../../../../../4/5/3/0/354/content.html">Kan complex</a>, we have that the geometric realization<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℬ</mi><mi>G</mi><mo>=</mo><mo stretchy="false">|</mo><mi>N</mi><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">
+  \mathcal{B}G = |N\mathbf{B}G|
+
+</annotation></semantics></math></div>
+<p>is the <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> that is the <a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/4/5/1/1543/content.html">principal bundle</a>s (<a class="existingWikiWord" href="../../../../8/5/1/1587/content.html">covering space</a>s), as long as we give <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../1/6/9/4/4961/content.html">discrete topology</a>.</p>
+</li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><strong>geometric realization</strong></p>
+<ul>
+<li>of <a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">categories</a>, <a class="existingWikiWord" href="../../../../../4/1/6/4/4614/content.html">simplicial topological spaces</a>, <a class="existingWikiWord" href="../../../../../1/0/1/6/6101/content.html">cohesive ∞-groupoids</a>, <a class="existingWikiWord" href="../../../../../9/4/0/2/22049/content.html">cubical sets</a>.</li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/6/4/6/6464/content.html">totalization</a></p>
+</li>
+<li>
+<p><span class="newWikiWord">singular complex functor<a href="/nlab/new/singular+complex+functor">?</a></span></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<p>Original articles:</p>
+<ul>
+<li id="Quillen68"><a class="existingWikiWord" href="../../../../../4/4/5/3/3544/content.html">Daniel Quillen</a>, <em>The geometric realization of a Kan fibration is a Serre fibration. Proc. Amer. Math. Soc. 19 1968 1499–1500. <a href="https://www.ams.org/journals/proc/1968-019-06/S0002-9939-1968-0238322-1/S0002-9939-1968-0238322-1.pdf">pdf</a></em></li>
+</ul>
+<p>Monographs:</p>
+<ul>
+<li id="GoerssJardine09">
+<p><a class="existingWikiWord" href="../../../../../3/8/4/2/2483/content.html">Paul Goerss</a>, <a class="existingWikiWord" href="../../../../../6/3/7/5/5736/content.html">J. F. Jardine</a>, Section VII.3 of: <em><a class="existingWikiWord" href="../../../../../8/4/2/7/7248/content.html">Simplicial homotopy theory</a></em>, Progress in Mathematics, Birkhäuser (1999)</p>
+<p>Modern Birkh[er Classics (2009) [<a href="https://link.springer.com/book/10.1007/978-3-0346-0189-4">doi:10.1007/978-3-0346-0189-4</a>]</p>
+</li>
+<li id="FP90">
+<p><a class="existingWikiWord" href="../../../../9/2/0/20297/content.html">Rudolf Fritsch</a>, <a class="existingWikiWord" href="../../../../../6/9/0/3/23096/content.html">Renzo A. Piccinini</a> §4.2 and §4.3 in: <em>Cellular structures in topology</em>, Cambridge studies in advanced mathematics <strong>19</strong> Cambridge University Press (1990) [<a href="https://doi.org/10.1017/CBO9780511983948">doi:10.1017/CBO9780511983948</a>, <a href="https://epub.ub.uni-muenchen.de/4493/1/4493.pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>Lecture notes:</p>
+<ul>
+<li id="Lackenby08"><a class="existingWikiWord" href="../../../../../5/7/4/4/24475/content.html">Marc Lackenby</a>, Section I.2 of: <em>Topology and Groups</em> (2008, 2018) [<a href="http://people.maths.ox.ac.uk/lackenby/tg050908.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Lackenby-TopologyAndGroups.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>Generalization to realization of <a class="existingWikiWord" href="../../../../../8/7/6/0/678/content.html">simplicial presheaves</a>:</p>
+<ul>
+<li id="Simpson96"><a class="existingWikiWord" href="../../../../../9/9/6/1/1699/content.html">Carlos Simpson</a>, <em>The topological realization of a simplicial presheaf</em> [<a href="https://arxiv.org/abs/q-alg/9609004">arXiv:q-alg/9609004</a>]</li>
+</ul>
+<h3 id="compatibility_with_homotopy_limits">Compatibility with homotopy limits</h3>
+<p>Discussion of sufficient conditions for homotopy geometric realization to be compatible with <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> (see also at <em><a class="existingWikiWord" href="../../../../../4/1/6/4/4614/content.html">geometric realization of simplicial topological spaces</a></em>):</p>
+<ul>
+<li>
+<p>D. Anderson, <em>Fibrations and geometric realization</em> , Bull. Amer. Math. Soc. Volume 84, Number 5 (1978), 765-788. (<a href="http://projecteuclid.org/euclid.bams/1183541139">euclid:1183541139</a>)</p>
+</li>
+<li id="Rezk14">
+<p><a class="existingWikiWord" href="../../../../../5/2/8/2/2825/content.html">Charles Rezk</a>, <em>When are homotopy colimits compatible with homotopy base change?</em>, 2014 (<a href="https://faculty.math.illinois.edu/~rezk/i-hate-the-pi-star-kan-condition.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/RezkHomotopyColimitsBaseChange.pdf" title="pdf">pdf</a>)</p>
+</li>
+<li>
+<p>Edoardo Lanari, <em>Compatibility of homotopy colimits and homotopy pullbacks of simplicial presheaves</em> (<a href="http://algant.eu/documents/theses/lanari.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/LanariHomotopyColimitsBaseChange.pdf" title="pdf">pdf</a>)</p>
+<p>(expanded version of <a href="#Rezk14">Rezk 14</a>)</p>
+</li>
+</ul>
+<h3 id="geometric_realization_of_barycentric_subdivisions_2">Geometric realization of barycentric subdivisions</h3>
+<ul>
+<li id="FP1967">
+<p><a class="existingWikiWord" href="../../../../9/2/0/20297/content.html">Rudolf Fritsch</a>, <a class="existingWikiWord" href="../../../../../4/3/1/6/6134/content.html">Dieter Puppe</a>, <em>Die Homöomorphie der geometrischen Realisierungen einer semisimplizialen Menge und ihrer Normalunterteilung</em>, Arch. Math. (Basel) 18 (1967), 508–512.</p>
+</li>
+<li id="F1974">
+<p>Relative semisimpliziale Approximation, Arch. Math. (Basel) 25 (1974), 75–78.</p>
+</li>
+<li id="FP1990">
+<p><a class="existingWikiWord" href="../../../../9/2/0/20297/content.html">Rudolf Fritsch</a>, <a class="existingWikiWord" href="../../../../../6/9/0/3/23096/content.html">Renzo A. Piccinini</a>, <em>Cellular structures in topology</em>, CUP, 1990.</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

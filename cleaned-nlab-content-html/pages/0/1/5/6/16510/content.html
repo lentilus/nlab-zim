@@ -1,0 +1,399 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      coreader comonad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      coreader comonad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#as_an_indexed_comonad">As an indexed comonad</a></li>
+<li><a href="#generalization_to_tensor_products">Generalization to tensor products</a></li>
+<li><a href="#relation_to_reader_monad_and_state_monad">Relation to reader monad and state monad</a></li>
+<li><a href="#in_terms_of_dependent_type_theory">In terms of dependent type theory</a></li>
+</ul>
+<li><a href="#coalgebras">Coalgebras</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="definition">Definition</h2>
+<p>Given an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> in a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, if all binary <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">cartesian products</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> exist, then taking the cartesian product with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> assembles into a <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo>⟶</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">
+  W \times (-) 
+  \;\colon\; 
+  \mathcal{C} \longrightarrow \mathcal{C}
+
+</annotation></semantics></math></div>
+<p>whose <a class="existingWikiWord" href="../../../../../1/8/1/0/181/content.html">comultiplication</a> is induced by the <a class="existingWikiWord" href="../../../../../9/4/3/2/2349/content.html">diagonal map</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> and whose <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">counit</a> is induced by the <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal map</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">W \to \ast</annotation></semantics></math>.</p>
+<p>When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is furthermore equipped with the <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of a <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \times (-)</annotation></semantics></math> also canonically inherits the structure of a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>. Equipped with this <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>-structure, the operation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \times (-)</annotation></semantics></math> is known as the <em><a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a></em>, see there for more. Regarded as a <a class="existingWikiWord" href="../../../../8/3/8/8380/content.html">monad in computer science</a> this models the aggregation of a program’s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-typed outputs, corresponding to a sort of side channel.</p>
+<p>On the other hand, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is further <a class="existingWikiWord" href="../../../../../3/1/3/1/1313/content.html">exponentiable</a> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \times (-)</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../2/0/1/1020/content.html">left adjoint</a> to the <a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">W \to -</annotation></semantics></math>, so that it is known as the <strong>reader comonad</strong> (eg. in the <a class="existingWikiWord" href="../../../../../9/7/8/7/7879/content.html">Haskell</a> documentation for <em><a href="https://hackage.haskell.org/package/category-extras-0.53.0/docs/Control-Comonad-Reader.html">Control.Comonad.Reader</a></em>) or <strong>coreader comonad</strong> (e.g. <a href="#AhmanUustalu19">Ahman &amp; Uustalu (2019)</a>). It is also known as the <strong>product comonad</strong> (e.g. <a href="#UustaluVene08">Uustalu &amp; Vene 2008, p. 270</a>) and the <strong>environment comonad</strong> (eg. in the <a class="existingWikiWord" href="../../../../../9/7/8/7/7879/content.html">Haskell</a> documentation for <em><a href="https://hackage.haskell.org/package/comonad-5.0.8/docs/Control-Comonad-Env.html">Control.Comonad.Env</a></em>).</p>
+<p>Coreader comonads in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒞</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\mathcal{C}^op</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../6/3/8/4/24836/content.html">exception monads</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, because products turn into <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproducts</a>.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="as_an_indexed_comonad">As an indexed comonad</h3>
+<p>If all binary cartesian products in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> exist, then the coreader comonad extends to a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>-indexed comonad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, i.e. a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>→</mo><mi>Comonad</mi></mrow><annotation encoding="application/x-tex">C \to Comonad</annotation></semantics></math>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>, then the environment comonad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>×</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">1 \times -</annotation></semantics></math> is isomorphic to the identity comonad.</p>
+<h3 id="generalization_to_tensor_products">Generalization to tensor products</h3>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a> rather than having all binary products, then tensoring with an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>⊗</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">\Gamma \otimes -</annotation></semantics></math> can be given an analogous comonad structure when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../6/2/5/0/526/content.html">comonoid</a> structure. In a <a class="existingWikiWord" href="../../../../../3/4/3/0/343/content.html">cartesian monoidal category</a> every object has a unique comonoid structure, which is what induces the coreader comonad. Even without assuming objects carry comonoid structures, the action sending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> to the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>⊗</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">\Gamma \otimes -</annotation></semantics></math> defines a strong <a class="existingWikiWord" href="../../../../../4/1/8/2/2814/content.html">monoidal functor</a> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> to the monoidal category of endofunctors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>C</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C,C]</annotation></semantics></math>, a degenerate kind of <a class="existingWikiWord" href="../../../../2/5/0/20520/content.html">graded comonad</a>.</p>
+<h3 id="relation_to_reader_monad_and_state_monad">Relation to reader monad and state monad</h3>
+<p>In a <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed category</a>/<a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, the coreader comonad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W\times (-)</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../2/0/1/1020/content.html">left adjoint</a> to the <a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>W</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[W,-]</annotation></semantics></math>.</p>
+<p>The composite of coreader comonad followed by reader monad is the <a class="existingWikiWord" href="../../../../../4/3/1/1/11134/content.html">state monad</a>.</p>
+<h3 id="in_terms_of_dependent_type_theory">In terms of dependent type theory</h3>
+<p>If the type system is even a <a class="existingWikiWord" href="../../../../../6/7/3/0/376/content.html">locally Cartesian closed category</a>/<a class="existingWikiWord" href="../../../../../9/7/9/6/6979/content.html">dependent type theory</a> then for each type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> there is the <a class="existingWikiWord" href="../../../../../1/9/0/1/1091/content.html">base change</a> <a class="existingWikiWord" href="../../../../../5/4/8/5/5845/content.html">adjoint triple</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mrow><mo stretchy="false">/</mo><mi>W</mi></mrow></msub><mover><mover><munder><mo>⟶</mo><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mi>W</mi></munder></mrow></munder><mover><mo>⟵</mo><mrow><msup><mi>W</mi> <mo>*</mo></msup></mrow></mover></mover><mover><mo>⟶</mo><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>W</mi></munder></mrow></mover></mover><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">
+  \mathcal{C}_{/W}
+    \stackrel{\overset{\sum_W}{\longrightarrow}}{\stackrel{\overset{W^\ast}{\longleftarrow}}{\underset{\prod_W}{\longrightarrow}}}
+  \mathcal{C}
+
+</annotation></semantics></math></div>
+<p>In terms of this then the coreader comonad is equivalently the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>W</mi></munder><msup><mi>W</mi> <mo>*</mo></msup><mo>=</mo><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo>⟶</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">
+  \sum_W W^\ast = W\times (-) \;\colon\; \mathcal{C} \longrightarrow \mathcal{C}
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../5/5/8/8550/content.html">context extension</a> followed by <a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a>.</p>
+<p>One may also think of this as being the <a class="existingWikiWord" href="../../../../../1/2/2/5/5221/content.html">integral transform</a> through the span</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>←</mo><mi>W</mi><mo>→</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">
+  \ast \leftarrow W \rightarrow \ast
+
+</annotation></semantics></math></div>
+<p>(with trivial kernel) or as the <a class="existingWikiWord" href="../../../../../3/0/0/4/4003/content.html">polynomial functor</a> associated with the span</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>←</mo><mi>W</mi><mover><mo>→</mo><mi>id</mi></mover><mi>W</mi><mo>→</mo><mo>*</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \ast \leftarrow W \stackrel{id}{\rightarrow} W \rightarrow \ast
+  \,.
+
+</annotation></semantics></math></div>
+<h2 id="coalgebras">Coalgebras</h2>
+<p>A <a class="existingWikiWord" href="../../../../../1/1/3/7/17311/content.html">coalgebra</a> of the coreader comonad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">W \times -</annotation></semantics></math> is equivalent to simply a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">A \to W</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> the carrier of the co-algebra. Furthermore, the category of coalgebras is the isomorphic to the <a class="existingWikiWord" href="../../../../../8/4/7/0/748/content.html">slice category</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>. This shows that if all cartesian products with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> exist, then the forgetful functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Σ</mi> <mi>W</mi></msub><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">/</mo><mi>W</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">\Sigma_W \colon C / W \to C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../2/3/1/1320/content.html">comonadic</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<div>
+<table><thead><tr><th>(<a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">co</a>)<a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> name</th><th><a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a></th><th>(<a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">co</a>)<a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> induced by</th></tr></thead><tbody><tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \to (\text{-})</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian</a> types</td><td style="text-align: left;"><a href="../../../../../6/2/5/0/526/content.html#InACartesianMonoidalCategory">unique comonoid structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="content.html">coreader comonad</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \times (\text{-})</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian</a> types</td><td style="text-align: left;"><a href="../../../../../6/2/5/0/526/content.html#InACartesianMonoidalCategory">unique comonoid structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \otimes (\text{-})</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">monoidal</a> types</td><td style="text-align: left;">chosen <a class="existingWikiWord" href="../../../../../1/4/3/6/16341/content.html">monoid structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../3/0/6/26030/content.html">cowriter comonad</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>A</mi><mo>→</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd></mtr> <mtr><mtd><mi>A</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{A \to (\text{-}) \\ \\ A \otimes (\text{-})}</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">monoidal</a> types</td><td style="text-align: left;">chosen <a class="existingWikiWord" href="../../../../../1/4/3/6/16341/content.html">monoid structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> <br/><br/> chosen <a class="existingWikiWord" href="../../../../../6/2/5/0/526/content.html">comonoid structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius</a> (co)writer</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>A</mi><mo>→</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>A</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\array{A \to (\text{-}) \\ A \otimes (\text{-})}</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">monoidal</a> types</td><td style="text-align: left;">chosen <a class="existingWikiWord" href="../../../../../6/2/6/3/3626/content.html">Frobenius monoid structure</a></td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/1/1/11136/content.html">maybe monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/3/1/1/11135/content.html">continuation monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/1/1/11134/content.html">state monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/8/4/24836/content.html">exception monad</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Eg.</p>
+<ul>
+<li id="AhmanUustalu19">
+<p><a class="existingWikiWord" href="../../../../../8/2/8/4/24828/content.html">Danel Ahman</a>, <a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, p. 3 of: <em>Decomposing Comonad Morphisms</em>, CALCO 2019, Leibniz International Proceedings in Informatics (LIPIcs) <strong>139</strong> (2019) [<a href="https://doi.org/10.4230/LIPIcs.CALCO.2019.14">doi:10.4230/LIPIcs.CALCO.2019.14</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, p. 13 of: <em>Monads and Interaction Lecture 3</em>, lecture notes for <a href="https://staffwww.dcs.shef.ac.uk/people/G.Struth/mgs21.html">MGS 2021</a> (2021) [<a href="https://cs.ioc.ee/~tarmo/mgs21/mgs3.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Uustalu-Monads3.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li id="UustaluVene08">
+<p><a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, <a class="existingWikiWord" href="../../../../../7/8/8/4/24887/content.html">Varmo Vene</a>, <em>Comonadic Notions of Computation</em>, Electronic Notes in Theoretical Computer Science <strong>203</strong> 5 (2008) 263-284 [<a href="https://doi.org/10.1016/j.entcs.2008.05.029">doi:10.1016/j.entcs.2008.05.029</a>]</p>
+</li>
+</ul>
+<p>In <a class="existingWikiWord" href="../../../../../9/7/8/7/7879/content.html">Haskell</a>:</p>
+<ul>
+<li>
+<p><em><a href="https://hackage.haskell.org/package/category-extras-0.53.0/docs/Control-Comonad-Reader.html">Control.Comonad.Reader</a></em></p>
+</li>
+<li>
+<p><em><a href="https://hackage.haskell.org/package/comonad-5.0.9/docs/Control-Comonad-Trans-Env.html">Control.Comonad.Trans.Env</a></em></p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li id="Wadler92">
+<p><a class="existingWikiWord" href="../../../../../1/0/0/1/11001/content.html">Philip Wadler</a>, <em><a href="https://page.mi.fu-berlin.de/scravy/realworldhaskell/materialien/the-essence-of-functional-programming.pdf">The essence of functional programming</a></em>, 1992.</p>
+</li>
+<li id="Verdier14">
+<p><a class="existingWikiWord" href="../../../../../7/0/5/6/16507/content.html">Olivier Verdier</a>, <em><a href="http://www.olivierverdier.com/posts/2014/12/31/reader-writer-monad-comonad/">The Reader and Writer Monads and Comonads</a></em>, 2014</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

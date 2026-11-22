@@ -1,0 +1,831 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Tannaka duality in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Tannaka duality
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<ul>
+<li><a href="#ForPermutationRepresentations">For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-Sets</a></li>
+<ul>
+<li><a href="#quick_proof">Quick Proof</a></li>
+<li><a href="#longwinded_proof">Long-winded Proof</a></li>
+</ul>
+<li><a href="#ForVModules">For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-modules</a></li>
+<ul>
+<li><a href="#ForPermuatationRepresentations">For permutation representations</a></li>
+<li><a href="#ForAlgebraModules">For algebra modules</a></li>
+<li><a href="#for_linear_group_representations">For linear group representations</a></li>
+<li><a href="#Coalgebras">For coalgebra comodules</a></li>
+</ul>
+<li><a href="#for_lie_groupoids">For Lie groupoids</a></li>
+<li><a href="#for_geometric_stacks">For geometric stacks</a></li>
+<li><a href="#InHigherCategoryTheory">In higher category theory</a></li>
+<ul>
+<li><a href="#ForInfinityPermutations">For permutation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-representations</a></li>
+<li><a href="#InfinityGaloisTheory"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Galois theory</a></li>
+</ul>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><a class="existingWikiWord" href="../../../../../9/8/4/3/3489/content.html">Tannaka</a> duality or <em>Tannaka <a class="existingWikiWord" href="../../../../../2/9/9/1/1992/content.html">reconstruction theorem</a>s</em> are statements of the form:</p>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is a symmetry object (e.g. a <a class="existingWikiWord" href="../../../../../3/4/1/6/6143/content.html">locally compact topological group</a>, <a class="existingWikiWord" href="../../../../../8/2/5/0/528/content.html">Hopf algebra</a>), <a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">represented</a> on objects in a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, one may <em>reconstruct</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> from knowledge of the <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphism</a>s of the forgetful functor – the <strong><a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></strong> –</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><msub><mi>Rep</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">
+  F : Rep_D(A) \to D
+
+</annotation></semantics></math></div>
+<p>from the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Rep</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Rep_D(A)</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representation</a>s of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a>s of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> that remembers these underlying objects. In a generalization, called mixed Tannakian formalism, not a single <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a>, but a family of <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functors</a> over different bases is needed for a reconstruction. The fiber functor is necessary; for example, in the context of reconstruction of associative algebras, not remembering the underlying vector spaces results in reconstructing two different algebras with equivalent module categories (cf. <a class="existingWikiWord" href="../../../../../9/8/0/0/89/content.html">Morita equivalence</a>).</p>
+<p>There is a general-abstract and a concrete aspect to this. The general abstract one says that an algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is reconstructible from the <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a> on the category of <em>all</em> its modules. The concrete one says that in nice cases it is reconstructible from the category of <em>dualizable</em> (finite dimensional) modules, even if it is itself not finite dimensional.</p>
+<p>More precisely, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> be any <a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriching category</a> (a <a class="existingWikiWord" href="../../../../../7/5/1/0/157/content.html">locally small</a> <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">closed</a> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a> with all <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a>s). Then</p>
+<ol>
+<li>
+<p>for</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">A Mod</annotation></semantics></math> the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> of <em>all</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">module</a>s in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>A</mi><mi>Mod</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">F : A Mod \to V</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful</a> <em><a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></em> ;</p>
+</li>
+</ul>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> can be reconstructed as the object of <a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched endomorphisms</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>, given by the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">end</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≃</mo><mi>End</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><msub><mo>∫</mo> <mrow><mi>N</mi><mo>∈</mo><mi>A</mi><mi>Mod</mi></mrow></msub><mi>V</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  A 
+  \simeq
+  End(F) := \int_{N \in A Mod} V(F(N), F(N))
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is just the <a class="existingWikiWord" href="../../../../../8/4/0/4/4048/content.html">enriched Yoneda lemma</a> in a slight disguise.</p>
+</li>
+<li>
+<p>In good cases, this <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">end</a> is computed already by restriction to the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>Mod</mi> <mi>dual</mi></msub></mrow><annotation encoding="application/x-tex">A Mod_{dual}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dualizable modules</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>≃</mo><msub><mo>∫</mo> <mrow><mi>N</mi><mo>∈</mo><mi>A</mi><msub><mi>Mod</mi> <mi>dual</mi></msub></mrow></msub><mi>V</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots \simeq \int_{N \in A Mod_{dual}} V(F(N), F(N))
+  \,.
+
+</annotation></semantics></math></div></li>
+</ol>
+<h2 id="statement">Statement</h2>
+<p>So far the following examples concern the abstract algebraic aspect of Tannaka duality only, which is narrated here as a consequence of the <a class="existingWikiWord" href="../../../../../8/4/0/4/4048/content.html">enriched Yoneda lemma</a> in <a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriched category theory</a>. Some of the Tannaka duality theorems involve subtle harmonic analysis.</p>
+<h3 id="ForPermutationRepresentations">For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-Sets</h3>
+<p>A simple case of Tannaka duality is that of <a class="existingWikiWord" href="../../../../../1/3/5/9/9531/content.html">G-sets</a> of a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a>, i.e. representations on a <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a>. In this case, Tannaka duality follows entirely from repeated application of the ordinary <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a>.</p>
+<div class="num_theorem">
+<h6 id="theorem">Theorem</h6>
+<p><strong>(Tannaka duality for <a class="existingWikiWord" href="../../../../../1/3/5/9/9531/content.html">G-sets</a>)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a>, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>Set</mi></mrow><annotation encoding="application/x-tex">G Set</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../1/3/5/9/9531/content.html">G-sets</a> and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>G</mi><mi>Set</mi><mo>⟶</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">
+  F \colon G Set \longrightarrow Set
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a> that sends a <a class="existingWikiWord" href="../../../../../1/3/5/9/9531/content.html">G-set</a> to its underlying <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a>.</p>
+<p>Then there is a canonical <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">group-</a><a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Aut</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>G</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Aut(F) \;\simeq\; G
+  \,.
+
+</annotation></semantics></math></div>
+<p>identifying the <a class="existingWikiWord" href="../../../../../1/8/2/0/281/content.html">automorphism group</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> (the group of invertible <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphisms</a> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> to itself) with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6 id="quick_proof">Quick Proof</h6>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>≔</mo><msup><mi>Set</mi> <mi>G</mi></msup><mo>=</mo><mi>G</mi><mi>Set</mi></mrow><annotation encoding="application/x-tex">C \coloneqq Set^G = G Set</annotation></semantics></math>. The functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F \colon C \to Set</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>=</mo><mi>C</mi><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F = C(G, -)</annotation></semantics></math> by the regular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>. Then the proof is a one-line sequence of applications of the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>Set</mi> <mi>G</mi></msup><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo><mo>≅</mo><msup><mi>Set</mi> <mi>G</mi></msup><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>,</mo><mi>C</mi><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>≅</mo><mi>C</mi><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>G</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  End(F)
+  =
+  Set^G(F, F) 
+    \cong 
+  Set^G(C(G, -), C(G, -)) 
+    \cong 
+  C(G, G) 
+   \cong 
+  G.
+
+</annotation></semantics></math></div>
+<p>The “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>”‘s may denote the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> or its regular module. In particular, every endomorphism of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is invertible. Hence, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>=</mo><mi>Aut</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">End(F) = Aut(F) \cong G</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6 id="longwinded_proof">Long-winded Proof</h6>
+<p>We repeat the same proof, but with more notational details on what the entities involved in each step are precisely.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../6/7/1/1760/content.html">delooping</a> <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoid</a> of the <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>. Then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>Set</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>Func</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><msup><mi>G</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  G Set \;=\; Func(\mathbf{B}G^{op}, Set)
+  \,.
+
+</annotation></semantics></math></div>
+<p>The canonical inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mo>*</mo><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">i : {*} \to \mathbf{B}G</annotation></semantics></math> induces the <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Func</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo><mo>:</mo><mi>G</mi><mi>Set</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">
+  Func(i,Set) : G Set \to Set
+
+</annotation></semantics></math></div>
+<p>which evaluates a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><msup><mi>G</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">\rho : \mathbf{B}G^{op} \to Set</annotation></semantics></math> on the unique object of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math>. By the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a> this is the same as homming out of the functor <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">represented by</a> that unique object</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Func</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Hom</mi> <mrow><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><msub><mi>Y</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>*</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  Func(i,Set) = Hom_{PSh(\mathbf{B}G)}(Y_{\mathbf{B}G} {*}, -)
+  \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y_{\mathbf{B}G} : \mathbf{B}G \to PSh(\mathbf{B}G)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a>.</p>
+<p>But this way we see that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Func</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">Func(i,Set) : PSh(\mathbf{B}G) \to Set</annotation></semantics></math> is itself a representable functor in the presheaf category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(PSh(\mathbf{B}G)^{op})</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Func</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Y</mi> <mstyle mathvariant="bold"><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup></mrow></mstyle></msub><msub><mi>Y</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>*</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Func(i,Set) = Y_{\mathbf{PSh(\mathbf{B}G)^{op}}} Y_{\mathbf{B}G} *
+  \,.
+
+</annotation></semantics></math></div>
+<p>So applying the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a> twice, we find that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi>Aut</mi> <mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo stretchy="false">)</mo></mrow></msub><mi>Func</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><msub><mi>Aut</mi> <mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo stretchy="false">)</mo></mrow></msub><msub><mi>Y</mi> <mstyle mathvariant="bold"><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup></mrow></mstyle></msub><msub><mi>Y</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>*</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mi>Aut</mi> <mrow><mi>PSh</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup></mrow></msub><msub><mi>Y</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>*</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mi>Aut</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo>*</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><mi>G</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    Aut_{PSh(PSh(\mathbf{B}G)^{op})} Func(i,Set)
+    &amp; =
+    Aut_{PSh(PSh(\mathbf{B}G)^{op})} Y_{\mathbf{PSh(\mathbf{B}G)^{op}}} Y_{\mathbf{B}G} *
+    \\
+    &amp; \simeq
+    Aut_{PSh(\mathbf{B}G)^{op}} Y_{\mathbf{B}G} *
+    \\
+    &amp; \simeq
+    Aut_{\mathbf{B}G} *
+    \\
+    &amp; \simeq G
+    \,.
+  \end{aligned}
+
+</annotation></semantics></math></div></div>
+<p>Notice that the proof in no way used the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> was assumed to be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a>, but only that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a>. So the statement holds just as well for arbitrary monoids.</p>
+<p>But moreover, as the long-winded proof above makes manifest, even more abstractly the proof really only depended on the fact that the <a class="existingWikiWord" href="../../../../6/7/1/1760/content.html">delooping</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small category</a>. It need not have a single object for the proof to go through verbatim. Therefore we immediately obtain the following much more general statement of Tannaka duality for permutation representations of categories:</p>
+<div class="num_theorem">
+<h6 id="theorem_2">Theorem</h6>
+<p><strong>(Tannaka duality for permutation representations of categories)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/5/1/0/157/content.html">locally small category</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Rep</mi> <mi>Set</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>Func</mi><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>Set</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Rep_{Set}(C) := Func(C,Set)</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a>. For every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>c</mi></msub><mo>:</mo><msub><mi>Rep</mi> <mi>Set</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F_c : Rep_{Set}(C) \to Set</annotation></semantics></math> be the fiber-functor that evaluates at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>.</p>
+<p>Then we have a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Hom</mi><mo stretchy="false">(</mo><msub><mi>F</mi> <mi>c</mi></msub><mo>,</mo><msub><mi>F</mi> <mrow><mi>c</mi><mo>′</mo></mrow></msub><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>Hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>′</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Hom(F_c,F_{c'}) \simeq Hom_C(c,c')
+  \,.
+
+</annotation></semantics></math></div></div>
+<h3 id="ForVModules">For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-modules</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> be a (<a class="existingWikiWord" href="../../../../../7/5/1/0/157/content.html">locally small</a>) <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">closed</a> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a>, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> is enriched in itself via its <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>.</p>
+<p>Observe that the setup, statement and proof of Tannaka duality for permutation representations given above is the special case for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">V = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> of a statement verbatim the same in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/7/0/0/74/content.html">enriched category theory</a>, with the ordinary <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a> replaced everywhere by the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a>:</p>
+<p>Then the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-enriched Tannaka duality theorem states that we can reconstruct a monoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> as the monoid of endomorphisms of the forgetful <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-functor from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">A Mod</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>:</p>
+<div class="num_theorem">
+<h6 id="theorem_3">Theorem</h6>
+<p><strong>(Tannaka duality for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-modules over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-algebras)</strong></p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> with <a class="existingWikiWord" href="../../../../6/7/1/1760/content.html">delooping</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}A</annotation></semantics></math>, and with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>Mod</mi><mo>:</mo><mo>=</mo><mo stretchy="false">[</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  A Mod := [\mathbf{B}A,V]
+
+</annotation></semantics></math></div>
+<p>the <a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a> that encodes the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">module</a>s of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, we have that the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-enriched <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphism</a> algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mo stretchy="false">[</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">End(F) := [F,F]</annotation></semantics></math> of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/0/3/0/303/content.html">enriched functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>Rep</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">F : Rep(A) \to V</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">naturally isomorphic</a> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>A</mi><mi>Mod</mi><mover><mo>→</mo><mi>F</mi></mover><mi>V</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>A</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  End(A Mod \stackrel{F}{\to} V) \simeq A
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>We can repeat the argument given above for permutation representations, this time employing the <a class="existingWikiWord" href="../../../../../8/4/0/4/4048/content.html">enriched Yoneda lemma</a>.</p>
+<p>First, recall that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}A</annotation></semantics></math> has a unique object. Identify the forgetful functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> as the unique <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>•</mo><msup><mo stretchy="false">]</mo> <mo>*</mo></msup><mo lspace="verythinmathspace">:</mo><msub><mstyle mathvariant="bold"><mi>Fun</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi><mo>,</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><msub><munder><mrow><msub><mstyle mathvariant="bold"><mi>Fun</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mstyle mathvariant="bold"><mi>pt</mi></mstyle> <mi>V</mi></msub><mo>,</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><mo>⏟</mo></munder> <mrow><mo>≅</mo><mi>V</mi></mrow></msub></mrow><annotation encoding="application/x-tex">[\bullet]^*\colon\mathbf{Fun}_V(\mathbf{B}A,V)\to\underbrace{\mathbf{Fun}_V(\mathbf{pt}_V,V)}_{\cong V}</annotation></semantics></math></div>
+<p>given by precomposition along the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>•</mo><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><msub><mstyle mathvariant="bold"><mi>pt</mi></mstyle> <mi>V</mi></msub><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">[\bullet]\colon\mathbf{pt}_V\to\mathbf{B}A</annotation></semantics></math> . Namely, it sends an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">M\colon\mathbf{B}A\to V</annotation></semantics></math> to its evaluation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mo>•</mo><mo stretchy="false">)</mo><mo>∈</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">M(\bullet) \in V</annotation></semantics></math>.</p>
+<p>Then by the enriched Yoneda lemma,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>Hom</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo>•</mo><mo stretchy="false">)</mo><mo>,</mo><mi>M</mi><mo stretchy="false">)</mo><mo>≅</mo><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>h</mi> <mo>•</mo></msub><mo>,</mo><mi>M</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>M</mi><mo stretchy="false">(</mo><mo>•</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\mathbf{Nat}_V(Hom_{\mathbf{B}A}(-,\bullet),M) 
+\cong
+\mathbf{Nat}_V(h_\bullet,M) 
+\cong
+M(\bullet)
+
+</annotation></semantics></math></div>
+<p>hence the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>•</mo><msup><mo stretchy="false">]</mo> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">[\bullet]^*</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-naturally isomorphic to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>h</mi> <mo>•</mo></msub><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Nat}_V(h_\bullet,-)</annotation></semantics></math>. Then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>End</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>=</mo><mi mathvariant="normal">def</mi></mover><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mo>•</mo><msup><mo stretchy="false">]</mo> <mo>*</mo></msup><mo>,</mo><mo stretchy="false">[</mo><mo>•</mo><msup><mo stretchy="false">]</mo> <mo>*</mo></msup><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≅</mo><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>h</mi> <mo>•</mo></msub><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>,</mo><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>h</mi> <mo>•</mo></msub><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mover><mo>≅</mo><mi>Y</mi></mover><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>h</mi> <mo>•</mo></msub><mo>,</mo><msub><mi>h</mi> <mo>•</mo></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mover><mo>≅</mo><mi>Y</mi></mover><msub><mi>h</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo>•</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mover><mo>=</mo><mi mathvariant="normal">def</mi></mover><msub><mstyle mathvariant="bold"><mi>Hom</mi></mstyle> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow></msub><mo stretchy="false">(</mo><mo>•</mo><mo>,</mo><mo>•</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mover><mo>=</mo><mi mathvariant="normal">def</mi></mover><mi>A</mi><mo>,</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    End(F)
+    &amp;\overset{\mathrm{def}}{=}
+    \mathbf{Nat}_V(F,F)
+    \\
+    &amp;\cong
+    \mathbf{Nat}_V([\bullet]^*,[\bullet]^*)
+    \\
+    &amp;\cong
+    \mathbf{Nat}_V(\mathbf{Nat}_V(h_{\bullet},-),\mathbf{Nat}_V(h_{\bullet},-))
+    \\
+    &amp;\overset{Y}{\cong}
+    \mathbf{Nat}_V(h_{\bullet},h_{\bullet})
+    \\
+    &amp;\overset{Y}{\cong}
+    h_{\bullet}(\bullet)
+    \\
+    &amp;\overset{\mathrm{def}}{=}
+    \mathbf{Hom}_{\mathbf{B}A}(\bullet,\bullet)
+    \\
+    &amp;\overset{\mathrm{def}}{=}
+    A,
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../8/4/0/4/4048/content.html">enriched Yoneda lemma</a>. Here, the first use of Yoneda is not as obvious as it seems. It is applied to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-enriched category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Cat</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi><mo>→</mo><mi>V</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Cat_{\mathbf{B}A \to V}</annotation></semantics></math> whose objects are functors and morphisms are natural transformations; the embedding image of the object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi> <mo>•</mo></msub><mo>∈</mo><msub><mi>Cat</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi><mo>→</mo><mi>V</mi></mrow></msub></mrow><annotation encoding="application/x-tex">h_{\bullet} \in Cat_{\mathbf{B}A \to V}</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>Nat</mi></mstyle> <mi>V</mi></msub><mo stretchy="false">(</mo><msub><mi>h</mi> <mo>•</mo></msub><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Nat}_V(h_{\bullet},-)</annotation></semantics></math>.</p>
+<p>Notice that the <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphism</a> object here is taken in the sense of enriched category theory, as described at <a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p><strong>(Categorical <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">end</a> reconstruction of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>)</strong></p>
+<p>The monoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> can also be reconstructed as a categorical <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">end</a>, since the set of natural transformations between any two functors has a description in terms of <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">end</a>; roughly:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>D</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∫</mo> <mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow></msub><mi>D</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mi>G</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [C,D](F,G) = \int_{c \in C} D(F(c), G(c))
+  \,.
+
+</annotation></semantics></math></div>
+<p>To spell it out in our case,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≅</mo><mi>End</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∫</mo> <mrow><mi>N</mi><mo>∈</mo><mi>A</mi><mi>Mod</mi></mrow></msub><mi>V</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  A \cong End(F) = \int_{N \in A Mod} V(F(N), F(N))
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>As before, the same proof shows the more general statement:</p>
+<div class="num_theorem">
+<h6 id="theorem_4">Theorem</h6>
+<p><strong>(Tannaka duality for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-modules over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-algebroids)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> (a “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../5/2/0/250/content.html">algebroid</a>”). Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>Mod</mi><mo>:</mo><mo>=</mo><mo stretchy="false">[</mo><mi>C</mi><mo>,</mo><mi>V</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">C Mod := [C,V]</annotation></semantics></math> for the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/1/8/0/817/content.html">enriched functor category</a>. For every <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>c</mi></msub><mo>:</mo><mi>C</mi><mi>Mod</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">F_c : C Mod \to V </annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a> that evaluates at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. Then we have <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a>s</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>hom</mi><mo stretchy="false">(</mo><msub><mi>F</mi> <mi>c</mi></msub><mo>,</mo><msub><mi>F</mi> <mrow><mi>c</mi><mo>′</mo></mrow></msub><mo stretchy="false">)</mo><mo>≃</mo><mi>C</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>′</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  hom(F_c, F_{c'}) \simeq C(c,c')
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>From this statement of Tannaka duality in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-enriched category theory now various special cases of interest follow, by simply choosing suitable enrichment categories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>.</p>
+<h4 id="ForPermuatationRepresentations">For permutation representations</h4>
+<p>The case of permutation representations is re-obtained by setting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">V = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>.</p>
+<h4 id="ForAlgebraModules">For algebra modules</h4>
+<p>The general case of Tannaka duality for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-modules described <a href="#ForVModules">above</a> restricts to the classical case of Tannaka duality for linear representations by setting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>:</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">V :=</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a>, the category of <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a>s over some fixed <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>.</p>
+<p>In this case the above says</p>
+<div class="num_cor">
+<h6 id="corollary">Corollary</h6>
+<p><strong>(Tannaka duality for linear modules)</strong></p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../6/0/2/0/206/content.html">algebra</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">A Mod</annotation></semantics></math> its category of <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>, and for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>A</mi><mi>Mod</mi><mo>→</mo><mi>Vect</mi></mrow><annotation encoding="application/x-tex">F : A Mod \to Vect</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a> that sends a module to its underlying vector space, we have a natural isomorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>A</mi><mi>Mod</mi><mo>→</mo><mi>Vect</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">
+  End( A Mod \to Vect ) \simeq A
+
+</annotation></semantics></math></div>
+<p>in <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a>.</p>
+</div>
+<p>A less abstract proof (without using many yonedas) for the reconstruction makes use of the regular module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and its special element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">1 \in A</annotation></semantics></math>: A natural transform <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>∈</mo><mi>Nat</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi \in Nat(F,F)</annotation></semantics></math> assigns a linear map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mi>X</mi></msub><mo>:</mo><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi_X: F(X) \to F(X)</annotation></semantics></math> to each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, compatible with all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-intertwiners. Hence there is an obvious <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-algebra homomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>Nat</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Phi: A \to Nat(F,F)</annotation></semantics></math> sending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a \in A</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Act</mi> <mrow><mi>a</mi><mo>;</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow></msub></mrow><annotation encoding="application/x-tex">Act_{a;-}</annotation></semantics></math>. It suffices to show that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi></mrow><annotation encoding="application/x-tex">\Phi</annotation></semantics></math> is bijective to conclude <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≅</mo><mi>Nat</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \cong Nat(F,F)</annotation></semantics></math>.</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi></mrow><annotation encoding="application/x-tex">\Phi</annotation></semantics></math> is injective because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≠</mo><mi>a</mi><mo>′</mo><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a \neq a' \in A</annotation></semantics></math> give different actions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Act</mi> <mrow><mi>a</mi><mo>;</mo><mi>A</mi></mrow></msub><mo>≠</mo><msub><mi>Act</mi> <mrow><mi>a</mi><mo>′</mo><mo>;</mo><mi>A</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Act_{a;A} \neq Act_{a';A}</annotation></semantics></math> on the regular module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi></mrow><annotation encoding="application/x-tex">\Phi</annotation></semantics></math> is surjective because any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>∈</mo><mi>Nat</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi \in Nat(F,F)</annotation></semantics></math> must be <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Act</mi><mo stretchy="false">(</mo><mi>a</mi><mo>;</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Act(a;-)</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a \in A</annotation></semantics></math>, a fact seen by considering all of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-intertwiners (running through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">y \in Y</annotation></semantics></math>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>y</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f_{y}: A \to Y</annotation></semantics></math> sending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">y \in Y</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Additional structure on the algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> corresponds to addition structure on its <a class="existingWikiWord" href="../../../../../9/8/6/3/3689/content.html">category of modules</a> as indicated in the following table:</p>
+<div>
+<p><strong><a class="existingWikiWord" href="content.html">Tannaka duality</a> for <a class="existingWikiWord" href="../../../../../9/8/6/3/3689/content.html">categories of modules</a> over <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoids</a>/<a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebras</a></strong></p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a>/<a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative algebra</a></th><th><a class="existingWikiWord" href="../../../../../9/8/6/3/3689/content.html">category of modules</a></th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">Mod_A</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">algebra</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>R</mi></msub></mrow><annotation encoding="application/x-tex">Mod_R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/5/6/0/654/content.html">2-module</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../2/9/9280/content.html">sesquialgebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/2/6/2/2627/content.html">2-ring</a> = <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal</a> <a class="existingWikiWord" href="../../../../../4/7/9/0/974/content.html">presentable category</a> with <a class="existingWikiWord" href="../../../../9/5/0/590/content.html">colimit</a>-preserving <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/2/5/0/525/content.html">bialgebra</a></td><td style="text-align: left;">strict <a class="existingWikiWord" href="../../../../../7/2/6/2/2627/content.html">2-ring</a>: <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/2/5/0/528/content.html">Hopf algebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/0/5/1/1501/content.html">rigid monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/7/2/9/9279/content.html">hopfish algebra</a> (correct version)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/0/5/1/1501/content.html">rigid monoidal category</a> (without fiber functor)</td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/4/6/7/7648/content.html">weak Hopf algebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../0/5/1/1500/content.html">fusion category</a> with generalized <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/8/0/2/2084/content.html">quasitriangular bialgebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/4/2/0/245/content.html">braided monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/8/0/2/2084/content.html">triangular bialgebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/8/2/9/9287/content.html">quasitriangular Hopf algebra</a> (<a class="existingWikiWord" href="../../../../../2/8/0/2/2082/content.html">quantum group</a>)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/0/5/1/1501/content.html">rigid</a> <a class="existingWikiWord" href="../../../../../5/4/2/0/245/content.html">braided monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/8/2/9/9287/content.html">triangular Hopf algebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/0/5/1/1501/content.html">rigid</a> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/3/4/2/2439/content.html">supercommutative</a> <a class="existingWikiWord" href="../../../../../8/2/5/0/528/content.html">Hopf algebra</a> (<a class="existingWikiWord" href="../../../../../1/2/4/2/2421/content.html">supergroup</a>)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/0/5/1/1501/content.html">rigid</a> <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a> with <a class="existingWikiWord" href="../../../../../2/5/1/6/6152/content.html">fiber functor</a> and Schur smallness</td></tr>
+<tr><td style="text-align: left;">form <a class="existingWikiWord" href="../../../../../3/5/0/6/6053/content.html">Drinfeld double</a></td><td style="text-align: left;">form <a class="existingWikiWord" href="../../../../../2/7/5/9/9572/content.html">Drinfeld center</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/7/5/9/9573/content.html">trialgebra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/8/5/9/9581/content.html">Hopf monoidal category</a></td></tr>
+</tbody></table>
+<p><strong>2-Tannaka duality for <a class="existingWikiWord" href="../../../5/9/9580/content.html">module categories</a> over <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal categories</a></strong></p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a></th><th><a class="existingWikiWord" href="../../../5/9/9580/content.html">2-category of module categories</a></th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">Mod_A</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/7/9/3/3973/content.html">2-algebra</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>R</mi></msub></mrow><annotation encoding="application/x-tex">Mod_R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/7/9/3/3973/content.html">3-module</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/8/5/9/9581/content.html">Hopf monoidal category</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/6/7/3/3761/content.html">monoidal 2-category</a> (with some duality and strictness structure)</td></tr>
+</tbody></table>
+<p><strong>3-Tannaka duality for <a class="existingWikiWord" href="../../../../../2/8/5/9/9582/content.html">module 2-categories</a> over <a class="existingWikiWord" href="../../../../../1/6/7/3/3761/content.html">monoidal 2-categories</a></strong></p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../1/6/7/3/3761/content.html">monoidal 2-category</a></th><th><a class="existingWikiWord" href="../../../../../2/8/5/9/9582/content.html">3-category of module 2-categories</a></th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">Mod_A</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/7/9/3/3973/content.html">3-algebra</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>R</mi></msub></mrow><annotation encoding="application/x-tex">Mod_R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/7/9/3/3973/content.html">4-module</a></td></tr>
+</tbody></table>
+</div>
+<h4 id="for_linear_group_representations">For linear group representations</h4>
+<p>Still for the special case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mi>Vect</mi></mrow><annotation encoding="application/x-tex">V = Vect</annotation></semantics></math>, let now <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> and let the algebra in question specifically be its <a class="existingWikiWord" href="../../../../../9/2/5/0/529/content.html">group algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>k</mi><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A = k[G]</annotation></semantics></math> . Then the category of linear <a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representation</a>s of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Rep</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>k</mi><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">]</mo><mi>Mod</mi></mrow><annotation encoding="application/x-tex">
+  Rep(G) \simeq k[G] Mod
+
+</annotation></semantics></math></div>
+<p>and we obtain</p>
+<div class="num_cor">
+<h6 id="corollary_2">Corollary</h6>
+<p><strong>(Tannaka duality for linear group representations)</strong></p>
+<p>There is a natural isomorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>Rep</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Vect</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>k</mi><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  End(Rep(G) \to Vect) \simeq k[G]
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This should work for group rings as well, say <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mstyle mathvariant="bold"><mi>Z</mi></mstyle><mo stretchy="false">[</mo><mi>G</mi><mo stretchy="false">]</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">A = \mathbf{Z}[G].</annotation></semantics></math> However, note that the group ring does not recover the group in general (cf <a href="https://math.stackexchange.com/questions/1203202/recovering-a-group-from-its-group-algebra-over-mathbbz">discussion 1</a>, <a href="https://mathoverflow.net/questions/324391/is-it-possible-to-reconstruct-a-finitely-generated-group-from-its-category-of-re">discussion 2</a> and papers referred therein).</p>
+<h4 id="Coalgebras">For coalgebra comodules</h4>
+<p>If for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> we choose not <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a> but its <a class="existingWikiWord" href="../../../../../5/2/3/0/325/content.html">opposite category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Vect</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">Vect^{op}</annotation></semantics></math>, then a <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a> object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/8/1/0/181/content.html">coalgebra</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">A Mod</annotation></semantics></math> (or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mi>Mod</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">A Mod^{op}</annotation></semantics></math>, rather) is the category of comodules over this coalgebra. Again we have a forgetful functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi>A</mi><mi>Mod</mi><mo>→</mo><mi>Vect</mi></mrow><annotation encoding="application/x-tex">F : A Mod \to Vect</annotation></semantics></math></p>
+<p>In</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../7/3/1/1370/content.html">André Joyal</a>, <a class="existingWikiWord" href="../../../../../2/6/7/1/1762/content.html">Ross Street</a>, <em>An introduction to Tannaka duality and quantum groups</em>, <a href="http://www.math.mq.edu.au/~street/CT90Como.pdf">pdf</a></li>
+</ul>
+<p>(<a href="http://www.maths.mq.edu.au/~street/CT90Como.pdf#page=40">proposition 5, page 40</a>)</p>
+<p>and</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../2/7/3/3720/content.html">Pierre Deligne</a>, <em><a class="existingWikiWord" href="../../../../../4/8/9/1/1984/content.html">Catégories Tannakiennes</a></em></li>
+</ul>
+<p>it is shown that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is recovered as the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>∫</mo> <mrow><mi>N</mi><mo>∈</mo><mi>A</mi><msub><mi>Mod</mi> <mi>fin</mi></msub></mrow></msup><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>⊗</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><msup><mo stretchy="false">)</mo> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  \int^{N \in A Mod_{fin}} F(N) \otimes F(N)^*
+
+</annotation></semantics></math></div>
+<p>in <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a>, where the coend ranges over finite dimensional modules.</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> itself is finite dimensional then this is yet again just a special case of the enriched Yoneda lemma for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-modules, for the case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><msup><mi>FinDimVect</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">V = FinDimVect^{op}</annotation></semantics></math> (the <a class="existingWikiWord" href="../../../../../7/0/6/0/10607/content.html">opposite</a> of the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <a class="existingWikiWord" href="../../../7/8/18780/content.html">FinDimVect</a> of <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional vector spaces</a>): this general statement says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is recovered as the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">end</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><msub><mo>∫</mo> <mrow><mi>N</mi><mo>∈</mo><mi>A</mi><msub><mi>Mod</mi> <mi>fin</mi></msub></mrow></msub><mi>V</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  A = \int_{N \in A Mod_{fin}} V(F(N), F(N))
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Vect</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">Vect^{op}</annotation></semantics></math>. This is equivalently the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>≃</mo><msup><mo>∫</mo> <mrow><mi>N</mi><mo>∈</mo><mi>A</mi><mi>Mod</mi></mrow></msup><mo stretchy="false">(</mo><mi>Vect</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \cdots \simeq \int^{N \in A Mod}( Vect(F(N), F(N)))
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Vect</mi></mrow><annotation encoding="application/x-tex">Vect</annotation></semantics></math>. Finally using that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>FinDimVect</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>V</mi><mo>⊗</mo><msup><mi>W</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">FinDimVect(V,W) \simeq V\otimes W^*</annotation></semantics></math> the above coend expression follows.</p>
+<p>As before, more work is required to show that even for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> itself not finite dimensional, it is still recovered in terms of the above (co)end over just its finite dimensional modules.</p>
+<h3 id="for_lie_groupoids">For Lie groupoids</h3>
+<p>See <a class="existingWikiWord" href="../../../../../6/8/0/6/6086/content.html">Tannaka duality for Lie groupoids</a>.</p>
+<h3 id="for_geometric_stacks">For geometric stacks</h3>
+<p>See <a class="existingWikiWord" href="../../../../../5/0/4/5/5405/content.html">Tannaka duality for geometric stacks</a>.</p>
+<h3 id="InHigherCategoryTheory">In higher category theory</h3>
+<p>In as far as the proof of Tannaka duality only depends on the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a>, the statement immediately generalizes to <a class="existingWikiWord" href="../../../../../4/3/0/0/34/content.html">higher category theory</a> whenever a higher generalization of the Yoneda lemma is available.</p>
+<p>This is notably the case for <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> theory, where we have the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-Yoneda lemma</a>.</p>
+<h4 id="ForInfinityPermutations">For permutation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-representations</h4>
+<p>By applying the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-Yoneda lemma verbatim four times in a row as above <a href="#ForPermutationRepresentations">for permutation representations</a>, we obtain the following statement for <a class="existingWikiWord" href="../../../../../9/6/0/7/7069/content.html">∞-permutation representations</a>.</p>
+<div class="num_theorem">
+<h6 id="theorem_5">Theorem</h6>
+<p><strong>(Tannaka duality for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-permutation representations)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../5/4/3/3450/content.html">∞-group</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Rep</mi> <mrow><mn>∞</mn><mi>Grpd</mi></mrow></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>Func</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>,</mo><mn>∞</mn><mi>Grpd</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Rep_{\infty Grpd}(G) := Func(\mathbf{B}G, \infty Grpd)</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../4/4/4/3/3444/content.html">category of</a> <a class="existingWikiWord" href="../../../../../9/6/0/7/7069/content.html">∞-permutation representations</a>, the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category of (∞,1)-functors</a> from its <a class="existingWikiWord" href="../../../../6/7/1/1760/content.html">delooping</a> <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a> to <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a>. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><msub><mi>Rep</mi> <mrow><mn>∞</mn><mi>Grpd</mi></mrow></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">F :  Rep_{\infty Grpd}(G) \to \infty Grpd</annotation></semantics></math> be the fiber functor that remembers the underlying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid. Then there is an <a class="existingWikiWord" href="../../../../../8/2/7/3/3728/content.html">equivalence in a quasi-category</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><msub><mi>Rep</mi> <mrow><mn>∞</mn><mi>Grpd</mi></mrow></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><mn>∞</mn><mi>Grp</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>G</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  End(Rep_{\infty Grpd}(G) \to \infty Grp) \simeq G
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>As before, this holds immediately even for representations of <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categories</a></p>
+<div class="num_theorem">
+<h6 id="theorem_6">Theorem</h6>
+<p><strong>(Tannaka duality for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-permutation representations)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Rep</mi> <mrow><mn>∞</mn><mi>Grpd</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>Func</mi><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mn>∞</mn><mi>Grpd</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Rep_{\infty Grpd}(C) := Func(C,\infty Grpd)</annotation></semantics></math>. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a>, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>c</mi></msub><mo>:</mo><msub><mi>Rep</mi> <mrow><mn>∞</mn><mi>Grpd</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">F_c : Rep_{\infty Grpd}(C) \to \infty Grpd</annotation></semantics></math> for the corresponding fiber functor.</p>
+<p>Then there is a natural equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>hom</mi><mo stretchy="false">(</mo><msub><mi>F</mi> <mi>c</mi></msub><mo>,</mo><msub><mi>F</mi> <mrow><mi>c</mi><mo>′</mo></mrow></msub><mo stretchy="false">)</mo><mo>≃</mo><mi>C</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  hom(F_c, F_{c'}) \simeq C(c,c')
+
+</annotation></semantics></math></div>
+<p>in <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a>.</p>
+</div>
+<h4 id="InfinityGaloisTheory"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Galois theory</h4>
+<p>As a special case of this, we obtain a statement about <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Galois theory. For details and background see <a class="existingWikiWord" href="../../../../../../../missing.html">homotopy groups in an (∞,1)-topos</a>. In that context one finds for a <a class="existingWikiWord" href="../../../../../8/7/4/3/3478/content.html">locally contractible space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> that the <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>LConst</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">LConst(X)</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../7/4/4/3/3447/content.html">locally constant ∞-stack</a>s on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Rep</mi> <mrow><mn>∞</mn><mi>Grpd</mi></mrow></msub><mo stretchy="false">(</mo><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Rep_{\infty Grpd}(\Pi(X))</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi(X)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../3/1/6/0/613/content.html">fundamental ∞-groupoid</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x \in X</annotation></semantics></math> a point, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>x</mi></msub><mo>:</mo><mi>LConst</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">F_x : LConst(X) \to \infty Grpd</annotation></semantics></math> for the corresponding fiber functor.</p>
+<p>Then we have</p>
+<div class="num_theorem">
+<h6 id="theorem_7">Theorem</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x \in X</annotation></semantics></math> there is a natural <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi>LConst</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>F</mi> <mi>x</mi></msub></mrow></mover><mn>∞</mn><mi>Grpd</mi><mo stretchy="false">)</mo><mo>≃</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><msub><mi>Aut</mi> <mrow><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  End(LConst(X) \stackrel{F_x}{\to} \infty Grpd) \simeq 
+  \mathbf{B} Aut_{\Pi(X)}(x)
+  \,.
+
+</annotation></semantics></math></div>
+<p>In particular we have <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphisms</a> of <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy group</a>s</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>n</mi></msub><mi>End</mi><mo stretchy="false">(</mo><mi>LConst</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>F</mi> <mi>x</mi></msub></mrow></mover><mn>∞</mn><mi>Grpd</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>π</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \pi_n End(LConst(X) \stackrel{F_x}{\to} \infty Grpd)
+  \simeq
+  \pi_n(X,x)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>More on this is at <a class="existingWikiWord" href="../../../../../../../missing.html">cohesive (∞,1)-topos – structures</a> in the section <a href="../../../../../5/6/8/5/5865/content.html#Homotopy">Galois theory in a cohesive (∞,1)-topos</a></p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../3/5/9/9530/content.html">Tannakian category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/6/4/6/16466/content.html">Deligne's theorem on tensor categories</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../7/3/1/1370/content.html">André Joyal</a>, <a class="existingWikiWord" href="../../../../../2/6/7/1/1762/content.html">Ross Street</a>, <em>An introduction to Tannaka duality and quantum groups</em>, <a href="http://www.math.mq.edu.au/~street/CT90Como.pdf">pdf</a></p>
+</li>
+<li>
+<p>B.J. Day, <em>Enriched Tannaka reconstruction</em>, J. Pure Appl. Algebra <strong>108</strong> (1996) 17-22, <a href="http://dx.doi.org/10.1016/0022-4049(95)00039-9">doi</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../2/7/3/3720/content.html">Pierre Deligne</a>, <em><a class="existingWikiWord" href="../../../../../4/8/9/1/1984/content.html">Catégories Tannakiennes</a></em></p>
+</li>
+</ul>
+<p>The following paper shortens Deligne’s proof</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/1/3/3154/content.html">Alexander L. Rosenberg</a>, <em>The existence of fiber functors</em>, The Gelfand Mathematical Seminars, 1996–1999, 145–154, Birkhäuser, Boston 2000.</li>
+</ul>
+<p>Deligne’s proof in turn fills the gap in the seminal work with the same title</p>
+<ul>
+<li>N. Saavedra Rivano, “Catégories Tannakiennes.” <em>Bulletin de la Société Mathématique de France</em> 100 (1972): 417-430. <a href="https://eudml.org/doc/87193">EuDML</a></li>
+</ul>
+<p>A revival in algebraic geometry related to the theory of mixed motives was marked by</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../2/7/3/3720/content.html">P. Deligne</a>, <a class="existingWikiWord" href="../../../../../6/5/3/5/5356/content.html">J. Milne</a>, <em>Tannakian categories</em>, Springer Lecture Notes in Math. <strong>900</strong>, 1982, pp. 101-228, retyped <a href="http://jmilne.org/math/xnotes/tc.pdf">pdf</a></li>
+</ul>
+<p>Analogous discussion for <a class="existingWikiWord" href="../../../../../../../missing.html">symmetric monoidal</a> <a class="existingWikiWord" href="../../../../../../../missing.html">stable (infinity,1)-categories</a> includes</p>
+<ul>
+<li id="Wallbridge12">
+<p><a class="existingWikiWord" href="../../../../../3/3/3/6/6333/content.html">James Wallbridge</a>, <em>Tannaka duality over ring spectra</em> (<a href="https://arxiv.org/abs/1204.5787">arXiv:1204.5787</a>)</p>
+</li>
+<li id="Iwanari14">
+<p><a class="existingWikiWord" href="../../../../../1/5/2/6/16251/content.html">Isamu Iwanari</a>, <em>Tannaka duality and stable infinity-categories</em> (<a href="http://arxiv.org/abs/1409.3321">arXiv:1409.3321</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <a class="existingWikiWord" href="../../../../../9/5/0/7/17059/content.html">Spectral Algebraic Geometry</a>, Chap. 9</p>
+</li>
+</ul>
+<p>Ulbrich made a major contribution at the coalgebra and Hopf algebra level</p>
+<ul>
+<li>K-H. Ulbrich, <em>On Hopf algebras and rigid monoidal categories</em>, in special volume, Hopf algebras, Israel J. Math. <strong>72</strong> (1990), no. 1-2, 252–256, <a href="http://dx.doi.org/10.1007/BF02764622">doi</a></li>
+</ul>
+<p>This Hopf-direction has been advanced by many authors including</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/5/6/6534/content.html">S. L. Woronowicz</a>, <em>Tannaka-Krein duality for compact matrix pseudogroups. Twisted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SU</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SU(N)</annotation></semantics></math> groups</em>, Inventiones Mathematicae <strong>93</strong>, No. 1, 35-76, <a href="http://dx.doi.org/10.1007/BF01393687">doi</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/7/4/4/4475/content.html">Shahn Majid</a>, <em>Foundations of quantum group theory</em>, chapter 9</p>
+</li>
+<li>
+<p>Phung Ho Hai, <em>Tannaka-Krein duality for Hopf algebroids</em>, Israel J. Math. <strong>167</strong> (1):193–225 (2008) <a href="http://arxiv.org/abs/math/0206113">math.QA/0206113</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/1/3/3177/content.html">Volodymyr V. Lyubashenko</a>, <em>Modular transformations and tensor categories</em>, J. Pure Appl. Algebra <strong>98</strong> (1995) 279–327 <a href="https://doi.org/10.1016/0022-4049(94)00045-K">doi</a>; <em>Squared Hopf algebras and reconstruction theorems</em>, Proc. Workshop “Quantum Groups and Quantum Spaces” (Warszawa), Banach Center Publ. <strong>40</strong>, Inst. Math. Polish Acad. Sci. (1997) 111–137, <a href="http://arxiv.org/abs/q-alg/9605035">q-alg/9605035</a>; <em>Squared Hopf algebras</em>, Mem. Amer. Math. Soc. <strong>142</strong> (677):x 180, 1999; Алгебры Хопфа и вектор-симметрии, УМН, 41:5(251) (1986), 185–186, <a href="http://www.mathnet.ru/php/getFT.phtml?jrnid=rm&amp;paperid=2247&amp;what=fullt&amp;option_lang=rus">pdf</a>, transl. as: <em>Hopf algebras and vector symmetries</em>, Russian Math. Surveys 41(5):153154, 1986.</p>
+</li>
+<li>
+<p>A. Bruguières, <em>Théorie tannakienne non commutative</em>, Comm. Algebra <strong>22</strong>, 5817–5860, 1994</p>
+</li>
+<li>
+<p>K. Szlachanyi, <em>Fiber functors, monoidal sites and Tannaka duality for bialgebroids</em>, <a href="http://arxiv.org/abs/0907.1578">arxiv/0907.1578</a></p>
+</li>
+<li>
+<p>B. Day, R. Street, <em>Quantum categories, star autonomy, and quantum groupoids</em>, in “Galois theory, Hopf algebras, and semiabelian categories”, Fields Inst. Comm. <strong>43</strong> (2004) 187-225</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/3/6/6334/content.html">Daniel Schäppi</a>, <em>The formal theory of Tannaka duality</em>, <a href="http://arxiv.org/abs/1112.5213">arxiv/1112.5213</a>, superseding earlier <em>Tannaka duality for comonoids in cosmoi</em>, <a href="http://arxiv.org/abs/0911.0977">arXiv:0911.0977</a></p>
+</li>
+</ul>
+<p>A generalization of several classical reconstruction theorems with nontrivial <a class="existingWikiWord" href="../../../../../6/9/1/2/2196/content.html">functional analysis</a> is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/1/3/3154/content.html">Alexander L. Rosenberg</a>, <em><a class="existingWikiWord" href="../../../../../5/5/1/6/6155/content.html">Reconstruction of groups</a></em>, Selecta Math. (N.S.) <strong>9</strong>, 1 (2003), 101–118, <a href="http://dx.doi.org/10.1007/s00029-003-0322-x">doi</a>.</li>
+</ul>
+<p>Categorically oriented notes were written also by Pareigis, emphasising on using <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">Coend</a> in dual picture. His works can be found <a href="http://www.mathematik.uni-muenchen.de/~pareigis/pa_schft.html">here</a> but the most important is the chapter 3 of his online book</p>
+<ul>
+<li>Bodo Pareigis, <em>Quantum groups and noncommutative geometry</em>, Chapter 3: Representation theory, reconstruction and Tannaka duality, <a href="http://www.mathematik.uni-muenchen.de/~pareigis/Vorlesungen/98SS/Quantum_Groups/LN3.PDF">pdf</a></li>
+</ul>
+<p>A very neat Tannaka theorem for stacks is proved in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em>Tannaka duality for geometric stacks</em>, (<a href="http://arxiv.org/abs/math/0412266">arXiv:math.AG/0412266</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../6/2/2/6/6226/content.html">Quasi-Coherent Sheaves and Tannaka Duality Theorems</a></em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/5/1/1505/content.html">Bertrand Toen</a>, <a href="http://www.msri.org/publications/ln/msri/2002/hodgetheory/toen/2/index.html">Higher Tannaka duality</a>, MSRI 2002 (talk, video)</p>
+</li>
+<li>
+<p>Moshe Kamensky, <em>Model theory and the Tannakian formalism</em>, <a href="http://arxiv.org/abs/0908.0604">arXiv:0908.0604</a>; <em>Tannakian formalism over fields with operators</em>, <a href="http://arxiv.org/abs/1111.7285">arxiv/1111.7285</a></p>
+</li>
+<li>
+<p>H. Fukuyama, I. Iwanari, <em>Monoidal infinity category of complexes from Tannakian viewpoint</em>, <a href="http://arxiv.org/abs/1004.3087">arxiv/1004.3087</a></p>
+</li>
+<li>
+<p>remark of <a href="http://mathoverflow.net/questions/3446/tannakian-formalism/3467#3467">Ben-Zvi on Tannaka reconstruction for monoidal categories</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/7/0/4/4071/content.html">David Kazhdan</a>, Michael Larsen, Yakov Varshavsky, <em>The Tannakian formalism and the Langlands conjectures</em>, <a href="http://arxiv.org/abs/1006.3864">arxiv/1006.3864</a></p>
+</li>
+</ul>
+<p>The classical articles are</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/8/4/3/3489/content.html">Tadao Tannaka</a>, <em>Über den Dualitätssatz der nichtkommutativen topologischen Gruppen</em>, Tohoku Math. J. 45 (1938), n. 1, 1–12 (project euclid has only Tohoku new series!), see <a class="existingWikiWord" href="../../../../../7/4/1/6/6147/content.html">Tannaka-Krein theorem</a>.</p>
+</li>
+<li>
+<p>N. Tatsuuma, <em>A duality theorem for locally compact groups</em>, J. Math., Kyoto Univ. 6 (1967), 187–293.</p>
+</li>
+<li>
+<p>Nobuhiko Tatsuuma, <em>Duality theorem for locally compact groups and some related topics</em>, Algèbres d’opérateurs et leurs applications en physique mathématique (Proc. Colloq., Marseille, 1977), 387–408. Colloq. Internat. CNRS, 274, Éditions du Centre National de la Recherche Scientifique (CNRS), Paris, 1979. ISBN: 2-222-02441-2.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/3/8/7/27833/content.html">Mark G. Krein</a>, <em>A principle of duality for bicompact groups and quadratic block algebras</em>, Doklady AN SSSR <strong>69</strong> (1949), 725–728.</p>
+</li>
+<li>
+<p>Eiichi Abe, <em>Dualité de Tannaka des groupes algébriques</em>, Tohoku Mathematical Journal. Volume 12, Number 2 (1960), 327-332.</p>
+</li>
+</ul>
+<p>The Tannaka-type reconstruction in quantum field theory see <a class="existingWikiWord" href="../../../../../2/5/0/5/5052/content.html">Doplicher-Roberts reconstruction theorem</a>.</p>
+<p>Tannaka duality in the context of <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category theory</a> is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/3/3/6/6333/content.html">James Wallbridge</a>, <em>Higher Tannaka duality</em>, PhD thesis, Adelaide/Toulouse (2011) (<a href="http://digital.library.adelaide.edu.au/dspace/bitstream/2440/69436/1/02whole.pdf">Adelaide University repository</a>, <a href="http://arxiv.org/abs/1204.5787">arXiv:1204.5787</a>)</li>
+</ul>
+<p>Tannaka duality for dg-categories is studied in</p>
+<ul>
+<li>
+<p>J.P.Pridham, <em>Tannaka duality for enhanced triangulated categories</em>, <a href="http://arxiv.org/abs/1309.0637">arxiv/1309.0637</a></p>
+</li>
+<li>
+<p>MathOverflow, <a href="http://mathoverflow.net/questions/30453/does-the-tannaka-krein-theorem-come-from-an-equivalence-of-2-categories">Does the Tannaka-Krein theorem come from an equivalence of 2-categories?</a></p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>Lukas Rollier. <em>Equivariant Tannaka-Krein reconstruction and quantum automorphism groups of discrete structures</em> (2024). (<a href="https://arxiv.org/abs/2405.03364">arXiv:2405.03364</a>).</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

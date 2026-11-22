@@ -1,0 +1,531 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      plus construction on presheaves in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      plus construction on presheaves
+  </h1>
+<div id="revision">
+<p>This is a subentry of <em><a class="existingWikiWord" href="../../../../4/1/0/143/content.html">sheaf</a></em> about the <em>plus-construction on presheaves</em>. For other constructions called <em><a class="existingWikiWord" href="../../../../../0/2/5/1/1520/content.html">plus construction</a></em>, see there.</p>
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#construction_of_sheafification">Construction of sheafification</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>The <em>plus construction</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-)^+ : PSh(C) \to PSh(C)</annotation></semantics></math> on presheaves over a <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an operation that makes a presheaf “closer” to being a sheaf.</p>
+<p>For ordinary sheaves of sets, the plus construction replaces a <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> first by a <a class="existingWikiWord" href="../../../../1/5/1/1513/content.html">separated presheaf</a> and then by a <a class="existingWikiWord" href="../../../../4/1/0/143/content.html">sheaf</a>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow></mover><mi>SepPSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow></mover><mi>Sh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  PSh(C) \stackrel{(-)^+}{\to} SepPSh(C)
+  \stackrel{(-)^+}{\to} Sh(C)
+  \,.
+
+</annotation></semantics></math></div>
+<p>(The first of these steps, however, is not a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflection</a> into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SepPsh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SepPsh(C)</annotation></semantics></math>.) Notice that in terms of <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">n-truncated</a> morphisms, a presheaf is</p>
+<ul>
+<li>
+<p>separated precisely if every comparison map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Desc</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A(U) \to Desc(A,U)</annotation></semantics></math> to the set of <a class="existingWikiWord" href="../../../../../5/8/0/7/7085/content.html">descent data</a> is <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">(-1)-truncated</a>, namely a <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monomorphism</a>;</p>
+</li>
+<li>
+<p>a sheaf precisely if every such comparison map is <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">(-2)-truncated</a>, namely an <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a>.</p>
+</li>
+</ul>
+<p>More generally, in <a class="existingWikiWord" href="../../../../../7/9/4/3/3497/content.html">(n,1)-topos</a> theory, the plus-construction is applied <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>-times in a row to an <span class="newWikiWord">(n,1)-presheaf<a href="/nlab/new/%28n%2C1%29-presheaf">?</a></span> (a presheaf of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-groupoids), at each step decreasing the truncatedness of the comparison map until at the last step it becomes an actual <a class="existingWikiWord" href="../../../../../4/4/4/7/7444/content.html">(n,1)-sheaf</a>, a.k.a. stack; see <a href="#ALS">Anel and Leena Subramaniam, 2020</a>. When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>∞</mn></mrow><annotation encoding="application/x-tex">n=\infty</annotation></semantics></math>, even a countable sequence of applications does not suffice, but a transfinite one does; see <a href="#Lurie">Lurie, section 6.5.3</a>.</p>
+<h2 id="definition">Definition</h2>
+<div class="num_defn" id="PlusConstruction">
+<h6 id="definition_2">Definition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a small site equipped with a <a class="existingWikiWord" href="../../../../../9/4/3/0/349/content.html">Grothendieck topology</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">A:C^{op}\to Set</annotation></semantics></math> be a functor. Then the <strong>plus construction</strong> is a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-)^+ : PSh(C) \to PSh(C)</annotation></semantics></math> defined by the following equivalent descriptions:</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>colim</mi> <mrow><mo stretchy="false">(</mo><mi>R</mi><mo>↪</mo><mi>y</mi><mi>U</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>J</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></msub><msub><mi>Hom</mi> <mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A^+(U) = colim_{(R\hookrightarrow  y U)\in J(U)} Hom_{Psh(C)}(R,A)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">J(U)</annotation></semantics></math> can be defined in any of the following equivalent ways:</p>
+<ul>
+<li>The poset of covering <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> for the topology. (It is important here that we use covering <em>sieves</em>, or at least families closed under composition and identities.)</li>
+<li>The class of <a class="existingWikiWord" href="../../../../../4/0/1/1/1104/content.html">dense monomorphisms</a> with <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable</a> codomain <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">y U</annotation></semantics></math>.</li>
+<li>The class of monomorphisms with codomain <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">y U</annotation></semantics></math> that are inverted by the <a class="existingWikiWord" href="../../../../../4/9/0/1/1094/content.html">sheafification</a> functor. (Of course, this definition is not available unless we have shown that sheafification exists in some other way.)</li>
+</ul>
+</li>
+<li>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><msup><mi>C</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">U\in C^{op}</annotation></semantics></math> we define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A^+(U)</annotation></semantics></math> to be the set of <a class="existingWikiWord" href="../../../../../2/0/8/5/5802/content.html">equivalence classes</a> of pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R,s)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>J</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R\in J(U)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>s</mi> <mi>f</mi></msub><mo>∈</mo><mi>A</mi><mo stretchy="false">(</mo><mi>dom</mi><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi>f</mi><mo>∈</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s=(s_f\in A(dom f)|f\in R)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/9/7/1/1798/content.html">compatible family</a> of elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> relative to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo><mo>∼</mo><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo>,</mo><mi>s</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R,s)\sim (R', s')</annotation></semantics></math> iff there is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>-covering sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>″</mo><mo>⊆</mo><mi>R</mi><mo>∩</mo><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">R'' \subseteq R \cap R'</annotation></semantics></math> on which the restrictions of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">s'</annotation></semantics></math> agree.</p>
+</li>
+<li>
+<p>In the <a class="existingWikiWord" href="../../../../8/5/0/583/content.html">internal language</a> of the presheaf topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math>, we can define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup><mo>=</mo><mo stretchy="false">{</mo><mi>K</mi><mo>⊆</mo><mi>A</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mi>j</mi><mo stretchy="false">(</mo><mi>K</mi><mspace width="thinmathspace"></mspace><mtext> is a singleton</mtext><mo stretchy="false">)</mo><mo stretchy="false">}</mo><mo stretchy="false">/</mo><mo>∼</mo></mrow><annotation encoding="application/x-tex"> A^+ = \{ K \subseteq A \,|\, j(K\,\text{ is a singleton}) \}/{\sim}</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo></mrow><annotation encoding="application/x-tex">\sim</annotation></semantics></math> is the equivalence relation given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>∼</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">K \sim L</annotation></semantics></math> if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo stretchy="false">(</mo><mi>K</mi><mo>=</mo><mi>L</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">j(K = L)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../0/5/3/0/350/content.html">Lawvere-Tierney topology</a>.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup><mo>=</mo><msub><mi>Lan</mi> <mrow><msup><mi>r</mi> <mi>op</mi></msup></mrow></msub><msub><mi>Ran</mi> <mrow><msup><mi>s</mi> <mi>op</mi></msup></mrow></msub><mi>A</mi></mrow><annotation encoding="application/x-tex">A^+ = Lan_{r^{op}} Ran_{s^{op}} A</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><mi>J</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">r : J \to C</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../6/3/5/1/1536/content.html">Grothendieck construction</a> of the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cov</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Pos</mi></mrow><annotation encoding="application/x-tex">Cov : C^{op} \to Pos</annotation></semantics></math> sending each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> to its set of covering <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieves</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>J</mi></mrow><annotation encoding="application/x-tex">s:C\to J</annotation></semantics></math> sends each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">U\in C</annotation></semantics></math> to its maximal sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>U</mi></msub></mrow><annotation encoding="application/x-tex">M_U</annotation></semantics></math> (the set of all morphisms with codomain <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>).</p>
+</li>
+</ol>
+</div>
+<p>The first and last of these definitions also work for higher sheaves on higher sites, i.e. when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../7/7/5/3/3577/content.html">(infinity,1)-site</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mn>∞</mn><mi>Gpd</mi></mrow><annotation encoding="application/x-tex">A:C^{op} \to \infty Gpd</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../8/9/0/1/1098/content.html">(infinity,1)-presheaf</a>, as long as limits, colimits, and Kan extensions are interpreted in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categorical sense.</p>
+<h2 id="construction_of_sheafification">Construction of sheafification</h2>
+<p>The basic property of the plus-construction is that we can construct <a class="existingWikiWord" href="../../../../../4/9/0/1/1094/content.html">sheafification</a> (a.k.a. stack completion, in the higher-categorical case) by iterating it. For ordinary presheaves of sets, two iterations suffice: for any presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">A^+</annotation></semantics></math> is separated, while if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is separated then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">A^+</annotation></semantics></math> is a sheaf; thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">+</mo><mo>+</mo></mrow></msup></mrow><annotation encoding="application/x-tex">A^{++}</annotation></semantics></math> is the sheafification of any presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>Note, though, that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>SepPSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-)^+ : PSh(C) \to SepPSh(C)</annotation></semantics></math> is not left adjoint to the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ι</mi><mo>:</mo><mi>SepPSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\iota : SepPSh(C) \hookrightarrow PSh(C)</annotation></semantics></math> of the full subcategory of separated presheaves. If it were, it would be a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflector</a> and therefore satisfy <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup><mo>∘</mo><mi>ι</mi><mo>≅</mo><mi>Id</mi></mrow><annotation encoding="application/x-tex">(-)^+ \circ \iota \cong Id</annotation></semantics></math>. But this is false, since the plus construction applied to separated presheaves yields their sheafification. See <a href="http://mathoverflow.net/questions/49486/the-single-plus-construction-is-not-the-left-adjoint-of-the-inclusion-of-separat">this MathOverflow question</a> for details.</p>
+</div>
+<p>More generally, when working with presheaves of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-groupoids for some finite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>, it takes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n+2</annotation></semantics></math> iterations for the plus-construction to converge to a sheaf/stack. In the case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>∞</mn></mrow><annotation encoding="application/x-tex">n=\infty</annotation></semantics></math>, no finite number of iterations suffices, and not even a countable number, but a transfinite number does.</p>
+<p>We now sketch a proof of these facts, using the <span class="newWikiWord">implicit infinity-category convention<a href="/nlab/new/implicit+infinity-category+convention">?</a></span> so that our results apply to higher sheaves/stacks as well as ordinary ones.</p>
+<p>We use the fourth definition above <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup><mo>=</mo><msub><mi>Lan</mi> <mrow><msup><mi>r</mi> <mi>op</mi></msup></mrow></msub><msub><mi>Ran</mi> <mrow><msup><mi>s</mi> <mi>op</mi></msup></mrow></msub><mi>A</mi></mrow><annotation encoding="application/x-tex">A^+ = Lan_{r^{op}} Ran_{s^{op}} A</annotation></semantics></math>, which we will write more shortly as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup><mo>=</mo><msub><mi>r</mi> <mo>!</mo></msub><msub><mi>s</mi> <mo>*</mo></msub><mi>A</mi></mrow><annotation encoding="application/x-tex">A^+ = r_! s_* A</annotation></semantics></math>. There is a canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">A\to A^+</annotation></semantics></math>, which we can more easily construct and study with the following observation:</p>
+<p>
+<div class="num_lemma" id="AnAdjointQuadruple">
+<h6>Lemma</h6>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>J</mi></mrow><annotation encoding="application/x-tex">s:C\to J</annotation></semantics></math> is right adjoint to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><mi>J</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">r:J\to C</annotation></semantics></math>. Therefore, we have an adjunction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mo>:</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>⇄</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">)</mo><mo>:</mo><msup><mi>s</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">r^* : Psh(C) \rightleftarrows Psh(J) : s^*</annotation></semantics></math>, and hence an <a class="existingWikiWord" href="../../../../../9/4/8/5/5849/content.html">adjoint quadruple</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi> <mo>!</mo></msub><mo>⊣</mo><msup><mi>r</mi> <mo>*</mo></msup><mo>⊣</mo><msup><mi>s</mi> <mo>*</mo></msup><mo>⊣</mo><msub><mi>s</mi> <mo>*</mo></msub><mo>.</mo></mrow><annotation encoding="application/x-tex"> r_! \dashv r^* \dashv s^* \dashv s_*. </annotation></semantics></math></div>
+<p>Moreover, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">r^*</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">s_*</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../6/9/3/0/396/content.html">fully faithful</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">r_!</annotation></semantics></math> preserves finite limits, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(J)</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/6/9/4/4960/content.html">cohesive</a> and even <a class="existingWikiWord" href="../../../../../6/8/9/4/4986/content.html">totally connected</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(C)</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Since the maximal sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>U</mi></msub></mrow><annotation encoding="application/x-tex">M_U</annotation></semantics></math> is the terminal object of the fiber of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math>, the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> picks out a fiberwise terminal object in the fibration <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math>; thus it is right adjoint to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math>. This implies the existence of the adjoint quadruple as discussed <a class="existingWikiWord" href="../../../../../9/4/8/5/5849/content.html#KanExtensionOfAdjointPairIsAdjointQuadruple">here</a>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>s</mi><mo>=</mo><msub><mn>1</mn> <mi>C</mi></msub></mrow><annotation encoding="application/x-tex">r s = 1_C</annotation></semantics></math>, we have that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> is fully faithful, and hence so are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">s_*</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mo>!</mo></msub><mo>≅</mo><msup><mi>r</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">s_! \cong r^*</annotation></semantics></math>. Finally, the fibers of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">r^{op}</annotation></semantics></math> are filtered since covering sieves are closed under intersections, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">r_!</annotation></semantics></math> preserves finite limits since finite limits commute with filtered colimits.</p>
+</div>
+</p>
+<p>Thus, we can identify <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(C)</annotation></semantics></math> with either the <a class="existingWikiWord" href="../../../../../1/9/5/1/1591/content.html">discrete objects</a> or <a class="existingWikiWord" href="../../../../../1/0/0/7/7001/content.html">codiscrete objects</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(J)</annotation></semantics></math>, via the fully faithful functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">r^*</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">s_*</annotation></semantics></math>. If we regard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A\in Psh(C)</annotation></semantics></math> as the discrete object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">r^*A</annotation></semantics></math>, then the plus-construction is similarly identified with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><msub><mi>r</mi> <mo>!</mo></msub><msub><mi>s</mi> <mo>*</mo></msub><msup><mi>s</mi> <mo>*</mo></msup><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">r^* r_! s_* s^* r^* A</annotation></semantics></math>. Thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><msup><mi>A</mi> <mo>+</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r^*(A^+)</annotation></semantics></math> can be written as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ʃ</mi><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">&amp;#643; \sharp r^* A</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ʃ</mi><mo>=</mo><msup><mi>r</mi> <mo>*</mo></msup><msub><mi>r</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">&amp;#643; = r^* r_!</annotation></semantics></math> is the reflector into the discrete objects and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♯</mo><mo>=</mo><msub><mi>s</mi> <mo>*</mo></msub><msup><mi>s</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">\sharp = s_* s^*</annotation></semantics></math> is the reflector into the codiscrete objects.</p>
+<p>The rest of the proof can actually be carried out “synthetically” in the <a class="existingWikiWord" href="../../../../8/5/0/583/content.html">internal</a> <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a> of the cohesive topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(J)</annotation></semantics></math>. This argument is formalized <a href="#HoTTplus">in the HoTT/Coq library</a>. But here we formulate the argument externally and categorically.</p>
+<p>
+<div class="num_lemma" id="PlusWellPointed">
+<h6>Lemma</h6>
+<p>The plus-construction is a <a class="existingWikiWord" href="../../../../../1/4/7/2/22741/content.html">well-pointed endofunctor</a>. That is, we have a natural transformation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>:</mo><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\eta : A \to A^+</annotation></semantics></math> and a homotopy (an equality in the case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n=0</annotation></semantics></math>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>:</mo><msub><mi>η</mi> <mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow></msub><mo>∼</mo><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>A</mi></msub><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\theta : \eta_{A^+} \sim (\eta_A)^+</annotation></semantics></math>. Moreover, the whiskered homotopy <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><msub><mi>η</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\theta \eta_A</annotation></semantics></math> is homotopic to the naturality square <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow></msub><mo>∘</mo><msub><mi>η</mi> <mi>A</mi></msub><mo>∼</mo><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>A</mi></msub><msup><mo stretchy="false">)</mo> <mo>+</mo></msup><mo>∘</mo><msub><mi>η</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\eta_{A^+} \circ \eta_A \sim (\eta_A)^+ \circ \eta_A</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>This follows fairly formally from its identification with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ʃ</mi><mo>♯</mo></mrow><annotation encoding="application/x-tex">&amp;#643; \sharp</annotation></semantics></math>, the composite of two reflectors.</p>
+</div>
+</p>
+<p>
+<div class="num_lemma">
+<h6>Lemma</h6>
+<p>The plus-construction preserves finite limits.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Both functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">r_!</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">s_*</annotation></semantics></math> preserve finite limits.</p>
+</div>
+</p>
+<p>
+<div class="num_lemma">
+<h6>Lemma</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A\in Psh(C)</annotation></semantics></math>, the following are equivalent:</p>
+<ol>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is a sheaf.</li>
+<li>The canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi><mo>→</mo><msub><mi>s</mi> <mo>*</mo></msub><mi>A</mi></mrow><annotation encoding="application/x-tex">r^* A \to s_* A</annotation></semantics></math> is an equivalence.</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">r^* A</annotation></semantics></math> is codiscrete.</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\eta_A : A \to A^+</annotation></semantics></math> is an equivalence.</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\eta_A : A \to A^+</annotation></semantics></math> has a retraction.</li>
+</ol>
+<p></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>To see that the first two are equivalent, note that for a covering sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><mi>A</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(r^* A)(R) = A(U)</annotation></semantics></math> while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi> <mo>*</mo></msub><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_* A)(R)</annotation></semantics></math> is the space of descent data for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>. Now we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mo>*</mo></msub><mi>A</mi><mo>≅</mo><msub><mi>s</mi> <mo>*</mo></msub><msup><mi>s</mi> <mo>*</mo></msup><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi><mo>=</mo><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">s_* A \cong s_* s^* r^* A = \sharp r^* A</annotation></semantics></math>, so the second and third statements are equivalent.</p>
+<p>For the fourth, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">r^*A </annotation></semantics></math> is codiscrete, then it is equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">\sharp r^* A</annotation></semantics></math>; hence the latter is also discrete, and thus equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ʃ</mi><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">&amp;#643; \sharp r^* A</annotation></semantics></math>. Of course if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\eta_A</annotation></semantics></math> is an equivalence, it has a retraction. Finally, if it has a retraction, then the composite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi><mo>→</mo><mi>ʃ</mi><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi><mo>=</mo><msup><mi>r</mi> <mo>*</mo></msup><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\sharp r^* A \to &amp;#643; \sharp r^* A = r^* A^+</annotation></semantics></math> is a retraction for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi><mo>→</mo><mo>♯</mo><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">r^* A \to \sharp r^* A</annotation></semantics></math>, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mo>*</mo></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">r^*A</annotation></semantics></math> is codiscrete.</p>
+</div>
+</p>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>If some (perhaps transfinite) iteration of the plus-construction on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A\in Psh(C)</annotation></semantics></math> stabilizes, it is a sheaf and the sheafification of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>This follows formally from the fact that the plus-construction is a well-pointed endofunctor whose fixed points are the sheaves.</p>
+</div>
+</p>
+<p>Now since the plus-construction is an accessible endofunctor of a locally presentable category, its iteration always converges at some transfinite stage. It follows that sheafification exists. (Roughly this argument appears in <a href="#Lurie">Lurie, section 6.5.3</a>.)</p>
+<p>We now want to prove that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is a presheaf of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-groupoids for some finite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>, the iteration in fact converges already after <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n+2</annotation></semantics></math> steps. Though long expected, it seems that this was first actually proven by <a href="#ALS">Anel and Leena Subramaniam, 2020</a>; what follows is inspired by their proof. We will actually prove something slightly more general.</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>A presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A\in Psh(C)</annotation></semantics></math> is <strong><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-separated</strong> if the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\eta_A : A\to A^+</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">n-truncated</a>.</p>
+</div>
+</p>
+<p>Thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is a sheaf if and only if it is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-2)</annotation></semantics></math>-separated. Moreover, since the plus-construction preserves finite limits, it preserves truncated objects; thus if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated (i.e. a presheaf of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-groupoids) then so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">A^+</annotation></semantics></math> and hence so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\eta_A</annotation></semantics></math>. Thus, any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated presheaf is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-separated.</p>
+<p>We will prove that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-separated, then its plus-construction converges after <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n+2</annotation></semantics></math> steps. The central auxiliary definition is:</p>
+<p>
+<div class="num_defn">
+<h6>Definition</h6>
+<p>A map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(C)</annotation></semantics></math> is <strong>plus-connected</strong> if there is a lift in its <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math>-naturality square. That is, there is a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>B</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">h:B \to A^+</annotation></semantics></math> and homotopies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup><mi>h</mi><mo>∼</mo><msub><mi>η</mi> <mi>B</mi></msub></mrow><annotation encoding="application/x-tex">f^+ h \sim \eta_B</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mi>f</mi><mo>∼</mo><msub><mi>η</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">h f \sim \eta_A</annotation></semantics></math> that paste to the naturality square <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup><msub><mi>η</mi> <mi>A</mi></msub><mo>∼</mo><msub><mi>η</mi> <mi>B</mi></msub><mi>f</mi></mrow><annotation encoding="application/x-tex">f^+ \eta_A \sim \eta_B f</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="num_lemma">
+<h6>Lemma</h6>
+<p>For any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A\in Psh(C)</annotation></semantics></math>, the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\eta_A : A\to A^+</annotation></semantics></math> is plus-connected.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Lemma <a class="maruku-ref" href="#PlusWellPointed"></a> says precisely that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mn>1</mn> <mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow></msub></mrow><annotation encoding="application/x-tex">1_{A^+}</annotation></semantics></math> is a lift in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math>-naturality square for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\eta_A</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="num_lemma">
+<h6>Lemma</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> is plus-connected, so is its diagonal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▵</mo><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>A</mi><msub><mo>×</mo> <mi>B</mi></msub><mi>A</mi></mrow><annotation encoding="application/x-tex">\triangle f : A \to A\times_B A</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Since the plus-construction preserves finite limits, it suffices to observe that if a given commutative square has a lift, so does the induced square between its diagonals.</p>
+</div>
+</p>
+<p>So far everything has been very formal. The concrete input from the fact that we are talking about a Grothendieck topology comes here:</p>
+<p>
+<div class="num_lemma" id="Composing">
+<h6>Lemma</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/6/5/3/3566/content.html">monomorphism</a> that is plus-connected, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup><mo>:</mo><msup><mi>A</mi> <mo>+</mo></msup><mo>→</mo><msup><mi>B</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">f^+ : A^+ \to B^+</annotation></semantics></math> is an equivalence.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Since the plus-construction preserves finite limits, it preserves monomorphisms; thus it suffices to show that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">f^+</annotation></semantics></math> is surjective. An object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msup><mi>B</mi> <mo>+</mo></msup><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x\in B^+(U)</annotation></semantics></math> is determined by a <a class="existingWikiWord" href="../../../../../8/9/7/1/1798/content.html">matching family</a> over a <a class="existingWikiWord" href="../../../../../4/1/8/9/9814/content.html">covering sieve</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>↪</mo><mi>y</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">R\hookrightarrow y U</annotation></semantics></math>, consisting of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi> <mi>V</mi></msub><mo>∈</mo><mi>B</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_V \in B(V)</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">V\to U</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is plus-connected, we have a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>B</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">h:B\to A^+</annotation></semantics></math> assigning to each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi> <mi>V</mi></msub></mrow><annotation encoding="application/x-tex">x_V</annotation></semantics></math> an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><msub><mi>x</mi> <mi>V</mi></msub><mo stretchy="false">)</mo><mo>∈</mo><msup><mi>A</mi> <mo>+</mo></msup><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(x_V) \in A^+(V)</annotation></semantics></math>, determined by a matching family over a covering sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>V</mi></msub><mo>↪</mo><mi>y</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">S_V \hookrightarrow y V</annotation></semantics></math>. Now we can compose the sieves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>V</mi></msub></mrow><annotation encoding="application/x-tex">S_V</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> to obtain a covering sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, such that the restriction of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> (which is equal to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>) is in the image of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">f^+</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="num_lemma">
+<h6>Lemma</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n\ge -1</annotation></semantics></math>, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated and plus-connected, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup><mo>:</mo><msup><mi>A</mi> <mo>+</mo></msup><mo>→</mo><msup><mi>B</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">f^+ : A^+ \to B^+</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-truncated.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>By induction. The base case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=-1</annotation></semantics></math> is the previous lemma. For the inductive step, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>-truncated and plus-connected, then its diagonal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▵</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">\triangle f</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated and plus-connected. Thus, by induction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>▵</mo><mi>f</mi><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">(\triangle f)^+</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-truncated. But since the plus-construction preserves finite limits, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>▵</mo><mi>f</mi><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">(\triangle f)^+</annotation></semantics></math> is equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▵</mo><mo stretchy="false">(</mo><msup><mi>f</mi> <mo>+</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\triangle (f^+)</annotation></semantics></math>, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">f^+</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated.</p>
+</div>
+</p>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-separated, then its plus-construction converges after <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n+2</annotation></semantics></math> steps.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-separated, then by definition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mi>A</mi></msub><mo>:</mo><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">\eta_A : A\to A^+</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-truncated, and we have shown it is always plus-connected. Thus, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>η</mi> <mi>A</mi></msub><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">(\eta_A)^+</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-truncated. Hence so is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>η</mi> <mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow></msub></mrow><annotation encoding="application/x-tex">\eta_{A^+}</annotation></semantics></math>, in other words <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">A^+</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-separated.</p>
+<p>Thus, by induction, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-separated, the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+2)</annotation></semantics></math>-th iteration of the plus-construction is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-(n+2))</annotation></semantics></math>-separated, i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-2)</annotation></semantics></math>-separated, i.e. a sheaf.</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>Note that we do not need to know that the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> is obtained as the category of covering sieves for a topology on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>. We only need that there is a projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><mi>J</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">r:J\to C</annotation></semantics></math> that is a fibration with cofiltered fibers and a fully faithful right adjoint, plus the result of Lemma <a class="maruku-ref" href="#Composing"></a>. In particular, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> could be a “mono-saturated lex modulator” in the sense of <a href="#ALS">ALS</a>, generating a non-topological localization of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(C)</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>We can also construct left exact localizations of non-presheaf toposes in this way. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is a topos that is itself a left exact localization of some presheaf topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(C)</annotation></semantics></math>, then a lex modulator on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> induces a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math> as above, and by composing the reflectors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ʃ</mi></mrow><annotation encoding="application/x-tex">&amp;#643;</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>♯</mo></mrow><annotation encoding="application/x-tex">\sharp</annotation></semantics></math> with the reflection into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> we can make the same argument work to construct a left exact localization of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+</div>
+</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/9/0/1/1094/content.html">sheafification</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-sheafification</a> / <a class="existingWikiWord" href="../../../../../2/3/1/1/1132/content.html">∞-stackification</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Related entries: <a class="existingWikiWord" href="../../../../../4/9/0/1/1094/content.html">sheafification</a></p>
+<p>A standard textbook reference in the context of 1-<a class="existingWikiWord" href="../../../../../2/8/0/0/82/content.html">topos theory</a> is:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em><a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Sketches of an elephant</a> - a topos theory compendium</em>, Section C.2.2, proof of proposition 2.2.6, p.551</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/5/2/2/2259/content.html">Saunders Mac Lane</a>, <a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, <em><a class="existingWikiWord" href="../../../../../6/0/1/1/1106/content.html">Sheaves in Geometry and Logic</a></em>, III.5</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/2/2/2277/content.html">SGA</a> 4: Théorie des topos et cohomologie étale des schémas. Exp. II, 3.0.5, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>+</mo></msup></mrow><annotation encoding="application/x-tex">(-)^+</annotation></semantics></math> is denoted by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Remarks on the plus-construction in <a class="existingWikiWord" href="../../../../../2/4/1/5/5142/content.html">(infinity,1)-topos theory</a> is in section 6.5.3 of</p>
+<ul id="Lurie">
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></em></li>
+</ul>
+<p>The plus-construction for presheaves in values in abelian categories is also called the Heller-Rowe construction:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../9/5/8/8593/content.html">Alex Heller</a>, K. A. Rowe, <em>On the category of sheaves</em>
+<p>Amer. J. Math. 84 1962 205–216, <a href="http://www.ams.org/mathscinet-getitem?mr=144341">MR144341</a>, <a href="http://dx.doi.org/10.2307/2372759">doi</a></p>
+</li>
+</ul>
+<p>The plus-construction is studied for higher sheaves, and shown to converge after <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n+2</annotation></semantics></math> steps for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-presheaves, in</p>
+<ul>
+<li id="ALS"><a class="existingWikiWord" href="../../../../../0/2/3/5/5320/content.html">Mathieu Anel</a>, Chaitanya Leena Subramaniam. <em>Small object arguments, plus-construction, and left-exact localizations</em>. <a href="https://arxiv.org/abs/2004.00731">arxiv:2004.00731</a>, 2020.</li>
+</ul>
+<p>The above argument is formalized in the internal logic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Psh(J)</annotation></semantics></math> here:</p>
+<ul>
+<li id="HoTTplus">Canonical binary meets of subuniverses, <a href="https://github.com/HoTT/HoTT/blob/master/theories/Modalities/Meet.v">https://github.com/HoTT/HoTT/blob/master/theories/Modalities/Meet.v</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

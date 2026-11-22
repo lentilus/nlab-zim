@@ -1,0 +1,615 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      geometric realization of categories in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      geometric realization of categories
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#ThomasonModelStructure">Thomason model structure</a></li>
+<li><a href="#recognizing_weak_equivalences_quillens_theorem_a_and_b">Recognizing weak equivalences: Quillen’s theorem A and B</a></li>
+<li><a href="#quillens_theorem_b_for_grothendieck_fibrations">Quillen’s Theorem B for Grothendieck fibrations</a></li>
+<li><a href="#natural_transformations_and_homotopies">Natural transformations and homotopies</a></li>
+<li><a href="#behaviour_under_homotopy_colimits">Behaviour under homotopy colimits</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#quillens_theorems_a_and_b">Quillen’s theorems A and B</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>What is called <em>geometric realization of categories</em> is a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> that sends <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a> to <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>, namely the functor which first forms the <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N(\mathcal{C})</annotation></semantics></math> that is the <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> of the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, and then forms the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert N(\mathcal{C})\vert}</annotation></semantics></math> of this simplical set. Typically one is interested in this geometric realization up to <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a>.</p>
+<p>By the <a class="existingWikiWord" href="../../../../../8/5/5/0/558/content.html">homotopy hypothesis</a>-theorem the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> of simplicial sets constitutes a (<a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen</a>)<a class="existingWikiWord" href="../../../../../5/7/0/2/2075/content.html">equivalence</a> between the <a class="existingWikiWord" href="../../../../../8/6/2/7/17268/content.html">classical homotopy theory of simplicial sets</a> and the <a class="existingWikiWord" href="../../../../../5/6/2/7/17265/content.html">classical homotopy theory of topological spaces</a>. This means that inasmuch as one is interested in geometric realization of categories up to weak homotopy equivalence, then the key part of the operation is in forming the simplicial nerve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N(\mathcal{C})</annotation></semantics></math> of a category, with the latter regarded as a model for an <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a>. Indeed, equivalently one could consider the <a class="existingWikiWord" href="../../../../5/9/1/1950/content.html">Kan fibrant replacement</a> of the nerve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N(\mathcal{C})</annotation></semantics></math> (which still has the same geometric realization, up to weak homotopy equivalence).</p>
+<p>Therefore an equivalent perspective on geometric realization of categories is that it universally turns a category into an <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">infinity-groupoid</a> by freely turning all its morphisms into <a class="existingWikiWord" href="../../../../../8/2/7/3/3728/content.html">homotopy equivalences</a>.</p>
+<p>Geometric realization of categories has various good properties:</p>
+<p>It sends <a class="existingWikiWord" href="../../../8/0/800/content.html">equivalences of categories</a> to <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalences</a> (corollary <a class="maruku-ref" href="#RealizationOfEquivalenceIsHomotopyEquivalence"></a> below). A more general sufficient criterion for the geometric realization of a functor is given by the seminal theorem known as <em>Quillen’s theorem A</em> (theorem <a class="maruku-ref" href="#QuillenTheoremA"></a> below.)</p>
+<p>The existence of the <a class="existingWikiWord" href="../../../../../6/5/0/1/1056/content.html">Thomason model structure</a> (<a href="#ThomasonModelStructure">below</a>) implies that every <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a> arises as the geometric realization of some category. In fact it already arises as the geometric realization of some <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">poset</a> (<a class="existingWikiWord" href="../../../../3/3/2/2330/content.html">(0,1)-category</a>).</p>
+<h2 id="definition">Definition</h2>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo lspace="verythinmathspace">:</mo><mi>Cat</mi><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">
+  N \colon Cat \to sSet
+
+</annotation></semantics></math></div>
+<p>for the <a href="../../../../../4/4/4/0/444/content.html#NerveOfACategory">nerve functor</a> from <a class="existingWikiWord" href="../../../../9/1/0/190/content.html">Cat</a> to <a class="existingWikiWord" href="../../../../3/7/0/730/content.html">sSet</a>. Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow><mo>:</mo><mi>sSet</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">
+  {\vert - \vert} : sSet \to Top
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> of <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a> from <a class="existingWikiWord" href="../../../../3/7/0/730/content.html">sSet</a> to <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a>.</p>
+<p>The <em>geometric realization of categories</em> is the <a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">composite</a> of these two operations:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow><mo>≔</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Cat</mi><mo>→</mo><mi>Top</mi></mrow><annotation encoding="application/x-tex">
+  {\vert - \vert} \coloneqq {\vert N(-)\vert} \;\colon\; Cat \to Top
+
+</annotation></semantics></math></div>
+<h2 id="properties">Properties</h2>
+<h3 id="ThomasonModelStructure">Thomason model structure</h3>
+<p>There is a <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> structure on <a class="existingWikiWord" href="../../../../9/1/0/190/content.html">Cat</a> whose weak equivalences are those <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>𝒞</mi><mo>→</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">F \colon \mathcal{C} \to \mathcal{D}</annotation></semantics></math> which under <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> become weak equivalences in the <a class="existingWikiWord" href="../../../../../5/6/2/7/17265/content.html">classical model structure on topological spaces</a>, hence which become <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalences</a>. This is called the <em><a class="existingWikiWord" href="../../../../../6/5/0/1/1056/content.html">Thomason model structure</a></em>.</p>
+<p>The existence of the Thomas model structure implies that every <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a> arises as the geometric realization of some category, in fact already as the realization of some <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">poset</a>/<a class="existingWikiWord" href="../../../../3/3/2/2330/content.html">(0,1)-category</a>:</p>
+<div class="num_defn" id="PosetOfSimplicesInNerveOfCategory">
+<h6 id="definition_2">Definition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∇</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">\nabla C</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">poset</a> of non-degenerate <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplices</a> in the <a class="existingWikiWord" href="../../../../3/1/4/4130/content.html">subdivision</a> of the <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">N C</annotation></semantics></math>, ordered by inclusion.</p>
+</div>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>For every category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> the poset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∇</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\nabla \mathcal{C}</annotation></semantics></math> from def. <a class="maruku-ref" href="#PosetOfSimplicesInNerveOfCategory"></a> has <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weakly homotopy equivalent</a> geometric realization</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mo>∇</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><msub><mo>≃</mo> <mi>wh</mi></msub><mspace width="thickmathspace"></mspace><mrow><mo stretchy="false">|</mo><mi>𝒞</mi><mo stretchy="false">|</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  {\vert N(\nabla \mathcal{C}) \vert} 
+    \;\simeq_{wh}\; 
+  {\vert \mathcal{C} \vert}  
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(e.g. by <a href="../../../../../8/3/2/7/27238/content.html#BaSdIsHomotopyGood">this Prop.</a>)</p>
+<h3 id="recognizing_weak_equivalences_quillens_theorem_a_and_b">Recognizing weak equivalences: Quillen’s theorem A and B</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>,</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}, \mathcal{D}</annotation></semantics></math> be two <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a> and let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo>⟶</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">
+  F \;\colon\; \mathcal{C} \longrightarrow \mathcal{D}
+
+</annotation></semantics></math></div>
+<p>be a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> between them.</p>
+<div class="num_theorem" id="QuillenTheoremA">
+<h6 id="theorem">Theorem</h6>
+<p><strong>(<a href="#Quillen72">Quillen 72</a>, theorem A)</strong></p>
+<p>If for all <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">d \in \mathcal{D}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">/</mo><mi>d</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert N(F/d)\vert}</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../5/4/7/0/745/content.html">comma category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">/</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">F/d</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible</a> (meaning that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is a “homotopy <a class="existingWikiWord" href="../../../../../4/2/2/1/1224/content.html">cofinal functor</a>”, hence a <a class="existingWikiWord" href="../../../../../../../missing.html">cofinal (∞,1)-functor</a>), then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo>⟶</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">
+  {\vert N(F) \vert}
+   \;\colon\; 
+  {\vert N(\mathcal{C}) \vert} 
+    \longrightarrow 
+  {\vert N(\mathcal{D}) \vert}  
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a>.</p>
+</div>
+<div class="num_theorem" id="QuillenTheoremB">
+<h6 id="theorem_2">Theorem</h6>
+<p><strong>(<a href="#Quillen72">Quillen 72</a> theorem B)</strong></p>
+<p>If for all <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">d \in \mathcal{D}</annotation></semantics></math> we have that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">/</mo><mi>d</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert N(F/d)\vert}</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weakly homotopy equivalent</a> to a given <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and all morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><msub><mi>d</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>d</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">f \colon d_1 \to d_2</annotation></semantics></math> induce <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalences</a> between these, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert N(F) \vert}</annotation></semantics></math>, hence we have a <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber sequence</a> (in the <a class="existingWikiWord" href="../../../../../5/6/2/7/17265/content.html">classical model structure on topological spaces</a>) of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⟶</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mover><mo>⟶</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mover><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒟</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  X   
+    \longrightarrow
+  {\vert N(\mathcal{C}) \vert} 
+    \overset{\vert N(F) \vert }{\longrightarrow} 
+  {\vert N(\mathcal{D}) \vert}
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>As a consequence:</p>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p><strong>(<a href="#McCord66">McCord 66, theorem 6</a>, <a href="#Quillen78">Quillen 78, prop. 1.6</a>)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>,</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}, \mathcal{D}</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite</a> <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">posets</a> and consider <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>𝒞</mi><mo>→</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">F \colon  \mathcal{C} \to \mathcal{D}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a>.</p>
+<p>If for each element/object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">y \in \mathcal{D}</annotation></semantics></math> its <a class="existingWikiWord" href="../../../../../2/6/6/1/1662/content.html">preimage</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>y</mi><mo>′</mo><mo>∈</mo><mi>Y</mi><mo stretchy="false">|</mo><mi>y</mi><mo>′</mo><mo>≤</mo><mi>y</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f^{-1}( \{ y' \in Y \vert  y' \leq y \})</annotation></semantics></math> has <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible</a> geometric realization, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert N(F)\vert}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a>.</p>
+</div>
+<p>An alternative proof is given in (<a href="#Barmak10">Barmak 10</a>).</p>
+<h3 id="quillens_theorem_b_for_grothendieck_fibrations">Quillen’s Theorem B for Grothendieck fibrations</h3>
+<p>Quillen’s theorem B raises the following question: Which pullback square</p>
+<div style="text-align: center">
+<svg height="85.934pt" version="1.2" viewbox="0 0 108.552 85.934" width="108.552pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-1" overflow="visible">
+<path d="M 3.5625 -5.40625 C 0.578125 -3.796875 0.421875 -1.875 0.421875 -1.515625 C 0.421875 -0.390625 1.515625 0.328125 2.9375 0.328125 C 5.421875 0.328125 7.40625 -2.015625 7.40625 -2.328125 C 7.40625 -2.421875 7.328125 -2.4375 7.265625 -2.4375 C 7.078125 -2.4375 6.515625 -2.25 6.171875 -1.78125 C 5.859375 -1.359375 5.234375 -0.484375 3.90625 -0.484375 C 2.859375 -0.484375 1.6875 -1.046875 1.6875 -2.15625 C 1.6875 -2.890625 2.515625 -5.09375 4.859375 -5.171875 C 5.5625 -5.203125 6.078125 -5.734375 6.078125 -5.890625 C 6.078125 -5.984375 6.015625 -6 5.9375 -6 C 3.84375 -6.078125 3.421875 -7.109375 3.421875 -7.703125 C 3.421875 -8.046875 3.640625 -9.671875 5.734375 -9.671875 C 6.015625 -9.671875 7.140625 -9.625 7.140625 -8.84375 C 7.140625 -8.609375 7.015625 -8.40625 6.96875 -8.3125 C 6.9375 -8.265625 6.890625 -8.203125 6.890625 -8.15625 C 6.890625 -8.046875 6.984375 -8.046875 7.03125 -8.046875 C 7.484375 -8.046875 8.40625 -8.625 8.40625 -9.46875 C 8.40625 -10.359375 7.375 -10.484375 6.703125 -10.484375 C 4.6875 -10.484375 2.15625 -8.875 2.15625 -7.0625 C 2.15625 -6.1875 2.828125 -5.65625 3.5625 -5.40625 Z M 3.5625 -5.40625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-2" overflow="visible">
+<path d="M 4.171875 -10.09375 C 4.1875 -10.265625 4.1875 -10.296875 4.1875 -10.34375 C 4.1875 -10.4375 4.171875 -10.484375 4.03125 -10.484375 C 3.875 -10.484375 3.421875 -10.265625 3.125 -10.109375 C 2.4375 -9.765625 1.875 -9.484375 1.875 -9.21875 C 1.875 -9.140625 1.984375 -9.140625 2.03125 -9.140625 C 2.21875 -9.140625 2.609375 -9.34375 2.890625 -9.46875 C 2.703125 -8.015625 2.34375 -6.109375 2.078125 -4.828125 C 1.53125 -2.3125 1.25 -1.390625 0.515625 0.046875 C 0.453125 0.171875 0.453125 0.203125 0.453125 0.21875 C 0.453125 0.328125 0.5625 0.328125 0.59375 0.328125 C 0.828125 0.328125 1.453125 0.0625 1.703125 -0.359375 C 1.890625 -0.703125 2.453125 -1.78125 2.90625 -3.515625 C 3.234375 -4.796875 3.796875 -6.734375 4.84375 -8.265625 C 5.53125 -9.234375 6.15625 -9.6875 7.09375 -9.6875 C 7.90625 -9.6875 8.625 -9.15625 8.625 -8.375 C 8.625 -7.0625 7.21875 -6.59375 5.671875 -6.0625 C 5.484375 -6.015625 4.46875 -5.65625 4.46875 -5.28125 C 4.46875 -5.1875 4.5625 -5.171875 4.609375 -5.171875 C 4.671875 -5.171875 5.015625 -5.234375 5.328125 -5.234375 C 6.828125 -5.234375 8.046875 -4.34375 8.046875 -2.9375 C 8.046875 -1.078125 6.46875 -0.484375 5.109375 -0.484375 C 3.96875 -0.484375 3.421875 -1.109375 3.234375 -1.328125 C 3.171875 -1.390625 3.15625 -1.421875 3.03125 -1.421875 C 2.703125 -1.421875 1.953125 -0.96875 1.953125 -0.703125 C 1.953125 -0.65625 2.53125 0.328125 4.140625 0.328125 C 6.234375 0.328125 9.3125 -1.15625 9.3125 -3.5625 C 9.3125 -4.796875 8.484375 -5.734375 6.96875 -6.03125 C 8.15625 -6.53125 9.890625 -7.59375 9.890625 -9 C 9.890625 -9.859375 9.171875 -10.5 8.078125 -10.5 C 7.578125 -10.5 5.671875 -10.375 3.875 -8.140625 Z M 4.171875 -10.09375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph1-1" overflow="visible">
+<path d="M 2.625 -4.703125 C 2.671875 -4.828125 2.71875 -4.90625 2.71875 -5 C 2.71875 -5.328125 2.421875 -5.546875 2.140625 -5.546875 C 1.75 -5.546875 1.640625 -5.203125 1.59375 -5.0625 L 0.34375 -0.78125 C 0.296875 -0.671875 0.296875 -0.640625 0.296875 -0.625 C 0.296875 -0.53125 0.359375 -0.515625 0.453125 -0.484375 C 0.640625 -0.40625 0.65625 -0.40625 0.671875 -0.40625 C 0.703125 -0.40625 0.765625 -0.40625 0.828125 -0.578125 Z M 2.625 -4.703125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph2-1" overflow="visible">
+<path d="M 0.515625 1.203125 C 0.4375 1.515625 0.421875 1.59375 0.015625 1.59375 C -0.125 1.59375 -0.234375 1.59375 -0.234375 1.78125 C -0.234375 1.875 -0.15625 1.921875 -0.09375 1.921875 C 0 1.921875 0.046875 1.890625 0.78125 1.890625 C 1.484375 1.890625 1.703125 1.921875 1.765625 1.921875 C 1.8125 1.921875 1.953125 1.921875 1.953125 1.734375 C 1.953125 1.59375 1.8125 1.59375 1.703125 1.59375 C 1.21875 1.59375 1.21875 1.53125 1.21875 1.453125 C 1.21875 1.375 1.40625 0.671875 1.703125 -0.484375 C 1.828125 -0.265625 2.140625 0.09375 2.671875 0.09375 C 3.890625 0.09375 5.15625 -1.3125 5.15625 -2.75 C 5.15625 -3.734375 4.53125 -4.375 3.734375 -4.375 C 3.140625 -4.375 2.65625 -3.96875 2.375 -3.671875 C 2.15625 -4.375 1.5 -4.375 1.40625 -4.375 C 1.046875 -4.375 0.796875 -4.140625 0.640625 -3.84375 C 0.40625 -3.390625 0.296875 -2.890625 0.296875 -2.859375 C 0.296875 -2.765625 0.359375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.578125 -2.765625 0.65625 -3.03125 C 0.78125 -3.53125 0.96875 -4.09375 1.375 -4.09375 C 1.625 -4.09375 1.6875 -3.875 1.6875 -3.625 C 1.6875 -3.53125 1.640625 -3.296875 1.625 -3.21875 Z M 2.34375 -3.0625 C 2.390625 -3.21875 2.390625 -3.25 2.546875 -3.421875 C 2.921875 -3.875 3.34375 -4.09375 3.703125 -4.09375 C 4.203125 -4.09375 4.390625 -3.609375 4.390625 -3.171875 C 4.390625 -2.796875 4.171875 -1.734375 3.875 -1.15625 C 3.609375 -0.609375 3.140625 -0.171875 2.671875 -0.171875 C 2 -0.171875 1.828125 -0.953125 1.828125 -1.015625 C 1.828125 -1.046875 1.859375 -1.15625 1.859375 -1.1875 Z M 2.34375 -3.0625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph3-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph3-1" overflow="visible">
+<path d="M 2.328125 -3.5 C 2.390625 -3.609375 2.40625 -3.6875 2.40625 -3.734375 C 2.40625 -3.96875 2.1875 -4.15625 1.953125 -4.15625 C 1.65625 -4.15625 1.5625 -3.890625 1.53125 -3.796875 L 0.484375 -0.609375 C 0.46875 -0.5625 0.453125 -0.5 0.453125 -0.46875 C 0.453125 -0.34375 0.75 -0.296875 0.765625 -0.296875 C 0.828125 -0.296875 0.859375 -0.359375 0.890625 -0.421875 Z M 2.328125 -3.5 " style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph4-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph4-1" overflow="visible">
+<path d="M 4.390625 -3.296875 C 4.390625 -3.46875 4.390625 -3.625 4.203125 -3.625 C 4 -3.625 4 -3.421875 4 -3.25 L 4 -0.171875 L 0.90625 -0.171875 C 0.71875 -0.171875 0.5625 -0.171875 0.5625 0.015625 C 0.5625 0.21875 0.734375 0.21875 0.90625 0.21875 L 4.046875 0.21875 C 4.359375 0.21875 4.390625 0.1875 4.390625 -0.125 Z M 4.390625 -3.296875 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="GyG-_MgZYGREHU5Zp1jBJhbs9CE=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="9.020771" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-1" y="16.503217"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="18.20661" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph1-1" y="11.103004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="91.501369" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-1" y="16.503217"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="8.49992" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-2" y="80.278015"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="18.72771" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph1-1" y="74.876558"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="90.980518" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph0-2" y="80.278015"></use>
+</g>
+<path d="M -26.623196 30.277328 L 29.639298 30.277328 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.99589,0,0,-0.99589,54.853616,42.934136)"></path>
+<path d="M -2.484781 2.868322 C -2.033708 1.146401 -1.021736 0.33447 -0.00191989 0.00106823 C -1.021736 -0.336256 -2.033708 -1.148187 -2.484781 -2.870108 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.99589,0,0,-0.99589,84.607381,12.782314)"></path>
+<path d="M 41.410334 20.820491 L 41.410334 -21.090046 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.99589,0,0,-0.99589,54.853616,42.934136)"></path>
+<path d="M -2.486572 2.87042 C -2.031577 1.148499 -1.019605 0.336568 0.000211042 -0.000755874 C -1.019605 -0.334157 -2.031577 -1.146088 -2.486572 -2.868009 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0,0.99589,0.99589,0,96.094503,64.175571)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="99.595962" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph2-1" y="44.476769"></use>
+</g>
+<path d="M -26.097598 -33.763228 L 29.1137 -33.763228 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.99589,0,0,-0.99589,54.853616,42.934136)"></path>
+<path d="M -2.487339 2.870148 C -2.032344 1.148227 -1.020372 0.336296 -0.000555269 -0.00102808 C -1.020372 -0.33443 -2.032344 -1.146361 -2.487339 -2.868282 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.99589,0,0,-0.99589,84.08649,76.55757)"></path>
+<path d="M -39.665081 20.820491 L -39.665081 -20.344796 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.99589,0,0,-0.99589,54.853616,42.934136)"></path>
+<path d="M -2.485643 2.869865 C -2.030648 1.147944 -1.018676 0.336013 0.00114049 -0.00131077 C -1.018676 -0.334712 -2.030648 -1.146643 -2.485643 -2.868564 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0,0.99589,0.99589,0,15.352868,63.432458)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="3.203778" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph2-1" y="45.78736"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="8.510626" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph3-1" y="42.285562"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="31.920263" xlink:href="#GyG-_MgZYGREHU5Zp1jBJhbs9CE=-glyph4-1" y="29.70573"></use>
+</g>
+</g>
+</svg>
+</div>
+<p>of small categories does the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">|N(-)|</annotation></semantics></math> carry to a <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> square? One such instance is where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../2/6/5/0/562/content.html">Grothendieck fibration</a> which induces homotopy equivalences between the classifying spaces. This appears as (<a href="#LM15">LM15, Theorem 2.7</a>). A version for <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-categories</a> appears in (<a href="#Arakawa24">Arakawa24, Proposition 2.26</a>) and (<a href="#KSW24">KSW24, Lemma A.1</a>). More discussions can be found in (<a href="#Cisinski19">Cisinski19, Section 4.6</a>).</p>
+<h3 id="natural_transformations_and_homotopies">Natural transformations and homotopies</h3>
+<div class="num_prop" id="NaturalTrafoMapsToHomotopy">
+<h6 id="proposition_3">Proposition</h6>
+<p>A <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>:</mo><mi>F</mi><mo>⇒</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">\eta : F \Rightarrow G</annotation></semantics></math> between two <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>,</mo><mi>G</mi><mo>:</mo><mi>𝒞</mi><mo>→</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">F, G : \mathcal{C} \to \mathcal{D}</annotation></semantics></math> induces under geometric realization a <a class="existingWikiWord" href="../../../../../8/4/7/1/1748/content.html">homotopy</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>η</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo lspace="verythinmathspace">:</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo>⟶</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  {|N(\eta)|} \colon {\vert N(F)\vert} \longrightarrow {\vert N(G) \vert}
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>The natural transformation is equivalently a functor of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒞</mi><mo>×</mo><mo stretchy="false">{</mo><mn>0</mn><mo>→</mo><mn>1</mn><mo stretchy="false">}</mo><mo>→</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">
+  \eta \;\colon\; \mathcal{C} \times \{0 \to 1\} \to \mathcal{D}
+
+</annotation></semantics></math></div>
+<p>out of the <a class="existingWikiWord" href="../../../../../5/9/0/4/4095/content.html">product category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> with the <a class="existingWikiWord" href="../../../../../4/5/7/7/27754/content.html">interval category</a>.</p>
+<p>Since <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> of <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a> preserves <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">Cartesian products</a> (see there) we have that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo>×</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><msub><mo>≃</mo> <mi>iso</mi></msub><mspace width="thickmathspace"></mspace><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mo>×</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mn>0</mn><mo>→</mo><mn>1</mn><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">
+  {\vert N( \mathcal{C} \times \{0,1\} ) \vert} 
+    \;\simeq_{iso}\; 
+  {\vert N(\mathcal{C}) \vert} \times {\vert N(\{0 \to 1\}) \vert}
+
+</annotation></semantics></math></div>
+<p>But this is a <a class="existingWikiWord" href="../../../../../5/5/5/2/2555/content.html">cylinder object</a> in topological spaces, hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>η</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert N(\eta) \vert}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/4/7/1/1748/content.html">left homotopy</a>.</p>
+</div>
+<div class="num_cor" id="RealizationOfEquivalenceIsHomotopyEquivalence">
+<h6 id="corollary">Corollary</h6>
+<p>An <a class="existingWikiWord" href="../../../8/0/800/content.html">equivalence of categories</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>≃</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{C} \simeq \mathcal{D}</annotation></semantics></math> induces a <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a> between their geometric realizations.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>The statement still remains true for a pair of <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functor</a>s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi><mo>⇆</mo><mi>𝒟</mi></mrow><annotation encoding="application/x-tex">\mathcal{C} \leftrightarrows \mathcal{D}</annotation></semantics></math>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>Notice that the converse is far from true: Very different categories can have geometric realizations that are (weakly) homotopy equivalent. This is because geometric realization implicitly involves <a class="existingWikiWord" href="../../../../5/9/1/1950/content.html">Kan fibrant replacement</a>: it freely turns morphisms into <a class="existingWikiWord" href="../../../../../8/2/7/3/3728/content.html">equivalences</a>.</p>
+</div>
+<div class="num_cor" id="RealizationWithTerminalObjectIsContractible">
+<h6 id="corollary_2">Corollary</h6>
+<p>If a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> has an <a class="existingWikiWord" href="../../../../../2/7/3/0/372/content.html">initial object</a> or a <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a>, then its geometric realization is <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible</a>.</p>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>Assume the case of a terminal object, the other case works <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">formally dually</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math> for the terminal category.</p>
+<p>Then we have an equality of functors</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mo>*</mo></msub><mo>=</mo><mo stretchy="false">(</mo><mo>*</mo><mover><mo>→</mo><mo>⊥</mo></mover><mi>C</mi><mo>→</mo><mo>*</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  Id_* = (* \stackrel{\bottom}{\to} C \to *)
+  \,,
+
+</annotation></semantics></math></div>
+<p>where the first functor on the right picks the terminal object, and we have a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mi>C</mi></msub><mo>⇒</mo><mo stretchy="false">(</mo><mi>C</mi><mo>→</mo><mo>*</mo><mover><mo>→</mo><mo>⊥</mo></mover><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Id_C \Rightarrow (C \to * \stackrel{\bottom}{\to} C)
+
+</annotation></semantics></math></div>
+<p>whose components are the unique morphisms into the terminal object.</p>
+<p>By prop. <a class="maruku-ref" href="#NaturalTrafoMapsToHomotopy"></a> it follows that we have a <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>→</mo><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">\vert N(\mathcal{C}) \vert \to \vert N(\ast) \vert = \ast</annotation></semantics></math>.</p>
+</div>
+<h3 id="behaviour_under_homotopy_colimits">Behaviour under homotopy colimits</h3>
+<div class="num_prop">
+<h6 id="proposition_4">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo lspace="verythinmathspace">:</mo><mi>𝒟</mi><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">F \colon \mathcal{D} \to Cat</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a>, let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>𝒟</mi><mover><mo>⟶</mo><mi>F</mi></mover><mi>Cat</mi><mover><mo>→</mo><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mover><mi>Top</mi></mrow><annotation encoding="application/x-tex">
+  {\vert N(F(-))\vert} 
+   \;\colon\; 
+  \mathcal{D} 
+    \overset{F}{\longrightarrow} 
+  Cat 
+   \stackrel{\vert N(-) \vert}{\to}
+  Top
+
+</annotation></semantics></math></div>
+<p>be its postcomposition with geometric realization of categories</p>
+<p>Then we have a <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>N</mi><mrow><mo>(</mo><mo>∫</mo><mi>F</mi><mo>)</mo></mrow><mo>|</mo></mrow><mo>≃</mo><mi>hocolim</mi><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">
+  {\left\vert N\left(\int F \right) \right\vert}
+    \simeq
+  hocolim {\vert N(F(-)) \vert}
+
+</annotation></semantics></math></div>
+<p>exhibiting the <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimit</a> in <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>N</mi><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">\vert N(F (-)) \vert</annotation></semantics></math> as the geometric realization of the <a class="existingWikiWord" href="../../../../../6/3/5/1/1536/content.html">Grothendieck construction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">\int F</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>.</p>
+</div>
+<p>This is due to (<a href="#Thomason79">Thomason 79</a>).</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a></p>
+<ul>
+<li><strong>of categories</strong>, <a class="existingWikiWord" href="../../../../../4/1/6/4/4614/content.html">of simplicial topological spaces</a>, <a class="existingWikiWord" href="../../../../../1/0/1/6/6101/content.html">of cohesive ∞-groupoids</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<p>For general references see also <em><a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a></em> and <em><a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a></em>.</p>
+<h3 id="quillens_theorems_a_and_b">Quillen’s theorems A and B</h3>
+<p>The original articles are</p>
+<ul>
+<li id="McCord66">
+<p><a class="existingWikiWord" href="../../../../../4/6/6/6/16664/content.html">Michael C. McCord</a>, <em>Singular homology groups and homotopy groups of finite topological spaces</em>, Duke Math. J. 33 (1966), 465-474 (<a href="https://www.maths.ed.ac.uk/~v1ranick/papers/mccord1.pdf">pdf</a>)</p>
+</li>
+<li id="Quillen72">
+<p><a class="existingWikiWord" href="../../../../../4/4/5/3/3544/content.html">Daniel Quillen</a>, <em>Higher algebraic K-theory, I: Higher K-theories</em> Lect. Notes in Math. 341 (1972), 85-1 (<a href="http://math.mit.edu/~hrm/kansem/quillen-higher-algebraic-k-theory.pdf">pdf</a>)</p>
+</li>
+<li id="Quillen78">
+<p><a class="existingWikiWord" href="../../../../../4/4/5/3/3544/content.html">Daniel Quillen</a>, <em>Homotopy properties of the poset of nontrivial p-subgroups of a group</em>, Adv. Math. 28 (1978), 101-128.</p>
+</li>
+</ul>
+<p>The geometric realization of <a class="existingWikiWord" href="../../../../../6/3/5/1/1536/content.html">Grothendieck constructions</a> has been analyzed in</p>
+<ul>
+<li id="Thomason79"><a class="existingWikiWord" href="../../../../6/4/7/7460/content.html">R. W. Thomason</a>, <em>Homotopy colimits in the category of small categories</em> , Math. Proc. Cambridge Philos. Soc. 85 (1979), no. 1, 91109.(<a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/32ACB453B263410CE1643E682D7DE335/S0305004100055535a.pdf/homotopy-colimits-in-the-category-of-small-categories.pdf">pdf</a>)</li>
+</ul>
+<p>Review is in</p>
+<ul>
+<li id="Barmak10"><a class="existingWikiWord" href="../../../../../5/0/6/7/17605/content.html">Jonathan Barmak</a>, <em>On Quillen’s Theorem A for posets</em>, Journal of Combinatorial Theory Series A, Volume 118 Issue 8, November, 2011
+<p>Pages 2445-2453 (<a href="http://arxiv.org/abs/1005.0538">arXiv:1005.0538</a>)</p>
+</li>
+</ul>
+<p>Further development includes</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/6/8/2/2863/content.html">Clark Barwick</a>, <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>A Quillen theorem <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">B_n</annotation></semantics></math> for homotopy pullbacks</em> (<a href="http://arxiv.org/abs/1101.4879">arXiv:1101.4879</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/7/6/0/673/content.html">David Roberts</a>, <em>Homotopy types of topological stacks of categories</em>, New York Journal of Mathematics, Volume 30 (2024), 940-955, <a href="https://nyjm.albany.edu/j/2024/30-41.html">journal version</a>, <a href="https://arxiv.org/abs/2204.02778">arXiv:2204.02778</a></p>
+</li>
+</ul>
+<p>For variations of Quillens’ Theorem B and its generalizations for <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-categories</a>:</p>
+<ul>
+<li id="LM15">
+<p><a class="existingWikiWord" href="../../../../../8/3/5/0/10538/content.html">Zhen Lin Low</a>, <a class="existingWikiWord" href="../../../../../6/6/4/8/8466/content.html">Aaron Mazel-Gee</a>, <em>From fractions to complete Segal spaces</em>, Homology Homotopy Appl. <strong>17</strong> 1 (2015) 321–338 [<a href="https://arxiv.org/abs/1409.8192">arXiv:1409.8192</a>, <a href="https://doi.org/10.4310/HHA.2015.v17.n1.a16">doi:10.4310/HHA.2015.v17.n1.a16</a>]</p>
+</li>
+<li id="Cisinski19">
+<p><a class="existingWikiWord" href="../../../../../9/0/7/2/2709/content.html">Denis-Charles Cisinski</a>, Section 4.6 of <em>Higher categories and homotopical algebra</em>, Cambridge Studies in Advanced Mathematics, 2021, [<a href="https://cisinski.app.uni-regensburg.de/CatLR.pdf">available at the author’s webpage</a>, <a href="https://doi.org/10.1017/9781108588737">doi:10.1017/9781108588737</a>]</p>
+</li>
+<li id="Arakawa24">
+<p><a class="existingWikiWord" href="../../../../../5/8/6/6/26685/content.html">Kensuke Arakawa</a>, <em>A Context for Manifold Calculus</em>, <a href="https://arxiv.org/abs/2403.03321">arXiv:2403.03321</a></p>
+</li>
+<li id="KSW24">
+<p><span class="newWikiWord">Eilind Karlsson<a href="/nlab/new/Eilind+Karlsson">?</a></span>, <a class="existingWikiWord" href="../../../../../1/6/6/6/16661/content.html">Claudia Scheimbauer</a>, <span class="newWikiWord">Tashi Walde<a href="/nlab/new/Tashi+Walde">?</a></span>, <em>Assembly of Constructible Factorization Algeras</em>, <a href="https://arxiv.org/abs/2403.19472">arXiv:2403.19472</a></p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

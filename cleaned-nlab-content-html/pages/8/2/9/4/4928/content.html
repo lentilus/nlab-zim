@@ -1,0 +1,382 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      models for concurrency in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      models for concurrency
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<ul>
+<li><a href="#shared_memory_models">Shared memory models</a></li>
+</ul>
+<li><a href="#models">Models</a></li>
+<ul>
+<li><a href="#traditional_models">Traditional Models</a></li>
+<li><a href="#geometrical_models">Geometrical models</a></li>
+</ul>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<blockquote>
+<p>(This Idea-section is partially adapted from papers of <a class="existingWikiWord" href="../../../../../9/1/4/1/1419/content.html">Eric Goubault</a>, in particular <a href="#Goubault03">Goubault 2003</a>. He was one of the first to propose some form of <a class="existingWikiWord" href="../../../../../6/1/6/0/616/content.html">directed homotopy</a> as a model for aspects of concurrency.) This entry tries to list and summarise various models for concurrency and to examine some of them for (potential) interaction with other entries in the Lab, especially ones related to directed topology, and to causal sets (<a class="existingWikiWord" href="../../../../../5/3/5/0/535/content.html">causets</a>). (This comparison will initially not be deep, as we will first put down a lot of definitions in the linked pages, with a view to possible interactions later on.)</p>
+</blockquote>
+<p>Concurrency theory in Theoretical Computer Science deals with systems in which several computational activities (<em>processes</em>) can be performed at the same time, in an asynchronous way. Concurrent systems were introduced in order to have increased computational power and speed or so that some concurrent transactions can be handled more efficiently (and sometimes handled at all). Some of the models discussed here have been, perhaps, superseded as the technology has moved on, and the <em>flavour of the month</em> changes, but they still provide useful mathematical models with potential for use elsewhere, so are certainly worth examining.</p>
+<p>One of the main problems about concurrency is to have processes cooperating successfully for a common goal. Cooperation seems to imply some form of synchronisation and information passing. This can be done through <em>message passing</em> models, for instance. In that class of models, processes have their own local memory, which cannot be accessed by other processes. The way to communicate values to other processes is by explicitly sending values to these other processes. One of the possible ways of doing this is via a <em>Rendezvous model</em> in which the action of sending results in the sender being blocked until the receiver actually receives the message and then, symmetrically the action of receiving blocks the receiver until the message is actually received. This method gives a partial synchronisation of the sender and receiver for the purpose of the passing of the message.</p>
+<div class="query">
+<p>The source I am using to help me understand this does not quite make sense here and other sources that I have looked at, have not helped that much, so can someone de-blurr the meaning for me here. <a class="existingWikiWord" href="../../../../3/4/0/438/content.html">Tim</a></p>
+</div>
+<p>There are variants to this, which include <em>non-blocking send but blocking receive</em> , <em>non-blocking send and receive</em> (<em>asynchronous message passing</em>), <em>broadcast to groups of processes</em> , instead of “point to point” communication, etc.</p>
+<div class="query">
+<p><a class="existingWikiWord" href="../../../../../1/7/8/4/4871/content.html">Adam</a>: “Non-blocking send with blocking receive” is the rule required by Kahn process networks; this ensures that the resulting processes form a <a href="http://en.wikipedia.org/wiki/Domain_theory">domain</a>. From a semantics standpoint I’m not sure that broadcast to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> recipients is really any different from just sending <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> messages, one to each recipient.</p>
+</div>
+<h3 id="shared_memory_models">Shared memory models</h3>
+<p>These make up another class of concurrent architectures. Here processes have a local memory where they can perform local computations, but also have a common memory space which is accessible to all. Communication between processes is essentially asynchronous and is realised by reading and writing values in this common space. Here the problem occurs that several processes may want to write values to the same part of the memory at the same time. To avoid the problems that this implies it is necessary to ‘protect’ the access to shared variables by some mechanism. A classical one is the “semaphore” as introduced by Dijkstra in 1968. One of the usual pictures of a ‘toy’ situation used here is the <a class="existingWikiWord" href="../../../../../6/3/2/5/5236/content.html">Swiss flag progress graph</a>, where two users attempt to change records in a database. There is a shared resource and hence a problem of conflict, even of deadlock.</p>
+<p>The challenge is to find adequate mathematical models so as better to understand the behaviour of such concurrent systems.</p>
+<p>(More needs to be put here and the above is not that great. Not sure how to rewrite it and what to add, though!)</p>
+<div class="query">
+<p><a class="existingWikiWord" href="../../../../../1/7/8/4/4871/content.html">Adam</a>: “Shared memory” is just a friendly way of presenting message-passing systems to a programmer – at the end of the day, everything is message passing underneath if you dig down far enough. If you want to <strong>really</strong> dig, consider that digital circuits are point-to-point communication mechanisms, and physicists are suspicious of any “<a href="http://en.wikipedia.org/wiki/Nonlocality">action at a distance</a>” – which is what you would need in order to implement shared memory without some sort of message passing mechanism somewhere underneath. Ours is a message-passing world; shared state is just an illusion used to make centralized-and-serial programmers feel more comfortable in a distributed-and-parallel world. One could argue that the “mathematical models” called for are nothing more than simple translations into message-passing operations, which are the primary object of study. (Note: I use message-passing here in the broadest sense, encompassing Petri Nets, CSP, trace structures, Kahn process networks, etc – anything without shared state)</p>
+<p><a class="existingWikiWord" href="../../../../3/4/0/438/content.html">Tim Porter</a>: @Adam. Why not develop this a bit on some off shoot pages? Also why not join n-forum and then it will be easier to discuss the points you make without discussions filling up the n-Lab pages.</p>
+<p>I hope to get a bit more CS and TCS into the n-lab as there seem to be possibilities for interesting interactions between some topics there and the ‘n-POV’ as well as connections with quantum computing.</p>
+<p>What do you think? As I suggested please do get onto the n-forum if you have the time.</p>
+</div>
+<h2 id="models">Models</h2>
+<h3 id="traditional_models">Traditional Models</h3>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/9/4/4929/content.html">transition systems</a>, and <a class="existingWikiWord" href="../../../../../9/2/9/4/4929/content.html">labelled transition systems</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/9/4/4954/content.html">trace monoids</a> and <a class="existingWikiWord" href="../../../../../1/5/9/4/4951/content.html">Mazurkiewicz trace</a> theory;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/4/9/4/4946/content.html">asynchronous automata</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/2/2/5/5227/content.html">Petri nets</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/9/4/4974/content.html">event structures</a>;</p>
+</li>
+<li>
+<p><a href="http://en.wikipedia.org/wiki/Actor_model">actor models</a>;</p>
+</li>
+</ul>
+<h3 id="geometrical_models">Geometrical models</h3>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/2/5/5236/content.html">progress graph</a>;</p>
+</li>
+<li>
+<p><span class="newWikiWord">higher dimensional automaton<a href="/nlab/new/higher+dimensional+automaton">?</a></span>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/0/4/8/8405/content.html">higher dimensional transition system</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/6/2/0/269/content.html">cubical set</a>.</p>
+</li>
+</ul>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/9/4/4929/content.html">transition system</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/4/5/5424/content.html">bisimulation</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/6/5/4/24563/content.html">Mogens Nielsen</a>, <a class="existingWikiWord" href="../../../../../7/7/5/7/7577/content.html">Glynn Winskel</a>: <em>Models for concurrency</em>, in: <em>Handbook of Logic in Computer Science</em> vol 4, Oxford Univ. Press (1994) 1-148 [<a href="https://www.cl.cam.ac.uk/~gw104/winskel-nielsen-models-for-concurrency.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/WinskelNielsen-Concurrency.pdf" title="pdf">pdf</a>, <a href="https://dl.acm.org/doi/10.5555/218623.218630">doi:10.5555/218623.218630</a>, <a href="https://global.oup.com/academic/product/handbook-of-logic-in-computer-science-9780198537809?lang=en&amp;cc=at">ISBN:9780198537809</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/4/2/5/5249/content.html">Lisbeth Fajstrup</a>, <a class="existingWikiWord" href="../../../../../9/1/4/1/1419/content.html">Eric Goubault</a>, <a class="existingWikiWord" href="../../../../../7/4/2/5/5247/content.html">Emmanuel Haucourt</a>, <a class="existingWikiWord" href="../../../../../0/3/9/4/4930/content.html">Samuel Mimram</a>, <a class="existingWikiWord" href="../../../../4/2/5/5248/content.html">Martin Raussen</a>, <a class="existingWikiWord" href="../../../../../1/8/2/7/17281/content.html">Directed Algebraic Topology and Concurrency</a>,Springer International Publishing 2016 (xi+167 pages)</p>
+</li>
+<li id="Goubault03">
+<p><a class="existingWikiWord" href="../../../../../9/1/4/1/1419/content.html">Eric Goubault</a>, <em><a class="existingWikiWord" href="../../../../../0/2/6/0/620/content.html">Some geometric perspectives in concurrency theory</a></em>, Homology Homotopy Appl. <strong>5</strong> 2 (2003), 95-136 [<a href="https://eudml.org/doc/50689">eudml:50689</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/1/4/1/1419/content.html">Eric Goubault</a> and <a class="existingWikiWord" href="../../../../../0/3/9/4/4930/content.html">Samuel Mimram</a>, <a href="http://fr.arxiv.org/abs/1004.2818">Formal Relationships Between Geometrical and Classical Models for Concurrency</a>, Arxiv 1004.2818.</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

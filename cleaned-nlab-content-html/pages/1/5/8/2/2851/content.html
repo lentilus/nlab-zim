@@ -1,0 +1,378 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Gauss decomposition in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Gauss decomposition
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#existence">Existence</a></li>
+<li><a href="#for_invertible_matrices">For invertible matrices</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>∈</mo><msub><mi>M</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G \in M_n(k)</annotation></semantics></math> am <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \times n</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/0/9/0/20904/content.html">square matrix</a> with entries in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+<p>Then a <em>Gauss decompositions</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/7/8/6/26877/content.html">decomposition</a> as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mi>U</mi><mi>D</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">G = U D L</annotation></semantics></math> where:</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../3/7/5/0/10573/content.html">lower triangular</a> unidiagonal matrix,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../3/7/5/0/10573/content.html">upper triangular</a> unidiagonal</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/5/9/6/16950/content.html">diagonal</a>.</p>
+</li>
+</ol>
+<p>Here <em>unidiagonal</em> means with only <a class="existingWikiWord" href="../../../../../0/1/7/4/4710/content.html">unit</a> entries on the diagonal.</p>
+<p>(If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../9/0/8/0/20809/content.html">identity matrix</a> then this is a special case of an <a class="existingWikiWord" href="../../../../../9/7/8/6/26879/content.html">LU decomposition</a>.)</p>
+<p>The notion of Gauss decomposition may be generalized to matrices entries in a <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">noncommutative ring</a>, in which case there are explicit formulas involving <a class="existingWikiWord" href="../../../../../0/4/7/1/1740/content.html">quasideterminants</a> and, in the case of <a class="existingWikiWord" href="../../../../../3/8/1/7/17183/content.html">quantum linear groups</a>, in terms of quantum minors. See at <em><a class="existingWikiWord" href="../../../../../2/5/8/2/2852/content.html">quantum Gauss decomposition</a></em> for more.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="existence">Existence</h3>
+<p>Not every matrix has a Gauss decomposition: one may try to find a solution via the <a class="existingWikiWord" href="../../../../../5/2/0/0/20025/content.html">Gauss elimination procedure</a>, and the conditions for the solution involve non-vanishing of certain “principal” <a class="existingWikiWord" href="../../../../../8/4/2/6/6248/content.html">minors</a> of the matrix. Then the solution for entries of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> involves ratios of (<a class="existingWikiWord" href="../../../../../3/2/0/4/4023/content.html">determinants</a> of) <a class="existingWikiWord" href="../../../../../8/4/2/6/6248/content.html">minors</a> of the same size.</p>
+<h3 id="for_invertible_matrices">For invertible matrices</h3>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../4/9/6/16941/content.html">invertible matrix</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>∈</mo></mrow><annotation encoding="application/x-tex">G \in</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../7/8/4/2/2487/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<msub><mi>GL</mi> <mi>n</mi></msub>
+<mo stretchy="false">(</mo>
+<mi>k</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">GL_n(k)</annotation>
+</semantics>
+</math></a>, then there always exist an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \times n</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../6/8/6/9/19686/content.html">permutation matrix</a> matrix <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math> such that a <a class="existingWikiWord" href="../../../../../7/7/8/6/26877/content.html">decomposition</a> of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mi>w</mi><mi>U</mi><mi>D</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">G = w U D L</annotation></semantics></math> exists.</p>
+<p>The subset of matrices <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>∈</mo><msub><mi>GL</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G \in GL_n(k)</annotation></semantics></math> for which such a decomposition exists (and then it is automatically unique and given by universal formulas) is a <a class="existingWikiWord" href="../../../../../8/5/1/8/18158/content.html">Zariski</a> <a class="existingWikiWord" href="../../../../2/7/3/3721/content.html">open subset</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">GL_n(k)</annotation></semantics></math>, called a “Gauss cell”.</p>
+<p>The decomposition of matrices for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math> is also at times called a Gauss decomposition, in which case for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w=1</annotation></semantics></math> one speaks of the <em>main cell</em>.</p>
+<p>The group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">GL_n(k)</annotation></semantics></math> is <em><a class="existingWikiWord" href="../../../../../5/3/0/4/4035/content.html">covered</a></em> by <a class="existingWikiWord" href="../../../../../6/3/9/8/18936/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>n</mi>
+<mo>!</mo>
+</mrow>
+<annotation encoding="application/x-tex">n!</annotation>
+</semantics>
+</math></a> such open subsets, this is the <em>Gauss global decomposition</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">GL_n</annotation></semantics></math>.</p>
+<p>In a similar manner one may discuss <a class="existingWikiWord" href="../../../../../2/5/2/3/3252/content.html">subgroups</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">GL_n</annotation></semantics></math> by inducing the decomposition from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">GL_n</annotation></semantics></math>.</p>
+<p>In the case of <a class="existingWikiWord" href="../../../../../7/2/3/4/4327/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<msub><mi>SL</mi> <mi>n</mi></msub>
+<mo stretchy="false">(</mo>
+<mi>ℂ</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">SL_n(\mathbb{C})</annotation>
+</semantics>
+</math></a>, and some other cases, the matrices corresponding to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> in the decomposition for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w=1</annotation></semantics></math> are forming the corresponding (lower) <a class="existingWikiWord" href="../../../../../9/1/2/6/6219/content.html">Borel subgroup</a>.</p>
+<p>This should be distinguished from the <a class="existingWikiWord" href="../../../../../0/7/5/0/10570/content.html">Bruhat decomposition</a> where one wants <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mi>U</mi><mi>w</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">G = U w A</annotation></semantics></math> instead of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mi>w</mi><mi>U</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">G = w U A</annotation></semantics></math>. Except for the case when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w=1</annotation></semantics></math> when the two decompositions coincide, the matrices which decompose for given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math> make a subset of higher <a class="existingWikiWord" href="../../../../../2/3/7/5/5732/content.html">codimension</a>, hence nonprincipal (that is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w\neq 1</annotation></semantics></math>) Bruhat cells are not open. Furthermore, while in Gauss case the cells make an open cover of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">GL_n</annotation></semantics></math>, in Bruhat case they make a partition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">GL_n</annotation></semantics></math> into disjoint subsets of elements.</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is a subgroup of lower triangular matrices, then for the fixed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math>, the entries of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> as a function of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> in the decomposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mi>wUA</mi></mrow><annotation encoding="application/x-tex">g=wUA</annotation></semantics></math> are the coordinates on the patch in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub><mo stretchy="false">/</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">GL_n/B</annotation></semantics></math> evaluated at the coset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math>. The decomposition therefore for fixed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math> corresponds to the trivialization of the principal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>-bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>GL</mi> <mi>n</mi></msub><mo>→</mo><msub><mi>GL</mi> <mi>n</mi></msub><mo stretchy="false">/</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">GL_n\to GL_n/B</annotation></semantics></math> over the open Gauss cell corresponding to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/8/6/26877/content.html">matrix decomposition</a></p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/7/8/6/26878/content.html">QR decomposition</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/8/6/26879/content.html">LU decomposition</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/0/4/4054/content.html">polar decomposition</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/5/8/2/2852/content.html">quantum Gauss decomposition</a>.</p>
+</li>
+</ul>
+<h2 id="literature">Literature</h2>
+<p>Named after <a class="existingWikiWord" href="../../../../../2/9/5/1/11592/content.html">Carl Friedrich Gauß</a>.</p>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../6/8/3/3861/content.html">eom</a>, <em><a href="https://www.encyclopediaofmath.org/index.php/Gauss_decomposition">Gauss decomposition</a></em></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,865 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      singular homology in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      singular homology
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#Definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#BasicExamples">Basic examples</a></li>
+<li><a href="#HomologyOfDisksAndSpheres">Homology of cells: disks and spheres</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#HomotopyInvariant">Homotopy invariance</a></li>
+<li><a href="#RelationToHomotopyGroups">Relation to homotopy groups</a></li>
+<li><a href="#RelationToRelativeHomology">Relation to relative homology</a></li>
+<li><a href="#relation_to_generalized_homology">Relation to generalized homology</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#examples_and_applications">Examples and applications</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>singular homology</em> of a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../1/2/8/8215/content.html">simplicial homology</a> of its <a class="existingWikiWord" href="../../../../../4/1/8/1/1814/content.html">singular simplicial complex</a>:</p>
+<p>a <strong>singular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/5/2/8/8254/content.html">chain</a></strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../7/6/2/22675/content.html">formal linear combination</a> of <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">singular simplices</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>:</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\sigma : \Delta^n \to X</annotation></semantics></math>, and a singular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../8/9/0/6/6098/content.html">cycle</a> is such a chain such that its oriented <a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundary</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> vanishes. Two singular chains are <strong>homologous</strong> if they differ by a boundary. The <strong>singular homology</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> in degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> is the group of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-cycles modulo those that are boundaries.</p>
+<p>Singular homology of a topological space conincide with its <a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a> as defined more abstractly (see at <a class="existingWikiWord" href="../../../../../4/6/1/6/6164/content.html">generalized homology theory</a>).</p>
+<p>(Here “singular” refers to the contrast with <a class="existingWikiWord" href="../../../../1/3/8/8315/content.html">cellular homology</a>, referring to the fact that a <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Δ</mi> <mi>top</mi></msub><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\Delta_{top} \to X</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../4/1/8/1/1814/content.html">singular simplicial complex</a> is not required to be a <a class="existingWikiWord" href="../../../../../6/0/2/8/18206/content.html">topological embedding</a>, but may be a “singular map”, such as for instance a <a class="existingWikiWord" href="../../../../../8/5/1/2/2158/content.html">constant function</a>.)</p>
+<h2 id="Definition">Definition</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo></mrow><annotation encoding="application/x-tex">X \in </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> be <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sing</mi><mi>X</mi><mo>∈</mo></mrow><annotation encoding="application/x-tex">Sing X \in </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../0/3/7/0/730/content.html">sSet</a> for its <a class="existingWikiWord" href="../../../../../4/1/8/1/1814/content.html">singular simplicial complex</a>.</p>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math>, a <strong>singular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-chain</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is an element in the <a class="existingWikiWord" href="../../../../../2/6/2/8/8262/content.html">free abelian group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>Sing</mi><mi>X</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{Z}[(Sing X)_n]</annotation></semantics></math>:</p>
+<p>a <a class="existingWikiWord" href="../../../../7/6/2/22675/content.html">formal linear combinations</a> of <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">singular simplices</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>These are the <a class="existingWikiWord" href="../../../../1/2/8/8215/content.html">chains on a simplicial set</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sing</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">Sing X</annotation></semantics></math>.</p>
+</div>
+<p>The groups of singular chains combine to the <a class="existingWikiWord" href="../../../../../4/5/8/2/22854/content.html">simplicial abelian group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">[</mo><mi>Sing</mi><mi>X</mi><mo stretchy="false">]</mo><mo>∈</mo><msup><mi>Ab</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">\mathbb{Z}[Sing X] \in Ab^{\Delta^{op}}</annotation></semantics></math>.</p>
+<div class="num_defn" id="SingularComplex">
+<h6 id="definition_3">Definition</h6>
+<p>The <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">alternating face map complex</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≔</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>ℤ</mi><mo stretchy="false">[</mo><mi>Sing</mi><mi>X</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>∈</mo><msub><mi>Ch</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">
+  C_\bullet(X)
+    \coloneqq 
+  C_\bullet(\mathbb{Z}[Sing X]) \in Ch_\bullet
+
+</annotation></semantics></math></div>
+<p>is the <strong>singular complex</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>Its <a class="existingWikiWord" href="../../../../../1/2/8/1/1821/content.html">chain homology</a> is the ordinary <strong>singular homology</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+</div>
+<p>One usually writes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_n(X, \mathbb{Z})</annotation></semantics></math> or just <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_n(X)</annotation></semantics></math> for the singular homology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> in degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>. See also at <em><a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a></em>.</p>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>So we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mi>⋯</mi><mover><mo>→</mo><mrow><msub><mo>∂</mo> <mn>2</mn></msub></mrow></mover><mi>ℤ</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>Sing</mi><mi>X</mi><msub><mo stretchy="false">)</mo> <mn>2</mn></msub><mo stretchy="false">]</mo><mover><mo>→</mo><mrow><msub><mo>∂</mo> <mn>1</mn></msub></mrow></mover><mi>ℤ</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>Sing</mi><mi>X</mi><msub><mo stretchy="false">)</mo> <mn>1</mn></msub><mo stretchy="false">]</mo><mover><mo>→</mo><mrow><msub><mo>∂</mo> <mn>0</mn></msub></mrow></mover><mi>ℤ</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>Sing</mi><mi>X</mi><msub><mo stretchy="false">)</mo> <mn>0</mn></msub><mo stretchy="false">]</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  C_\bullet(X)
+  = 
+  [
+    \cdots
+     \stackrel{\partial_2}{\to}
+    \mathbb{Z}[(Sing X)_2]
+     \stackrel{\partial_1}{\to}
+    \mathbb{Z}[(Sing X)_1]
+     \stackrel{\partial_0}{\to}
+    \mathbb{Z}[(Sing X)_0]
+  ]
+
+</annotation></semantics></math></div>
+<p>where the differentials are defined on <a class="existingWikiWord" href="../../../../../0/2/1/4/4120/content.html">basis</a> elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>∈</mo><mo stretchy="false">(</mo><mi>Sing</mi><mi>X</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\sigma \in (Sing X)_n</annotation></semantics></math> by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mi>n</mi></msub><mi>σ</mi><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><munderover><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow> <mi>n</mi></munderover><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><mo stretchy="false">)</mo><msub><mi>d</mi> <mi>i</mi></msub><mi>σ</mi></mrow><annotation encoding="application/x-tex">
+  \partial_n \sigma 
+    = 
+  -
+  \sum_{i = 0}^n
+    (-1)
+    d_i \sigma 
+
+</annotation></semantics></math></div>
+<p>(with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d_i</annotation></semantics></math> the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial face map</a>) and then extended linearly.</p>
+<p>(One may change the global signs and obtain a <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphic</a> complex, in particular with the same homology groups.)</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_3">Remark</h6>
+<p>This means that a <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular chain</a> is a <a class="existingWikiWord" href="../../../../../8/9/0/6/6098/content.html">cycle</a> if the formal linear combination of the oriented <a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundaries</a> of all its constituent <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">singular simplices</a> sums to 0. See the <em><a href="#BasicExamples">basic examples</a></em> below</p>
+</div>
+<p>More generally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> any unital <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">ring</a> one can form the degreewise <a class="existingWikiWord" href="../../../../../9/5/1/3/3159/content.html">free module</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">[</mo><mi>Sing</mi><mi>X</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">R[Sing X]</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>. The corresponding homology is the <em>singular homology with coefficients in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_n(X,R)</annotation></semantics></math>.</em></p>
+<div class="num_defn">
+<h6 id="definition_4">Definition</h6>
+<p>Given a <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous map</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f : X \to Y</annotation></semantics></math> between topological spaces, and given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math>, every singular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>:</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\sigma : \Delta^n \to X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is sent to a singular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-simplex</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mi>σ</mi><mo>:</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mover><mo>→</mo><mi>σ</mi></mover><mi>X</mi><mover><mo>→</mo><mi>f</mi></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">
+  f_* \sigma : \Delta^n \stackrel{\sigma}{\to} X \stackrel{f}{\to} Y
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>. This is called the <strong>push-forward</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math>. Accordingly there is a push-forward map on groups of singular chains</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>f</mi> <mo>*</mo></msub><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mo>:</mo><msub><mi>C</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>C</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (f_*)_n : C_n(X) \to C_n(Y)
+  \,. 
+
+</annotation></semantics></math></div></div>
+<div class="num_prop" id="PushForwardChainMap">
+<h6 id="proposition">Proposition</h6>
+<p>These push-forward maps make all diagrams of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>C</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>f</mi> <mo>*</mo></msub><msub><mo stretchy="false">)</mo> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></mover></mtd> <mtd><msub><mi>C</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msubsup><mo>∂</mo> <mi>n</mi> <mi>X</mi></msubsup></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msubsup><mo>∂</mo> <mi>n</mi> <mi>Y</mi></msubsup></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msub><mi>C</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><mo stretchy="false">(</mo><msub><mi>f</mi> <mo>*</mo></msub><msub><mo stretchy="false">)</mo> <mi>n</mi></msub></mrow></mover></mtd> <mtd><msub><mi>C</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+     C_{n+1}(X) &amp;\stackrel{(f_*)_{n+1}}{\to}&amp; C_{n+1}(Y)
+     \\
+     \downarrow^{\mathrlap{\partial^X_n}} &amp;&amp; \downarrow^{\mathrlap{\partial^Y_n}}
+     \\
+     C_n(X) &amp;\stackrel{(f_*)_n}{\to}&amp; C_n(Y)
+  }
+
+</annotation></semantics></math></div>
+<p>commute. In other words, push-forward along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> constitutes a <a class="existingWikiWord" href="../../../../../4/6/1/8/8164/content.html">chain map</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mo>:</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f_* : C_\bullet(X) \to C_\bullet(Y)
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>It is in fact evident that push-forward yields a functor of <a class="existingWikiWord" href="../../../../../4/1/8/1/1814/content.html">singular simplicial complexes</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mo>:</mo><mi>Sing</mi><mi>X</mi><mo>→</mo><mi>Sing</mi><mi>Y</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+ f_* : Sing X \to Sing Y
+ \,.
+
+</annotation></semantics></math></div>
+<p>From this the statement follows since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mo>:</mo><mi>sSet</mi><mo>→</mo><mi>sAb</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}[-] : sSet \to sAb</annotation></semantics></math> is a functor.</p>
+</div>
+<p>Accordingly we have:</p>
+<div class="num_prop" id="SingularHomologyAsAFunctor">
+<h6 id="proposition_2">Proposition</h6>
+<p>Sending a topological space to its singular chain complex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_\bullet(X)</annotation></semantics></math>, def. <a class="maruku-ref" href="#SingularComplex"></a>, and a continuous map to its push-forward chain map, prop. <a class="maruku-ref" href="#PushForwardChainMap"></a>, constitutes a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo><mo>:</mo><mi>Top</mi><mo>→</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>R</mi><mi>Mod</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  C_\bullet(-,R) : Top \to Ch_\bullet(R Mod)
+
+</annotation></semantics></math></div>
+<p>from the category <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> to the <a class="existingWikiWord" href="../../../../../3/8/0/1/1083/content.html">category of chain complexes</a>.</p>
+<p>In particular for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> singular homology extends to a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo><mo>:</mo><mi>Top</mi><mo>→</mo><mi>R</mi><mi>Mod</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  H_n(-,R) : Top \to R Mod
+  \,.
+
+</annotation></semantics></math></div></div>
+<h2 id="examples">Examples</h2>
+<h3 id="BasicExamples">Basic examples</h3>
+<div class="num_example">
+<h6 id="example">Example</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a topological space. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi> <mn>1</mn></msup><mo>:</mo><msup><mi>Δ</mi> <mn>1</mn></msup><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\sigma^1 : \Delta^1 \to X</annotation></semantics></math> be a singular 1-simplex, regarded as a 1-chain</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi> <mn>1</mn></msup><mo>∈</mo><msub><mi>C</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \sigma^1 \in C_1(X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Then its <a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundary</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><mi>σ</mi><mo>∈</mo><msub><mi>H</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\partial \sigma \in H_0(X)</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><msup><mi>σ</mi> <mn>1</mn></msup><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \partial \sigma^1 = \sigma(0)  -\sigma(1)
+
+</annotation></semantics></math></div>
+<p>or graphically (using notation as for <a class="existingWikiWord" href="../../../../../1/7/0/0/71/content.html">orientals</a>)</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><mrow><mo>(</mo><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mover><mo>→</mo><mi>σ</mi></mover><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>−</mo><mo stretchy="false">(</mo><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \partial 
+  \left(
+    \sigma(0) \stackrel{\sigma}{\to} \sigma(1)
+  \right)
+  = 
+  (\sigma(0)) - (\sigma(1))
+  \,.
+
+</annotation></semantics></math></div>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi> <mn>2</mn></msup><mo>:</mo><msup><mi>Δ</mi> <mn>2</mn></msup><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\sigma^2 : \Delta^2 \to X</annotation></semantics></math> be a singular 2-chain. The boundary is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mpadded></msup><mo>↗</mo></mtd> <mtd><msup><mo>⇓</mo> <mpadded width="0"><mi>σ</mi></mpadded></msup></mtd> <mtd><msup><mo>↘</mo> <mpadded width="0"><mrow><msup><mi>σ</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msup></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd><munder><mo>→</mo><mrow><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>=</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mpadded></msup><mo>↗</mo></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>−</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd> <mtd><munder><mo>→</mo><mrow><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>+</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msup><mo>↘</mo> <mpadded width="0"><mrow><msup><mi>σ</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msup></mrow></mpadded></msup></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \partial
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp; {}^{\mathllap{\sigma(0,1)}}\nearrow 
+       &amp; \Downarrow^{\mathrlap{\sigma}}&amp; 
+       \searrow^{\mathrlap{\sigma^{1,2}}}
+       \\
+       \sigma(0) &amp;&amp;\underset{\sigma(0,2)}{\to}&amp;&amp; \sigma(2)
+    }
+  \right)
+  = 
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp; {}^{\mathllap{\sigma(0,1)}}\nearrow 
+       &amp; &amp; 
+       \\
+       \sigma(0) 
+    }
+  \right)
+  -
+  \left(
+    \array{
+       &amp;&amp; 
+       \\
+       &amp;       
+       &amp; &amp; 
+       \\
+       \sigma(0) &amp;\underset{\sigma(0,2)}{\to}&amp; \sigma(2)
+    }
+  \right)
+  +
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp; 
+       &amp; &amp; 
+       \searrow^{\mathrlap{\sigma^{1,2}}}
+       \\
+       &amp;&amp; &amp;&amp; \sigma(2)
+    }
+  \right)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Hence the boundary of the boundary is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo>∂</mo><mo>∂</mo><mi>σ</mi></mtd> <mtd><mo>=</mo><mo>∂</mo><mrow><mo>(</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mpadded></msup><mo>↗</mo></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>−</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd> <mtd><munder><mo>→</mo><mrow><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>+</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msup><mo>↘</mo> <mpadded width="0"><mrow><msup><mi>σ</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msup></mrow></mpadded></msup></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>)</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>−</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>−</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>+</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>+</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>−</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mi>σ</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mn>0</mn></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+  \partial \partial \sigma
+  &amp;= 
+  \partial
+  \left(
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp; {}^{\mathllap{\sigma(0,1)}}\nearrow 
+       &amp; &amp; 
+       \\
+       \sigma(0) 
+    }
+  \right)
+  -
+  \left(
+    \array{
+       &amp;&amp; 
+       \\
+       &amp;       
+       &amp; &amp; 
+       \\
+       \sigma(0) &amp;\underset{\sigma(0,2)}{\to}&amp; \sigma(2)
+    }
+  \right)
+  +
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp; 
+       &amp; &amp; 
+       \searrow^{\mathrlap{\sigma^{1,2}}}
+       \\
+       &amp;&amp; &amp;&amp; \sigma(2)
+    }
+  \right)  \right)
+  \\
+  &amp; = 
+  \left(
+    \array{
+       &amp;&amp; 
+       \\
+       &amp;  
+       &amp; &amp; 
+       \\
+       \sigma(0) 
+    }
+  \right)
+  -
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp;  
+       &amp; &amp; 
+       \\
+       
+    }
+  \right)
+  -
+  \left(
+    \array{
+       &amp;&amp; 
+       \\
+       &amp;       
+       &amp; &amp; 
+       \\
+       \sigma(0) &amp;&amp; 
+    }
+  \right)
+  +
+  \left(
+    \array{
+       &amp;&amp; 
+       \\
+       &amp;       
+       &amp; &amp; 
+       \\
+       &amp;&amp; \sigma(2)
+    }
+  \right)
+  +
+  \left(
+    \array{
+       &amp;&amp; \sigma(1)
+       \\
+       &amp; 
+       &amp; &amp; 
+       \\
+       &amp;&amp; &amp;&amp; 
+    }
+  \right)
+  -
+  \left(
+    \array{
+       &amp;&amp; 
+       \\
+       &amp; 
+       &amp; &amp; 
+       \\
+       &amp;&amp; &amp;&amp; \sigma(2)
+    }
+  \right)
+  \\
+  &amp; = 0
+  \end{aligned}
+
+</annotation></semantics></math></div></div>
+<p>For more illustrations see for instance (<a href="#Ghrist">Ghrist, (4.5)</a>).</p>
+<h3 id="HomologyOfDisksAndSpheres">Homology of cells: disks and spheres</h3>
+<div class="num_prop">
+<h6 id="proposition_3">Proposition</h6>
+<p>For all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../6/0/7/8/8706/content.html">reduced singular homology</a> of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../2/8/1/1825/content.html">sphere</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">S^n</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mi>ℤ</mi></mtd> <mtd><mi>if</mi><mspace width="thickmathspace"></mspace><mi>k</mi><mo>=</mo><mi>n</mi></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><mi>otherwise</mi></mtd></mtr></mtable></mrow></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \tilde H_k(S^n)
+  = 
+  \left\{
+    \array{
+      \mathbb{Z} &amp; if\; k = n  
+      \\
+      0 &amp; otherwise
+    }
+  \right.
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>The <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-sphere may be realized as the <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushout</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mi>n</mi></msup><mo>≃</mo><msup><mi>D</mi> <mi>n</mi></msup><mo stretchy="false">/</mo><msup><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>≔</mo><msup><mi>D</mi> <mi>n</mi></msup><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><msup><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow></munder><mo>*</mo></mrow><annotation encoding="application/x-tex">
+  S^n \simeq D^n/S^{n-1} \coloneqq D^{n} \coprod_{S^{n-1}} *
+
+</annotation></semantics></math></div>
+<p>which is the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/4/4931/content.html">ball</a> with its <a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundary</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-sphere identified with the <a class="existingWikiWord" href="../../../../../7/1/0/1/1017/content.html">point</a>. The inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>↪</mo><msup><mi>D</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">S^{n-1} \hookrightarrow D^n</annotation></semantics></math> is a “good pair” in the sense of def. <a class="maruku-ref" href="#GoodPair"></a>, and so the <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">long exact sequence</a> from prop. <a class="maruku-ref" href="#RelativeHomologyLongExactSequence"></a> yields a long exact sequence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>D</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo><mo>→</mo><mi>⋯</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots \to \tilde H_{k+1}(S^n) \to \tilde H_k(S^{n-1}) \to \tilde H_k(D^n) \to \tilde H_k(S^n) \to \tilde H_{k-1}(S^{n-1}) \to \cdots
+  \,.
+
+</annotation></semantics></math></div>
+<p>Since the <a class="existingWikiWord" href="../../../../../1/3/9/4/4931/content.html">disks</a> are all <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible topological spaces</a> we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>D</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mo>≃</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">H_k(D^n) \simeq 0</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">k,n</annotation></semantics></math> by <a href="../../../../../6/0/7/8/8706/content.html#ReducedHomologyOfPoints">this example</a> at <em><a class="existingWikiWord" href="../../../../../6/0/7/8/8706/content.html">reduced homology</a></em>. This means that in the above long exact sequence all the morphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>n</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \tilde H_{k+1}(S^{n+1}) \to \tilde H_k(S^n)
+
+</annotation></semantics></math></div>
+<p>are <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a>, for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">k \in \mathbb{N}</annotation></semantics></math>. Since</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mn>0</mn></msup><mo stretchy="false">)</mo><mo>≃</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mi>ℤ</mi></mtd> <mtd><mi>if</mi><mspace width="thickmathspace"></mspace><mi>n</mi><mo>=</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><mi>otherwise</mi></mtd></mtr></mtable></mrow></mrow></mrow><annotation encoding="application/x-tex">
+  \tilde H_n(S^0) \simeq 
+  \left\{
+    \array{
+       \mathbb{Z} &amp; if \; n = 0
+       \\
+       0 &amp; otherwise
+    }
+  \right.
+
+</annotation></semantics></math></div>
+<p>(by <a href="../../../../../6/0/7/8/8706/content.html#ReducedHomologyOf0Sphere">this example</a> at <em><a class="existingWikiWord" href="../../../../../6/0/7/8/8706/content.html">reduced homology</a></em>) the statement follows by <a class="existingWikiWord" href="../../../../../7/5/7/2/2757/content.html">induction</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<h3 id="HomotopyInvariant">Homotopy invariance</h3>
+<p>Singular homology is <em>homotopy invariant</em>:</p>
+<div class="num_prop">
+<h6 id="proposition_4">Proposition</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f : X \to Y</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous map</a> between <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a> which is a <a class="existingWikiWord" href="../../../../../6/3/9/0/936/content.html">homotopy equivalence</a>, then the induced morphism on singular homology groups</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  H_n(f) : H_n(X) \to H_n(Y)
+
+</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+<p>In other words: the singular chain functor of prop. <a class="maruku-ref" href="#SingularHomologyAsAFunctor"></a> sends <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalences</a> to <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphisms</a>.</p>
+</div>
+<p>A proof (via <a class="existingWikiWord" href="../../../../../4/5/2/3/3254/content.html">CW approximations</a>) is spelled out for instance in (<a href="#Hatcher">Hatcher, prop. 4.21</a>).</p>
+<h3 id="RelationToHomotopyGroups">Relation to homotopy groups</h3>
+<p>The singular <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology groups</a> of a topologial space serve to some extent as an approximation to the <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy groups</a> of that space.</p>
+<div class="num_defn" id="HurewiczHomomorphism">
+<h6 id="definition_5">Definition</h6>
+<p><strong>(Hurewicz homomorphism)</strong></p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,x)</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/0/5/0/509/content.html">pointed</a> <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a>, the <strong>Hurewicz homomorphism</strong> is the <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>:</mo><msub><mi>π</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \Phi : \pi_k(X,x) \to H_k(X)
+
+</annotation></semantics></math></div>
+<p>from the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>th <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy group</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,x)</annotation></semantics></math> to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>th <a class="existingWikiWord" href="content.html">singular homology</a> group defined by sending</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>:</mo><mo stretchy="false">(</mo><mi>f</mi><mo>:</mo><msup><mi>S</mi> <mi>k</mi></msup><mo>→</mo><mi>X</mi><msub><mo stretchy="false">)</mo> <mo>∼</mo></msub><mo>↦</mo><msub><mi>f</mi> <mo>*</mo></msub><mo stretchy="false">[</mo><msub><mi>S</mi> <mi>k</mi></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  \Phi : (f : S^k \to X)_{\sim} \mapsto f_*[S_k]
+
+</annotation></semantics></math></div>
+<p>a representative singular <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-sphere <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the push-forward along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../1/2/0/6/6021/content.html">fundamental class</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>S</mi> <mi>k</mi></msub><mo stretchy="false">]</mo><mo>∈</mo><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>k</mi></msup><mo stretchy="false">)</mo><mo>≃</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">[S_k] \in H_k(S^k) \simeq \mathbb{Z}</annotation></semantics></math>.</p>
+</div>
+<div class="num_prop">
+<h6 id="proposition_5">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a topological space the Hurewicz homomorphism in degree 0 exhibits an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> between the <a class="existingWikiWord" href="../../../../../2/6/2/8/8262/content.html">free abelian group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{Z}[\pi_0(X)]</annotation></semantics></math> on the set of <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected components</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and the degree-0 singular homlogy:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>≃</mo><msub><mi>H</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbb{Z}[\pi_0(X)]
+   \simeq
+  H_0(X)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>Since a <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy group</a> in positive degree depends on the <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a> of the <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected component</a> of the base point, while the singular homology does not depend on a basepoint, it is interesting to compare these groups only for the case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is connected.</p>
+<div class="num_prop">
+<h6 id="proposition_6">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected topological space</a> the <a class="existingWikiWord" href="../../../../../9/7/7/6/6779/content.html">Hurewicz homomorphism</a> in degree 1</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>:</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \Phi : \pi_1(X,x) \to H_1(X)
+
+</annotation></semantics></math></div>
+<p>is <a class="existingWikiWord" href="../../../../../8/1/9/0/918/content.html">surjective</a>. Its <a class="existingWikiWord" href="../../../../0/6/8/8605/content.html">kernel</a> is the <a class="existingWikiWord" href="../../../../../3/0/3/8/8303/content.html">commutator subgroup</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_1(X,x)</annotation></semantics></math>. Therefore it induces an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> from the <a class="existingWikiWord" href="../../../../../4/0/3/8/8304/content.html">abelianization</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><msup><mo stretchy="false">)</mo> <mi>ab</mi></msup><mo>≔</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mo stretchy="false">[</mo><msub><mi>π</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\pi_1(X,x)^{ab} \coloneqq \pi_1(X,x)/[\pi_1,\pi_1]</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><msup><mo stretchy="false">)</mo> <mi>ab</mi></msup><mover><mo>→</mo><mo>≃</mo></mover><msub><mi>H</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \pi_1(X,x)^{ab}
+  \stackrel{\simeq}{\to}
+  H_1(X)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>For higher connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> we have the</p>
+<div class="num_theorem">
+<h6 id="theorem">Theorem</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../../../missing.html">(n-1)-connected</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n \geq 2</annotation></semantics></math> then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo>:</mo><msub><mi>π</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \Phi : \pi_n(X,x) \to H_n(X)
+
+</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+</div>
+<p>This is known as the <em><a class="existingWikiWord" href="../../../../../9/7/7/6/6779/content.html">Hurewicz theorem</a></em>.</p>
+<h3 id="RelationToRelativeHomology">Relation to relative homology</h3>
+<p>For the present purpose one makes the following definition.</p>
+<div class="num_defn" id="GoodPair">
+<h6 id="definition_6">Definition</h6>
+<p>A <a class="existingWikiWord" href="../../../../../4/9/0/3/3094/content.html">topological subspace</a> inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \hookrightarrow X</annotation></semantics></math> in <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> is called a <strong>good pair</strong> if</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited</a> and <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../4/3/6/1/1634/content.html">neighbourhood</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> of which it is a <a class="existingWikiWord" href="../../../../../1/0/4/0/401/content.html">deformation retract</a>.</p>
+</li>
+</ol>
+</div>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">X/A</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../3/3/0/1/1033/content.html">cokernel</a> of the inclusion, hence for the <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushout</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>A</mi></mtd> <mtd><mo>↪</mo></mtd> <mtd><mi>X</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>X</mi><mo stretchy="false">/</mo><mi>A</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    A &amp;\hookrightarrow&amp; X
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    * &amp;\to&amp; X/A
+  }
+
+</annotation></semantics></math></div>
+<p>in <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a>.</p>
+<div class="num_prop" id="RelativeHomologyLongExactSequence">
+<h6 id="proposition_7">Proposition</h6>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A \hookrightarrow X</annotation></semantics></math> is a good pair, def. <a class="maruku-ref" href="#GoodPair"></a>, then the singular homology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">X/A</annotation></semantics></math> coincides with the <a class="existingWikiWord" href="../../../../../2/7/5/8/8572/content.html">relative homology</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> relative to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>. In particular, therefore, it fits into a <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">long exact sequence</a> of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>A</mi><mo stretchy="false">)</mo><mo>→</mo><mi>⋯</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots
+  \to
+  \tilde H_n(A)
+  \to
+  \tilde H_n(X)
+  \to 
+  \tilde H_n(X/A)
+  \to 
+  \tilde H_{n-1}(A)
+  \to 
+  \tilde H_{n-1}(X)
+  \to 
+  \tilde H_{n-1}(X/A)
+  \to 
+  \cdots
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>For instance (<a href="#Hatcher">Hatcher, theorem 2.13</a>).</p>
+<h3 id="relation_to_generalized_homology">Relation to generalized homology</h3>
+<p>Singular homology computes the <a class="existingWikiWord" href="../../../../../4/6/1/6/6164/content.html">generalized homology</a> with coefficients in the <a class="existingWikiWord" href="../../../../../0/8/6/1/1680/content.html">Eilenberg-MacLane spectrum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">H \mathbb{Z}</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">H R</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/8/4/4892/content.html">Čech homology</a></p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">dual</a> notion is that of <em><a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular cohomology</a></em>.</p>
+</li>
+<li>
+<p>The analogous notion in <a class="existingWikiWord" href="../../../../../9/6/4/1/1469/content.html">algebraic geometry</a> is given by <a class="existingWikiWord" href="../../../../../9/6/2/3/3269/content.html">Chow groups</a>.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/9/9/9924/content.html">Kan-Thurston theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/2/8/18226/content.html">Borel-Moore homology</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<p>Original references on <a class="existingWikiWord" href="../../../../../1/2/8/1/1821/content.html">chain homology</a>/<a class="existingWikiWord" href="../../../../../1/2/8/1/1821/content.html">cochain cohomology</a> and <a class="existingWikiWord" href="content.html">singular homology</a>/<a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular cohomology</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/2/8/8297/content.html">Henri Poincaré</a>, <em><a class="existingWikiWord" href="../../../../../0/0/1/3/23100/content.html">Analysis Situs</a></em>, Journal de l’École Polytechnique. (2). 1: 1–123 (1895) (Orig.: <a href="https://gallica.bnf.fr/ark:/12148/bpt6k4337198/f7">gallica:12148/bpt6k4337198/f7</a>, Engl.: <a class="existingWikiWord" href="../../../../../1/0/1/3/23101/content.html">John Stillwell</a>: <a href="https://www.maths.ed.ac.uk/~v1ranick/papers/poincare2009.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Stillwell_AnalysisSitus.pdf" title="pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/0/1/11092/content.html">Andrei Kolmogoroff</a>, <em>Über die Dualität im Aufbau der kombinatorischen Topologie</em>, Recueil Mathématique 1(43) (1936), 97–102. (<a href="http://mi.mathnet.ru/msb5361">mathnet</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/0/1/11092/content.html">Andrei Kolmogoroff</a>, <em>Homologiering des Komplexes und des lokal-bicompakten Raumes</em>, Recueil Mathématique 1(43) (1936), 701–705. <a href="http://mi.mathnet.ru/msb5475">mathnet</a>.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/2/4/8/8428/content.html">J. W. Alexander</a>, <em>On the chains of a complex and their duals</em>, Proc. Nat. Acad. Sei. USA, 21(1935), 509–511 (<a href="https://doi.org/10.1073/pnas.21.8.509">doi:10.1073/pnas.21.8.50</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/2/4/8/8428/content.html">J. W. Alexander</a>, <em>On the ring of a compact metric space</em>, Proc. Nat. Acad. Sci. USA, 21(1935), 511–512 (<a href="https://doi.org/10.1073/pnas.21.8.511">doi:10.1073/pnas.21.8.511</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/2/4/8/8428/content.html">J. W. Alexander</a>, <em>On the connectivity ring of an abstract space</em>, Ann. of Math., 37 (1936), 698–708 (<a href="https://doi.org/10.2307/1968484">doi:10.2307/1968484</a>, <a href="https://www.maths.ed.ac.uk/~v1ranick/papers/alexcon.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>Lecture notes:</p>
+<ul>
+<li>
+<p>Rob Thompson, Len Evens , <em><a href="http://math.hunter.cuny.edu/~rthompso/topology_notes/">Topology notes</a></em> <em>Chapter 6, Singular homology</em> (<a href="http://math.hunter.cuny.edu/~rthompso/topology_notes/chapter%20six.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/8/4/1/21488/content.html">David H. Fremlin</a>, <em>Singular homology for amateurs</em> (2016) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://www1.essex.ac.uk/maths/people/fremlin/n16703.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/FremlinSIngularHomology.pdf" title="pdf">pdf</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+</ul>
+<p>Textbook discussion in the context of <a class="existingWikiWord" href="../../../../6/0/1/1065/content.html">homological algebra</a> is around Application 1.1.4 of</p>
+<ul id="Weibel">
+<li><a class="existingWikiWord" href="../../../../../0/9/8/2/2890/content.html">Charles Weibel</a>, <em><a class="existingWikiWord" href="../../../../../9/1/7/3/3719/content.html">An Introduction to Homological Algebra</a></em></li>
+</ul>
+<p>and in the context of <a class="existingWikiWord" href="../../../../../3/3/7/1/1733/content.html">algebraic topology</a> in chapter 2.1 of</p>
+<ul>
+<li id="Hatcher"><a class="existingWikiWord" href="../../../../../4/2/1/4/4124/content.html">Allen Hatcher</a>, <em>Algebraic Topology</em> (<a href="http://www.math.cornell.edu/~hatcher/AT/ATpage.html">web</a>)</li>
+</ul>
+<p>and <a href="http://www.math.upenn.edu/~ghrist/EAT/EATchapter4.pdf">chapter 4</a> of</p>
+<ul id="Ghrist">
+<li><a class="existingWikiWord" href="../../../../../2/1/3/8/8312/content.html">Robert Ghrist</a>, <em>Elementary applied topology</em> (<a href="http://www.math.upenn.edu/~ghrist/notes.html">web</a>)</li>
+</ul>
+<p>Discussion in the context of computing <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy groups</a> is in</p>
+<ul id="Hutchings">
+<li><a class="existingWikiWord" href="../../../../../1/8/2/8/8281/content.html">Michael Hutchings</a>, <em>Introduction to higher homotopy groups and obstruction theory</em> (<a href="http://math.berkeley.edu/~hutching/teach/215b-2011/homotopy.pdf">pdf</a>)</li>
+</ul>
+<p>Lecture notes include</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/4/7/2/2743/content.html">Marco Gualtieri</a>, <em>Homology</em> (<a href="http://www.math.toronto.edu/mgualt/MAT1300/Week%206-9%20Term%202.pdf">pdf</a>)</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>Wikipedia, <em><a href="http://en.wikipedia.org/wiki/Singular_homology">Singular homology</a></em></li>
+</ul>
+<h3 id="examples_and_applications">Examples and applications</h3>
+<ul>
+<li>Michael Barratt, <a class="existingWikiWord" href="../../../../../2/3/9/4/4932/content.html">John Milnor</a>, <em>An example of anomalous singular homology</em>, Proceedings of the American Mathematical Society Vol. 13, No. 2 (Apr., 1962), pp. 293-297 (<a href="http://www.jstor.org/stable/2034486">JSTOR</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

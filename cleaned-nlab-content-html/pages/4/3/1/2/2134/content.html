@@ -1,0 +1,512 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Schur's lemma in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Schur's lemma
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<li><a href="#proof">Proof</a></li>
+<li><a href="#InterpretationInCategoricalAlgebra">Interpretation in categorical algebra</a></li>
+<li><a href="#GeneralizationsAndVariants">Generalizations and variants</a></li>
+<ul>
+<li><a href="#for_simple_modules">For simple modules</a></li>
+<li><a href="#for_simple_objects_in_an_abelian_category">For simple objects in an abelian category</a></li>
+<li><a href="#for_bridgeland_stable_objects">For Bridgeland stable objects</a></li>
+</ul>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Schur’s lemma is one of the fundamental facts of <a class="existingWikiWord" href="../../../../../9/3/2/1/1239/content.html">representation theory</a>. It concerns basic properties of the <a class="existingWikiWord" href="../../../../../5/8/2/0/285/content.html">hom-sets</a> between <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible</a> <a class="existingWikiWord" href="../../../../../2/5/4/8/18452/content.html">linear representations</a> of <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">groups</a>.</p>
+<p>The lemma consists of two parts that depend on different assumptions (a distinction often not highlighted in the literature):</p>
+<ol>
+<li>
+<p>The first statement applies over <em>every</em> <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>:</p>
+<p>It says that there are no non-<a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero</a> <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphisms</a> between distinct (i.e. non-<a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphic</a>) <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> and any non-zero morphism among isomorphic irreducibles is an isomorphism.</p>
+</li>
+<li>
+<p>The second statement applies only in the special case that the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> is an <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed field</a> (such as the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a>) and that the <a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a> are <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a>:</p>
+<p>It says that, in this case, moreover the only non-trivial <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphisms</a> of an <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representation</a> are multiples of the <a class="existingWikiWord" href="../../../../../7/4/2/1/1247/content.html">identity morphism</a>.</p>
+</li>
+</ol>
+<h2 id="statement">Statement</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a>. In the following:</p>
+<ul>
+<li>
+<p><em>representation</em> means <em><a class="existingWikiWord" href="../../../../../2/5/4/8/18452/content.html">linear representation</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></em>, linear over some <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>,</p>
+</li>
+<li>
+<p><em>finite dimensional representation</em> means that the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> is a <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional vector space</a>,</p>
+</li>
+<li>
+<p>an <em><a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representation</a></em> is one whose only <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/9/4/8/8496/content.html">invariant</a> <a class="existingWikiWord" href="../../../../../3/9/0/3/3093/content.html">subspaces</a> (<a class="existingWikiWord" href="../../../../../5/9/6/9/19695/content.html">fixed point spaces</a>) are the trivial degenerate cases: the <a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero</a>-subspace and the full space itself.</p>
+</li>
+</ul>
+<p>
+<div class="num_prop" id="SchurLemma">
+<h6>Proposition</h6>
+<p><strong>(Schur’s lemma)</strong> <br/></p>
+<ol>
+<li id="FirstItem">
+<p>A <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>V</mi><mo>→</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">\phi \;\colon\; V\to W</annotation></semantics></math> between <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a>, is either the <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero morphism</a> or an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+<p>It follows that the <a class="existingWikiWord" href="../../../../../0/8/1/5/5180/content.html">endomorphism ring</a> of an <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representation</a> is a <a class="existingWikiWord" href="../../../../../9/0/0/2/2009/content.html">division ring</a>.</p>
+</li>
+<li id="SecondItem">
+<p>In the case that the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> is an <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed field</a>, <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphisms</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>V</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">\phi \;\colon\; V \to V</annotation></semantics></math> of a <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite dimensional</a> <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> are multiples <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>⋅</mo><mi>id</mi></mrow><annotation encoding="application/x-tex">c \cdot id</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../7/4/2/1/1247/content.html">identity operator</a>.</p>
+<p>In other words, nontrivial automorphisms of irreducible representations, <em>a priori</em> possible by <a href="#FirstItem">(1)</a>, are ruled out over algebraically closed fields.</p>
+</li>
+</ol>
+<p></p>
+</div>
+</p>
+<h2 id="proof">Proof</h2>
+<p>As it goes with very fundamental lemmas, the <a class="existingWikiWord" href="../../../../../0/8/9/6/6980/content.html">proof</a> of Schur’s lemma follows by elementary inspection.</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>(of Prop. <a class="maruku-ref" href="#SchurLemma"></a>) <br/> For the first statement:</p>
+<p>It is immediate to see that both the <a class="existingWikiWord" href="../../../../../5/0/6/8/8605/content.html">kernel</a> as well as <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> of a <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mover><mo>⟶</mo><mi>f</mi></mover><mi>W</mi></mrow><annotation encoding="application/x-tex">
+  V \overset{f}{\longrightarrow} W
+
+</annotation></semantics></math></div>
+<p>of any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a> are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/9/4/8/8496/content.html">invariant</a> <a class="existingWikiWord" href="../../../../../3/9/0/3/3093/content.html">subspaces</a> (<a class="existingWikiWord" href="../../../../../5/9/6/9/19695/content.html">fixed point spaces</a>). But by the very definition of <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducibility</a>, the only such subspaces of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> are the degenerate ones: their zero subspaces and the full spaces themselves.</p>
+<p>Now if the <a class="existingWikiWord" href="../../../../../5/0/6/8/8605/content.html">kernel</a> is all of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> or the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> is <a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero</a>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero morphism</a>. The only case left is that the <a class="existingWikiWord" href="../../../../../5/0/6/8/8605/content.html">kernel</a> is <a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero</a> <em>and</em> the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> is all of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, but this means that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../7/1/9/0/917/content.html">injective</a> and <a class="existingWikiWord" href="../../../../../8/1/9/0/918/content.html">surjective</a> and is hence an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+<p>For the second statement:</p>
+<p>Now we use that over an <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> of every <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear</a> <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphism</a> of a <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite dimensional vector space</a> has an <a class="existingWikiWord" href="../../../../6/1/0/10164/content.html">eigenvalue</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">c \in k</annotation></semantics></math> (which is, ultimately, due to the <a class="existingWikiWord" href="../../../../../7/0/4/4/4407/content.html">fundamental theorem of algebra</a> for <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed fields</a>). Now, with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> also the linear combination</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo>−</mo><mi>c</mi><mo>⋅</mo><mi mathvariant="normal">id</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>V</mi><mo>⟶</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">
+  (f - c \cdot \mathrm{id}) \;\colon\; V \longrightarrow V
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a>. But then, by the first part, this must be an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> or <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero</a>. But it is not an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>, by construction, since now the <a class="existingWikiWord" href="../../../../../3/6/1/0/10163/content.html">eigenvectors</a> with <a class="existingWikiWord" href="../../../../6/1/0/10164/content.html">eigenvalue</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> are in the <a class="existingWikiWord" href="../../../../../5/0/6/8/8605/content.html">kernel</a>. Therefore, all of the linear combination must be <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>−</mo><mi>c</mi><mo>⋅</mo><mi>id</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+  f - c \cdot id = 0
+
+</annotation></semantics></math></div>
+<p>and hence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mi>c</mi><mo>⋅</mo><mi>id</mi></mrow><annotation encoding="application/x-tex">
+  f = c \cdot id
+
+</annotation></semantics></math></div>
+<p>is a multiple of the identity.</p>
+</div>
+</p>
+<h2 id="InterpretationInCategoricalAlgebra">Interpretation in categorical algebra</h2>
+<p>The statement of <em>Schur’s lemma</em> is particularly suggestive in the language of <a class="existingWikiWord" href="../../../../../0/5/1/4/4150/content.html">categorical algebra</a>.</p>
+<p>Here it says that <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> form a <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorified</a> <em><a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">orthogonal basis</a></em> for the <a class="existingWikiWord" href="../../../../../5/2/0/3/3025/content.html">2-Hilbert space</a> of <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a> <a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a>, and even an <em><a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">orthonormal basis</a></em> if the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> is <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed</a>.</p>
+<p>After <a class="existingWikiWord" href="../../../../../8/0/9/1/1908/content.html">decategorification</a> this becomes equivalently the statement that the <a class="existingWikiWord" href="../../../../../2/7/9/3/23972/content.html">isomorphism classes</a> of <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> form an <em><a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">orthogonal basis</a></em> for the <a class="existingWikiWord" href="../../../../../2/7/9/1/1972/content.html">representation ring</a>, and even an <em><a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">orthonormal basis</a></em> if the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> is <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed</a>.</p>
+<p>For more on this perspective see also at <em><a class="existingWikiWord" href="../../../../../0/7/5/2/2570/content.html">Gram-Schmidt process</a></em> the section <em><a href="../../../../../0/7/5/2/2570/content.html#CategorifiedGramSchmidtProcess">Categorified Gram-Schmidt process</a></em>.</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">\,</annotation></semantics></math></p>
+<p>We now explain this perspective of in more detail:</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thinmathspace"></mspace></mrow><annotation encoding="application/x-tex">\,</annotation></semantics></math></p>
+<p>Notice that the <a class="existingWikiWord" href="../../../../../5/8/2/0/285/content.html">hom-sets</a> in a <a class="existingWikiWord" href="../../../../4/4/3/3444/content.html">category of representations</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>Rep</mi></mrow><annotation encoding="application/x-tex">G Rep</annotation></semantics></math> are canonically <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a>: given any two <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphisms</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>,</mo><mi>g</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>V</mi><mo>→</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">f,g \;\colon\; V \to W</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a>, also the (value-wise) <a class="existingWikiWord" href="../../../../../7/2/1/8/8127/content.html">linear combination</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi> <mn>1</mn></msub><mi>f</mi><mo>+</mo><msub><mi>c</mi> <mn>2</mn></msub><mi>g</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>V</mi><mo>→</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">c_1 f + c_2 g \;\colon\; V \to W</annotation></semantics></math> is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-homomorphism. (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>Rep</mi></mrow><annotation encoding="application/x-tex">G Rep</annotation></semantics></math> is canonically <a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched</a> over <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">Vect</a>.)</p>
+<p>Now it makes sense to regard this <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a>-valued <a class="existingWikiWord" href="../../../../../6/2/3/0/326/content.html">hom-functor</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>Rep</mi></mrow><annotation encoding="application/x-tex">G Rep</annotation></semantics></math> as analogous</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>hom</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>G</mi><msup><mi>Rep</mi> <mi>op</mi></msup><mo>×</mo><mi>G</mi><mi>Rep</mi><mo>⟶</mo><mi>Vect</mi></mrow><annotation encoding="application/x-tex">
+  hom_G(-,-) \;\colon\; G Rep^{op} \times G Rep \longrightarrow Vect
+
+</annotation></semantics></math></div>
+<p>as a <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorified</a> <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a> (see at <em><a class="existingWikiWord" href="../../../../../5/2/0/3/3025/content.html">2-Hilbert space</a></em> for more on this).</p>
+<p>This is a useful perspective even after <a class="existingWikiWord" href="../../../../../8/0/9/1/1908/content.html">decategorification</a>:</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>,</mo><mi>W</mi><mo>∈</mo><mi>G</mi><msup><mi>Rep</mi> <mi>fin</mi></msup></mrow><annotation encoding="application/x-tex">V, W \in G Rep^{fin}</annotation></semantics></math> two <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a> <a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a>, write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mi>V</mi><mo>,</mo><mi>W</mi><mo stretchy="false">⟩</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>dim</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>hom</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>W</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">
+  \langle V,W\rangle
+  \;\coloneqq\;
+  dim\big( hom_G(V,W) \big)
+  \;\in\;
+  \mathbb{N}
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimension</a> of the vector space of homomorphism between them (e.g. <a href="#tomDieck09">tom Dieck 09, p. 29</a>).</p>
+<p>This construction only depends on the <a class="existingWikiWord" href="../../../../../2/7/9/3/23972/content.html">isomorphism classes</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, and hence descends to a <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>G</mi><msubsup><mi>Rep</mi> <mrow><mo stretchy="false">/</mo><mo>∼</mo></mrow> <mi>fin</mi></msubsup><mo>×</mo><mi>G</mi><msubsup><mi>Rep</mi> <mrow><mo stretchy="false">/</mo><mo>∼</mo></mrow> <mi>fin</mi></msubsup><mo>⟶</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">  \langle -,-\rangle 
+  \;\colon\; 
+  G Rep^{fin}_{/\sim} \times G Rep^{fin}_{/\sim}
+  \longrightarrow
+  \mathbb{N}
+
+</annotation></semantics></math></div>
+<p>on <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a> of <a class="existingWikiWord" href="../../../../../2/7/9/3/23972/content.html">isomorphism classes</a>. In fact, under <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> and <a class="existingWikiWord" href="../../../../../1/9/7/7/17791/content.html">tensor product of representations</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msubsup><mi>Rep</mi> <mrow><mo stretchy="false">/</mo><mo>∼</mo></mrow> <mi>fin</mi></msubsup></mrow><annotation encoding="application/x-tex">G Rep^{fin}_{/\sim}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../5/6/5/1/1565/content.html">rig</a>, and this pairing is <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear</a> with respect to the underlying <a class="existingWikiWord" href="../../../../../6/6/5/1/1566/content.html">additive monoid</a> structure:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>⟨</mo><msub><mi>V</mi> <mn>1</mn></msub><mo>⊕</mo><msub><mi>V</mi> <mn>2</mn></msub><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><mi>W</mi><mo>⟩</mo></mrow><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>⟨</mo><msub><mi>V</mi> <mn>1</mn></msub><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><mi>W</mi><mo>⟩</mo></mrow><mo>+</mo><mrow><mo>⟨</mo><msub><mi>V</mi> <mn>2</mn></msub><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><mi>W</mi><mo>⟩</mo></mrow></mrow><annotation encoding="application/x-tex">
+  \left\langle
+    V_1 \oplus V_2
+    \,,\,
+    W
+  \right\rangle
+  \;=\;
+  \left\langle
+    V_1 
+    \,,\,
+    W
+  \right\rangle
+  +
+  \left\langle
+    V_2
+    \,,\,
+    W
+  \right\rangle
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>⟨</mo><mi>V</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><msub><mi>W</mi> <mn>1</mn></msub><mo>⊕</mo><msub><mi>W</mi> <mi>w</mi></msub><mo>⟩</mo></mrow><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>⟨</mo><mi>V</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><msub><mi>W</mi> <mn>1</mn></msub><mo>⟩</mo></mrow><mo>+</mo><mrow><mo>⟨</mo><mi>V</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thinmathspace"></mspace><msub><mi>W</mi> <mn>2</mn></msub><mo>⟩</mo></mrow></mrow><annotation encoding="application/x-tex">
+  \left\langle
+    V
+    \,,\,
+    W_1 \oplus W_w
+  \right\rangle
+  \;=\;
+  \left\langle
+    V
+    \,,\,
+    W_1
+  \right\rangle
+  +
+  \left\langle
+    V
+    \,,\,
+    W_2
+  \right\rangle
+
+</annotation></semantics></math></div>
+<p>(This is, ultimately, due to the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> as a <a class="existingWikiWord" href="../../../../../7/7/0/1/1077/content.html">biproduct</a>.)</p>
+<p>To further strengthen the emerging picture, we may consider the <a class="existingWikiWord" href="../../../../../9/6/5/1/11569/content.html">group completion</a> of the <a class="existingWikiWord" href="../../../../../6/6/5/1/1566/content.html">commutative monoid</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msubsup><mi>Rep</mi> <mrow><mo stretchy="false">/</mo><mo>∼</mo></mrow> <mi>fin</mi></msubsup></mrow><annotation encoding="application/x-tex">G Rep^{fin}_{/\sim}</annotation></semantics></math> by passing to its <a class="existingWikiWord" href="../../../../7/9/1/1974/content.html">Grothendieck group</a>, in fact its <a class="existingWikiWord" href="../../../../../3/7/9/1/1973/content.html">Grothendieck ring</a> if we remember also the <a class="existingWikiWord" href="../../../../../1/9/7/7/17791/content.html">tensor product of representations</a>. This <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">commutative ring</a> is called the <a class="existingWikiWord" href="../../../../../2/7/9/1/1972/content.html">representation ring</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>K</mi><mrow><mo>(</mo><mi>G</mi><msubsup><mi>Rep</mi> <mrow><mo stretchy="false">/</mo><mo>∼</mo></mrow> <mi>fin</mi></msubsup><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">
+  R(G) \;\coloneqq\; K\left(  G Rep^{fin}_{/\sim} \right)
+
+</annotation></semantics></math></div>
+<p>of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>. By the evident <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>-linear extension, the above pairing gives an actual symmetric <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/0/3/8/8306/content.html">bilinear</a> <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(G)</annotation></semantics></math>:</p>
+<div class="maruku-equation" id="eq:DecategorifiedInnterProduct"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>R</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>×</mo><mi>R</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">
+  
+  \langle
+   -,- 
+  \rangle
+  \;\colon\;
+  R(G) \times R(G)
+  \longrightarrow 
+  \mathbb{Z}
+
+</annotation></semantics></math></div>
+<p>Now the underlying <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian group</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R(G)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../2/6/2/8/8262/content.html">free abelian group</a> whose canonical <a class="existingWikiWord" href="../../../../../1/6/3/7/7361/content.html">generators</a> are nothing but the <a class="existingWikiWord" href="../../../../../2/7/9/3/23972/content.html">isomorphism classes</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">V_i</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a> <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><msub><mo>≃</mo> <mi>ℤ</mi></msub><mspace width="thickmathspace"></mspace><mi>ℤ</mi><mo maxsize="1.2em" minsize="1.2em">[</mo><mo stretchy="false">{</mo><msub><mi>V</mi> <mi>i</mi></msub><msub><mo stretchy="false">}</mo> <mi>i</mi></msub><mo maxsize="1.2em" minsize="1.2em">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  R(G) \;\simeq_{\mathbb{Z}}\;  \mathbb{Z}\big[ \{V_i\}_i \big]
+  \,.
+
+</annotation></semantics></math></div>
+<p>In summary, in the language of <a class="existingWikiWord" href="../../../../../3/7/6/4/4673/content.html">linear algebra</a>, the <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>V</mi> <mi>i</mi></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[V_i]</annotation></semantics></math> constitute a canonical <em><a class="existingWikiWord" href="../../../../../1/8/2/7/7281/content.html">linear basis</a></em> of the <a class="existingWikiWord" href="../../../../../2/7/9/1/1972/content.html">representation ring</a>.</p>
+<p>In terms of this language, <strong>Schur’s lemma</strong> becomes the following statement:</p>
+<p>The canonical <a class="existingWikiWord" href="../../../../../1/8/2/7/7281/content.html">linear basis</a> of the <a class="existingWikiWord" href="../../../../../2/7/9/1/1972/content.html">representation ring</a> given by the <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> is</p>
+<ol>
+<li>
+<p>generally: an <em><a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">ortho-gonal basis</a></em>;</p>
+</li>
+<li>
+<p>even an <em><a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">ortho-normal basis</a></em> if the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> is <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed field</a></p>
+</li>
+</ol>
+<p>with respect to the canonical <a class="existingWikiWord" href="../../../../../8/0/9/1/1908/content.html">decategorified</a> <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a> from <a class="maruku-eqref" href="#eq:DecategorifiedInnterProduct">(1)</a>.</p>
+<h2 id="GeneralizationsAndVariants">Generalizations and variants</h2>
+<h3 id="for_simple_modules">For simple modules</h3>
+<p>Part <a href="#FirstItem">(1)</a> of Schur’s lemma is essentially <a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">category-theoretic</a> and can be generalized in many ways, for example, by replacing the <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> by some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">algebra</a> and taking the representations compatible with the action of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+<h3 id="for_simple_objects_in_an_abelian_category">For simple objects in an abelian category</h3>
+<p>More generally, part <a href="#FirstItem">(1)</a> of Schur’s lemma applies to <a class="existingWikiWord" href="../../../../../6/4/0/2/2046/content.html">simple objects</a> in any <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a>, and the <a class="existingWikiWord" href="../../../../../0/8/1/5/5180/content.html">endomorphism ring</a> of such a <a class="existingWikiWord" href="../../../../../6/4/0/2/2046/content.html">simple object</a> is a <a class="existingWikiWord" href="../../../../../9/0/0/2/2009/content.html">division ring</a>, as proved <a href="../../../../../6/4/0/2/2046/content.html#in_an_abelian_category">here</a>.</p>
+<p>For <a href="#SecondItem">(2)</a>, if the <a class="existingWikiWord" href="../../../../../0/8/1/5/5180/content.html">endomorphism rings</a> of all objects in an <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> are <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a> over an <a class="existingWikiWord" href="../../../../../6/1/1/2/2116/content.html">algebraically closed field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>, then the endomorphism ring of a simple object is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> itself, as proved <a href="../../../../../6/4/0/2/2046/content.html#in_an_abelian_category">here</a>. This is the case for the category of finite-dimensional complex representations of a group.</p>
+<h3 id="for_bridgeland_stable_objects">For Bridgeland stable objects</h3>
+<p>The statement of Schur’s lemma applies also to objects which are stable with respect to a <a class="existingWikiWord" href="../../../../../9/8/4/6/6489/content.html">Bridgeland stability condition</a>, see <a href="../../../../../9/8/4/6/6489/content.html#SchurLemma">there</a>.</p>
+<h2 id="references">References</h2>
+<p>Named after <em><a class="existingWikiWord" href="../../../../../0/0/5/2/22500/content.html">Issai Schur</a></em>.</p>
+<p>Textbook accounts:</p>
+<ul>
+<li id="Serre77">
+<p><a class="existingWikiWord" href="../../../../../7/7/7/3/3777/content.html">Jean-Pierre Serre</a>, section 2.2 of: <em>Linear Representations of Finite Groups</em>, Graduate Texts in Mathematics <strong>42</strong>, Springer (1977) [<a href="https://doi.org/10.1007/978-1-4684-9458-7">doi:10.1007/978-1-4684-9458-7</a>, <a href="https://www.math.tau.ac.il/~borovoi/courses/ReprFG/Hatzagot.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/9/3/3908/content.html">Pavel Etingof</a>, Oleg Golberg, Sebastian Hensel, Tiankai Liu, Alex Schwendner, <a class="existingWikiWord" href="../../../../../9/9/0/0/10099/content.html">Dmitry Vaintrob</a>, Elena Yudovina: Prop. 1.16 &amp; Cor. 1.17 in: <em>Introduction to representation theory</em>, Student Mathematical Library <strong>59</strong>, AMS (2011) [<a href="https://arxiv.org/abs/0901.0827">arXiv:0901.0827</a>, <a href="https://bookstore.ams.org/stml-59">ams:stml-59</a>]</p>
+</li>
+</ul>
+<p>Lecture notes:</p>
+<ul>
+<li id="tomDieck09"><a class="existingWikiWord" href="../../../../../1/9/3/1/11391/content.html">Tammo tom Dieck</a>, §1.1.2 in: <em>Representation theory</em> (2009) [<a href="http://www.uni-math.gwdg.de/tammo/rep.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/tomDieckRepresentationTheory.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Schur%27s_lemma">Schur’s lemma</a></em></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

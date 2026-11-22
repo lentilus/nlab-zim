@@ -1,0 +1,381 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Gaussian probability distribution in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Gaussian probability distribution
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#square_as_a_random_variable">Square as a random variable</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="definition">Definition</h2>
+<p>A <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability distribution</a> on a <a class="existingWikiWord" href="../../../../../5/5/1/2/2155/content.html">Cartesian space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^n</annotation></semantics></math> is called <strong>Gaussian</strong> or a <strong>normal distribution</strong> if it is of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>A</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>↦</mo><mfrac><msqrt><mrow><mi>det</mi><mi>A</mi></mrow></msqrt><mrow><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><msup><mo stretchy="false">)</mo> <mrow><mi>n</mi><mo stretchy="false">/</mo><mn>2</mn></mrow></msup></mrow></mfrac><mi>exp</mi><mrow><mo>(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mrow><mo>⟨</mo><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>,</mo><mi>A</mi><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>⟩</mo></mrow><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mi>d</mi><msup><mi>x</mi> <mn>1</mn></msup><mi>⋯</mi><mi>d</mi><msup><mi>x</mi> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mu_A \;\colon\; \vec x \mapsto \frac{\sqrt{det A}}{(2\pi)^{n/2}} 
+  \exp\left(-\tfrac{1}{2} \left\langle \vec x , A \vec x\right\rangle\right)
+  \,d x^1 \cdots d x^n
+  \,.
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \times n</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../6/3/3/4/4336/content.html">matrix</a> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>A</mi><mo>−</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle -, A-\rangle</annotation></semantics></math> is a positive definite <a class="existingWikiWord" href="../../../../../7/2/8/5/5827/content.html">bilinear form</a>. Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>det</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\det A</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../3/2/0/4/4023/content.html">determinant</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle -,-\rangle</annotation></semantics></math> is the canonical <a class="existingWikiWord" href="../../../../../7/2/8/5/5827/content.html">bilinear form</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^n</annotation></semantics></math>.</p>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mi>det</mi><mi>A</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{\det A}</annotation></semantics></math> is the coordinate of the <a class="existingWikiWord" href="../../../../../7/1/6/5/5617/content.html">volume element</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>vol</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">vol_A</annotation></semantics></math> associated with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, we may equivalently write this as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>A</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>↦</mo><mfrac><mn>1</mn><mrow><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><msup><mo stretchy="false">)</mo> <mrow><mi>n</mi><mo stretchy="false">/</mo><mn>2</mn></mrow></msup></mrow></mfrac><mi>exp</mi><mrow><mo>(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mrow><mo>⟨</mo><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>,</mo><mi>A</mi><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>⟩</mo></mrow><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><msub><mi>vol</mi> <mi>A</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mu_A \;\colon\; \vec x \mapsto \frac{1}{(2\pi)^{n/2}} 
+  \exp\left(-\tfrac{1}{2} \left\langle \vec x , A \vec x\right\rangle\right)
+  \,vol_A  \,.
+
+</annotation></semantics></math></div>
+<p>The <a class="existingWikiWord" href="../../../../../3/9/7/7/17793/content.html">mean</a> of this distribution is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mn>0</mn><mo stretchy="false">→</mo></mover></mrow><annotation encoding="application/x-tex">\vec{0}</annotation></semantics></math>; for a distribution with mean <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>c</mi><mo stretchy="false">→</mo></mover></mrow><annotation encoding="application/x-tex">\vec{c}</annotation></semantics></math>, replace <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mrow><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>,</mo><mi>A</mi><mover><mi>x</mi><mo stretchy="false">→</mo></mover></mrow><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle{\vec{x},A \vec{x}}\rangle</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mrow><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>−</mo><mover><mi>c</mi><mo stretchy="false">→</mo></mover><mo>,</mo><mi>A</mi><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>−</mo><mi>A</mi><mover><mi>c</mi><mo stretchy="false">→</mo></mover></mrow><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle{\vec{x} - \vec{c},A \vec{x} - A \vec{c}}\rangle</annotation></semantics></math>.</p>
+<p>The matrix <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../4/9/6/16941/content.html">inverse</a> of the covariance matrix. In particular, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n = 1</annotation></semantics></math>, we may write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi> <mn>2</mn></msup><mo stretchy="false">/</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^2/\sigma^2</annotation></semantics></math> (or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>c</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo stretchy="false">/</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">(x-c)^2/\sigma^2</annotation></semantics></math> for mean <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>) in place of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mrow><mover><mi>x</mi><mo stretchy="false">→</mo></mover><mo>,</mo><mi>A</mi><mover><mi>x</mi><mo stretchy="false">→</mo></mover></mrow><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle{\vec{x},A \vec{x}}\rangle</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> is the <a class="existingWikiWord" href="content.html">standard deviation</a>; similarly, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mi>det</mi><mi>A</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{\det A}</annotation></semantics></math> becomes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">/</mo><mi>σ</mi></mrow><annotation encoding="application/x-tex">1/\sigma</annotation></semantics></math>. This gives the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi> <mi>σ</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>x</mi><mo>↦</mo><mfrac><mn>1</mn><mrow><mi>σ</mi><msqrt><mrow><mn>2</mn><mi>π</mi></mrow></msqrt></mrow></mfrac><mi>exp</mi><mrow><mo>(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>c</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mi>dx</mi></mrow><annotation encoding="application/x-tex">\mu_\sigma \;\colon\; x \mapsto \frac{1}{\sigma \sqrt{2\pi}} \exp\left(-\frac{(x-c)^2}{2\sigma^2}\right) \, dx </annotation></semantics></math></div>
+<p>In the case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n = 1</annotation></semantics></math> one denotes this distribution by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒩</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><msup><mi>σ</mi> <mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{N}(c,\sigma^2)</annotation></semantics></math>.</p>
+<h2 id="square_as_a_random_variable">Square as a random variable</h2>
+<p>The square <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><msup><mi>X</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Y = X^2</annotation></semantics></math> of a random number with probability distribution <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒩</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><msup><mi>σ</mi> <mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{N}(0,\sigma^2)</annotation></semantics></math> follows a scaled Chi-squared distribution.</p>
+<p>This has positive expected value <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">0 \lt \mathbb{E}[X^2]</annotation></semantics></math> and bounded variance <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Var</mtext><mo stretchy="false">(</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">)</mo><mo>&lt;</mo><mn>∞</mn></mrow><annotation encoding="application/x-tex">\text{Var}(X^2) \lt \infty</annotation></semantics></math>.</p>
+<p>The probability density function of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><msup><mi>X</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">Y = X^2</annotation></semantics></math> is </p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>Y</mi></msub><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mn>2</mn><mi>π</mi><msup><mi>σ</mi> <mn>2</mn></msup><mi>y</mi></mrow></msqrt></mfrac><mi>exp</mi><mrow><mo>(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mfrac><mi>y</mi><mrow><mn>2</mn><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>)</mo></mrow><mo>,</mo><mi>y</mi><mo>∈</mo><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>∞</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+f_Y(y) = \frac{1}{\sqrt{2\pi \sigma^2 y}} \exp\left(-\frac{y}{2\sigma^2}\right), y \in (0,\infty)
+
+</annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>Y</mi></msub><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f_Y(0) = 0</annotation></semantics></math>. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∼</mo><mi>𝒩</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><msup><mi>σ</mi> <mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \sim \mathcal{N}(0, \sigma^2)</annotation></semantics></math>, the general moment formulas are:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mi>n</mi></msup><mo stretchy="false">]</mo><mo>=</mo><mrow><mo>{</mo><mrow><mtable columnalign="left left" displaystyle="false"><mtr><mtd><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>!</mo><mo>!</mo><mspace width="thinmathspace"></mspace><msup><mi>σ</mi> <mi>n</mi></msup><mo>=</mo><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><msup><mn>2</mn> <mrow><mi>n</mi><mo stretchy="false">/</mo><mn>2</mn></mrow></msup><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">)</mo><mo>!</mo></mrow></mfrac><mspace width="thinmathspace"></mspace><msup><mi>σ</mi> <mi>n</mi></msup></mtd> <mtd><mtext>if </mtext><mspace width="thinmathspace"></mspace><mi>n</mi><mspace width="thinmathspace"></mspace><mtext> is even</mtext></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><mtext>if </mtext><mspace width="thinmathspace"></mspace><mi>n</mi><mspace width="thinmathspace"></mspace><mtext> is odd</mtext></mtd></mtr></mtable></mrow></mrow></mrow><annotation encoding="application/x-tex">
+\mathbb{E}[X^n] = \begin{cases} (n-1)!! \, \sigma^n = \frac{n!}{2^{n/2}(n/2)!} \, \sigma^n &amp; \text{if }\, n\, \text{ is even} \\ 0 &amp; \text{if }\, n\, \text{ is odd} \end{cases}
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Var</mtext><mo stretchy="false">(</mo><msup><mi>X</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mo>=</mo><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mrow><mn>2</mn><mi>n</mi></mrow></msup><mo stretchy="false">]</mo><mo>−</mo><mo stretchy="false">(</mo><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mi>n</mi></msup><mo stretchy="false">]</mo><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>=</mo><msup><mi>σ</mi> <mrow><mn>2</mn><mi>n</mi></mrow></msup><mtext>Var</mtext><mo stretchy="false">(</mo><msup><mi>Z</mi> <mi>n</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\text{Var}(X^n) = \mathbb{E}[X^{2n}] - (\mathbb{E}[X^n])^2 = \sigma^{2n} \text{Var}(Z^n)
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>∼</mo><mi>𝒩</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z \sim \mathcal{N}(0, 1)</annotation></semantics></math> is the standard normal variable.</p>
+<p>Specifically, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n = 2</annotation></semantics></math>, one has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">]</mo><mo>=</mo><mtext>Var</mtext><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{E}[X^2] = \text{Var}(X) = \sigma^2</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Var</mtext><mo stretchy="false">(</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">)</mo><mo>=</mo><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mn>4</mn></msup><mo stretchy="false">]</mo><mo>−</mo><mo stretchy="false">(</mo><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">]</mo><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>=</mo><mn>3</mn><msup><mi>σ</mi> <mn>4</mn></msup><mo>−</mo><msup><mi>σ</mi> <mn>4</mn></msup><mo>=</mo><mn>2</mn><msup><mi>σ</mi> <mn>4</mn></msup></mrow><annotation encoding="application/x-tex">\text{Var}(X^2) = \mathbb{E}[X^4] - (\mathbb{E}[X^2])^2 = 3\sigma^4 - \sigma^4 = 2\sigma^4</annotation></semantics></math>.</p>
+<p>If we define the standardized centered variable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mfrac><mrow><msup><mi>X</mi> <mn>2</mn></msup><mo>−</mo><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">]</mo></mrow><mrow><mtext>Var</mtext><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>X</mi> <mn>2</mn></msup><mo>−</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">W = \frac{X^2 - \mathbb{E}[X^2]}{\text{Var}(X)} = \frac{X^2 - \sigma^2}{\sigma^2}</annotation></semantics></math>, then by linearity of expectation:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><mo stretchy="false">[</mo><mi>W</mi><mo stretchy="false">]</mo><mo>=</mo><mfrac><mrow><mi>𝔼</mi><mo stretchy="false">[</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">]</mo><mo>−</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>σ</mi> <mn>2</mn></msup><mo>−</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+\mathbb{E}[W] = \frac{\mathbb{E}[X^2] - \sigma^2}{\sigma^2} = \frac{\sigma^2 - \sigma^2}{\sigma^2} = 0
+
+</annotation></semantics></math></div>
+<p>By scaling properties of variance, dividing by the constant <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^2</annotation></semantics></math> rescales the variance by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mrow><msup><mi>σ</mi> <mn>4</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{\sigma^4}</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Var</mtext><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>Var</mtext><mrow><mo>(</mo><mfrac><mrow><msup><mi>X</mi> <mn>2</mn></msup><mo>−</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><msup><mi>σ</mi> <mn>4</mn></msup></mrow></mfrac><mtext>Var</mtext><mo stretchy="false">(</mo><msup><mi>X</mi> <mn>2</mn></msup><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>2</mn><msup><mi>σ</mi> <mn>4</mn></msup></mrow><mrow><msup><mi>σ</mi> <mn>4</mn></msup></mrow></mfrac><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">
+\text{Var}(W) = \text{Var}\left(\frac{X^2 - \sigma^2}{\sigma^2}\right) = \frac{1}{\sigma^4}\text{Var}(X^2) = \frac{2\sigma^4}{\sigma^4} = 2
+
+</annotation></semantics></math></div>
+<p>Substituting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>=</mo><mi>σ</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">X = \sigma Z</annotation></semantics></math> directly into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> confirms this independence from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>σ</mi><mi>Z</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>−</mo><msup><mi>σ</mi> <mn>2</mn></msup></mrow><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>σ</mi> <mn>2</mn></msup><mo stretchy="false">(</mo><msup><mi>Z</mi> <mn>2</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mrow><msup><mi>σ</mi> <mn>2</mn></msup></mrow></mfrac><mo>=</mo><msup><mi>Z</mi> <mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
+W = \frac{(\sigma Z)^2 - \sigma^2}{\sigma^2} = \frac{\sigma^2(Z^2 - 1)}{\sigma^2} = Z^2 - 1
+
+</annotation></semantics></math></div>
+<p>Because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><msup><mi>Z</mi> <mn>2</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">W = Z^2 - 1</annotation></semantics></math> identically for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>σ</mi></mrow><annotation encoding="application/x-tex">0 \lt \sigma </annotation></semantics></math>, the standardized deviation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is strictly scale-invariant with zero mean and variance <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Var</mtext><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\text{Var}(W) = 2</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/2/2/9/9227/content.html">Wick's theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/3/2/9/9230/content.html">Feynman diagram</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../6/2/9/9261/content.html">statistical significance</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>See also</p>
+<ul>
+<li>
+<p>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Normal_distribution">Normal distribution</a></em></p>
+</li>
+<li>
+<p>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a></em></p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

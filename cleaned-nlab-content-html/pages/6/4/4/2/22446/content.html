@@ -1,0 +1,404 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Gershgorin circle theorem in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Gershgorin circle theorem
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<li><a href="#related_theorems">Related theorems</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>While the <a class="existingWikiWord" href="../../../../../4/6/1/0/10164/content.html">eigenvalues</a> of a <a class="existingWikiWord" href="../../../../../0/5/9/6/16950/content.html">diagonal matrix</a> are, of course, <a class="existingWikiWord" href="../../../../../7/0/2/0/207/content.html">equal</a> to its diagonal entries, <em>Gershgorin’s circle theorem</em> (<a href="#Gershgorin31">Gershgorin 31</a>, Prop. <a class="maruku-ref" href="#GershgorinTheorem"></a> below) provides upper bounds (the <em>Gershgorin radii</em>, Def. <a class="maruku-ref" href="#GershgorinDiscs"></a> below) for general <a class="existingWikiWord" href="../../../../../4/0/9/0/20904/content.html">square matrices</a> over the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a> on how far, in the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex plane</a>, the eigenvalues can be from the values of the diagonal entries.</p>
+<h2 id="statement">Statement</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">natural number</a>.</p>
+<p>
+<div class="num_defn" id="GershgorinDiscs">
+<h6>Definition</h6>
+<p><strong>(Gershgorin discs)</strong> <br/> Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msub><mi>Mat</mi> <mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \in Mat_{n \times n}(\mathbb{C})</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/0/9/0/20904/content.html">square matrix</a> with <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex</a> entries. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mi>n</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">j \in \{1, \cdots, n\}</annotation></semantics></math> define</p>
+<ul>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>th <em>Gershgorin radius</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> to be the <a class="existingWikiWord" href="../../../../3/7/8/8736/content.html">sum</a> of <a class="existingWikiWord" href="../../../../1/1/7/7116/content.html">absolute values</a> of off-diagonal entries in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>th row:</p>
+<div class="maruku-equation" id="eq:GershoginRadiusFormula"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>r</mi> <mi>j</mi> <mi>A</mi></msubsup><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>k</mi><mo>≠</mo><mi>j</mi></mrow></munder><mrow><mo>|</mo><msub><mi>a</mi> <mrow><mi>j</mi><mi>k</mi></mrow></msub><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">
+  
+  r_j^A
+  \;\coloneqq\;
+  \underset{k \neq j}{\sum}
+  \left\vert
+    a_{j k}
+  \right\vert
+
+</annotation></semantics></math></div></li>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>th <em>Gershgorin disc</em> to be the <a class="existingWikiWord" href="../../../../../1/3/9/4/4931/content.html">closed disk</a> in the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex plane</a> centered at the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>th diagonal entry with radius the above <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>th Gershgorin radius:</p>
+<div class="maruku-equation" id="eq:GershoginDiscFormula"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>D</mi> <mi>j</mi> <mi>A</mi></msubsup><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">{</mo><mi>z</mi><mo>∈</mo><mi>ℂ</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">|</mo><mspace width="thinmathspace"></mspace><mrow><mo>|</mo><mi>z</mi><mo>−</mo><msub><mi>a</mi> <mrow><mi>j</mi><mi>j</mi></mrow></msub><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>≤</mo><mspace width="thinmathspace"></mspace><msubsup><mi>r</mi> <mi>j</mi> <mi>A</mi></msubsup><mo maxsize="1.8em" minsize="1.8em">}</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  D_j^A
+  \;\coloneqq\;
+  \Big\{
+    z \in \mathbb{C}
+    \,\Big\vert\,
+    \left\vert
+      z - a_{j j}
+    \right\vert
+    \,\leq\,
+    r_j^A
+  \Big\}
+  \,.
+
+</annotation></semantics></math></div></li>
+</ul>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_prop" id="GershgorinTheorem">
+<h6>Proposition</h6>
+<p><strong>(Gershgorin disc theorem)</strong> <br/> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msub><mi>Mat</mi> <mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \in Mat_{n \times n}(\mathbb{C})</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/0/9/0/20904/content.html">square matrix</a> with <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex</a> entries, each of its <a class="existingWikiWord" href="../../../../../4/6/1/0/10164/content.html">eigenvalues</a> is contained in at least one Gershgorin disc (Def. <a class="maruku-ref" href="#GershgorinDiscs"></a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>∀</mo><mrow><mi>c</mi><mo>∈</mo><mi>EV</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow></munder><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><munder><mo>∃</mo><mrow><mn>1</mn><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow></munder><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>c</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msubsup><mi>D</mi> <mi>j</mi> <mi>A</mi></msubsup><mspace width="thinmathspace"></mspace><mo>⊂</mo><mspace width="thinmathspace"></mspace><mi>ℂ</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \underset{
+    c \in EV(A)
+  }{\forall}
+  \;\;
+  \underset{
+    1 \leq j \leq n
+  }{\exists}
+  \;\;
+  \big(
+    c \,\in\, D_j^A \,\subset\, \mathbb{C}
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>(see, e.g., <a href="#Meckes19">Meckes 19, Thm. 7.1</a>)</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p>In the context of Prop. <a class="maruku-ref" href="#GershgorinTheorem"></a>, if an <a class="existingWikiWord" href="../../../../../4/6/1/0/10164/content.html">eigenvalue</a> has mulitplicity <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>, then it is contained in at least <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> Gershgorin discs (Def. <a class="maruku-ref" href="#GershgorinDiscs"></a>).</p>
+</div>
+</p>
+<p>This is due to <a href="#MarsliHall13">Marsli-Hall 13</a>.</p>
+<p>
+<div class="num_prop" id="StrengtheningForNonNegativeMatrices">
+<h6>Proposition</h6>
+<p>If the matrix has non-negative values and an eigenvalue has multiplicity greater than 1, then it is contained within this disc of half the radius inside one of the Gershgorin discs <a class="maruku-eqref" href="#eq:GershoginDiscFormula">(2)</a>.</p>
+</div>
+</p>
+<p>(<a href="#BaranySolymosi16">Barany-Solymosi 16, Theorem 1</a>)</p>
+<h2 id="related_theorems">Related theorems</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/5/4/2/22457/content.html">Cauchy interlace theorem</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>The original article:</p>
+<ul>
+<li id="Gershgorin31"><a class="existingWikiWord" href="../../../../../7/4/4/2/22447/content.html">Semyon Aronovich Gerschgorin</a>, <em>Über die Abgrenzung der Eigenwerte einer Matrix</em>, Bulletin de l’Académie des Sciences de l’URSS. Classe des sciences mathématiques et na, 1931, Issue 6, Pages 749–754 (<a href="http://mi.mathnet.ru/eng/izv5235">mathnet:eng/izv5235</a>)</li>
+</ul>
+<p>Textbook account:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../6/4/2/22466/content.html">Richard S. Varga</a>, <em>Gershgorin and His Circles</em>, Springer-Verlag, Berlin, 2004 (<a href="https://link.springer.com/book/10.1007/978-3-642-17798-9">doi:10.1007/978-3-642-17798-9</a>)</li>
+</ul>
+<p>Lecture notes:</p>
+<ul>
+<li id="Meckes19"><a class="existingWikiWord" href="../../../../../9/4/4/2/22449/content.html">Mark Meckes</a>, Section 7.1 of: <em>Lecture notes on matrix analysis</em>, 2019 (<a href="https://case.edu/artsci/math/mwmeckes/matrix-analysis.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/MeckesMatrixAnalysis.pdf" title="pdf">pdf</a>)</li>
+</ul>
+<p>Exposition:</p>
+<ul>
+<li>Zack Cramer, <em>The Gershgorin circle theorem</em> 2017 (<a class="existingWikiWord" href="/nlab/files/CramerGershgorinCircleTheorem.pdf" title="pdf">pdf</a>)</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Gershgorin_circle_theorem">Gershgorin circle theorem</a></em></li>
+</ul>
+<p>Strengthening for eigenvalues with higher multiplicity:</p>
+<ul>
+<li id="MarsliHall13"><a class="existingWikiWord" href="../../../../../7/6/4/2/22467/content.html">Rachid Marsli</a>, <a class="existingWikiWord" href="../../../../../8/6/4/2/22468/content.html">Frank J. Hall</a>, <em>Geometric Multiplicities and Geršgorin Discs</em>, The American Mathematical Monthly Vol. 120, No. 5 (May 2013), pp. 452-455 (<a href="https://www.jstor.org/stable/10.4169/amer.math.monthly.120.05.452">jstor:10.4169/amer.math.monthly.120.05.452</a>)</li>
+</ul>
+<p>Further strengthening for matrices with, in addition, non-negative entries:</p>
+<ul>
+<li id="BaranySolymosi16">Imre Bárány, József Solymosi, <em>Gershgorin disks for multiple eigenvalues of non-negative matrices</em>, In: M. Loebl, J. Nešetřil, R. Thomas (eds.) <em>A Journey Through Discrete Mathematics</em>, Springer, Cham. 2017 (<a href="https://arxiv.org/abs/1609.07439">arXiv:1609.07439</a>, <a href="https://doi.org/10.1007/978-3-319-44479-6_6">doi:10.1007/978-3-319-44479-6_6</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

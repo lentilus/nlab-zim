@@ -1,0 +1,378 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      naive G-spectrum in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="http://localhost/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="http://localhost/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      naive G-spectrum
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#relation_to_spectra">Relation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-spectra</a></li>
+<li><a href="#homotopy_fixed_points_and_homotopy_quotients">Homotopy fixed points and homotopy quotients</a></li>
+<li><a href="#RelationToEquivariantCohomology">Relation to equivariant cohomology</a></li>
+</ul>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/9/8/0/899/content.html">topological group</a>, a <em>naive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-spectrum</em> is a <a class="existingWikiWord" href="../../../../../5/7/3/1/1375/content.html">spectrum object</a> in the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../6/1/5/1/11516/content.html">G-spaces</a> (<a href="#Carlsson92">e.g. Carlsson 92, def. 3.1</a>). The <a class="existingWikiWord" href="../../../../../8/8/2/2/2288/content.html">stable homotopy theory</a> of spectra with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action is part of the subject of <a class="existingWikiWord" href="../../../../../1/5/2/3/3251/content.html">equivariant stable homotopy theory</a>.</p>
+<p>There one typically considers a richer concept of <em><a class="existingWikiWord" href="../../../../../8/1/5/1/11518/content.html">G-spectra</a></em>. In that context a spectrum with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action is a <a class="existingWikiWord" href="../../../../../8/1/5/1/11518/content.html">G-spectrum</a> for the “trivial universe” and is called a <em>naive G-spectrum</em>. Naive G-spectra are obtained by <a class="existingWikiWord" href="../../../../../1/2/1/3/3121/content.html">stabilizing</a> <a class="existingWikiWord" href="../../../../../6/1/5/1/11516/content.html">G-spaces</a> with respect to the sphere <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">S^1</annotation></semantics></math>, while (genuine) <a class="existingWikiWord" href="../../../../../8/1/5/1/11518/content.html">G-spectra</a> are obtained by inverting all <a class="existingWikiWord" href="../../../../../9/1/5/1/11519/content.html">representation spheres</a>.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="relation_to_spectra">Relation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-spectra</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> a universe of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../8/9/1/0/198/content.html">representations</a> in the sense of <a class="existingWikiWord" href="../../../../../8/1/5/1/11518/content.html">genuine G-spectra</a>, there is the inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>U</mi> <mi>G</mi></msup><mo>⟶</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">
+  i \;\colon\; U^G \longrightarrow U
+
+</annotation></semantics></math></div>
+<p>of the <a class="existingWikiWord" href="../../../../../0/8/4/8/8480/content.html">fixed points</a>. A <a class="existingWikiWord" href="../../../../../8/1/5/1/11518/content.html">genuine G-spectrum</a> modeled on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mi>G</mi></msup></mrow><annotation encoding="application/x-tex">U^G</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../1/5/1/11517/content.html">spectrum with G-action</a> (“<a class="existingWikiWord" href="content.html">naive G-spectrum</a>”). The induced <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>i</mi> <mo>*</mo></msub><mo>⊣</mo><msup><mi>i</mi> <mo>*</mo></msup><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>G</mi><mi>Spectra</mi><mo>⟶</mo><mi>Spectra</mi><mo stretchy="false">(</mo><msub><mi>PSh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><msub><mi>Orb</mi> <mi>G</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  (i_\ast \dashv i^\ast) \;\colon\; G Spectra \longrightarrow Spectra(PSh_\infty(Orb_G))
+
+</annotation></semantics></math></div>
+<p>has <a class="existingWikiWord" href="../../../../../0/1/7/4/4710/content.html">unit</a> and <a class="existingWikiWord" href="../../../../1/7/4/4717/content.html">counit</a> which are <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalences</a> on the underlying bare <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectra</a>.</p>
+<p>(e.g. <a href="#Carlsson92">Carlsson 92, p. 14</a>, <a href="#GreenleesMay">Greenlees May, p. 16</a>)</p>
+<h3 id="homotopy_fixed_points_and_homotopy_quotients">Homotopy fixed points and homotopy quotients</h3>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mi>G</mi></msup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Spectra</mi><mo stretchy="false">(</mo><mi>G</mi><mi>Top</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>Spectra</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (-)^G \;\colon\; Spectra(G Top) \longrightarrow Spectra
+  \,.
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../0/8/4/8/8480/content.html">fixed point</a> (<a class="existingWikiWord" href="../../../../../6/9/4/8/8496/content.html">invariants</a>) <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>Q</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Spectra</mi><mo stretchy="false">(</mo><mi>G</mi><mi>Top</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>Spectra</mi></mrow><annotation encoding="application/x-tex">
+  (-)/Q \;\colon\; Spectra(G Top) \longrightarrow Spectra
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../1/9/8/0/891/content.html">quotient</a> (<a class="existingWikiWord" href="../../../../../9/5/4/2/2459/content.html">coinvariants</a>) functor.</p>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">E G</annotation></semantics></math>, as usual, for a <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible</a> <a class="existingWikiWord" href="../../../../../6/1/5/1/11516/content.html">topological G-space</a> whose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a> is <a class="existingWikiWord" href="../../../../../9/2/0/7/7029/content.html">free</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><msub><mi>G</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">E G_+</annotation></semantics></math> for this regarded as a pointed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-space with a point freely adjoined.</p>
+<p>Then there are two functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>EG</mi> <mo>+</mo></msub><mo>∧</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">[</mo><msub><mi>EG</mi> <mo>+</mo></msub><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Spectra</mi><mo stretchy="false">(</mo><mi>G</mi><mi>Top</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Spectra</mi><mo stretchy="false">(</mo><mi>G</mi><mi>Top</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  EG_+ \wedge (-) , [EG_+,-] \;\colon\;  Spectra(G Top) \to Spectra(G Top)
+
+</annotation></semantics></math></div>
+<p>given by forming <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash product</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><msub><mi>G</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">E G_+</annotation></semantics></math> and forming the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> out of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><msub><mi>G</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">E G_+</annotation></semantics></math>.</p>
+<p>Then the <a class="existingWikiWord" href="../../../../../3/0/0/0/10003/content.html">homotopy fixed point</a> functor is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mrow><mi>h</mi><mi>G</mi></mrow></msup><mo>≔</mo><mo stretchy="false">[</mo><mi>E</mi><msub><mi>G</mi> <mo>+</mo></msub><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">]</mo> <mi>G</mi></msup><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Spectra</mi><mo stretchy="false">(</mo><mi>G</mi><mi>Top</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>Spectra</mi></mrow><annotation encoding="application/x-tex">
+  (-)^{h G} \coloneqq [E G_+, -]^G \;\colon\; Spectra(G Top) \longrightarrow Spectra
+
+</annotation></semantics></math></div>
+<p>and the <a class="existingWikiWord" href="../../../../../4/4/3/9/9344/content.html">homotopy quotient</a> functor is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mo stretchy="false">/</mo><mi>G</mi><mo>≔</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msub><mo stretchy="false">)</mo> <mrow><mi>h</mi><mi>G</mi></mrow></msub><mo>≔</mo><mo stretchy="false">(</mo><mi>E</mi><msub><mi>G</mi> <mo>+</mo></msub><mo>∧</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>G</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Spectra</mi><mo stretchy="false">(</mo><mi>G</mi><mi>Top</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>Spectra</mi></mrow><annotation encoding="application/x-tex">
+  (-)//G \coloneqq (-)_{h G} \coloneqq (E G_+ \wedge (-))/G
+  \;\colon\; Spectra(G Top) \longrightarrow Spectra
+
+</annotation></semantics></math></div>
+<h3 id="RelationToEquivariantCohomology">Relation to equivariant cohomology</h3>
+<p>Spectra with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action <a class="existingWikiWord" href="../../../../../1/3/4/2/2431/content.html">represent</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>-graded <a class="existingWikiWord" href="../../../../3/2/2/2237/content.html">equivariant cohomology</a> on <a class="existingWikiWord" href="../../../../../6/1/5/1/11516/content.html">G-spaces</a>.</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/1/5/1/11516/content.html">G-space</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> a spectrum with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action, then the corresponding cohomology is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≔</mo><msub><mi>π</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Hom</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>E</mi><msup><mo stretchy="false">)</mo> <mi>G</mi></msup><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  E^\bullet(X) \coloneqq \pi_\bullet(Hom(X,E)^G)
+  \,,
+
+</annotation></semantics></math></div>
+<p>where on the right we have the <a class="existingWikiWord" href="../../../../../3/0/0/0/10003/content.html">homotopy fixed points</a> of the <a class="existingWikiWord" href="../../../../8/2/8/8287/content.html">mapping spectrum</a>, which inherits a <a class="existingWikiWord" href="../../../../9/4/8/8497/content.html">conjugation action</a> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> from the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+<p>More abstractly, in terms of the <a class="existingWikiWord" href="../../../../../4/9/4/0/10494/content.html">tangent cohesive (∞,1)-topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><msub><mi>PSh</mi> <mn>∞</mn></msub><mo stretchy="false">(</mo><mi>Orb</mi><msub><mo stretchy="false">)</mo> <mrow><mo stretchy="false">/</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T PSh_\infty(Orb)_{/\mathbf{B}G}</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../../../missing.html">slice (∞,1)-topos</a> of <a class="existingWikiWord" href="../../../../../0/0/6/1/1600/content.html">orbispaces</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math>, this means that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></munder><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  E(X) = \underset{\mathbf{B}G}{\prod} [X,E]
+
+</annotation></semantics></math></div>
+<p>is the <a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> of the intrinsic <a class="existingWikiWord" href="../../../../../1/5/1/1/1151/content.html">cohomology</a> of the tangent slice topos. See at <em><a class="existingWikiWord" href="../../../../../2/3/9/7/7932/content.html">∞-action</a></em> for more on this.</p>
+<p>Notice here <a class="existingWikiWord" href="../../../../../6/7/4/0/10476/content.html">Elmendorf's theorem</a> which identifies <a class="existingWikiWord" href="../../../../../6/1/5/1/11516/content.html">G-spaces</a> with <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-presheaves</a> over the <a class="existingWikiWord" href="../../../../../4/6/1/1/1164/content.html">orbit category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Orb</mi> <mi>G</mi></msub></mrow><annotation encoding="application/x-tex">Orb_G</annotation></semantics></math>. It is via this equivalence that spectra with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action represent <a class="existingWikiWord" href="../../../../3/2/2/2237/content.html">equivariant cohomology</a> in the form of <a class="existingWikiWord" href="../../../../../9/3/0/2/2039/content.html">Bredon cohomology</a>.</p>
+<p>Hence exhibiting a spectrum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-action as a <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectrum</a>-valued <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> on the <a class="existingWikiWord" href="../../../../../4/6/1/1/1164/content.html">orbit category</a> means to assign to any <a class="existingWikiWord" href="../../../../../2/2/9/4/4922/content.html">coset space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">/</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">G/H</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/0/0/0/10003/content.html">homotopy fixed points</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">/</mo><mo stretchy="false">/</mo><mi>G</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>G</mi><mo stretchy="false">/</mo><mi>H</mi><mo>↦</mo><msup><mi>E</mi> <mi>H</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  E//G \;\colon\;  G/H \mapsto E^{H}
+  \,.
+
+</annotation></semantics></math></div>
+<h2 id="references">References</h2>
+<ul>
+<li id="Carlsson92">
+<p><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <em>A survey of equivariant stable homotopy theory</em>, Topology, Vol 31, No. 1, pp. 1-27, 1992 (<a href="http://www.maths.ed.ac.uk/~aar/papers/carlsson1.pdf">pdf</a>)</p>
+</li>
+<li id="GreenleesMay">
+<p><a class="existingWikiWord" href="../../../../../3/5/2/3/3253/content.html">John Greenlees</a>, <a class="existingWikiWord" href="../../../../1/5/0/517/content.html">Peter May</a>, <em><a class="existingWikiWord" href="../../../../../2/0/1/7/17102/content.html">Equivariant stable homotopy theory</a></em> (<a href="http://www.math.uchicago.edu/~may/PAPERS/Newthird.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>On <a class="existingWikiWord" href="../../../2/0/257/content.html">model category</a> structure on naive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-spectra:</p>
+<ul>
+<li id="Schwede97"><a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, <em>Spectra in model categories and applications to the algebraic cotangent complex</em>, Journal of Pure and Applied Algebra 120 (1997) 77-104 (<a href="http://www.math.uni-bonn.de/people/schwede/modelspec.pdf">pdf</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

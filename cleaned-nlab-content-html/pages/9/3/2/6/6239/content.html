@@ -1,0 +1,693 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      differential string structure -- proofs in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      differential string structure -- proofs
+  </h1>
+<div id="revision">
+<p>This page contains technical details to be used at the main page <em><a class="existingWikiWord" href="../../../../../5/7/6/4/4675/content.html">differential string structure</a></em> . See there for context.</p>
+<hr/>
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#FactorizationOfTheLInfintiyCocycle">Factorization of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math>-cocycle</a></li>
+<li><a href="#FactorizationOfTheLInfintiyCocycle">Factorization of the differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math>-cocycle</a></li>
+<ul>
+<li><a href="#ModifiedWeilAlgebra">The modified Weil algebra</a></li>
+<li><a href="#TheLInftyDifferentialLift">The differential lift</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="FactorizationOfTheLInfintiyCocycle">Factorization of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math>-cocycle</h2>
+<div class="num_prop" id="FactorizationOfTheCocycle">
+<h6 id="proposition">Proposition</h6>
+<p>The <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math>-algebra cocycle</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>:</mo><mi>𝔰𝔬</mi><mo>→</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">
+  \mu : \mathfrak{so} \to b^2 \mathbb{R}
+
+</annotation></semantics></math></div>
+<p>factors as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔰𝔬</mi><mover><mo>→</mo><mrow></mrow></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow></mrow></mover><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">
+  \mathfrak{so} \stackrel{}{\to} (b \mathbb{R} \to \mathfrak{string})
+  \stackrel{}{\to}
+  b^2 \mathbb{R}
+
+</annotation></semantics></math></div>
+<p>given dually on CE-algebras by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><msup><mi>t</mi> <mi>a</mi></msup><mo>↦</mo><msup><mi>t</mi> <mi>a</mi></msup></mtd></mtr> <mtr><mtd><mi>b</mi><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>c</mi><mo>↦</mo><mi>μ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover><mi>CE</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi>c</mi><mo>↦</mo><mi>c</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover><mi>CE</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  CE(\mathfrak{so}) 
+     \stackrel{
+       \left(
+       \array{
+        t^a \mapsto t^a
+        \\  
+        b \mapsto 0
+        \\   
+        c \mapsto \mu
+     }
+     \right)
+     }{\leftarrow} 
+  CE(b \mathbb{R} \to \mathfrak{string})
+   \stackrel{
+     \left(
+     \array{
+        c \mapsto c
+     }
+     \right)
+   }{\leftarrow}
+  CE(b^2 \mathbb{R})
+  \,.
+
+</annotation></semantics></math></div>
+<p>The left morphism is a <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphism</a>.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>To see that we have a quasi-isomorphism, notice that the dg-algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CE</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CE(b \mathbb{R} \to \mathfrak{string})</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../2/0/0/29/content.html">isomorphic</a> to the one with generators <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msup><mi>t</mi> <mi>a</mi></msup><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>′</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{t^a, b, c'\}</annotation></semantics></math> and differentials</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>d</mi><msub><mo stretchy="false">|</mo> <mrow><msup><mi>𝔤</mi> <mo>*</mo></msup></mrow></msub></mtd> <mtd><mo>=</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">]</mo> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mi>d</mi><mi>b</mi></mtd> <mtd><mo>=</mo><mi>c</mi><mo>′</mo></mtd></mtr> <mtr><mtd><mi>d</mi><mi>c</mi><mo>′</mo></mtd> <mtd><mo>=</mo><mn>0</mn></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    d|_{\mathfrak{g}^*} &amp; = [-,-]^*
+    \\
+    d  b &amp; = c'
+    \\
+    d c' &amp; =  0
+  \end{aligned}
+  \,,
+
+</annotation></semantics></math></div>
+<p>where the isomorphism is given by the identity on the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>t</mi> <mi>a</mi></msup></mrow><annotation encoding="application/x-tex">t^a</annotation></semantics></math>s and on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math> and by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>↦</mo><mi>c</mi><mo>′</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mi>μ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  c \mapsto c' + \mu
+  \,.
+
+</annotation></semantics></math></div>
+<p>The primed dg-algebra is the <a class="existingWikiWord" href="../../0/239/content.html">tensor product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔤</mi><mo stretchy="false">)</mo><mo>⊗</mo><mi>CE</mi><mo stretchy="false">(</mo><mi>inn</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CE(\mathfrak{g}) \otimes CE( inn(b \mathbb{R}))</annotation></semantics></math>, where the second factor is manifestly cohomologically trivial.</p>
+</div>
+<h2 id="FactorizationOfTheLInfintiyCocycle">Factorization of the differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math>-cocycle</h2>
+<p>We now give a concrete construction showing</p>
+<div class="num_prop" id="DifferentialLInfinityLift">
+<h6 id="proposition_2">Proposition</h6>
+<p>The factorization</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><msup><mi>t</mi> <mi>a</mi></msup><mo>↦</mo><msup><mi>t</mi> <mi>a</mi></msup></mtd></mtr> <mtr><mtd><mi>b</mi><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>c</mi><mo>↦</mo><mi>μ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover><mi>CE</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi>c</mi><mo>↦</mo><mi>c</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover><mi>CE</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  CE(\mathfrak{so}) 
+     \stackrel{
+     \left(
+     \array{
+        t^a \mapsto t^a
+        \\  
+        b \mapsto 0
+        \\   
+        c \mapsto \mu
+     }
+     \right)
+     }{\leftarrow} 
+  CE(b \mathbb{R} \to \mathfrak{string})
+   \stackrel{
+     \left(
+     \array{
+        c \mapsto c
+     }
+     \right)
+   }{\leftarrow}
+  CE(b^2 \mathbb{R})
+
+</annotation></semantics></math></div>
+<p>from <a href="#FactorizationOfTheLInfintiyCocycle">above</a> lifts to a factorization of differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">L_\infty</annotation></semantics></math>-algebraic cocycles</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><msup><mi>t</mi> <mi>a</mi></msup><mo>↦</mo><msup><mi>t</mi> <mi>a</mi></msup></mtd></mtr> <mtr><mtd><mi>b</mi><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>c</mi><mo>↦</mo><mi>μ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></munderover></mtd> <mtd><mi>CE</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi>c</mi><mo>↦</mo><mi>c</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover></mtd> <mtd><mi>CE</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>W</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow></mrow></munderover></mtd> <mtd><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>←</mo><mrow></mrow></mover></mtd> <mtd><mi>W</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>inv</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow></mrow></munderover></mtd> <mtd><mover><mi>inv</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>←</mo><mrow></mrow></mover></mtd> <mtd><mi>inv</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    CE(\mathfrak{so}) 
+     &amp;
+       \underoverset{\simeq}{
+       \left(
+       \array{   
+          t^a \mapsto t^a
+          \\  
+          b \mapsto 0
+          \\   
+          c \mapsto \mu
+       }
+       \right)
+       }{\leftarrow} 
+     &amp;
+    CE(b \mathbb{R} \to \mathfrak{string}) 
+     &amp;
+     \stackrel{
+       \left(
+       \array{
+          c \mapsto c
+       }
+       \right)
+     }{\leftarrow}
+     &amp;
+    CE(b^2 \mathbb{R})
+    \\
+    \uparrow^\mathrlap{} 
+     &amp;&amp; 
+    \uparrow^\mathrlap{}  
+     &amp;&amp; 
+    \uparrow^\mathrlap{}  
+    \\    
+    W(\mathfrak{so}) 
+      &amp;
+       \underoverset{\simeq}{
+       }{\leftarrow} 
+      &amp;
+    W(b \mathbb{R} \to \mathfrak{string}) 
+      &amp;
+     \stackrel{
+     }{\leftarrow}
+     &amp;
+    W(b^2 \mathbb{R})
+    \\
+    \uparrow^\mathrlap{} 
+     &amp;&amp; 
+    \uparrow^\mathrlap{}  
+     &amp;&amp; 
+    \uparrow^\mathrlap{}  
+    \\    
+    inv(\mathfrak{so}) 
+      &amp;
+       \underoverset{\simeq}{
+       }{\leftarrow} 
+      &amp;
+     \tilde inv(b \mathbb{R} \to \mathfrak{string})
+      &amp;
+     \stackrel{
+     }{\leftarrow}
+     &amp;
+    inv(b^2 \mathbb{R})
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>This is at its heart trivial, but potentially a bit tedious. We proceed in two steps:</p>
+<ol>
+<li>
+<p>consider a “modified Weil algebra” of the twisted string Lie 3-algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b \mathbb{R} \to \mathfrak{string})</annotation></semantics></math></p>
+<p>in <a href="#ModifiedWeilAlgebra">The modified Weil algebra</a>;</p>
+</li>
+<li>
+<p>construct the desired factorization by factoring itself through two fairly evident morphisms into and out of the modified Weil algebra,</p>
+<p>in <a href="../../../../../../../missing.html">The differential lift</a>.</p>
+</li>
+</ol>
+</div>
+<h3 id="ModifiedWeilAlgebra">The modified Weil algebra</h3>
+<p>Our factorization <a href="">below</a> makes use of an isomorphic copy of the Weil algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W(b\mathbb{R} \to \mathfrak{g}_\mu)</annotation></semantics></math>.</p>
+<div class="num_prop" id="ShiftedWeilAlgebra">
+<h6 id="proposition_3">Proposition</h6>
+<p>The <a class="existingWikiWord" href="../../../../9/0/0/99/content.html">Weil algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W(b\mathbb{R} \to \mathfrak{g}_\mu)</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo>→</mo><mi>𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b^2 \mathbb{R} \to \mathfrak{g})</annotation></semantics></math> is given on the extra shifted generators <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msup><mi>r</mi> <mi>a</mi></msup><mo>:</mo><mo>=</mo><mi>σ</mi><msup><mi>t</mi> <mi>a</mi></msup><mo>,</mo><mi>h</mi><mo>:</mo><mo>=</mo><mi>σ</mi><mi>b</mi><mo>,</mo><mi>g</mi><mo>:</mo><mo>=</mo><mi>σ</mi><mi>c</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{r^a := \sigma t^a, h := \sigma b, g := \sigma c\}</annotation></semantics></math> (where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math> is the shift operator extended as a graded derivation, see <a class="existingWikiWord" href="../../../../9/0/0/99/content.html">Weil algebra</a>) by</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msup><mi>t</mi> <mi>a</mi></msup><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>C</mi> <mi>a</mi></msup><msub><mrow></mrow> <mrow><mi>b</mi><mi>c</mi></mrow></msub><msup><mi>t</mi> <mi>b</mi></msup><mo>∧</mo><msup><mi>t</mi> <mi>c</mi></msup><mo>+</mo><msup><mi>r</mi> <mi>a</mi></msup></mrow><annotation encoding="application/x-tex">d t^a = -\frac{1}{2} C^a{}_{b c} t^b \wedge t^c + r^a</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>b</mi><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>μ</mi><mo>+</mo><mi>c</mi><mo>+</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">d b = - \mu + c + h</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>c</mi><mo>=</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">d c = g</annotation></semantics></math>,</p>
+</li>
+</ul>
+<p>with <a class="existingWikiWord" href="../../../../../2/9/4/4/4492/content.html">Bianchi identities</a></p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msup><mi>r</mi> <mi>a</mi></msup><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mi>C</mi> <mi>a</mi></msup><msub><mrow></mrow> <mrow><mi>b</mi><mi>c</mi></mrow></msub><msup><mi>t</mi> <mi>b</mi></msup><mo>∧</mo><msup><mi>r</mi> <mi>c</mi></msup></mrow><annotation encoding="application/x-tex">d r^a = - C^a{}_{b c} t^b \wedge r^c</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>h</mi><mo>=</mo><mi>σ</mi><mi>μ</mi><mo>−</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">d h = \sigma \mu - g</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>g</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d g = 0</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tilde W(b\mathbb{R} \to \mathfrak{g}_\mu)</annotation></semantics></math> be the dg-algebra with the same underlying graded algebra as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W(b\mathbb{R} \to \mathfrak{g}_\mu)</annotation></semantics></math> but with the differential modified as follows</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msup><mi>t</mi> <mi>a</mi></msup><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>C</mi> <mi>a</mi></msup><msub><mrow></mrow> <mrow><mi>b</mi><mi>c</mi></mrow></msub><msup><mi>t</mi> <mi>b</mi></msup><mo>∧</mo><msup><mi>t</mi> <mi>c</mi></msup><mo>+</mo><msup><mi>r</mi> <mi>a</mi></msup></mrow><annotation encoding="application/x-tex">d t^a = -\frac{1}{2} C^a{}_{b c} t^b \wedge t^c + r^a</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msup><mi>r</mi> <mi>a</mi></msup><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mi>C</mi> <mi>a</mi></msup><msub><mrow></mrow> <mrow><mi>b</mi><mi>c</mi></mrow></msub><msup><mi>t</mi> <mi>b</mi></msup><mo>∧</mo><msup><mi>r</mi> <mi>a</mi></msup></mrow><annotation encoding="application/x-tex">d r^a  = - C^a{}_{b c} t^b \wedge r^a</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>b</mi><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>cs</mi><mo>+</mo><mi>c</mi><mo>+</mo><mover><mi>h</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">d b = - cs + c + \tilde h</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>=</mo><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo><mo>−</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">d \tilde h = \langle -,-\rangle - g</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>c</mi><mo>=</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">d c = g</annotation></semantics></math> .</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>g</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d g = 0</annotation></semantics></math>,</p>
+</li>
+</ul>
+<p>where “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>h</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde h</annotation></semantics></math>” is the new name for the generator that used to be called “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math>”</p>
+<p>There is an <a class="existingWikiWord" href="../../../../2/0/0/29/content.html">isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mover><mi>W</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  W(b\mathbb{R} \to \mathfrak{g}_\mu)
+  \to 
+  \tilde W(b\mathbb{R} \to \mathfrak{g}_\mu)
+
+</annotation></semantics></math></div>
+<p>in <a class="existingWikiWord" href="../../../../../6/0/0/4/4006/content.html">dgAlg</a> that is the identity on all generators except on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math>, where it is given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>↦</mo><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>+</mo><mo stretchy="false">(</mo><mi>μ</mi><mo>−</mo><mi>cs</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  h \mapsto \tilde h + (\mu - cs)
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_note" id="RemarkOnShiftedWeilAlgebra">
+<h6 id="note">Note</h6>
+<p>Where the formula for the differential of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W(b\mathbb{R}\to \mathfrak{g}_\mu)</annotation></semantics></math> has the 3-cocycle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math> that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tilde W(b\mathbb{R}\to \mathfrak{g}_\mu)</annotation></semantics></math> has the <a class="existingWikiWord" href="../../../../8/7/4/4789/content.html">Chern-Simons element</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cs</mi></mrow><annotation encoding="application/x-tex">cs</annotation></semantics></math>. The shift by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cs</mi><mo>−</mo><mi>μ</mi></mrow><annotation encoding="application/x-tex">cs-\mu</annotation></semantics></math> is precisely what shifts the curvature characteristic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mrow><mi>W</mi><mo stretchy="false">(</mo><mi>𝔤</mi><mo stretchy="false">)</mo></mrow></msub><mi>μ</mi></mrow><annotation encoding="application/x-tex">d_{W(\mathfrak{g})}\mu</annotation></semantics></math> into the shifted copy of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝔤</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">\mathfrak{g}^*</annotation></semantics></math> in the Weil algebra, thus exhibiting the modified <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math> as an <a class="existingWikiWord" href="../../../../../1/2/7/2/2721/content.html">invariant polynomial</a>.</p>
+</div>
+<div class="num_cor" id="TheInvariantPolynomials">
+<h6 id="corollary">Corollary</h6>
+<p>The <a class="existingWikiWord" href="../../../../../1/2/7/2/2721/content.html">invariant polynomial</a>s on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><msub><mi>𝔤</mi> <mi>μ</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b \mathbb{R} \to \mathfrak{g}_\mu)</annotation></semantics></math> are generated from those of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔤</mi> <mi>μ</mi></msub></mrow><annotation encoding="application/x-tex">\mathfrak{g}_\mu</annotation></semantics></math> together with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>h</mi><mo stretchy="false">˜</mo></mover></mrow><annotation encoding="application/x-tex">\tilde h</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>inv</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>inv</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">⟨</mo><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>,</mo><mi>g</mi><mo stretchy="false">⟩</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mo stretchy="false">(</mo><mi>d</mi><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>=</mo><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo><mo>−</mo><mi>g</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \tilde inv(b \mathbb{R} \to \mathfrak{string})
+  =
+  (inv(\mathfrak{so})\otimes \langle \tilde h, g\rangle)/(d \tilde h = \langle -,-\rangle - g)
+  \,.
+
+</annotation></semantics></math></div></div>
+<h3 id="TheLInftyDifferentialLift">The differential lift</h3>
+<p>We now use the isomorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>≃</mo></mover><mover><mi>W</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  W(b \mathbb{R} \to \mathfrak{string}) \stackrel{\simeq}{\to}
+  \tilde W(b \mathbb{R} \to \mathfrak{string})
+
+</annotation></semantics></math></div>
+<p>from prop. <a class="maruku-ref" href="#ShiftedWeilAlgebra"></a> and obtain the desired factorization, as the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><msup><mi>t</mi> <mi>a</mi></msup><mo>↦</mo><msup><mi>t</mi> <mi>a</mi></msup></mtd></mtr> <mtr><mtd><mi>b</mi><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>c</mi><mo>↦</mo><mi>μ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></munderover></mtd> <mtd><mi>CE</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mi>CE</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi>c</mi><mo>↦</mo><mi>c</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover></mtd> <mtd><mi>CE</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow><msubsup><mi>i</mi> <mi>𝔰𝔬</mi> <mo>*</mo></msubsup></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow><msubsup><mi>i</mi> <mrow><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mrow> <mo>*</mo></msubsup></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow><msubsup><mi>i</mi> <mrow><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi></mrow> <mo>*</mo></msubsup></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>W</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><msup><mi>t</mi> <mi>a</mi></msup><mo>↦</mo><msup><mi>t</mi> <mi>a</mi></msup></mtd></mtr> <mtr><mtd><mi>b</mi><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>c</mi><mo>↦</mo><mi>cs</mi></mtd></mtr> <mtr><mtd><msup><mi>r</mi> <mi>a</mi></msup><mo>↦</mo><msup><mi>r</mi> <mi>a</mi></msup></mtd></mtr> <mtr><mtd><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>g</mi><mo>↦</mo><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow></munderover></mtd> <mtd><mi>W</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>↦</mo><mi>h</mi><mo>+</mo><mo stretchy="false">(</mo><mi>cs</mi><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow></munderover></mtd> <mtd><mover><mi>W</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi>c</mi><mo>↦</mo><mi>c</mi></mtd></mtr> <mtr><mtd><mi>g</mi><mo>↦</mo><mi>g</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover></mtd> <mtd><mi>W</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow><msubsup><mi>p</mi> <mi>𝔰𝔬</mi> <mo>*</mo></msubsup></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow><msubsup><mi>p</mi> <mrow><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mrow> <mo>*</mo></msubsup></mrow></mpadded></msup></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mpadded width="0"><mrow><msubsup><mi>p</mi> <mrow><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi></mrow> <mo>*</mo></msubsup></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><mi>inv</mi><mo stretchy="false">(</mo><mi>𝔰𝔬</mi><mo stretchy="false">)</mo></mtd> <mtd><munderover><mo>←</mo><mo>≃</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mover><mi>h</mi><mo stretchy="false">˜</mo></mover><mo>↦</mo><mn>0</mn></mtd></mtr> <mtr><mtd><mi>g</mi><mo>↦</mo><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">⟨</mo><mi>⋯</mi><mo stretchy="false">⟩</mo><mo>↦</mo><mo stretchy="false">⟨</mo><mi>⋯</mi><mo stretchy="false">⟩</mo></mtd></mtr></mtable></mrow><mo>)</mo></mrow></munderover></mtd> <mtd><mover><mi>inv</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo></mtd> <mtd><mover><mi>inv</mi><mo stretchy="false">˜</mo></mover><mo stretchy="false">(</mo><mi>b</mi><mi>ℝ</mi><mo>→</mo><mi>𝔰𝔱𝔯𝔦𝔫𝔤</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>←</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi>g</mi><mo>↦</mo><mi>g</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mover></mtd> <mtd><mi>inv</mi><mo stretchy="false">(</mo><msup><mi>b</mi> <mn>2</mn></msup><mi>ℝ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    CE(\mathfrak{so}) 
+     &amp;
+       \underoverset{\simeq}{
+       \left(
+       \array{   
+          t^a \mapsto t^a
+          \\  
+          b \mapsto 0
+          \\   
+          c \mapsto \mu
+       }
+       \right)
+       }{\leftarrow} 
+     &amp;
+    CE(b \mathbb{R} \to \mathfrak{string}) 
+     &amp;
+     =
+     &amp;
+    CE(b \mathbb{R} \to \mathfrak{string}) 
+     &amp;
+     \stackrel{
+       \left(
+       \array{
+          c \mapsto c
+       }
+       \right)
+     }{\leftarrow}
+     &amp;
+    CE(b^2 \mathbb{R})
+    \\
+    \uparrow^\mathrlap{i^*_{\mathfrak{so}}} 
+     &amp;&amp; 
+    \uparrow^\mathrlap{i^*_{(b\mathbb{R} \to \mathfrak{string})}}  
+     &amp;&amp; 
+    \uparrow^\mathrlap{}  
+     &amp;&amp; 
+    \uparrow^\mathrlap{i^*_{b^2 \mathbb{R}}}  
+    \\    
+    W(\mathfrak{so}) 
+      &amp;
+       \underoverset{\simeq}{
+       \left(
+       \array{   
+         t^a \mapsto t^a
+         \\
+         b \mapsto 0
+         \\
+         c \mapsto cs
+         \\
+         r^a \mapsto r^a
+         \\
+         \tilde h \mapsto 0  
+         \\
+         g \mapsto \langle-,-\rangle
+       }
+       \right)
+       }{\leftarrow} 
+      &amp;
+    W(b \mathbb{R} \to \mathfrak{string}) 
+     &amp;
+     \underoverset{\simeq}{
+      \left(
+        \array{
+          \tilde h \mapsto h + (cs - \mu)
+        }
+      \right)
+     }
+     {\leftarrow}
+     &amp;
+    \tilde W(b \mathbb{R} \to \mathfrak{string}) 
+      &amp;
+     \stackrel{
+       \left(
+       \array{
+         c \mapsto c
+         \\
+         g \mapsto g
+       }
+       \right)
+     }{\leftarrow}
+     &amp;
+    W(b^2 \mathbb{R})
+    \\
+    \uparrow^\mathrlap{p^*_{\mathfrak{so}}} 
+     &amp;&amp; 
+    \uparrow^\mathrlap{}  
+     &amp;&amp; 
+    \uparrow^\mathrlap{p^*_{(b \mathbb{R} \to \mathfrak{string})}}  
+     &amp;&amp; 
+    \uparrow^\mathrlap{p^*_{b^2 \mathbb{R}}}  
+    \\    
+    inv(\mathfrak{so}) 
+      &amp;
+       \underoverset{\simeq}{
+       \left(
+       \array{
+         \tilde h \mapsto 0
+         \\   
+         g \mapsto \langle -,-\rangle
+         \\   
+         \langle \cdots \rangle
+         \mapsto 
+         \langle \cdots \rangle
+       }
+       \right)
+       }{\leftarrow} 
+      &amp;
+    \tilde inv(b \mathbb{R} \to \mathfrak{string}) 
+      &amp;
+       =
+      &amp;
+    \tilde inv(b \mathbb{R} \to \mathfrak{string}) 
+      &amp;
+     \stackrel{
+       \left(
+       \array{
+         g \mapsto g
+       }
+       \right)
+     }{\leftarrow}
+     &amp;
+    inv(b^2 \mathbb{R})
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>Here</p>
+<ul>
+<li>
+<p>the unlabelled vertical morphisms are defined as the unique ones that make the respective square commute;</p>
+</li>
+<li>
+<p>the notation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mi>⋯</mi><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle \cdots \rangle</annotation></semantics></math> stands for all the <a class="existingWikiWord" href="../../../../../1/2/7/2/2721/content.html">invariant polynomial</a>s of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔰𝔬</mi></mrow><annotation encoding="application/x-tex">\mathfrak{so}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle-,-\rangle</annotation></semantics></math> specifically for the <a class="existingWikiWord" href="../../../../../3/3/1/2/2133/content.html">Killing form</a>.</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,731 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Waldhausen S-construction in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Waldhausen S-construction
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#Definition">Definition</a></li>
+<ul>
+<li><a href="#ForWaldhausenCategories">For Waldhausen categories</a></li>
+<li><a href="#ForStableInfinityCategories">For stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</a></li>
+</ul>
+<li><a href="#Properties">Properties</a></li>
+<ul>
+<li><a href="#Additivity">Additivity</a></li>
+<li><a href="#ComparisonToOtherConstructions">Comparison to other constructions</a></li>
+<li><a href="#HigherStructure">Higher structure</a></li>
+</ul>
+<li><a href="#related">Related</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#original_article">Original article</a></li>
+<li><a href="#reviews_and_textbook_accounts">Reviews and textbook accounts</a></li>
+<li><a href="#for_waldhausen_categories_and_stable_categories">For Waldhausen <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories and stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</a></li>
+<li><a href="#for_stable_derivators">For stable derivators</a></li>
+<li><a href="#higher_segal_structure_and_symmetries">Higher Segal structure and symmetries</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>Waldhausen <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">S_\bullet</annotation></semantics></math>-construction</em> (<a href="#Waldhausen85">Waldhausen 85, §1.3</a>) is a procedure that produces <a class="existingWikiWord" href="../../../../../2/8/7/1/1782/content.html">algebraic K-theory</a> (as an <a class="existingWikiWord" href="../../../../../5/2/3/4/4325/content.html">infinite loop space</a> or <a class="existingWikiWord" href="../../../../../4/2/3/4/4324/content.html">connective spectrum</a>) from a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> or <a class="existingWikiWord" href="../../../../../4/8/2/0/284/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> equipped with a notion of <a class="existingWikiWord" href="../../../../../3/6/0/9/9063/content.html">cofiber sequences</a>.</p>
+<p>In degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> consists of length-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> filtrations</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>↪</mo><msub><mi>A</mi> <mn>1</mn></msub><mo>↪</mo><msub><mi>A</mi> <mn>2</mn></msub><mo>↪</mo><mi>⋯</mi><mo>↪</mo><msub><mi>A</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">
+  0
+    \hookrightarrow
+  A_1
+    \hookrightarrow
+  A_2
+    \hookrightarrow
+  \cdots
+    \hookrightarrow
+  A_n
+
+</annotation></semantics></math></div>
+<p>together with choices of all their subquotients <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mi>j</mi></msub><mo stretchy="false">/</mo><msub><mi>A</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">A_j/A_i</annotation></semantics></math>. Hence the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert S_\bullet \mathcal{C} \right\vert</annotation></semantics></math> (of the <a class="existingWikiWord" href="../../../../../4/4/6/1/1644/content.html">core</a> or of the subcategory of weak equivalences, see <a href="#Definition">below</a>) has a single vertex, one edge for each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, and one 2-simplex for each cofiber sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↪</mo><mi>B</mi><mo>↠</mo><mi>B</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A \hookrightarrow B \twoheadrightarrow B/A</annotation></semantics></math>, whose three edges are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">B/A</annotation></semantics></math>. Therefore, in the <a class="existingWikiWord" href="../../../../../4/0/9/0/904/content.html">fundamental group</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert S_\bullet \mathcal{C}\right\vert</annotation></semantics></math> the relation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">[</mo><mi>A</mi><mo stretchy="false">]</mo><mo>+</mo><mo stretchy="false">[</mo><mi>B</mi><mo stretchy="false">/</mo><mi>A</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  [B] \,=\, [A] + [B/A]
+
+</annotation></semantics></math></div>
+<p>holds, which is the defining relation of the <a class="existingWikiWord" href="../../../../../4/7/9/1/1974/content.html">Grothendieck group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K_0(\mathcal{C})</annotation></semantics></math>, while the higher simplices coherently relate these relations. Accordingly, the <em>algebraic K-theory space</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>Ω</mi><mrow><mo>|</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  K(\mathcal{C})
+  \;\coloneqq\;
+  \Omega \left\vert S_\bullet \mathcal{C} \right\vert
+  \,,
+
+</annotation></semantics></math></div>
+<p>whose homotopy groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>≔</mo><msub><mi>π</mi> <mi>n</mi></msub><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>π</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo>|</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">K_n(\mathcal{C}) \coloneqq \pi_n K(\mathcal{C}) = \pi_{n+1} \left\vert S_\bullet \mathcal{C} \right\vert</annotation></semantics></math> are the <em>algebraic K-groups</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>, starting with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>π</mi> <mn>1</mn></msub><mrow><mo>|</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">K_0(\mathcal{C}) \simeq \pi_1 \left\vert S_\bullet \mathcal{C} \right\vert</annotation></semantics></math> (<a href="#Weibel13">Weibel 13, Prop. IV.8.4</a>).</p>
+<p>Waldhausen describes the passage from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mrow><mo>|</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\Omega \left\vert S_\bullet \mathcal{C} \right\vert</annotation></semantics></math> as reminiscent of, and in part motivated by, the <a class="existingWikiWord" href="../../../../../9/6/5/1/11569/content.html">group completion</a> of <a class="existingWikiWord" href="../../../../../1/5/9/2/2951/content.html">Graeme Segal</a>‘s <a class="existingWikiWord" href="../../../../../8/5/3/7/7358/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>Γ</mi>
+</mrow>
+<annotation encoding="application/x-tex">\Gamma</annotation>
+</semantics>
+</math>-space</a> machine (<a href="#Segal74">Segal 74</a>). The difference is that it imposes additivity over all cofiber sequences, not just over <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sums</a> (<a href="#Waldhausen85">Waldhausen 85, §1.3, §1.8</a>).</p>
+<p>The construction can take as input any of the following kinds of data:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/5/9/0/953/content.html">Waldhausen category</a> (<a href="#ForWaldhausenCategories">below</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/8/6/16838/content.html">Waldhausen <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-category</a> (<a href="#Barwick16">Barwick 16</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/9/0/992/content.html">stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-category</a> (<a href="#ForStableInfinityCategories">below</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/4/9/3/3945/content.html">stable derivator</a> (<a href="#Maltsiniotis07">Maltsiniotis 07</a>, <a href="#Garkusha07">Garkusha 07</a>, <a href="#MuroRaptis17">Muro &amp; Raptis 17</a>)</p>
+</li>
+</ul>
+<h2 id="Definition">Definition</h2>
+<h3 id="ForWaldhausenCategories">For Waldhausen categories</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math>, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ar</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>≔</mo><mi mathvariant="normal">Fun</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ar}[n] \coloneqq \mathrm{Fun}\big([1],[n]\big)</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../4/0/4/0/404/content.html">arrow category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">{</mo><mn>0</mn><mo>&lt;</mo><mn>1</mn><mo>&lt;</mo><mi>⋯</mi><mo>&lt;</mo><mi>n</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">[n] = \{0 \lt 1 \lt \cdots \lt n\}</annotation></semantics></math>, hence for the <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">poset</a> of pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">0 \leq i \leq j \leq n</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>≤</mo><mo stretchy="false">(</mo><mi>i</mi><mo>′</mo><mo>,</mo><mi>j</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j) \leq (i',j')</annotation></semantics></math> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>≤</mo><mi>i</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">i \leq i'</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>≤</mo><mi>j</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">j \leq j'</annotation></semantics></math>.</p>
+<div class="num_defn" id="SConstructionOfWaldhausenCategory">
+<h6 id="definition_2">Definition</h6>
+<p><strong>(S-construction of a Waldhausen category)</strong> <br/> Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../3/5/9/0/953/content.html">Waldhausen category</a>, with <a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math>, cofibrations denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↪</mo></mrow><annotation encoding="application/x-tex">\hookrightarrow</annotation></semantics></math>, and subcategory of weak equivalences <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">w</mi><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathrm{w}\mathcal{C}</annotation></semantics></math>.</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_n \mathcal{C}</annotation></semantics></math> is the category whose objects are the <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functors</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi mathvariant="normal">Ar</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>⟶</mo><mi>𝒞</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>↦</mo><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+  A \,\colon\, \mathrm{Ar}[n] \longrightarrow \mathcal{C}
+  \,,
+  \;\;\;\;\;
+  (i,j) \mapsto A_{i,j}
+
+</annotation></semantics></math></div>
+<p>such that</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mi>j</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">A_{j,j} = 0</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">i \leq j \leq k</annotation></semantics></math> the morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>→</mo><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{i,j} \to A_{i,k}</annotation></semantics></math> is a cofibration and the square</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mtd> <mtd><mo>↪</mo></mtd> <mtd><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>k</mi></mrow></msub></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd> <mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd></mtr> <mtr><mtd><mn>0</mn><mo>=</mo><msub><mi>A</mi> <mrow><mi>j</mi><mo>,</mo><mi>j</mi></mrow></msub></mtd> <mtd><mo>↪</mo></mtd> <mtd><msub><mi>A</mi> <mrow><mi>j</mi><mo>,</mo><mi>k</mi></mrow></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    A_{i,j} &amp;\hookrightarrow&amp; A_{i,k}
+    \\
+    \big\downarrow &amp;&amp; \big\downarrow
+    \\
+    0 = A_{j,j} &amp;\hookrightarrow&amp; A_{j,k}
+  }
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushout</a>, hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>↪</mo><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>↠</mo><msub><mi>A</mi> <mrow><mi>j</mi><mo>,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{i,j} \hookrightarrow A_{i,k} \twoheadrightarrow A_{j,k}</annotation></semantics></math> is a cofiber sequence,</p>
+</li>
+</ul>
+<p>and whose morphisms are the <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformations</a> between these.</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi><mo>⊂</mo><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathrm{w}S_n \mathcal{C} \subset S_n \mathcal{C}</annotation></semantics></math> is the subcategory of those natural transformations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">A \to A'</annotation></semantics></math> all of whose components <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>→</mo><mi>A</mi><msub><mo>′</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{i,j} \to A'_{i,j}</annotation></semantics></math> are weak equivalences.</p>
+</li>
+</ol>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>↦</mo><mi mathvariant="normal">Ar</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[n] \mapsto \mathrm{Ar}[n]</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../3/5/2/6/16253/content.html">cosimplicial</a> poset, these categories form <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathrm{w}S_\bullet \mathcal{C}</annotation></semantics></math> in <a class="existingWikiWord" href="../../../../9/1/0/190/content.html">Cat</a>.</p>
+</div>
+<p>(<a href="#Waldhausen85">Waldhausen 85, §1.3</a>, <a href="#Weibel13">Weibel 13, Def. IV.8.3</a>)</p>
+<div class="num_remark" id="ExplicitDescription">
+<h6 id="remark">Remark</h6>
+<p><strong>(explicit description)</strong> <br/> An object of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_n \mathcal{C}</annotation></semantics></math> is equivalently a sequence of cofibrations</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>↪</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>↪</mo><mi>⋯</mi><mo>↪</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+  A_{0,1} \hookrightarrow A_{0,2} \hookrightarrow \cdots \hookrightarrow A_{0,n}
+
+</annotation></semantics></math></div>
+<p>together with a choice of all quotients <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>≃</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>j</mi></mrow></msub><mo stretchy="false">/</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>i</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{i,j} \simeq A_{0,j}/A_{0,i}</annotation></semantics></math>, as shown here for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub></mtd> <mtd><mo>↪</mo></mtd> <mtd><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub></mtd> <mtd><mo>↪</mo></mtd> <mtd><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>3</mn></mrow></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd> <mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><msub><mi>A</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub></mtd> <mtd><mo>↪</mo></mtd> <mtd><msub><mi>A</mi> <mrow><mn>1</mn><mo>,</mo><mn>3</mn></mrow></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msub><mi>A</mi> <mrow><mn>2</mn><mo>,</mo><mn>3</mn></mrow></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    A_{0,1} &amp;\hookrightarrow&amp; A_{0,2} &amp;\hookrightarrow&amp; A_{0,3}
+    \\
+    &amp;&amp; \big\downarrow &amp;&amp; \big\downarrow
+    \\
+    &amp;&amp; A_{1,2} &amp;\hookrightarrow&amp; A_{1,3}
+    \\
+    &amp;&amp; &amp;&amp; \big\downarrow
+    \\
+    &amp;&amp; &amp;&amp; A_{2,3}
+  }
+
+</annotation></semantics></math></div>
+<p>In these terms (<a href="#Waldhausen85">Waldhausen 85, §1.3</a>):</p>
+<ul>
+<li>
+<p>for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>i</mi><mo>≤</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">0 \lt i \leq n</annotation></semantics></math>, the face map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub><mo lspace="verythinmathspace">:</mo><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi><mo>→</mo><msub><mi>S</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">d_i \colon S_n\mathcal{C} \to S_{n-1}\mathcal{C}</annotation></semantics></math> drops <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>i</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{0,i}</annotation></semantics></math> from the sequence,</p>
+</li>
+<li>
+<p>the face map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">d_0</annotation></semantics></math> is “quotient by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">A_{0,1}</annotation></semantics></math>”, replacing the sequence by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>↪</mo><mi>⋯</mi><mo>↪</mo><msub><mi>A</mi> <mrow><mn>1</mn><mo>,</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{1,2} \hookrightarrow \cdots \hookrightarrow A_{1,n}</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>In low degrees:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>0</mn></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_0 \mathcal{C}</annotation></semantics></math> is the trivial category (one object, one morphism), so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mn>0</mn></msub><mi>𝒞</mi><mo>|</mo></mrow><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">\left\vert \mathrm{w}S_0 \mathcal{C} \right\vert = \ast</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>1</mn></msub><mi>𝒞</mi><mo>≃</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_1 \mathcal{C} \simeq \mathcal{C}</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>2</mn></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_2 \mathcal{C}</annotation></semantics></math> is the category of cofiber sequences <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>↪</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>↠</mo><msub><mi>A</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">A_{0,1} \hookrightarrow A_{0,2} \twoheadrightarrow A_{1,2}</annotation></semantics></math>, and the three face maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>2</mn></msub><mi>𝒞</mi><mo>→</mo><msub><mi>S</mi> <mn>1</mn></msub><mi>𝒞</mi><mo>≃</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_2 \mathcal{C} \to S_1 \mathcal{C} \simeq \mathcal{C}</annotation></semantics></math> send such a sequence to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>0</mn></msub><mo>=</mo><msub><mi>A</mi> <mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">d_0 = A_{1,2}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>1</mn></msub><mo>=</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">d_1 = A_{0,2}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>2</mn></msub><mo>=</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">d_2 = A_{0,1}</annotation></semantics></math>, respectively.</p>
+</li>
+</ul>
+<p>Moreover, each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_n \mathcal{C}</annotation></semantics></math> is itself a Waldhausen category, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> is a simplicial Waldhausen category (<a href="#Waldhausen85">Waldhausen 85, §1.3</a>).</p>
+</div>
+<div class="num_defn" id="WaldhausenKTheory">
+<h6 id="definition_3">Definition</h6>
+<p><strong>(Waldhausen K-theory)</strong> <br/> The <em>algebraic K-theory space</em> of a Waldhausen category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>Ω</mi><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">
+  K(\mathcal{C})
+  \;\coloneqq\;
+  \Omega \left\vert \mathrm{w}S_\bullet \mathcal{C} \right\vert
+
+</annotation></semantics></math></div>
+<p>of the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> of the <a class="existingWikiWord" href="../../../../../3/6/4/6/6463/content.html">bisimplicial set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>↦</mo><msub><mi>N</mi> <mi>m</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">\big([n],[m]\big) \mapsto N_m\big(\mathrm{w}S_n \mathcal{C}\big)</annotation></semantics></math> (degreewise <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a>), based at its unique vertex. Its homotopy groups are the <em>K-groups</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>≔</mo><msub><mi>π</mi> <mi>n</mi></msub><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>π</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">K_n(\mathcal{C}) \coloneqq \pi_n K(\mathcal{C}) = \pi_{n+1} \left\vert \mathrm{w}S_\bullet \mathcal{C} \right\vert</annotation></semantics></math>.</p>
+</div>
+<p>(<a href="#Waldhausen85">Waldhausen 85, §1.3</a>, <a href="#Weibel13">Weibel 13, Def. IV.8.5</a>)</p>
+<div class="num_remark" id="KTheorySpectrum">
+<h6 id="remark_2">Remark</h6>
+<p><strong>(K-theory spectrum)</strong> <br/> Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> is a simplicial Waldhausen category, the construction can be iterated, giving multisimplicial categories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">w</mi><msubsup><mi>S</mi> <mo>•</mo> <mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup><mi>𝒞</mi><mo>≔</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>⋯</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathrm{w}S^{(n)}_\bullet \mathcal{C} \coloneqq \mathrm{w}S_\bullet \cdots S_\bullet \mathcal{C}</annotation></semantics></math> (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-fold). In each new <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">S_\bullet</annotation></semantics></math>-direction the 1-skeleton is the <a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a> of the previous stage (by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>0</mn></msub><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">S_0 = \ast</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>1</mn></msub><mo>≃</mo><mi mathvariant="normal">id</mi></mrow><annotation encoding="application/x-tex">S_1 \simeq \mathrm{id}</annotation></semantics></math>), and the resulting inclusions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msubsup><mi>S</mi> <mo>•</mo> <mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup><mi>𝒞</mi><mo>|</mo></mrow><mo>↪</mo><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msubsup><mi>S</mi> <mo>•</mo> <mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\Sigma \left\vert \mathrm{w}S^{(n)}_\bullet \mathcal{C} \right\vert \hookrightarrow \left\vert \mathrm{w}S^{(n+1)}_\bullet \mathcal{C} \right\vert</annotation></semantics></math> make the sequence of spaces</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>K</mi></mstyle><mo stretchy="false">(</mo><mi>𝒞</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msubsup><mi>S</mi> <mo>•</mo> <mrow><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msubsup><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">
+  \mathbf{K}(\mathcal{C})_n
+  \;\coloneqq\;
+  \left\vert \mathrm{w}S^{(n)}_\bullet \mathcal{C} \right\vert
+
+</annotation></semantics></math></div>
+<p>a <a class="existingWikiWord" href="../../../../../8/7/1/7/17178/content.html">sequential spectrum</a>, whose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>th space is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math>-connected. By the <a href="#AdditivityTheorem">additivity theorem</a>, this is an <a class="existingWikiWord" href="../../../../../1/0/0/6/6001/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>Ω</mi>
+</mrow>
+<annotation encoding="application/x-tex">\Omega</annotation>
+</semantics>
+</math>-spectrum</a> beyond the zeroth term: the adjoint structure maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>K</mi></mstyle><mo stretchy="false">(</mo><mi>𝒞</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mo>→</mo><mi>Ω</mi><mspace width="thinmathspace"></mspace><mstyle mathvariant="bold"><mi>K</mi></mstyle><mo stretchy="false">(</mo><mi>𝒞</mi><msub><mo stretchy="false">)</mo> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\mathbf{K}(\mathcal{C})_n \to \Omega\, \mathbf{K}(\mathcal{C})_{n+1}</annotation></semantics></math> are weak equivalences for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n \geq 1</annotation></semantics></math> (<a href="#Waldhausen85">Waldhausen 85, §1.3 with Prop. 1.5.3</a>). Hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mo>≃</mo><msup><mi>Ω</mi> <mn>∞</mn></msup><mstyle mathvariant="bold"><mi>K</mi></mstyle><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K(\mathcal{C}) \simeq \Omega^\infty \mathbf{K}(\mathcal{C})</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../5/2/3/4/4325/content.html">infinite loop space</a>, and the <a class="existingWikiWord" href="../../../../../4/2/3/4/4324/content.html">connective spectrum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>K</mi></mstyle><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{K}(\mathcal{C})</annotation></semantics></math> is the <em>algebraic K-theory spectrum</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>.</p>
+<p>The first map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi mathvariant="normal">w</mi><mi>𝒞</mi><mo>|</mo></mrow><mo>→</mo><mi>Ω</mi><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert \mathrm{w}\mathcal{C} \right\vert \to \Omega \left\vert \mathrm{w}S_\bullet \mathcal{C} \right\vert</annotation></semantics></math> is in general not an equivalence; it is the K-theoretic analogue of a <a class="existingWikiWord" href="../../../../../9/6/5/1/11569/content.html">group completion</a>.</p>
+</div>
+<h3 id="ForStableInfinityCategories">For stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../2/9/9/0/992/content.html">stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-category</a> (or more generally a <a class="existingWikiWord" href="../../../../../9/0/5/0/509/content.html">pointed</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category with <a class="existingWikiWord" href="../../../../../2/7/0/4/4072/content.html">finite colimits</a>, <a href="#Lurie14">Lurie 14, Lec. 16</a>), all morphisms serve as cofibrations and the equivalences as weak equivalences, so that the above definition becomes:</p>
+<div class="num_defn" id="SConstructionOfStableInfinityCategory">
+<h6 id="definition_4">Definition</h6>
+<p><strong>(S-construction of a stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category)</strong> <br/> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi><mo>⊂</mo><mi mathvariant="normal">Fun</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi mathvariant="normal">Ar</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>,</mo><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">S_n \mathcal{C} \subset \mathrm{Fun}\big(\mathrm{Ar}[n], \mathcal{C}\big)</annotation></semantics></math> is the full sub-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category on those functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mi>j</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>≃</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">A_{j,j} \simeq 0</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math> and such that all squares as <a href="#SConstructionOfWaldhausenCategory">above</a> are <a class="existingWikiWord" href="../../../../../2/2/1/5/25122/content.html">pushouts</a> (equivalently, in the stable case, <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">pullbacks</a>). The <em>algebraic K-theory space</em> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>Ω</mi><mrow><mo>|</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><msup><mo maxsize="1.2em" minsize="1.2em">)</mo> <mo>≃</mo></msup><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  K(\mathcal{C})
+  \;\coloneqq\;
+  \Omega \left\vert \big(S_\bullet \mathcal{C}\big)^{\simeq} \right\vert
+  \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup></mrow><annotation encoding="application/x-tex">(-)^\simeq</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../4/4/6/1/1644/content.html">core</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo></mrow></mrow><annotation encoding="application/x-tex">{\vert-\vert}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> (<a class="existingWikiWord" href="../../../../../../../missing.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-colimit</a>) of the resulting simplicial <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mn>∞</mn>
+</mrow>
+<annotation encoding="application/x-tex">\infty</annotation>
+</semantics>
+</math>-groupoid</a>.</p>
+</div>
+<p>(<a href="#BGT13">BGT 13, §7.1</a>, <a href="#Barwick16">Barwick 16</a>, <a href="#Lurie14">Lurie 14, Lec. 16</a>)</p>
+<p>As in <a href="#ExplicitDescription">this Remark</a>, restriction to the first row, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↦</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>→</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>n</mi></mrow></msub><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">A \mapsto \big(A_{0,1} \to A_{0,2} \to \cdots \to A_{0,n}\big)</annotation></semantics></math>, is an equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>n</mi></msub><mi>𝒞</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi mathvariant="normal">Fun</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>Δ</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>,</mo><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  S_n \mathcal{C}
+  \;\simeq\;
+  \mathrm{Fun}\big(\Delta^{n-1}, \mathcal{C}\big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>since all the quotients are determined up to contractible choice (<a href="#Lurie14">Lurie 14, Lec. 16, Rem. 6</a>). For Waldhausen categories with suitable models, Waldhausen K-theory agrees with the K-theory of the underlying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category (<a href="#BGT13">BGT 13, §7.2</a>).</p>
+<div class="num_remark" id="RelationToTheNerve">
+<h6 id="remark_3">Remark</h6>
+<p><strong>(relation to the nerve)</strong> <br/> Beware that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup></mrow><annotation encoding="application/x-tex">(S_\bullet \mathcal{C})^\simeq</annotation></semantics></math> is <em>not</em> the <a class="existingWikiWord" href="../../../../../2/7/5/0/572/content.html">complete Segal space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>↦</mo><mi mathvariant="normal">Fun</mi><mo stretchy="false">(</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mo>,</mo><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup></mrow><annotation encoding="application/x-tex">[n] \mapsto \mathrm{Fun}(\Delta^n, \mathcal{C})^\simeq</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>. The geometric realization of the latter is the <a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>𝒞</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert \mathcal{C} \right\vert</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> (the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid obtained by inverting all morphisms), which is <a class="existingWikiWord" href="../../../../../9/3/0/1/1039/content.html">contractible</a> as soon as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> has an <a class="existingWikiWord" href="../../../../../2/7/3/0/372/content.html">initial object</a> or <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a>, such as a <a class="existingWikiWord" href="../../../../../1/7/3/0/371/content.html">zero object</a>.</p>
+<p>Instead, the two are related by a shift of degrees: by the above equivalence, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi>𝒞</mi><mo>≃</mo><mi mathvariant="normal">Fun</mi><mo stretchy="false">(</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mo>,</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S_{n+1} \mathcal{C} \simeq \mathrm{Fun}(\Delta^n, \mathcal{C})</annotation></semantics></math>, compatibly with all face and degeneracy maps except <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">d_0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">s_0</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math>. This means that the complete Segal space of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/2/5/3/3521/content.html">décalage</a> (“path object”) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup></mrow><annotation encoding="application/x-tex">P(S_\bullet \mathcal{C})^\simeq</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup></mrow><annotation encoding="application/x-tex">(S_\bullet \mathcal{C})^\simeq</annotation></semantics></math>, which discards <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">d_0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">s_0</annotation></semantics></math> (<a href="#Lurie14">Lurie 14, Lec. 16, Rem. 8</a>). Generally, the décalage <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><msub><mi>X</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">P X_\bullet</annotation></semantics></math> of a simplicial object is simplicially homotopy equivalent to the constant simplicial object on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">X_0</annotation></semantics></math> (<a href="#Waldhausen85">Waldhausen 85, Lemma 1.5.1</a>). Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mn>0</mn></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>S</mi> <mn>0</mn></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup><mo>≃</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">X_0 = (S_0 \mathcal{C})^\simeq \simeq \ast</annotation></semantics></math>, consistent with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>𝒞</mi><mo>|</mo></mrow><mo>≃</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">\left\vert \mathcal{C} \right\vert \simeq \ast</annotation></semantics></math>.</p>
+<p>So the K-theoretic information sits in the face map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">d_0</annotation></semantics></math>, which is invisible to the nerve. It sends a sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>→</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{0,1} \to A_{0,2} \to \cdots \to A_{0,n}</annotation></semantics></math> to the sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>2</mn></mrow></msub><mo stretchy="false">/</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mi>n</mi></mrow></msub><mo stretchy="false">/</mo><msub><mi>A</mi> <mrow><mn>0</mn><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">A_{0,2}/A_{0,1} \to \cdots \to A_{0,n}/A_{0,1}</annotation></semantics></math> of quotients by its first term. The canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒞</mi> <mo>≃</mo></msup><mo>→</mo><mi>K</mi><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{C}^\simeq \to K(\mathcal{C})</annotation></semantics></math> arises from the sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mn>1</mn></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup><mo>→</mo><mrow><mo>|</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup><mo>|</mo></mrow><mo>≃</mo><mo>*</mo><mo>→</mo><mrow><mo>|</mo><mo stretchy="false">(</mo><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><msup><mo stretchy="false">)</mo> <mo>≃</mo></msup><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">(S_1\mathcal{C})^\simeq \to \left\vert P(S_\bullet \mathcal{C})^\simeq \right\vert \simeq \ast \to \left\vert (S_\bullet \mathcal{C})^\simeq \right\vert</annotation></semantics></math> (<a href="#Waldhausen85">Waldhausen 85, §1.5</a>).</p>
+</div>
+<h2 id="Properties">Properties</h2>
+<h3 id="Additivity">Additivity</h3>
+<div class="num_prop" id="AdditivityTheorem">
+<h6 id="proposition">Proposition</h6>
+<p><strong>(additivity theorem)</strong> <br/> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> a Waldhausen category, the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mn>2</mn></msub><mi>𝒞</mi><mo>⟶</mo><mi>𝒞</mi><mo>×</mo><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_2 \mathcal{C} \longrightarrow \mathcal{C} \times \mathcal{C}</annotation></semantics></math> which sends a cofiber sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↪</mo><mi>B</mi><mo>↠</mo><mi>B</mi><mo stretchy="false">/</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A \hookrightarrow B \twoheadrightarrow B/A</annotation></semantics></math> to the pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">/</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A, B/A)</annotation></semantics></math> induces a homotopy equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>S</mi> <mn>2</mn></msub><mi>𝒞</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>|</mo></mrow><mover><mo>⟶</mo><mo>∼</mo></mover><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow><mo>×</mo><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \left\vert \mathrm{w}S_\bullet \big(S_2 \mathcal{C}\big) \right\vert
+  \overset{\sim}{\longrightarrow}
+  \left\vert \mathrm{w}S_\bullet \mathcal{C} \right\vert
+  \times
+  \left\vert \mathrm{w}S_\bullet \mathcal{C} \right\vert
+  \,.
+
+</annotation></semantics></math></div>
+<p>Equivalently, for every cofiber sequence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>′</mo><mo>→</mo><mi>F</mi><mo>→</mo><mi>F</mi><mo>″</mo></mrow><annotation encoding="application/x-tex">F' \to F \to F''</annotation></semantics></math> of exact functors, the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>F</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert \mathrm{w}S_\bullet F \right\vert</annotation></semantics></math> is homotopic to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi mathvariant="normal">w</mi><msub><mi>S</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>F</mi><mo>′</mo><mo>∨</mo><mi>F</mi><mo>″</mo><mo stretchy="false">)</mo><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert \mathrm{w}S_\bullet (F' \vee F'') \right\vert</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>′</mo><mo>∨</mo><mi>F</mi><mo>″</mo></mrow><annotation encoding="application/x-tex">F' \vee F''</annotation></semantics></math> is the objectwise coproduct of functors.</p>
+</div>
+<p>(<a href="#Waldhausen85">Waldhausen 85, Prop. 1.3.2, Thm. 1.4.2</a>; for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories: <a href="#Lurie14">Lurie 14, Lec. 17</a>, <a href="#Barwick16">Barwick 16</a>)</p>
+<p>The additivity theorem is what makes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>K</mi></mstyle><mo stretchy="false">(</mo><mi>𝒞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{K}(\mathcal{C})</annotation></semantics></math> an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>-spectrum (<a href="#KTheorySpectrum">this Remark</a>). In the universal characterization of connective K-theory as the universal additive invariant of stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories, the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">S_\bullet</annotation></semantics></math>-construction becomes the <a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a> in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category of additive <a class="existingWikiWord" href="../../../../../4/3/6/4/4634/content.html">noncommutative motives</a> (<a href="#BGT13">BGT 13, §7</a>).</p>
+<h3 id="ComparisonToOtherConstructions">Comparison to other constructions</h3>
+<ul>
+<li>
+<p>For an <a class="existingWikiWord" href="../../../../../5/8/4/0/485/content.html">exact category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi></mrow><annotation encoding="application/x-tex">\mathcal{A}</annotation></semantics></math>, regarded as a Waldhausen category with cofibrations the admissible monomorphisms and weak equivalences the isomorphisms, there is a natural homotopy equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi mathvariant="normal">i</mi><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒜</mi><mo>|</mo></mrow><mo>≃</mo><mrow><mo>|</mo><mi>Q</mi><mi>𝒜</mi><mo>|</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert \mathrm{i}S_\bullet \mathcal{A} \right\vert \simeq \left\vert Q \mathcal{A} \right\vert</annotation></semantics></math> with Quillen’s <a class="existingWikiWord" href="../../../../../6/5/7/1/11756/content.html">Q-construction</a>. Hence Waldhausen K-theory agrees with Quillen K-theory in this case (<a href="#Waldhausen85">Waldhausen 85, §1.9</a>, <a href="#Weibel13">Weibel 13, IV.8.6</a>).</p>
+</li>
+<li>
+<p>For the comparison with K-theory via Segal’s group completion in the case of split cofibrations, see <a href="#Waldhausen85">Waldhausen 85, §1.8</a>.</p>
+</li>
+</ul>
+<h3 id="HigherStructure">Higher structure</h3>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/5/1/7/7157/content.html">2-Segal space</a> (but in general not a <a class="existingWikiWord" href="../../../../../4/8/7/0/784/content.html">Segal space</a>), and as such it underlies the construction of <a class="existingWikiWord" href="../../../../../7/4/8/3/3847/content.html">Hall algebras</a> (<a href="#DyckerhoffKapranov19">Dyckerhoff &amp; Kapranov 19</a>).</p>
+</li>
+<li>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> stable, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> refines to a paracyclic object, which yields “rotation invariance” of K-theory: the K-theory functor is equivariant with respect to a <a class="existingWikiWord" href="../../../../../6/7/9/3/3976/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<msup><mi>S</mi> <mn>1</mn></msup>
+</mrow>
+<annotation encoding="application/x-tex">S^1</annotation>
+</semantics>
+</math></a>-action on stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories (and the trivial action on spaces) under which the generator of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><msup><mi>S</mi> <mn>1</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_1(S^1)</annotation></semantics></math> acts by double <a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\Sigma^2</annotation></semantics></math> (<a href="#LurieRotation">Lurie, Rotation invariance</a>). Related cyclic symmetries are discussed in <a href="#Nadler15">Nadler 15</a>.</p>
+</li>
+<li>
+<p>Under a <a class="existingWikiWord" href="../../../../../7/1/7/8/18717/content.html">categorified Dold-Kan correspondence</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">S_\bullet \mathcal{C}</annotation></semantics></math> is the categorified nerve of the chain complex of stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> concentrated in degree 1 (<a href="#Dyckerhoff17">Dyckerhoff 21, Intro. and Ex. 3.27</a>). This is in analogy to how, under the ordinary <a class="existingWikiWord" href="../../../../8/6/0/680/content.html">Dold-Kan correspondence</a>, an abelian group in degree 1 corresponds to its <a class="existingWikiWord" href="../../../../../8/2/4/0/428/content.html">bar construction</a>.</p>
+</li>
+</ul>
+<h2 id="related">Related</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/8/7/1/1782/content.html">algebraic K-theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/5/9/0/953/content.html">Waldhausen category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/5/7/1/11756/content.html">Quillen Q-construction</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">K-theory of a stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mo stretchy="false">(</mo>
+<mn>∞</mn>
+<mo>,</mo>
+<mn>1</mn>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">(\infty,1)</annotation>
+</semantics>
+</math>-category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/1/7/7157/content.html">higher Segal space</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/1/7/8/18717/content.html">categorified Dold-Kan correspondence</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="original_article">Original article</h3>
+<ul>
+<li id="Waldhausen85">
+<p><a class="existingWikiWord" href="../../../../../7/9/8/5/15897/content.html">Friedhelm Waldhausen</a>: <em>Algebraic K-theory of spaces</em>, in: A. Ranicki, N. Levitt, F. Quinn (eds.): <em>Algebraic and Geometric Topology</em>, Proceedings of a Conference held at Rutgers University, New Brunswick, USA, July 6-13, 1983, Lecture Notes in Mathematics <strong>1126</strong>, Springer (1985) 318-419 [<a href="https://doi.org/10.1007/BFb0074449">doi:10.1007/BFb0074449</a>, <a href="https://webhomes.maths.ed.ac.uk/~v1ranick/surgery/rutgers/wald.pdf">pdf</a>, <a href="http://www.math.uni-bielefeld.de/~fw/LNM1126_318-419.pdf">pdf</a>]</p>
+<p>(the S-construction is defined in §1.3, the additivity theorem is in §1.4, deloopings are in §1.5, the relation to Segal’s group completion is in §1.8 and the relation to the Q-construction is in §1.9)</p>
+</li>
+</ul>
+<p>Precursor, by which the S-construction was in part motivated:</p>
+<ul>
+<li id="Segal74"><a class="existingWikiWord" href="../../../../../1/5/9/2/2951/content.html">Graeme Segal</a>: <em>Categories and cohomology theories</em>, Topology <strong>13</strong> (1974) 293-312 [<a href="https://doi.org/10.1016/0040-9383(74)90022-6">doi:10.1016/0040-9383(74)90022-6</a>, <a href="https://webhomes.maths.ed.ac.uk/~v1ranick/papers/segalcat.pdf">pdf</a>]</li>
+</ul>
+<h3 id="reviews_and_textbook_accounts">Reviews and textbook accounts</h3>
+<ul>
+<li id="ThomasonTrobaugh90">
+<p><a class="existingWikiWord" href="../../../../6/4/7/7460/content.html">R. W. Thomason</a>, Thomas Trobaugh: §1 of: <em>Higher algebraic K-theory of schemes and of derived categories</em>, in: <em>The Grothendieck Festschrift</em> Vol. III, Progress in Mathematics <strong>88</strong>, Birkhäuser (1990) 247-435, reprinted in: Modern Birkhäuser Classics, Birkhäuser (2007) [<a href="https://doi.org/10.1007/978-0-8176-4576-2_10">doi:10.1007/978-0-8176-4576-2_10</a>, <a href="https://webhomes.maths.ed.ac.uk/~v1ranick/papers/tt.pdf">pdf</a>]</p>
+</li>
+<li id="Weibel13">
+<p><a class="existingWikiWord" href="../../../../9/8/2/2890/content.html">Charles Weibel</a>: §IV.8 of: <em>The K-book: An introduction to algebraic K-theory</em>, Graduate Studies in Mathematics <strong>145</strong>, American Mathematical Society (2013) [<a href="https://bookstore.ams.org/gsm-145">ISBN:978-0-8218-9132-2</a>, <a href="https://sites.math.rutgers.edu/~weibel/Kbook.html">webpage</a>, <a href="https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.IV.pdf">pdf</a>]</p>
+</li>
+<li id="OzornovaRovelli24">
+<p><a class="existingWikiWord" href="../../../../../7/2/7/0/20727/content.html">Viktoriya Ozornova</a>, <a class="existingWikiWord" href="../../../../../1/3/3/2/22331/content.html">Martina Rovelli</a>: <em>Waldhausen’s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">S_\bullet</annotation></semantics></math>-construction</em>, expository contribution to the proceedings of the workshop <em>Higher Segal Spaces and their Applications to Algebraic K-theory, Hall Algebras, and Combinatorics</em> [<a href="https://arxiv.org/abs/2412.17398">arXiv:2412.17398</a>]</p>
+</li>
+</ul>
+<h3 id="for_waldhausen_categories_and_stable_categories">For Waldhausen <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories and stable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories</h3>
+<ul>
+<li id="Barwick16">
+<p><a class="existingWikiWord" href="../../../../../3/6/8/2/2863/content.html">Clark Barwick</a>: <em>On the algebraic K-theory of higher categories</em>, Journal of Topology <strong>9</strong> 1 (2016) 245-347 [<a href="https://arxiv.org/abs/1204.3607">arXiv:1204.3607</a>, <a href="https://doi.org/10.1112/jtopol/jtv042">doi:10.1112/jtopol/jtv042</a>]</p>
+</li>
+<li id="BGT13">
+<p><a class="existingWikiWord" href="../../../../../8/9/1/4/4198/content.html">Andrew J. Blumberg</a>, <a class="existingWikiWord" href="../../../../../9/9/1/4/4199/content.html">David Gepner</a>, <a class="existingWikiWord" href="../../../../../1/0/9/3/3901/content.html">Goncalo Tabuada</a>: <em>A universal characterization of higher algebraic K-theory</em>, Geometry &amp; Topology <strong>17</strong> (2013) 733-838 [<a href="https://arxiv.org/abs/1001.2282">arXiv:1001.2282</a>, <a href="https://doi.org/10.2140/gt.2013.17.733">doi:10.2140/gt.2013.17.733</a>]</p>
+</li>
+<li id="Lurie14">
+<p><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>: <em>Algebraic K-Theory and Manifold Topology</em>, lecture notes, Harvard (2014) [<a href="https://people.math.harvard.edu/~lurie/281.html">webpage</a>], in particular: Lecture 16: <em>Higher K-Theory of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Categories</em> [<a href="https://www.math.ias.edu/~lurie/281notes/Lecture16-Higher.pdf">pdf</a>] and Lecture 17: <em>The Additivity Theorem</em></p>
+</li>
+</ul>
+<h3 id="for_stable_derivators">For stable derivators</h3>
+<ul>
+<li id="Maltsiniotis07">
+<p><a class="existingWikiWord" href="../../../../../8/6/9/1/1968/content.html">Georges Maltsiniotis</a>: <em>La K-théorie d’un dérivateur triangulé</em> (with an appendix by <a class="existingWikiWord" href="../../../../../8/4/8/3/3848/content.html">Bernhard Keller</a>), in: <em>Categories in Algebra, Geometry and Mathematical Physics</em>, Contemporary Mathematics <strong>431</strong>, American Mathematical Society (2007) 341-368 [<a href="https://webusers.imj-prg.fr/~georges.maltsiniotis/ps/streetfest.pdf">pdf</a>]</p>
+</li>
+<li id="Garkusha07">
+<p><a class="existingWikiWord" href="../../../../../4/5/1/6/6154/content.html">Grigory Garkusha</a>: <em>Systems of diagram categories and K-theory. I</em>, St. Petersburg Mathematical Journal <strong>18</strong> (2007) 957-997 [<a href="https://arxiv.org/abs/math/0401062">arXiv:math/0401062</a>, <a href="https://doi.org/10.1090/S1061-0022-07-00978-8">doi:10.1090/S1061-0022-07-00978-8</a>]</p>
+</li>
+<li id="MuroRaptis17">
+<p><a class="existingWikiWord" href="../../../../../8/7/5/4/4578/content.html">Fernando Muro</a>, <a class="existingWikiWord" href="../../../../../2/9/7/2/22792/content.html">George Raptis</a>: <em>K-theory of derivators revisited</em>, Annals of K-Theory <strong>2</strong> 2 (2017) 303-340 [<a href="https://arxiv.org/abs/1402.1871">arXiv:1402.1871</a>, <a href="https://doi.org/10.2140/akt.2017.2.303">doi:10.2140/akt.2017.2.303</a>]</p>
+</li>
+</ul>
+<h3 id="higher_segal_structure_and_symmetries">Higher Segal structure and symmetries</h3>
+<p>On the S-construction as a 2-Segal space, and its role for Hall algebras:</p>
+<ul>
+<li id="DyckerhoffKapranov19"><a class="existingWikiWord" href="../../../../../5/1/7/8/18715/content.html">Tobias Dyckerhoff</a>, <a class="existingWikiWord" href="../../../../../8/7/0/3/3078/content.html">Mikhail Kapranov</a>: <em>Higher Segal Spaces</em>, Lecture Notes in Mathematics <strong>2244</strong>, Springer (2019) [<a href="https://arxiv.org/abs/1212.3563">arXiv:1212.3563</a>, <a href="https://doi.org/10.1007/978-3-030-27124-4">doi:10.1007/978-3-030-27124-4</a>]</li>
+</ul>
+<p>On paracyclic structure on the S-construction and rotation invariance of K-theory:</p>
+<ul>
+<li id="LurieRotation"><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>: <em>Rotation invariance in algebraic K-theory</em> [<a href="https://www.math.ias.edu/~lurie/papers/Waldhaus.pdf">pdf</a>]</li>
+</ul>
+<p>A combinatorial construction of symmetries with the S-construction as a special case:</p>
+<ul>
+<li id="Nadler15"><a class="existingWikiWord" href="../../../../../9/9/2/3/3299/content.html">David Nadler</a>: <em>Cyclic symmetries of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A_n</annotation></semantics></math>-quiver representations</em>, Advances in Mathematics <strong>269</strong> (2015) 346-363 [<a href="https://arxiv.org/abs/1306.0070">arXiv:1306.0070</a>, <a href="https://doi.org/10.1016/j.aim.2014.10.006">doi:10.1016/j.aim.2014.10.006</a>]
+<blockquote>
+<p>“This short note contains a combinatorial construction of symmetries arising in <a class="existingWikiWord" href="../../../../../6/0/1/2/2106/content.html">symplectic geometry</a> (partially wrapped or infinitesimal <a class="existingWikiWord" href="../../../../../5/4/2/4/4245/content.html">Fukaya categories</a>), algebraic geometry (derived categories of singularities), and K-theory (Waldhausen’s S-construction). Our specific motivation (in the spirit of expectations of Kontsevich, and to be taken up in general elsewhere) is a combinatorial construction of quantizations of Lagrangian skeleta (equivalent to microlocal sheaves in their many guises). We explain here the one dimensional case of ribbon graphs where the main result of this paper gives an immediate solution.”</p>
+</blockquote>
+</li>
+</ul>
+<p>Interpretation in terms of a <a class="existingWikiWord" href="../../../../../7/1/7/8/18717/content.html">categorified Dold-Kan correspondence</a>:</p>
+<ul>
+<li id="Dyckerhoff17"><a class="existingWikiWord" href="../../../../../5/1/7/8/18715/content.html">Tobias Dyckerhoff</a>: <em>A categorified Dold-Kan correspondence</em>, Selecta Mathematica New Series <strong>27</strong> 14 (2021) [<a href="https://arxiv.org/abs/1710.08356">arXiv:1710.08356</a>, <a href="https://doi.org/10.1007/s00029-021-00618-5">doi:10.1007/s00029-021-00618-5</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

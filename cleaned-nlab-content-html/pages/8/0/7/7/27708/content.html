@@ -1,0 +1,693 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Mackey theory in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Mackey theory
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#details">Details</a></li>
+<ul>
+<li><a href="#for_finite_semidirect_products_with_abelian_groups">For finite semidirect products with abelian groups</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>In <a class="existingWikiWord" href="../../../../../9/3/2/1/1239/content.html">representation theory</a>, <em>Mackey theory</em> refers to a set of tools for constructing and classifying <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> of a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> from that of a <a class="existingWikiWord" href="../../../../../3/2/2/2/2223/content.html">normal subgroup</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>⊂</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">N \subset G</annotation></semantics></math>, by using <a class="existingWikiWord" href="../../../../../0/4/2/1/1240/content.html">induction</a> from the <a class="existingWikiWord" href="../../../../../4/4/1/7/7144/content.html">stabilizer groups</a> of the <a class="existingWikiWord" href="../../../../../2/7/7/4/4772/content.html">adjoint action</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> on the set of <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreps</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math>.</p>
+<p>(Also referred to as <em><a class="existingWikiWord" href="../../../../../4/4/1/7/7144/content.html">little group</a></em>-methods, cf. <em><a class="existingWikiWord" href="../../../../../4/9/2/9/9294/content.html">Wigner classification</a></em>.)</p>
+<h2 id="details">Details</h2>
+<h3 id="for_finite_semidirect_products_with_abelian_groups">For finite semidirect products with abelian groups</h3>
+<p>Consider</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian group</a></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mi>H</mi><mo>⋊</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">G \,\equiv\, H \rtimes A</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/5/8/0/859/content.html">semidirect product group</a>.</p>
+</li>
+</ul>
+<p>and denote:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo>˜</mo></mover><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mi>Hom</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><msup><mi>ℂ</mi> <mo>×</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\widetilde A \,\coloneqq\, Hom(A, \mathbb{C}^\times)</annotation></semantics></math> the dual group of <a class="existingWikiWord" href="../../../../../5/6/6/0/10665/content.html">group characters</a>, hence, since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian</a>, of <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreducible representations</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../2/7/7/4/4772/content.html">adjoint action</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and the induced action on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo>˜</mo></mover></mrow><annotation encoding="application/x-tex">\widetilde A</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>G</mi><mo>×</mo><mover><mi>A</mi><mo>˜</mo></mover></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mover><mi>A</mi><mo>˜</mo></mover></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>g</mi><mo>,</mo><mi>A</mi><mover><mo>→</mo><mi>χ</mi></mover><msup><mi>ℂ</mi> <mo>×</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>χ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>g</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mi>g</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    G \times \widetilde A &amp;\longrightarrow&amp; \widetilde A
+    \\
+    \big(g, A \xrightarrow{\chi} \mathbb{C}^\times \big)
+      &amp;\mapsto&amp;
+    \chi\big(g^{-1} (\text{-}) g\big)
+  \end{array}
+
+</annotation></semantics></math></div></li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>χ</mi> <mi>i</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>i</mi><mo>∈</mo><mover><mi>A</mi><mo>˜</mo></mover><mo stretchy="false">/</mo><mi>H</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(\chi_i)_{i \in \widetilde{A}/H}</annotation></semantics></math> a set of representatives of the resulting <a class="existingWikiWord" href="../../../../../6/7/2/2/2276/content.html">orbits</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo>˜</mo></mover></mrow><annotation encoding="application/x-tex">\widetilde A</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>i</mi></msub><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><msub><mi>Stab</mi> <mi>H</mi></msub><mo stretchy="false">(</mo><msub><mi>χ</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_i \,\coloneqq\, Stab_H(\chi_i)</annotation></semantics></math> the corresponding <a class="existingWikiWord" href="../../../../../4/4/1/7/7144/content.html">stabilizer subgroups</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mi>i</mi></msub><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><msub><mi>H</mi> <mi>i</mi></msub><mo>⋊</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">G_i \,\coloneqq\, H_i \rtimes A</annotation></semantics></math> the corresponding <a class="existingWikiWord" href="../../../../../2/5/2/3/3252/content.html">subgroups</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></p>
+</li>
+</ul>
+<p>Finally, denote</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>χ</mi><mo>^</mo></mover> <mi>i</mi></msub><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msub><mi>G</mi> <mi>i</mi></msub><mo>↠</mo><mi>A</mi><mover><mo>→</mo><mrow><msub><mi>χ</mi> <mi>i</mi></msub></mrow></mover><msup><mi>ℂ</mi> <mo>×</mo></msup><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \widehat{\chi}_i 
+    \,\colon\, 
+  G_i 
+    \twoheadrightarrow 
+  A 
+    \xrightarrow{\chi_i} 
+  \mathbb{C}^{\times}
+  \,,
+
+</annotation></semantics></math></div>
+<p>which is a <a class="existingWikiWord" href="../../../../../5/6/6/0/10665/content.html">group character</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">G_i</annotation></semantics></math>, by the definition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">H_i</annotation></semantics></math>.</p>
+<p>Similarly, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>∈</mo><mi>Irr</mi><mo stretchy="false">(</mo><msub><mi>H</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\rho \in Irr(H_i)</annotation></semantics></math> an irrep of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">H_i</annotation></semantics></math>, write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>ρ</mi><mo>^</mo></mover><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msub><mi>G</mi> <mi>i</mi></msub><mo>↠</mo><msub><mi>H</mi> <mi>i</mi></msub><mover><mo>→</mo><mi>ρ</mi></mover><mi>GL</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \widehat{\rho}
+    \,\colon\, 
+  G_i
+    \twoheadrightarrow 
+  H_i 
+    \xrightarrow{\rho} 
+  GL(V)
+
+</annotation></semantics></math></div>
+<p>and consider the <a class="existingWikiWord" href="../../../../../0/4/2/1/1240/content.html">induced representations</a> of the <a class="existingWikiWord" href="../../../../../1/9/7/7/17791/content.html">tensor products</a>:</p>
+<div class="maruku-equation" id="eq:MackeyIrrepForFiniteSemProdWithAbelian"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mrow><mi>i</mi><mo>,</mo><mi>ρ</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><msubsup><mi>Ind</mi> <mrow><msub><mi>G</mi> <mi>i</mi></msub></mrow> <mi>G</mi></msubsup><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mover><mi>χ</mi><mo>^</mo></mover> <mi>i</mi></msub><mo>⊗</mo><mover><mi>ρ</mi><mo>^</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><msub><mi>Rep</mi> <mi>ℂ</mi></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \theta_{i,\rho}
+  \;\coloneqq\;
+  Ind_{G_i}^G \big(
+    \widehat{\chi}_i \otimes \widehat{\rho}
+  \big)
+  \;\in\;
+  Rep_{\mathbb{C}}(G)
+  \,.
+
+</annotation></semantics></math></div>
+<p>
+<div class="num_prop" id="ForFiniteSemidirectProductsWithAbelianGroups">
+<h6>Proposition</h6>
+<p></p>
+<ol>
+<li>
+<p>The representations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mrow><mi>i</mi><mo>,</mo><mi>ρ</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\theta_{i,\rho}</annotation></semantics></math> <a class="maruku-eqref" href="#eq:MackeyIrrepForFiniteSemProdWithAbelian">(1)</a> are irreducible.</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mrow><mi>i</mi><mo>,</mo><mi>ρ</mi></mrow></msub><mo>≃</mo><msub><mi>θ</mi> <mrow><mi>i</mi><mo>′</mo><mo>,</mo><mi>ρ</mi><mo>′</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\theta_{i,\rho} \simeq \theta_{i',\rho'}</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mi>i</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">i = i'</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>≃</mo><mi>ρ</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\rho \simeq \rho'</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Every irrep of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi> <mrow><mi>i</mi><mo>,</mo><mi>ρ</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\theta_{i, \rho}</annotation></semantics></math>, up to isomorphism.</p>
+</li>
+</ol>
+<p></p>
+</div>
+</p>
+<p>(<a href="#Serre77">Serre 1977 Prop. 25 p 62</a>)</p>
+<h2 id="examples">Examples</h2>
+<p>
+<div class="num_remark" id="ExampleIrrepsOfZnRtimesZTwo">
+<h6>Example</h6>
+<p>Consider the semidirect product group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>≡</mo><msub><mi>ℤ</mi> <mi>n</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">G \equiv \mathbb{Z}_n \rtimes \mathbb{Z}_2</annotation></semantics></math>, with</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≡</mo><msub><mi>ℤ</mi> <mi>n</mi></msub><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mi>ℤ</mi><mo stretchy="false">/</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">A \equiv \mathbb{Z}_n \,\coloneqq\, \mathbb{Z}/n</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../4/1/3/8/8314/content.html">cyclic group</a> of <a class="existingWikiWord" href="../../../../../6/3/8/7/7836/content.html">order</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>≡</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">H \equiv \mathbb{Z}_2</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../7/1/7/6/6717/content.html">cyclic group of order 2</a> acting on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_n</annotation></semantics></math> via the sign <a class="existingWikiWord" href="../../../../2/9/2/2928/content.html">involution</a>.</p>
+</li>
+</ul>
+<p>In order find all the (complex) <a class="existingWikiWord" href="../../../../../2/4/6/2/2642/content.html">irreps</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mi>n</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_n \rtimes \mathbb{Z}_2</annotation></semantics></math> we unwind the statement of Prop. <a class="maruku-ref" href="#ForFiniteSemidirectProductsWithAbelianGroups"></a>:</p>
+<blockquote>
+<p>(We denote <a class="existingWikiWord" href="../../../../../5/4/5/7/17545/content.html">congruence classes</a> by square brackets: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><mi>ℤ</mi><mo>↠</mo><msub><mi>ℤ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">[-] \colon \mathbb{Z} \twoheadrightarrow \mathbb{Z}_n</annotation></semantics></math>.)</p>
+</blockquote>
+<p>First, the complex irreps of the <a class="existingWikiWord" href="../../../../../3/2/2/2/2223/content.html">normal subgroup</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_n</annotation></semantics></math> are themselves labeled by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>∈</mo><msub><mi>ℤ</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">[k] \in \mathbb{Z}_n</annotation></semantics></math> and given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><msub><mi>ℤ</mi> <mi>n</mi></msub></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>χ</mi> <mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><msup><mi>ℂ</mi> <mo>×</mo></msup></mtd></mtr> <mtr><mtd><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><msup><mi>e</mi> <mrow><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mrow><mi>r</mi><mi>k</mi></mrow><mi>n</mi></mfrac></mstyle></mrow></msup><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    \mathbb{Z}_n 
+       &amp;\xrightarrow{\;\; \chi_{[k]} \;\;}&amp; 
+    \mathbb{C}^\times
+    \\
+    [r] &amp;\mapsto&amp; e^{2 \pi \mathrm{i} \tfrac{r k}{n}}
+    \mathrlap{\,.}
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>On these, the nontrivial element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>∈</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\sigma \in \mathbb{Z}_2</annotation></semantics></math> acts by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>↦</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\sigma \colon [k] \mapsto [-k]</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mo stretchy="false">(</mo><mi>σ</mi><msub><mi>χ</mi> <mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>≡</mo><mspace width="thickmathspace"></mspace><msub><mi>χ</mi> <mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>σ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>⋅</mo><mi>σ</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>≡</mo><mspace width="thickmathspace"></mspace><msub><mi>χ</mi> <mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>σ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mi>σ</mi><mo>⋅</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>r</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>χ</mi> <mrow><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>r</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>≡</mo><mspace width="thickmathspace"></mspace><msup><mi>e</mi> <mrow><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>r</mi><mo stretchy="false">)</mo><mi>k</mi></mrow><mi>n</mi></mfrac></mstyle></mrow></msup></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msup><mi>e</mi> <mrow><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mrow><mi>r</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><mi>n</mi></mfrac></mstyle></mrow></msup></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>≡</mo><mspace width="thickmathspace"></mspace><msub><mi>χ</mi> <mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{l}
+    (\sigma \chi_{[k]})\big([r]\big)
+    \\
+    \;\equiv\;
+    \chi_{[k]}\big(\sigma^{-1}\cdot [r] \cdot \sigma\big)
+    \\
+    \;\equiv\;
+    \chi_{[k]}\big(\sigma^{-1}\cdot \sigma\cdot [-r]\big)
+    \\
+    \;=\;
+    \chi_{[k]}\big([-r]\big)
+    \\
+    \;\equiv\;
+    e^{2 \pi \mathrm{i} \tfrac{(-r)k}{n}}
+    \\
+    \;=\;
+    e^{2 \pi \mathrm{i} \tfrac{r (-k)}{n}}
+    \\
+    \;\equiv\;
+    \chi_{[-k]}\big([r]\big)
+    \mathrlap{\,.}
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>From this we have two kinds of orbits:</p>
+<ol>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a> orbits with stabilizer <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2</annotation></semantics></math>:</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">{</mo><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">}</mo></mrow><annotation encoding="application/x-tex">\big\{ [0] \big\}</annotation></semantics></math>, which always exists</p>
+<p>and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">{</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">}</mo></mrow><annotation encoding="application/x-tex">\big\{ [n/2] \big\}</annotation></semantics></math>, which exists when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../0/2/5/8/18520/content.html">even number</a>,</p>
+</li>
+<li>
+<p>the pairs with stabilizer the <a class="existingWikiWord" href="../../../../../6/6/6/4/4666/content.html">trivial group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>:</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">{</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>k</mi><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">}</mo></mrow><annotation encoding="application/x-tex">\big\{[k],[-k]\big\}</annotation></semantics></math>, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">⌋</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">k \in \{1, \cdots, \lfloor(n-1)/2\rfloor\}</annotation></semantics></math> (with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌊</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">\lfloor-\rfloor</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../0/8/5/8/18580/content.html">floor</a>).</p>
+</li>
+</ol>
+<p>The first singleton in the first case gives rise to two irreps, corresponding to the two irreps of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2</annotation></semantics></math> (the <a class="existingWikiWord" href="../../../../../4/5/7/0/10754/content.html">trivial representation</a> and the <a class="existingWikiWord" href="../../../../../1/8/6/9/19681/content.html">sign representation</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><munder><mrow><msubsup><mi>Ind</mi> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow></msubsup></mrow><mo>⏟</mo></munder><mi>Id</mi></munder><mo maxsize="1.8em" minsize="1.8em">(</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><mn>1</mn><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><mn>1</mn><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>triv</mi></mrow><annotation encoding="application/x-tex">
+  \underset{Id}{
+  \underbrace{
+  Ind
+    ^{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+    _{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+  }
+  }
+  \Big(
+    \big(
+      ([r], [s]) \mapsto 1
+    \big)
+    \otimes
+    \big(
+      ([r], [s]) \mapsto 1
+    \big)
+  \Big)
+  \;=\;
+  triv
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ind</mi> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow></msubsup><mo maxsize="1.8em" minsize="1.8em">(</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><mn>1</mn><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mi>s</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mi>s</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  Ind
+    ^{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+    _{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+  \Big(
+    \big(
+      ([r], [s]) \mapsto 1
+    \big)
+    \otimes
+    \big(
+      ([r], [s]) \mapsto e^{\pi \mathrm{i} s}
+    \big)
+  \Big)
+  \;=\;
+  \big(
+    ([r], [s]) \mapsto e^{\pi \mathrm{i} s}
+  \big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>while the second singleton in the first case similarly gives</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ind</mi> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow></msubsup><mo maxsize="1.8em" minsize="1.8em">(</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mi>r</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><mn>1</mn><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mi>r</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">
+  Ind
+    ^{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+    _{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+  \Big(
+    \big(
+      ([r], [s]) \mapsto e^{\pi \mathrm{i} r}
+    \big)
+    \otimes
+    \big(
+      ([r], [s]) \mapsto 1
+    \big)
+  \Big)
+  \;=\;
+  \big(
+    ([r], [s]) \mapsto e^{\pi \mathrm{i} r}
+  \big)
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ind</mi> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow></msubsup><mo maxsize="1.8em" minsize="1.8em">(</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mi>r</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mi>s</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mi>π</mi><mi mathvariant="normal">i</mi><mo stretchy="false">(</mo><mi>r</mi><mo>+</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Ind
+    ^{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+    _{\mathbb{Z}_p \rtimes \mathbb{Z}_2}
+  \Big(
+    \big(
+      ([r], [s]) \mapsto e^{\pi \mathrm{i} r}
+    \big)
+    \otimes
+    \big(
+      ([r], [s]) \mapsto e^{\pi \mathrm{i} s}
+    \big)
+  \Big)
+  \;=\;
+  \big(
+    ([r], [s]) \mapsto e^{\pi \mathrm{i} (r + s)}
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>The second case gives rise to one irrep for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">⌋</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">k \in \{1, \cdots, \lfloor(n-1)/2\rfloor\}</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><msubsup><mi>Ind</mi> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub></mrow> <mrow><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow></msubsup><mo maxsize="1.8em" minsize="1.8em">(</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mrow><mi>r</mi><mi>k</mi></mrow><mi>n</mi></mfrac></mstyle></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>↦</mo><mn>1</mn><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo></mtd></mtr> <mtr><mtd><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mi>ℂ</mi><mo maxsize="1.2em" minsize="1.2em">[</mo><msub><mi>ℤ</mi> <mi>p</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo maxsize="1.2em" minsize="1.2em">]</mo><msub><mo>⊗</mo> <mrow><mi>ℂ</mi><mo stretchy="false">[</mo><msub><mi>ℤ</mi> <mi>p</mi></msub><mo stretchy="false">]</mo></mrow></msub><mo maxsize="1.8em" minsize="1.8em">(</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo><mo>↦</mo><msup><mi>e</mi> <mrow><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mrow><mi>r</mi><mi>k</mi></mrow><mi>n</mi></mfrac></mstyle></mrow></msup><mo maxsize="1.8em" minsize="1.8em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{l}
+  Ind
+    ^{ \mathbb{Z}_p \rtimes \mathbb{Z}_2 }
+    _{ \mathbb{Z}_p }
+  \Big(
+    \big(
+      [r] \mapsto e^{2 \pi \mathrm{i} \tfrac{r k}{n}}
+    \big)
+    \otimes
+    \big(
+      [r] \mapsto 1
+    \big)
+  \Big)
+  \\
+  \;\simeq\;
+  \mathbb{C}\big[
+    \mathbb{Z}_p \rtimes \mathbb{Z}_2
+  \big]  
+  \otimes_{ \mathbb{C}[\mathbb{Z}_p] }
+    \Big(
+      [r] \mapsto e^{2 \pi \mathrm{i} \tfrac{r k}{n}}
+    \Big)
+   \mathrlap{\,.}
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>These latter irreps are 2-dimensional, with an evident matrix representation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\widehat{(-)}</annotation></semantics></math> given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><mo>^</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>[</mo><mrow><mtable displaystyle="false" rowspacing="0.5ex"><mtr><mtd><msup><mi>e</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">+</mo><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mi>k</mi><mi>n</mi></mfrac></mstyle></mrow></msup></mtd> <mtd><mn>0</mn></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><msup><mi>e</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>2</mn><mi>π</mi><mi mathvariant="normal">i</mi><mstyle displaystyle="false"><mfrac><mi>k</mi><mi>n</mi></mfrac></mstyle></mrow></msup></mtd></mtr></mtable></mrow><mo>]</mo></mrow><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mover><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo>,</mo><mo stretchy="false">[</mo><mn>1</mn><mo stretchy="false">]</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><mo>^</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>[</mo><mrow><mtable displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mn>0</mn></mtd> <mtd><mn>1</mn></mtd></mtr> <mtr><mtd><mn>1</mn></mtd> <mtd><mn>0</mn></mtd></mtr></mtable></mrow><mo>]</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mrow><annotation encoding="application/x-tex">
+  \widehat{
+  \big(
+    [1], [0]
+  \big)
+  }
+  \;=\;
+  \left[
+    \begin{matrix}
+       e^{+ 2 \pi \mathrm{i} \tfrac{k}{n}} &amp; 0
+       \\ 
+       0 &amp; e^{- 2 \pi \mathrm{i} \tfrac{k}{n}} 
+    \end{matrix}
+  \right]
+  \,,\;\;\;\;\;\;
+  \widehat{
+  \big(
+    [0], [1]
+  \big)
+  }
+  \;=\;
+  \left[
+  \begin{matrix}
+     0 &amp; 1 
+     \\
+     1 &amp; 0
+  \end{matrix}
+  \right]
+  \mathrlap{\,.}
+
+</annotation></semantics></math></div>
+<p>As a consistency check that we found all irreps, we verify that the <a href="../../../../../6/3/4/9/9436/content.html#SumOfSquaresFormula">sum of squares formula</a> holds:</p>
+<p>We have found two 1-dimensional irreps when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> is odd and four of them when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> is even, together with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">\lfloor (n-1)/2\rfloor</annotation></semantics></math> irreps of dimension 2, whence the sum of their squares of dimensions is,</p>
+<p>for odd <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>⋅</mo><msup><mn>1</mn> <mn>2</mn></msup><mspace width="thinmathspace"></mspace><mo>+</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">⌋</mo><mo>⋅</mo><msup><mn>2</mn> <mn>2</mn></msup><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mo>+</mo><mfrac><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></mfrac><mn>4</mn><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mo>+</mo><mn>2</mn><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">
+  2 \cdot 1^2
+  \,+\,
+  \lfloor (n-1)/2\rfloor \cdot 2^2
+  \;=\;
+  2 + \frac{n-1}{2} 4
+  \;=\;
+  2 + 2 (n-1)
+  \;=\;
+  2 n 
+
+</annotation></semantics></math></div>
+<p>and for even <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>⋅</mo><msup><mn>1</mn> <mn>2</mn></msup><mspace width="thinmathspace"></mspace><mo>+</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mn>2</mn><mo stretchy="false">⌋</mo><mo>⋅</mo><msup><mn>2</mn> <mn>2</mn></msup><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mo>⋅</mo><mn>2</mn><mspace width="thinmathspace"></mspace><mo>+</mo><mspace width="thinmathspace"></mspace><mfrac><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow><mn>2</mn></mfrac><mn>4</mn><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mo>⋅</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>⋅</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mi>n</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  4 \cdot 1^2
+  \,+\,
+  \lfloor (n-1)/2\rfloor \cdot 2^2
+  \;=\;
+  2 \cdot 2 
+  \,+\,
+  \frac{n-2}{2} 4
+  \;=\;
+  2 \cdot 2 + 2 \cdot (n-2)
+  \;=\;
+  2 n
+  \,,
+
+</annotation></semantics></math></div>
+<p>correctly coinciding with the <a class="existingWikiWord" href="../../../../../6/3/8/7/7836/content.html">order</a> of our group :</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><msub><mi>ℤ</mi> <mi>n</mi></msub><mo>⋊</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo stretchy="false">|</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo stretchy="false">|</mo></mrow><mo>⋅</mo><mrow><mo stretchy="false">|</mo><msub><mi>ℤ</mi> <mi>n</mi></msub><mo stretchy="false">|</mo></mrow><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mn>2</mn><mi>n</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  {\vert \mathbb{Z}_n \rtimes \mathbb{Z}_2 \vert} 
+  \;=\;  
+  {\vert \mathbb{Z}_2 \vert} 
+  \cdot
+  {\vert \mathbb{Z}_n \vert} 
+  \;=\;  
+  2 n
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p>For construction of irreps of <a class="existingWikiWord" href="../../../../../7/4/6/7/7647/content.html">wreath products of groups</a> see <a href="../../../../../7/4/6/7/7647/content.html#IrreducibleRepresentations">there</a>.</p>
+</div>
+</p>
+<h2 id="references">References</h2>
+<p>The original article:</p>
+<ul>
+<li id="Mackey68"><a class="existingWikiWord" href="../../../../../0/1/2/1/11210/content.html">George Mackey</a>: <em>Induced representations of groups and quantum mechanics</em>, W. A. Benjamin, New York (1968) [<a href="https://archive.org/details/inducedrepresent0000mack">ark:/13960/t6841m201</a>]</li>
+</ul>
+<p>General discussion:</p>
+<ul>
+<li>J. M. G. Fell, R. S. Doran: <em>Representations of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo></mrow><annotation encoding="application/x-tex">\ast</annotation></semantics></math>-Algebras, Locally Compact Groups, and Banach <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo></mrow><annotation encoding="application/x-tex">\ast</annotation></semantics></math>-Algebraic Bundles</em>, volume 2: <em>Banach <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo></mrow><annotation encoding="application/x-tex">\ast</annotation></semantics></math>-Algebraic Bundles, Induced Representations, and the Generalized Mackey Analysis</em>, Academic Press (1988) [<a href="https://shop.elsevier.com/books/representations-of-algebras-locally-compact-groups-and-banach-algebraic-bundles/fell/978-0-12-252722-7">ISBN:9780122527227</a>]</li>
+</ul>
+<p>Review for the case of <a class="existingWikiWord" href="../../../../../1/4/7/0/741/content.html">finite groups</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/4/5/7/27544/content.html">Charles Curtis</a>, <a class="existingWikiWord" href="../../../../../5/4/5/7/27545/content.html">Irving Reiner</a>, around Prop. 11.8 of: <em>Representation theory of finite groups and associative algebras</em>, AMS (1962) [<a href="https://bookstore.ams.org/chel-356.h">ISBN:978-0-8218-4066-5</a>]</p>
+</li>
+<li id="Serre77">
+<p><a class="existingWikiWord" href="../../../../../7/7/7/3/3777/content.html">Jean-Pierre Serre</a>, section 8.2 of: <em>Linear Representations of Finite Groups</em>, Graduate Texts in Mathematics <strong>42</strong>, Springer (1977) [<a href="https://doi.org/10.1007/978-1-4684-9458-7">doi:10.1007/978-1-4684-9458-7</a>, <a href="https://www.math.tau.ac.il/~borovoi/courses/ReprFG/Hatzagot.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../2/1/7/7128/content.html">Brian Conrad</a>: <em>Mackey theory and applications</em> [<a href="https://math.stanford.edu/~conrad/210BPage/handouts/mackey.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Conrad-MackeyTheory.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p>Amirtanshu Prasad, M. K. Vemuri: <em>Mackey’s Little Group Method</em> [<a href="https://www.imsc.res.in/~amri/little_groups.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/PrasadVemuri-MackeyMethod.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p>S. Martin: <em>Mackey Theory</em>, chapter 12 of <em><a href="https://dec41.user.srcf.net/h/II_L/representation_theory/">Representation Theory</a></em>, notes by <a class="existingWikiWord" href="../../../../../1/4/5/7/17541/content.html">Dexter Chua</a> (2016) [<a href="https://dec41.user.srcf.net/h/II_L/representation_theory/12">pdf</a>]</p>
+</li>
+</ul>
+<p>Further developments:</p>
+<ul>
+<li>Geetha Venkataraman: <em>On irreducibility of induced modules and an adaptation of the Wigner–Mackey method of little groups</em>, J. Korean Math. Soc. <strong>50</strong> 6 (2013) 1213-1222 [<a href="https://arxiv.org/abs/0908.0026">arXiv:0908.0026</a>, <a href="https://doi.org/10.4134/JKMS.2013.50.6.1213">doi:10.4134/JKMS.2013.50.6.1213</a>]</li>
+</ul>
+<p>Review for the case of <a class="existingWikiWord" href="../../../../9/5/1/1598/content.html">Lie groups</a>, in the context of <a class="existingWikiWord" href="../../../../../4/9/2/9/9294/content.html">Wigner classification</a></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/4/8/6/6843/content.html">José Figueroa-O’Farrill</a>: <em>The Theory of Induced Representations in Field Theory</em> [<a href="https://webhomes.maths.ed.ac.uk/~jmf/Teaching/Projects/Poincare/IndReps.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Figueroa-InducedReps.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>and with an eye towards <a class="existingWikiWord" href="../../../../../2/2/5/2/2522/content.html">supersymmetry</a>:</p>
+<ul>
+<li id="Varadarajan04"><a class="existingWikiWord" href="../../../../../7/7/2/0/10277/content.html">Veeravalli Varadarajan</a>; Thm. 1.5.2 in: <em><a class="existingWikiWord" href="../../../../../2/8/2/0/10282/content.html">Supersymmetry for mathematicians</a>: An introduction</em>, Courant Lecture Notes in Mathematics <strong>11</strong>, American Mathematical Society (2004) [<a href="http://dx.doi.org/10.1090/cln/011">doi:10.1090/cln/011</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,709 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Cayley-Dickson construction in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Cayley-Dickson construction
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#definition_in_components">Definition in components</a></li>
+<li><a href="#DefinitionByGeneratorsAndRelations">Definition by generators and relations</a></li>
+<li><a href="#equivalence_of_the_definitions">Equivalence of the definitions</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#cayleydicksonalbert_construction">Cayley-Dickson-Albert construction</a></li>
+<li><a href="#higher_algebra">Higher algebra</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>Cayley-Dickson construction</em> or <em>Cayley-Dickson double</em> (<a href="#Dickson1919">Dickson 1919, (6)</a>) takes a <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> to a new real <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> whose elements are <a class="existingWikiWord" href="../../../../../9/1/9/8/8919/content.html">pairs</a> of elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, in generalization of how the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a> arise as a doubling of the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a>.</p>
+<p>When iteratively applied to the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a>, regarded as a <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> with <a class="existingWikiWord" href="../../../../4/2/1/1247/content.html">trivial</a> <a class="existingWikiWord" href="../../../../../8/2/9/2/2928/content.html">involution</a>, the Cayley-Dickson construction yields, consecutively, the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a>, then the <a class="existingWikiWord" href="../../../../../3/9/7/4/4793/content.html">quaternions</a>, then the <a class="existingWikiWord" href="../../../../../2/9/7/4/4792/content.html">octonions</a> (thus all four <a class="existingWikiWord" href="../../../../../9/6/1/2/2169/content.html">real normed division algebras</a>), then the <a class="existingWikiWord" href="../../../../../5/9/7/4/4795/content.html">sedenions</a>, …</p>
+<h2 id="definition">Definition</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../0/9/9/0/990/content.html">possibly nonassociative</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> over the <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a>: an algebra equipped with an <a class="existingWikiWord" href="../../../../../8/2/9/2/2928/content.html">involution</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mo stretchy="false">(</mo><mo>¯</mo></mover><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>x</mi><mo>↦</mo><mover><mi>x</mi><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\overline(-) \colon x \mapsto \overline{x}</annotation></semantics></math> which is an <a class="existingWikiWord" href="../../../../../6/4/4/5/5446/content.html">antiautomorphism</a>. (Actually, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> could be replaced by any <a class="existingWikiWord" href="../../../../2/2/0/227/content.html">commutative ring</a> in the definitions, although some properties may depend on this ring.)</p>
+<h3 id="definition_in_components">Definition in components</h3>
+<div class="num_defn" id="CayleyDicksonDoubleInComponents">
+<h6 id="definition_2">Definition</h6>
+<p><strong>(Cayley-Dickson construction in components)</strong></p>
+<p>The <em>Cayley–Dickson double</em> of the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CD</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">CD(A)</annotation></semantics></math></p>
+<ul>
+<li>
+<p>whose underlying <a class="existingWikiWord" href="../../../../../9/5/2/0/10259/content.html">real vector space</a> is the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊕</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A \oplus A</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>whose multiplication is given by</p>
+<div class="maruku-equation" id="eq:ProductInComponents"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>a</mi><mi>c</mi><mo>−</mo><mi>d</mi><mover><mi>b</mi><mo>¯</mo></mover><mo>,</mo><mover><mi>a</mi><mo>¯</mo></mover><mi>d</mi><mo>+</mo><mi>c</mi><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  (a,b)      
+  (c, d) 
+   \;\coloneqq\; 
+  (a c - d \overline{b}, \overline{a} d + c b)
+
+</annotation></semantics></math></div></li>
+<li>
+<p>whose star-<a class="existingWikiWord" href="../../../../../8/2/9/2/2928/content.html">involution</a> is given by</p>
+<div class="maruku-equation" id="eq:InvolutionInComponents"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>¯</mo></mover><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \widebar{(a,b)} 
+  \;\coloneqq\;
+  (\overline{a},-b)
+ \,.
+
+</annotation></semantics></math></div></li>
+</ul>
+</div>
+<p>(<a href="#Dickson1919">Dickson 1919, (6)</a>)</p>
+<h3 id="DefinitionByGeneratorsAndRelations">Definition by generators and relations</h3>
+<div class="num_defn" id="CayleyDicksonDoubleByAdjoiningFurtherGenerator">
+<h6 id="definition_3">Definition</h6>
+<p><strong>(Cayley-Dickson double by <a class="existingWikiWord" href="../../../../../1/6/3/7/7361/content.html">generators and relations</a>)</strong></p>
+<p>The <em>Cayley-Dickson double</em> of a <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>CD</mi><mo>˜</mo></mover><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\widetilde{CD}(A)</annotation></semantics></math> obtained by adjoining one generator <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">\ell</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> subject to the following <a class="existingWikiWord" href="../../../../../1/6/3/7/7361/content.html">relations</a>:</p>
+<div class="maruku-equation" id="eq:TheNewGenerator"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℓ</mi> <mn>2</mn></msup><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo>−</mo><mn>1</mn><mspace width="thinmathspace"></mspace><mo>,</mo><mphantom><mi>AAA</mi></mphantom><mover><mi>ℓ</mi><mo>¯</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo>−</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">
+  
+  \ell^2 \;=\; -1
+  \,,
+  \phantom{AAA}
+  \overline{\ell}
+  \;=\;
+  - \ell
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation" id="eq:DicksonRelations"><span class="maruku-eq-number">(4)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo stretchy="false">(</mo><mi>ℓ</mi><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ℓ</mi><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mi>b</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mphantom><mi>AA</mi></mphantom><mo stretchy="false">(</mo><mi>a</mi><mi>ℓ</mi><mo stretchy="false">)</mo><mi>b</mi><mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mover><mi>b</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mi>ℓ</mi><mspace width="thinmathspace"></mspace><mo>,</mo><mphantom><mi>AA</mi></mphantom><mo stretchy="false">(</mo><mi>ℓ</mi><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false">)</mo><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">
+  
+  a (\ell b) 
+  = 
+  \ell (\overline{a} b)
+  \,,
+  \phantom{AA}
+  (a \ell) b 
+  = 
+  (a \overline{b}) \ell
+  \,,
+  \phantom{AA}
+  (\ell a) (b \ell)
+  = 
+  - \overline{a b}
+
+</annotation></semantics></math></div>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a, b \in A</annotation></semantics></math>.</p>
+</div>
+<p>(<a href="#Baez02">Baez 02, second half of 2.2</a>)</p>
+<div class="num_lemma" id="InducedRelations">
+<h6 id="lemma">Lemma</h6>
+<p>(<strong>induced relations</strong>)</p>
+<p>The relation in Def. <a class="maruku-ref" href="#CayleyDicksonDoubleByAdjoiningFurtherGenerator"></a> imply the following further relations:</p>
+<div class="maruku-equation" id="eq:al"><span class="maruku-eq-number">(5)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>ℓ</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>ℓ</mi><mover><mi>a</mi><mo>¯</mo></mover><mspace width="thinmathspace"></mspace><mo>,</mo><mphantom><mi>AA</mi></mphantom><mi>ℓ</mi><mi>a</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mover><mi>a</mi><mo>¯</mo></mover><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">
+  
+  a \ell \;=\; \ell \overline{a}
+  \,,
+  \phantom{AA}
+  \ell a \;=\; \overline{a} \ell
+
+</annotation></semantics></math></div>
+<p><br/></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ℓ</mi><mi>a</mi><mo stretchy="false">)</mo><mi>b</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>ℓ</mi><mo stretchy="false">(</mo><mi>b</mi><mi>a</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo><mphantom><mi>AA</mi></mphantom><mi>a</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>b</mi><mi>a</mi><mo stretchy="false">)</mo><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">
+  (\ell a) b 
+  \;=\;
+  \ell (b a)
+  \,,
+  \phantom{AA}
+  a (b \ell)   
+  \;=\;
+  (b a) \ell
+
+</annotation></semantics></math></div>
+<p><br/></p>
+<div class="maruku-equation" id="eq:laTimeslb"><span class="maruku-eq-number">(6)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ℓ</mi><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mi>b</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo>−</mo><mi>b</mi><mover><mi>a</mi><mo>¯</mo></mover><mspace width="thinmathspace"></mspace><mo>,</mo><mphantom><mi>AA</mi></mphantom><mo stretchy="false">(</mo><mi>a</mi><mi>ℓ</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo>−</mo><mover><mi>b</mi><mo>¯</mo></mover><mi>a</mi></mrow><annotation encoding="application/x-tex">
+  
+  (\ell a) (\ell b) 
+  \;=\;
+  - b \overline{a}
+  \,,
+  \phantom{AA}
+  (a \ell) (b \ell)
+  \;=\;
+  - \overline{b} a
+
+</annotation></semantics></math></div>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a, b \in A</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>Using <a class="maruku-eqref" href="#eq:DicksonRelations">(4)</a> we have:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>a</mi><mi>ℓ</mi></mtd> <mtd><mo>=</mo><mi>a</mi><mo stretchy="false">(</mo><mi>ℓ</mi><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ℓ</mi><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ℓ</mi><mover><mi>a</mi><mo>¯</mo></mover></mtd></mtr></mtable></mrow><mphantom><mi>AAA</mi></mphantom><mo>,</mo><mphantom><mi>AAA</mi></mphantom><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>ℓ</mi><mi>a</mi></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mi>ℓ</mi><mo stretchy="false">)</mo><mi>a</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mover><mi>a</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mi>ℓ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mover><mi>a</mi><mo>¯</mo></mover><mi>ℓ</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+  a \ell 
+  &amp; =
+  a (\ell 1)
+  \\
+  &amp; =
+  \ell (\overline{a} 1)
+  \\
+  &amp; =
+  \ell \overline{a}
+  \end{aligned}
+  \phantom{AAA}
+  ,
+  \phantom{AAA}
+  \begin{aligned}
+  \ell a
+  &amp; =
+  (1 \ell) a
+  \\
+  &amp; =
+  (1 \overline{a}) \ell
+  \\
+  &amp; =
+  \overline{a} \ell
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>Using this and <a class="maruku-eqref" href="#eq:DicksonRelations">(4)</a> we have:</p>
+<div class="maruku-equation" id="eq:lab"><span class="maruku-eq-number">(7)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo stretchy="false">(</mo><mi>ℓ</mi><mi>a</mi><mo stretchy="false">)</mo><mi>b</mi></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mi>ℓ</mi><mo stretchy="false">)</mo><mi>b</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mover><mi>b</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mi>ℓ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ℓ</mi><mover><mrow><mover><mi>a</mi><mo>¯</mo></mover><mover><mi>b</mi><mo>¯</mo></mover></mrow><mo>¯</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ℓ</mi><mo stretchy="false">(</mo><mi>b</mi><mi>a</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mphantom><mi>AAA</mi></mphantom><mo>,</mo><mphantom><mi>AAA</mi></mphantom><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>a</mi><mo stretchy="false">(</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><mi>a</mi><mo stretchy="false">(</mo><mi>ℓ</mi><mover><mi>b</mi><mo>¯</mo></mover><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ℓ</mi><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mover><mi>b</mi><mo>¯</mo></mover><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mover><mrow><mover><mi>a</mi><mo>¯</mo></mover><mover><mi>b</mi><mo>¯</mo></mover></mrow><mo>¯</mo></mover><mi>ℓ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mi>b</mi><mi>a</mi><mo stretchy="false">)</mo><mi>ℓ</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \begin{aligned}
+    (\ell a) b
+    &amp; =
+    (\overline{a} \ell ) b
+    \\
+    &amp; =
+    (\overline{a} \overline{b}) \ell
+    \\
+    &amp; =
+    \ell \overline{  
+      \overline{a} \overline{b}
+    }
+    \\ 
+    &amp; =
+    \ell (b a)
+  \end{aligned}
+  \phantom{AAA}
+  ,
+  \phantom{AAA}
+  \begin{aligned}  
+    a (b \ell)
+    &amp; =
+    a (\ell \overline{b})
+    \\
+    &amp; = \ell( \overline{a} \overline{b} )
+    \\
+    &amp; =
+
+    \overline{
+      \overline{a} \overline{b}
+    }
+    \ell
+    \\
+    &amp; =
+    (b a) \ell
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation" id="eq:lalb"><span class="maruku-eq-number">(8)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo stretchy="false">(</mo><mi>ℓ</mi><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mi>b</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mover><mi>b</mi><mo>¯</mo></mover><mi>ℓ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mover><mrow><mi>a</mi><mover><mi>b</mi><mo>¯</mo></mover></mrow><mo>¯</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>b</mi><mover><mi>a</mi><mo>¯</mo></mover></mtd></mtr></mtable></mrow><mphantom><mi>AAA</mi></mphantom><mo>,</mo><mphantom><mi>AAA</mi></mphantom><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo stretchy="false">(</mo><mi>a</mi><mi>ℓ</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mover><mi>a</mi><mo>¯</mo></mover><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mover><mrow><mover><mi>a</mi><mo>¯</mo></mover><mi>b</mi></mrow><mo>¯</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mover><mi>b</mi><mo>¯</mo></mover><mi>a</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \begin{aligned}
+  (\ell a) (\ell b)
+  &amp; =
+  (\ell a) (\overline{b} \ell)
+  \\
+  &amp; =
+  - \overline{ a \overline{b} }
+  \\
+  &amp; =
+  - b \overline{a}
+  \end{aligned}
+  \phantom{AAA}
+  ,
+  \phantom{AAA}
+  \begin{aligned}
+    (a \ell) (b \ell)
+    &amp; =
+    (\ell \overline{a}) (b \ell)
+    \\
+    &amp; =
+    - \overline{ \overline{a} b }
+    \\
+    &amp; =
+    - \overline{b} a
+  \end{aligned}
+
+</annotation></semantics></math></div></div>
+<h3 id="equivalence_of_the_definitions">Equivalence of the definitions</h3>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>Definition <a class="maruku-ref" href="#CayleyDicksonDoubleInComponents"></a> and Definition <a class="maruku-ref" href="#CayleyDicksonDoubleByAdjoiningFurtherGenerator"></a> are equivalent, in that we have an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> of <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real</a> <a class="existingWikiWord" href="../../../../../2/8/2/4/4282/content.html">star-algebras</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>ϕ</mi></mtd> <mtd><mi>CD</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mo>≃</mo></mover></mtd> <mtd><mover><mi>CD</mi><mo>˜</mo></mover><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>a</mi><mo>+</mo><mi>ℓ</mi><mi>b</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{ 
+    \phi
+    &amp; 
+    CD(A) 
+      &amp;\overset{\simeq}{\longrightarrow}&amp;
+    \widetilde{CD}(A)
+    \\
+    &amp;
+    (a,b)
+    &amp;\mapsto&amp;
+    a + \ell b
+  }
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>It is clear from Def. <a class="maruku-ref" href="#CayleyDicksonDoubleByAdjoiningFurtherGenerator"></a> that for every element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mover><mi>CD</mi><mo>˜</mo></mover><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \in \widetilde{CD}(A)</annotation></semantics></math> there is a <em>unique</em> <a class="existingWikiWord" href="../../../../../9/1/9/8/8919/content.html">pair</a> of elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a,b \in A</annotation></semantics></math> such that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mi>a</mi><mo>+</mo><mi>ℓ</mi><mi>b</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>ϕ</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  x = a + \ell b \;=\; \phi(a,b)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This means that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../2/1/5/8/18512/content.html">linear isomorphism</a> of the underlying <a class="existingWikiWord" href="../../../../../9/5/2/0/10259/content.html">real vector spaces</a>. Hence it only remains to check that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is indeed an <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">algebra homomorphism</a> and that it respects the <a class="existingWikiWord" href="../../../../../8/2/9/2/2928/content.html">involution</a>.</p>
+<p>To see that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">algebra homomorphism</a>, we multiply out and then use the relations <a class="maruku-eqref" href="#eq:lab">(7)</a> and <a class="maruku-eqref" href="#eq:lalb">(8)</a> from Lemma <a class="maruku-ref" href="#InducedRelations"></a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>ϕ</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mo>+</mo><mi>ℓ</mi><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>c</mi><mo>+</mo><mi>ℓ</mi><mi>d</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>a</mi><mi>c</mi><mo>+</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mi>d</mi><mo stretchy="false">)</mo><mo>+</mo><mi>a</mi><mo stretchy="false">(</mo><mi>ℓ</mi><mi>d</mi><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mi>ℓ</mi><mi>b</mi><mo stretchy="false">)</mo><mi>c</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>a</mi><mi>c</mi><mo>−</mo><mi>d</mi><mover><mi>b</mi><mo>¯</mo></mover><mo>+</mo><mi>ℓ</mi><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mi>d</mi><mo>+</mo><mi>c</mi><mi>b</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mi>a</mi><mi>c</mi><mo>−</mo><mi>d</mi><mover><mi>b</mi><mo>¯</mo></mover><mo>,</mo><mover><mi>a</mi><mo>¯</mo></mover><mi>d</mi><mo>+</mo><mi>c</mi><mi>b</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    \phi(a,b) \phi(c,d)
+    &amp; =
+    (a + \ell b)
+    (c + \ell d)
+    \\
+    &amp; =
+    a c + (\ell b)(\ell d)
+    +
+    a (\ell d) + (\ell b) c
+    \\
+    &amp; =
+    a c - d \overline{b}
+    +
+    \ell ( 
+      \overline{a} d  
+      + 
+      c b
+    )
+    \\
+    &amp; 
+    = 
+    \phi(a c - d \overline{b}, \overline{a} d + c b)
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>Here in the last line we indeed find the component formula <a class="maruku-eqref" href="#eq:ProductInComponents">(1)</a>.</p>
+<p>To see that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> respects the involution we use <a class="maruku-eqref" href="#eq:TheNewGenerator">(3)</a> from Def. <a class="maruku-ref" href="#CayleyDicksonDoubleByAdjoiningFurtherGenerator"></a> and <a class="maruku-eqref" href="#eq:al">(5)</a> from Lemma <a class="maruku-ref" href="#InducedRelations"></a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mover><mrow><mi>ϕ</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><mo>¯</mo></mover></mtd> <mtd><mo>=</mo><mover><mrow><mi>a</mi><mo>+</mo><mi>ℓ</mi><mi>b</mi></mrow><mo>¯</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mover><mi>a</mi><mo>¯</mo></mover><mo>+</mo><mover><mrow><mi>ℓ</mi><mi>b</mi></mrow><mo>¯</mo></mover></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mover><mi>a</mi><mo>¯</mo></mover><mo>−</mo><mover><mi>b</mi><mo>¯</mo></mover><mi>ℓ</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mover><mi>a</mi><mo>¯</mo></mover><mo>−</mo><mi>ℓ</mi><mi>b</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mover><mi>a</mi><mo>¯</mo></mover><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    \overline{\phi(a,b)}
+    &amp; =
+    \overline{ a + \ell b }
+    \\
+    &amp; =
+    \overline{a} + \overline{\ell b}
+    \\
+    &amp; =
+    \overline{a} - \overline{b} \ell
+    \\
+    &amp; = 
+    \overline{a} - \ell b
+    \\
+    &amp; = \phi( \overline{a}, -b )
+    \,.
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>Here in the last line we indeed find the component formula <a class="maruku-eqref" href="#eq:InvolutionInComponents">(2)</a>.</p>
+</div>
+<p><br/></p>
+<h2 id="properties">Properties</h2>
+<p>The map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a\mapsto (a,0)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monomorphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A\to A^2</annotation></semantics></math>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">unital</a> with unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math> is unital with unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1,0)</annotation></semantics></math>. In the unital case, the element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">i</mi><mo>≔</mo><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{i} \coloneqq (0,1)</annotation></semantics></math> has the property <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">i</mi> <mn>2</mn></msup><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><mo>≔</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{i}^2 = -1 \coloneqq (-1,0)</annotation></semantics></math>, and we may write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b)</annotation></semantics></math> as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mi mathvariant="normal">i</mi></mrow><annotation encoding="application/x-tex">a + b \mathrm{i}</annotation></semantics></math> (while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi mathvariant="normal">i</mi><mi>b</mi><mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mover><mi>b</mi><mo>¯</mo></mover><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a + \mathrm{i} b = (a,\overline{b})</annotation></semantics></math>). For this reason, we may write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">[</mo><mi mathvariant="normal">i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A[\mathrm{i}]</annotation></semantics></math> in place of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math>, at least when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is unital.</p>
+<p>Generally speaking, the double <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math> of an algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> has a nice property iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is one level nicer. For simplicity, assume that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is unital (so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> is a subalgebra). Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi mathvariant="normal">i</mi><mo>¯</mo></mover><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi mathvariant="normal">i</mi></mrow><annotation encoding="application/x-tex">\overline{\mathrm{i}} = -\mathrm{i}</annotation></semantics></math>, we see that the involution on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math> is trivial iff the involution on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is trivial and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> further has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">2 = 0</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">i</mi><mi>a</mi><mo>=</mo><mover><mi>a</mi><mo>¯</mo></mover><mi mathvariant="normal">i</mi></mrow><annotation encoding="application/x-tex">\mathrm{i} a = \overline{a} \mathrm{i}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../5/1/1/2/2115/content.html">commutative</a> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is commutative and the involution in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is trivial. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo stretchy="false">(</mo><mi>b</mi><mi mathvariant="normal">i</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>b</mi><mi>a</mi><mo stretchy="false">)</mo><mi mathvariant="normal">i</mi></mrow><annotation encoding="application/x-tex">a (b \mathrm{i}) = (b a) \mathrm{i}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/8/9/0/989/content.html">associative</a> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is associative and commutative. Finally, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">A^2</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/3/0/2/2036/content.html">alternative</a> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is associative (and hence also alternative).</p>
+<h2 id="examples">Examples</h2>
+<div class="float_right_image" style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/QuaternionOctonionMultiplicationTable.jpg" width="400px"/>
+</div>
+<p>The standard example is the sequence of consecutive doubles starting with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> itself (with the <a class="existingWikiWord" href="../../../../../9/0/4/1/1409/content.html">identity map</a> as involution); these are the <strong>Cayley–Dickson algebras</strong>: the <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../3/9/7/4/4793/content.html">quaternions</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℍ</mi></mrow><annotation encoding="application/x-tex">\mathbb{H}</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../2/9/7/4/4792/content.html">octonions</a> (or Cayley numbers) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕆</mi></mrow><annotation encoding="application/x-tex">\mathbb{O}</annotation></semantics></math>,</p>
+<p>These are the <a class="existingWikiWord" href="../../../../../9/6/1/2/2169/content.html">real normed division algebras</a></p>
+<p>The diagram on the right shows a basis of <a class="existingWikiWord" href="../../../../../5/1/3/5/15315/content.html">imaginary</a> <a class="existingWikiWord" href="../../../../../2/9/7/4/4792/content.html">octonions</a> obtained via Cayley-Dickson doubling from a standard basis <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{i,j,k\}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../5/1/3/5/15315/content.html">imaginary</a> <a class="existingWikiWord" href="../../../../../3/9/7/4/4793/content.html">quaternions</a>.</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<p>Next, the CD-double of the <a class="existingWikiWord" href="../../../../../2/9/7/4/4792/content.html">octonions</a> is the <a class="existingWikiWord" href="../../../../../5/9/7/4/4795/content.html">sedenions</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕊</mi></mrow><annotation encoding="application/x-tex">\mathbb{S}</annotation></semantics></math>, etc. , followed by further algebras which are not <a class="existingWikiWord" href="../../../../../6/7/4/4/4476/content.html">division algebras</a>.<br/>All of these algebras are <a class="existingWikiWord" href="../../../../../2/1/5/0/10512/content.html">power-associative</a>, <a class="existingWikiWord" href="../../../../../6/3/0/2/2036/content.html">flexible</a>, and unital, and have all <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">inverse elements</a>; the subalgebra with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo>¯</mo></mover><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\overline{x} = x</annotation></semantics></math> is always just <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math>.</p>
+<h2 id="cayleydicksonalbert_construction">Cayley-Dickson-Albert construction</h2>
+<p>The Cayley-Dickson construction described above was slightly generalized in <a href="#Alb42CDA">Section 5 of Albert (1942)</a>, where the multiplication is further modified by a parameter <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>. This process constructs an algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mi>γ</mi></msup></mrow><annotation encoding="application/x-tex">A^{\gamma}</annotation></semantics></math> starting from a unital algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> of order <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> over a field <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> endowed with an <a class="existingWikiWord" href="../../../../../8/2/9/2/2928/content.html">involution</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">J:A\to A</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> such that for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x\in A</annotation></semantics></math>:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mi>J</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">x+ J(x) \in F</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi>J</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>J</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>x</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">x J(x) = J(x) x \in F</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>To construct <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mi>γ</mi></msup></mrow><annotation encoding="application/x-tex">A^{\gamma}</annotation></semantics></math>, one chooses a parameter <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>∈</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">\gamma\in F</annotation></semantics></math>, and on the vector space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊕</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A\oplus A</annotation></semantics></math> one defines a product</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>g</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>g</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><msub><mi>h</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>h</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mi>g</mi> <mn>1</mn></msub><msub><mi>h</mi> <mn>1</mn></msub><mo>+</mo><mi>γ</mi><mi>J</mi><mo stretchy="false">(</mo><msub><mi>h</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><msub><mi>g</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>h</mi> <mn>2</mn></msub><msub><mi>g</mi> <mn>1</mn></msub><mo>+</mo><msub><mi>g</mi> <mn>2</mn></msub><mi>J</mi><mo stretchy="false">(</mo><msub><mi>h</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+(g_1 ,g_2 )\cdot (h_1, h_2 ) = (g_1 h_1 + \gamma J(h_2) g_2 , h_2 g_1 +g_2 J(h_1 ))
+
+</annotation></semantics></math></div>
+<p>and an involution <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mi>γ</mi></msup></mrow><annotation encoding="application/x-tex">A^{\gamma}</annotation></semantics></math> as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><msub><mi>g</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>g</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">(</mo><msub><mi>g</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msub><mi>g</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+K((g_1, g_2 ))= (J(g_1) , -g_2)
+
+</annotation></semantics></math></div>
+<p>In particular, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>=</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">F=\mathbb{R}</annotation></semantics></math> this process allows to get the <a href="../../../../../6/4/8/3/3846/content.html#split_composition_algebras"><em>split-</em></a> variants of the real division algebra, cf.:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/1/3/6/26319/content.html">split-complex numbers</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/9/8/1/21892/content.html">split quaternions</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/0/9/19015/content.html">split octonions</a></p>
+</li>
+</ul>
+<h2 id="higher_algebra">Higher algebra</h2>
+<p><a href="#AM99quasi">Albuquerque &amp; Majid (1999)</a> describe the Cayley-Dickson process from a different point of view. The quaternions, and octonions are realized as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>ℤ</mi> <mn>2</mn> <mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2^n</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/2/5/0/529/content.html">group algebras</a> over the reals <em>twisted</em> by a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-cocycle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msup><mi>Z</mi> <mi>n</mi></msup><mo stretchy="false">(</mo><msubsup><mi>ℤ</mi> <mn>2</mn> <mi>n</mi></msubsup><mo>,</mo><msup><mi>ℝ</mi> <mo>×</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega\in Z^n(\mathbb{Z}_2^n,\mathbb{R}^{\times})</annotation></semantics></math>, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn><mo>,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n=2,3</annotation></semantics></math>, respectively.</p>
+<p>In more detail, the quaternions are described as the group algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo stretchy="false">[</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>×</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}[\mathbb{Z}_2\times\mathbb{Z}_2]</annotation></semantics></math> where the group multiplication is twisted by a cocycle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega(g,h)</annotation></semantics></math>. The 2-cocycle condition of such a function implies that the quaternions are associative. On the other hand, the octonions are realized as a group algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo stretchy="false">[</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>×</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>×</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}[\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2 ]</annotation></semantics></math> where the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega(g,h)</annotation></semantics></math> twisting the multiplication is no longer a 2-cocycle. One of the effects of this is that the octonions are no longer associative or, rather, that they satisfy a nontrivial associativity condition, in the sense of a <a class="existingWikiWord" href="../../../../../1/8/7/6/6781/content.html">quasi-Hopf algebra</a>. This nontrivial associativity condition is witnessed by a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math>-cocycle in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Z</mi> <mn>3</mn></msup><mo stretchy="false">(</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>×</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>×</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>,</mo><msup><mi>ℝ</mi> <mo>×</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z^3(\mathbb{Z}_2\times \mathbb{Z}_2\times \mathbb{Z}_2, \mathbb{R}^{\times})</annotation></semantics></math>. Notably, this <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math>-cocycle turns out to be a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math>-coboundary, so that its cohomology class is trivial.</p>
+<p>This point of view also clarifies the common claim that algebras in the Cayley-Dickson process lose “nice” properties after more iterations. Rather, a more precise claim is that these nice properties are weakened. In the case of the octonions, these are better regarded as associative <em>up to</em> a nontrivial cocycle.</p>
+<p>This highlights that a more suitable point of view to study the algebras arising in the Cayley-Dickson process is <a class="existingWikiWord" href="../../../../../8/7/3/1/1378/content.html">higher algebra</a>. As noted for instance in <a href="#Baez02">Baez 2002 p 8</a>, the octonions are indeed associative when viewed as a <a class="existingWikiWord" href="../../../../../1/4/3/6/16341/content.html">monoid object</a> <a class="existingWikiWord" href="../../../../../6/3/0/0/36/content.html">internal</a> to the <a class="existingWikiWord" href="../../../../4/6/2/2647/content.html">tensor category</a> which is the <a class="existingWikiWord" href="../../../../../0/0/5/1/1500/content.html">fusion category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>ℤ</mi> <mn>2</mn> <mn>3</mn></msubsup></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2^3</annotation></semantics></math>-graded real vector spaces with nontrivial <a class="existingWikiWord" href="../../../../../4/2/9/3/3924/content.html">associator</a> defined by the twisting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math>-cocycle.</p>
+<p>This seems to suggest a pattern regarding the rest of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math>-gons, as of now unproven(?). For instance, the sedenions could be realized as a twist of the group algebra <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo stretchy="false">[</mo><msubsup><mi>ℤ</mi> <mn>2</mn> <mn>4</mn></msubsup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{R}[\mathbb{Z}_2^4]</annotation></semantics></math> by a 4-cocycle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Z</mi> <mn>4</mn></msup><mo stretchy="false">(</mo><msubsup><mi>ℤ</mi> <mn>2</mn> <mn>4</mn></msubsup><mo>,</mo><msup><mi>ℝ</mi> <mo>×</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z^4(\mathbb{Z}_2^4,\mathbb{R}^{\times})</annotation></semantics></math>, and as such would have fewer nice properties <em>as a 1-algebra</em>. Yet as a higher algebra it would retain its nice properties: it would correspond to the <a class="existingWikiWord" href="../../../../../8/1/0/6/26018/content.html">fusion 2-category</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>ℤ</mi> <mn>2</mn> <mn>4</mn></msubsup></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2^4</annotation></semantics></math>-graded <a class="existingWikiWord" href="../../../../../4/5/6/0/654/content.html">2-vector spaces</a> twisted by a group 4-cocycle.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/4/8/3/3846/content.html">composition algebra</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>Named after <a class="existingWikiWord" href="../../../../9/3/9/9397/content.html">Arthur Cayley</a> and <a class="existingWikiWord" href="../../../../../1/4/6/0/20641/content.html">Leonard Dickson</a>.</p>
+<p>The original article:</p>
+<ul>
+<li id="Dickson1919"><a class="existingWikiWord" href="../../../../../1/4/6/0/20641/content.html">Leonard Dickson</a>, <em>On Quaternions and Their Generalization and the History of the Eight Square Theorem</em>,
+<p>Annals of Mathematics, Second Series, Vol. 20, No. 3 (Mar., 1919), pp. 155-171 (<a href="https://www.jstor.org/stable/1967865">jstor:1967865</a>)</p>
+</li>
+</ul>
+<p>Review and introduction:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../1/8/1/1817/content.html">M M Postnikov</a>, <em>Lectures on geometry, Semester V: Lie groups and Lie algebras</em>, Lec. 14 (russian and english editions)</p>
+</li>
+<li id="Baez02">
+<p><a class="existingWikiWord" href="../../../../../1/3/0/0/31/content.html">John Baez</a>, <em><a href="http://math.ucr.edu/home/baez/octonions/node5.html">The Cayley–Dickson construction</a></em>, in <em><a href="http://math.ucr.edu/home/baez/octonions/">The octonions</a></em>, Bull. Amer. Math. Soc. 39 (2002), 145-205, <a href="http://dx.doi.org/10.1090/S0273-0979-01-00934-X">doi</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/0/0/31/content.html">John Baez</a>, <em><a href="http://math.ucr.edu/home/baez/week59.html">This Week’s Finds — Week 59</a></em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/1/7/17126/content.html">Tevian Dray</a>, <a class="existingWikiWord" href="../../../../2/1/7/17127/content.html">Corinne Manogue</a>, Section 5.1 of: <em>The Geomety of Octonions</em>, World Scientific 2015 (<a href="https://doi.org/10.1142/8456">doi:10.1142/8456</a>)</p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Cayley%E2%80%93Dickson_construction">Cayley–Dickson construction</a></em></li>
+</ul>
+<p>More:</p>
+<ul>
+<li>
+<p>Daniel K. Biss, <a class="existingWikiWord" href="../../../../../6/4/6/2/2646/content.html">Daniel Dugger</a>, <a class="existingWikiWord" href="../../../../5/8/2/2857/content.html">Daniel Isaksen</a>, <em>Large annihilators in Cayley-Dickson algebras</em>, Communications in Algebra 36 (2), 632-664, 2008 (<a href="https://arxiv.org/abs/math/0511691">arxiv:math/0511691</a>)</p>
+</li>
+<li>
+<p>Daniel K. Biss, <a class="existingWikiWord" href="../../../../../8/3/6/4/4638/content.html">Daniel Christensen</a>, <a class="existingWikiWord" href="../../../../../6/4/6/2/2646/content.html">Daniel Dugger</a>, <a class="existingWikiWord" href="../../../../5/8/2/2857/content.html">Daniel Isaksen</a>, <em>Large annihilators in Cayley-Dickson algebras II</em>, Boletin de la Sociedad Matematica Mexicana (3) 13(2) (2007), 269-292 (<a href="https://arxiv.org/abs/math/0702075">arxiv:math/0702075</a>)</p>
+</li>
+<li>
+<p>Daniel K. Biss, <a class="existingWikiWord" href="../../../../../8/3/6/4/4638/content.html">Daniel Christensen</a>, <a class="existingWikiWord" href="../../../../../6/4/6/2/2646/content.html">Daniel Dugger</a>, <a class="existingWikiWord" href="../../../../5/8/2/2857/content.html">Daniel Isaksen</a>, <em>Eigentheory of Cayley-Dickson algebras</em>, Forum Mathematicum 21(5) (2009), 833-851 (<a href="https://arxiv.org/abs/0905.2987">arxiv:0905.2987</a>)</p>
+</li>
+</ul>
+<p>On the generalization of the Cayley-Dickson construction:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/1/0/9/19016/content.html">Abraham Adrian Albert</a>, <em>Quadratic forms permitting composition,</em> Ann. of Math. (2) <strong>43</strong> (1942), 161–177. (<a href="https://doi.org/10.2307/1968887">doi</a>)</li>
+</ul>
+<p>On the Cayley-Dickson construction in terms of <a class="existingWikiWord" href="../../../../../1/8/7/6/6781/content.html">quasi-Hopf algebras</a>:</p>
+<ul>
+<li id="AM99quasi">Helena Albuquerque, <a class="existingWikiWord" href="../../../../../5/7/4/4/4475/content.html">Shahn Majid</a>. <em>Quasialgebra Structure of the Octonions</em>. Journal of Algebra Volume 220, Issue 1, 1 October 1999, Pages 188-224. (<a href="https://doi.org/10.1006/jabr.1998.7850">doi</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

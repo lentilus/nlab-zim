@@ -1,0 +1,515 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      presheaf in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      presheaf
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#limits_and_colimits">Limits and colimits</a></li>
+<li><a href="#PresheavesAreColimitsOfRepresentables">Presheaves are colimits of representables</a></li>
+</ul>
+<li><a href="#special_cases">Special cases</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Given a small category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> of “primitive objects”, we can think of a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F:\: C^{op} \to Set</annotation></semantics></math> as being a more complex object built out of primitive objects:</p>
+<ul>
+<li>
+<p>Given a primitive object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, we interpret <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(X)</annotation></semantics></math> as a set representing the ways <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> occurs inside <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></p>
+</li>
+<li>
+<p>Given a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f:\: X \to Y</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, we interpret <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:</mo><mspace width="mediummathspace"></mspace><mi>F</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(f):\: F(Y) \to F(X)</annotation></semantics></math> as the function mapping each occurrence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> to the corresponding suboccurrence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> (included in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math> through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math>) of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></p>
+</li>
+</ul>
+<p>Such functors are called presheaves.</p>
+<h2 id="definition">Definition</h2>
+<p>A <strong>presheaf</strong> on a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">
+ F:\: C^{op} \to Set
+
+</annotation></semantics></math></div>
+<p>from the <a class="existingWikiWord" href="../../../../../5/2/3/0/325/content.html">opposite category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">C^{op}</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> to the category <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> of <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a>s. Equivalently this may be thought of as a <a class="existingWikiWord" href="../../../../../8/1/0/1/1018/content.html">contravariant functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>C</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F:\: C \to Set</annotation></semantics></math>.</p>
+<p>More generally, given any category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, an <strong><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-valued presheaf</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>S</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  F:\: C^{op} \to S.
+
+</annotation></semantics></math></div>
+<p>While, hence, presheaves are just <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functors</a> (on <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small categories</a>), one says “presheaf” to indicate a specific perspective or interest, namely interest in the <em><a class="existingWikiWord" href="../../../../../4/9/0/1/1094/content.html">sheafification</a></em> of the functor/presheaf, or at least interest in the <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a> as a <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> (the <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">presheaf topos</a>). Hence “presheaf” is a <a class="existingWikiWord" href="../../../../../8/3/7/9/19738/content.html">concept with an attitude</a>.</p>
+<p>Historically, the initial applications of presheaves and sheaves involved cases like <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">S = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../5/3/4/1/1435/content.html">CRing</a> (the category of <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">commutative rings</a>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">S = </annotation></semantics></math><a class="existingWikiWord" href="../../../../../1/0/2/0/201/content.html">Ab</a> (<a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian groups</a>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">S = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/8/6/3/3689/content.html">RMod</a> (<a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>), etc. Later, especially with the development of <a class="existingWikiWord" href="../../../../../2/8/0/0/82/content.html">topos theory</a>, the primary importance of the <a class="existingWikiWord" href="../../../../../1/4/2/0/241/content.html">category of set-valued (pre)sheaves</a> as a <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> was recognized; these other cases could be considered algebraic objects which live in the topos. This article and the one on <a class="existingWikiWord" href="../../../../../1/4/2/0/241/content.html">sheaf topos</a> recognize these later developments by making the set-valued case the default (in other words, presheaf or sheaf without further qualification is understood to refer to the set-valued case).</p>
+<p>The <strong><a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">category of presheaves</a></strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, usually denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">Set^{C^{op}}</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C^{op},Set]</annotation></semantics></math>, but often abbreviated as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>C</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\widehat{C}</annotation></semantics></math>, has:</p>
+<ul>
+<li>
+<p>functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F:\: C^{op} \to Set</annotation></semantics></math> as objects;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformations</a> between such functors as morphisms.</p>
+</li>
+</ul>
+<p>As such, it is an example of a <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a>.</p>
+<h2 id="remarks">Remarks</h2>
+<ul>
+<li>
+<p>Speaking of functors as presheaves indicates operations that one wants to do apply to these functors, or certain properties that one wants to check.</p>
+<ul>
+<li>
+<p>when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">S = Set</annotation></semantics></math>, and especially one is interested in the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> of a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> into its presheaf category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C^{op}, Set]</annotation></semantics></math> for purposes of studying, for instance, <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a>s, <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a>s, <a class="existingWikiWord" href="../../../../../1/0/9/0/901/content.html">ind-object</a>s, and <a class="existingWikiWord" href="../../../../../0/0/9/0/900/content.html">pro-object</a>s of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>or when there is the structure of a <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, such that it makes sense to ask if a given presheaf is actually a <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>One generally useful way to think of presheaves is in the sense of <a class="existingWikiWord" href="../../../../../4/4/1/0/144/content.html">space and quantity</a>.</p>
+</li>
+<li>
+<p>In the case where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">S = Set</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small</a>, an important general principle is that the presheaf category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C^{op},Set]</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../3/1/7/0/713/content.html">free cocompletion</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>; see <a class="existingWikiWord" href="../../../../../5/4/0/1/1045/content.html">Yoneda extension</a>. Intuitively, it is formed by taking <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and ‘freely throwing in small colimits’. The category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is contained in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[C^{op},Set]</annotation></semantics></math> via the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>C</mi><mo>→</mo><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex"> Y:\: C \to [C^{op},Set]</annotation></semantics></math></div>
+<p>The Yoneda embedding sends each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> to the presheaf</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>=</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> F(-) = hom(-, c) </annotation></semantics></math></div>
+<p>Presheaves of this form, or isomorphic to those of this form, are called <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable</a>; among their properties, representable presheaves always turn colimits into limits, in the sense that a representable functor from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">C^{op}</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> turns colimits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> (i.e., limits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">C^{op}</annotation></semantics></math>) into limits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> (i.e., colimits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">Set^{op}</annotation></semantics></math>). In general, such continuity is a necessary but not sufficient criterion for representability; however, nicely enough, it <em>is</em> sufficient when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> itself is a presheaf category. To see this, suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> is such a presheaf on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mo stretchy="false">[</mo><msup><mi>D</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">C = [D^{op}, Set]</annotation></semantics></math>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mi>K</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">G = K Y</annotation></semantics></math>, a presheaf on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>. By the <a class="existingWikiWord" href="../../../../6/4/0/466/content.html">Yoneda lemma</a>, we have a natural isomorphism between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>D</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[D^{op}, Set](Y(-), G)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>Y</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K Y(-)</annotation></semantics></math>. But by the free cocompletion property of the Yoneda embedding, a colimit-preserving functor on presheaves is entirely determined by its precomposition with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>; accordingly, our isomorphism must extend to an identification of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[C^{op}, Set](-, G)</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K(-)</annotation></semantics></math>, thus establishing the representability of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math>.</p>
+</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="limits_and_colimits">Limits and colimits</h3>
+<p>Any <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">category of presheaves</a> is <a class="existingWikiWord" href="../../../../../9/8/5/0/589/content.html">complete</a> and <a class="existingWikiWord" href="../../../../../1/9/5/0/591/content.html">cocomplete</a>, with both <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limits</a> and <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a> being computed <em>pointwise</em>. That is, to compute the limit or colimit of a diagram <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>D</mi><mo>→</mo><msup><mi>Set</mi> <mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">F:\: D \to Set^{C^op}</annotation></semantics></math>, we think of it as a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>D</mi><mo>×</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F:\: D \times C^{op} \to Set</annotation></semantics></math> and take the limit or colimit in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> variable.</p>
+<h3 id="PresheavesAreColimitsOfRepresentables">Presheaves are colimits of representables</h3>
+<p>
+<div class="num_prop" id="EveryPresheafIsColimitOfRepresentables">
+<h6>Proposition</h6>
+<p>Every presheaf is a <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a> of <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable presheaves</a>.</p>
+</div>
+</p>
+<p>An elegant way to express this colimit for a presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">F:\: C^{op} \to Set</annotation></semantics></math> is in terms of the <a class="existingWikiWord" href="../../../../../3/4/2/0/243/content.html">coend</a> identity</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>=</mo><msup><mo>∫</mo> <mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow></msup><mi>F</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>×</mo><msub><mi>hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  F(-) = \int^{c \in C} F(c) \times hom_C(-,c)
+  \,,
+
+</annotation></semantics></math></div>
+<p>which follows by <a class="existingWikiWord" href="../../../../../0/0/5/0/500/content.html">Yoneda reduction</a>. See also at <em><a class="existingWikiWord" href="../../../../../8/2/2/1/1228/content.html">co-Yoneda lemma</a></em>.</p>
+<p>More concretely: let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>C</mi><mo>→</mo><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">Y:\: C \to [C^{op}, Set]</annotation></semantics></math> denote the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>F</mi></msub><mo>≔</mo><mi>Y</mi><mo stretchy="false">/</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">C_F \coloneqq Y/F</annotation></semantics></math> be the corresponding <a class="existingWikiWord" href="../../../../../5/4/7/0/745/content.html">comma category</a>, the <a class="existingWikiWord" href="../../../../../1/1/9/0/911/content.html">category of elements</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>F</mi></msub><mo>≔</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mtd> <mtd></mtd> <mtd><mover><mo>→</mo><mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd></mtd> <mtd><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo>′</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mi>f</mi></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><msub><mo>↙</mo> <mrow><mi>f</mi><mo>′</mo></mrow></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>F</mi></mtd></mtr></mtable></mrow><mo>}</mo></mrow></mrow><annotation encoding="application/x-tex">
+  C_F \coloneqq 
+  \left\lbrace
+     \array{
+        Y(V) &amp;&amp;\stackrel{Y(g)}{\to}&amp;&amp; Y(V')
+        \\
+        &amp; {}_f\searrow &amp;&amp; \swarrow_{f'}
+        \\
+        &amp;&amp; F
+     }
+  \right\rbrace 
+
+</annotation></semantics></math></div>
+<p>and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mspace width="mediummathspace"></mspace><msub><mi>C</mi> <mi>F</mi></msub><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">p:\: C_F \to C</annotation></semantics></math> the canonical forgetful functor. Then the colimit over representables expression <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>≃</mo><msub><mi>colim</mi> <mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">)</mo><mo>∈</mo><msub><mi>C</mi> <mi>F</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo>∘</mo><mi>p</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+   F \simeq colim_{(Y(V) \to F) \in C_F} (Y\circ p)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is often written with some convenient abuse of notation as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>≃</mo><msub><mi>colim</mi> <mrow><mi>V</mi><mo>→</mo><mi>F</mi></mrow></msub><mi>V</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  F \simeq colim_{V \to F} V
+  \,.
+
+</annotation></semantics></math></div>
+<p>Notice that these formulas can also be understood as those for the left <a class="existingWikiWord" href="../../../../6/2/0/266/content.html">Kan extension</a> (see there) of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> along the identity functor.</p>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>Notice that for every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>∈</mo><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">B \in [C^{op}, Set]</annotation></semantics></math> and using the property of the <a class="existingWikiWord" href="../../../../2/3/0/326/content.html">hom-functor</a> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><msub><mi>colim</mi> <mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">)</mo><mo>∈</mo><msub><mi>C</mi> <mi>F</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo>∘</mo><mi>p</mi><mo stretchy="false">)</mo><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>≃</mo><msub><mi>lim</mi> <mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">)</mo><mo>∈</mo><msub><mi>C</mi> <mi>F</mi></msub></mrow></msub><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mi>lim</mi> <mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">)</mo><mo>∈</mo><msub><mi>C</mi> <mi>F</mi></msub></mrow></msub><mi>B</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \begin{aligned}
+  Hom_{[C^{op}, Set]}(colim_{(Y(V) \to F) \in C_F} (Y\circ p),B)
+  &amp;\simeq
+  lim_{(Y(V) \to F) \in C_F} Hom_{[C^{op}, Set]}(Y(V),B)
+  \\
+  &amp; \simeq
+  lim_{(Y(V) \to F) \in C_F} B(V)
+ \end{aligned}
+
+</annotation></semantics></math></div>
+<p>by the <a class="existingWikiWord" href="../../../../6/4/0/466/content.html">Yoneda lemma</a>.</p>
+<p>By the definition of <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a> we have that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>=</mo><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msubsup><mi>C</mi> <mi>F</mi> <mi>op</mi></msubsup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>pt</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\cdots=Hom_{[C_F^{op}, Set]}(pt,B),</annotation></semantics></math></div>
+<p>so for each natural transformation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>∈</mo><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msubsup><mi>C</mi> <mi>F</mi> <mi>op</mi></msubsup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>pt</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\alpha \in Hom_{[C_F^{op}, Set]}(pt,B)</annotation></semantics></math> and each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo>∈</mo><msub><mi>C</mi> <mi>F</mi></msub></mrow><annotation encoding="application/x-tex">h:\: Y(V)\to F\in C_F</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi> <mi>h</mi></msub></mrow><annotation encoding="application/x-tex">\alpha_h</annotation></semantics></math> is a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo>*</mo><mo stretchy="false">}</mo><mo>→</mo><mi>B</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\{*\}\to B(V)</annotation></semantics></math>, that is, it is an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B(V)</annotation></semantics></math>. However, by Yoneda, we know that each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo>∈</mo><msub><mi>C</mi> <mi>F</mi></msub></mrow><annotation encoding="application/x-tex">h:\: Y(V)\to F\in C_F</annotation></semantics></math> specifies a unique element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>∈</mo><mi>F</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h\in F(V)</annotation></semantics></math>. Then rephrasing this, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> specifies a <a class="existingWikiWord" href="../../../../9/1/0/196/content.html">function</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(V)\to B(V)</annotation></semantics></math>. The naturality of this assignment is guaranteed by the naturality of the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> induces a natural transformation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi> <mi>α</mi></msup><mo>:</mo><mspace width="mediummathspace"></mspace><mi>F</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">k^\alpha:\: F\to B</annotation></semantics></math>. It’s easy to check that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> defines an isomorphism:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msubsup><mi>C</mi> <mi>F</mi> <mi>op</mi></msubsup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>pt</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>Hom</mi> <mrow><mo stretchy="false">[</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Hom_{[C_F^{op}, Set]}(pt,B) \simeq Hom_{[C^{op}, Set]}(F,B)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Since this holds for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, the claim follows, again using the <a class="existingWikiWord" href="../../../../6/4/0/466/content.html">Yoneda lemma</a>.</p>
+</div>
+<h2 id="special_cases">Special cases</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable presheaf</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/7/7/1/1772/content.html">concrete presheaf</a></p>
+</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p>Examples for presheaves are abundant. Here is a non-representative selection of some examples.</p>
+<ul>
+<li>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../7/5/1/0/157/content.html">locally small</a> category, every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> gives rise to the <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable presheaf</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">Hom_C(-, c):\: C^{op} \to Set</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>More generally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>C</mi><mo>↪</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">i:\: C \hookrightarrow D</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../2/1/0/126/content.html">subcategory</a> of a locally small category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">d \in D</annotation></semantics></math> gives rise to the presheaf</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>:</mo><mspace width="mediummathspace"></mspace><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Hom_D(i(-), d):\: C^{op} \to Set
+  \,.
+
+</annotation></semantics></math></div>
+<p>Let’s spell this out in more detail: given a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>V</mi><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">\phi:\: V \to U</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, we can take any morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mspace width="mediummathspace"></mspace><mi>i</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">f:\: i(U) \to X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom_{D}(U,X)</annotation></semantics></math> and turn it into a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mover><mo>→</mo><mi>ϕ</mi></mover><mi>U</mi><mover><mo>→</mo><mi>f</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">V \stackrel{\phi}{\to} U \stackrel{f}{\to} X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom_{D}(i(V),X)</annotation></semantics></math>. This determines a map of set</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><mo>:</mo><mspace width="mediummathspace"></mspace><msub><mi>Hom</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>Hom</mi> <mi>D</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f^*:\: Hom_{D}(i(U),X) \to Hom_{D}(i(V),X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>So we have a functorial assignment of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>W</mi></mtd> <mtd></mtd> <mtd><mo>↦</mo></mtd> <mtd></mtd> <mtd><msub><mi>Hom</mi> <mi>Diff</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↓</mo> <mi>g</mi></msup></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mrow><msup><mi>g</mi> <mo>*</mo></msup></mrow></msup></mtd></mtr> <mtr><mtd><mi>V</mi></mtd> <mtd></mtd> <mtd><mo>↦</mo></mtd> <mtd></mtd> <mtd><msub><mi>Hom</mi> <mi>Diff</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mo stretchy="false">↓</mo> <mi>f</mi></msup></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↑</mo> <mrow><msup><mi>f</mi> <mo>*</mo></msup></mrow></msup></mtd></mtr> <mtr><mtd><mi>U</mi></mtd> <mtd></mtd> <mtd><mo>↦</mo></mtd> <mtd></mtd> <mtd><msub><mi>Hom</mi> <mi>Diff</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+   \array{
+      W &amp;&amp; \mapsto &amp;&amp; Hom_{Diff}(i(W),X)
+    \\
+      \downarrow^g &amp;&amp;&amp;&amp; \uparrow^{g^*}
+      \\
+    V &amp;&amp; \mapsto &amp;&amp; Hom_{Diff}(i(V),X)
+    \\
+      \downarrow^f &amp;&amp;&amp;&amp; \uparrow^{f^*}
+      \\
+      U &amp;&amp; \mapsto &amp;&amp; Hom_{Diff}(i(U),X)
+   }
+   \,.
+
+</annotation></semantics></math></div>
+<p>Of course <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> here could be any functor whatsoever. Asking if such a presheaf is <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable</a> is asking for a right <a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjoint functor</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>A <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> is a presheaf on the <a class="existingWikiWord" href="../../../../8/3/0/386/content.html">simplex category</a></p>
+<p>A <a class="existingWikiWord" href="../../../../../1/9/0/0/91/content.html">globular set</a> is a presheaf on the <a class="existingWikiWord" href="../../../../../7/0/4/0/407/content.html">globe category</a>.</p>
+<p>A <a class="existingWikiWord" href="../../../../../9/6/2/0/269/content.html">cubical set</a> is a presheaf on the <a class="existingWikiWord" href="../../../../../5/0/4/0/405/content.html">cube category</a>.</p>
+</li>
+<li>
+<p>A <a class="existingWikiWord" href="../../../../../8/1/2/1/1218/content.html">diffeological space</a> is a <a class="existingWikiWord" href="../../../../../2/7/7/1/1772/content.html">concrete presheaf</a> on <a class="existingWikiWord" href="../../../../../3/1/2/0/213/content.html">CartSp</a>.</p>
+</li>
+<li>
+<p>An important class of presheaves is those on a <a class="existingWikiWord" href="../../../../../7/9/0/1/1097/content.html">category of open subsets</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> of a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> or <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Traditional standard examples include: the presheaf of <a class="existingWikiWord" href="../../../../../9/5/9/3/3959/content.html">smooth function</a>s on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, that assigns to each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U \subset X</annotation></semantics></math> the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mn>∞</mn></msup><mo stretchy="false">(</mo><mi>U</mi><mo>,</mo><mi>ℝ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C^\infty(U,\mathbb{R})</annotation></semantics></math> of smooth functions and to each inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊂</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">V \subset U</annotation></semantics></math> the corresponding restriction operation of functions. This is further a sheaf.</p>
+</li>
+<li>
+<p>Traditional standard example which is a presheaf but not a sheaf: the presheaf of exact forms on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, that assigns to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U \subset X</annotation></semantics></math> the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mi>exact</mi> <mo>•</mo></msubsup><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega^\bullet_{exact}(U)</annotation></semantics></math> of exact forms on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> and to each inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊂</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">V \subset U</annotation></semantics></math> the corresponding restriction operation of functions. Here, and like above, the site is made up by open sets in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> with inclusions as morphisms.</p>
+</li>
+</ul>
+<p>… etc. pp.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/4/5/2/22547/content.html">(0,1)-presheaf</a></p>
+</li>
+<li>
+<p><strong>presheaf</strong></p>
+<p><a class="existingWikiWord" href="../../../../../7/6/9/9/9967/content.html">constant presheaf</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../5/7/4/4756/content.html">(2,1)-presheaf</a></p>
+<p><a class="existingWikiWord" href="../../../../6/4/9/19466/content.html">presheaf of groupoids</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-presheaf</a></p>
+<p><a class="existingWikiWord" href="../../../../../8/7/6/0/678/content.html">simplicial presheaf</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">(∞,n)-presheaf</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../6/4/0/466/content.html">Yoneda lemma</a>, <a class="existingWikiWord" href="../../../../../5/4/0/1/1045/content.html">Yoneda extension</a></p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

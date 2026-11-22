@@ -1,0 +1,364 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      observational monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      observational monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#see_also">See also</a></li>
+<li><a href="#references">References:</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>An <em>observational monad</em> is a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> where, intuitively, one can distinguish two monadic (for example probabilistic) values by means of taking repeated independent observations.</p>
+<p>It is of particular importance in <a class="existingWikiWord" href="../../../../../2/6/5/6/26562/content.html">categorical probability</a>, where these observations correspond to <a class="existingWikiWord" href="../../../../6/9/6/26961/content.html">iid random variables</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../1/1/0/111/content.html">category</a> with <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">products</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> be a symmetric <a class="existingWikiWord" href="../../../../1/4/7/7411/content.html">monoidal monad</a> (or <a class="existingWikiWord" href="../../../../../0/5/0/1/21050/content.html">commutative monad</a>) on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<p>Denote also by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>T</mi></msub></mrow><annotation encoding="application/x-tex">C_T</annotation></semantics></math> its <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a>, which is then a <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html">copy-discard category</a>. As usual, we have an <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><mi>C</mi><mo>→</mo><msub><mi>C</mi> <mi>T</mi></msub><mo>,</mo><mi>R</mi><mo>:</mo><msub><mi>C</mi> <mi>T</mi></msub><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">L:C\to C_T, R:C_T\to C</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>R</mi><mo>∘</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">P=R\circ L</annotation></semantics></math>.</p>
+<p>Denote the <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>∘</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">L\circ R</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>T</mi></msub></mrow><annotation encoding="application/x-tex">C_T</annotation></semantics></math> again by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>. (Note that this equips <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>T</mi></msub></mrow><annotation encoding="application/x-tex">C_T</annotation></semantics></math> with a <a class="existingWikiWord" href="../../../../../0/4/6/8/18640/content.html">thunk-force structure</a>.) Finally, denote <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ε</mi> <mi>X</mi></msub><mo>:</mo><mi>P</mi><mi>X</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\varepsilon_X:P X\to X</annotation></semantics></math> the components of the <a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">counit</a> of the adjunction. (In <a class="existingWikiWord" href="../../../../../2/6/5/6/26562/content.html">categorical probability</a>, this is known as the <a class="existingWikiWord" href="../../../../../9/6/9/6/26969/content.html">sampling map</a>.)</p>
+<p>The monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is called <strong>observational</strong> if and only if for every object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, the family of morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>T</mi></msub></mrow><annotation encoding="application/x-tex">C_T</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.8em" minsize="1.8em">{</mo><mi>P</mi><mi>X</mi><mover><mo>→</mo><mrow><mspace width="1em"></mspace><mi mathvariant="normal">copy</mi><mspace width="1em"></mspace></mrow></mover><mo stretchy="false">(</mo><mi>P</mi><mi>X</mi><msup><mo stretchy="false">)</mo> <mrow><mo>⊗</mo><mi>n</mi></mrow></msup><mover><mo>→</mo><mrow><mspace width="1em"></mspace><msup><mi>ε</mi> <mrow><mo>⊗</mo><mi>n</mi></mrow></msup><mspace width="1em"></mspace></mrow></mover><msup><mi>X</mi> <mrow><mo>⊗</mo><mi>n</mi></mrow></msup><mspace width="thickmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mi>n</mi><mo>∈</mo><mi>ℕ</mi><mo maxsize="1.8em" minsize="1.8em">}</mo></mrow><annotation encoding="application/x-tex">
+\Big\{ P X \xrightarrow{\quad\mathrm{copy}\quad} (P X)^{\otimes n} \xrightarrow{\quad\varepsilon^{\otimes n}\quad} X^{\otimes n}\;,\; n \in \mathbb{N} \Big\}
+
+</annotation></semantics></math></div>
+<p>is <a class="existingWikiWord" href="../../../../../3/7/8/3/23873/content.html">jointly monic</a>.</p>
+<p>The intuition is that one can distinguish two morphisms (for example, states) into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> by sampling independently as many times as needed.</p>
+<p>A <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html#representable_markov_categories">representable Markov category</a> whose <a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">probability monad</a> is observational is called an <strong>observationally representable Markov category</strong>.</p>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a> is observational thanks to the <span class="newWikiWord">pi-lambda theorem<a href="/nlab/new/pi-lambda+theorem">?</a></span> or, equivalently, the <span class="newWikiWord">monotone class theorem<a href="/nlab/new/monotone+class+theorem">?</a></span>. (<a href="#det_submonad">Moss-Perrone’22</a>)</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a> of an observational monad, with its canonical <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html">copy-discard</a> and <a class="existingWikiWord" href="../../../../../0/4/6/8/18640/content.html">thunk-force</a> structures, is such that every <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html#deterministic_morphisms">deterministic morphism</a> is thunkable (the converse is always true). (<a href="#det_submonad">Moss-Perrone’22</a>)</p>
+</li>
+<li>
+<p>Every observationally representable Markov category is necessarily <em>almost-surely-compatibly representable</em>. That is, in the bijection</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mover><mo>→</mo><mspace width="2em"></mspace></mover><mi>Y</mi><mspace width="2em"></mspace><mo>↔</mo><mspace width="2em"></mspace><msup><mi>f</mi> <mo>♯</mo></msup><mo>:</mo><mi>X</mi><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>det</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace></mrow></mover><mi>P</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">
+f:X\xrightarrow{\qquad} Y \qquad\leftrightarrow\qquad f^\sharp:X \xrightarrow{\;(det)\;} P Y
+
+</annotation></semantics></math></div>
+<p>we have that for every state (probability measure) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, two morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>,</mo><mi>g</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f,g:X\to Y</annotation></semantics></math> are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>-<span class="newWikiWord">almost surely equal<a href="/nlab/new/almost+surely+equal">?</a></span> if and only if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>♯</mo></msup></mrow><annotation encoding="application/x-tex">f^\sharp</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>g</mi> <mo>♯</mo></msup></mrow><annotation encoding="application/x-tex">g^\sharp</annotation></semantics></math> are. (<a href="#supports">FGLPS</a>)</p>
+</li>
+<li>
+<p>Observationality is related to <a class="existingWikiWord" href="../../../../../0/9/5/6/26590/content.html">de Finetti's theorem</a>: stating the theorem as a <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a>, observationality is closely related to the uniqueness part in the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a>. It coincides exactly with this uniqueness whenever the necessary <a class="existingWikiWord" href="../../../../1/1/1/21111/content.html">Kolmogorov products</a> exist. (<a href="#det_submonad">Moss-Perrone’22</a>)</p>
+</li>
+</ul>
+<h2 id="see_also">See also</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../0/4/4021/content.html">probability theory</a>, <a class="existingWikiWord" href="../../../../../2/6/5/6/26562/content.html">categorical probability</a></li>
+<li><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a>, <a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">probability monad</a>, <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html">Markov category</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/9/8/1/1890/content.html">strong monad</a>, <a class="existingWikiWord" href="../../../../1/4/7/7411/content.html">monoidal monad</a>, <a class="existingWikiWord" href="../../../../../0/5/0/1/21050/content.html">commutative monad</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/9/5/6/26590/content.html">de Finetti's theorem</a>, <a class="existingWikiWord" href="../../../../6/9/6/26961/content.html">iid random variables</a></li>
+<li><span class="newWikiWord">pi-lambda theorem<a href="/nlab/new/pi-lambda+theorem">?</a></span>, <span class="newWikiWord">monotone class theorem<a href="/nlab/new/monotone+class+theorem">?</a></span></li>
+<li><a class="existingWikiWord" href="../../../../8/9/6/26981/content.html">sober measurable space</a>, <a class="existingWikiWord" href="../../../../../2/8/9/6/26982/content.html">zero-one measure</a></li>
+<li><a class="existingWikiWord" href="../../../../../5/7/5/6/26575/content.html">infinitary tensor product</a>, <a class="existingWikiWord" href="../../../../9/5/6/26591/content.html">Kolmogorov extension theorem</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/4/6/8/18640/content.html">thunk-force category</a>, <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad in computer science</a></li>
+</ul>
+<h2 id="references">References:</h2>
+<p>The concept, in the form presented here, was first introduced in:</p>
+<ul>
+<li id="det_submonad">Sean Moss, <a class="existingWikiWord" href="../../../../9/0/1/21091/content.html">Paolo Perrone</a>, <em>Probability monads with submonads of deterministic states</em>, LICS 2022. (<a href="https://arxiv.org/abs/2204.07003">arXiv:2204.07003</a>)</li>
+</ul>
+<p>It also appears in:</p>
+<ul>
+<li id="supports">
+<p><a class="existingWikiWord" href="../../../../../8/9/8/8/8898/content.html">Tobias Fritz</a>, Tomáš Gonda, Antonio Lorenzin, <a class="existingWikiWord" href="../../../../9/0/1/21091/content.html">Paolo Perrone</a> and Dario Stein, <em>Absolute continuity, supports and idempotent splitting in categorical probability</em>, 2023. (<a href="https://arxiv.org/abs/22308.00651">arXiv</a>)</p>
+</li>
+<li id="ergodic_dagger">
+<p>Noé Ensarguet, <a class="existingWikiWord" href="../../../../9/0/1/21091/content.html">Paolo Perrone</a>, Categorical probability spaces, ergodic decompositions, and transitions to equilibrium, <a href="https://arxiv.org/abs/2310.04267">arXiv:2310.04267</a></p>
+</li>
+<li id="quantum_definetti">
+<p><a class="existingWikiWord" href="../../../../../8/9/8/8/8898/content.html">Tobias Fritz</a> and Antonio Lorenzin, <em>Involutive Markov categories and the quantum de Finetti theorem</em>, 2023. (<a href="https://arxiv.org/abs/2312.09666">arXiv</a>)</p>
+</li>
+</ul>
+<p>Related papers:</p>
+<ul>
+<li id="fritz_representable">
+<p><a class="existingWikiWord" href="../../../../../8/9/8/8/8898/content.html">Tobias Fritz</a>, Tomáš Gonda, <a class="existingWikiWord" href="../../../../9/0/1/21091/content.html">Paolo Perrone</a>, Eigil Fjeldgren Rischel, <em>Representable Markov categories and comparison of statistical experiments in categorical probability</em>, Theoretical Computer Science 961, 2023. (<a href="https://arxiv.org/abs/2010.07416">arXiv:2010.07416</a>)</p>
+</li>
+<li id="fritz_definetti">
+<p><a class="existingWikiWord" href="../../../../../8/9/8/8/8898/content.html">Tobias Fritz</a>, Tomáš Gonda, <a class="existingWikiWord" href="../../../../9/0/1/21091/content.html">Paolo Perrone</a>, <em>De Finetti’s theorem in categorical probability</em>. Journal of Stochastic Analysis, 2021. (<a href="https://arxiv.org/abs/2105.02639">arXiv:2105.02639</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

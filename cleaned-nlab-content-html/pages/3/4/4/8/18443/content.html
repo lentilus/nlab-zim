@@ -1,0 +1,370 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Löb's theorem in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Löb's theorem
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#guarded_recursion_variant">Guarded Recursion Variant</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Löb’s theorem</em> in its original form is a generalization of the <a class="existingWikiWord" href="../../../../../7/1/2/0/10217/content.html">Gödel incompleteness theorem</a> whose formulation lends itself to the tools of <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a> and <a class="existingWikiWord" href="../../../../../9/9/9/4/4999/content.html">modal logic</a>.</p>
+<p>Löb’s theorem states that to prove that a <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a> is <a class="existingWikiWord" href="../../../../../6/4/9/6/6946/content.html">provable</a>, it is sufficient to prove the proposition under the assumption that it is provable. Since the <a class="existingWikiWord" href="../../../../../7/2/7/2/2727/content.html">Curry-Howard isomorphism</a> identifies <a class="existingWikiWord" href="../../../../../0/8/9/6/6980/content.html">formal proofs</a> with abstract <a class="existingWikiWord" href="../../../../../7/1/0/7/7017/content.html">syntax</a> trees of <a class="existingWikiWord" href="../../../../../4/5/3/8/8354/content.html">programs</a>; Löb’s theorem implies, for total <a class="existingWikiWord" href="../../../../../9/5/0/1/11059/content.html">languages</a> which validate it, that self-interpreters are impossible. (<a href="#GrossGallagherFallenstein16">Gross-Gallagher-Fallenstein 16</a>)</p>
+<p>In <a class="existingWikiWord" href="../../../../../6/4/9/6/6946/content.html">provability logic</a> the abstract statement is considered in itself as an <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axiom</a> on a <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operator</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo></mrow><annotation encoding="application/x-tex">\Box</annotation></semantics></math> interpreted as the <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modality</a> “is provable”. In this form the statement reads formally:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mo stretchy="false">(</mo><mo>□</mo><mi>P</mi><mo>→</mo><mi>P</mi><mo stretchy="false">)</mo><mo>→</mo><mo>□</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">
+  \Box(\Box P \to P) \to \Box P
+
+</annotation></semantics></math></div>
+<p>for any <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> (“Löb’s axiom”).</p>
+<p>This reduces to an <a class="existingWikiWord" href="../../../../../7/1/2/0/10217/content.html">incompleteness theorem</a> when taking <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">P = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/2/6/4/4622/content.html">false</a> and using that</p>
+<ol>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/6/8/0/869/content.html">negation</a> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>P</mi><mo>=</mo><mo stretchy="false">(</mo><mi>P</mi><mo>→</mo><mi>false</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\not P = (P \to false)</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/9/1/0/10199/content.html">consistency</a> means that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mi>P</mi><mo>→</mo><mo>¬</mo><mo>□</mo><mo>¬</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\Box P \to \not \Box \not P</annotation></semantics></math></p>
+</li>
+</ol>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd></mtd> <mtd><mo>□</mo><mo stretchy="false">(</mo><mo>□</mo><mi>false</mi><mo>→</mo><mi>false</mi><mo stretchy="false">)</mo><mo>→</mo><mo>□</mo><mi>false</mi></mtd></mtr> <mtr><mtd><mo>⇒</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mtd> <mtd><mo>□</mo><mo stretchy="false">(</mo><mo>¬</mo><mo>□</mo><mi>false</mi><mo stretchy="false">)</mo><mo>→</mo><mo>□</mo><mi>false</mi></mtd></mtr> <mtr><mtd><mo>⇒</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mtd> <mtd><mo>□</mo><mo stretchy="false">(</mo><mo>¬</mo><mo>□</mo><mi>false</mi><mo stretchy="false">)</mo><mo>→</mo><mo>¬</mo><mo>□</mo><mo>¬</mo><mi>false</mi></mtd></mtr> <mtr><mtd><mo>⇒</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mtd> <mtd><mo>□</mo><mo stretchy="false">(</mo><mo>¬</mo><mo>□</mo><mi>false</mi><mo stretchy="false">)</mo><mo>→</mo><mi>false</mi></mtd></mtr> <mtr><mtd><mo>⇒</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mtd> <mtd><mo>¬</mo><mo>□</mo><mo>¬</mo><mo>□</mo><mi>false</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    &amp; \Box (\Box false \to false) \to \Box false
+    \\
+    \Rightarrow \;\; &amp; \Box ( \not \Box false ) \to \Box false
+    \\
+    \Rightarrow \;\;
+    &amp; \Box ( \not \Box false ) \to \not \Box \not false
+    \\ 
+    \Rightarrow \;\;
+    &amp; \Box ( \not \Box false ) \to false
+    \\
+    \Rightarrow \;\;
+    &amp; \not \Box \not \Box false
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>Where the last line reads in words “It is not provable that false is not provable.”</p>
+<h2 id="guarded_recursion_variant">Guarded Recursion Variant</h2>
+<p>A variant of the Löb axiom is used in <a class="existingWikiWord" href="../../../../../4/7/4/9/19474/content.html">guarded recursion</a> and <a class="existingWikiWord" href="../../../../../4/7/3/4/24374/content.html">synthetic guarded domain theory</a>, which uses a modality <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▸</mo></mrow><annotation encoding="application/x-tex">\blacktriangleright</annotation></semantics></math>, usually pronounced “later”. Then the Löb induction axiom is for any proposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>▸</mo><mi>P</mi><mo>→</mo><mi>P</mi><mo stretchy="false">)</mo><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">(\blacktriangleright P \to P) \to P</annotation></semantics></math></div>
+<p>In a setting with the principle of <a class="existingWikiWord" href="../../../../../8/7/4/4/24478/content.html">unique choice</a>, this can be used to prove the existence of all guarded <a class="existingWikiWord" href="../../../../../0/8/4/8/8480/content.html">fixed points</a>.</p>
+<p>Note that the assumptions about the later modality <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▸</mo></mrow><annotation encoding="application/x-tex">\blacktriangleright</annotation></semantics></math> are usually quite different from the provability modality <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo></mrow><annotation encoding="application/x-tex">\Box</annotation></semantics></math>. For instance, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo></mrow><annotation encoding="application/x-tex">\Box</annotation></semantics></math> is usually assumed to have some subset of the properties of a <a class="existingWikiWord" href="../../../../../0/2/3/1/1320/content.html">comonadic</a> <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modality</a>, but <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>▸</mo></mrow><annotation encoding="application/x-tex">\blacktriangleright</annotation></semantics></math> typically satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><mo>▸</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">P \to \blacktriangleright P</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/0/8/8057/content.html">fixed-point combinator</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/6/2/1/11268/content.html">Lawvere's fixed point theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/4/9/19474/content.html">guarded recursion</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/3/4/24374/content.html">synthetic guarded domain theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/3/2/7/27239/content.html">introspective theory</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li id="GrossGallagherFallenstein16">
+<p><a class="existingWikiWord" href="../../../../../4/9/3/1/11394/content.html">Jason Gross</a>, Jack Gallagher, Benya Fallenstein, <em>Löb’s theorem – A functional pearl of dependently typed quining</em>, 2016 (<a href="https://jasongross.github.io/lob-paper/nightly/lob.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/9/5/15977/content.html">Neelakantan Krishnaswami</a>, <em><a href="http://semantic-domain.blogspot.de/2016/05/lobs-theorem-is-almost-y-combinator.html">Löb’s theorem is (almost) the Y-combinator</a></em>, 2016</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/9/3/1/11394/content.html">Jason Gross</a>, <a href="https://mathoverflow.net/a/273951/381">MO comment</a> on incompletenss theorems in type theory, 2017</p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/L%C3%B6b%27s_theorem">Löb’s theorem</a></em></li>
+</ul>
+<p>Unified account of <a class="existingWikiWord" href="content.html">Löb's theorem</a>/<a class="existingWikiWord" href="../../../../../7/1/2/0/10217/content.html">Gödel's second incompleteness theorem</a>, <a class="existingWikiWord" href="../../../../../9/3/0/5/5039/content.html">Kripke semantics</a> for <a class="existingWikiWord" href="../../../../../6/4/9/6/6946/content.html">provability logic</a>, and <a class="existingWikiWord" href="../../../../../4/7/4/9/19474/content.html">guarded recursion</a>, via <a class="existingWikiWord" href="../../../../6/6/0/663/content.html">essentially algebraic theories</a> which “self-internalize”:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/8/9/1/1987/content.html">Sridhar Ramesh</a>, <em>Introspective Theories and Geminal Categories</em>, PhD thesis, Berkeley (2023) [<a href="https://escholarship.org/uc/item/3mn0c475">escholarship:3mn0c475</a>, <a class="existingWikiWord" href="/nlab/files/Ramesh-IntrospectiveTheories.pdf" title="pdf">pdf</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

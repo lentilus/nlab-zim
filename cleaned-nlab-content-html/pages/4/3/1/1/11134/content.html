@@ -1,0 +1,482 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      state monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      state monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#Definition">Definition</a></li>
+<li><a href="#algebras">Algebras</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#realization_in_dependent_type_theory">Realization in dependent type theory</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The (global) <em>state monad</em> is the name for the <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad in computer science</a> which is used to implement the functionality of read/write on a global “mutable state” (a global variable) in the context of <a class="existingWikiWord" href="../../../../7/9/8/8974/content.html">functional programming languages</a>.</p>
+<p>A <a class="existingWikiWord" href="../../../../7/9/8/8974/content.html">functional program</a> with</p>
+<ol>
+<li>
+<p>input of (<a class="existingWikiWord" href="../../../../../5/6/1/6/16165/content.html">data-</a>)<a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>output of <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></p>
+</li>
+<li>
+<p>and “mutable state” of <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></p>
+<p>(e.g. the state of a “random access memory” device, cf. <a href="#Yates19">Yates (2019), p. 26 &amp; Fig. 1.10</a>)</p>
+</li>
+</ol>
+<p id="IsClearly"> is clearly a <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a> (<a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a>) of <a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a> between the <a class="existingWikiWord" href="../../../../8/9/6/6984/content.html">product types</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> (also known as a <em><a class="existingWikiWord" href="../../../../../1/9/5/0/20591/content.html">Mealy machine</a></em>, see <a href="../../../../../1/9/5/0/20591/content.html#MealyMachinesAsEffectfulMaps">there</a> and cf. <a href="#OliveiraMiraldo16">Oliveira &amp; Miraldo 2016, p. 462</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>prog</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mo>×</mo><mi>W</mi><mo>⟶</mo><mi>Y</mi><mo>×</mo><mi>W</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  prog 
+    \;\colon\;
+  X \times W 
+    \longrightarrow 
+  Y \times W
+  \,.
+
+</annotation></semantics></math></div>
+<p>Now, under the <a href="../../../../9/4/0/494/content.html#InTermsOfHomIsomorphism">hom-isomorphism</a> of the (<a class="existingWikiWord" href="../../../../7/8/0/874/content.html">Cartesian product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊣</mo></mrow><annotation encoding="application/x-tex">\dashv</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>)-<a class="existingWikiWord" href="../../../../9/4/0/494/content.html">adjunction</a>, this is equivalently given by its <a class="existingWikiWord" href="../../../../../9/1/5/0/519/content.html">adjunct</a>, which is a function into the <a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,-]</annotation></semantics></math> (<a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⟶</mo><mo stretchy="false">[</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  X \longrightarrow [W, W \times Y ]
+ \,.
+
+</annotation></semantics></math></div>
+<p>Here the operation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[W, W\times (-)]</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> on the type system which is induced by the above <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a>; and this latter function is naturally regarded as a morphism in the <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a> of this monad.</p>
+<p id="RAM"> In the context of <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a>, this is called the <em>state monad</em> for mutable states of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, such as for a data type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> of Random-Access-Memory:</p>
+<center>
+<img src="/nlab/files/State-Effectful-Program-230804.jpg" width="600"/>
+</center>
+<h2 id="Definition">Definition</h2>
+<p>Concretely, with the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> functor being</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mi>State</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>D</mi><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">[</mo><mi>W</mi><mo>,</mo><mspace width="thinmathspace"></mspace><mi>W</mi><mo>×</mo><mi>D</mi><mo maxsize="1.2em" minsize="1.2em">]</mo></mrow><annotation encoding="application/x-tex">
+  W State \;\colon\; D \,\mapsto\, \big[W,\, W \times D \big]
+
+</annotation></semantics></math></div>
+<p>the join operation of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-state monad is given by <a class="existingWikiWord" href="../../../../../7/8/8/5/5887/content.html">evaluation</a> on the intermediate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-variable, hence the bind operation is given as follows:</p>
+<div style="margin: -30px 0px 20px 10px">
+<img src="/nlab/files/StateMonadBinding-230828.jpg" width="750px"/>
+</div>
+<p>To see more in detail how this encodes access to a global variable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo lspace="verythinmathspace">:</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">w \colon W</annotation></semantics></math> in the sense of <a class="existingWikiWord" href="../../../../9/3/8/8394/content.html">programming languages</a> consider the following operations which isolate the processes of reading from and writing to that variable, respectively:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>read</mi></mtd> <mtd><mo lspace="verythinmathspace">:</mo></mtd> <mtd><mi>W</mi><mi>State</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>read</mi></mtd> <mtd><mo>≡</mo></mtd> <mtd><mi>w</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>w</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mrow><mtable><mtr><mtd><mi>write</mi></mtd> <mtd><mo lspace="verythinmathspace">:</mo></mtd> <mtd><mi>W</mi><mo>→</mo><mi>W</mi><mi>State</mi><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>write</mi></mtd> <mtd><mo>≡</mo></mtd> <mtd><mi>w</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>w</mi><mo>′</mo><mo>↦</mo><mi>w</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    read &amp;\colon&amp; W State(W)
+    \\
+    read &amp;\equiv&amp; w \mapsto (w,w)
+  }
+  \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+  \array{
+    write &amp;\colon&amp; W \to W State(\ast)
+    \\
+    write &amp;\equiv&amp; w \mapsto (w' \mapsto w)
+  }
+
+</annotation></semantics></math></div>
+<p>With these, for instance the procedure</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>inc</mi></mtd> <mtd><mo lspace="verythinmathspace">:</mo></mtd> <mtd><mi>ℕ</mi><mi>State</mi><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>inc</mi></mtd> <mtd><mo>≡</mo></mtd> <mtd><mi>n</mi><mo>↦</mo><mi>n</mi><mo>+</mo><mn>1</mn></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    inc &amp;\colon&amp; \mathbb{N}State(\ast)
+    \\
+    inc &amp;\equiv&amp; n \mapsto n+1 
+  }
+
+</annotation></semantics></math></div>
+<p>which first reads-in the state of a global natural number variable and then overwrites it by its increment may be constructed as shown (on the right in <a href="../../../../../0/8/3/8/8380/content.html#DoNotation">do-notation</a>) here:</p>
+<div style="margin: -30px 0px 20px 10px">
+<img src="/nlab/files/StatefulNumberIncrementInDONotation-230828.jpg" width="560px"/>
+</div>
+<p>(This is essentially the example from <a href="#BentonHughesMoggi02">Benton, Hughes &amp; Moggi 2002 p. 68 &amp; 71</a>)</p>
+<h2 id="algebras">Algebras</h2>
+<p>For a finite set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, the state monad on <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> is the monad of free algebras for the following <a class="existingWikiWord" href="../../../../../6/3/5/0/536/content.html">algebraic theory</a> (If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is not finite, then this may be considered as an infinitary algebraic theory):</p>
+<ol>
+<li>For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>∈</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">w\in W</annotation></semantics></math> a unary operation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">write[w]</annotation></semantics></math></li>
+<li>An operation of arity <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> called <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>read</mi></mrow><annotation encoding="application/x-tex">read</annotation></semantics></math></li>
+</ol>
+<p>Satisfying the following equations:</p>
+<ol>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo>′</mo><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo>′</mo><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">write[w](write[w'](x)) = write[w'](x)</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>read</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>w</mi><mo>.</mo><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">read(\lambda w. write[w](x)) = x</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>read</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">write[w](read(f)) = write[w](f(w))</annotation></semantics></math></li>
+</ol>
+<p>Which intuitively encode properties of (single-threaded) stateful computation. (1) says that a second write overwrites the first. (2) says that reading the current state and then writing it back does nothing. (3) says that reads actually read the value that has most recently been written.</p>
+<p>An algebra of this theory can be called a (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-)state algebra. Stateful functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mi>W</mi><mo>×</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">W \to W \times X</annotation></semantics></math> carry a state-algebra structure with</p>
+<ol>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>write</mi><mo stretchy="false">[</mo><mi>w</mi><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>w</mi><mo>′</mo><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">write[w](p)(w') = p(w)</annotation></semantics></math></li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>read</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">read(p)(w) = p(w)(w)</annotation></semantics></math></li>
+</ol>
+<p>And this is the free state algebra on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. More generally, algebras of the state monad are equivalent to state algebras, as are homomorphisms.</p>
+<p>The algebraic theory of state for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> can be proven to be an extension of the algebraic theory of the <a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a> with parameter <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, corresponding to a <a class="existingWikiWord" href="../../../../../9/3/1/6/26139/content.html">monad morphism</a> from the reader monad to the state monad, i.e., the inclusion of read-only state into read/write state.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="realization_in_dependent_type_theory">Realization in dependent type theory</h3>
+<p>In a <a class="existingWikiWord" href="../../../../../6/7/3/0/376/content.html">locally Cartesian closed category</a>/<a class="existingWikiWord" href="../../../../../9/7/9/6/6979/content.html">dependent type theory</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math>, then to every type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is associated its <a class="existingWikiWord" href="../../../../../1/9/0/1/1091/content.html">base change</a> <a class="existingWikiWord" href="../../../../../5/4/8/5/5845/content.html">adjoint triple</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>H</mi></mstyle> <mrow><mo stretchy="false">/</mo><mi>W</mi></mrow></msub><mover><mover><munder><mo>⟶</mo><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mi>W</mi></munder></mrow></munder><mover><mo>⟵</mo><mrow><msup><mi>W</mi> <mo>*</mo></msup></mrow></mover></mover><mover><mo>⟶</mo><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>W</mi></munder></mrow></mover></mover><mstyle mathvariant="bold"><mi>H</mi></mstyle><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{H}_{/W}
+   \stackrel{\overset{\sum_W}{\longrightarrow}}{\stackrel{\overset{W^\ast}{\longleftarrow}}{\underset{\prod_W}{\longrightarrow}}}
+  \mathbf{H}
+  \,.
+
+</annotation></semantics></math></div>
+<p>In terms of this the state monad is the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>State</mi><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mi>W</mi></munder><msup><mi>W</mi> <mo>*</mo></msup><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>W</mi></munder><msup><mi>W</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  State = \prod_W W^\ast \sum_W W^\ast
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../../0/5/5/8/8550/content.html">context extension</a> followed by <a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a>, followed by <a class="existingWikiWord" href="../../../../../0/5/5/8/8550/content.html">context extension</a>, followed by <a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a>.</p>
+<p>Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mi>W</mi></msub><msup><mi>W</mi> <mo>*</mo></msup><mo>=</mo><mo stretchy="false">[</mo><mi>W</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\prod_W W^\ast = [W,-]</annotation></semantics></math> is called the <em><a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">function monad</a></em> or <em><a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">reader monad</a></em> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>W</mi></msub><msup><mi>W</mi> <mo>*</mo></msup><mo>=</mo><mi>W</mi><mo>×</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sum_W W^\ast = W \times (-)</annotation></semantics></math> is the <em><a class="existingWikiWord" href="../../../../../0/1/5/6/16510/content.html">coreader comonad</a></em>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/9/5/0/20591/content.html">Mealy machine</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/1/1/11136/content.html">maybe monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/3/1/1/11135/content.html">continuation monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/5/6/16506/content.html">function monad</a> (reader monad)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/5/6/16510/content.html">coreader comonad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/8/4/24815/content.html">QRAM</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">store comonad</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Original discussion of the state/side-effect monad as a <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad in computer science</a>:</p>
+<ul>
+<li id="Moggi91">
+<p><a class="existingWikiWord" href="../../../../../1/9/9/6/6991/content.html">Eugenio Moggi</a>, Exp. 1.1 in: <em>Notions of computation and monads</em>, Information and Computation, <strong>93</strong> 1 (1991) [<a href="https://doi.org/10.1016/0890-5401(91)90052-4">doi:10.1016/0890-5401(91)90052-4</a>, <a href="http://www.disi.unige.it/person/MoggiE/ftp/ic91.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/0/0/1/11001/content.html">Philip Wadler</a>, Section 2.3 in: <em>Monads for functional programming</em>, in M. Broy (eds.) <em>Program Design Calculi</em> NATO ASI Series, <strong>118</strong> Springer (1992) [<a href="https://doi.org/10.1007/978-3-662-02880-3_8">doi;10.1007/978-3-662-02880-3_8</a>, <a href="https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf">pdf</a>]</p>
+</li>
+<li id="BentonHughesMoggi02">
+<p><a class="existingWikiWord" href="../../../../../8/7/9/5/15978/content.html">Nick Benton</a>, <a class="existingWikiWord" href="../../../../../1/8/0/6/26081/content.html">John Hughes</a>, <a class="existingWikiWord" href="../../../../../1/9/9/6/6991/content.html">Eugenio Moggi</a>, Ex. 42 in: <em>Monads and Effects</em>, in: <em>Applied Semantics</em>, Lecture Notes in Computer Science <strong>2395</strong>, Springer (2002) 42-122 [<a href="https://doi.org/10.1007/3-540-45699-6_2">doi:10.1007/3-540-45699-6_2</a>]</p>
+</li>
+</ul>
+<p>A discussion of the algebraic theory of state: *  <a class="existingWikiWord" href="../../../../../2/9/3/8/8392/content.html">Gordon Plotkin</a>, <a class="existingWikiWord" href="../../../../../9/1/9/4/4919/content.html">John Power</a>, Section 3 of: <em>Notions of computation determine monads</em> In: M. Nielsen, U. Engberg, (eds.) FOSSACS 2002. LNCS, Lecture Notes in Computer Science <strong>2303</strong>, Springer (2002) 342-356 [<a href="https://doi.org/10.1007/3-540-45931-6_24">doi:10.1007/3-540-45931-6_24p</a>]</p>
+<p>Exposition:</p>
+<ul>
+<li id="Milewski19"><a class="existingWikiWord" href="../../../../5/3/6/16354/content.html">Bartosz Milewski</a>, §21.2.5 in: <em>Category Theory for Programmers</em>, Blurb (2019) [<a href="https://github.com/hmemcpy/milewski-ctfp-pdf/releases/download/v1.3.0/category-theory-for-programmers.pdf">pdf</a>, <a href="https://github.com/hmemcpy/milewski-ctfp-pdf">github</a>, <a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/">webpage</a>, <a href="https://www.blurb.com/b/9621951-category-theory-for-programmers-new-edition-hardco">ISBN:9780464243878</a>]</li>
+</ul>
+<p>On the <a class="existingWikiWord" href="../../../../../2/3/2/3/3232/content.html">modules</a> (“algebras”) of the state monad:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/3/1/5/5133/content.html">François Métayer</a>, <em>State monads and their algebras</em> [<a href="https://arxiv.org/abs/math/0407251">arXiv:math/0407251</a>]</li>
+</ul>
+<p>Concrete applications via implementation in <a class="existingWikiWord" href="../../../../../9/7/8/7/7879/content.html">Haskell</a>:</p>
+<ul>
+<li id="Yates19">Ryan Yates, <em>Improving Haskell Transactional Memory</em> (2019) [<a href="https://hdl.handle.net/1802/35367">hdl:1802/35367</a>, <a href="file:///C:/Users/us13/Downloads/Yates_rochester_0188E_11946.pdf">pdf</a>]</li>
+</ul>
+<p>Lecture notes:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/3/8/2/22832/content.html">Tarmo Uustalu</a>, p.24 of: <em>Monads and Interaction Lecture 1</em> [<a href="https://cs.ioc.ee/~tarmo/mgs21/mgs1.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Uustalu-Monads1.pdf" title="pdf">pdf</a>], lecture notes for <a href="https://staffwww.dcs.shef.ac.uk/people/G.Struth/mgs21.html">MGS 2021</a> (2021):</li>
+</ul>
+<p>In the generality of the <em>local</em> state monad:</p>
+<ul>
+<li>
+<p><a href="#PlotkinPower02">Plotkin &amp; Power (2002), Sec. 4</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/3/1/5/5130/content.html">Paul-André Melliès</a>, <em>Local States in String Diagrams</em>, In: G. Dowek (eds.) <em>Rewriting and Typed Lambda Calculi</em> RTA TLCA 2014, Lecture Notes in Computer Science <strong>8560</strong>, Springer (2014) [<a href="https://doi.org/10.1007/978-3-319-08918-8_23">doi:10.1007/978-3-319-08918-8_23</a>]</p>
+</li>
+</ul>
+<p>Explicit understanding of <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli morphisms</a> for the state moand as <a class="existingWikiWord" href="../../../../../1/9/5/0/20591/content.html">Mealy machines</a>:</p>
+<ul>
+<li id="OliveiraMiraldo16">José Nuno Oliveira, Victor Cacciari Miraldo, p. 462 in: <em>A practical approach to state-based system calculi</em>, Journal of Logical and Algebraic Methods in Programming <strong>85</strong> 4 (2016) 449-474 [<a href="https://doi.org/10.1016/j.jlamp.2015.11.007">doi:10.1016/j.jlamp.2015.11.007</a>]</li>
+</ul>
+<p>and (almost):</p>
+<ul>
+<li id="PeroneKarachalias23">Marco Perone, Georgios Karachalias, <em>Composable Representable Executable Machines</em> [<a href="https://arxiv.org/abs/2307.09090">arXiv:2307.09090</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

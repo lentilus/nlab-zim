@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      persistent homology in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      persistent homology
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#Properties">Properties</a></li>
+<li><a href="#software">Software</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#CohomotopyInTopologicalDataAnalysisReferences">Cohomotopy in topological data analysis</a></li>
+<li><a href="#further_variants">Further variants</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p><em>Persistent homology</em> is the study of <a class="existingWikiWord" href="../../../../../3/1/9/0/913/content.html">sequences</a> of <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear maps</a> between <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mover><mo>→</mo><mspace width="thickmathspace"></mspace></mover><msub><mi>V</mi> <mi>i</mi></msub><mover><mo>→</mo><mrow><msub><mi>ϕ</mi> <mi>i</mi></msub></mrow></mover><msub><mi>V</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mover><mo>→</mo><mrow><msub><mi>ϕ</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></mover><msub><mi>V</mi> <mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><mover><mo>→</mo><mrow><msub><mi>ϕ</mi> <mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub></mrow></mover><mi>⋯</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \cdots 
+   \xrightarrow{\;}
+  V_i 
+    \xrightarrow{\phi_i} 
+  V_{i + 1}
+    \xrightarrow{\phi_{i + 1}}
+  V_{i + 2}
+    \xrightarrow{\phi_{i + 2}}
+  \cdots
+  \,,
+
+</annotation></semantics></math></div>
+<p>under the aspect of which elements (<a class="existingWikiWord" href="../../../../../8/8/0/6/6088/content.html">vectors</a>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mi>i</mi></msub><mo>∈</mo><msub><mi>V</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">v_i \in V_i</annotation></semantics></math> “persist” (ie. remain non-<a class="existingWikiWord" href="../../../../../7/4/3/4/4347/content.html">zero</a>) under which number of iterations of these linear maps. One then refers to these sequences as <em><a class="existingWikiWord" href="content.html">persistence modules</a></em> (hence a <a class="existingWikiWord" href="../../../../../8/3/7/9/19738/content.html">concept with an attitude</a>).</p>
+<p>In the archetypical applications of interest, these vector spaces are <a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary</a> <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology groups</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>i</mi></msub><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V_i \,=\, H_n(X_i)</annotation></semantics></math> (over a given <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a>) of <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">X_i</annotation></semantics></math> which themselves are stages</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>↪</mo><msub><mi>X</mi> <mi>i</mi></msub><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mi>i</mi></msub></mrow></mover><msub><mi>X</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></mover><msub><mi>X</mi> <mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><mover><mo>↪</mo><mrow></mrow></mover><mi>⋯</mi><mover><mo>↪</mo><mi>x</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex"> 
+  \cdots \hookrightarrow X_i \xhookrightarrow{\iota_i} X_{i+ 1} \xhookrightarrow{\iota_{i + 1}} X_{i + 2} \xhookrightarrow{} \cdots \xhookrightarrow{x} X
+
+</annotation></semantics></math></div>
+<p>of a <a class="existingWikiWord" href="../../../../../2/6/7/0/762/content.html">filtered topological space</a>, and one is interested in deducing “relevant” properties of this filtration by finding those <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology</a> <a class="existingWikiWord" href="../../../../../8/9/0/6/6098/content.html">cycles</a> which stand out as persisting over a large range of steps.</p>
+<p>This question, in turn, has been motivated from problems in <a class="existingWikiWord" href="../../../../../4/5/2/9/9254/content.html">topological data analysis</a>, where sequences of spaces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">X_i</annotation></semantics></math> arise as coarse-grained versions, at varying stages of resolution <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> (say as measured in some ambient <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric space</a>) of a given <a class="existingWikiWord" href="../../../../../1/9/5/1/1591/content.html">discrete set</a> of data points. In this example, the more the homology cycles <em>persist</em> as the resolution <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> is varied, the more one is willing to assume that they signal relevant structure that is hidden in the data, while cycles that do not persist for long would be interpreted as irrelevant noise effects.</p>
+<p>Of course, these simple basic ideas may be (and still are being) refined and generalized in a number of ways.</p>
+<p>A particularly important generalization turns out to be that from <a class="existingWikiWord" href="../../../../../7/6/4/6/26467/content.html">directed 1-dimensional</a> sequences of linear maps to arbitrary <a class="existingWikiWord" href="../../../../../9/0/0/4/4009/content.html">zigzags</a> of these, then called <em><a class="existingWikiWord" href="../../../../../2/6/9/3/23962/content.html">zigzag persistence modules</a></em>. Again, this is naturally motivated in the case of homology groups of a <a class="existingWikiWord" href="../../../../../2/6/7/0/762/content.html">filtered topological space</a>, where one may form the sequence of <a class="existingWikiWord" href="../../../../../4/2/3/0/324/content.html">cospans</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>←</mo><msub><mi>X</mi> <mi>i</mi></msub><mo>→</mo><msub><mi>X</mi> <mi>i</mi></msub><mo>∪</mo><msub><mi>X</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>←</mo><msub><mi>X</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>→</mo><msub><mi>X</mi> <mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>∪</mo><msub><mi>X</mi> <mrow><mi>i</mi><mo>+</mo><mn>2</mn></mrow></msub><mo>←</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">
+  \cdots \leftarrow X_i \to X_i \cup X_{i + 1} \leftarrow X_{i + 1} \to X_{i + 1} \cup X_{i + 2} \leftarrow \cdots
+
+</annotation></semantics></math></div>
+<p>of inclusions into <a class="existingWikiWord" href="../../../../../4/9/5/0/594/content.html">unions</a> of consecutive filter stages.</p>
+<p>Seen in this generality, the notion of finite-length <a class="existingWikiWord" href="../../../../../2/6/9/3/23962/content.html">zigzag persistence modules</a> happens to coincide with that of <a class="existingWikiWord" href="../../../../7/2/5/15270/content.html">A-type</a> <a class="existingWikiWord" href="../../../../../5/5/9/3/23955/content.html">quiver representations</a>, a fruitful coincidence that serves to bring well-developed tools of <a class="existingWikiWord" href="../../../../../9/8/1/0/189/content.html">quiver</a>-<a class="existingWikiWord" href="../../../../../9/3/2/1/1239/content.html">representation theory</a> to bear on persistent homology theory.</p>
+<p>In particular, the founding result of <a class="existingWikiWord" href="../../../../../5/5/9/3/23955/content.html">quiver representation theory</a> – namely <a class="existingWikiWord" href="../../../../../3/6/6/9/9663/content.html">Gabriel's theorem</a> – serves, in hindsight, to establish the formal notion of persistence itself: The theorem implies (see <a href="../../../../../3/6/6/9/9663/content.html#ATypeQuivers">there</a>) that every (<a class="existingWikiWord" href="../../../../../2/6/9/3/23962/content.html">zigzag</a>) <a class="existingWikiWord" href="content.html">persistence module</a> is the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> of <em>interval modules</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi> <mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">I_{a,b}</annotation></semantics></math>, namely those which are <a class="existingWikiWord" href="../../../../../7/4/3/4/4347/content.html">zero</a> except over the <a class="existingWikiWord" href="../../../../../3/2/0/2/2023/content.html">interval</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">i \in [a,b]</annotation></semantics></math>, where they are given by the <a class="existingWikiWord" href="../../../../../7/1/4/8/18417/content.html">identity</a> on the <a class="existingWikiWord" href="../../../../../3/5/1/2/2153/content.html">ground field</a> (the latter regarded as the <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">1-dimensional</a> <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> over itself).</p>
+<p>Hence the canonical <a class="existingWikiWord" href="../../../../../1/8/2/7/7281/content.html">linear basis</a>-elements of these interval modules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi> <mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow></msub></mrow><annotation encoding="application/x-tex">I_{a,b}</annotation></semantics></math> are exactly the persistent cycles which <em>persist from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></em>, so that <a class="existingWikiWord" href="../../../../../3/6/6/9/9663/content.html">Gabriel's theorem</a> guarantees that any (zigzag) persistence module may be completely decomposed into (the <a class="existingWikiWord" href="../../../../../7/2/1/8/8127/content.html">linear span</a> of) these elements. Numerous generalizations of this theorem exist (taking it out of the context of <a class="existingWikiWord" href="../../../../../9/8/1/0/189/content.html">quiver</a>-theory) and show that this state of affairs remains true notably when one allows the indices <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> to be taken from sets with <a class="existingWikiWord" href="../../../../6/6/1/1660/content.html">infinite</a> <a class="existingWikiWord" href="../../../../../5/8/1/1/1185/content.html">cardinality</a>.</p>
+<p>In other words, the <a class="existingWikiWord" href="../../../../../2/7/9/3/23972/content.html">isomorphism class</a> of any (zigzag) persistence module is equivalently encoded in a <a class="existingWikiWord" href="../../../../../4/3/5/2/2534/content.html">multiset</a> of intervals. These multisets are known as <em><a class="existingWikiWord" href="../../../../../8/6/9/3/23968/content.html">barcodes</a></em> (due to the evident graphical representation of a multiset of intervals) or as <em><a class="existingWikiWord" href="../../../../../8/6/9/3/23968/content.html">persistence diagrams</a></em> (the latter usually when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[a,b]</annotation></semantics></math> is regarded as a point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∈</mo><msup><mi>ℝ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">(a,b) \in \mathbb{R}^2</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../7/0/5/5070/content.html">plane</a>). These <a class="existingWikiWord" href="../../../../../8/6/9/3/23968/content.html">persistence diagrams</a> are meant to be the <a class="existingWikiWord" href="../../../../../6/9/4/8/8496/content.html">invariants</a> of interest in persistent homology theory.</p>
+<p>Besides the foundational theorem that guarantees the existence of persistence diagrams, the fundamental theorem of persistent homology has come to be the <em><a class="existingWikiWord" href="../../../../../6/6/9/3/23966/content.html">stability theorem</a></em>: This says that <a class="existingWikiWord" href="../../../../../8/6/9/3/23968/content.html">persistence diagrams</a> are indeed <em>useful invariants</em>, namely in that they remain “stable” under small variations (think: noise, measurement errors) of input data such as the above topological filter stages <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">X_i</annotation></semantics></math>.</p>
+<p>For example, as one changes a little the <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric</a> with which to produce the topological space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">X_i</annotation></semantics></math> of coarse grained data at resolution stage <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>, the homology groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><msub><mi>X</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(X_i)</annotation></semantics></math> may change dramatically, but the <a class="existingWikiWord" href="../../../../../6/6/9/3/23966/content.html">stability theorem</a> ensures that effect on the <a class="existingWikiWord" href="../../../../../8/6/9/3/23968/content.html">persistence diagram</a> remains small.</p>
+<p>It is in this way that persistent homology may be used, in particular, to produce robust invariants of noisy data, which has made it the archetypical tool in <a class="existingWikiWord" href="../../../../../4/5/2/9/9254/content.html">topological data analysis</a>.</p>
+<p><br/></p>
+<h2 id="Properties">Properties</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/6/9/3/23966/content.html">stability of persistence diagrams</a></p>
+<p>(<a href="#CohenSteinerEdelsbrunnerHarer07">Cohen-Steiner, Edelsbrunner &amp; Harer 2007</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/7/9/3/23971/content.html">diamond principle</a></p>
+<p>(Carlsson et al.)</p>
+</li>
+</ul>
+<h2 id="software">Software</h2>
+<p>One can compute intervals for homological features algorithmically over field coefficients and software packages are available for this purpose. See for instance <a href="http://www.sas.upenn.edu/~vnanda/perseus">Perseus</a>. The principal algorithm is based on bringing the filtered complex to its <strong>canonical form</strong> by upper-triangular matrices from (<a href="https://www.researchgate.net/profile/Serguei_Barannikov/publication/267672645_The_Framed_Morse_complex_and_its_invariants/links/5970e947458515fa8de6e724/The-Framed-Morse-complex-and-its-invariants.pdf">Barannikov1994, §2.1</a>)</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="content.html">persistence module</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/6/9/3/23968/content.html">persistence diagram</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/1/1/21107/content.html">well group</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/2/9/9254/content.html">topological data analysis</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/9/3/23990/content.html">persistent homotopy theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/5/2/9/9256/content.html">computational topology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/5/9/3/23955/content.html">quiver representation</a>, <a class="existingWikiWord" href="../../../../../3/6/6/9/9663/content.html">Gabriel's theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/8/3/4/24382/content.html">persistence object</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<p>Introduction and survey:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/3/8/8312/content.html">Robert Ghrist</a>, <em>Barcodes: The Persistent Topology of Data</em>, Bull. Amer. Math. Soc. 45 (2008), 61-75 (<a href="https://doi.org/10.1090/S0273-0979-07-01191-3">doi:10.1090/S0273-0979-07-01191-3</a>, <a href="https://www.math.upenn.edu/~ghrist/preprints/barcodes.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/5/2/22507/content.html">Herbert Edelsbrunner</a>, <a class="existingWikiWord" href="../../../../../8/0/5/2/22508/content.html">John Harer</a>, <em>Persistent homology – a survey</em>, in: <em>Surveys on Discrete and Computational Geometry: Twenty Years Later</em>, Contemporary Mathematics <em>453</em> (2008) [<a href="http://dx.doi.org/10.1090/conm/453">doi:10.1090/conm/453</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <em>Topology and data</em>, Bull. Amer. Math. Soc. 46 (2009), no. 2, 255-308 [<a href="https://doi.org/10.1090/S0273-0979-09-01249-X">doi:10.1090/S0273-0979-09-01249-X</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/5/2/22507/content.html">Herbert Edelsbrunner</a>, <a class="existingWikiWord" href="../../../../../5/6/9/3/23965/content.html">Dmitriy Morozov</a>, <em>Persistent homology: theory and practice</em>, in: <em>European Congress of Mathematics Kraków, 2–7 July, 2012</em> EMS <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://www.ems-ph.org/books/show_abstract.php?proj_nr=170&amp;vol=1&amp;rank=3">doi:10.4171/120-1/3</a>, <a href="http://mrzv.org/publications/persistent-homology-theory-practice/ecm">pdf</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/8/3/4/24383/content.html">Donald Pinckney</a>, <em><a href="https://donaldpinckney.com/machine%20learning/2019/05/02/tda.html">Topological Data Analysis and Persistent Homology</a></em> (2019)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/7/2/4/24275/content.html">Stefan Huber</a>, <em>Persistent Homology in Data Science</em> In: <em>Data Science – Analytics and Applications</em>, Springer (2021) [<a href="https://doi.org/10.1007/978-3-658-32182-6_13">doi:10.1007/978-3-658-32182-6_13</a>, <a href="https://www.sthu.org/research/publications/files/Hub20.pdf">pdf</a>]</p>
+</li>
+<li>
+<p>Patrizio Frosini, Ulderico Fugacci, Nicola Quercioli, Francesca Tombari: <em>Persistent Homology and Equivariance in Data Analysis: A Topological Introduction</em> [<a href="https://arxiv.org/abs/2606.21084">arXiv:2606.21084</a>]</p>
+</li>
+</ul>
+<p>Review with emphasis of <a class="existingWikiWord" href="../../../../../2/6/9/3/23962/content.html">zigzag persistence</a> with relation to <a class="existingWikiWord" href="../../../../../5/5/9/3/23955/content.html">quiver representation theory</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/5/9/3/23956/content.html">Steve Y. Oudot</a>, <em>Persistence Theory: From Quiver Representations to Data Analysis</em>, Mathematical Surveys and Monographs <strong>209</strong> AMS (2015) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://geometrica.saclay.inria.fr/team/Steve.Oudot/books/o-pt-fqrtda-15/surv-209.pdf">pdf</a>, <a href="https://bookstore.ams.org/surv-209/">ISBN:978-1-4704-3443-4</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <em>Persistent Homology and Applied Homotopy Theory</em>, in: <a class="existingWikiWord" href="../../../../../3/8/9/9/19983/content.html">Handbook of Homotopy Theory</a>, CRC Press (2019) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://arxiv.org/abs/2004.00738">arXiv:2004.00738</a>, <a href="https://doi.org/10.1201/9781351251624">doi:10.1201/9781351251624</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/4/0/438/content.html">Tim Porter</a>, <em>Observing Information: Applied Computational Topology</em> 2008 (<a class="existingWikiWord" href="/nlab/files/ACT-OIT.pdf" title="">Slides</a>)</p>
+</li>
+<li>
+<p>Bei Wang, <em>Topological Data Analysis</em>, Lecture 2010 (<a class="existingWikiWord" href="/nlab/files/WangTopologicalDataAnalysis.pdf" title="pdf">pdf</a>)</p>
+</li>
+<li>
+<p>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Persistent_homology">Persistent homology</a></em></p>
+</li>
+</ul>
+<p>The concept of persistent homology originates around:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/0/5/2/22507/content.html">Herbert Edelsbrunner</a>, D. Letscher, A. Zomorodian: <em>Topological persistence and simplification</em>, Discrete &amp; Computational Geometry <strong>28</strong> (2002) 511–533 [<a href="https://doi.org/10.1007/s00454-002-2885-2">doi:10.1007/s00454-002-2885-2</a>]</li>
+</ul>
+<p>The generalization to “<a class="existingWikiWord" href="../../../../../2/6/9/3/23962/content.html">zigzag persistence</a>” with relation to <a class="existingWikiWord" href="../../../../7/2/5/15270/content.html">A-type</a> <a class="existingWikiWord" href="../../../../../5/5/9/3/23955/content.html">quiver representation</a>-theory is due to:</p>
+<ul>
+<li id="CarlssonDeSilva10"><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <a class="existingWikiWord" href="../../../../6/9/3/23960/content.html">Vin de Silva</a>, <em>Zigzag Persistence</em>, Found Comput Math <strong>10</strong> (2010) 367–405 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://arxiv.org/abs/0812.0197">arXiv:0812.0197</a>, <a href="https://doi.org/10.1007/s10208-010-9066-0">doi:10.1007/s10208-010-9066-0</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<p>and specifically for <a class="existingWikiWord" href="../../../../../8/6/3/0/10368/content.html">level sets</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <a class="existingWikiWord" href="../../../../6/9/3/23960/content.html">Vin de Silva</a>, <a class="existingWikiWord" href="../../../../../5/6/9/3/23965/content.html">Dmitriy Morozov</a>, <em>Zigzag persistent homology and real-valued functions</em>, in: <em>SCG ‘09: Proceedings of the twenty-fifth annual symposium on Computational geometry (2009) 247–256 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://doi.org/10.1145/1542362.1542408">doi:10.1145/1542362.1542408</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <a class="existingWikiWord" href="../../../../6/9/3/23960/content.html">Vin de Silva</a>, <a class="existingWikiWord" href="../../../../../4/6/9/3/23964/content.html">Sara Kališnik</a>, <a class="existingWikiWord" href="../../../../../5/6/9/3/23965/content.html">Dmitriy Morozov</a>, <em>Parametrized Homology via Zigzag Persistence</em>, Algebr. Geom. Topol. <strong>19</strong> (2019) 657-700 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://arxiv.org/abs/1604.03596">arXiv:1604.03596</a>, <a href="https://doi.org/10.2140/agt.2019.19.657">doi:10.2140/agt.2019.19.657</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+</ul>
+<p>The <a class="existingWikiWord" href="../../../../../6/6/9/3/23966/content.html">stability result</a> is due to:</p>
+<ul>
+<li id="CohenSteinerEdelsbrunnerHarer07"><a class="existingWikiWord" href="../../../../../7/6/9/3/23967/content.html">David Cohen-Steiner</a>, <a class="existingWikiWord" href="../../../../../7/0/5/2/22507/content.html">Herbert Edelsbrunner</a>, <a class="existingWikiWord" href="../../../../../8/0/5/2/22508/content.html">John Harer</a>, <em>Stability of Persistence Diagrams</em>, Discrete &amp; Computational Geometry <strong>37</strong> (2007) 103–120 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://doi.org/10.1007/s00454-006-1276-5">doi:10.1007/s00454-006-1276-5</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<p>Bar-codes were introduced under the name of <em>canonical forms invariants of filtered complexes</em> in</p>
+<ul>
+<li>Serguei Barannikov, <em>Framed Morse complex and its invariants</em>, <a href="https://www.researchgate.net/profile/Serguei_Barannikov/publication/267672645_The_Framed_Morse_complex_and_its_invariants/links/5970e947458515fa8de6e724/The-Framed-Morse-complex-and-its-invariants.pdf">pdf</a> Advances in Soviet Mathematics <strong>21</strong> 93–115 (1994)</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>
+<p>A. Zomorodian, <a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, <em>Computing persistent homology</em>, Discrete Comput. Geom. <strong>33</strong>, 249–274 (2005) (<a href="https://doi.org/10.1007/s00454-004-1146-y">doi:10.1007/s00454-004-1146-y</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/5/1/11515/content.html">Gunnar Carlsson</a>, V. de Silva, <em>Zigzag persistence</em> (<a href="http://arxiv.org/abs/0812.0197">arXiv:0812.0197</a>)</p>
+</li>
+<li>
+<p>Robert J. Adler, Omer Bobrowski, Matthew S. Borman, Eliran Subag, Shmuel Weinberger, <em>Persistent homology for random fields and complexes</em> Institute of Mathematical Statistics Collections <strong>6</strong>:124–143, 2010 (<a href="http://arxiv.org/abs/1003.1001">arxiv/1003.1001</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/2/4/24274/content.html">Paweł Dłotko</a>, <a class="existingWikiWord" href="../../../../../6/0/1/1/21106/content.html">Hubert Wagner</a>, <em>Computing homology and persistent homology using iterated Morse decomposition</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="http://arxiv.org/abs/1210.1429">arxiv/1210.1429</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/7/8/9/9873/content.html">Robert MacPherson</a>, Benjamin Schweinhart, <em>Measuring shape with topology</em>, J. Math. Phys. <strong>53</strong>, 073516 (2012) (<a href="http://dx.doi.org/10.1063/1.4737391">doi:10.1063/1.4737391</a>)</p>
+</li>
+<li>
+<p>Robert J. Adler, Omer Bobrowski, Shmuel Weinberger, <em>Crackle: the persistent homology of noise</em>, <a href="http://arxiv.org/abs/1301.1466">arxiv/1301.1466</a></p>
+</li>
+<li>
+<p>D. Le Peutrec, N. Nier, C. Viterbo, <em>Precise Arrhenius Law for p-forms: The Witten Laplacian and Morse–Barannikov Complex</em>, Annales Henri Poincaré <strong>14</strong> (3): 567–610 (2013) <a href="https://10.1007/s00023-012-0193-9">doi</a></p>
+</li>
+<li>
+<p>Ulrich Bauer, Michael Kerber, Jan Reininghaus, <em>Clear and compress: computing persistent homology in chunks</em>, <a href="http://arxiv.org/abs/1303.0477">arxiv/1303.0477</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/6/9/3/23964/content.html">Sara Kališnik</a>, <em>Persistent homology and duality</em>, 2013 (<a href="http://www.matknjiz.si/doktorati/2013/Kalisnik-14521-4.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/KalisnikPersistent.pdf" title="pdf">pdf</a>)</p>
+</li>
+<li>
+<p>Francisco Belchí Guillamón, Aniceto Murillo Mas, <em>A-infinity persistence</em>, <a href="http://arxiv.org/abs/1403.2395">arxiv/1403.2395</a></p>
+</li>
+<li>
+<p>João Pita Costa, Mikael Vejdemo Johansson, Primož Škraba, <em>Variable sets over an algebra of lifetimes: a contribution of lattice theory to the study of computational topology</em>, <a href="http://arxiv.org/abs/1409.8613">arxiv/1409.8613</a></p>
+</li>
+<li>
+<p>Genki Kusano, Kenji Fukumizu, Yasuaki Hiraoka, <em>Persistence weighted Gaussian kernel for topological data analysis</em>, <a href="http://arxiv.org/abs/1601.01741">arxiv/1601.01741</a></p>
+</li>
+<li>
+<p>Heather A. Harrington, Nina Otter, Hal Schenck, <a class="existingWikiWord" href="../../../../../2/7/6/5/5672/content.html">Ulrike Tillmann</a>, <em>Stratifying multiparameter persistent homology</em>, <a href="https://arxiv.org/abs/1708.07390">arxiv/1708.07390</a></p>
+</li>
+<li id="BerkoukGinotOudot19">
+<p><a class="existingWikiWord" href="../../../../../1/9/9/3/23991/content.html">Nicolas Berkouk</a>, <a class="existingWikiWord" href="../../../../../8/7/2/5/5278/content.html">Grégory Ginot</a>, <a class="existingWikiWord" href="../../../../../6/5/9/3/23956/content.html">Steve Oudot</a>, <em>Level-sets persistence and sheaf theory</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://arxiv.org/abs/1907.09759">arXiv:1907.09759</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/9/8/0/10895/content.html">Wojciech Chachólski</a>, Alessandro De Gregorio, Nicola Quercioli, Francesca Tombari: <em>Symmetries of data sets and functoriality of persistent homology</em>, Theory and Applications of Categories <strong>39</strong> 23 (2023) 667-686 [<a href="http://www.tac.mta.ca/tac/volumes/39/23/39-23abs.html">tac:39/23</a>]</p>
+</li>
+</ul>
+<p>The following paper uses persistent homology to single out features relevant for training <a class="existingWikiWord" href="../../../../../1/4/7/0/20741/content.html">neural networks</a>:</p>
+<ul>
+<li>Jean-Baptiste Bardin, Gard Spreemann, <a class="existingWikiWord" href="../../../../../2/9/6/2/2692/content.html">Kathryn Hess</a>, <em>Topological exploration of artificial neuronal network dynamics</em>, <a href="https://arxiv.org/abs/1810.01747">arxiv/1810.01747</a></li>
+</ul>
+<p>Application to <a class="existingWikiWord" href="../../../../../4/5/2/9/9254/content.html">topological data analysis</a> in <a class="existingWikiWord" href="../../../../../3/9/1/9/19193/content.html">cosmological structure formation</a>:</p>
+<ul>
+<li>
+<p>Matteo Biagetti, <a class="existingWikiWord" href="../../../../../1/3/7/1/21731/content.html">Alex Cole</a>, <a class="existingWikiWord" href="../../../../../5/7/9/6/16975/content.html">Gary Shiu</a>, <em>The Persistence of Large Scale Structures I: Primordial non-Gaussianity</em> (<a href="https://arxiv.org/abs/2009.04819">arXiv:2009.04819</a>)</p>
+</li>
+<li>
+<p>Jacky H. T. Yip, Matteo Biagetti, <a class="existingWikiWord" href="../../../../../1/3/7/1/21731/content.html">Alex Cole</a>, Karthik Viswanathan, <a class="existingWikiWord" href="../../../../../5/7/9/6/16975/content.html">Gary Shiu</a>: <em>Cosmology with Persistent Homology: a Fisher Forecast</em> [<a href="https://arxiv.org/abs/2403.13985">arXiv:2403.13985</a>]</p>
+</li>
+</ul>
+<p>Application of <a class="existingWikiWord" href="../../../../../4/5/2/9/9254/content.html">topological data analysis</a> (<a class="existingWikiWord" href="content.html">persistent homology</a>) to analysis of <a class="existingWikiWord" href="../../../../../2/3/7/1/21732/content.html">phase transitions</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/3/7/1/21731/content.html">Alex Cole</a>, Gregory J. Loges, <a class="existingWikiWord" href="../../../../../5/7/9/6/16975/content.html">Gary Shiu</a>, <em>Quantitative and Interpretable Order Parameters for Phase Transitions from Persistent Homology</em> (<a href="https://arxiv.org/abs/2009.14231">arXiv:2009.14231</a>)</li>
+</ul>
+<div>
+<h3 id="CohomotopyInTopologicalDataAnalysisReferences">Cohomotopy in topological data analysis</h3>
+<p>Introducing <a class="existingWikiWord" href="../../../../../6/9/9/3/23996/content.html">persistent cohomotopy</a> as a tool in <a class="existingWikiWord" href="../../../../../4/5/2/9/9254/content.html">topological data analysis</a>, improving on the use of <a class="existingWikiWord" href="../../../../../7/0/1/1/21107/content.html">well groups</a> from <a class="existingWikiWord" href="content.html">persistent homology</a>:</p>
+<ul>
+<li id="FranekKrcal16">
+<p><a class="existingWikiWord" href="../../../../../6/8/7/0/20786/content.html">Peter Franek</a>, <a class="existingWikiWord" href="../../../../../7/8/7/0/20787/content.html">Marek Krčál</a>, <em>On Computability and Triviality of Well Groups</em>, Discrete Comput Geom <strong>56</strong> (2016) 126 (<a href="https://arxiv.org/abs/1501.03641">arXiv:1501.03641</a>, <a href="https://doi.org/10.1007/s00454-016-9794-2">doi:10.1007/s00454-016-9794-2</a>)</p>
+</li>
+<li id="FranekKrcal17">
+<p><a class="existingWikiWord" href="../../../../../6/8/7/0/20786/content.html">Peter Franek</a>, <a class="existingWikiWord" href="../../../../../7/8/7/0/20787/content.html">Marek Krčál</a>, <em>Persistence of Zero Sets</em>, Homology, Homotopy and Applications, <strong>19</strong> 2 (2017) (<a href="https://arxiv.org/abs/1507.04310">arXiv:1507.04310</a>, <a href="http://dx.doi.org/10.4310/HHA.2017.v19.n2.a16">doi:10.4310/HHA.2017.v19.n2.a16</a>)</p>
+</li>
+<li id="FranekKrcalWagner18">
+<p><a class="existingWikiWord" href="../../../../../6/8/7/0/20786/content.html">Peter Franek</a>, <a class="existingWikiWord" href="../../../../../7/8/7/0/20787/content.html">Marek Krčál</a>, <a class="existingWikiWord" href="../../../../../6/0/1/1/21106/content.html">Hubert Wagner</a>, <em>Solving equations and optimization problems with uncertainty</em>, J Appl. and Comput. Topology <strong>1</strong> (2018) 297 (<a href="https://arxiv.org/abs/1607.06344">arxiv:1607.06344</a>, <a href="https://doi.org/10.1007/s41468-017-0009-6">doi:10.1007/s41468-017-0009-6</a>)</p>
+</li>
+</ul>
+<p>Review:</p>
+<ul>
+<li id="FranekKrčál15">
+<p><a class="existingWikiWord" href="../../../../../6/8/7/0/20786/content.html">Peter Franek</a>, <a class="existingWikiWord" href="../../../../../7/8/7/0/20787/content.html">Marek Krčál</a>, <em>Cohomotopy groups capture robust Properties of Zero Sets via Homotopy Theory</em>, talk at ACAT meeting 2015 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a class="existingWikiWord" href="/nlab/files/Franek-Krcal-CohomotopyRobustProperties.pdf" title="pdf">pdf</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></p>
+</li>
+<li id="SS22">
+<p><a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a> on joint work with <a class="existingWikiWord" href="../../../../../2/1/5/2/2512/content.html">Hisham Sati</a>: <em><a class="existingWikiWord" href="/schreiber/show/New+Foundations+for+TDA+--+Cohomotopy">New Foundations for TDA – Cohomotopy</a></em>, (May 2022)</p>
+</li>
+</ul>
+</div>
+<h3 id="further_variants">Further variants</h3>
+<p>See also</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/7/8/9/9873/content.html">Robert MacPherson</a>, Amit Patel, <em>Persistent Local Systems</em> (<a href="https://arxiv.org/abs/1805.02539">arXiv:1805.02539</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

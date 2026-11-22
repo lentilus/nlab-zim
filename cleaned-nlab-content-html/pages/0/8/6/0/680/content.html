@@ -1,0 +1,895 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Dold-Kan correspondence in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Dold-Kan correspondence
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement_abelian_case">Statement (abelian case)</a></li>
+<ul>
+<li><a href="#EquivalenceOfCategories">Equivalence of categories</a></li>
+<li><a href="#ModelCatVersion">Quillen equivalence of model categories</a></li>
+</ul>
+<li><a href="#StatementAdditiveACase">Statement (additive case)</a></li>
+<li><a href="#StatementGeneral">Statement (general nonabelian case)</a></li>
+<ul>
+<li><a href="#GlobularAndCubical">Globular and cubical version</a></li>
+<li><a href="#presentation_of_strict_groupal_groupoids">Presentation of strict groupal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids</a></li>
+</ul>
+<li><a href="#nonabelian_forms_of_the_doldkan_correspondence">Non-abelian forms of the Dold-Kan correspondence.</a></li>
+<li><a href="#StableDoldKanCorrespondence">Stable Dold-Kan correspondence</a></li>
+<li><a href="#Variants">Generalizations and variants</a></li>
+<li><a href="#Applications">Applications</a></li>
+<ul>
+<li><a href="#EilenbergMacLaneObjects">Eilenberg-MacLane objects</a></li>
+<li><a href="#LoopingAndDelooping">Looping and delooping</a></li>
+<li><a href="#abelian_sheaf_cohomology_in_nonabelian_cohomology">Abelian sheaf cohomology in nonabelian cohomology</a></li>
+<li><a href="#computational_aspects">Computational aspects</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>Dold–Kan correspondence</em> asserts there is an <a class="existingWikiWord" href="../../../../0/8/0/800/content.html">equivalence of categories</a> between <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian</a> <a class="existingWikiWord" href="../../../../../8/9/5/0/598/content.html">simplicial groups</a> and <a class="existingWikiWord" href="../../../../../6/5/9/8/8956/content.html">connective</a> <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complexes</a> of <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian groups</a>.</p>
+<p>Since every <a class="existingWikiWord" href="../../../../../8/9/5/0/598/content.html">simplicial group</a> is in particular a <a class="existingWikiWord" href="../../../../../4/5/3/0/354/content.html">Kan complex</a> with <a class="existingWikiWord" href="../../../../../8/1/1/1/1118/content.html">group structure</a>, hence an <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a> with group structure, hence an <a class="existingWikiWord" href="../../../../5/4/3/3450/content.html">∞-group</a>, the Dold-Kan correspondence says that <a class="existingWikiWord" href="../../../../../6/5/9/8/8956/content.html">connective chain complexes</a> are a model for certain <a class="existingWikiWord" href="../../../../../5/7/2/7/7275/content.html">abelian ∞-groups</a>, thus the correspondence interpolates between <a class="existingWikiWord" href="../../../../../5/6/0/1/1065/content.html">homological algebra</a> and general <a class="existingWikiWord" href="../../../../../9/4/2/7/7249/content.html">simplicial homotopy theory</a>. (This is part of the <a class="existingWikiWord" href="../../../../../4/5/4/4/4454/content.html">cosmic cube</a> of <a class="existingWikiWord" href="../../../../../4/3/0/0/34/content.html">higher category theory</a>). The relevance of this is that chain complexes are typically easier to handle: all the tools of <a class="existingWikiWord" href="../../../../../5/6/0/1/1065/content.html">homological algebra</a> apply. In fact, the <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> that identifies simplicial abelian groups with their corresponding chain complexes – the <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">normalized chains functor</a> – does precisely this: it <em>normalizes</em> an abelian group by discarding irrelevant information and constructing a smaller and less redundant model for it.</p>
+<p>There are various variants and generalizations of the Dold-Kan correspondence. These are discussed further <a href="#Variants">below</a>.</p>
+<h2 id="statement_abelian_case">Statement (abelian case)</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> (or more generally a <a class="existingWikiWord" href="../../../../../9/0/3/0/309/content.html">finitely complete</a> <a class="existingWikiWord" href="../../../../../5/3/0/1/1035/content.html">additive category</a>).</p>
+<p>We say a <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complex</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is <em>connective</em> if it is concentrated in non-negative degree. The <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>↪</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Ch^+_\bullet(A) \hookrightarrow Ch_\bullet(A)
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../../6/5/9/8/8956/content.html">connective chain complexes</a> is naturally identified with the category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math>-graded chain complexes.</p>
+<h3 id="EquivalenceOfCategories">Equivalence of categories</h3>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p><strong>(Dold–Puppe)</strong> For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> there is an <a class="existingWikiWord" href="../../../../0/8/0/800/content.html">equivalence of categories</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>A</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup><mover><mo>→</mo><mo>←</mo></mover><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Γ</mi></mrow><annotation encoding="application/x-tex">
+  N \;\colon\; A^{\Delta^{op}}
+      \stackrel{\leftarrow}{\to} Ch_\bullet^+(A) \;\colon\; \Gamma
+
+</annotation></semantics></math></div>
+<p>between</p>
+<ul>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">category of simplicial objects</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../3/8/0/1/1083/content.html">category of connective chain complexes</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>;</p>
+</li>
+</ul>
+<p>where</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">normalized chains complex</a>/normalized <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">Moore complex</a> functor.</li>
+</ul>
+<p></p>
+</div>
+</p>
+<p>(<a href="#Dold58">Dold 58</a>, <a href="#Kan58">Kan 58</a>, <a href="#DoldPuppe61">Dold-Puppe 61</a>).</p>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p><strong>(Kan)</strong> <br/> For the case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is the category <a class="existingWikiWord" href="../../../../../1/0/2/0/201/content.html">Ab</a> of <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian group</a>s, the functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../3/1/8/1/1813/content.html">nerve and realization</a> with respect to the cosimplicial chain complex</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Δ</mi><mo>⟶</mo><msub><mi>Ch</mi> <mo>+</mo></msub><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \mathbb{Z}[-]
+  \;\colon\;
+  \Delta \longrightarrow Ch_+(Ab)
+
+</annotation></semantics></math></div>
+<p>that sends the standard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> to the normalized <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">Moore complex</a> of the <a class="existingWikiWord" href="../../../../../1/8/0/2/22081/content.html">free simplicial abelian group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>ℤ</mi></msub><mo stretchy="false">(</mo><msup><mi>Δ</mi> <mi>n</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_{\mathbb{Z}}(\Delta^n)</annotation></semantics></math> on the <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Δ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\Delta^n</annotation></semantics></math>, i.e.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>↦</mo><msub><mi>Hom</mi> <mrow><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo></mrow></msub><mo maxsize="1.8em" minsize="1.8em">(</mo><mi>N</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>ℤ</mi><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><mi>V</mi><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+    \Gamma(V)
+    \;\colon\;
+    [k]
+    \mapsto
+    Hom_{Ch_\bullet^+(Ab)}
+    \Big(
+      N
+      \big(
+        \mathbb{Z}(\Delta[k])
+      \big),
+      \,
+      V
+    \Big)
+    \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>This is due to (<a href="#Kan58">Kan 58</a>).</p>
+<p>More explicitly:</p>
+<p>
+<div class="num_prop" id="ExplicitFormOfGamma">
+<h6>Proposition</h6>
+<p></p>
+<ul>
+<li>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>∈</mo><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">V \in Ch_\bullet^+</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../4/5/8/2/22854/content.html">simplicial abelian group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma(V)</annotation></semantics></math> is in degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n  \in \mathbb{N}</annotation></semantics></math> given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>↠</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></munder><msub><mi>V</mi> <mi>k</mi></msub></mrow><annotation encoding="application/x-tex">
+  \Gamma(V)_n 
+  \;=\; 
+  \bigoplus_{[n] \twoheadrightarrow [k]} V_k
+
+</annotation></semantics></math></div>
+<p>and for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>:</mo><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\theta : [m] \to [n]</annotation></semantics></math> a morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math> the corresponding map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mo>→</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><msub><mo stretchy="false">)</mo> <mi>m</mi></msub></mrow><annotation encoding="application/x-tex">\Gamma(V)_n \to \Gamma(V)_m</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi> <mo>*</mo></msup><mo>:</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>↠</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></munder><msub><mi>V</mi> <mi>k</mi></msub><mo>→</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo> <mrow><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mo>↠</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow></munder><msub><mi>V</mi> <mi>r</mi></msub></mrow><annotation encoding="application/x-tex">
+  \theta^* : \bigoplus_{[n] \twoheadrightarrow [k]} V_k
+   \to
+   \bigoplus_{[m] \twoheadrightarrow [r]} V_r
+
+</annotation></semantics></math></div>
+<p>is given on the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct summand</a> indexed by some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\sigma \colon [n] \to [k]</annotation></semantics></math> by the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>k</mi></msub><mover><mo>→</mo><mrow><msup><mi>d</mi> <mo>*</mo></msup></mrow></mover><msub><mi>V</mi> <mi>s</mi></msub><mo>↪</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo> <mrow><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mo>↠</mo><mo stretchy="false">[</mo><mi>r</mi><mo stretchy="false">]</mo></mrow></munder><msub><mi>V</mi> <mi>r</mi></msub><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  V_k  
+    \overset{d^*}{\to} 
+  V_s 
+    \hookrightarrow 
+  \bigoplus_{[m] \twoheadrightarrow [r]} 
+    V_r
+  \,,
+
+</annotation></semantics></math></div>
+<p>where</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mover><mo>↠</mo><mi>t</mi></mover><mo stretchy="false">[</mo><mi>s</mi><mo stretchy="false">]</mo><mover><mo>↪</mo><mi>d</mi></mover><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">
+  [m]
+   \overset{t}{\twoheadrightarrow}
+  [s]
+    \overset{d}{\hookrightarrow}
+  [k]
+
+</annotation></semantics></math></div>
+<p>is the <a class="existingWikiWord" href="../../../../../7/7/7/6/6777/content.html">epi-mono factorization</a> of the <a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">composite</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>m</mi><mo stretchy="false">]</mo><mover><mo>→</mo><mi>θ</mi></mover><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mover><mo>→</mo><mi>σ</mi></mover><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[m] \stackrel{\theta}{\to} [n] \stackrel{\sigma}{\to} [k]</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p></p>
+</div>
+</p>
+<p>In these terms (Prop. <a class="maruku-ref" href="#ExplicitFormOfGamma"></a>) we have:</p>
+<div class="num_prop" id="ExplicitUnitAndCounit">
+<h6 id="proposition">Proposition</h6>
+<ul>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mi>N</mi><mo>→</mo><mi>Id</mi></mrow><annotation encoding="application/x-tex">\Gamma N \to Id</annotation></semantics></math> is given on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msup><mi>sAb</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">A \in sAb^{\Delta^{op}}</annotation></semantics></math> by the map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨁</mo> <mrow><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>↠</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow></munder><mo stretchy="false">(</mo><mi>N</mi><mi>A</mi><msub><mo stretchy="false">)</mo> <mi>k</mi></msub><mo>→</mo><msub><mi>A</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">
+  \bigoplus_{[n] \twoheadrightarrow [k]}
+   (N A)_k
+  \to
+  A_n
+
+</annotation></semantics></math></div>
+<p>which on the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct summand</a> indexed by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo lspace="verythinmathspace">:</mo><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\sigma \colon [n] \to [k]</annotation></semantics></math> is the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><msub><mi>A</mi> <mi>k</mi></msub><mo>↪</mo><msub><mi>A</mi> <mi>k</mi></msub><mover><mo>→</mo><mrow><msup><mi>σ</mi> <mo>*</mo></msup></mrow></mover><msub><mi>A</mi> <mi>n</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  N A_k \hookrightarrow A_k \stackrel{\sigma^*}{\to} A_n
+  \,.
+
+</annotation></semantics></math></div></li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo>→</mo><mi>N</mi><mi>Γ</mi></mrow><annotation encoding="application/x-tex">Id \to N \Gamma</annotation></semantics></math> is on a chain complex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> given by the composite of the projection</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>→</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>D</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  V \to C(\Gamma(V)) \to C(\Gamma(C))/D(\Gamma(V))
+
+</annotation></semantics></math></div>
+<p>with the inverse</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>D</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><mi>N</mi><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  C(\Gamma(V))/D(\Gamma(V)) \to N \Gamma(V)
+
+</annotation></semantics></math></div>
+<p>of</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>D</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  N \Gamma(V) \hookrightarrow C(\Gamma(V)) \to C(\Gamma(V))/D(\Gamma(V))
+
+</annotation></semantics></math></div>
+<p>(which is indeed an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>, as discussed at <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">Moore complex</a>).</p>
+</li>
+</ul>
+</div>
+<p>This is spelled out in <a href="#GoerssJardine99">Goerss &amp; Jardine, prop. 2.2 in section III.2</a></p>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>With the explicit choice for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mi>N</mi><mover><mo>→</mo><mo>≃</mo></mover><mi>Id</mi></mrow><annotation encoding="application/x-tex">\Gamma N \stackrel{\simeq}{\to} Id</annotation></semantics></math> as <a href="#ExplicitUnitAndCounit">above</a> we have that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> form an <a class="existingWikiWord" href="../../../../../7/9/7/1/1797/content.html">adjoint equivalence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Γ</mi><mo>⊣</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\Gamma \dashv N)</annotation></semantics></math></p>
+</div>
+<p>This is for instance (<a href="#Weilbel">Weibel, exercise 8.4.2</a>).</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>It follows that with the inverse structure maps, we also have an <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> the other way round: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>⊣</mo><mi>Γ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(N \dashv \Gamma)</annotation></semantics></math>.</p>
+</div>
+<h3 id="ModelCatVersion">Quillen equivalence of model categories</h3>
+<p>Both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Ch_\bullet^+(A)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">A^{\Delta^{op}}</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">categories with weak equivalences</a> in an standard way:</p>
+<ul>
+<li>
+<p>the weak equivalences of simplicial abelian groups are the <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalences</a> of the underlying <a class="existingWikiWord" href="../../../../../4/5/3/0/354/content.html">Kan complexes</a>, hence morphisms that induce <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a> on all <a class="existingWikiWord" href="../../../../../5/3/6/1/1635/content.html">simplicial homotopy groups</a>;</p>
+</li>
+<li>
+<p>the weak equivalences of chain complexes are the <a class="existingWikiWord" href="../../../../7/3/0/370/content.html">quasi-isomorphisms</a>: the morphisms that induces isomorphisms on all <a class="existingWikiWord" href="../../../../../1/2/8/1/1821/content.html">chain homology</a> groups.</p>
+</li>
+</ul>
+<div class="num_prop">
+<h6 id="proposition_3">Proposition</h6>
+<p>These functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> both respect all weak equivalences with respect to the <a class="existingWikiWord" href="../../../../../8/6/2/7/17268/content.html">classical model structure on simplicial sets</a> <a class="existingWikiWord" href="../../../../../3/9/7/1/1793/content.html">and on chain complexes</a> in that they induce isomorphisms between <a class="existingWikiWord" href="../../../../../5/3/6/1/1635/content.html">simplicial homotopy groups</a> and <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology group</a>s.</p>
+</div>
+<p>The structures of categories with weak equivalences have standard refinements to <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model category</a> structures:</p>
+<ul>
+<li>
+<p>the <em>projective</em> <a class="existingWikiWord" href="../../../../../3/9/7/1/1793/content.html">model structure on chain complexes</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ch</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">Ch_\bullet</annotation></semantics></math> has as fibrations the chain maps that are surjections in each positive degree;</p>
+</li>
+<li>
+<p>the <em><a class="existingWikiWord" href="../../../../../5/5/8/2/22855/content.html">model structure on simplicial abelian groups</a></em> has as <a class="existingWikiWord" href="../../../../../1/6/5/0/561/content.html">fibrations</a> those whose underlying morphisms in <a class="existingWikiWord" href="../../../../3/7/0/730/content.html">sSet</a> are fibrations with respect to the <a class="existingWikiWord" href="../../../../../8/6/2/7/17268/content.html">classical model structure on simplicial sets</a> (hence: <a class="existingWikiWord" href="../../../../../2/9/4/0/492/content.html">Kan fibrations</a>).</p>
+</li>
+</ul>
+<div class="num_prop" id="QuillenEquivalenceBetweensAbAndCh">
+<h6 id="proposition_4">Proposition</h6>
+<p>Both</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>⊣</mo><mi>Γ</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mover><munder><mo>→</mo><mi>Γ</mi></munder><mover><mo>←</mo><mi>N</mi></mover></mover><mi>sAb</mi></mrow><annotation encoding="application/x-tex">
+  (N \dashv \Gamma)
+  \;\colon\;
+  Ch_\bullet^+
+    \stackrel{\overset{N}{\leftarrow}}{\underset{\Gamma}{\to}}
+  sAb
+
+</annotation></semantics></math></div>
+<p>as well as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Γ</mi><mo>⊣</mo><mi>N</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>sAb</mi><mover><munder><mo>→</mo><mi>N</mi></munder><mover><mo>←</mo><mi>Γ</mi></mover></mover><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">
+  (\Gamma \dashv N)
+  \;\colon\;
+  sAb
+    \stackrel{\overset{\Gamma}{\leftarrow}}{\underset{N}{\to}}
+  Ch_\bullet^+
+
+</annotation></semantics></math></div>
+<p>are <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalences</a> with respect to these model structures.</p>
+</div>
+<p>This is due to <a href="#Quillen67">Quillen 67, Section II.4 item 5</a>, see also <a href="#SchwedeShipley03">Schwede-Shipley 03, section 4.1</a>, <a href="http://www.math.uic.edu/~bshipley/monoidalequi.final.pdf#page=17">p.17</a>, <a href="#Jardine03">Jardine 03, Lemma 1.5</a>).</p>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>The category <a class="existingWikiWord" href="../../../../../4/5/8/2/22854/content.html">sAb</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><msup><mi>Ab</mi> <mrow><msup><mi>Δ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex"> = Ab^{\Delta^{op}}</annotation></semantics></math> – being a <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">category of simplicial objects</a> of a category with <a class="existingWikiWord" href="../../../../9/5/0/590/content.html">colimits</a> – is naturally an <a class="existingWikiWord" href="../../../../3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched category</a> and with <a class="existingWikiWord" href="../../../../../5/5/8/2/22855/content.html">its model structure</a> this makes it a <a class="existingWikiWord" href="../../../../6/3/1/1360/content.html">simplicial model category</a>.</p>
+<p>Since the DK-correspondence is even an <a class="existingWikiWord" href="../../../../0/8/0/800/content.html">equivalence of categories</a>, this induces accordingly the structure of a simplicial model category also on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">Ch_\bullet^+</annotation></semantics></math>. Therefore the above Quillen equivalence is even a <a class="existingWikiWord" href="../../../../../8/1/6/4/4618/content.html">simplicial Quillen adjunction</a>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_3">Remark</h6>
+<p>The <a class="existingWikiWord" href="../../../../1/4/0/410/content.html">free</a>/<a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">forgetful</a> <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>F</mi><mo>⊣</mo><mi>U</mi><mo stretchy="false">)</mo><mo>:</mo><mi>Ab</mi><mover><mo>→</mo><mo>←</mo></mover><mi>Set</mi></mrow><annotation encoding="application/x-tex">(F \dashv U) : Ab \stackrel{\leftarrow}{\to} Set</annotation></semantics></math> prolongs to <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial object</a>s</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>F</mi><mo>⊣</mo><mi>U</mi><mo stretchy="false">)</mo><mo>:</mo><mi>sAb</mi><mover><munder><mo>→</mo><mi>U</mi></munder><mover><mo>←</mo><mi>F</mi></mover></mover><mi>sSet</mi></mrow><annotation encoding="application/x-tex">
+  (F\dashv U) : sAb \stackrel{\overset{F}{\leftarrow}}{\underset{U}{\to}}
+  sSet
+
+</annotation></semantics></math></div>
+<p>as an <a class="existingWikiWord" href="../../../../3/7/0/730/content.html">sSet</a>-<a class="existingWikiWord" href="../../../../../3/0/3/0/303/content.html">enriched</a> adjunction. Moreover, by the above the right adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is a right Quillen functor to the standard <a class="existingWikiWord" href="../../../../../8/7/3/0/378/content.html">model structure on simplicial sets</a>.</p>
+<p>This means we have a <a class="existingWikiWord" href="../../../../../8/1/6/4/4618/content.html">simplicial Quillen adjunction</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Γ</mi><mi>F</mi><mo>⊣</mo><mi>U</mi><mi>N</mi><mo stretchy="false">)</mo><mo>:</mo><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mover><munder><mo>→</mo><mrow><mi>U</mi><mi>N</mi></mrow></munder><mover><mo>←</mo><mrow></mrow></mover></mover><mi>sSet</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  ( \Gamma F \dashv U N) : Ch_\bullet^+ \stackrel{\overset{}{\leftarrow}}{\underset{U N}{\to}} sSet
+  \,.
+
+</annotation></semantics></math></div>
+<p>This manifestly <a class="existingWikiWord" href="../../../../../../../missing.html">exhibits</a> <a class="existingWikiWord" href="../../../../../6/5/9/8/8956/content.html">connective chain complexes</a> as models for certain <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoids</a>.</p>
+</div>
+<h2 id="StatementAdditiveACase">Statement (additive case)</h2>
+<p>The Dold-Kan correspondence generalizes from <a class="existingWikiWord" href="../../../../../1/0/2/0/201/content.html">Ab</a> to any <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian category</a> (<a href="#LurieHA">Lurie, §1.2.3</a>) and fruther to <a class="existingWikiWord" href="../../../../../5/3/0/1/1035/content.html">additive categories</a> for which all <a class="existingWikiWord" href="../../../../0/7/0/700/content.html">retractions</a> come from <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sums</a>, as is the case for <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated categories</a> (<a href="#LurieHA">Lurie, §1.2.4</a>).</p>
+<h2 id="StatementGeneral">Statement (general nonabelian case)</h2>
+<h3 id="GlobularAndCubical">Globular and cubical version</h3>
+<p>There are versions of the Dold-Kan correspondence for other <a class="existingWikiWord" href="../../../../../7/6/2/0/267/content.html">geometric shapes for higher structures</a> than the <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a>, also for the <a class="existingWikiWord" href="../../../../9/0/0/90/content.html">globe</a> and the <a class="existingWikiWord" href="../../../../2/4/0/420/content.html">cube</a>.</p>
+<p>
+<div class="num_theorem">
+<h6>Theorem</h6>
+<p><strong>(globular Dold-Kan correspondence)</strong><br/></p>
+<p>Write <a class="existingWikiWord" href="../../../../../1/0/2/0/201/content.html">Ab</a> for the category of <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian group</a>s. (Could be any <a class="existingWikiWord" href="../../../../../5/3/0/1/1035/content.html">additive category</a> with <a class="existingWikiWord" href="../../../../../5/0/6/8/8605/content.html">kernel</a>s for the following to be true). Then the following categories of structures <a class="existingWikiWord" href="../../../../../6/3/0/0/36/content.html">internal to</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ab</mi></mrow><annotation encoding="application/x-tex">Ab</annotation></semantics></math> are equivalent.</p>
+<ol>
+<li>
+<p>The category of <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complex</a>es (in non-negative degree).</p>
+</li>
+<li>
+<p>The category of <a class="existingWikiWord" href="../../../../../6/7/2/0/276/content.html">crossed complex</a>es.</p>
+</li>
+<li>
+<p>The category of <a class="existingWikiWord" href="../../../../../9/6/2/0/269/content.html">cubical set</a>s with <a class="existingWikiWord" href="../../../../../9/0/8/0/809/content.html">connection on a cubical set</a>.</p>
+</li>
+<li>
+<p>The category of cubical <a class="existingWikiWord" href="../../../../../9/0/4/0/409/content.html">strict ∞-groupoid</a>s.</p>
+</li>
+<li>
+<p>The category of <a class="existingWikiWord" href="../../../../9/0/0/90/content.html">globular</a> <a class="existingWikiWord" href="../../../../../9/0/4/0/409/content.html">strict ∞-groupoid</a>s.</p>
+</li>
+</ol>
+<p></p>
+</div>
+</p>
+<p>A proof with references to the rich literature can be found for instance in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/9/5/0/599/content.html">Ronnie Brown</a>, <a class="existingWikiWord" href="../../../../../5/3/5/3/3535/content.html">Philip Higgins</a>, <a class="existingWikiWord" href="../../../../../9/5/4/4/4459/content.html">Rafael Sivera</a>, <em><a class="existingWikiWord" href="../../../../../2/8/2/0/282/content.html">Nonabelian Algebraic Topology</a></em></li>
+</ul>
+<p>see the section <a href="../../../../../2/8/2/0/282/content.html#CubicalDoldKan">Cubical Dold-Kan theorem</a>.</p>
+<p>This version of the Dold-Kan theorem reproduces the simplicial Dold-Kan theorem after application of the <a class="existingWikiWord" href="../../../../3/6/1/1630/content.html">omega-nerve</a>, i.e. the simplicial Dold-Kan correspondence factors through the globular one via the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>-nerve.</p>
+<h3 id="presentation_of_strict_groupal_groupoids">Presentation of strict groupal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids</h3>
+<p>It was mentioned above that the standard simplicial Dold-Kan correspondence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>←</mo></mover><mi>sAb</mi></mrow><annotation encoding="application/x-tex">Ch_\bullet(Ab) \stackrel{\leftarrow}{\to} sAb</annotation></semantics></math> may be understood as identifying strictly abelian <a class="existingWikiWord" href="../../../../../9/0/4/0/409/content.html">strict ∞-groupoid</a>s among all <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a>s. This statement is also surveyed and put into a larger context at <a class="existingWikiWord" href="../../../../../4/5/4/4/4454/content.html">cosmic cube of higher category theory</a>.</p>
+<p>We now give a formal version of this statement, following an observation by <a class="existingWikiWord" href="../../../../../5/5/8/2/2855/content.html">Richard Garner</a>. A different but closely analogous sequence of arguments to the same extent is also in the book</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/9/5/0/599/content.html">Ronnie Brown</a>, <a class="existingWikiWord" href="../../../../../5/3/5/3/3535/content.html">Philip Higgins</a>, <a class="existingWikiWord" href="../../../../../9/5/4/4/4459/content.html">Rafael Sivera</a>, <em><a class="existingWikiWord" href="../../../../../2/8/2/0/282/content.html">Nonabelian Algebraic Topology</a></em>, European Math. Soc. Tracts in Mathematics 15, 2011.</li>
+</ul>
+<p>see <a href="../../../../../2/8/2/0/282/content.html#DoldKanMap">Dold-Kan map and omega-nerve</a>.</p>
+<div class="num_defn">
+<h6 id="definition">Definition</h6>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>R</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Ab</mi><msup><mo stretchy="false">)</mo> <mo>+</mo></msup><mover><mo>→</mo><mo>←</mo></mover><mi>Str</mi><mn>∞</mn><mi>Cat</mi><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>←</mo></mover><mi>Str</mi><mn>∞</mn><mi>Cat</mi><mo stretchy="false">(</mo><mi>Set</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  (L \dashv R) : Ch_\bullet(Ab)^+ \stackrel{\leftarrow}{\to}
+  Str \infty Cat(Ab)
+  \stackrel{\leftarrow}{\to}
+  Str \infty Cat(Set)
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> obtained by composing the <a href="#GlobularAndCubical">globular Dold-Kan correspondence</a> with the forgetful functor which forgets the abelian group structure on a strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-category in the image of the globular/cubical Dold-Kan map.</p>
+</div>
+<div class="num_prop">
+<h6 id="proposition_5">Proposition</h6>
+<p>The functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo>:</mo><mi>Δ</mi><mo>→</mo><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup></mrow><annotation encoding="application/x-tex">
+  C_\bullet : \Delta \to Ch_\bullet^+
+
+</annotation></semantics></math></div>
+<p>which sends a <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplex</a> to its (normalized) chain complex factors as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo>:</mo><mi>Δ</mi><mover><mo>→</mo><mi>𝒪</mi></mover><mi>Str</mi><mn>∞</mn><mi>Cat</mi><mover><mo>→</mo><mi>L</mi></mover><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  C_\bullet : \Delta \stackrel{\mathcal{O}}{\to} Str \infty Cat
+  \stackrel{L}{\to} Ch_\bullet^+
+  \,,
+
+</annotation></semantics></math></div>
+<p>where the cosimplicial strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒪</mi></mrow><annotation encoding="application/x-tex">\mathcal{O}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/7/0/0/71/content.html">oriental</a> functor.</p>
+</div>
+<p>This is a remark by <a class="existingWikiWord" href="../../../../../5/5/8/2/2855/content.html">Richard Garner</a> posted <a href="http://golem.ph.utexas.edu/category/2010/07/the_doldkan_theorem_two_questi.html#c034102">here</a>.</p>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>Use that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒪</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(n)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../1/4/0/410/content.html">free</a> strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-category on a <a class="existingWikiWord" href="../../../../../8/3/6/1/1638/content.html">computad</a>.</p>
+<p>Observe that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> sends a strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the chain complex obtained from the abelian reflexive globular set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mo lspace="0em" rspace="thinmathspace">mathb</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X \times \mathb{Z}</annotation></semantics></math>. In particular the value on the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../9/0/0/90/content.html">globe</a> is the chain complex</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo>→</mo><mi>ℤ</mi><mo>⊕</mo><mi>ℤ</mi><mo>→</mo><mi>ℤ</mi><mo>⊕</mo><mi>ℤ</mi><mo>→</mo><mi>⋯</mi><mo>→</mo><mi>ℤ</mi><mo>⊕</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">
+  \mathbb{Z} \to \mathbb{Z}\oplus\mathbb{Z} \to
+   \mathbb{Z}\oplus\mathbb{Z} \to \cdots \to
+   \mathbb{Z}\oplus\mathbb{Z}
+
+</annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math> terms and differential given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \mapsto (x, -x)</annotation></semantics></math> in each dimension.</p>
+<p>Moreover, the value of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math> on the boundary of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-globe is the chain complex obtained from this by removing the uppermost copy of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>.</p>
+<p>Given a <a class="existingWikiWord" href="../../../../../8/3/6/1/1638/content.html">computad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, the associated abelian chain complex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">L C</annotation></semantics></math> has for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mi>C</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">(L C)_n</annotation></semantics></math> the free abelian group on the set of generating <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-cells of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, and differential given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><mi>x</mi><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>j</mi></msub><msub><mi>t</mi> <mi>j</mi></msub><mo>−</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>i</mi></msub><msub><mi>s</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\partial x = \sum_j t_j - \sum_i s_i</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>s</mi> <mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{s_i\}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>t</mi> <mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{t_i\}</annotation></semantics></math> are the sets of source- and or target-cells, respectively. A glance at <a class="existingWikiWord" href="../../../../../2/6/7/1/1762/content.html">Ross Street</a>‘s presentation of the <a class="existingWikiWord" href="../../../../../1/7/0/0/71/content.html">oriental</a>s shows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>𝒪</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Δ</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(\mathcal{O}(n)) = C_\bullet(\Delta[n])</annotation></semantics></math>.</p>
+</div>
+<div class="num_cor">
+<h6 id="corollary">Corollary</h6>
+<p>The simplicial Dold-Kan map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Hom</mi><mo stretchy="false">(</mo><msub><mi>C</mi> <mo>•</mo></msub><mi>Δ</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>:</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo lspace="verythinmathspace" rspace="0em">+</mo><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">
+  Hom(C_\bullet \Delta[n], -) : Ch_\bullet + \to sSet
+
+</annotation></semantics></math></div>
+<p>factors as the identification of chain complexes with strictly abelian strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids, followed by the functor that forgets the abelian structure and then followed by the <a class="existingWikiWord" href="../../../../3/6/1/1630/content.html">omega-nerve</a> operation that embeds strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids into all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids.</p>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>Use the above adjunction and proposition to write for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">K_\bullet</annotation></semantics></math> a chain complex</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mrow><msub><mi>Ch</mi> <mo>•</mo></msub></mrow></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mo>•</mo></msub><mi>Δ</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>,</mo><mi>K</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Hom</mi> <mrow><msub><mi>Ch</mi> <mo>•</mo></msub></mrow></msub><mo stretchy="false">(</mo><mi>L</mi><mi>𝒪</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><mi>K</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Hom</mi> <mrow><mi>Str</mi><mn>∞</mn><mi>Cat</mi></mrow></msub><mo stretchy="false">(</mo><mi>𝒪</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><mi>R</mi><mi>K</mi><mo stretchy="false">)</mo><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><mi>R</mi><mi>K</mi><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Hom_{Ch_\bullet}(C_\bullet \Delta[n], K)
+  =
+  Hom_{Ch_\bullet}(L \mathcal{O}(n), K)
+  =
+  Hom_{Str \infty Cat}(\mathcal{O}(n), R K)
+  =
+  N (R K)_n
+  \,.
+
+</annotation></semantics></math></div></div>
+<p><strong>Remark</strong> The alternative construction in <a class="existingWikiWord" href="../../../../../2/8/2/0/282/content.html">Nonabelian Algebraic Topology</a> factors also versions of the nonabelian Dold-Kan correspondence through the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>-nerve.</p>
+<h2 id="nonabelian_forms_of_the_doldkan_correspondence">Non-abelian forms of the Dold-Kan correspondence.</h2>
+<p>Perhaps the ‘ultimate’ form of a ‘classical’ Dold–Kan result is by <a class="existingWikiWord" href="../../../../../3/3/2/5/5233/content.html">Pilar Carrasco</a>, who identified the extra structure on chain complexes of groups in order that they be <a class="existingWikiWord" href="../../../../../3/2/6/0/623/content.html">Moore complexes</a> of simplicial groups. <a class="existingWikiWord" href="../../../../../1/5/5/4/4551/content.html">Dominique Bourn</a> has a general form of this result for his <a class="existingWikiWord" href="../../../../../5/3/1/1/1135/content.html">semi-abelian categories</a>. His results provide a neat categorical gloss on the theorem.</p>
+<p>Dominique Bourn’s formulation is very pretty. The Moore complex functor is <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monadic</a> when the basic category is semi-Abelian (Th. 1.4. p.113 in <em>Bourn2007</em> below). Of course for simplicial <em>groups</em>, the monad on chain complexes of groups gives the <a class="existingWikiWord" href="../../../../../7/2/6/3/3627/content.html">hypercrossed complex</a>es of <a class="existingWikiWord" href="../../../../../3/3/2/5/5233/content.html">Carrasco</a> and <a class="existingWikiWord" href="../../../../../2/3/2/5/5232/content.html">Cegarra</a>, but here they fall out from the theory. On the down side there is apparently no full analysis as yet of the actual form of this monad.</p>
+<p>Gary Nan Tie showed that a certain full subcategory of filtered systems of hypergroupoids of rank n is equivalent to the following three categories, n-groupoids, n-simplicial T-complexes and n-crossed complexes, and in doing so proved a non-abelian Dold-Kan theorem for crossed complexes:</p>
+<p>A Dold-Kan theorem for crossed complexes, Journal of Pure and Applied Algebra, Volume 56, Issue 2, 1989, Pages 177-194, ISSN 0022-4049, https://doi.org/10.1016/0022-4049(89)90143-6</p>
+<p>Iterated W̄ and T-groupoids, Journal of Pure and Applied Algebra, Volume 56, Issue 2, 1989, Pages 195-209, ISSN 0022-4049, https://doi.org/10.1016/0022-4049(89)90144-8</p>
+<h2 id="StableDoldKanCorrespondence">Stable Dold-Kan correspondence</h2>
+<p>The Dold-Kan correspondence <a class="existingWikiWord" href="../../../../../1/2/1/3/3121/content.html">stabilizes</a> to identify <em>unbounded</em> <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complexes</a> with the category of stably simplicial abelian groups. The latter are closely related to <a class="existingWikiWord" href="../../../../../5/5/1/1/1155/content.html">combinatorial spectra</a> of <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a> and can be defined as stably simplicial objects in the category of abelian groups. More precisely, we have the following definitions.</p>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>The category of <em>stable simplices</em> has integer numbers as objects. Given two objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math>, the set of morphisms from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math> is the set of order-preserving maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math> from the set of natural numbers to itself such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo>+</mo><mi>l</mi><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">h(n)=n+l-k</annotation></semantics></math> for all but a finite number of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>. Morphisms are composed by composing the corresponding maps.</p>
+</div>
+<div class="num_defn">
+<h6 id="definition_3">Definition</h6>
+<p>A <em>stably simplicial abelian group</em> is a presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> of abelian groups on the category of stable simplices such that for any integer <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> every element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(k)</annotation></semantics></math> belongs to the kernels of all but a finite number of degeneracy maps. Morphisms of stably simplicial abelian groups are morphisms of presheaves.</p>
+</div>
+<p>The following theorem was established in 1963 by <a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a> in his paper “Semisimplicial spectra” (see Proposition 5.8):</p>
+<div class="num_theorem">
+<h6 id="theorem">Theorem</h6>
+<p>The <a class="existingWikiWord" href="../../../../../3/8/0/1/1083/content.html">category of unbounded chain complexes</a> is <a class="existingWikiWord" href="../../../../0/8/0/800/content.html">equivalent</a> to the category of stably simplicial abelian groups, with equivalences being given by the same functors as in the unstable Dold-Kan correspondence, but appropriately extended to the above categories.</p>
+</div>
+<p>Similarly to the unstable case, the above categories, when interpreted as ∞-categories, are also equivalent to the ∞-category of module spectra over the Eilenberg-MacLane ring spectrum of the integers. For more see at <em><a class="existingWikiWord" href="../../../../../7/6/5/1/11567/content.html">stable Dold-Kan correspondence</a></em>.</p>
+<h2 id="Variants">Generalizations and variants</h2>
+<p>There are various variants, generalizations and enhancements of the Dold–Kan correspondence.</p>
+<ul>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../5/2/1/2/2125/content.html">monoidal Dold-Kan correspondence</a> relates <a class="existingWikiWord" href="../../../../../4/0/9/4/4904/content.html">simplicial algebra</a>s with <a class="existingWikiWord" href="../../../../../3/0/1/1/1103/content.html">dg-algebra</a>s.</p>
+</li>
+<li>
+<p>In <a class="existingWikiWord" href="../../../../../4/4/1/1/1144/content.html">rational homotopy theory</a>, Quillen proved and used an analogous statement for <a class="existingWikiWord" href="../../../../../7/7/0/0/77/content.html">Lie algebra</a>s: a Quillen equivalence between the reduced rational <a class="existingWikiWord" href="../../../../../1/3/1/1/1131/content.html">dg-Lie algebra</a>s and reduced rational simplicial Lie algebras:</p>
+<p>D. Quillen, <em>Rational homotopy theory</em> , Ann. Math. 90 (1969), 204–265.</p>
+</li>
+<li>
+<p>The statement of the Dold–Kan correspondence generalizes to <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> with values in the respective categories and this way from <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a> to more general <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../0/1/1/1100/content.html">topoi</a>:</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>sAb</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(X, sAb)</annotation></semantics></math> be the category of <em>simplicial abelian sheaves</em> – i.e. <a class="existingWikiWord" href="../../../../../8/7/6/0/678/content.html">simplicial sheaves</a> which take values in simplicial abelian groups – and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>Ch</mi> <mo>+</mo></msub><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(X, Ch_+(Ab))</annotation></semantics></math> be the category of <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> with values in non-negatively graded <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complexes</a> of abelian groups. The normalized chain complex extends objectwise to a functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>sAb</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>≃</mo></mover><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>Ch</mi> <mo>+</mo></msub><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+ Sh(X,sAb) \stackrel{\simeq}{\to} Sh(X, Ch_+(Ab))
+
+</annotation></semantics></math></div>
+<p>which is an <a class="existingWikiWord" href="../../../../2/1/0/120/content.html">equivalence</a> of categories. Moreover, both these categories are naturally <a class="existingWikiWord" href="../../../../../3/6/2/0/263/content.html">categories with weak equivalences</a>: the weak equivalences in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>sAb</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(X, sAb)</annotation></semantics></math> are the stalkwise <a class="existingWikiWord" href="../../../../../8/7/3/0/378/content.html">weak equivalences of simplicial sets</a> and the weak equivalences in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>Ch</mi> <mo>+</mo></msub><mo stretchy="false">(</mo><mi>Ab</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(X, Ch_+(Ab))</annotation></semantics></math> are the <a class="existingWikiWord" href="../../../../7/3/0/370/content.html">quasi-isomorphisms</a>. The normalized chain complex functor preserves these weak equivalences. This sheaf version of the Dold–Kan correspondence allows to understand <a class="existingWikiWord" href="../../../../../8/4/1/1/1148/content.html">abelian sheaf cohomology</a> as a special case of <a class="existingWikiWord" href="../../../../../3/7/2/0/273/content.html">nonabelian cohomology</a>.</p>
+<p>See page 9,10 of</p>
+<ul>
+<li>K. Brown, <a class="existingWikiWord" href="../../../../../8/1/5/0/518/content.html">Abstract Homotopy Theory and Generalized Sheaf Cohomology</a></li>
+</ul>
+</li>
+<li>
+<p>There is a version of the Dold–Kan correspondence in the context of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/8/2/0/284/content.html">categories</a>:</p>
+<p>let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../../../missing.html">stable (∞,1)-category</a>. Then the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories of non-negatively graded <a class="existingWikiWord" href="../../../../../8/2/1/1/1128/content.html">complexes</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is equivalent to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category of <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial objects</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Fun</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">(</mo><msub><mi>ℤ</mi> <mrow><mo>≥</mo><mn>0</mn></mrow></msub><mo stretchy="false">)</mo><mo>,</mo><mi>C</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>Fun</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">(</mo><mi>Δ</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>C</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Fun(N(\mathbb{Z}_{\geq 0}), C)
+  \simeq
+  Fun(N(\Delta)^{op}, C)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is <a class="existingWikiWord" href="../../../../../8/6/7/0/10768/content.html">infinity-Dold-Kan correspondence</a> is <a href="http://www.math.harvard.edu/~lurie/topoibook/DAGI.pdf">theorem 12.8, p. 50</a> of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <a class="existingWikiWord" href="../../../../../8/3/0/1/1038/content.html">Stable ∞-Categories</a></li>
+</ul>
+</li>
+<li>
+<p>There is a version of the Dold–Kan correspondence with <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial sets</a> generalized to <a class="existingWikiWord" href="../../../../../8/3/7/2/2738/content.html">dendroidal sets</a>. This is described in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/6/4/9/9463/content.html">Javier Gutiérrez</a>, <a class="existingWikiWord" href="../../../../../7/6/3/4/4367/content.html">Andor Lukacs</a>, <a class="existingWikiWord" href="../../../../../3/5/8/2/2853/content.html">Ittay Weiss</a>, <em>Dold-Kan correspondence for dendroidal abelian groups</em> (<a href="http://arxiv.org/abs/0909.3995">arXiv</a>)</li>
+</ul>
+</li>
+<li>
+<p>Various functor categories of interest in stable homotopy theory and homological stability are involved in generalized Dold-Kan equivalences. These equivalences have been studied independently by several authors, including <a href="#Piraashvili">Pirashvili</a> , <a href="#S?omi?ska">Słomińska</a>, <a href="#Helmstutler">Helmstutler</a>, and <a href="#LackStreet">Lack and Street</a></p>
+</li>
+<li>
+<p>There is a <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorification</a> of the correspondence, <a class="existingWikiWord" href="../../../../../7/1/7/8/18717/content.html">categorified Dold-Kan correspondence</a> (<a href="#Dyckerhoff17">Dyckerhoff17</a>)</p>
+</li>
+</ul>
+<h2 id="Applications">Applications</h2>
+<h3 id="EilenbergMacLaneObjects">Eilenberg-MacLane objects</h3>
+<p>The Dold-Kan correspondence gives a convenient construction of <a class="existingWikiWord" href="../../../../../7/5/7/1/1757/content.html">Eilenberg-MacLane object</a>s in <a class="existingWikiWord" href="../../../../../8/9/5/0/598/content.html">simplicial group</a>s.</p>
+<div class="num_prop" id="ExplicitUnitAndCounit">
+<h6 id="proposition_6">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian group</a> write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>n</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A[-n]</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complex</a> concentrated on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> in degree <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>.</p>
+<p>The simplicial abelian group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma (A[-n])</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../7/5/7/1/1757/content.html">Eilenberg-MacLane object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo stretchy="false">(</mo><mi>A</mi><mo>,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">K(A,n)</annotation></semantics></math>.</p>
+<p>And conversely, every such Eilenberg-MacLane object in simplicial abelian groups is related by an <a class="existingWikiWord" href="../../../../../8/3/7/4/4738/content.html">∞-anafunctor</a>-equivalence to a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>n</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Gamma(A[-n])</annotation></semantics></math>.</p>
+</div>
+<h3 id="LoopingAndDelooping">Looping and delooping</h3>
+<p>The Dold-Kan correspondence provides a convenient way to describe formation of <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a>s and <a class="existingWikiWord" href="../../../../6/7/1/1760/content.html">delooping</a> for anything in the image of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ξ</mi><mo>:</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">\Xi : Ch_\bullet \to sSet</annotation></semantics></math>:</p>
+<p>by the basic fact that the homotopy groups of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ξ</mi><mo stretchy="false">(</mo><msub><mi>V</mi> <mo>•</mo></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Xi(V_\bullet)</annotation></semantics></math> are the homology groups of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">V_\bullet</annotation></semantics></math>, looping and delooping simply corresponds to shifting chain complexes up or down in degree.</p>
+<p>But the relation is also strongly coherent: it respects the standard delooping functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><mi>sGrp</mi><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">\bar W : sGrp \to sSet</annotation></semantics></math> for <a class="existingWikiWord" href="../../../../../8/9/5/0/598/content.html">simplicial group</a>s (see there and at <a class="existingWikiWord" href="../../../../../9/3/1/6/6139/content.html">looping and delooping</a>) (notice that restricted to simplicial abelian groups this produces simplicial abelian groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><mi>sAbGrp</mi><mo>→</mo><mi>sAbGrp</mi></mrow><annotation encoding="application/x-tex">\bar W : sAbGrp \to sAbGrp</annotation></semantics></math>):</p>
+<div class="num_prop">
+<h6 id="proposition_7">Proposition</h6>
+<p>There is a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mover><mi>W</mi><mo stretchy="false">¯</mo></mover><mi>G</mi><mo>≃</mo><mo stretchy="false">(</mo><mi>N</mi><mi>G</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">N \bar W G \simeq (N G)[-1]</annotation></semantics></math></div>
+<p>natural in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>∈</mo><mi>sAbGrpd</mi></mrow><annotation encoding="application/x-tex">G \in sAbGrpd</annotation></semantics></math>.</p>
+</div>
+<p>This appears for instance as (<a href="#GoerssJardine99">Goerss &amp; Jardine, remark III.5.6</a>) or around (<a href="#Jardine">Jardine, theorem 4.57</a>).</p>
+<h3 id="abelian_sheaf_cohomology_in_nonabelian_cohomology">Abelian sheaf cohomology in nonabelian cohomology</h3>
+<p>Composed with the <a class="existingWikiWord" href="../../../../../8/0/2/0/208/content.html">forgetful functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sAb</mi><mo>→</mo><mi>sSet</mi></mrow><annotation encoding="application/x-tex">sAb \to sSet</annotation></semantics></math> the Dold-Kan correspondence presents certain <a class="existingWikiWord" href="../../../../../1/6/2/0/261/content.html">simplicial set</a>s by chain complexes. Since this is entirely functorial, it prolongs to a functor from chain complexes of (pre)<a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> on any <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, to <a class="existingWikiWord" href="../../../../../8/7/6/0/678/content.html">simplicial presheaves</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>:</mo><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><msubsup><mi>Ch</mi> <mo>•</mo> <mo>+</mo></msubsup><mo stretchy="false">(</mo><mi>ab</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>sSet</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Gamma : [S^{op}, Ch_\bullet^+(ab)] \to [S^{op}, sSet]</annotation></semantics></math></div>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>sSet</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[S^{op}, sSet]</annotation></semantics></math> is equipped with the projective <a class="existingWikiWord" href="../../../../../7/4/7/0/747/content.html">model structure on simplicial presheaves</a> it models the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-sheaf (∞,1)-topos</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>. The <a class="existingWikiWord" href="../../../../../9/6/9/1/1969/content.html">derived hom-space</a>s compute general <a class="existingWikiWord" href="../../../../../3/7/2/0/273/content.html">nonabelian cohomology</a>.</p>
+<p>If the coefficient objects come from sheaves of chain complexes along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>, this cohomology restricts to ordinary <a class="existingWikiWord" href="../../../../../8/4/1/1/1148/content.html">abelian sheaf cohomology</a>. See there for more details.</p>
+<h3 id="computational_aspects">Computational aspects</h3>
+<p>One may view the (monoidal) Dold-Kan correspondence as a relation between a well-behaved theory (simplicial/higher methods) that work in any characteristic but is very abstract and mainly suited to the proof of abstract theorems, and a more computational theory (strict structures in dg-modules) that are particularly well adapted to computations. The relation between these two (symmetric monoidal) theories may only be properly used with characteristic 0 coefficients. This remark is very naive and basic, but certainly at the center of computational implementations of abstract homotopical methods.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><strong>Dold-Kan correspondence</strong></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/2/1/2/2125/content.html">monoidal Dold-Kan correspondence</a>, <a class="existingWikiWord" href="../../../../../7/6/8/2/22867/content.html">Eilenberg-Zilber/Alexander-Whitney deformation retraction</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/1/5/5137/content.html">operadic Dold-Kan correspondence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/6/7/0/10768/content.html">infinity-Dold-Kan correspondence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/6/5/1/11567/content.html">stable Dold-Kan correspondence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/1/7/8/18717/content.html">categorified Dold-Kan correspondence</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The original articles:</p>
+<ul>
+<li id="Dold58"><a class="existingWikiWord" href="../../../../../3/3/1/6/6133/content.html">Albrecht Dold</a>, <em>Homology of symmetric products and other functors of complexes</em>, Annals of Mathematics Second Series <strong>68</strong> 1 (Jul., 1958) 54-80 (<a href="http://www.jstor.org/stable/1970043">jstor:1970043</a>)</li>
+</ul>
+<p>considers the correspondence for categories of <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>, and</p>
+<ul>
+<li id="DoldPuppe61"><a class="existingWikiWord" href="../../../../../3/3/1/6/6133/content.html">Albrecht Dold</a>, <a class="existingWikiWord" href="../../../../../4/3/1/6/6134/content.html">Dieter Puppe</a>, <em>Homologie nicht-additiver Funktoren. Anwendungen</em>, Annales de l’institut Fourier <strong>11</strong> (1961) 201-312 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://eudml.org/doc/73776">eudml:73776</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<p>generalizes the result to arbitrary <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian categories</a>.</p>
+<p>The general expression of the correspondence in terms of <a class="existingWikiWord" href="../../../../../3/1/8/1/1813/content.html">nerve and realization</a> is due to</p>
+<ul>
+<li id="Kan58">
+<p><a class="existingWikiWord" href="../../../../../2/1/9/2/2912/content.html">Daniel Kan</a>, <em>Functors involving c.s.s complexes</em>, Transactions of the American Mathematical Society, <strong>87</strong> 2 (March 1958) 330-346 (<a href="http://www.jstor.org/stable/1993103">jstor:1993103</a>).</p>
+<blockquote>
+<p>This remarkable article introduces not just the abstract <a class="existingWikiWord" href="../../../../../3/1/8/1/1813/content.html">nerve and realization</a> form of the Dold-Kan correspondence, but introduces the general notion of nerve and realization and in fact the general notion of what is now called <em><a class="existingWikiWord" href="../../../../../6/6/2/0/266/content.html">Kan extension</a></em>.</p>
+</blockquote>
+</li>
+</ul>
+<p>The Dold-Kan correspondence as a <a class="existingWikiWord" href="../../../../../6/3/7/1/1736/content.html">Quillen equivalence</a> between the <a class="existingWikiWord" href="../../../../../5/5/8/2/22855/content.html">model structure on simplicial abelian groups</a> and the projective <a class="existingWikiWord" href="../../../../../3/9/7/1/1793/content.html">model structure on chain complexes</a> is due to</p>
+<ul>
+<li id="Quillen67"><a class="existingWikiWord" href="../../../../../4/4/5/3/3544/content.html">Daniel Quillen</a>, Section II.4 item 5 in: <em><a class="existingWikiWord" href="../../../../../7/8/3/1/21387/content.html">Homotopical Algebra</a></em>, Lecture Notes in Mathematics 43, Springer 1967(<a href="https://doi.org/10.1007/BFb0097438">doi:10.1007/BFb0097438</a>)</li>
+</ul>
+<p>A textbook reference for the ordinary Dold-Kan correspondence:</p>
+<ul>
+<li id="GoerssJardine99"><a class="existingWikiWord" href="../../../../../3/8/4/2/2483/content.html">Paul Goerss</a>, <a class="existingWikiWord" href="../../../../../6/3/7/5/5736/content.html">J. F. Jardine</a>, Section III.2 of: <em><a class="existingWikiWord" href="../../../../../8/4/2/7/7248/content.html">Simplicial homotopy theory</a></em>, Progress in Mathematics, Birkhäuser (1999) Modern Birkhäuser Classics (2009) [<a href="https://link.springer.com/book/10.1007/978-3-0346-0189-4">doi:10.1007/978-3-0346-0189-4</a>, <a href="http://web.archive.org/web/19990208220238/http://www.math.uwo.ca/~jardine/papers/simp-sets/">webpage</a>]</li>
+</ul>
+<p>Similar material is in section 4.6 of</p>
+<ul>
+<li id="Jardine"><a class="existingWikiWord" href="../../../../../6/3/7/5/5736/content.html">J. F. Jardine</a>, <em>Generalized etale cohomology theories</em> Modern Birkhäuser Classics, (1991)</li>
+</ul>
+<p>Interpretation via <a class="existingWikiWord" href="../../../../../7/5/2/0/257/content.html">model categories</a>:</p>
+<ul>
+<li id="SchwedeShipley03">
+<p><a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, <a class="existingWikiWord" href="../../../../../5/3/3/3/3335/content.html">Brooke Shipley</a>, <em>Equivalences of monoidal model categories</em>, Algebr. Geom. Topol. <strong>3</strong> (2003) 287-334 [<a href="http://arxiv.org/abs/math.AT/0209342">arXiv:math.AT/0209342</a>, <a href="https://projecteuclid.org/euclid.agt/1513882376">euclid:euclid.agt/1513882376</a>]</p>
+</li>
+<li id="Jardine03">
+<p><a class="existingWikiWord" href="../../../../../6/3/7/5/5736/content.html">J. F. Jardine</a>, Lemma 1.5 in: <em>Presheaves of chain complexes</em>, K-theory 30.4 (2003): 365-420 (<a href="https://pdfs.semanticscholar.org/360c/fd4eb76da956e0c8dd897377f6d6f342e44e.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/JardinePresheavesOfChainComplexes.pdf" title="pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>Further review:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em>The Dold-Kan correspondence</em>, Section 2.5.6 in <em><a class="existingWikiWord" href="../../../../../2/6/8/9/19862/content.html">Kerodon</a></em> [<a href="https://kerodon.net/tag/00QQ">tag 00QQ</a>]</li>
+</ul>
+<p>Discussion in the generality of <a class="existingWikiWord" href="../../../../../1/4/0/1/1041/content.html">abelian categories</a> (and further generalization, in <a href="#LurieHA">section 1.2.4</a> to <a class="existingWikiWord" href="../../../../../5/3/0/1/1035/content.html">additive categories</a> in which <a class="existingWikiWord" href="../../../../0/7/0/700/content.html">retractions</a> come from <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sums</a>):</p>
+<ul>
+<li id="LurieHA"><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, section 1.2.3 of: <em><a class="existingWikiWord" href="../../../../5/6/5/5650/content.html">Higher Algebra</a></em></li>
+</ul>
+<p>The relation between <a class="existingWikiWord" href="../../../../../9/0/4/0/409/content.html">strict ∞-groupoids</a> and <a class="existingWikiWord" href="../../../../../6/7/2/0/276/content.html">crossed complexes</a> is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/9/5/0/599/content.html">R. Brown</a> and P.J. Higgins, <em>The equivalence of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids and crossed complexes</em>, Cahiers de Topologie et Géométrie Différentielle Catégoriques, 22 no. 4 (1981), p. 371–386 (<a href="http://archive.numdam.org/article/CTGDC_1981__22_4_371_0.pdf">pdf</a>)</li>
+</ul>
+<p>P. 59 of</p>
+<ul>
+<li>R. Brown, <em>Groupoids and crossed objects in algebraic topology</em>, Homology, Homotopy and Applications, 1 (1999) 1-78.</li>
+</ul>
+<p>gives seven equivalent categories with the equivalences all expressing nonabelian versions of the Dold–Kan correspondence. One of these is given in</p>
+<ul>
+<li>Ashley, N., <em>Simplicial T-complexes and crossed complexes: a nonabelian version of a theorem of Dold and Kan</em>. University of Wales PhD Thesis, (1978); Dissertationes Math. (Rozprawy Mat.) 265 (1988) 1–61.</li>
+</ul>
+<p>The relation of these with the abelian version is given in</p>
+<ul>
+<li>Brown, R. and Higgins, P. J., <em>Cubical abelian groups with connections are equivalent to chain complexes</em>. Homology Homotopy Appl. 5 (1) (2003) 49–52.</li>
+</ul>
+<p>The paper</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/3/7/8/8733/content.html">G. J. Ellis</a>, <a class="existingWikiWord" href="../../../../../8/6/0/7/7068/content.html">R. Steiner</a> <em>Higher-dimensional crossed modules and the homotopy groups of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1)</annotation></semantics></math>}-ads.</em>J. Pure Appl. Algebra_ <strong>46</strong> (2-3) (1987) 117–136.</li>
+</ul>
+<p>should also be seen as of Dold-Kan type. The homotopical applications considerably generalise results on the <a class="existingWikiWord" href="../../../../../6/3/4/0/10436/content.html">Blakers-Massey theorem</a>.</p>
+<p>See also</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/9/5/0/599/content.html">Ronald Brown</a>, <em>Modelling and computing homotopy types: I</em>, Indagationes Math: Special Issue in honor of L.E.J. Brouwer, (2017)
+<p>(<a href="http://groupoids.org.uk/pdffiles/brouwer-honor.pdf">pdf</a>)</p>
+</li>
+</ul>
+<p>The discussion of Dold–Kan in the general context of <a class="existingWikiWord" href="../../../../../5/3/1/1/1135/content.html">semi-abelian categories</a> is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/5/5/4/4551/content.html">Dominique Bourn</a>, <em>Moore normalisation and Dold–Kan theorem for semi-Abelian categories</em>, in
+<p>Categories in algebra, geometry and mathematical physics , Contemp. Math. <strong>431</strong>, 105–124, Amer. Math. Soc., Providence, RI. (2007)</p>
+</li>
+</ul>
+<p>Dold-Kan correspondence in idempotent complete additive categories</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/7/1/3/3177/content.html">Volodymyr Lyubashenko</a>, <em>Dold–Kan correspondence, revisited</em>, Appl. Categor. Struct. <strong>30</strong>, 543–-567 (2022). <a href="https://doi.org/10.1007/s10485-021-09665-7">doi</a></li>
+</ul>
+<p>The classical Dold-Kan theorem occurs as a special case among others from <a class="existingWikiWord" href="../../../../1/8/3/3810/content.html">combinatorics</a> and <a class="existingWikiWord" href="../../../../../9/3/2/1/1239/content.html">representation theory</a>, and in particular from homological stability, in:</p>
+<ul>
+<li id="Slomiiska"><a class="existingWikiWord" href="../../../../../7/8/9/2/22987/content.html">Jolanta Słomińska</a>, <em>Dold-Kan type theorems and Morita equivalences of functor categories</em>, Journal of Algebra <strong>274</strong> 1 (2004) 118–137 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://doi.org/10.1016/j.jalgebra.2003.10.025">doi:10.1016/j.jalgebra.2003.10.025</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<p>A similar framework was independently rediscovered in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../4/0/3/3040/content.html">Stephen Lack</a>, <a class="existingWikiWord" href="../../../../../2/6/7/1/1762/content.html">Ross Street</a>, <em>Combinatorial categorical equivalences</em>, <a href="http://arxiv.org/abs/1402.7151">arXiv:1402.7151</a>)</li>
+</ul>
+<p>A stable homotopical version of these general correspondences was developed in:</p>
+<ul>
+<li id="Helmstutler">Randall Helmstutler, <em>Conjugate pairs of categories and Quillen equivalent stable model categories of functors</em>, Journal of Pure and Applied Algebra <strong>218</strong> 7 (2014) 1302-1323 <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="https://doi.org/10.1016/j.jpaa.2013.11.019">doi:10.1016/j.jpaa.2013.11.019</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math></li>
+</ul>
+<p>Among the correspondences “of Dold-Kan type” included in this theory are an equivalence between <a class="existingWikiWord" href="../../../../../1/9/5/5/25591/content.html">FI-modules</a> and linear <a class="existingWikiWord" href="../../../../../9/9/0/3/3099/content.html">combinatorial species</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/8/5/5/25581/content.html">Thomas Church</a>, <a class="existingWikiWord" href="../../../../../1/5/6/5/25651/content.html">Jordan S. Ellenberg</a>, <a class="existingWikiWord" href="../../../../../2/8/5/5/25582/content.html">Benson Farb</a>, <em>FI-modules and stability for representations of symmetric groups</em>, Duke Math. J. <strong>164</strong> 9 (2015) 1833-1910 [<a href="https://arxiv.org/abs/1204.4533">arXiv:1204.4533</a>, <a href="https://doi.org/10.1215/00127094-3120274">doi:10.1215/00127094-3120274</a>]</li>
+</ul>
+<p>A Dold-Kan theorem for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math>-groups:</p>
+<ul>
+<li id="Pirashvili">Teimuraz Pirashvili. <em>Dold-Kan type theorem for ∞-groups</em>, Mathematische Annalen 318.2 (2000): 277-298. (<a href="https://doi.org/10.1007/s002080000120">link</a>)</li>
+</ul>
+<p>An equivalence between representations of the category of finite-dimensional <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔽</mi> <mi>q</mi></msub></mrow><annotation encoding="application/x-tex">\mathbb{F}_q</annotation></semantics></math>-vector spaces and representations of its underlying groupoid:</p>
+<ul>
+<li>Nicholas Kuhn, <em>Generic representation theory of finite fields in nondescribing characteristic</em>, arxiv:1405.0318 (<a href="https://arxiv.org/abs/1405.0318">link</a>)</li>
+</ul>
+<p>A <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorification</a> to a <a class="existingWikiWord" href="../../../../../7/1/7/8/18717/content.html">categorified Dold-Kan correspondence</a>:</p>
+<ul>
+<li id="Dyckerhoff17">
+<p><a class="existingWikiWord" href="../../../../../5/1/7/8/18715/content.html">Tobias Dyckerhoff</a>, <em>A categorified Dold-Kan correspondence</em> [<a href="https://arxiv.org/abs/1710.08356">arXiv:1710.08356</a>]</p>
+</li>
+<li>
+<p>Florian Warg: <em>Dold–Kan Correspondences via Morita Normalization</em> [<a href="https://arxiv.org/abs/2610.28138">arXiv:2610.28138</a>]</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

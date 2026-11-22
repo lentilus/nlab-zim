@@ -1,0 +1,618 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      modal logic in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      modal logic
+  </h1>
+<div id="revision">
+<h1 id="modal_logics">Modal Logics</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#Definition">Definition</a></li>
+<ul>
+<li><a href="#modal+language">Modal Languages</a></li>
+<li><a href="#modal_logics_2">Modal logics</a></li>
+<li><a href="#common_modal_axioms">Common modal axioms</a></li>
+</ul>
+<li><a href="#Examples">Examples</a></li>
+<li><a href="#semantics">Semantics</a></li>
+<ul>
+<li><a href="#in_kripke_frames__relational_structures">In Kripke frames / relational structures</a></li>
+<li><a href="#AlgebraicSemantics">Algebraic semantics</a></li>
+<li><a href="#coalgebraic_semantics">Coalgebraic semantics</a></li>
+<li><a href="#CategoricalSemantics">Categorical semantics</a></li>
+</ul>
+<li><a href="#theorems">Theorems</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>The term <em>modal logic</em> refers to an enrichment of standard <a class="existingWikiWord" href="../../../../8/4/8/8489/content.html">formal logic</a>, where the standard <a class="existingWikiWord" href="../../../../../6/1/2/4/4216/content.html">logical conjunctions</a> (<em><a class="existingWikiWord" href="../../../../../6/1/2/4/4216/content.html">and</a></em>, <em><a class="existingWikiWord" href="../../../../../7/1/2/4/4217/content.html">or</a></em>, <em><a class="existingWikiWord" href="../../../../6/8/0/869/content.html">not</a></em>, <em><a class="existingWikiWord" href="../../../../../0/8/0/2/2080/content.html">implication</a></em> and, <a class="existingWikiWord" href="../../../../../7/3/0/3/3037/content.html">perhaps</a>, <em><a class="existingWikiWord" href="../../../../../8/4/9/6/6948/content.html">for all</a></em>, <em><a class="existingWikiWord" href="../../../../../7/4/9/6/6947/content.html">exists</a></em> etc.) are accompanied by certain extra operations – called <em><a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operators</a></em> and traditionally denoted by symbols like “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo></mrow><annotation encoding="application/x-tex">\Box</annotation></semantics></math>”, “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>◊</mo></mrow><annotation encoding="application/x-tex">\lozenge</annotation></semantics></math>”, , “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>◯</mo></mrow><annotation encoding="application/x-tex">\bigcirc</annotation></semantics></math>” – such that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a> an expression like <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">\Box p</annotation></semantics></math> is a(nother) proposition whose interpretation is intended to be:</p>
+<ul>
+<li>“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> holds (only) <em>in a certain way</em>”,</li>
+</ul>
+<p>where the “certain way” is (implicitly) specified by whatever <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axioms</a> are satisfied by the given <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operator</a>.</p>
+<p id="ModesOfBeing"> In other words, <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operators</a> in modal logic are meant to express a certain <strong>mode of being true</strong> — and in generalization to <a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a> they express more generally a <strong>mode of being</strong>, whence the reference to <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modalities</a> as in <a class="existingWikiWord" href="../../../../../0/6/9/0/10960/content.html">Kant</a>‘s writings.</p>
+<div class="float_right_image" style="margin: -50px 0px 20px 20px">
+<figure style="margin: 0 0 0 0">
+<img src="/nlab/files/LemmonScott-page1.jpg" width="370px"/>
+<figcaption style="text-align: center">p. 1 from <a href="#LemmonScott77">Lemmon and Scott 1977</a></figcaption>
+</figure>
+</div>
+<p>For example (see also pointers <a href="#Examples">below</a>):</p>
+<ul>
+<li>
+<p>in <em><a class="existingWikiWord" href="../../../../../4/1/0/6/16014/content.html">alethic modal logic</a></em> (<a href="#Wright51">Wright 1951, Sec. III</a>) one considers modal operators meant to express that</p>
+<p>“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> is <em><a class="existingWikiWord" href="../../../../../4/1/0/6/16014/content.html">necessarily</a></em> true”, or that “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> is <em><a class="existingWikiWord" href="../../../../../4/1/0/6/16014/content.html">possibly</a></em> true”</p>
+<p>This is the original sense of modal logic, going all the way back to <a class="existingWikiWord" href="../../../../../6/2/9/0/10926/content.html">Aristotle</a> (whose account on the matter is reviewed in much detail by <a href="#LemmonScott77">Lemmon &amp; Scott (1977) pp 1-12</a>).</p>
+</li>
+<li>
+<p>in <em><a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic modal logic</a></em> (<a href="#Wright51">Wright 1951, Sec. IV</a>) one consider modal operators meant to express that something is “known to be true” etc. (whence the reference to <a class="existingWikiWord" href="../../../../../5/4/4/7/17445/content.html">epistemology</a>).</p>
+</li>
+<li>
+<p>in <em><a class="existingWikiWord" href="../../../../../7/3/0/5/5037/content.html">temporal logic</a></em> one considers modal operators meant to express that</p>
+<p>“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> will <em>eventually become</em> true”, etc.;</p>
+</li>
+<li>
+<p>in <em><a class="existingWikiWord" href="../../../../../6/0/1/5/25106/content.html">doxastic logic</a></em> one is concerned with statements such as:</p>
+<p>“<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> is <em>believed</em> to be true”, etc.</p>
+</li>
+</ul>
+<p>Beware however that there is no broad agreement on which further <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axioms</a> exactly make a general <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operator</a> — which in itself is any (<a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">co</a>-)<a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> on the underlying <a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">universe of propositions</a> (<a class="existingWikiWord" href="../../../../../5/4/0/7/7045/content.html">of types</a>), see <a href="../../../../../7/0/7/8/8707/content.html#RelationToMonads">below</a> — encode/reflect any such intended “mode of being (true)”. As a result:</p>
+<blockquote>
+<p><em>‘Ask three modal logicians what modal logic is, and you are likely to get at least three different answers’</em>. [<a href="#BlackburnDeRijkeVenema01">Blackburn, deRijke &amp; Venema (2001), Introduction</a>]</p>
+</blockquote>
+<p>Historically, the default example of a modal logic is known as <em><a class="existingWikiWord" href="../../../../../0/0/2/5/5200/content.html">S4 modal logic</a></em>, originally motivated as a model for <a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic logic</a> (with a modality for being “<a class="existingWikiWord" href="../../../../../4/1/0/6/16014/content.html">necessarily true</a>”), but really just axiomatizing (<a class="existingWikiWord" href="../../../../../7/0/4/2/2407/content.html">propositional logic</a> equipped with) any <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">co-monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo></mrow><annotation encoding="application/x-tex">\Box</annotation></semantics></math> on the <a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">universe of propositions</a>, without further specification. There are variants known as <em><a class="existingWikiWord" href="../../../../0/1/5/5109/content.html">T modal logic</a></em> and <em><a class="existingWikiWord" href="../../../../../8/9/0/5/5098/content.html">K modal logic</a></em> which drop some of the <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axioms</a> even on this <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">co</a><a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>, but it seems good practice to agree that a <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operator</a> is <em>at least</em> a (<a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">co</a>-)<a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> on the <a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">universe of propositions</a> (<a class="existingWikiWord" href="../../../../../5/4/0/7/7045/content.html">of types</a>).</p>
+<p>In this sense, modal logic is the counterpart in the <em><a class="existingWikiWord" href="../../../../../0/7/3/8/8370/content.html">computational trilogy</a></em> to:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../1/0/0/19/content.html">category theory</a> with (<a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">co</a>-)<a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monads</a> (<a class="existingWikiWord" href="../../../../../0/5/1/4/4150/content.html">categorical algebra</a>),</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/7/1/1737/content.html">computer science</a> with (co-)<a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monads in computer science</a> (<a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">computational effects</a>).</p>
+</li>
+</ul>
+<p id="ModelsInIntroduction"> Among <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantics</a>/<a class="existingWikiWord" href="../../../../../6/3/9/3/3936/content.html">models</a> of modal logics are the <a class="existingWikiWord" href="../../../../3/0/5/5039/content.html">geometric models</a> based on <em><a class="existingWikiWord" href="../../../../../2/2/0/5/5022/content.html">Kripke frames</a></em> which are <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a> (of <em><a class="existingWikiWord" href="../../../../../7/1/0/6/16017/content.html">possible worlds</a></em>) on which the <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">propositions</a> in the logic may <a class="existingWikiWord" href="../../../5/3/3599/content.html">dependend</a> and equipped with <a class="existingWikiWord" href="../../../../../6/6/8/0/866/content.html">relations</a> which prescribe over which such worlds to <a class="existingWikiWord" href="../../../../../3/9/5/4/4593/content.html">quantify</a> in interpreting the <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operators</a> (eg. which worlds to inspect to conclude that a proposition holds <em>possibly</em>).</p>
+<p>Specifically for <a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic logic</a> this <em><a class="existingWikiWord" href="../../../../3/0/5/5039/content.html">Kripke semantics</a></em> is hence also known as <em><a class="existingWikiWord" href="../../../../../7/1/0/6/16017/content.html">possible worlds semantics</a></em>. (As least for <a class="existingWikiWord" href="../../../../../1/2/0/6/16021/content.html">S5 modal logic</a> this is closely related to <a class="existingWikiWord" href="../../../../../3/7/6/7/7673/content.html">categorical models of dependent types</a>, as explained at <em><a class="existingWikiWord" href="../../../../../4/1/0/6/16014/content.html">necessity and possibility</a> – <a href="../../../../../4/1/0/6/16014/content.html#InFirstOrderLogicAndTypeTheory">possible worlds via dependent types</a></em>.)</p>
+<p>Some accounts of modal logic essentially regard the theory as being the logical study of such <a class="existingWikiWord" href="../../../../../2/2/0/5/5022/content.html">Kripke frames</a> – in the sense of sets equipped with <a class="existingWikiWord" href="../../../../../6/6/8/0/866/content.html">relations</a>, hence “relational structures” (for instance <a href="#BlackburnDeRijkeVenema01">Blackburn, De Rijke &amp; Venema (2001) p xi</a> who start out saying that they do not know what modal logic is if not the study of relational structures).</p>
+<p>There are also <a class="existingWikiWord" href="../../../../1/1/5/5119/content.html">algebraic models for modal logic</a> in terms of algebras with (co)-<a class="existingWikiWord" href="../../../../8/9/8/8989/content.html">closure operators</a>. For instance, <a class="existingWikiWord" href="../../../../../7/3/0/5/5037/content.html">temporal logics</a> can have <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">posets</a> as <a class="existingWikiWord" href="../../../../../6/3/9/3/3936/content.html">models</a>.</p>
+<h2 id="Definition">Definition</h2>
+<h3 id="modal+language">Modal Languages</h3>
+<p>Modal logics are built on <strong>modal languages</strong>, that is the usual propositional language plus those extra modalities. (Note that modalities may also be added to predicate logic, see <a class="existingWikiWord" href="../../../../../7/0/8/8/8807/content.html">first-order modal logic</a>.) The way the modalities work has to be laid down in an axiom system for the logic in question, for instance, for the temporal logic we might require an axiom saying ‘If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>F</mi><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">F F\phi</annotation></semantics></math> is true, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">F\phi</annotation></semantics></math> is true’, which will read a ‘if it is going be true in the future that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is going to be true in the future, then …’, see <a class="existingWikiWord" href="../../../../../7/3/0/5/5037/content.html">temporal logic</a>. (Is this going to be something what we might want in ‘<a class="existingWikiWord" href="../../../../../6/4/9/6/6946/content.html">provability logic</a>’; is it the case that we should expect that if it is provable that something is provable then that something must be itself provable. This concentrates the modelling process on exactly how we wish to have our ‘context’ to behave.) In this way the relational nature of a context that we are looking at can get encoded into the logic.</p>
+<p>Modal languages add one or more modal operator, often denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo></mrow><annotation encoding="application/x-tex">\square</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>◊</mo></mrow><annotation encoding="application/x-tex">\lozenge</annotation></semantics></math> into the usual <a class="existingWikiWord" href="../../../../../7/0/4/2/2407/content.html">propositional logics</a>. (For the moment, we will keep things fairly simple so assume these to be unary operators and we will not be considering operators that have more than one input, for the moment at least. The general case will be considered later on, but in any case is discussed in detail in some of the books on modal logic listed below.)</p>
+<p>We will give a modal language with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> modal operators, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◊</mo> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\lozenge_i</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i = 1,\ldots, n</annotation></semantics></math>, which can be applied to propositions of the language to form new propositions. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=1</annotation></semantics></math>, we will refer to the language, defined below, as the <em>basic modal language</em>.</p>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>We suppose given a set of variables, the <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-operator basic modal language</em>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math>, given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>:</mo><mo>:</mo><mo>=</mo><msub><mi>p</mi> <mi>λ</mi></msub><mo lspace="mediummathspace" rspace="mediummathspace">∣</mo><mo>⊥</mo><mo lspace="mediummathspace" rspace="mediummathspace">∣</mo><mo>¬</mo><mi>ϕ</mi><mo lspace="mediummathspace" rspace="mediummathspace">∣</mo><msub><mi>ϕ</mi> <mn>1</mn></msub><mo>∨</mo><msub><mi>ϕ</mi> <mn>2</mn></msub><mo lspace="mediummathspace" rspace="mediummathspace">∣</mo><msub><mo>◊</mo> <mi>i</mi></msub><mi>ϕ</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\phi ::= p_\lambda \mid \bot \mid \neg \phi \mid \phi_1 \vee \phi_2 \mid \lozenge_i\phi,</annotation></semantics></math></div>
+<p>where the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mi>λ</mi></msub></mrow><annotation encoding="application/x-tex">p_\lambda</annotation></semantics></math> are the propositional variables ordered by finite ordinals, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>, and, as usual, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◊</mo> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\lozenge_i</annotation></semantics></math> is a modality for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i=1, \ldots , n</annotation></semantics></math>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>This form of definition needs a bit of interpreting if you have not met it before. It gives a way of deciding if a formula is ‘well-formed’. The well formed formulae of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math> are defined as follows: A formula is either</p>
+<ul>
+<li>
+<p>a proposition variable,</p>
+</li>
+<li>
+<p>the propositional constant <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊥</mo></mrow><annotation encoding="application/x-tex">\bot</annotation></semantics></math>, that is <em>falsum</em>,</p>
+</li>
+<li>
+<p>a negated formula,</p>
+</li>
+<li>
+<p>a disjunction of two formulae, or</p>
+</li>
+<li>
+<p>a formula prefixed by one of the diamonds / modal operators.</p>
+</li>
+</ul>
+</div>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>The basic modal language will be <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(1)</annotation></semantics></math>. We will sometimes write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Prop</mi></mrow><annotation encoding="application/x-tex">Prop</annotation></semantics></math> for the set of propositional variables / atomic formulae or whatever other reasonable term is used in a context.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_3">Remark</h6>
+<p>The interpretation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>◊</mo><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\lozenge \phi</annotation></semantics></math> depends on the context (to some extent), but in the initial form here it is usually said to mean ‘possibly <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>’.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_4">Remark</h6>
+<p>Some authors use an equivalent generation rule using <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\square \phi</annotation></semantics></math>, which is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>◊</mo><mo>¬</mo><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\neg \lozenge \neg \phi</annotation></semantics></math>. Of course, this interprets as ‘necessarily <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>’ in this initial form. In <a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic logic</a> the basic modal language interprets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\square \phi</annotation></semantics></math> as saying ‘the agent knows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>’.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_5">Remark</h6>
+<p>Other formulations replace <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∨</mo></mrow><annotation encoding="application/x-tex">\vee</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo></mrow><annotation encoding="application/x-tex">\neg</annotation></semantics></math> by implication <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϕ</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>ϕ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\phi_1\to \phi_2</annotation></semantics></math>, or by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∧</mo></mrow><annotation encoding="application/x-tex">\wedge</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo></mrow><annotation encoding="application/x-tex">\neg</annotation></semantics></math>.</p>
+</div>
+<h3 id="modal_logics_2">Modal logics</h3>
+<div class="num_defn">
+<h6 id="definition_3">Definition</h6>
+<p>A <strong>modal logic</strong> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math> is any set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math>-formulae such that</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math> includes all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math>-formulae that are instances of tautologies,</li>
+</ul>
+<p>and</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math> is closed under the inference rule <em>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>→</mo><mi>ψ</mi><mo>∈</mo><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\phi\to \psi \in \Lambda</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi><mo>∈</mo><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\psi \in \Lambda</annotation></semantics></math></em> , i.e. detachment or <strong>modus ponens</strong>.</li>
+</ul>
+</div>
+<p>One of the basic axiom systems leads to <em><a class="existingWikiWord" href="../../../0/5/5099/content.html">normal modal logics</a></em>.</p>
+<div class="num_defn">
+<h6 id="definition_4">Definition</h6>
+<p><strong>(deducibility)</strong></p>
+<p>Suppose given a <a class="existingWikiWord" href="../../../0/5/5099/content.html">normal modal logic</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math>. A formula <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is <strong><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math>-deducible</strong> from a set, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> of formulae, if there are finitely many formulae <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ψ</mi> <mn>0</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>ψ</mi> <mi>m</mi></msub><mo>∈</mo><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\psi_0,\ldots,\psi_m\in \Gamma</annotation></semantics></math> such that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⊢</mo> <mi>Λ</mi></msub><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mn>0</mn></msub><mo>→</mo><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mn>1</mn></msub><mo>→</mo><mo stretchy="false">(</mo><mi>…</mi><mo>→</mo><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mi>m</mi></msub><mo>→</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mi>…</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\vdash_\Lambda (\psi_0\to (\psi_1\to (\ldots \to (\psi_m\to \phi)\ldots)</annotation></semantics></math></div>
+<p>that is the formula <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mn>0</mn></msub><mo>→</mo><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mn>1</mn></msub><mo>→</mo><mo stretchy="false">(</mo><mi>…</mi><mo>→</mo><mo stretchy="false">(</mo><msub><mi>ψ</mi> <mi>m</mi></msub><mo>→</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mi>…</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\psi_0\to (\psi_1\to (\ldots \to (\psi_m\to \phi)\ldots)</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_6">Remark</h6>
+<p>As the set of all formulae in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi> <mi>ω</mi></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L}_\omega(n)</annotation></semantics></math> satisfies the conditions for a logic and any intersection of logics is itself also a logic, we have that given a set of formulae decreed to be ‘axioms’ for a logic, there is a smallest modal logic containing them.</p>
+</div>
+<h3 id="common_modal_axioms">Common modal axioms</h3>
+<ul>
+<li>(<a class="existingWikiWord" href="../../../../../8/0/6/9/19608/content.html">K</a>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mo>□</mo><mi>A</mi><mo>→</mo><mo>□</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\Box(A \to B) \to \Box A \to \Box B</annotation></semantics></math></li>
+<li>(M) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mi>A</mi><mo>→</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Box A \to A</annotation></semantics></math></li>
+<li>(4) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mi>A</mi><mo>→</mo><mo>□</mo><mo>□</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\Box A \to \Box \Box A</annotation></semantics></math></li>
+<li>(5) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>◊</mo><mi>A</mi><mo>→</mo><mo>□</mo><mo>◊</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\lozenge A \to \Box \lozenge A</annotation></semantics></math></li>
+<li>(B) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mo>□</mo><mo>◊</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">A \to \Box \lozenge A</annotation></semantics></math></li>
+</ul>
+<h2 id="Examples">Examples</h2>
+<p>Here is a brief list of flavors of modal logic. More details are discussed below.</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic logics</a>: it is known to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> that, it is common knowledge that;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/0/5/5037/content.html">temporal logic</a>: henceforth, eventually, hitherto, previously, now, tomorrow, yesterday, since, until, inevitably, finally, ultimately, endlessly, it will have been, it is being …</p>
+</li>
+<li>
+<p><span class="newWikiWord">dynamic logic<a href="/nlab/new/dynamic+logic">?</a></span>: after the program/computation/action finishes, the program enables, throughout the computation;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/0/1/5/25106/content.html">doxastic logic</a>: it is believed that</p>
+</li>
+<li>
+<p>deontic logic: it is obligatory/forbidden/permitted/unlawful that</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/5/3/0/350/content.html">geometric logic</a>: it is locally the case that</p>
+</li>
+<li>
+<p>metalogic: it is valid/satisfiable/provable/consistent that (<a href="#Goldblatt">Goldblatt</a>).</p>
+<p>The metalogical version was important in the <a href="http://plato.stanford.edu/entries/logic-modal-origins/">history of modern modal logic</a>. Gödel played an important role there.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/3/0/5/5037/content.html">temporal logics</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/6/0/5/5062/content.html">arrow logics</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/4/9/6/6946/content.html">provability logics</a></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/4/4/8/18443/content.html">Löb's axiom</a> (<a class="existingWikiWord" href="../../../../../7/1/2/0/10217/content.html">incompleteness theorem</a>)</li>
+</ul>
+</li>
+</ul>
+<h2 id="semantics">Semantics</h2>
+<p>We discuss the <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantics</a> of modal logics, its <a class="existingWikiWord" href="../../../../../6/3/9/3/3936/content.html">models</a>.</p>
+<h3 id="in_kripke_frames__relational_structures">In Kripke frames / relational structures</h3>
+<p>The usual <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantics</a> of modal languages is in terms of <a class="existingWikiWord" href="../../../../../2/2/0/5/5022/content.html">frames</a>, and this is where the link with relational structures comes in. (These are quite often called ‘Kripke frames’ as Kripke was one of the first to use relational semantics in this context.</p>
+<p>A discussion of the history can be found in (<a href="#BlackburnDeRijkeVenema">BlackburnDeRijkeVenema, page 42</a>).</p>
+<p>(As there is another sense to <a class="existingWikiWord" href="../../../../../4/6/9/0/964/content.html">frame</a> as the dual of a <a class="existingWikiWord" href="../../../../../8/5/4/0/458/content.html">locale</a>, we need to consider the terminology here and where necessary will use <a class="existingWikiWord" href="../../../../../2/2/0/5/5022/content.html">frame (modal logic)</a> as the entry name.) A more detailed discussion of <a class="existingWikiWord" href="../../../../../2/2/0/5/5022/content.html">frames</a>, models and the whole question of the semantics of modal logics is to be found at that entry.</p>
+<p>Modal logics are thus also the logics of <a class="existingWikiWord" href="../../../../../4/0/0/5/5004/content.html">relational structures</a>, in fact, Blackburn et al (see references) have as their first slogan: <strong>Modal languages are simple but expressive languages for talking about relational structures.</strong> The temporal logic that satisfies the axiom <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>4</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(4)</annotation></semantics></math> has models that are <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">posets</a>, for instance, whilst many of the <a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic logics</a> have models which are sets with equivalence relations on them. In each case, the idea is that the relational structure gives all the possible states of some system and the modal logic describes that system. This explains the great interest in computer science and artificial intelligence of applications of modal logics.</p>
+<h3 id="AlgebraicSemantics">Algebraic semantics</h3>
+<p>The usual algebraic semantics of modal logic is in terms of Boolean algebras with operators and is described in the entry <a class="existingWikiWord" href="../../../../1/1/5/5119/content.html">algebraic models for modal logic</a>.</p>
+<h3 id="coalgebraic_semantics">Coalgebraic semantics</h3>
+<p>The geometric / relational /Kripke semantics of modal logics are instances of <a class="existingWikiWord" href="../../../../../3/0/8/8/8803/content.html">coalgebraic semantics</a>. This type of semantics also provides an excellent motivation and intuition for various types of modal logic that arise naturally in computer science.</p>
+<h3 id="CategoricalSemantics">Categorical semantics</h3>
+<p>Every <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> comes with its <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a>. Modal operators in this internal logic can at least sometimes be identified with (co)reflectors into specified <a class="existingWikiWord" href="../../../../1/6/0/619/content.html">(co)reflective subcategories</a>. See at <em><a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a></em> for more on this.</p>
+<p>Examples for this are <a class="existingWikiWord" href="../../../../../7/5/9/4/4957/content.html">local toposes</a> and <a class="existingWikiWord" href="../../../../../0/6/9/4/4960/content.html">cohesive toposes</a>. See there for more details.</p>
+<h2 id="theorems">Theorems</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/0/5/9/9507/content.html">Goldblatt-Thomason theorem</a></li>
+</ul>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/9/9/8/8991/content.html">modal hyperdoctrine</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operator</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/6/0/10607/content.html">adjoint modality</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/6/8/6/16864/content.html">adjoint logic</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../1/1/5/5119/content.html">algebraic model for modal logic</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../3/0/5/5039/content.html">geometric model for modal logic</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/0/8/8/8803/content.html">coalgebraic model for modal logic</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/1/5/1/1517/content.html">coalgebra for an endofunctor</a></p>
+</li>
+<li>
+<p>The discussion of “<a class="existingWikiWord" href="../../../../../7/1/0/6/16017/content.html">possible worlds semantics</a>” in modal logic is reminiscent of some discussion in the context of the “<a class="existingWikiWord" href="../../../../../1/4/8/7/27841/content.html">multiverse</a>”.</p>
+</li>
+</ul>
+<h2 id="References">References</h2>
+<p>One of the earliest texts that exhibits the <a class="existingWikiWord" href="../../../../../5/9/2/5/5295/content.html">intuitionist</a> context is</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/4/9/5/25940/content.html">Oskar Becker</a>, <em>Zur Logik der Modalitäten</em>, Jahrbuch für Philosophie und phänomenologische Forschung <strong>11</strong> (1930) 497-548 [<a href="http://www.digizeitschriften.de/dms/img/?PID=PPN827944462_0011%7CLOG_0010">digizeit</a>, <a href="https://ophen.org/pub-101138">ophen:101138</a>, <a class="existingWikiWord" href="/nlab/files/Becker-LogikModalitaeten.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>translated in:</p>
+<ul>
+<li>Stefania Centrone, Pierluigi Minari, <em>Oskar Becker, On the Logic of Modalities (1930): Translation, Commentary and Analysis</em>, Synthese Library <strong>444</strong>, Springer (2022) [<a href="https://doi.org/10.1007/978-3-030-87548-0">doi:10.1007/978-3-030-87548-0</a>]</li>
+</ul>
+<p>The modern formalization of modal logic (and their enumeration by S1, …, <a class="existingWikiWord" href="../../../../../0/0/2/5/5200/content.html">S4</a>, <a class="existingWikiWord" href="../../../../../1/2/0/6/16021/content.html">S5</a>) originates with</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../8/6/4/24689/content.html">Clarence I. Lewis</a>, <a class="existingWikiWord" href="../../../../../0/7/9/5/25970/content.html">Cooper H. Langford</a>, pp 153 &amp; App II of: <em>Symbolic Logic</em> (1932), Dover (2000) [App. II <a href="https://www.hist-analytic.com/Lewisstrict.pdf">pdf</a>]</li>
+</ul>
+<p>(who say “modal functions” for <a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modal operators</a>).</p>
+<p>Early discussion making explicit <a class="existingWikiWord" href="../../../../../7/6/9/4/24967/content.html">epistemic modal logic</a> and variants:</p>
+<ul>
+<li id="Wright51">
+<p><a class="existingWikiWord" href="../../../../../1/7/9/5/25971/content.html">Georg H. von Wright</a>, <em>An Essay in Modal Logic</em>, North-Holland Publishing (1951)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/7/9/5/25972/content.html">K. Jaakko J. Hintikka</a>, <em>Knowledge and belief: An introduction to the logic of the two notions</em>, Cornell University Press (1962) [<a href="https://archive.org/details/knowledgebeliefi00hint_0">ark:/13960/t9k437s65</a>]</p>
+<blockquote>
+<p>(introducing the formalism of <a class="existingWikiWord" href="../../../../../8/9/0/5/5098/content.html">K modal logic</a>)</p>
+</blockquote>
+</li>
+</ul>
+<p>Historical overview and introduction:</p>
+<ul>
+<li id="Goldblatt03">
+<p><a class="existingWikiWord" href="../../../../../1/1/9/4/4911/content.html">Robert Goldblatt</a>, <em>Mathematical modal logic: A view of its evolution</em>, Journal of Applied Logic <strong>1</strong> 5–6 (2003) 309-392 [<a href="https://doi.org/10.1016/S1570-8683(03)00008-9">doi:10.1016/S1570-8683(03)00008-9</a>]</p>
+</li>
+<li id="Goldblatt05">
+<p><a class="existingWikiWord" href="../../../../../1/1/9/4/4911/content.html">Robert Goldblatt</a>, <em>Mathematical Modal Logic: a View of its Evolution</em>, in <em>Handbook of the History of Logic vol. 7</em>, Elsevier (2005) [<a href="https://doi.org/10.1016/S1874-5857(06)80027-0">doi:10.1016/S1874-5857(06)80027-0</a>,<a href="http://homepages.mcs.vuw.ac.nz/~rob/papers/modalhist.pdf">draft</a>]</p>
+</li>
+<li id="SEPModernOrigins">
+<p>Stanford Encyclopedia of Philosophy: <em><a href="http://plato.stanford.edu/entries/logic-modal-origins/">Modern Origins of Modal Logic</a></em>.</p>
+</li>
+<li id="SEPModalLogic">
+<p>Stanford Encyclopedia of Philosophy: <em><a href="http://plato.stanford.edu/entries/logic-modal/">Modal Logic</a></em>.</p>
+</li>
+</ul>
+<p id="TextbookAccounts">Textbook accounts:</p>
+<ul>
+<li id="LemmonScott77">
+<p><a class="existingWikiWord" href="../../../../../8/3/9/5/25938/content.html">E. John Lemmon</a> with <a class="existingWikiWord" href="../../../../../8/8/3/8/8388/content.html">Dana Scott</a>, <em>An Introduction to Modal Logic – The “Lemmon Notes”</em>, B. Blackwell (1977) [<a href="https://archive.org/details/introductiontomo0000lemm/">ark:/13960/t3gz25k3h</a>]</p>
+</li>
+<li id="BradleySwartz79">
+<p><a class="existingWikiWord" href="../../../../../1/4/9/5/25941/content.html">Raymond D. Bradley</a>, <a class="existingWikiWord" href="../../../../../2/4/9/5/25942/content.html">Norman Swartz</a>, <em>Possible Worlds – An Introduction to Logic and its Philosophy</em>, Hackett Publishing (1979) [<a href="http://www.sfu.ca/~swartz/pw/">webpage</a>, <a href="https://www.sfu.ca/~swartz/pw/text/pw_all.pdf">pdf</a>]</p>
+</li>
+<li id="BlackburnDeRijkeVenema01">
+<p><a class="existingWikiWord" href="../../../../../8/5/0/5/5058/content.html">Patrick Blackburn</a>, <a class="existingWikiWord" href="../../../../../1/9/7/4/24791/content.html">Maarten de Rijke</a>, <a class="existingWikiWord" href="../../../../../7/5/0/5/5057/content.html">Yde Venema</a>, <em>Modal Logic</em>, Cambridge Tracts in Theoretical Computer Science <strong>53</strong>, Cambridge University Press (2001) [<a href="https://doi.org/10.1017/CBO9781107050884">doi:10.1017/CBO9781107050884</a>]</p>
+</li>
+<li id="BlackburnvanBenthemWolter07">
+<p><a class="existingWikiWord" href="../../../../../8/5/0/5/5058/content.html">Patrick Blackburn</a>, <a class="existingWikiWord" href="../../../../../2/8/7/4/24782/content.html">Johan van Benthem</a>, <a class="existingWikiWord" href="../../../../../2/9/7/4/24792/content.html">Frank Wolter</a> (eds.), <em>The Handbook of Modal Logic</em>, Studies in Logic and Practical Reasoning <strong>3</strong> (2007) [<a href="https://cgi.csc.liv.ac.uk/~frank/MLHandbook/">book webpage</a>, <a href="https://www.sciencedirect.com/bookseries/studies-in-logic-and-practical-reasoning/vol/3/suppl/C">publisher page</a>]</p>
+</li>
+<li id="Benthem10">
+<p><a class="existingWikiWord" href="../../../../../2/8/7/4/24782/content.html">Johan van Benthem</a>, <em>Modal Logic for Open Minds</em> (2010) [<a href="http://web.stanford.edu/group/cslipublications/cslipublications/site/9781575865980.shtml">ISBN:9781575865980</a>, <a href="http://fenrong.net/teaching/mljvb.pdf">pdf</a>, <a href="https://archive.illc.uva.nl/lgc/MLoM/">webpage</a>]</p>
+</li>
+</ul>
+<p>Other texts:</p>
+<ul>
+<li id="Scott70">
+<p><a class="existingWikiWord" href="../../../../../8/8/3/8/8388/content.html">Dana Scott</a>, <em>Advice on Modal Logic</em>, in <a class="existingWikiWord" href="../../../../../6/1/8/6/16816/content.html">Karel Lambert</a> (ed.) <em>Philosophical problems in Logic – Some recent developments</em>, Reidel 1970</p>
+<blockquote>
+<p>Here is what I consider one of the biggest mistakes in all of modal logic: concentration on a system with just <em>one</em> modal operator. (p. 161)</p>
+</blockquote>
+</li>
+<li id="MakkaiReyes95">
+<p><a class="existingWikiWord" href="../../../../../5/9/3/1/1395/content.html">Michael Makkai</a>, <a class="existingWikiWord" href="../../../../../8/5/2/2/2258/content.html">Gonzalo Reyes</a>, <em>Completeness results for intuitionistic and modal logic in a categorical setting</em>, Annals of Pure and Applied Logic 72 (1995) 25-101</p>
+<blockquote>
+<p>(on <a class="existingWikiWord" href="../../../../../3/2/8/6/16823/content.html">de dicto and de re</a> phenomena in <a class="existingWikiWord" href="../../../../../3/7/8/5/5873/content.html">hyperdoctrinal</a> modal logic)</p>
+</blockquote>
+</li>
+</ul>
+<p>A formulation of modal logic in terms of <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">typing</a> <a class="existingWikiWord" href="../../../../../3/4/0/8/8043/content.html">judgements</a> and <a class="existingWikiWord" href="../../../../../4/0/6/8/8604/content.html">type formation rules</a> is in</p>
+<ul>
+<li id="Pfenning-Davies"><a class="existingWikiWord" href="../../../../../0/4/4/8/8440/content.html">Frank Pfenning</a>, Rowan Davies, <em>A judgemental reconstruction of modal logic</em>, Mathematical Structures in Comp. Sci. <strong>11</strong> 4 (2001) 511-540 [<a href="http://www.cs.cmu.edu/~fp/papers/mscs00.pdf">pdf</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/1/1/5/5110/content.html">Marcus Kracht</a>, <em>Tools and Techniques in Modal Logic</em> , Studies in Logic and the Foundation of Mathematics <strong>142</strong> Elsevier Amsterdam (1999) [<a href="http://wwwhomes.uni-bielefeld.de/mkracht/html/tools/book.pdf">pdf</a>, <a href="https://doi.org/10.2307/2687780">doi:10.2307/2687780</a>]</li>
+</ul>
+<p>A discussion of coalgebraic modal logic and of general modal logic in terms of <a class="existingWikiWord" href="../../../../../1/8/1/0/181/content.html">coalgebra</a> and the <a class="existingWikiWord" href="../../../../../7/3/4/1/1437/content.html">terminal coalgebra of an endofunctor</a> is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/0/8/8/8801/content.html">Corina Cirstea</a>, <a class="existingWikiWord" href="../../../../../1/1/7/8/8711/content.html">Alexander Kurz</a>, Dirk Pattinson, Lutz Schröder and <a class="existingWikiWord" href="../../../../../7/5/0/5/5057/content.html">Yde Venema</a>, <em>Modal logics are coalgebraic</em> (<a href="http://eprints.soton.ac.uk/267144/1/ModalCoalgRev.pdf">pdf</a>)</li>
+</ul>
+<p>Formalization of modalities (<a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">higher modalities</a>) in <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a> appears around definition 1.11 of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/5/7/9/9755/content.html">Egbert Rijke</a>, <a class="existingWikiWord" href="../../../../../8/2/0/5/5028/content.html">Bas Spitters</a>, <em>Sets in homotopy type theory</em> (<a href="http://arxiv.org/abs/1305.3835">arXiv:1305.3835</a>)</li>
+</ul>
+<p>On applications of modal logic to <a class="existingWikiWord" href="../../../../../5/9/0/3/3095/content.html">linguistics</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/5/0/8/28057/content.html">Lawrence S. Moss</a>, Hans-Jörg Tiede: <em>Applications of Modal Logic in Linguistics</em>, in: <em>Studies in Logic and Practical Reasoning <strong>3</strong> (2007) 1031-1076 [<a href="https://doi.org/10.1016/S1570-2464(07)80022-X">doi:10.1016/S1570-2464(07)80022-X</a>, <a href="https://www.csc.liv.ac.uk/~frank/MLHandbook/19.pdf">pdf</a>]</em></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

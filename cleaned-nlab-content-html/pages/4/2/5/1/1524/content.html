@@ -1,0 +1,384 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Markov's principle in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Markov's principle
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#in_the_antithesis_interpretation">In the antithesis interpretation</a></li>
+</ul>
+<li><a href="#discussion">Discussion</a></li>
+<li><a href="#weak_markovs_principle">Weak Markov's Principle</a></li>
+<li><a href="#analytic_markovs_principle">Analytic Markov's Principle</a></li>
+<li><a href="#generalizations">Generalizations</a></li>
+<ul>
+<li><a href="#choiceless_markovs_principle">Choiceless Markov’s principle</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="definition">Definition</h2>
+<p>In <a class="existingWikiWord" href="../../../../../8/4/9/0/948/content.html">constructive mathematics</a>, Markov's principle is the (classically trivial) statement that any infinite <a class="existingWikiWord" href="../../../../../3/1/9/0/913/content.html">sequence</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> that is not all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>s must have a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> somewhere. Stated in a more <a class="existingWikiWord" href="../../../../../1/3/3/0/331/content.html">logic</a>al form, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is a predicate on <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">natural number</a>s, then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>∨</mo><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⇒</mo><mo>¬</mo><mo>∀</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⇒</mo><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex"> \forall{n}\, \big(P(n) \vee \neg{P(n)}\big) \Rightarrow \neg\forall{n}\, P(n) \Rightarrow \exists{n}\, \neg{P(n)} .</annotation></semantics></math></div>
+<p>Compare this to</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>⇒</mo><mo>∀</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex"> \neg\exists{n}\, P(n) \Rightarrow \forall{n}\, \neg{P(n)} ,</annotation></semantics></math></div>
+<p>which is a theorem of <a class="existingWikiWord" href="../../../../../6/9/1/1/1196/content.html">intuitionistic logic</a>.</p>
+<p>Stated set theoretically, this says that given a <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subset</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∈</mo><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P \in \mathcal{P}(\mathbb{N})</annotation></semantics></math>, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/2/9/0/920/content.html">decidable subset</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math> (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∪</mo><mover><mi>P</mi><mo stretchy="false">¯</mo></mover><mo>=</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">P \cup \bar{P} = \mathbb{N}</annotation></semantics></math>), then if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo stretchy="false">(</mo><mover><mi>P</mi><mo stretchy="false">¯</mo></mover><mo>=</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\neg (\bar{P} = \mathbb{N})</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../8/6/1/3/3168/content.html">inhabited</a>, where, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>P</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{P}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complement</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>.</p>
+<p>Markov's principle is often stated in terms of <a class="existingWikiWord" href="../../../../../3/1/9/0/913/content.html">infinite sequences</a> of natural numbers, using Greek letters for sequences and Latin letters for individual numbers:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>α</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mo>¬</mo><mo>∀</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><msub><mi>α</mi> <mi>n</mi></msub><mo>=</mo><mn>0</mn><mo stretchy="false">)</mo><mo>⇒</mo><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><msub><mi>α</mi> <mi>n</mi></msub><mo>≠</mo><mn>0</mn><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex"> \forall{\alpha}\, \big(\neg\forall{n}\, (\alpha_n = 0) \Rightarrow \exists{n}\, (\alpha_n \ne 0)\big) .</annotation></semantics></math></div>
+<p>Here, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(n)</annotation></semantics></math> is the statement that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi> <mi>n</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\alpha_n = 0</annotation></semantics></math>, and the hypothesis <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>n</mi><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>∨</mo><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\forall{n} (P(n) \vee \neg{P(n)})</annotation></semantics></math> is true for any sequence of natural numbers. Conversely, given any predicate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> satisfying this hypothesis, we can define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi> <mi>n</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\alpha_n = 0</annotation></semantics></math> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(n)</annotation></semantics></math> is true and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi> <mi>n</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha_n = 1</annotation></semantics></math> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(n)</annotation></semantics></math> is false, so the two versions of Markov's principle are equivalent.</p>
+<h3 id="in_the_antithesis_interpretation">In the antithesis interpretation</h3>
+<p>In the <a class="existingWikiWord" href="../../../../../9/3/1/7/27139/content.html">antithesis interpretation</a> of constructive mathematics, propositions are functions from from the <a class="existingWikiWord" href="../../../../../9/9/1/2/2199/content.html">boolean domain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{0,1\}</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">set of truth values</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>. Given any <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{0,1\}</annotation></semantics></math>, the antithesis proposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>↦</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">b \mapsto f(x) = b</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../5/1/4/7/27415/content.html">mutually exclusive</a> and <a class="existingWikiWord" href="../../../../../1/2/6/4/4621/content.html">decidable</a> by the <a class="existingWikiWord" href="../../../../../7/5/7/2/2757/content.html">induction principle</a> of the <a class="existingWikiWord" href="../../../../../9/9/1/2/2199/content.html">boolean domain</a>. As a result, the <a class="existingWikiWord" href="../../../../8/5/7/17584/content.html">affine</a> <a class="existingWikiWord" href="../../../../../7/4/9/6/6947/content.html">existential quantifier</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">⨆</mo> <mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub><mo stretchy="false">(</mo><mi>b</mi><mo>↦</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bigsqcup_{x \in \mathbb{N}} (b \mapsto f(x) = b)</annotation></semantics></math> is mutually exclusive and affirmative and the the <a class="existingWikiWord" href="../../../../8/5/7/17584/content.html">affine</a> <a class="existingWikiWord" href="../../../../../8/4/9/6/6948/content.html">universal quantifier</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">⨅</mo> <mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub><mo stretchy="false">(</mo><mi>b</mi><mo>↦</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bigsqcap_{x \in \mathbb{N}} (b \mapsto f(x) = b)</annotation></semantics></math> is mutually exclusive and refutative. <strong>Markov’s principle</strong> (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>MP</mi></mrow><annotation encoding="application/x-tex">MP</annotation></semantics></math>) states that, given any <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../9/9/1/2/2199/content.html">boolean domain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{0,1\}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">⨆</mo> <mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub><mo stretchy="false">(</mo><mi>b</mi><mo>↦</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bigsqcup_{x \in \mathbb{N}} (b \mapsto f(x) = b)</annotation></semantics></math> is refutative or equivalently <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">⨅</mo> <mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub><mo stretchy="false">(</mo><mi>b</mi><mo>↦</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bigsqcap_{x \in \mathbb{N}} (b \mapsto f(x) = b)</annotation></semantics></math> is affirmative.</p>
+<h2 id="discussion">Discussion</h2>
+<p>In standard constructive mathematics (such as in the <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a> of a <a class="existingWikiWord" href="../../../1/0/124/content.html">topos</a>), it is possible that the only Markovian sets are the Kuratowski-<a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite sets</a>. Thus, Markov's principle, stating that the set of natural numbers is Markovian, is nontrivial. (It is true, of course, in a <a class="existingWikiWord" href="../../../../../8/8/4/0/488/content.html">Boolean topos</a>; that is, Markov's principle follows from the principle of <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">excluded middle</a>.)</p>
+<p><a class="existingWikiWord" href="../../../../../7/3/3/5/5337/content.html">Andrey Markov Jr</a> (the one who proved undecidability theorems, and son of the great stochastician) belonged to the <a class="existingWikiWord" href="../../../../../6/3/3/5/5336/content.html">Russian school of constructivism</a>, which saw mathematics as about computability. From this perspective, Markov's principle is justified as follows: We are justified in concluding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists{n}\, \neg{P(n)}</annotation></semantics></math> if we can actually compute a value of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">\neg{P(n)}</annotation></semantics></math> can be proved; since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is decidable, it's enough to compute <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">\neg{P(n)}</annotation></semantics></math> is true. And to compute this, you just set a computer working, deciding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>,</mo><mi>P</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>,</mo><mi>P</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">P(0), P(1), P(2), \ldots</annotation></semantics></math>, until it finds <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>. Other constructivists find this argument unconvincing, since they're not convinced that the computer will ever stop, even though it's impossible that it continue forever.</p>
+<p>Equivalent forms:</p>
+<ul>
+<li>If a <a class="existingWikiWord" href="../../../../../8/8/8/8/18888/content.html">Turing machine</a> does not run forever, then it halts.</li>
+<li>If an <a class="existingWikiWord" href="../../../../../3/2/5/1/1523/content.html">extended natural number</a> is not infinite, then it is finite.</li>
+<li>If a <a class="existingWikiWord" href="../../../../../7/4/7/3/3747/content.html">modulated Cantor real number</a> does not equal zero, then it is <a class="existingWikiWord" href="../../../../../8/2/2/0/228/content.html">apart</a> from zero in that it has a multiplicative inverse.</li>
+</ul>
+<p>Note that the contrapositives of these are all valid regardless of Markov's principle.</p>
+<p>The other major historical school of constructivism, Brouwer's <a class="existingWikiWord" href="../../../../../5/9/2/5/5295/content.html">intuitionism</a>, rejects Markov's principle. Brouwer's viewpoint has since his time been formalized, and via this formalization Markov's principle can be proved false. Namely, <a class="existingWikiWord" href="../../../../../9/2/4/1/21429/content.html">Kripke's schema</a> with MP proves Excluded Middle, and Excluded Middle is incompatible with <span class="newWikiWord">continuity<a href="/nlab/new/Brouwer+continuity+principle">?</a></span>. Several models have been built satisfying Kripke's schema and continuity, thereby falsifying MP. These include topological models (e.g. M. Krol, “Topological model for intuitionistic analysis with Kripke’s Scheme,“ Zeitschr. f. math. Logic und Grundlagen d. Math. 24, p. 427-436, 1978), Beth models (e.g. D. van Dalen, “ interpretation of intuitionistic analysis,” Annals of Mathematical Logic 13(1), p. 1-43), realizability models (e.g. J. van Oosten, Realizability, Elsevier, 2008), and a <a class="existingWikiWord" href="../../../../../1/5/9/6/6951/content.html">Kripke model</a> <a href="#BridgesRichman">BridgesRichman, p138</a>. Note however that some intuitionists have advocated in favour of Markov's principle (and presumably then against Kripke's schema).</p>
+<h2 id="weak_markovs_principle">Weak Markov's Principle</h2>
+<p>More recently, a weakened form of Markov's principle has been identified (first in (<a href="#Mandelkern88">Mandelkern 1988</a>)) and seen to be of interest, aptly named Weak Markov's Principle. It states that if a binary sequence is pseudo-positive then it is positive:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>α</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mo>∀</mo><mi>β</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mo>¬</mo><mo>¬</mo><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi>β</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo><mo>∨</mo><mo>¬</mo><mo>¬</mo><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo><mo>∧</mo><mo stretchy="false">(</mo><mi>β</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mo>→</mo><mo>∃</mo><mi>n</mi><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\forall \alpha \, \Big(\forall \beta \, \Big(\neg\neg\exists n \, (\beta(n)=1)\vee \neg\neg\exists n \, \big((\alpha(n)=1)\wedge(\beta(n)=0)\big)\Big)\rightarrow\exists n \, (\alpha(n)=1)\Big).
+
+</annotation></semantics></math></div>
+<h2 id="analytic_markovs_principle">Analytic Markov's Principle</h2>
+<p>Markov's principle is equivalent to the assertion that for every <a class="existingWikiWord" href="../../../../../7/4/7/3/3747/content.html">modulated Cantor real number</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>≤</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a \leq 0</annotation></semantics></math> is false, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a \gt 0</annotation></semantics></math>. Another way to say this is that the standard <a class="existingWikiWord" href="../../../../../3/1/0/5/25013/content.html">tight apartness relation</a> on modulated Cantor reals is a <a class="existingWikiWord" href="../../../../../6/1/0/5/25016/content.html">stable relation</a>.</p>
+<p>The analogous statement for <a class="existingWikiWord" href="../../../7/3/3724/content.html">Dedekind real numbers</a> might be called the <strong><a class="existingWikiWord" href="../../../../../3/6/1/4/24163/content.html">analytic Markov's principle</a></strong>, by analogy with the <a href="../../../../../0/2/6/4/4620/content.html#analytic">analytic LPO</a>. The <a class="existingWikiWord" href="../../../../../6/3/3/5/5336/content.html">Russian constructivists</a>, who used Markov's principle most, accepted <a class="existingWikiWord" href="../../../../../1/7/6/1/1671/content.html">countable choice</a>, or at least <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>AC</mi> <mrow><mn>0</mn><mo>,</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">AC_{0,0}</annotation></semantics></math>, which implies that these two principles are equivalent. However, in other varieties of constructive mathematics, the analytic Markov's principle is stronger.</p>
+<h2 id="generalizations">Generalizations</h2>
+<h3 id="choiceless_markovs_principle">Choiceless Markov’s principle</h3>
+<p>There is another generalization of Markov’s principle defined in <a href="#King24">King 2024</a>, which was suggested to be called <strong>choiceless Markov’s principle</strong>. The choiceless Markov’s principle states that given a a pair of <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">predicates</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math> on the <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">natural numbers</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>∨</mo><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(x) \vee Q(x)</annotation></semantics></math> holds for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">x \in \mathbb{N}</annotation></semantics></math>, then if it is not true that for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">x \in \mathbb{N}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(x)</annotation></semantics></math>, then there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">x \in \mathbb{N}</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(x)</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mo>∈</mo><mi>ℕ</mi><mo>.</mo><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>∨</mo><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>⇒</mo><mo stretchy="false">(</mo><mo>¬</mo><mo>∀</mo><mi>x</mi><mo>∈</mo><mi>ℕ</mi><mo>.</mo><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⇒</mo><mo>∃</mo><mi>x</mi><mo>∈</mo><mi>ℕ</mi><mo>.</mo><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\forall x \in \mathbb{N}.P(x) \vee Q(x) \Rightarrow (\neg \forall x \in \mathbb{N}.Q(x)) \Rightarrow \exists x \in \mathbb{N}.P(x))</annotation></semantics></math></div>
+<p>The idea behind the term “choiceless” is that one isn’t forced to choose between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(x)</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(x)</annotation></semantics></math> in this version of the Markov’s principle. One gets back the usual Markov’s principle if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(x)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(x)</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../5/1/4/7/27415/content.html">mutually exclusive propositions</a> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">x \in \mathbb{N}</annotation></semantics></math>, from which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(x)</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../7/9/4/9/19497/content.html">if and only if</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\neg P(x)</annotation></semantics></math> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">x \in \mathbb{N}</annotation></semantics></math>.</p>
+<p>We can also state the principle set-theoretically. The <strong>choiceless Markov’s principle</strong> states that given <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subsets</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>,</mo><mi>Q</mi><mo>∈</mo><mi>𝒫</mi><mo stretchy="false">(</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P, Q \in \mathcal{P}(\mathbb{N})</annotation></semantics></math>, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∪</mo><mi>Q</mi><mo>=</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">P \cup Q = \mathbb{N}</annotation></semantics></math>, then if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo stretchy="false">(</mo><mi>Q</mi><mo>=</mo><mi>ℕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\neg (Q = \mathbb{N})</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../8/6/1/3/3168/content.html">inhabited</a>. One gets back the usual Markov’s principle if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../9/1/9/1/1919/content.html">disjoint subsets</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∩</mo><mi>Q</mi><mo>=</mo><mi>∅</mi></mrow><annotation encoding="application/x-tex">P \cap Q = \emptyset</annotation></semantics></math>, from which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mover><mi>P</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">Q = \bar{P}</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>P</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{P}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complement</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>.</p>
+<p>The choiceless Markov’s principle implies the <a class="existingWikiWord" href="../../../../../3/6/1/4/24163/content.html">analytic Markov's principle</a> for all sets of <a class="existingWikiWord" href="../../../../../1/2/9/0/921/content.html">real numbers</a>, as shown in <a href="#King24">King 2024</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/6/4/4620/content.html">principle of omniscience</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/3/0/7/27033/content.html">limited principle of omniscience</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/3/0/7/27032/content.html">weak limited principle of omniscience</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/0/7/27031/content.html">lesser limited principle of omniscience</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/7/0/8/18077/content.html">double negation law</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li id="Mandelkern88">
+<p><a class="existingWikiWord" href="../../../../../9/7/4/8/28479/content.html">Mark Mandelkern</a>, <em>Constructively Complete Finite Sets</em>, Mathematical Logic Quarterly <strong>34</strong>, issue 2 (1988) 97–103, [<a href="https://doi.org/10.1002/malq.19880340202">doi:10.1002/malq.19880340202</a>].</p>
+</li>
+<li id="LombardiQuitté2010">
+<p><a class="existingWikiWord" href="../../../../../5/3/7/3/23735/content.html">Henri Lombardi</a>, <a class="existingWikiWord" href="../../../../../6/3/7/3/23736/content.html">Claude Quitté</a> (2010): <em>Commutative algebra: Constructive methods (Finite projective modules)</em> Translated by Tania K. Roblo, Springer (2015) (<a href="https://link.springer.com/book/10.1007/978-94-017-9944-7">doi:10.1007/978-94-017-9944-7</a>, <a href="http://hlombardi.free.fr/CACM.pdf">pdf</a>)</p>
+</li>
+<li id="Diener18">
+<p><a class="existingWikiWord" href="../../../../../0/3/2/3/23230/content.html">Hannes Diener</a>, <em>Constructive reverse mathematics</em>, Habilitationsschrift Fakultät IV - Naturwissenschaftlich-Technische Fakultät, 2018. (<a href="https://arxiv.org/abs/1804.05495">arXiv:1804.05495</a>, <a href="https://dspace.ub.uni-siegen.de/handle/ubsi/1306">dspace:ubsi/1306</a>)</p>
+</li>
+<li id="CCGM24">
+<p><a class="existingWikiWord" href="../../../../../2/0/5/6/16502/content.html">Felix Cherubini</a>, <a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>, <a class="existingWikiWord" href="../../../3/7/27324/content.html">Freek Geerligs</a>, <a class="existingWikiWord" href="../../../../../6/3/7/4/24736/content.html">Hugo Moeneclaey</a>, <em>A Foundation for Synthetic Stone Duality</em> (<a href="https://arxiv.org/abs/2412.03203">arXiv:2412.03203</a>)</p>
+</li>
+<li id="King24">
+<p>Christopher King, <em>What are these generalizations of the principles of omniscience called?</em>, MathOverflow, 15 February 2024. (<a href="https://mathoverflow.net/questions/464247/what-are-these-generalizations-of-the-principles-of-omniscience-called">web</a>)</p>
+</li>
+</ul>
+<p>For a recent comparison see:</p>
+<ul>
+<li>
+<p id="HendtlassLubarsky">Matt Hendtlass and Robert Lubarsky, <em>Separating fragments of WLEM, LPO, and MP</em>, <a href="https://www.math.fau.edu/people/faculty/lubarsky/separating-llpo.pdf">PDF</a>.</p>
+</li>
+<li>
+<p id="BridgesRichman">Douglas Bridges and Fred Richman, <em>Varieties of Constructive Mathematics</em>.</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

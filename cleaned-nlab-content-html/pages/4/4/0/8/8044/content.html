@@ -1,0 +1,384 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Russell's paradox in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="http://localhost/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="http://localhost/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Russell's paradox
+  </h1>
+<div id="revision">
+<h1 id="russells_paradox">Russell's paradox</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<li><a href="#related_ideas">Related ideas</a></li>
+<li><a href="#Resolutions">Resolutions</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><strong>Russell’s paradox</strong> is a famous <a class="existingWikiWord" href="../../../../../3/0/5/8/8503/content.html">paradox</a> of <a class="existingWikiWord" href="../../../../../5/1/0/1/1015/content.html">set theory</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that was observed around 1902 by <a class="existingWikiWord" href="../../../../../0/0/6/7/7600/content.html">Ernst Zermelo</a><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> and, independently, by the logician <a class="existingWikiWord" href="../../../../../2/5/5/8/8552/content.html">Bertrand Russell</a>. The paradox received instantly wide attention as it lead to a contradiction in Frege’s monumental “<a href="#Frege03">Foundations of Arithmetic</a>” (1893/1903) whose second volume was just about to go to print when Frege was informed about the inconsistency by Russell.</p>
+<p>The paradox entangles a concept with its own extension in a <strong>vicious circle</strong>. The attempt to overcome this <em>circularity in set formation</em> had a huge impact on subsequent forms of axiomatic set theory and in the aftermath mathematical logic became heavily focussed on consistency proofs for fully specified formal theories: the paradoxes triggered a shift in the foundation of mathematics away from the mathematics to the foundation itself.</p>
+<blockquote>
+<p>Doch zur Sache selbst! Herr Russell hat einen Widerspruch aufgefunden, der nun dargelegt werden mag.<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+</blockquote>
+<h2 id="statement">Statement</h2>
+<p>If one assumes a naive <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axiom</a> of <a class="existingWikiWord" href="../../../../../3/7/0/3/23073/content.html">full comprehension</a>, one can form the <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">|</mo><mi>x</mi><mo>∉</mo><mi>x</mi><mo stretchy="false">}</mo><mo>.</mo></mrow><annotation encoding="application/x-tex"> R = \{ x | x \notin x \}. </annotation></semantics></math></div>
+<p>One then asks: is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\in R</annotation></semantics></math>? If so, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∉</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\notin R</annotation></semantics></math> by definition, whereas if not, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\in R</annotation></semantics></math> by definition. Thus we have both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\in R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∉</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\notin R</annotation></semantics></math>, a <a class="existingWikiWord" href="../../../../../9/3/5/8/8539/content.html">contradiction</a>.</p>
+<h2 id="related_ideas">Related ideas</h2>
+<p>Russell’s paradox is closely related to the classical <a class="existingWikiWord" href="../../../4/9/9444/content.html">liar paradox</a> (“this sentence is false”), to Gödel’s <a class="existingWikiWord" href="../../../../../7/1/2/0/10217/content.html">incompleteness theorem</a>, and to the <a class="existingWikiWord" href="../../../../../0/7/2/1/11270/content.html">halting problem</a> — all use a <a class="existingWikiWord" href="../../../../../9/6/2/1/11269/content.html">diagonalization argument</a> to produce an object which talks about itself in a contradictory or close-to-contradictory way.</p>
+<p>On the other hand, <a class="existingWikiWord" href="../../../../../9/4/5/8/8549/content.html">Cantor's paradox</a> can be said to “<a class="existingWikiWord" href="../../../../../6/0/5/7/7506/content.html">beta-reduce</a>” to Russell’s paradox when we apply <a class="existingWikiWord" href="../../../../../8/4/2/1/1248/content.html">Cantor's theorem</a> to the supposed set of all sets. See <a class="existingWikiWord" href="../../../../../9/4/5/8/8549/content.html">Cantor's paradox</a> for explanation.</p>
+<p>Also related:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/3/5/8/8535/content.html">Burali-Forti's paradox</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/1/6/9/19618/content.html">Curry's paradox</a></p>
+</li>
+</ul>
+<h2 id="Resolutions">Resolutions</h2>
+<p>There are a number of possible resolutions of Russell’s paradox.</p>
+<ul>
+<li>
+<p>Russell himself (1903,1908,1910) proposed the introduction of <a class="existingWikiWord" href="../../../../9/1/1/1194/content.html">type theory</a> as a solution e.g. in <em><a class="existingWikiWord" href="../../../../../8/9/2/6/16298/content.html">Principia Mathematica</a></em> (1910) an intricate system of <a class="existingWikiWord" href="../../../../../8/9/2/6/16298/content.html">ramified types</a> tracks the variables of propositional functions in order to prevent circular propositions. This is inspired by Poincaré‘s ideas on <a class="existingWikiWord" href="../../../../../9/4/9/0/949/content.html">impredicativity</a> and can be viewed as a radical generalisation of Frege’s ontological distinction between an argument as a satured object and a function or concept as an unsaturated object.</p>
+</li>
+<li>
+<p>The “<a class="existingWikiWord" href="../../../../1/0/3/3014/content.html">classical</a>” solution, adopted in <a class="existingWikiWord" href="../../../../../1/7/5/2/2571/content.html">ZFC</a> and thus by the mathematical “mainstream”, is to restrict the axiom of <a class="existingWikiWord" href="../../../../../6/2/6/6/6626/content.html">comprehension</a> so as to disallow the formation of the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>: one requires that the set being constructed be a subset of some already existing set. The restricted axiom is usually given a different name such as the <a class="existingWikiWord" href="../../../../../6/2/6/6/6626/content.html">axiom of separation</a>.</p>
+</li>
+<li>
+<p>Another solution is to distinguish between sets and proper <a class="existingWikiWord" href="../../../../../9/7/3/1/1379/content.html">classes</a> (= collections that are “too big” to be sets) as e.g. in <a class="existingWikiWord" href="../../../../../2/2/1/1/11122/content.html">NBG</a> “set” theory.<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup> Here we may write down the definition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, but from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∉</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R \notin R</annotation></semantics></math> we may conclude <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R \in R</annotation></semantics></math> only if we already know that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a set; the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> in the definition must be a set. So we have no contradiction, but only a proof that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/7/3/1/1379/content.html">proper class</a>.</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>In the set theory called <a class="existingWikiWord" href="../../../../../7/2/9/5/15927/content.html">New Foundations</a>, the axiom of comprehension is restricted in a rather different way, by requiring the set-defining formula to be “stratifiable”. Since the formula <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∉</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x\notin x</annotation></semantics></math> is not stratifiable, the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> cannot be formed. This related to Russell’s ideas on <a class="existingWikiWord" href="../../../../../8/9/2/6/16298/content.html">ramified types</a>.</p>
+</li>
+<li>
+<p>In most <a class="existingWikiWord" href="../../../../../8/1/5/2/2518/content.html">structural set theories</a>, the featurelessness of the elements of the structural sets secures the consistency of set formation. If sets cannot be elements of other sets, then the “definition” of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is just a <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> error. The same is true in other structural <a class="existingWikiWord" href="../../../../../5/7/0/0/75/content.html">foundational systems</a> such as (modern, non-Russellian) <a class="existingWikiWord" href="../../../../9/1/1/1194/content.html">type theory</a>. However, Russell’s paradox can be recreated in structural foundations with inconsistent <a class="existingWikiWord" href="../../../../../0/4/8/7/27840/content.html">universes</a> by constructing <a class="existingWikiWord" href="../../../../1/0/1/1014/content.html">pure sets</a> within them.</p>
+</li>
+<li>
+<p>Alternatively, one can change the underlying logic. Passing to <a class="existingWikiWord" href="../../../../../8/4/9/0/948/content.html">constructive logic</a> does not help: although there is a seeming appeal to <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">excluded middle</a> (either <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\in R</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∉</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\notin R</annotation></semantics></math>), without using excluded middle we can obtain that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is both not in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and not not in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, which is also a contradiction. However, passing to <a class="existingWikiWord" href="../../../../../3/5/0/1/1053/content.html">linear logic</a> (or even <a class="existingWikiWord" href="../../../../8/5/7/17584/content.html">affine logic</a>) does help: there is an unavoidable use of <a class="existingWikiWord" href="../../../../../0/2/3/8/8320/content.html">contraction</a> in the paradox. There exist consistent <span class="newWikiWord">linear set theories<a href="/nlab/new/linear+set+theory">?</a></span> with the full comprehension axiom, in which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\in R</annotation></semantics></math> implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∉</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\notin R</annotation></semantics></math> and vice versa, but we can never get both <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\in R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∉</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">R\notin R</annotation></semantics></math> at the same time to produce a paradox. (See the Ph.D. thesis Linear Set Theory of Masaru Shirahata, completed under Grigori Mints supervision, Stanford University, 1994.)</p>
+</li>
+<li>
+<p>Finally, and perhaps most radically, one can decide to <em>allow</em> contradictions, choosing to use a <a class="existingWikiWord" href="../../../../../0/8/2/1/1280/content.html">paraconsistent logic</a>. There exist nontrivial paraconsistent set theories with full comprehension in which the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> exists, being both a member of itself and not a member of itself.</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Zermelo’s observation which is mentioned in a footnote of his 1908 paper on the <a class="existingWikiWord" href="../../../../../2/0/2/1/1202/content.html">well-ordering theorem</a> is analyzed in</p>
+<ul>
+<li>B. Rang, W. Thomas, <em>Zermelo’s Discovery of the “Russell Paradox”</em> , Hist. Math. <strong>9</strong> no.1 (1981) pp.15-22. <a href="https://doi.org/10.1016/0315-0860(81)90002-1">https://doi.org/10.1016/0315-0860(81)90002-1</a></li>
+</ul>
+<p>together with a transcription of a note dated 16 April 1902 by Husserl describing Zermelo’s proof.</p>
+<p>Russell indicated the contradiction leading to the inconsistency of G. Frege’s system of “Grundgesetze der Arithmetik” in a famous letter to the latter on June 16th 1902 which together with Frege’s reply is reprinted pp.124-128 in</p>
+<ul>
+<li>J. van Heijenoort (ed.), <em>From Frege to Gödel - A Source Book in Mathematical Logic 1879-1931</em> , Harvard UP 1967.</li>
+</ul>
+<p>A re-typed version is available from the blog post <a href="https://thehighergeometer.wordpress.com/2022/10/11/russells-paradox-the-original-letter-to-frege/">here</a>.</p>
+<p>For an account of Russell’s encounter with the paradox:</p>
+<ul>
+<li>I. Grattan-Guinness, <em>How Russell Discovered his Paradox</em> , Hist. Math. <strong>5</strong> no.2 (1978) pp.127-137.</li>
+</ul>
+<p>The first published account is presumably in the appendix of</p>
+<ul>
+<li id="Frege03">G. Frege, <em>Grundgesetze der Arithmetik II</em> , Pohle Jena 1903.</li>
+</ul>
+<p>Russell discusses the paradox extensively in chapter X of</p>
+<ul>
+<li>B. Russell, <em>The Principles of Mathematics</em> , Cambridge UP 1903.</li>
+</ul>
+<p>The influence of Poincaré‘s views shows in</p>
+<ul>
+<li>B. Russell, <em>Les paradoxes de la logique</em> , Revue de métaphysique et de morale <strong>14</strong> no.5 (1906) pp.627-650. (<a href="http://gallica.bnf.fr/ark:/12148/bpt6k11064n">gallica</a>)</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>P. Várdy, <em>Some Remarks on the Relationship between Russell’s Vicious-Circle Principle and Russell’s Paradox</em> , Dialectica <strong>33</strong> (1979) pp.3-19.</li>
+</ul>
+<p>Discussion of a paradox similar to Russell’s in <a class="existingWikiWord" href="../../../../9/1/1/1194/content.html">type theory</a> with <a class="existingWikiWord" href="../../../../../6/7/4/3/3476/content.html">W-types</a> is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/3/8/5/5831/content.html">Thierry Coquand</a>, <em>The paradox of trees in Type Theory</em> (1991) (<a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.1953">web</a>)</li>
+</ul>
+<div class="footnotes"><hr/><ol><li id="fn:1">
+<p>naive <a class="existingWikiWord" href="../../../../../5/4/0/8/8045/content.html">material set theory</a> that is! <a href="#fnref:1" rev="footnote">↩</a></p>
+</li><li id="fn:2">
+<p>Zermelo was apparently led to the paradox by considering a purported proof of Ernst Schröder in his <em>Algebra der Logik</em> (1890) that Boole’s concept of a universal class 1 was contradictory. Interestingly, the solution suggested by Schröder is reminiscent of <a class="existingWikiWord" href="../../../../9/1/1/1194/content.html">type theory</a> or even nested <a class="existingWikiWord" href="../../../../../0/4/8/7/27840/content.html">universes</a> where a universal class 1 recurs at each level. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li><li id="fn:3">
+<p>Frege (<a href="#Frege03">1903</a>, p.253). <a href="#fnref:3" rev="footnote">↩</a></p>
+</li><li id="fn:4">
+<p>This solution proposed by J. von Neumann in the 1920s can be viewed as related to ideas of G. Cantor. The latter knew about similar phenomena concerning “the set of all sets” (in fact, Russell hit upon the paradox in a reflection on Cantor’s proof of the inexistence of a largest cardinal number), and had already pointed out in 1885 in a review of Frege’s “Grundlagen der Arithmetik” that not every concept has an extension. Therefore Cantor proposed in letters to Dedekind and Jourdain to differentiate between <em>‘consistent multiplicities’</em> (“compossible” multiplicities one could say) where things can coexist or compose to a consistent whole - ‘ensemble’ (fr.) which correspond to sets in the usual sense and, as completed collections, can in turn be elements in other sets, from <em>‘inconsistent multiplicities’</em> whose elements cannot consistently completed to a whole and cannot be member of other collections due to this lack of ‘unity’. <a href="#fnref:4" rev="footnote">↩</a></p>
+</li></ol></div></div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

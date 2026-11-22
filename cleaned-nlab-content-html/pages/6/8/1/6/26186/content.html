@@ -1,0 +1,615 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      partial trace quantum channel in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      partial trace quantum channel
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#QuantumChannelsAndDecoherence">Environmental representation of quantum channels</a></li>
+<li><a href="#environmental_representation_of_measurement_channels">Environmental representation of measurement channels</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/0/1/6/26104/content.html">finite-dimensional Hilbert space</a>, the operation of <a class="existingWikiWord" href="../../../../../8/3/6/3/3638/content.html">partial trace</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> is a quantum channel</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo>⊗</mo><msup><mi class="mathscript">ℬ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>→</mo><mrow><msup><mi>trace</mi> <mi class="mathscript">ℬ</mi></msup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>,</mo><mi>β</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>β</mi><mo>′</mo><mo>,</mo><mi>ψ</mi><mo>′</mo><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>β</mi><mo>′</mo><mo stretchy="false">|</mo><mi>β</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ψ</mi><mo>′</mo><mo>|</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}
+    \otimes
+    \mathscr{B}
+    \otimes
+    \mathscr{B}^\ast
+    \otimes
+    \mathscr{H}^\ast
+    &amp;
+    \xrightarrow{
+      trace^{\mathscr{B}}
+    }
+    &amp;
+    \mathscr{H} \otimes \mathscr{H}^\ast
+    \\
+    \left\vert \psi, \beta \right\rangle
+    \left\langle \beta', \psi' \right\vert
+    &amp;\mapsto&amp;
+    \left\vert \psi \right\rangle
+    \left\langle \beta' \vert \beta \right\rangle
+    \left\langle \psi' \right\vert
+    \mathrlap{\,.}
+  }  
+
+</annotation></semantics></math></div>
+<p>which represents the “operation” of averaging the <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed</a> <a class="existingWikiWord" href="../../../../../8/5/7/3/3758/content.html">quantum states</a> of the <a class="existingWikiWord" href="../../../../../7/0/1/1/11107/content.html">composite</a> <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} \otimes \mathscr{B}</annotation></semantics></math> over the degrees of freedom of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math>.</p>
+<h2 id="properties">Properties</h2>
+<div>
+<h3 id="QuantumChannelsAndDecoherence">Environmental representation of quantum channels</h3>
+<p>The crux of dynamical <a class="existingWikiWord" href="../../../../9/2/9/9296/content.html">quantum decoherence</a> is that <em>fundamentally</em> the (time-)evolution of any <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> may be assumed <a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary</a> (say via a <a class="existingWikiWord" href="../../../../../0/1/0/4/4010/content.html">Schrödinger equation</a>) <em>when taking the whole evolution of its environment</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> (the “bath”, ultimately the whole <a class="existingWikiWord" href="../../../../../0/6/2/7/7260/content.html">observable universe</a>) into account, too, in that the evolution of the total system <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} \otimes \mathscr{B}</annotation></semantics></math> is given by a <a class="existingWikiWord" href="../../../../../5/2/6/3/3625/content.html">unitary operator</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><mi>evolve</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>,</mo><mi>β</mi><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>U</mi> <mi>tot</mi></msub><mrow><mo>|</mo><mi>ψ</mi><mo>,</mo><mi>β</mi><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathllap{
+      evolve
+      \;\colon\;
+    }
+    \mathscr{H} \otimes \mathscr{B}
+    &amp;\longrightarrow&amp;
+    \mathscr{H} \otimes \mathscr{B}
+    \\
+    \left\vert \psi, \beta \right\rangle
+    &amp;\mapsto&amp;
+    U_{tot}
+    \left\vert \psi, \beta \right\rangle
+    \mathrlap{\,,}
+  }
+
+</annotation></semantics></math></div>
+<p>after understanding the <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed states</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">\rho \,\colon\, \mathscr{H} \otimes \mathscr{H}^\ast</annotation></semantics></math> (<a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">density matrices</a>) of the given <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a> as coupled to any given mixed state <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>env</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℬ</mi><mo>⊗</mo><msup><mi class="mathscript">ℬ</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">env \,\colon\, \mathscr{B} \otimes \mathscr{B}^\ast</annotation></semantics></math> of the bath (via <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a>)</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><mi>couple</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><msup><mo stretchy="false">)</mo> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mi>ρ</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>ρ</mi><mo>⊗</mo><mi>env</mi><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>;</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathllap{
+      couple
+      \;\colon\;
+    }
+    \mathscr{H} \otimes \mathscr{H}^\ast
+    &amp;
+    \longrightarrow
+    &amp;
+    (\mathscr{H} \otimes \mathscr{B})
+    \otimes
+    (\mathscr{H} \otimes \mathscr{B})^\ast
+    \\
+    \rho &amp;\mapsto&amp;
+    \rho \otimes env
+    \mathrlap{\,;}
+  }
+
+</annotation></semantics></math></div>
+<p>…the only catch being that one cannot — and in any case does not (want or need to) — keep track of the precise <a class="existingWikiWord" href="../../../../../8/5/7/3/3758/content.html">quantum state</a> of the environment/bath, instead only of its <em>average</em> effect on the given <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a>, which by the rule of <a class="existingWikiWord" href="../../../../../0/4/8/8/18840/content.html">quantum probability</a> is the <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed state</a> that remains after the <a class="existingWikiWord" href="content.html">partial trace</a> over the environment:</p>
+<div class="maruku-equation" id="eq:PartialTraceOverBathTowardsQuantumChannels"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><mi>average</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><msup><mo stretchy="false">)</mo> <mo>*</mo></msup></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mover><mi>ρ</mi><mo>^</mo></mover></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>Tr</mi> <mi class="mathscript">ℬ</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mover><mi>ρ</mi><mo>^</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \mathllap{
+    average
+    \;\colon\;
+    }
+    (\mathscr{H} \otimes \mathscr{B})
+    \otimes
+    (\mathscr{H} \otimes \mathscr{B})^\ast
+    &amp;\longrightarrow&amp;
+    \mathscr{H} \otimes \mathscr{H}^\ast
+    \\
+    \widehat{\rho}
+      &amp;\mapsto&amp;
+    Tr_{\mathscr{B}}\big(\widehat{\rho}\big)
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>In summary this means <em>for practical purposes</em> that the probabilistic evolution of quantum systems <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> is always of the composite form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>→</mo><mrow><mtable><mtr><mtd><mtext>couple to</mtext></mtd></mtr> <mtr><mtd><mtext>environment</mtext></mtd></mtr></mtable></mrow></mover></mtd> <mtd><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mo>⊗</mo></mtd></mtr> <mtr><mtd><mi class="mathscript">ℬ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>⊗</mo><msup><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mo>⊗</mo></mtd></mtr> <mtr><mtd><mi class="mathscript">ℬ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow> <mo>*</mo></msup></mtd> <mtd><mover><mo>→</mo><mrow><mtable><mtr><mtd><mtext>total unitary</mtext></mtd></mtr> <mtr><mtd><mtext>evolution</mtext></mtd></mtr></mtable></mrow></mover></mtd> <mtd><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mo>⊗</mo></mtd></mtr> <mtr><mtd><mi class="mathscript">ℬ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mo>⊗</mo><msup><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mo>⊗</mo></mtd></mtr> <mtr><mtd><mi class="mathscript">ℬ</mi></mtd></mtr></mtable></mrow><mo>)</mo></mrow> <mo>*</mo></msup></mtd> <mtd><mover><mo>→</mo><mrow><mtable><mtr><mtd><mtext>average over</mtext></mtd></mtr> <mtr><mtd><mtext>environment</mtext></mtd></mtr></mtable></mrow></mover></mtd> <mtd><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mi>ρ</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>ρ</mi><mo>⊗</mo><mi>env</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mpadded lspace="-50%width" width="0"><mrow><msub><mi>U</mi> <mi>tot</mi></msub><mo>⋅</mo><mo stretchy="false">(</mo><mi>ρ</mi><mo>⊗</mo><mi>env</mi><mo stretchy="false">)</mo><mo>⋅</mo><msubsup><mi>U</mi> <mi>tot</mi> <mo>†</mo></msubsup></mrow></mpadded></mtd> <mtd><mo>↦</mo></mtd> <mtd><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mpadded lspace="-50%width" width="0"><mrow><msub><mi>Tr</mi> <mi class="mathscript">ℬ</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>U</mi> <mi>tot</mi></msub><mo>⋅</mo><mo stretchy="false">(</mo><mi>ρ</mi><mo>⊗</mo><mi>env</mi><mo stretchy="false">)</mo><mo>⋅</mo><msubsup><mi>U</mi> <mi>tot</mi> <mo>†</mo></msubsup><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{ 
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    &amp; 
+    \xrightarrow{    
+      \array{
+        \text{couple to}
+        \\
+        \text{environment}
+      }
+    } 
+    &amp;
+    \left(
+    \array{
+      \mathscr{H}
+      \\
+      \otimes
+      \\
+      \mathscr{B}
+    }
+    \right)
+    \otimes
+    \left(
+    \array{
+      \mathscr{H}
+      \\
+      \otimes
+      \\
+      \mathscr{B}
+    }
+    \right)^\ast
+    &amp;
+    \xrightarrow{    
+      \array{
+        \text{total unitary}
+        \\
+        \text{evolution}
+      }
+    } 
+    &amp;
+    \left(
+    \array{
+      \mathscr{H}
+      \\
+      \otimes
+      \\
+      \mathscr{B}
+    }
+    \right)
+    \otimes
+    \left(
+    \array{
+      \mathscr{H}
+      \\
+      \otimes
+      \\
+      \mathscr{B}
+    }
+    \right)^\ast    
+    &amp;
+    \xrightarrow{    
+      \array{
+        \text{average over}
+        \\
+        \text{environment}
+      }
+    } 
+    &amp;
+    \;\;\;\;
+    \mathscr{H} \otimes \mathscr{H}^\ast
+    \\
+    \rho
+    &amp;\mapsto&amp;
+    \rho \otimes env
+    &amp;\mapsto&amp;
+    \mathclap{
+    U_{tot} 
+      \cdot  
+    (\rho \otimes env) 
+      \cdot
+    U_{tot}^\dagger 
+    }
+    &amp;\mapsto&amp;
+    \;\;\;\;\;\;\;\;\;\;\;\;
+    \mathclap{
+    Tr_{\mathscr{B}}
+    \big(
+      U_{tot} 
+        \cdot  
+      (\rho \otimes env) 
+        \cdot
+      U_{tot}^\dagger 
+   \big)
+   }
+  }
+
+</annotation></semantics></math></div>
+<p>This composite turns out to be a “<em><a class="existingWikiWord" href="../../../../../1/4/5/3/3541/content.html">quantum channel</a></em>” and in fact all quantum channels arise this way:</p>
+<p>
+<div class="num_prop" id="QuantumChannelsAsPartialTracesOfUnitariesOnTensors">
+<h6>Proposition</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../1/4/5/3/3541/content.html">quantum channels</a> and <a class="existingWikiWord" href="../../../../9/2/9/9296/content.html">decoherence</a>)</strong></p>
+<p>Every <a class="existingWikiWord" href="../../../../../1/4/5/3/3541/content.html">quantum channel</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ch</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⟶</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  ch 
+  \;\;\colon\;\;
+  \mathscr{H} \otimes \mathscr{H}^\ast
+  \longrightarrow
+  \mathscr{H} \otimes \mathscr{H}^\ast
+
+</annotation></semantics></math></div>
+<p>may be written as</p>
+<ol>
+<li>
+<p>a <a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum channel</a>, induced by a <a class="existingWikiWord" href="../../../../../5/2/6/3/3625/content.html">unitary operator</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>tot</mi></msub><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo>→</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">U_{tot} \,\colon\, \mathscr{H} \otimes \mathscr{B} \to \mathscr{H} \otimes \mathscr{B} </annotation></semantics></math></p>
+</li>
+<li>
+<p>on a <a class="existingWikiWord" href="../../../../../7/0/1/1/11107/content.html">compound system</a> with some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> (the “bath”), yielding a <em>total system</em> <a class="existingWikiWord" href="../../../../4/6/1/1646/content.html">Hilbert space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} \otimes \mathscr{B}</annotation></semantics></math> (<a class="existingWikiWord" href="../../../../../2/2/1/8/8122/content.html">tensor product</a>),</p>
+</li>
+<li>
+<p>and acting on the given <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed state</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\rho</annotation></semantics></math> coupled (tensored) with a fixed <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed state</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>env</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℬ</mi><mo>⊗</mo><msup><mi class="mathscript">ℬ</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">env \,\colon\, \mathscr{B} \otimes \mathscr{B}^\ast</annotation></semantics></math> of the bath system,</p>
+</li>
+<li>
+<p>followed by <a class="existingWikiWord" href="content.html">partial trace</a> (averaging) over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> (leading to <a class="existingWikiWord" href="../../../../9/2/9/9296/content.html">decoherence</a> in the remaining state)</p>
+</li>
+</ol>
+<p>in that</p>
+<div class="maruku-equation" id="eq:QuantumChannelVieDecoherence"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ch</mi><mo stretchy="false">(</mo><mi>ρ</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>Tr</mi> <mi class="mathscript">ℬ</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>U</mi> <mi>tot</mi></msub><mo>⋅</mo><mo stretchy="false">(</mo><mi>ρ</mi><mo>⊗</mo><mi>env</mi><mo stretchy="false">)</mo><mo>⋅</mo><msubsup><mi>U</mi> <mi>tot</mi> <mo>†</mo></msubsup><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  ch(\rho)
+  \;\;=\;\;
+  Tr_{\mathscr{B}}
+  \big(
+    U_{tot}
+    \cdot
+    (\rho \otimes env)
+    \cdot
+    U_{tot}^\dagger
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Conversely, every operation of the form <a class="maruku-eqref" href="#eq:QuantumChannelVieDecoherence">(2)</a> is a quantum channel.</p>
+</div>
+</p>
+<p>The <strong>original proof</strong> is due to <a href="../../../../../1/4/5/3/3541/content.html#Lindblad75">Lindblad 1975</a> (see top of p. 149 and inside the proof of Lem. 5).</p>
+<p>For exposition see: <a href="../../../../../1/4/5/3/3541/content.html#NielsenChuang00">Nielsen &amp; Chuang 2000 §8.2.2-8.2.3</a></p>
+<p>For detailed <strong>proof</strong>, including the infinite-dimensional case: <a href="../../../../../1/4/5/3/3541/content.html#AttalLectureNotes">Attal, Thm. 6.5 &amp; 6.7</a>.</p>
+<p>The realization of a quantum channel in the form <a class="maruku-eqref" href="#eq:QuantumChannelVieDecoherence">(2)</a> is also called an <em>environmental representation</em> (eg. <a href="../../../../../1/4/5/3/3541/content.html#ŻyczkowskiBengtsson04">Życzkowski &amp; Bengtsson 2004 (3.5)</a>).</p>
+</div><div>
+<h3 id="environmental_representation_of_measurement_channels">Environmental representation of measurement channels</h3>
+<p>By the general theorem about <a href="../../../../../1/4/5/3/3541/content.html#QuantumChannelsAndDecoherence">environmental representations</a> of quantum channels, every <a class="existingWikiWord" href="../../../../../1/4/5/3/3541/content.html">quantum channel</a> on a <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> may be decomposed as</p>
+<ol>
+<li>
+<p>coupling of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> to an environment/bath system <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary evolution</a> of the <a class="existingWikiWord" href="../../../../../7/0/1/1/11107/content.html">composite system</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} \otimes \mathscr{B}</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="content.html">averaging</a> the result over the environment states.</p>
+</li>
+</ol>
+<p>The way this works specifically for <a class="existingWikiWord" href="../../../../7/1/6/26176/content.html">quantum measurement channels</a> has precursor discussion <a href="../../../../../5/2/8/9/9825/content.html#vonNeumann32">von Neumann 1932 §VI.3</a> and received much attention in discussion of <em><a class="existingWikiWord" href="../../../../9/2/9/9296/content.html">quantum decoherence</a></em> following <a href="../../../../9/2/9/9296/content.html#Zurek81">Zurek 1981</a> and <a href="../../../../9/2/9/9296/content.html#JoosZeh85">Joos &amp; Zeh 1985</a> (independently and apparently unkowingly of the general discussion of <a href="../../../../../1/4/5/3/3541/content.html#QuantumChannelsAndDecoherence">environmental representations</a> in <a href="../../../../../1/4/5/3/3541/content.html#Lindblad75">Lindblad 1975</a>).</p>
+<p>Concretely,</p>
+<blockquote>
+<p>(we shall restrict attention to <a class="existingWikiWord" href="../../../../../4/0/1/6/26104/content.html">finite-dimensional Hilbert spaces</a> not to get distracted by technicalities that are irrelevant to the point we are after)</p>
+</blockquote>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><msub><mi>b</mi> <mi mathvariant="normal">ini</mi></msub><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\left\vert b_{\mathrm{ini}} \right\rangle \,\colon\, \mathscr{B}</annotation></semantics></math> (we use <a class="existingWikiWord" href="../../../../../8/0/1/1/11108/content.html">bra-ket notation</a>) denotes the initial state of a “device” <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a> then any notion of this device measuring the given <a class="existingWikiWord" href="../../../../../8/9/6/3/3698/content.html">quantum system</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> (in its measurement basis <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>≃</mo><munder><mo>⊕</mo><mi>W</mi></munder><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} \simeq \underset{W}{\oplus}\mathbb{C}</annotation></semantics></math>) under their joint <a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum evolution</a> should be reflected in a <a class="existingWikiWord" href="../../../../../5/2/6/3/3625/content.html">unitary operator</a> under <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a href="../../../../9/2/9/9296/content.html#Zurek81">Zurek 1981 (1.1)</a>, <a href="../../../../9/2/9/9296/content.html#JoosZeh85">Joos &amp; Zeh 1985 (1.1.)</a>, following <a href="../../../../../5/2/8/9/9825/content.html#vonNeumann32">von Neumann 1932 §VI.3</a>, review includes <a href="../../../../9/2/9/9296/content.html#Schlosshauer07">Schlosshauer 2007 (2.51)</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math>:</p>
+<ol>
+<li>
+<p>the system <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> remains invariant <em>if</em> it is purely in any eigenstate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert w \right\rangle</annotation></semantics></math> of the measurement basis,</p>
+</li>
+<li>
+<p>while in this case the measuring system evolves to a corresponding “pointer state” <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><msub><mi>b</mi> <mi>w</mi></msub><mo>⟩</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert b_w \right\rangle</annotation></semantics></math>:</p>
+</li>
+</ol>
+<div class="maruku-equation" id="eq:UnitaryMeasurementProcess"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd><mpadded lspace="-50%width" width="0"><mstyle mathcolor="green"><mrow><mtable><mtr><mtd><mtext>unitary</mtext></mtd></mtr> <mtr><mtd><mtext>measurement interaction</mtext></mtd></mtr></mtable></mrow></mstyle></mpadded></mtd> <mtd></mtd></mtr> <mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><msub><mi>U</mi> <mi>W</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mpadded><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>w</mi><mo>,</mo><msub><mi>b</mi> <mi>ini</mi></msub><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>|</mo><mi>w</mi><mo>,</mo><msub><mi>b</mi> <mi>w</mi></msub><mo>⟩</mo></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    &amp;\mathclap{
+      \color{green}
+      \array{
+        \text{unitary}
+        \\
+        \text{measurement interaction}
+      }
+   }&amp;
+    \\
+    \mathllap{
+      U_W
+      \;\colon\;\;
+    }
+    \mathscr{H} \otimes \mathscr{B}
+    &amp;\longrightarrow&amp;
+    \mathscr{H} \otimes \mathscr{B}
+    \\
+    \left\vert w, b_{ini} \right\rangle
+    &amp;\mapsto&amp;
+    \left\vert w, b_w \right\rangle
+  }
+
+</annotation></semantics></math></div>
+<p>for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi> <mi mathvariant="normal">ini</mi></msub></mrow><annotation encoding="application/x-tex">b_{\mathrm{ini}}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi> <mi>w</mi></msub></mrow><annotation encoding="application/x-tex">b_w</annotation></semantics></math> distinct elements of an (in practice: approximately-)<a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">orthonormal basis</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math>. (There is always a unitary operator with this mapping property <a class="maruku-eqref" href="#eq:UnitaryMeasurementProcess">(3)</a>, for instance the one which moreover maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>w</mi><mo>,</mo><msub><mi>b</mi> <mi>w</mi></msub><mo>⟩</mo></mrow><mo>↦</mo><mrow><mo>|</mo><mi>w</mi><mo>,</mo><msub><mi>b</mi> <mi mathvariant="normal">ini</mi></msub><mo>⟩</mo></mrow></mrow><annotation encoding="application/x-tex">\left\vert w, b_{w}\right\rangle \mapsto \left\vert w, b_{\mathrm{ini}}\right\rangle</annotation></semantics></math> and is the <a class="existingWikiWord" href="../../../../../9/0/4/1/1409/content.html">identity</a> on all remaining basis elements.)</p>
+<p>But then the composition of the corresponding <a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum channel</a> with the <a class="existingWikiWord" href="content.html">averaging channel</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}</annotation></semantics></math> is indeed equal to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../7/1/6/26176/content.html">measurement quantum channel</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> (cf. eg. <a href="../../../../9/2/9/9296/content.html#Schlosshauer07">Schlosshauer 2007 (2.117)</a>, going back to <a href="../../../../9/2/9/9296/content.html#Zeh70">Zeh 1970 (7)</a>), as follows:</p>
+<div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/EnvRepOfQuantumMeasurementChannel-230924b.jpg" width="940px"/>
+</div></div>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/2/9/9296/content.html">decoherence</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/4/5/3/3541/content.html">quantum channel</a></p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../7/1/6/26176/content.html">quantum measurement channel</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum channel</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

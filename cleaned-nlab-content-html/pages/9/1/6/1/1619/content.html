@@ -1,0 +1,758 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      string structure in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      string structure
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#topological_and_smooth_string_structures">Topological and smooth string structures</a></li>
+<ul>
+<li><a href="#observation">Observation</a></li>
+</ul>
+<li><a href="#twisted_and_differential_string_structures">Twisted and differential string structures</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#choices_of_string_structures">Choices of string structures</a></li>
+<ul>
+<li><a href="#observation_2">Observation</a></li>
+</ul>
+<li><a href="#ClassesOnTotalSpace">String structures by gerbes on a bundle</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+</div>
+<p>A <em>string structure</em> on a <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a> is a higher version of a <a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a>. A string structure on a <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a> with <a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a> given by a <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">Spin group</a>-<a class="existingWikiWord" href="../../../../../3/4/5/1/1543/content.html">principal bundle</a> to which the <a class="existingWikiWord" href="../../../../../1/6/9/1/1961/content.html">tangent bundle</a> is <a class="existingWikiWord" href="../../../../../4/1/3/9/9314/content.html">associated</a> is a lift <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>g</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat g</annotation></semantics></math> of the classifying map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>ℬ</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g : X \to \mathcal{B} Spin(n)</annotation></semantics></math> through the third nontrivial step <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℬ</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>ℬ</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{B}String(n) \to \mathcal{B}Spin(n)</annotation></semantics></math> in the <a class="existingWikiWord" href="../../../../../2/8/5/2/2582/content.html">Whitehead tower</a> of <a class="existingWikiWord" href="../../../../../7/5/6/6/26657/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>B</mi>
+<mi>O</mi>
+<mo stretchy="false">(</mo>
+<mi>n</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">B O(n)</annotation>
+</semantics>
+</math></a> to a <a class="existingWikiWord" href="../../../../../7/8/5/2/2587/content.html">String group</a>-<a class="existingWikiWord" href="../../../../../3/4/5/1/1543/content.html">principal bundle</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>ℬ</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mover><mi>g</mi><mo stretchy="false">^</mo></mover></msup><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mover><mo>→</mo><mi>g</mi></mover></mtd> <mtd><mi>ℬ</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    &amp;&amp; \mathcal{B}String(n)
+    \\
+    &amp; {}^{\hat g}\nearrow &amp; \downarrow
+    \\
+    X &amp;\stackrel{g}{\to}&amp; \mathcal{B}Spin(n)
+  }
+
+</annotation></semantics></math></div>
+<p>A lift one further step through the Whitehead tower is a <a class="existingWikiWord" href="../../../../../8/1/3/2/2318/content.html">Fivebrane structure</a>.</p>
+<p>This has generalizations to the smooth context, where instead of the topological String-group one uses the <a class="existingWikiWord" href="../../../../../3/8/5/2/2583/content.html">String Lie 2-group</a>.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-dimensional <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a>.</p>
+<p>Its tangent <a class="existingWikiWord" href="../../../../../0/5/1/1/1150/content.html">bundle</a> is canonically associated to a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math>-principal bundle, which is in turn classified by a <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>B</mi><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  X \to B O(n)
+
+</annotation></semantics></math></div>
+<p>from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a> <a class="existingWikiWord" href="../../../../../7/5/6/6/26657/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>B</mi>
+<mi>O</mi>
+<mo stretchy="false">(</mo>
+<mi>n</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">B O(n)</annotation>
+</semantics>
+</math></a> of the <a class="existingWikiWord" href="../../../../../2/9/5/2/2592/content.html">orthogonal group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math>.</p>
+<ul>
+<li>
+<p>A <strong>String structure</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the choice of a lift of this map a few steps through the <a class="existingWikiWord" href="../../../../../2/8/5/2/2582/content.html">Whitehead tower</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>BO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">BO(n)</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>The manifold “is string” if such a lift exists.</p>
+</li>
+</ul>
+<p>This means the following:</p>
+<ul>
+<li>
+<p>there is a canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi> <mn>1</mn></msub><mo>:</mo><mi>B</mi><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">w_1 : B O(n) \to B\mathbb{Z}_2</annotation></semantics></math> from the <a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a> <a class="existingWikiWord" href="../../../../../7/5/6/6/26657/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>B</mi>
+<mi>O</mi>
+<mo stretchy="false">(</mo>
+<mi>n</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">B O(n)</annotation>
+</semantics>
+</math></a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math> to that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mn>2</mn></msub><mo>=</mo><mi>ℤ</mi><mo stretchy="false">/</mo><mn>2</mn><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2 = \mathbb{Z}/2\mathbb{Z}</annotation></semantics></math> that represents the generator of the cohomology <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mn>1</mn></msup><mo stretchy="false">(</mo><mi>B</mi><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^1(B O(n), \mathbb{Z}_2)</annotation></semantics></math>. The classifying space <a class="existingWikiWord" href="../../../../../4/6/6/6/26664/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>B</mi>
+<mi>S</mi>
+<mi>O</mi>
+<mo stretchy="false">(</mo>
+<mi>n</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">B S O(n)</annotation>
+</semantics>
+</math></a> of the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SO(n)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/2/5/0/522/content.html">homotopy pullback</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>B</mi><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>w</mi> <mn>1</mn></msub></mrow></mover></mtd> <mtd><mi>𝔹</mi><msub><mi>ℤ</mi> <mn>2</mn></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+  B SO(n) &amp;\to&amp; {*}
+  \\
+  \downarrow &amp;&amp; \downarrow
+  \\
+  B O(n) &amp;\stackrel{w_1}{\to}&amp; \mathbb{B}\mathbb{Z}_2
+ }
+
+</annotation></semantics></math></div>
+<p>Namely using the <a class="existingWikiWord" href="../../../../../8/5/5/0/558/content.html">homotopy hypothesis</a> (which is a theorem, recall), we may identify <a class="existingWikiWord" href="../../../../../7/5/6/6/26657/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>B</mi>
+<mi>O</mi>
+<mo stretchy="false">(</mo>
+<mi>n</mi>
+<mo stretchy="false">)</mo>
+</mrow>
+<annotation encoding="application/x-tex">B O(n)</annotation>
+</semantics>
+</math></a> with the one object <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoid</a> whose space of morphisms is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math> and similarly for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex"> B \mathbb{Z}_2</annotation></semantics></math>. Then the map in question is the one induced from the group homomorphism that sends orientation preserving elements in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math> to the identity and orientation reversing elements to the nontrivial element in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathbb{Z}_2</annotation></semantics></math>.</p>
+<ul>
+<li>an <strong><a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">orientation</a></strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a choice of lift of the structure group through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B SO(n) \to B O(n)</annotation></semantics></math><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mi>orientation</mi></msup><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mover><mo>→</mo><mrow></mrow></mover></mtd> <mtd><mi>B</mi><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\array{
+&amp;&amp; B SO(n)
+\\
+&amp; {}^{orientation}\nearrow&amp; \downarrow 
+\\
+X &amp;\stackrel{}{\to}&amp; B O(n)
+}
+\,.
+
+</annotation></semantics></math></div></li>
+</ul>
+</li>
+<li>
+<p>there is a canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi> <mn>2</mn></msub><mo>:</mo><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>B</mi> <mn>2</mn></msup><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">w_2 : B SO(n) \to B^2 \mathbb{Z}_2</annotation></semantics></math> representing the generator of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mn>2</mn></msup><mo stretchy="false">(</mo><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>ℤ</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^2(B SO(n), \mathbb{Z}_2)</annotation></semantics></math>. The classifying space of the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Spin(n)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/2/5/0/522/content.html">homotopy pullback</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>w</mi> <mn>2</mn></msub></mrow></mover></mtd> <mtd><msup><mi>𝔹</mi> <mn>2</mn></msup><msub><mi>ℤ</mi> <mn>2</mn></msub></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+  B Spin(n) &amp;\to&amp; {*}
+  \\
+  \downarrow &amp;&amp; \downarrow
+  \\
+  B SO(n) &amp;\stackrel{w_2}{\to}&amp; \mathbb{B}^2\mathbb{Z}_2
+ }
+
+</annotation></semantics></math></div>
+<ul>
+<li>a <strong><a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a></strong> on an oriented manifold <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a choice of lift of the structure group through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B Spin(n) \to B SO(n)</annotation></semantics></math><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mrow><mi>spin</mi><mi>structure</mi></mrow></msup><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mover><mo>→</mo><mrow></mrow></mover></mtd> <mtd><mi>B</mi><mi>SO</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\array{
+&amp;&amp; B Spin(n)
+\\
+&amp; {}^{spin structure}\nearrow&amp; \downarrow 
+\\
+X &amp;\stackrel{}{\to}&amp; B SO(n)
+}
+\,.
+
+</annotation></semantics></math></div></li>
+</ul>
+</li>
+<li>
+<p>there is a canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>B</mi> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B Spin(n) \to B^3 U(1)</annotation></semantics></math> The classifying space of the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">String(n)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/2/5/0/522/content.html">homotopy pullback</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>p</mi> <mn>1</mn></msub></mrow></mover></mtd> <mtd><msup><mi>𝔹</mi> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+  B String(n) &amp;\to&amp; {*}
+  \\
+  \downarrow &amp;&amp; \downarrow
+  \\
+  B Spin(n) &amp;\stackrel{\frac{1}{2}p_1}{\to}&amp; \mathbb{B}^3 U(1)
+ }
+
+</annotation></semantics></math></div>
+<ul>
+<li>a <strong>string structure</strong> on an oriented manifold <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a choice of lift of the structure group through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B String(n) \to B Spin(n)</annotation></semantics></math><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mrow><mi>string</mi><mi>structure</mi></mrow></msup><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mover><mo>→</mo><mrow></mrow></mover></mtd> <mtd><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\array{
+&amp;&amp; B String(n)
+\\
+&amp; {}^{string structure}\nearrow&amp; \downarrow 
+\\
+X &amp;\stackrel{}{\to}&amp; B Spin(n)
+}
+\,.
+
+</annotation></semantics></math></div></li>
+</ul>
+</li>
+<li>
+<p>there is a canonical map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>B</mi> <mn>7</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B String(n) \to B^7 U(1)</annotation></semantics></math> The classifying space of the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Fivebrane</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Fivebrane(n)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/2/5/0/522/content.html">homotopy pullback</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>B</mi><mi>Fivebrane</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><mfrac><mn>1</mn><mn>6</mn></mfrac><msub><mi>p</mi> <mn>2</mn></msub></mrow></mover></mtd> <mtd><msup><mi>𝔹</mi> <mn>7</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+  B Fivebrane(n) &amp;\to&amp; {*}
+  \\
+  \downarrow &amp;&amp; \downarrow
+  \\
+  B String(n) &amp;\stackrel{\frac{1}{6}p_2}{\to}&amp; \mathbb{B}^7 U(1)
+ }
+
+</annotation></semantics></math></div>
+<ul>
+<li>a <strong><a class="existingWikiWord" href="../../../../../8/1/3/2/2318/content.html">fivebrane structure</a></strong> on an string manifold <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a choice of lift of the structure group through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>Fivebrane</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B Fivebrane(n) \to B String(n)</annotation></semantics></math><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>B</mi><mi>Fivebrane</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><msup><mrow></mrow> <mrow><mi>fivebrane</mi><mi>structure</mi></mrow></msup><mo>↗</mo></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mover><mo>→</mo><mrow></mrow></mover></mtd> <mtd><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\array{
+&amp;&amp; B Fivebrane(n)
+\\
+&amp; {}^{fivebrane structure}\nearrow&amp; \downarrow 
+\\
+X &amp;\stackrel{}{\to}&amp; B String(n)
+}
+\,.
+
+</annotation></semantics></math></div></li>
+</ul>
+</li>
+</ul>
+<h2 id="definition">Definition</h2>
+<h3 id="topological_and_smooth_string_structures">Topological and smooth string structures</h3>
+<p>Let the ambient <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-topos</a> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathbf{H} = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/8/1/3/3182/content.html">ETop∞Grpd</a> or <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">Smooth∞Grpd</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> for a <a class="existingWikiWord" href="../../../../../4/8/6/4/4684/content.html">topological manifold</a> or <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> of <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimension</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>, respectively.</p>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">String(n)</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../3/8/5/2/2583/content.html">string 2-group</a>, a <a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">1-truncated</a> <a class="existingWikiWord" href="../../../../../0/5/4/3/3450/content.html">∞-group</a> object in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math>.</p>
+<div class="num_defn" id="PlainStringStructures">
+<h6 id="definition_2">Definition</h6>
+<p>The <a class="existingWikiWord" href="../../../../../5/3/8/0/835/content.html">2-groupoid</a> of (topological or smooth) <strong>string structures</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the hom-space of <a class="existingWikiWord" href="../../../../../2/6/1/3/3162/content.html">cocycle</a>s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \to \mathbf{B}String(n)</annotation></semantics></math>, or equivalently that of (topological or smooth) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">String(n)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/0/7/1/1703/content.html">principal 2-bundle</a>s:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>String</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mi>Bund</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><mstyle mathvariant="bold"><mi>X</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>String</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  String(X) := String(n) Bund(X) \simeq \mathbf{X}(X,\mathbf{B}String)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\frac{1}{2} \mathbf{p}_1 : \mathbf{B} Spin(n) \to \mathbf{B}^3 U(1)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math> for the topological or smooth refinement of the first fractional Pontryagin class (see <a class="existingWikiWord" href="../../../../../5/7/6/4/4675/content.html">differential string structure</a> for details on this).</p>
+<div class="num_prop" id="StringStructuresAsObstructions">
+<h6 id="observation">Observation</h6>
+<p>The <a class="existingWikiWord" href="../../../../../5/3/8/0/835/content.html">2-groupoid</a> of string structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msubsup><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn> <mi>X</mi></msubsup></mrow><annotation encoding="application/x-tex">\frac{1}{2}\mathbf{p}_1^X</annotation></semantics></math>: the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-pullback</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>String</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub></mrow></mover></mtd> <mtd><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    String(X) &amp;\to&amp; * 
+    \\
+    \downarrow &amp;&amp; \downarrow 
+    \\
+    \mathbf{H}(X, \mathbf{B}Spin(n))
+     &amp;\stackrel{\frac{1}{2}\mathbf{p}_1}{\to}&amp;
+    \mathbf{H}(X, \mathbf{B}^3 U(1))
+  }
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>By definition of the <a class="existingWikiWord" href="../../../../../3/8/5/2/2583/content.html">string 2-group</a> we have the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">fiber sequence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>String</mi><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mover><mstyle mathvariant="bold"><mrow><msub><mi>p</mi> <mn>1</mn></msub></mrow></mstyle><mfrac><mn>1</mn><mn>2</mn></mfrac></mover><mo>→</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{B} String \to \mathbf{B}Spin \stackrel{\frac{1}{2}} \mathbf{p_1}{\to} \mathbf{B}^3 U(1)</annotation></semantics></math>. The <a class="existingWikiWord" href="../../../../../6/2/3/0/326/content.html">hom-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{H}(X,-)</annotation></semantics></math> preserves every <a class="existingWikiWord" href="../../../../../2/4/8/0/842/content.html">(∞,1)-limit</a>, hence preserves this <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">fiber sequence</a>.</p>
+</div>
+<div class="num_defn" id="FiberOverSpinStructure">
+<h6 id="definition_3">Definition</h6>
+<p>Given a <a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>:</mo><mi>X</mi><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S : X \to \mathbf{B} Spin(n)</annotation></semantics></math> we say that the <strong>string structures extending this spin-structure</strong> is the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>String</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">String_S(X)</annotation></semantics></math> of the projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>String</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Spin</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">String(X) \to Spin(X)</annotation></semantics></math> from observation <a class="maruku-ref" href="#StringStructuresAsObstructions"></a>:</p>
+</div>
+<h3 id="twisted_and_differential_string_structures">Twisted and differential string structures</h3>
+<p>(…)</p>
+<p>The <a class="existingWikiWord" href="../../../../../5/3/8/0/835/content.html">2-groupoid</a> of string structures is the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber</a> of</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>p</mi> <mn>1</mn></msub><mo>:</mo><mi>Top</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℬ</mi><mi>Spin</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Top</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mi>ℬ</mi> <mn>4</mn></msup><mi>ℤ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \frac{1}{2}p_1 : Top(X, \mathcal{B}Spin) \to Top(X, \mathcal{B}^4 \mathbb{Z})
+
+</annotation></semantics></math></div>
+<p>over the trivial cocycle. Followowing the general logic of <a class="existingWikiWord" href="../../../../0/7/1/1709/content.html">twisted cohomology</a> the 2-groupoids over a nontrivial cocycle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>:</mo><mi>X</mi><mo>→</mo><msup><mi>ℬ</mi> <mn>4</mn></msup><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">c : X \to \mathcal{B}^4 \mathbb{Z}</annotation></semantics></math> may be thought of as that of <em>twisted</em> string structures.</p>
+<p>The <a class="existingWikiWord" href="../../../../../8/9/5/4/4598/content.html">Pontryagin class</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>p</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\frac{1}{2}p_1</annotation></semantics></math> refines to the <a class="existingWikiWord" href="../../../../../5/7/6/4/4675/content.html">smooth first fractional Pontryagin class</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mo>→</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\frac{1}{2}\mathbf{p}_1 : \mathbf{B}Spin \to \mathbf{B}^3 U(1)</annotation></semantics></math>. That leads to <a class="existingWikiWord" href="../../../../../5/7/6/4/4675/content.html">differential string structure</a>s.</p>
+<p>(…)</p>
+<h2 id="properties">Properties</h2>
+<h3 id="choices_of_string_structures">Choices of string structures</h3>
+<div class="num_prop" id="ChoicesOfSpinStructures">
+<h6 id="observation_2">Observation</h6>
+<p>The space of choices of string structures extending a given spin structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> are as follows</p>
+<ul>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">[\frac{1}{2}\mathbf{p}_1(S)] \neq 0</annotation></semantics></math> it is empty: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>String</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>∅</mi></mrow><annotation encoding="application/x-tex">String_S(X) \simeq \emptyset</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">[\frac{1}{2}\mathbf{p}_1(S)] = 0</annotation></semantics></math> it is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>String</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>2</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">String_S(X) \simeq \mathbf{H}(X, \mathbf{B}^2 U(1))</annotation></semantics></math>.</p>
+<p>In particular the set of <a class="existingWikiWord" href="../../../../../2/0/8/5/5802/content.html">equivalence class</a>es of string structures lifting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/5/1/1/1151/content.html">cohomology</a> set</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>0</mn></msub><msub><mi>String</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><msup><mi>H</mi> <mn>3</mn></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \pi_0 String_S(X) \simeq H^3(X, \mathbb{Z})
+  \,.
+
+</annotation></semantics></math></div></li>
+</ul>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>Apply the <a class="existingWikiWord" href="../../../../../4/2/8/5/5824/content.html">pasting law</a> for <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-pullback</a>s on the <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagram</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>String</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>String</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mover><mo>→</mo><mi>S</mi></mover></mtd> <mtd><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub></mrow></mover></mtd> <mtd><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{  
+    String_S(X) &amp;\to&amp; String(X) &amp;\to&amp; *
+    \\
+    \downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow
+    \\
+    * &amp;\stackrel{S}{\to}&amp; \mathbf{H}(X, \mathbf{B} Spin(n))
+    &amp;\stackrel{\frac{1}{2}\mathbf{p}_1}{\to}&amp;
+    \mathbf{H}(X, \mathbf{B}^3 U(1))
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>The outer diagram defines the <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{H}(X, \mathbf{B}^3 U(1))</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{H}(X,-)</annotation></semantics></math> commutes with forming loop space objects (see <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">fiber sequence</a> for details) we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>String</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>Ω</mi><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>≃</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>2</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  String_S(X) \simeq \Omega \mathbf{H}(X, \mathbf{B}^3 U(1))
+   \simeq
+  \mathbf{H}(X, \mathbf{B}^2 U(1))
+  \,.
+
+</annotation></semantics></math></div></div>
+<h3 id="ClassesOnTotalSpace">String structures by gerbes on a bundle</h3>
+<p>One can reformulate an</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">orientation</a>-</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../3/2/2319/content.html">Spin</a>-</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="content.html">String</a>-</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/1/3/2/2318/content.html">Fivebrane</a>-</p>
+</li>
+</ul>
+<p>structure in terms of the existence of a certain class in abelian cohomolgy on the total space of the given <a class="existingWikiWord" href="../../../../../3/4/5/1/1543/content.html">principal bundle</a>. This decomposition is a special case of th general <a class="existingWikiWord" href="../../../../../7/6/1/5/5167/content.html">Whitehead principle of nonabelian cohomology</a>.</p>
+<div class="num_defn" id="StringStrucDefinitionByTotalSpace">
+<h6 id="definition_4">Definition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a manifolds with <a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>:</mo><mi>X</mi><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi></mrow><annotation encoding="application/x-tex">S : X \to \mathbf{B}Spin</annotation></semantics></math>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">P \to X</annotation></semantics></math> for the corresponding <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">spin group</a>-principal bundle.</p>
+<p>Then a <strong>string structure</strong> lifting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is a cohomology class <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mn>3</mn></msup><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^3(P,\mathbb{Z})</annotation></semantics></math> such that the restriction of the class to any fiber <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≃</mo><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\simeq Spin(n)</annotation></semantics></math> is a generator of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mn>3</mn></msup><mo stretchy="false">(</mo><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">H^3(Spin(n), \mathbb{Z}) \simeq \mathbb{Z}</annotation></semantics></math>.</p>
+</div>
+<p>This kind of definition appears in (<a href="#Redden">Redden, def. 6.4.2</a>).</p>
+<div class="num_prop" id="DirectStringStructureImpliesIndirectOne">
+<h6 id="proposition">Proposition</h6>
+<p>Every string structure in the sense of def. <a class="maruku-ref" href="#FiberOverSpinStructure"></a> induces a string structure in the sense of def. <a class="maruku-ref" href="#StringStrucDefinitionByTotalSpace"></a>.</p>
+</div>
+<div class="proof">
+<h6 id="proof_3">Proof</h6>
+<p>Consider the <a class="existingWikiWord" href="../../../../../5/4/8/3/3845/content.html">pasting</a> diagram of <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-pullback</a>s</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>String</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mover><mi>P</mi><mo stretchy="false">^</mo></mover></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Spin</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>P</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><msup><mi>B</mi> <mn>2</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    String &amp;\to&amp; \hat P &amp;\to&amp; {*}
+    \\
+    \downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow
+    \\
+    Spin &amp;\to&amp; P &amp;\to&amp;  B^2 U(1) &amp;\to&amp; {*}
+    \\
+    \downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow
+    \\
+    {*} &amp;\to&amp; X &amp;\to&amp; B String(n) &amp;\to&amp; B Spin(n)
+  }
+
+</annotation></semantics></math></div>
+<p>This uses repeatedly the <a class="existingWikiWord" href="../../../../../4/2/8/5/5824/content.html">pasting law</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-pullbacks. The map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><msup><mi>B</mi> <mn>2</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P \to B^2 U(1)</annotation></semantics></math> appears by decomposing the homotopy pullback of the point along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \to B Spin(n)</annotation></semantics></math> into a homotopy pullback first along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>→</mo><mi>B</mi><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B String(n) \to B Spin(n)</annotation></semantics></math> and then along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>B</mi><mi>String</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \to B String(n)</annotation></semantics></math> using the given String structure. This is the <a class="existingWikiWord" href="../../../../../2/6/1/3/3162/content.html">cocycle</a> for a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{B}U(1)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/0/7/1/1703/content.html">principal 2-bundle</a> on the total space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spin</mi></mrow><annotation encoding="application/x-tex">Spin</annotation></semantics></math>-principal bundle: a <a class="existingWikiWord" href="../../../../../3/8/2/1/1283/content.html">bundle gerbe</a>.</p>
+<p>The rest of the diagram is constructed in order to prove the following:</p>
+<ul>
+<li>The class in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mn>3</mn></msup><mo stretchy="false">(</mo><mi>P</mi><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^3(P, \mathbb{Z})</annotation></semantics></math> of this bundle gerbe, represented by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><msup><mi>B</mi> <mn>2</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P \to B^2 U(1)</annotation></semantics></math> has the property that restricted to the fibers of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Spin(n)</annotation></semantics></math>-principal bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> it becomes the generating class in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mn>3</mn></msup><mo stretchy="false">(</mo><mi>Spin</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^3(Spin(n), \mathbb{Z})</annotation></semantics></math>.</li>
+</ul>
+</div>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>On a 3-<a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimensional</a> <a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">oriented</a> <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a> string structures are equivalently <a class="existingWikiWord" href="../../../../../1/9/8/6/6891/content.html">2-framings</a>.</li>
+</ul>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">orientation</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a>, <a class="existingWikiWord" href="../../../../../2/2/4/6/6422/content.html">twisted spin structure</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/9/5/15913/content.html">p1-structure</a>, <a class="existingWikiWord" href="../../../../../1/9/8/6/6891/content.html">Atiyah 2-framing</a></p>
+</li>
+<li>
+<p><strong>string structure</strong></p>
+<p><a class="existingWikiWord" href="../../../../../5/7/6/4/4675/content.html">differential string structure</a></p>
+<p><a class="existingWikiWord" href="../../../../../1/2/4/5/25421/content.html">stringor bundle</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/1/3/2/2318/content.html">fivebrane structure</a>, <a class="existingWikiWord" href="../../../../../2/3/3/5/5332/content.html">differential fivebrane structure</a></p>
+</li>
+</ul>
+<div>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">smooth</a> <a class="existingWikiWord" href="../../../../../0/5/4/3/3450/content.html">∞-group</a></th><th><a class="existingWikiWord" href="../../../../../2/8/5/2/2582/content.html">Whitehead tower</a> of <a class="existingWikiWord" href="../../../../../8/7/1/0/178/content.html">smooth</a> <a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli ∞-stacks</a></th><th><a class="existingWikiWord" href="../../../../../4/9/8/3/3894/content.html">G-structure</a>/<a class="existingWikiWord" href="../../../../../3/4/1/9/9143/content.html">higher spin structure</a></th><th><a class="existingWikiWord" href="../../../../../1/3/7/7/7731/content.html">obstruction</a></th></tr></thead><tbody><tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋮</mi></mrow><annotation encoding="application/x-tex">\vdots</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/6/7/1/11761/content.html">ninebrane 10-group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Ninebrane</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}Ninebrane </annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/6/7/1/11760/content.html">ninebrane structure</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/6/7/1/11762/content.html">third fractional Pontryagin class</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/0/6/2/2600/content.html">fivebrane 6-group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Fivebrane</mi><mover><mo>→</mo><mrow><mstyle displaystyle="false"><mfrac><mn>1</mn><mi>n</mi></mfrac></mstyle><msub><mi>p</mi> <mn>3</mn></msub></mrow></mover><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>11</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{B}Fivebrane \stackrel{\tfrac{1}{n} p_3}{\to}  \mathbf{B}^{11}U(1)</annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/1/3/2/2318/content.html">fivebrane structure</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/9/5/4/4598/content.html">second fractional Pontryagin class</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/8/5/2/2583/content.html">string 2-group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>String</mi><mover><mo>→</mo><mrow><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>6</mn></mfrac></mstyle><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>2</mn></msub></mrow></mover><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>7</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{B}String \stackrel{\tfrac{1}{6}\mathbf{p}_2}{\to} \mathbf{B}^7 U(1)</annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="content.html">string structure</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/9/5/4/4598/content.html">first fractional Pontryagin class</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">spin group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>Spin</mi><mover><mo>→</mo><mrow><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msub><mstyle mathvariant="bold"><mi>p</mi></mstyle> <mn>1</mn></msub></mrow></mover><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>3</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{B}Spin \stackrel{\tfrac{1}{2}\mathbf{p}_1}{\to} \mathbf{B}^3 U(1)</annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../0/7/6/6709/content.html">second Stiefel-Whitney class</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/9/5/2/2591/content.html">special orthogonal group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>SO</mi><mover><mo>→</mo><mstyle mathvariant="bold"><mrow><msub><mi>w</mi> <mn>2</mn></msub></mrow></mstyle></mover><msup><mstyle mathvariant="bold"><mi>B</mi></mstyle> <mn>2</mn></msup><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathbf{B}SO \stackrel{\mathbf{w_2}}{\to} \mathbf{B}^2 \mathbb{Z}_2</annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">orientation structure</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../0/7/6/6709/content.html">first Stiefel-Whitney class</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/9/5/2/2592/content.html">orthogonal group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>O</mi><mover><mo>→</mo><mrow><msub><mstyle mathvariant="bold"><mi>w</mi></mstyle> <mn>1</mn></msub></mrow></mover><mstyle mathvariant="bold"><mi>B</mi></mstyle><msub><mi>ℤ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathbf{B}O \stackrel{\mathbf{w}_1}{\to} \mathbf{B}\mathbb{Z}_2</annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../5/1/6/6159/content.html">orthogonal structure</a>/<a class="existingWikiWord" href="../../../../../2/0/8/4/4802/content.html">vielbein</a>/<a class="existingWikiWord" href="../../../../../0/2/7/2/2720/content.html">Riemannian metric</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">↓</mo></mrow><annotation encoding="application/x-tex">\downarrow</annotation></semantics></math></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/8/4/2/2487/content.html">general linear group</a></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>GL</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}GL</annotation></semantics></math></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a></td><td style="text-align: left;"></td></tr>
+</tbody></table>
+<p>(all hooks are <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber sequences</a>)</p>
+</div>
+<h2 id="References">References</h2>
+<p>The relevance of String structures was originally recognized in the physics of <a class="existingWikiWord" href="../../../../../3/9/3/6/6393/content.html">spinning strings</a> (<a class="existingWikiWord" href="../../../../../8/9/3/6/6398/content.html">super</a> <a class="existingWikiWord" href="../../../../../7/0/4/1/1407/content.html">string theory</a>) in higher dimensional generalization of the theory (from half a century earlier) of <a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structures</a> for <a class="existingWikiWord" href="../../../../../0/9/3/6/6390/content.html">spinning particles</a>, therefore the name <em>string structure</em>.</p>
+<div class="float_right_image" style="margin: -40px 0px -5px 30px">
+<img src="/nlab/files/Killingback-IntroducingStringStructure.jpg" width="400px"/>
+</div>
+<p>The coinage “string structure” is due to p. 585 (shown on the right) of:</p>
+<ul>
+<li id="Killingback87"><a class="existingWikiWord" href="../../../../../0/5/7/7/27750/content.html">Timothy Killingback</a>: <em>World-sheet anomalies and loop geometry</em>, Nuclear Physics B <strong>288</strong> 578-588 (1987) [<a href="https://doi.org/10.1016/0550-3213(87)90229-X">doi:10.1016/0550-3213(87)90229-X</a>, <a href="https://inspirehep.net/literature/237516">inSpire:237516</a>, <a href="https://lib-extopc.kek.jp/preprints/PDF/1987/8704/8704177.pdf">pdf</a>]</li>
+</ul>
+<p>where this structure is understood as a de-<a class="existingWikiWord" href="../../../../../8/3/9/3/3938/content.html">transgression</a> (both the naming and this insight are often incorrectly attributed to various mathematicians) of the required “spin structure on loop space”, due to</p>
+<ul>
+<li id="WittenIndexLoopSpace">
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>: <em>The Index of the Dirac Operator in Loop Space</em>, in <em>Elliptic Curves and Modular Forms in Algebraic Topology</em> (Princeton, N.J., Sep 1986), Lecture Notes in Mathematics <strong>1326</strong>, Springer (1988) [<a href="https://doi.org/10.1007/BFb0078045">doi:10.1007/BFb0078045</a>]</p>
+</li>
+<li id="WittenElliptic">
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>, <em>Elliptic Genera and Quantum Field Theory</em>, Commun. Math. Phys. <strong>109</strong> (1987) 525–536 [<a href="https://doi.org/10.1007/BF01208956">doi:10.1007/BF01208956</a>]</p>
+</li>
+</ul>
+<p>which arises as an <a class="existingWikiWord" href="../../../../../8/0/8/9/9808/content.html">anomaly cancellation</a> condition on the <a class="existingWikiWord" href="../../../0/6/6019/content.html">worldsheet</a> of the <a class="existingWikiWord" href="../../../../../8/9/3/6/6398/content.html">superstring</a>‘s (specifically the <a class="existingWikiWord" href="../../../../../3/3/3/5/5333/content.html">heterotic string</a>’s) <a class="existingWikiWord" href="../../../../../3/8/1/1/1183/content.html">sigma-model</a>, analogous to how the condition of <a class="existingWikiWord" href="../../../3/2/2319/content.html">spin structure</a> may be understood (<a href="../../../../../0/9/3/6/6390/content.html#Witten85">Witten 1985</a>) as an <a class="existingWikiWord" href="../../../../../8/0/8/9/9808/content.html">anomaly cancellation</a> on the <a class="existingWikiWord" href="../../../0/6/6019/content.html">worldline</a> of <a class="existingWikiWord" href="../../../../../0/9/3/6/6390/content.html">spinning particles</a> such as <a class="existingWikiWord" href="../../../../../1/7/2/5/5271/content.html">superparticles</a>.</p>
+<p>See also:</p>
+<ul>
+<li>R. Coquereaux, K. Pilch: <em>String structures on loop bundles</em>, Commun. Math. Phys. <strong>120</strong> (1989) 353–378 (1989) [<a href="https://doi.org/10.1007/BF01225503">doi:10.1007/BF01225503</a>]</li>
+</ul>
+<p>The understanding of Killingback’s string structure equivalently as the condition to <a class="existingWikiWord" href="../../../../9/5/1/21599/content.html">lifting</a> the <a class="existingWikiWord" href="../../../../../5/1/7/7/7715/content.html">structure group</a> of the <a class="existingWikiWord" href="../../../../../1/6/9/1/1961/content.html">tangent bundle</a> from a <a class="existingWikiWord" href="../../../../../6/8/5/2/2586/content.html">spin group</a> to a <em><a class="existingWikiWord" href="../../../../../7/8/5/2/2587/content.html">string group</a></em> (or <a class="existingWikiWord" href="../../../../../3/8/5/2/2583/content.html">string 2-group</a>) was introduced or at least popularized by:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/1/4/2/2415/content.html">Stephan Stolz</a>, <a class="existingWikiWord" href="../../../../../6/1/4/2/2416/content.html">Peter Teichner</a>: <em><a class="existingWikiWord" href="../../../../../7/1/4/2/2417/content.html">What is an elliptic object?</a></em>, in: <em>Topology, geometry and quantum field theory</em>, London Math. Soc. LNS <strong>308</strong>, Cambridge Univ. Press (2004) 247-343 [<a href="https://math.berkeley.edu/~teichner/Papers/Oxford.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Stolz-Teichner_EllipticObject.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>The relation between the two pictures is further analyzed for instance in</p>
+<ul>
+<li>A. Asada: <em>Characteristic classes of loop group bundles and generalized string classes</em> , Differential geometry and its applications (Eger, 1989), 33–66, Colloq. Math. Soc. János Bolyai, 56, North-Holland, Amsterdam, 1992. (<a class="existingWikiWord" href="/nlab/files/Asada.pdf" title="pdf">pdf</a>)</li>
+</ul>
+<p>A mathematically rigorous formulation of <a href="#Killingback87">Killingback 1987</a>‘s original argument, now using <a class="existingWikiWord" href="../../../../../5/6/8/1/1865/content.html">differential K-theory</a>, is given by</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/2/3/2/2320/content.html">Ulrich Bunke</a>, <em>String structures and trivialisations of a Pfaffian line bundle</em>, Commun. Math. Phys. <strong>307</strong> (2011) : 675-712 [<a href="http://arxiv.org/abs/0909.0846">arXiv:0909.0846</a>, <a href="https://doi.org/10.1007/s00220-011-1348-0">doi:10.1007/s00220-011-1348-0</a>]</li>
+</ul>
+<p>in turn reviewed in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/4/5/1/1545/content.html">Konrad Waldorf</a>, <em>Geometric string structure and supersymmetric sigma-models</em> (<a href="http://www.konradwaldorf.de/docs/cardiff.pdf">pdf</a>)</li>
+</ul>
+<p>The definition of string structures by degree-3 classes on the total space of the spin bundle (also already mentioned by <a href="#Killingback87">Killingback 1987</a>) is used in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/9/8/5/5898/content.html">Corbett Redden</a>, <em>Canonical metric connections associated to string structures</em> PhD Thesis (2006) [<a href="https://www.math.sunysb.edu/~redden/Thesis.pdf">pdf</a>]</p>
+</li>
+<li>
+<p>Redden &amp; Waldorf at <a class="existingWikiWord" href="../../../../../7/2/6/1/1627/content.html">Oberwolfach Workshop, June 2009 – Friday, June 12</a></p>
+</li>
+</ul>
+<p>Discussion of the <a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli stack</a> of <a class="existingWikiWord" href="../../../../../5/7/6/4/4675/content.html">twisted differential string structures</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/5/2/2512/content.html">Hisham Sati</a>, <a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>, <a class="existingWikiWord" href="../../../../3/4/0/439/content.html">Jim Stasheff</a>, <em><a class="existingWikiWord" href="/schreiber/show/Twisted+Differential+String+and+Fivebrane+Structures">Twisted Differential String and Fivebrane Structures</a></em>, Communications in Mathematical Physics <strong>315</strong> 1 (2012) 169-213 [<a href="http://arxiv.org/abs/0910.4001">arXiv:0910.4001</a>, <a href="https://doi.org/10.1007/s00220-012-1510-3">doi:10.1007/s00220-012-1510-3</a>]</li>
+</ul>
+<p>and its appearance on <a class="existingWikiWord" href="../../../../../3/3/7/6/6733/content.html">M5-branes</a> under <a class="existingWikiWord" href="/schreiber/show/Hypothesis+H">Hypothesis H</a>:</p>
+<ul>
+<li id="FSS21"><a class="existingWikiWord" href="../../../../../3/3/0/3/3033/content.html">Domenico Fiorenza</a>, <a class="existingWikiWord" href="../../../../../2/1/5/2/2512/content.html">Hisham Sati</a>, <a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>, <em><a class="existingWikiWord" href="/schreiber/show/Twisted+Cohomotopy+implies+twisted+String+structure+on+M5-branes">Twisted Cohomotopy implies twisted String structure on M5-branes</a></em>, J. of Mathematical Physics <strong>62</strong> (2021) 042301 [<a href="https://arxiv.org/abs/2002.11093">arXiv:2002.11093</a>, <a href="https://doi.org/10.1063/5.0037786">doi:10.1063/5.0037786</a>]</li>
+</ul>
+<p>An explicit cocycle construction of the essentially unique <a class="existingWikiWord" href="../../../../../3/8/5/2/2583/content.html">string 2-group</a>-<a class="existingWikiWord" href="../../../../../3/0/7/1/1703/content.html">principal 2-bundle</a> lift of the <a class="existingWikiWord" href="../../../../../1/6/9/1/1961/content.html">tangent bundle</a> of the <a class="existingWikiWord" href="../../../../../5/2/8/1/1825/content.html">5-sphere</a> is given in</p>
+<ul>
+<li id="Roberts14"><a class="existingWikiWord" href="../../../../../3/7/6/0/673/content.html">David Roberts</a>, <em>Explicit string bundles</em>, talk at <em><a href="http://www.christiansaemann.de/higherworkshop2014/index.html">Workshop on Higher Gauge Theory and Higher Quantization</a></em> 2014, <a href="https://arxiv.org/abs/2203.04544">arXiv:2203.04544</a>, (<a class="existingWikiWord" href="/nlab/files/RobertsStringS5.pdf" title="pdf">pdf</a>).</li>
+</ul>
+<p>Discussion for indefinite (Lorentzian) signature is in</p>
+<ul>
+<li>Hyung Bo Shim, <em>Indefinite string structure</em>, thesis 2013 (<a href="http://d-scholarship.pitt.edu/19620/">web</a>)</li>
+</ul>
+<p>More discussion of relation to spin structures on loop spaces is in</p>
+<ul>
+<li>
+<p>Alessandra Capotosti, <em><a class="existingWikiWord" href="../../../../../0/6/4/7/17460/content.html">From String structures to Spin structures on loop spaces</a></em>, Ph.D. thesis, Università degli Studi Roma Tre, Rome, April 2016</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/4/5/1/1545/content.html">Konrad Waldorf</a>, <em>String structures and loop spaces</em>, in: <em><a class="existingWikiWord" href="../../../../2/2/6/26229/content.html">Encyclopedia of Mathematical Physics 2nd ed</a></em>, Elsevier (2024) [<a href="https://arxiv.org/abs/2312.12998">arXiv:2312.12998</a>]</p>
+</li>
+</ul>
+<p>A study of (flat) string structures encoded in the bicategory of flat 2-group bundles on an oriented surface via weak representations of the fundamental group is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/2/7/7/17728/content.html">Daniel Berwick-Evans</a>, Emily Cliff, Laura Murray, Apurva Nakade, Emma Phillips, <em>String structures, 2-group bundles, and a categorification of the Freed-Quinn line bundle</em> (<a href="https://arxiv.org/abs/2110.07571">arXiv:2110.07571</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

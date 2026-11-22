@@ -1,0 +1,638 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Künneth theorem in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Künneth theorem
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<ul>
+<li><a href="#InOrdinaryHomology">In ordinary homology</a></li>
+<ul>
+<li><a href="#InOrdinaryHomologyOverAField">Over a field</a></li>
+<li><a href="#OverAPrincipalIdealDomain">Over a principal ideal domain</a></li>
+<li><a href="#OverGeneralRings">Over general rings</a></li>
+</ul>
+<li><a href="#InOrdinaryCohomology">In ordinary cohomology</a></li>
+<li><a href="#in_generalised_cohomology_theories">In Generalised cohomology theories</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#InOrdinaryHomologyForTopologicalSpaces">For singular homology of products of topological spaces</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#in_ordinary_cohomology_2">In ordinary (co)homology</a></li>
+<li><a href="#in_generalized_cohomology">In generalized (co)homology</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>A <em>Künneth theorem</em> is a statement relating the <a class="existingWikiWord" href="../../../../8/0/1/1081/content.html">homology</a> or <a class="existingWikiWord" href="../../../../5/1/1/1151/content.html">cohomology</a> of two objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> with that of their <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \times Y</annotation></semantics></math>.</p>
+<p>In good situations it identifies the (co)homology of a product with the tensor product of the (co)homologies: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo><mo>≃</mo><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo><mo>⊗</mo><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^\bullet(X \times Y, E) \simeq H^\bullet(X,E) \otimes H^\bullet(Y,E)</annotation></semantics></math>. But in general this simple relation receives corrections by <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a>-groups.</p>
+<h2 id="statement">Statement</h2>
+<h3 id="InOrdinaryHomology">In ordinary homology</h3>
+<p>We discuss the Künneth theorem in <a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a>.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">ring</a> and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi><mo>=</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\mathcal{A} = R</annotation></semantics></math><a class="existingWikiWord" href="../../../../../9/8/6/3/3689/content.html">Mod</a> for its <a class="existingWikiWord" href="../../../../1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>. (For instance <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">R = \mathbb{Z}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integers</a>, in which case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mi>Mod</mi><mo>≃</mo></mrow><annotation encoding="application/x-tex"> \mathbb{Z} Mod \simeq</annotation></semantics></math> <a class="existingWikiWord" href="../../../../0/2/0/201/content.html">Ab</a> is the category of <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian groups</a>. )</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>N</mi> <mn>2</mn></msub><mo>∈</mo><mi>R</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">N_1, N_2 \in R Mod</annotation></semantics></math> two <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mn>1</mn></msub><mo>⊗</mo><msub><mi>N</mi> <mn>2</mn></msub><mo>∈</mo><mi>R</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">N_1 \otimes N_2 \in R Mod</annotation></semantics></math> for their <a class="existingWikiWord" href="../../../../1/3/8/8311/content.html">tensor product of modules</a>. Similarly for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo>,</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>∈</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>R</mi><mi>Mod</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_\bullet, C'_\bullet \in Ch_\bullet(R Mod)</annotation></semantics></math> two <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complexes</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules, write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><msub><mo stretchy="false">)</mo> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">(C \otimes_R C')_\bullet</annotation></semantics></math> for their <a class="existingWikiWord" href="../../../../../0/5/1/8/8150/content.html">tensor product of chain complexes</a>. Finally write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Tor</mi> <mn>1</mn> <mi>R</mi></msubsup><mo stretchy="false">(</mo><msub><mi>N</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>N</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Tor^R_1(N_1,N_2)</annotation></semantics></math> for the first <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a>-module of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">N_1</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">N_2</annotation></semantics></math>.</p>
+<p>We discuss the Künneth theorem over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> in stages, starting with important special cases and then passing to more general statements.</p>
+<ol>
+<li>
+<p><a href="#InOrdinaryHomologyOverAField">Over a field</a></p>
+</li>
+<li>
+<p><a href="#OverAPrincipalIdealDomain">Over a principal ideal domain</a></p>
+</li>
+<li>
+<p><a href="#OverGeneralRings">Over a general ring</a></p>
+</li>
+</ol>
+<p>All these versions hold for chain homology and tensor products of general chain complexes. But under the <a class="existingWikiWord" href="../../../../../9/3/6/2/2639/content.html">Eilenberg-Zilber theorem</a> all these statements apply directly in particular to the <a class="existingWikiWord" href="../../../../../5/8/2/5/5285/content.html">singular homology</a> of <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a> and their products. This is discussed below in</p>
+<ul>
+<li><a href="#InOrdinaryHomologyForTopologicalSpaces">For singular homology of products of topological spaces</a></li>
+</ul>
+<h4 id="InOrdinaryHomologyOverAField">Over a field</h4>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">R = k</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a>.</p>
+<div class="num_theorem" id="InordinaryHomologyOverAField">
+<h6 id="theorem">Theorem</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">R = k</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a>, given two <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complexes</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector spaces</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo>,</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>∈</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>k</mi><mi>Vect</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_\bullet,C'_\bullet \in Ch_\bullet(k Vect)</annotation></semantics></math>, for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> there is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⊕</mo> <mi>m</mi></msub><mrow><mo>(</mo><msub><mi>H</mi> <mi>m</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo>)</mo></mrow><msub><mo>⊗</mo> <mi>k</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>m</mi></mrow></msub><mrow><mo>(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow><mo>)</mo></mrow><mover><mo>→</mo><mo>≃</mo></mover><msub><mi>H</mi> <mi>n</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><msub><mo>⊗</mo> <mi>k</mi></msub><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">
+   \oplus_m \left(
+     H_m\left(C_\bullet\right) \otimes_k H_{n-m}\left(C'_\bullet\right)
+   \right)
+     \stackrel{\simeq}{\to}
+   H_n\left(
+     C_\bullet \otimes_k C'_\bullet
+   \right)
+
+</annotation></semantics></math></div>
+<p>between the <a class="existingWikiWord" href="../../../../2/8/1/1821/content.html">chain homology</a> of the <a class="existingWikiWord" href="../../../../../0/5/1/8/8150/content.html">tensor product of chain complexes</a> and the <a class="existingWikiWord" href="../../../../../7/0/3/8/8307/content.html">tensor product of abelian groups</a> of chain homologies.</p>
+</div>
+<p>For a proof see the proof of theorem <a class="maruku-ref" href="#InordinaryHomology"></a> below, of which this is a special case.</p>
+<h4 id="OverAPrincipalIdealDomain">Over a principal ideal domain</h4>
+<p>Let now <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">ring</a> which is a <a class="existingWikiWord" href="../../../../../4/6/5/8/8564/content.html">principal ideal domain</a>. This may be a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a> as above, or for instance it may be the ring <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">R = \mathbb{Z}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integers</a>, in which case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules are equivalently just <a class="existingWikiWord" href="../../../../../9/2/2/0/229/content.html">abelian groups</a>.</p>
+<div class="num_theorem" id="InordinaryHomology">
+<h6 id="theorem_2">Theorem</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/6/5/8/8564/content.html">principal ideal domain</a>, given a <a class="existingWikiWord" href="../../../../../7/6/0/1/1067/content.html">chain complex</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo>∈</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>R</mi><mi>Mod</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_\bullet \in Ch_\bullet(R Mod)</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../9/5/1/3/3159/content.html">free modules</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and given any other chain complex <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>∈</mo><msub><mi>Ch</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>R</mi><mi>Mod</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C'_\bullet \in Ch_\bullet(R Mod)</annotation></semantics></math>, then for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math> there is a <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">short exact sequence</a> of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><msub><mo>⊕</mo> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>H</mi> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo>)</mo></mrow><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mrow><mo>(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow><mo>→</mo><msub><mo>⊕</mo> <mi>k</mi></msub><msubsup><mi>Tor</mi> <mn>1</mn> <mi>R</mi></msubsup><mrow><mo>(</mo><msub><mi>H</mi> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo>)</mo></mrow><mo>,</mo><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mrow><mo>(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>→</mo><mn>0</mn><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+   0 
+    \to 
+   \oplus_k \left(
+     H_k\left(C_\bullet\right) \otimes_R H_{n-k}\left(C'_\bullet\right)
+   \right)
+     \to 
+   H_n\left(
+     C_\bullet \otimes_R C'_\bullet
+   \right)
+     \to 
+   \oplus_k
+     Tor_1^R\left(H_k\left(C_\bullet\right), H_{n-k-1}\left(C'_\bullet\right)\right)
+     \to 
+   0
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This appears for instance as (<a href="#Hatcher">Hatcher, theorem 3B.5</a>).</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>In the special case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">C'</annotation></semantics></math> is concentrated in degree 0, this is the <a class="existingWikiWord" href="../../../../../8/3/5/4/4538/content.html">universal coefficient theorem</a> in ordinary homology.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>In particular if all the <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a>-groups on the right vanish, then the theorem asserts an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⊕</mo> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>H</mi> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo>)</mo></mrow><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mrow><mo>(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow><mo>)</mo></mrow><mover><mo>→</mo><mo>≃</mo></mover><msub><mi>H</mi> <mi>n</mi></msub><mrow><mo>(</mo><msub><mi>C</mi> <mo>•</mo></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+   \oplus_k \left(
+     H_k\left(C_\bullet\right) \otimes_R H_{n-k}\left(C'_\bullet\right)
+   \right)
+     \stackrel{\simeq}{\to}
+   H_n\left(
+     C_\bullet \otimes_R C'_\bullet
+   \right)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the case (assuming the <a class="existingWikiWord" href="../../../../../3/3/1/0/133/content.html">axiom of choice</a>) notably if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/3/4/0/430/content.html">field</a> (since every module over a field is a <a class="existingWikiWord" href="../../../../../9/5/1/3/3159/content.html">free module</a> – every <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> has a <a class="existingWikiWord" href="../../../../2/1/4/4121/content.html">basis</a> – and every free module is a <a class="existingWikiWord" href="../../../../../6/7/2/1/1276/content.html">flat module</a>).</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p><strong>of theorem <a class="maruku-ref" href="#InordinaryHomology"></a></strong></p>
+<p>Notice that since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>k</mi></msub></mrow><annotation encoding="application/x-tex">C_k</annotation></semantics></math> is assumed to be free, hence a <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> with itself, since the <a class="existingWikiWord" href="../../../../1/3/8/8311/content.html">tensor product of modules</a> distributes over direct sums, and since <a class="existingWikiWord" href="../../../../2/8/1/1821/content.html">chain homology</a> respects direct sums, we have</p>
+<div class="maruku-equation" id="eq:A"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>C</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  H_n(C_k \otimes_R C') 
+   \simeq
+  C_k \otimes_R H_{n-k}(C'_\bullet)
+  \,. 
+
+</annotation></semantics></math></div>
+<p>First consider now the special case that all the <a class="existingWikiWord" href="../../../../../2/8/0/1/1082/content.html">differentials</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">C_\bullet</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../0/3/0/1/1030/content.html">zero</a>, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>C</mi> <mi>k</mi></msub></mrow><annotation encoding="application/x-tex">H_k(C_\bullet) = C_k</annotation></semantics></math>. In this case <a class="maruku-eqref" href="#eq:A">(1)</a> yields <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_n(C_k \otimes_R C') \simeq H_k(C_\bullet) \otimes_R H_{n-k}(C'_\bullet)</annotation></semantics></math> and therefore</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo></mtd> <mtd><mo>≃</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mo>⊕</mo> <mi>k</mi></msub><msub><mi>C</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mo>⊕</mo> <mi>k</mi></msub><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><msub><mo>⊕</mo> <mi>k</mi></msub><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    H_n(C \otimes_R C')
+    &amp;\simeq
+    H_n(\oplus_k C_k \otimes_R C' ))
+    \\
+    &amp; \simeq 
+    \oplus_k H_n( C_k \otimes_R C' )
+    \\
+    &amp; \simeq
+    \oplus_k H_k(C_\bullet) \otimes_R H_{n-k}(C'_\bullet)
+  \end{aligned}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>C</mi> <mi>k</mi></msub></mrow><annotation encoding="application/x-tex">H_k(C) = C_k</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/5/1/3/3159/content.html">free module</a> by assumption, it has no <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a>-terms (by the discussion there) and hence this is the statement to be shown.</p>
+<p>Now let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">C_\bullet</annotation></semantics></math> be a general chain complex of free modules. Notice that for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../8/9/0/6/6098/content.html">cycle</a>-<a class="existingWikiWord" href="../../../../../4/5/2/8/8254/content.html">chain</a>-<a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundary</a>-<a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">short exact sequence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><msub><mi>Z</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo>↪</mo><msub><mi>C</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mover><mo>→</mo><mrow><msub><mo>∂</mo> <mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></mover><msub><mi>B</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+  0 \to Z_{n-k} \hookrightarrow C_{n-k} \stackrel{\partial_{n-k-1}}{\to} B_{n-1} \to 0
+
+</annotation></semantics></math></div>
+<p><a class="existingWikiWord" href="../../../../9/2/4/4291/content.html">splits</a> due to the assumption that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">C_n</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/5/1/3/3159/content.html">free module</a>, and hence (as discussed at <em><a class="existingWikiWord" href="../../../../9/2/4/4291/content.html">split exact sequence</a></em>) that it exhibits a <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> decomposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>n</mi></msub><mo>≃</mo><msub><mi>Z</mi> <mi>n</mi></msub><mo>⊕</mo><msub><mi>B</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">C_n \simeq Z_n \oplus B_{n-1}</annotation></semantics></math>. Since the <a class="existingWikiWord" href="../../../../1/3/8/8311/content.html">tensor product of modules</a> distributes over direct sum, it follows that tensoring with any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msub><mo>′</mo> <mi>k</mi></msub></mrow><annotation encoding="application/x-tex">C'_k</annotation></semantics></math> yields another <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">short exact sequence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><msub><mi>Z</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mi>k</mi></msub><mo>→</mo><msub><mi>C</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mi>k</mi></msub><mo>→</mo><msub><mi>B</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mi>k</mi></msub><mo>→</mo><mn>0</mn><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  0   
+   \to 
+  Z_{n-k} \otimes_R C'_k 
+   \to
+  C_{n-k} \otimes_R C'_k
+    \to
+  B_{n-k-1} \otimes_R C'_k
+    \to
+  0
+  \,.
+
+</annotation></semantics></math></div>
+<p>This means that if we regard the graded modules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Z</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">Z_\bullet</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">B_\bullet</annotation></semantics></math> of chains and of boundaries as chain complexes with zero-differentials, then we have a short exact sequence of chain complexes</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><msub><mi>Z</mi> <mo>•</mo></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>→</mo><msub><mi>C</mi> <mo>•</mo></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>→</mo><msub><mi>B</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><msub><mo>′</mo> <mo>•</mo></msub><mo>→</mo><mn>0</mn><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  0 \to Z_\bullet \otimes_R C'_\bullet \to C_\bullet \otimes_R C'_\bullet \to B_{\bullet-1}\otimes_R C'_\bullet  \to 0
+  \,.
+
+</annotation></semantics></math></div>
+<p>This induces its <a class="existingWikiWord" href="../../../../2/0/2/22021/content.html">homology long exact sequence</a> of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>Z</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>×</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>B</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>Z</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><mi>⋯</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots
+   \to 
+  H_n( Z \otimes_R C')
+   \to
+  H_n( C \times_R C' )
+   \to
+  H_{n-1}( B \otimes_R C' )
+   \to
+  H_{n-1}( Z \otimes_R C' )
+   \to
+  \cdots
+  \,.
+
+</annotation></semantics></math></div>
+<p>Here the terms involving the complexes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math> of boundaries and cycles may be evalutated, since these have zero differentials, via the special case discussed at the beginning of this proof to yield the <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">long exact sequence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mover><mo>→</mo><mrow><msub><mi>i</mi> <mi>n</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo></mrow></mover><msub><mo>⊕</mo> <mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>Z</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mo>⊕</mo> <mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>B</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>i</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></mover><msub><mo>⊕</mo> <mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>Z</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>→</mo><mi>⋯</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \cdots
+  \stackrel{i_n \otimes_R C'}{\to}
+  \oplus_k ( Z_k \otimes_R H_{n-k}(C') )
+  \to 
+  H_n(C \otimes_R C')
+  \to 
+  \oplus_{k}( B_k \otimes_R H_{n-k-1}(C') )
+   \stackrel{i_{n-1}}{\to}
+  \oplus_k ( Z_k \otimes_R H_{n-k-1}(C') )
+   \to  
+   \cdots
+  \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mi>n</mi></msub><mo>≔</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo>⊗</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i_n \coloneqq H_n(i \otimes C')</annotation></semantics></math> is the morphism induced from the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><msub><mi>B</mi> <mo>•</mo></msub><mo>↪</mo><msub><mi>Z</mi> <mo>•</mo></msub></mrow><annotation encoding="application/x-tex">i \colon B_\bullet \hookrightarrow Z_\bullet</annotation></semantics></math> of boundaries into cycles.</p>
+<p>This means that by quotienting out an image on the left and a kernel on the right, we obtain a <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">short exact sequence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mi>coker</mi><mo stretchy="false">(</mo><msub><mi>i</mi> <mi>n</mi></msub><mo stretchy="false">)</mo><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><msub><mo>⊗</mo> <mi>R</mi></msub><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><mi>ker</mi><mo stretchy="false">(</mo><msub><mi>i</mi> <mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  0 
+   \to 
+  coker(i_n) 
+   \to 
+  H_n(C \otimes_R C')
+   \to 
+  ker(i_{n-1})
+   \to 
+  0
+  \,.
+
+</annotation></semantics></math></div>
+<p>Since the <a class="existingWikiWord" href="../../../../1/3/8/8311/content.html">tensor product of modules</a> is a <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">right exact functor</a> it commutes with the <a class="existingWikiWord" href="../../../../../3/3/0/1/1033/content.html">cokernel</a> on the left, as does the formation of <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sums</a>, and so we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>coker</mi><mrow><mo>(</mo><msub><mo>⊕</mo> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>B</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mi>i</mi> <mi>k</mi></msub><mo>⊗</mo><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mrow><mo>(</mo><mi>C</mi><mo>′</mo><mo>)</mo></mrow></mrow></mover><msub><mi>Z</mi> <mi>k</mi></msub><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mrow><mo>(</mo><mi>C</mi><mo>′</mo><mo>)</mo></mrow><mo>)</mo></mrow><mo>)</mo></mrow><mo>≃</mo><msub><mo>⊕</mo> <mi>k</mi></msub><mrow><mo>(</mo><mrow><mo>(</mo><mi>coker</mi><mrow><mo>(</mo><msub><mi>B</mi> <mi>k</mi></msub><mover><mo>→</mo><mrow><msub><mi>i</mi> <mi>k</mi></msub></mrow></mover><msub><mi>Z</mi> <mi>k</mi></msub><mo>)</mo></mrow><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>)</mo></mrow><mo>)</mo></mrow><mo>≃</mo><msub><mo>⊕</mo> <mi>k</mi></msub><mrow><mo>(</mo><msub><mi>H</mi> <mi>k</mi></msub><mrow><mo>(</mo><mi>C</mi><mo>)</mo></mrow><msub><mo>⊗</mo> <mi>R</mi></msub><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mrow><mo>(</mo><mi>C</mi><mo>′</mo><mo>)</mo></mrow><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  coker\left( \oplus_k \left(
+   B_k \otimes_R H_{n-k}(C')
+   \stackrel{i_k \otimes H_{n-k}\left(C'\right)}{\to}
+   Z_k \otimes_R H_{n-k}\left(C'\right)
+  \right)\right)
+  \simeq
+  \oplus_k \left(
+    \left(
+      coker\left(B_k \stackrel{i_k}{\to} Z_k\right)
+      \otimes_R
+      H_{n-k}(C')
+    \right)
+  \right) 
+  \simeq
+  \oplus_k
+  \left(
+    H_k\left(C\right) \otimes_R H_{n-k}\left(C'\right)
+  \right)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the left term in the short exact sequence to be shown. For the right term the analogous argument does not quite go through, because tensoring is not in addition a <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">left exact functor</a>, in general. The failure to be so is precisely measured by the <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a>-module:</p>
+<p>Notice that by the assumption that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">C_n</annotation></semantics></math> is free and using the fact (discussed at <em><a class="existingWikiWord" href="../../../../../4/6/5/8/8564/content.html">principal ideal domain</a></em>) that over our <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> the submodules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi> <mi>n</mi></msub><mo>,</mo><msub><mi>Z</mi> <mi>n</mi></msub><mo>↪</mo><msub><mi>C</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">B_n, Z_n \hookrightarrow C_n</annotation></semantics></math> are themselves free modules, the defining <a class="existingWikiWord" href="../../../../../2/4/2/1/1242/content.html">short exact sequence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><msub><mi>B</mi> <mi>n</mi></msub><mover><mo>→</mo><mrow><msub><mi>i</mi> <mi>n</mi></msub></mrow></mover><msub><mi>Z</mi> <mi>n</mi></msub><mo>→</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">0 \to B_n \stackrel{i_n}{\to} Z_n \to H_n(C) \to 0</annotation></semantics></math> exhibits a <a class="existingWikiWord" href="../../../../../8/8/2/8/8288/content.html">projective resolution</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H_n(C)</annotation></semantics></math>. Therefore by definition of <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Tor</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><msub><mi>H</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>≃</mo><mi>ker</mi><mrow><mo>(</mo><msub><mi>i</mi> <mi>k</mi></msub><mo>⊗</mo><msub><mi>H</mi> <mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Tor_1(H_k(C), H_{n-k}(C'))
+  \simeq
+  ker\left(
+   i_k \otimes H_{n-k}(C')
+  \right)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This identifies the term on the right of the exact sequence to be shown.</p>
+</div>
+<h4 id="OverGeneralRings">Over general rings</h4>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> any ring, there is a <a class="existingWikiWord" href="../../../../../6/8/6/1/1686/content.html">spectral sequence</a> converging to the homology of the tensor product, whose second page involves all the <a class="existingWikiWord" href="../../../../1/5/4/4511/content.html">Tor</a>-modules: the <em><a class="existingWikiWord" href="../../../../../7/7/1/8/8177/content.html">Künneth spectral sequence</a></em></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>E</mi> <mrow><mi>p</mi><mo>,</mo><mi>q</mi></mrow> <mn>2</mn></msubsup><mo>≔</mo><msub><mo>⊕</mo> <mrow><msub><mi>k</mi> <mn>1</mn></msub><mo>+</mo><msub><mi>k</mi> <mn>2</mn></msub><mo>=</mo><mi>q</mi></mrow></msub><msubsup><mi>Tor</mi> <mi>p</mi> <mrow><mi>R</mi><mi>Mod</mi></mrow></msubsup><mo stretchy="false">(</mo><msub><mi>H</mi> <mrow><msub><mi>k</mi> <mn>1</mn></msub></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>H</mi> <mrow><msub><mi>k</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⇒</mo><msub><mi>H</mi> <mrow><mi>p</mi><mo>+</mo><mi>q</mi></mrow></msub><mo stretchy="false">(</mo><mi>C</mi><mo>⊗</mo><mi>C</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  E_{p,q}^2 
+   \coloneqq
+  \oplus_{k_1 + k_2 = q}
+  Tor_p^{R Mod}( H_{k_1}(C), H_{k_2}(C'))
+  \Rightarrow
+  H_{p+q}(C \otimes C')
+
+</annotation></semantics></math></div>
+<p>(…)</p>
+<p>For instance (<a href="#Williams">Williams, section 4.2</a>).</p>
+<h3 id="InOrdinaryCohomology">In ordinary cohomology</h3>
+<div class="num_prop" id="KunnethInOrdinaryCohomology">
+<h6 id="proposition">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">ring</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X,Y</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>. If the <a class="existingWikiWord" href="../../../../../6/5/6/5/5656/content.html">ordinary</a> <a class="existingWikiWord" href="../../../../../2/9/2/2/2292/content.html">cohomology ring</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mi>k</mi></msup><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H^k(Y,R)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/6/1/6/6166/content.html">finitely generated</a> <a class="existingWikiWord" href="../../../../../9/5/1/3/3159/content.html">free module</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, then the comparison map (“cross product”)</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo><msub><mo>⊗</mo> <mi>R</mi></msub><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  H^\bullet(X,R)
+  \otimes_R
+  H^\bullet(Y,R)
+   \longrightarrow
+  H^\bullet(X\times Y, R)
+
+</annotation></semantics></math></div>
+<p>(from the <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a> of <a class="existingWikiWord" href="../../../../../2/9/2/2/2292/content.html">cohomology rings</a> to the cohomology ring of the <a class="existingWikiWord" href="../../../../../2/0/7/8/8702/content.html">product space</a>) is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>.</p>
+</div>
+<p>e.g. <a href="#Hatcher">Hatcher (2001), theorem 3.15</a>, and in more generality: <a href="#Spanier77">Spanier (1966), section 5.5, theorem 11</a>, <a href="#Weibel94">Weibel (1994), Thm. 3.6.1</a></p>
+<h3 id="in_generalised_cohomology_theories">In Generalised cohomology theories</h3>
+<p>The Künneth theorem for <a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">generalised cohomology theories</a> is a special case of the <a class="existingWikiWord" href="../../../../../8/3/5/4/4538/content.html">universal coefficient theorem</a>. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../9/6/3/2/2369/content.html">ring spectrum</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> two <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectra</a>. Then we define a new <a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">cohomology theory</a> as the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../5/5/9/5/5955/content.html">module spectrum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>≔</mo><mi>F</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G \coloneqq F(Y, E)</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(-,-)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../7/8/2/8/8287/content.html">function spectrum</a> (that is, the <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> in the category of <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectra</a>). The (<a class="existingWikiWord" href="../../../../../8/0/3/2/2308/content.html">reduced</a>) cohomology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> in this cohomology theory is thus given by:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>G</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>F</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">[</mo><mi>X</mi><mo>∧</mo><mi>Y</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>E</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>∧</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+G^*(X) = [X,F(Y,E)] = [X \wedge Y,E] = E^*(X \wedge Y)
+
+</annotation></semantics></math></div>
+<p>A <a class="existingWikiWord" href="../../../../../8/3/5/4/4538/content.html">universal coefficient theorem</a> gives a way of computing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>G</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G^*(X)</annotation></semantics></math> from knowledge of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E^*(X)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>G</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>pt</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G^*(pt)</annotation></semantics></math>. In this case, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>G</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>pt</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>E</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G^*(pt) = E^*(Y)</annotation></semantics></math> so our initial data is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E^*(X)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E^*(Y)</annotation></semantics></math>.</p>
+<p>For more details, see the page on the <em><a class="existingWikiWord" href="../../../../../8/3/5/4/4538/content.html">universal coefficient theorem</a></em>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="InOrdinaryHomologyForTopologicalSpaces">For singular homology of products of topological spaces</h3>
+<p>All of these statements have their analogs for <a class="existingWikiWord" href="../../../../../5/8/2/5/5285/content.html">singular homology</a> of <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>∈</mo></mrow><annotation encoding="application/x-tex">X , Y \in </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a>: by the <a class="existingWikiWord" href="../../../../../9/3/6/2/2639/content.html">Eilenberg-Zilber theorem</a> there is a <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo><msub><mo>≃</mo> <mi>qi</mi></msub><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⊗</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  C_\bullet(X \times Y)
+  \simeq_{qi}
+  C_\bullet(X) \otimes C_\bullet(Y)
+
+</annotation></semantics></math></div>
+<p>between the <a class="existingWikiWord" href="../../../../../6/2/1/2/2126/content.html">singular chain complex</a> of the <a class="existingWikiWord" href="../../../../../2/0/7/8/8702/content.html">product space</a> and the <a class="existingWikiWord" href="../../../../../0/5/1/8/8150/content.html">tensor product of chain complexes</a> of the separate singular chain complexes. Hence in particular there are isomorphisms of <a class="existingWikiWord" href="../../../../../5/8/2/5/5285/content.html">singular homology</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⊗</mo><msub><mi>C</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  H_n(X \times Y) \simeq 
+  H_n(C_\bullet(X) \otimes C_\bullet(Y))
+  \,.
+
+</annotation></semantics></math></div>
+<p>Using this in the above statements of the Künneth theorem yields directly the Künneth theorem for singular homology of topological spaces.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/3/6/2/2639/content.html">Eilenberg-Zilber theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/3/5/4/4538/content.html">universal coefficient theorem</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="in_ordinary_cohomology_2">In ordinary (co)homology</h3>
+<p>The original articles are</p>
+<ul>
+<li>
+<p>H. Künneth, <em>Über die Bettischen Zahlen einer Produktmannigfaltigkeit</em> Math. Ann. , 90 (1923) pp. 65–85</p>
+</li>
+<li>
+<p>H. Künneth, <em>Über die Torsionszahlen von Produktmannigfaltigkeiten</em> Math. Ann. , 91 (1924) pp. 125–134</p>
+</li>
+</ul>
+<p>Textbook accounts:</p>
+<ul>
+<li id="Spanier66">
+<p><a class="existingWikiWord" href="../../../../../8/1/4/3/3418/content.html">Edwin Spanier</a>, <em>Algebraic topology</em>, McGraw Hill (1966), Springer (1982) [<a href="https://link.springer.com/book/10.1007/978-1-4684-9322-1">doi:10.1007/978-1-4684-9322-1</a>]</p>
+</li>
+<li id="Hatcher">
+<p><a class="existingWikiWord" href="../../../../../4/2/1/4/4124/content.html">Allen Hatcher</a>, Section <a href="http://www.math.cornell.edu/~hatcher/AT/ATch3.4.pdf">3.B</a> of: <em><a href="http://www.math.cornell.edu/~hatcher/AT/ATpage.html">Algebraic topology</a></em> (2001)</p>
+</li>
+<li id="Weibel94">
+<p><a class="existingWikiWord" href="../../../../../0/9/8/2/2890/content.html">Charles Weibel</a>, Section 3.6 in: <em><a class="existingWikiWord" href="../../../../../9/1/7/3/3719/content.html">An introduction to homological algebra</a></em>, Cambridge Studies in Adv. Math. <strong>38</strong>, Cambridge University Press (1994) [<a href="https://doi.org/10.1017/CBO9781139644136">doi:10.1017/CBO9781139644136</a>, <a href="https://web.math.rochester.edu/people/faculty/doug//otherpapers/weibel-hom.pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>Lecture notes:</p>
+<ul>
+<li>
+<p>Rob Thompson, <em>Products and the Künneth theorem</em> (<a href="http://math.hunter.cuny.edu/~rthompso/topology_notes/chapter%20nine.pdf">pdf</a>)</p>
+</li>
+<li id="Williams">
+<p><a class="existingWikiWord" href="../../../../0/7/8/8701/content.html">Brandon Williams</a>, Section 4.2 in <em>Spectral sequences</em> (<a href="http://www.math.sunysb.edu/~mbw/notes/orals/Spectral%20Sequences.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/5/3/5/5356/content.html">James Milne</a>, section 22 of: <em><a class="existingWikiWord" href="../../../../../6/0/8/0/10806/content.html">Lectures on Étale Cohomology</a></em></p>
+</li>
+</ul>
+<h3 id="in_generalized_cohomology">In generalized (co)homology</h3>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/3/3/3/3334/content.html">Stefan Schwede</a>, part II, section 6.2 of <em><a class="existingWikiWord" href="../../../../../6/5/2/7/17256/content.html">Symmetric spectra</a></em> (2012)</li>
+</ul>
+<p>See also the corresponding references at <em><a class="existingWikiWord" href="../../../../../8/3/5/4/4538/content.html">universal coefficient theorem</a></em>.</p>
+<p>In the context of <a class="existingWikiWord" href="../../../../../5/1/1/6/6115/content.html">parameterized spectra</a></p>
+<ul>
+<li id="MaySigurdsson06"><a class="existingWikiWord" href="../../../../../7/1/5/0/517/content.html">Peter May</a>, J. Sigurdsson, section 22.7 of <em><a class="existingWikiWord" href="../../../../../6/0/0/6/6006/content.html">Parametrized Homotopy Theory</a></em>, 2006</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

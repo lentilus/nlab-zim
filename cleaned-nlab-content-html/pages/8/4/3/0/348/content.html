@@ -1,0 +1,762 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      sieve in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      sieve
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#relation_to_fibrations">Relation to fibrations</a></li>
+<li><a href="#relation_to_cofibrations">Relation to cofibrations</a></li>
+<li><a href="#relation_to_subfunctors">Relation to subfunctors</a></li>
+<li><a href="#sieves_as_covers">Sieves as covers</a></li>
+<ul>
+<li><a href="#introduction_and_overview">Introduction and overview</a></li>
+<li><a href="#the_sheaf_condition_from_morphisms_out_of_a_sieve">The sheaf condition from morphisms out of a sieve</a></li>
+</ul>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>The notion of <em>sieve</em> is a generalization of that of (right) <em><a class="existingWikiWord" href="../../../../../6/4/4/9/9446/content.html">ideal in a monoid</a></em> from <a class="existingWikiWord" href="../../../../8/1/0/188/content.html">monoids</a> to <a class="existingWikiWord" href="../../../../../7/1/0/0/17/content.html">categories</a>: a <strong>sieve on</strong> an <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> in a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is a collection of <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a> with <a class="existingWikiWord" href="../../../../../4/1/1/0/114/content.html">codomain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> that are closed under <a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">precomposition</a> with composable morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math>.</p>
+<p>Sometimes one says that a <strong>sieve in</strong> a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> closed under precomposition with morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒞</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math> (<a href="#Lurie">Lurie, def. 6.2.2.1</a>). If so, then a <em>sieve on</em> an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a <em>sieve in</em> the <a class="existingWikiWord" href="../../../7/0/748/content.html">slice category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒞</mi> <mrow><mo stretchy="false">/</mo><mi>X</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{C}_{/X}</annotation></semantics></math>. But a <em>sieve in</em> a category is also naturally taken to be a collection of <em>sieves on</em> various objects. On the other hand, most authors speak just about <em>sieves on</em> an object anyway.</p>
+<p><em>Sieves on</em> objects are an equivalent way to talk about <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> of <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable functors</a> in a <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> category in terms of the total sets of <em>elements</em> of such a <a class="existingWikiWord" href="../../../../../7/8/1/2/2187/content.html">subfunctor</a>.</p>
+<p id="Attitude"> In this sense “sieve” is a <a class="existingWikiWord" href="../../../../3/7/9/19738/content.html">concept with an attitude</a>: One refers to a <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobject</a> of a <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable functor</a> as a <em>sieve</em> to indicate that one is interested in regarding it as a <a class="existingWikiWord" href="../../../../../7/4/3/0/347/content.html">cover</a> of a (sifted) <a class="existingWikiWord" href="../../../../1/6/0/618/content.html">coverage</a>: the singled out subobjects then correspond to <em>covering sieves</em>.</p>
+<p>Accordingly, the classical examples of <em>sieves on</em> an object are <a class="existingWikiWord" href="../../../../../9/4/3/0/349/content.html">Grothendieck topologies</a>, used to present the <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a> that behave like <a class="existingWikiWord" href="../../../../../7/3/4/4/4437/content.html">coverings</a>. They are used to say which <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a> are actually <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> with respect to a given <a class="existingWikiWord" href="../../../../1/6/0/618/content.html">coverage</a> or <a class="existingWikiWord" href="../../../../../9/4/3/0/349/content.html">Grothendieck topology</a>.</p>
+<p>A choice of collections of morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">d \to c</annotation></semantics></math> into an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">d \in C</annotation></semantics></math> reminds one of the <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable functor</a> <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><msub><mi>hom</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>:</mo><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">Y(c) := \hom_C(-, c): C^{op} \to Set</annotation></semantics></math> which assigns to each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">d \in C</annotation></semantics></math> the set of <em>all</em> morphisms from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>. Every choice of covers of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> is therefore for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">d \in C</annotation></semantics></math> a subset of the value of this functor evaluated at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>. This begins to look like an <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monic</a> <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> into this functor. Indeed, it turns out that one can assume without restriction of generality that the assignment of covers of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> can always be extended to such a monic natural transformation, and hence one formalizes the notion of “collection of covers” of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobject</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mi>F</mi><mo>↪</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i: F \hookrightarrow \hom(-, c)</annotation></semantics></math> of the functor represented by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>: a <em>sieve</em> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>.</p>
+<p>A dual notion is a <a class="existingWikiWord" href="../../../../../0/0/8/1/1800/content.html">cosieve</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small category</a>.</p>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>A <em>sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></em> is a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>↪</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">S \hookrightarrow C</annotation></semantics></math> that is both <a class="existingWikiWord" href="../../../../../6/9/3/0/396/content.html">fully faithful</a> and a <a class="existingWikiWord" href="../../../../../1/4/7/1/1741/content.html">discrete fibration</a>.</p>
+<p>A <em>sieve on an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math></em> is a sieve in the <a class="existingWikiWord" href="../../../7/0/748/content.html">slice category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">/</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">C/c</annotation></semantics></math>.</p>
+</div>
+<p>Spelling this out, we arrive at the traditional definition of a sieve on an object:</p>
+<div class="num_defn">
+<h6 id="definition_3">Definition</h6>
+<p>A <em>sieve</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> on an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> is a subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>⊂</mo><mi>Ob</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">/</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S \subset Ob(C/c)</annotation></semantics></math> of the set of objects of the <a class="existingWikiWord" href="../../../7/0/748/content.html">over category</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> which is <em>closed under precomposition</em>: it has the property that whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>→</mo><mi>c</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">(d \to c) \in S</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>e</mi><mo>→</mo><mi>d</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>Mor</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(e \to d) \in Mor(C)</annotation></semantics></math> then the composition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>e</mi><mo>→</mo><mi>d</mi><mo>→</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(e \to d \to c)</annotation></semantics></math> is in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>.</p>
+</div>
+<p>The set of sieves on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> is a poset ordered by inclusion and it is stable under arbitrary unions and intersections. There is an initial and final sieve, namely, the empty and total subsets of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ob</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">/</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Ob(C/c)</annotation></semantics></math>.</p>
+<p>In the language of type theory, this can be reformulated as follows: a sieve on an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">c \in C</annotation></semantics></math> is a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">/</mo><mi>c</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>→</mo><mi>Prop</mi></mrow><annotation encoding="application/x-tex">(C/c)^{op}\to Prop</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Prop</mi></mrow><annotation encoding="application/x-tex">Prop</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">type of propositions</a> viewed as a category.</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>This is probably called a <em>sieve</em> because it “sifts out” the ‘special’ maps into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> from the set of <em>all</em> maps into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>. (Note that ‘sieve’ is the noun, while ‘sift’ is the verb.)</p>
+<p>The French term for a sieve is <em>crible</em>.</p>
+</div>
+<div class="num_remark" id="SieveGeneratedByAFamily">
+<h6 id="remark_2">Remark</h6>
+<p>Sometimes the condition of a sieve being closed under the operation of precomposing with an arbitrary morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>e</mi><mo>→</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">g: e \to d</annotation></semantics></math> is called a “saturation condition”.</p>
+<p>Given any collection of morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>d</mi> <mi>i</mi></msub><mo>→</mo><mi>c</mi><msub><mo stretchy="false">}</mo> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{F}=\{d_i\to c\}_i</annotation></semantics></math> targeted at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>, the <em>saturation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></em> or <em>sieve generated by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math></em> is the smallest sieve on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> containing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℱ</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math> (the intersection of all such sieves): it equals the sieve of morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">e\to c</annotation></semantics></math> for which there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> with factorization <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>→</mo><msub><mi>d</mi> <mi>i</mi></msub><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">e\to d_i\to c</annotation></semantics></math>.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<h3 id="relation_to_fibrations">Relation to fibrations</h3>
+<p>Just as a <a class="existingWikiWord" href="../../../../../2/6/5/0/562/content.html">Grothendieck fibration</a> is equivalent to a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">C^{op} \to Cat</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../1/4/7/1/1741/content.html">discrete fibration</a> is equivalent to a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">C^{op} \to Set</annotation></semantics></math>, a sieve in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is equivalent to a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup><mo>→</mo><mi>Ω</mi></mrow><annotation encoding="application/x-tex">C^{op} \to \Omega</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math> is the preordered category of <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth values</a>. This makes it obvious that a sieve picks out a subset of the objects in a way that is “downward closed”. This is a form of <a class="existingWikiWord" href="../../../../../7/7/4/1/1477/content.html">negative thinking</a>, as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo>,</mo><mi>Set</mi><mo>,</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">\Omega, Set, Cat</annotation></semantics></math> are the categories of all <a class="existingWikiWord" href="../../../../2/1/0/128/content.html">(-1)-categories</a>, <a class="existingWikiWord" href="../../../../../9/9/2/0/299/content.html">0-categories</a> and <a class="existingWikiWord" href="../../../../../7/2/3/9/9327/content.html">1-categories</a> respectively.</p>
+<h3 id="relation_to_cofibrations">Relation to cofibrations</h3>
+<p>The inclusions of sieves are precisely the <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibrations</a> in the <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a> <a class="existingWikiWord" href="../../../../../0/5/7/8/8750/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi class="mathscript">𝒱</mi>
+</mrow>
+<annotation encoding="application/x-tex">\mathscr{V}</annotation>
+</semantics>
+</math>-Cat</a> of <a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched categories</a>. <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">Dually</a>, the inclusions of cosieves are precisely the <span class="newWikiWord">coopfibrations<a href="/nlab/new/coopfibrations">?</a></span>. See Proposition 2.5 of <a href="#Street26">Street 2026</a>.</p>
+<h3 id="relation_to_subfunctors">Relation to subfunctors</h3>
+<p>There is a canonical way to create subfunctors from sieves and sieves from subfunctors.</p>
+<p>A <a class="existingWikiWord" href="../../../../../7/8/1/2/2187/content.html">subfunctor</a> is a <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobject</a> in a <a class="existingWikiWord" href="../../../../../5/2/2/0/225/content.html">functor category</a>. Here, specifically, one is interested in <a class="existingWikiWord" href="../../../../../2/1/3/0/312/content.html">subobjects</a> in a <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> category of <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable functors</a>. It’s these subfunctors of representable functors that are in bijection with sieves.</p>
+<div class="num_defn">
+<h6 id="definition_4">Definition</h6>
+<p>Given a sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>, the <strong>subfunctor</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>S</mi></msub><mo>↪</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_S \hookrightarrow Y(c)</annotation></semantics></math> <strong>defined by the sieve</strong> is the <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a></p>
+<ul>
+<li>
+<p>that assigns to each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">d \in C</annotation></semantics></math> the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>d</mi><mo>→</mo><mi>c</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>S</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">F_S(d) = \{(d \to c) \in S\}</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>that assigns to each morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>→</mo><mi>d</mi><mo>′</mo><mo stretchy="false">)</mo><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">(d \to d') \in C</annotation></semantics></math> the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>d</mi><mo>′</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mi>F</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_S(d') \to F_S(d)</annotation></semantics></math> induced on elements by precomposition with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>→</mo><mi>d</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">d \to d'</annotation></semantics></math>.</p>
+</li>
+</ul>
+</div>
+<div class="num_defn">
+<h6 id="definition_5">Definition</h6>
+<p>Given a subfunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>↪</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F \hookrightarrow Y(c)</annotation></semantics></math>, the <strong>sieve defined by the subfunctor</strong> is given by</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>F</mi></msub><mo>≔</mo><mo stretchy="false">{</mo><mi>g</mi><mo>:</mo><mi>d</mi><mo>→</mo><mi>c</mi><mo>∈</mo><mi>Mor</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow></mover><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo>→</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S_F \coloneqq \{g: d \to c \in Mor(C) | (Y(d) \stackrel{Y(g)}\to Y(c)) = (Y(d)  \to F \to Y(c)) \}</annotation></semantics></math></li>
+</ul>
+<p>or equivalently</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>F</mi></msub><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>d</mi><mo>∈</mo><mi>Obj</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></msub><mi>F</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S_F = \coprod_{d \in Obj(C)}F(d)</annotation></semantics></math>.</li>
+</ul>
+</div>
+<div class="num_lemma">
+<h6 id="lemma">Lemma</h6>
+<p>These two definitions establish a bijection between sieves on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> and subobjects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(c)</annotation></semantics></math>.</p>
+<p>For every sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mrow><msub><mi>F</mi> <mi>S</mi></msub></mrow></msub><mo>=</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">
+  S_{F_S} = S
+
+</annotation></semantics></math></div>
+<p>and for every subfunctor we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mrow><msub><mi>S</mi> <mi>F</mi></msub></mrow></msub><mo>=</mo><mi>F</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  F_{S_F} = F
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_remark">
+<h6 id="remarks">Remarks</h6>
+<ul>
+<li>
+<p>The construction of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>F</mi></msub></mrow><annotation encoding="application/x-tex">S_F</annotation></semantics></math> makes sense for every morphism of presheaves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>→</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F \to Y(c)</annotation></semantics></math>. The sieve is sensitive precisely to the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> of this map,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>F</mi></msub><mo>=</mo><msub><mi>S</mi> <mrow><mi>im</mi><mo stretchy="false">(</mo><mi>F</mi><mo>→</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+S_{F} = S_{im (F \to Y(c))}
+\,.
+
+</annotation></semantics></math></div></li>
+<li>
+<p>In the presence of a <a class="existingWikiWord" href="../../../../../9/4/3/0/349/content.html">Grothendieck topology</a> a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>→</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F \to Y(c)</annotation></semantics></math> is sometimes called a <a class="existingWikiWord" href="../../../../../5/7/0/1/1075/content.html">local epimorphism</a> if the sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>F</mi></msub></mrow><annotation encoding="application/x-tex">S_F</annotation></semantics></math> is a covering sieve. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>→</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F \to Y(c)</annotation></semantics></math> is actually a subfunctor, then it is called a <a class="existingWikiWord" href="../../../../../4/0/1/1/1104/content.html">dense monomorphism</a>.</p>
+</li>
+<li>
+<p>The <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a> of a subfunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><msub><mi>F</mi> <mi>S</mi></msub><mo>↪</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i: F_S \hookrightarrow Y(c) = \hom(-, c)</annotation></semantics></math> along any morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>g</mi><mo stretchy="false">)</mo><mo>:</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>→</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hom(-, g): \hom(-, d) \to \hom(-, c)</annotation></semantics></math> is again a subfunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>g</mi> <mo>*</mo></msup><mi>F</mi></mrow><annotation encoding="application/x-tex">g^* F</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>, hence sieves are closed under pulling back. Concretely,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>g</mi> <mo>*</mo></msup><mi>S</mi><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⋃</mo> <mrow><mi>e</mi><mo>∈</mo><mi>Ob</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow></munder><mo stretchy="false">{</mo><mi>f</mi><mo>:</mo><mi>e</mi><mo>→</mo><mi>d</mi><mo>:</mo><mi>g</mi><mi>f</mi><mo>∈</mo><mi>S</mi><mo stretchy="false">}</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">g^* S = \bigcup_{e \in Ob(C)} \{f: e \to d: g f \in S\}
+\,.
+</annotation></semantics></math></div></li>
+<li>
+<p>A sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>F</mi></msub></mrow><annotation encoding="application/x-tex">S_F</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mi>F</mi><mo>↪</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i: F \hookrightarrow \hom(-, c)</annotation></semantics></math> a subfunctor, may be described as a function which assigns to each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math> a collection of morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>d</mi><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">f: d \to c</annotation></semantics></math> into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math>. Naturality of the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> means that whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>d</mi><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">f: d \to c</annotation></semantics></math> belongs to the sieve and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>e</mi><mo>→</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">g: e \to d</annotation></semantics></math> is any morphism, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>g</mi><mo>:</mo><mi>e</mi><mo>→</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">f g: e \to c</annotation></semantics></math> also belongs to the sieve.</p>
+</li>
+</ul>
+</div>
+<div class="num_lemma">
+<h6 id="lemma_2">Lemma</h6>
+<p>The subfunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>S</mi></msub><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">F_S \hookrightarrow X</annotation></semantics></math> corresponding to a sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/6/4/1/1462/content.html">coimage</a> of the morphism out of the disjoint union of all objects (regarded as representable presheaves) in the sieve:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>U</mi><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>α</mi></msub><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>S</mi></mrow></munder><msub><mi>U</mi> <mi>α</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">
+ (U = \coprod_{(U_\alpha \to X) \in S} U_\alpha)  \to X
+
+</annotation></semantics></math></div>
+<p>in that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>F</mi> <mi>S</mi></msub><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>colim</mi><mo stretchy="false">(</mo><mi>U</mi><msub><mo>×</mo> <mi>X</mi></msub><mi>U</mi><mover><mo>→</mo><mo>→</mo></mover><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (F_S \to X) = ((colim(U \times_X U \stackrel{\to}{\to} U)   \to X)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>If the sieve is generated by (is the saturation of) a collection of morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>α</mi></msub><mo>→</mo><mi>U</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{U_\alpha \to U\}</annotation></semantics></math> (see Remark <a class="maruku-ref" href="#SieveGeneratedByAFamily"></a>) then the same statement remains true with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> being the coproduct over just these <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">U_\alpha</annotation></semantics></math>.</p>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>As described at <a class="existingWikiWord" href="../../../../../2/8/2/1/1282/content.html">limits and colimits by example</a>, the colimit of presheaves may be computed objectwise in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>. Doing so and using the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a> tells us that for each object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>colim</mi><mo stretchy="false">(</mo><mi>U</mi><msub><mo>×</mo> <mi>X</mi></msub><mi>U</mi><mover><mo>→</mo><mo>→</mo></mover><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>≃</mo><mi>colim</mi><mo stretchy="false">(</mo><mi>Hom</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>U</mi><msub><mo>×</mo> <mi>X</mi></msub><mi>U</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><mi>Hom</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>≃</mo><mi>colim</mi><mo stretchy="false">(</mo><mi>Hom</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Hom</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mi>Hom</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><mi>Hom</mi><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+    colim(U \times_X U \stackrel{\to}{\to} U)(V)
+    &amp; \simeq
+    colim(Hom(V,U \times_X U) \stackrel{\to}{\to} Hom(V,U))
+    \\
+    &amp; \simeq
+    colim( Hom(V,U) \times_{Hom(V,X)} Hom(V,U)  \stackrel{\to}{\to} Hom(V,U))
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>where all objects appearing (at least in the first lines) are implicitly regarded as presheaves under the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a>.</p>
+<p>But this colimit now manifestly computes the set</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mtext>maps from </mtext><mspace width="thinmathspace"></mspace><mi>V</mi><mspace width="thinmathspace"></mspace><mtext> to </mtext><mspace width="thinmathspace"></mspace><mi>X</mi><mspace width="thinmathspace"></mspace><mtext> that factor through </mtext><mspace width="thinmathspace"></mspace><mi>U</mi><msub><mo stretchy="false">}</mo> <mo>∼</mo></msub></mrow><annotation encoding="application/x-tex">
+  \{\text{maps from }\,V\,\text{ to }\,X\,\text{ that factor through }\,U\}_\sim
+
+</annotation></semantics></math></div>
+<p>where the equivalence relation is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>f</mi><mo>→</mo><mi>U</mi><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo><mo>∼</mo><mo stretchy="false">(</mo><mi>g</mi><mo>→</mo><mi>U</mi><mo>→</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⇔</mo><mo stretchy="false">(</mo><mi>f</mi><mspace width="thinmathspace"></mspace><mtext> and </mtext><mspace width="thinmathspace"></mspace><mi>g</mi><mspace width="thinmathspace"></mspace><mtext> coincide as maps to </mtext><mspace width="thinmathspace"></mspace><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  ((f \to U \to X) \sim (g \to U \to X))
+  \Leftrightarrow
+  (f\,\text{ and }\,g\,\text{ coincide as maps to }\,X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>So the set is just the set of maps from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> that factor through one of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>α</mi></msub></mrow><annotation encoding="application/x-tex">U_\alpha</annotation></semantics></math>, which is precisely the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>S</mi></msub><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F_S(V)</annotation></semantics></math> assigned by the subfunctor corresponding to the sieve.</p>
+</div>
+<h3 id="sieves_as_covers">Sieves as covers</h3>
+<h4 id="introduction_and_overview">Introduction and overview</h4>
+<p>The following is a pedagogical step-by-step description of the crucial aspects of sieves as covers.</p>
+<p>To start with the simplest example that already contains in it all the relevant aspects, consider a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> with an open subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">V \subset X</annotation></semantics></math> that is covered by two open subsets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>U</mi> <mn>2</mn></msub><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U_1, U_2 \subset X</annotation></semantics></math> in that the <a class="existingWikiWord" href="../../../../../4/9/5/0/594/content.html">union</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>∪</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_1 \cup U_2</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> coincides with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>∪</mo><msub><mi>U</mi> <mn>2</mn></msub><mo>=</mo><mi>V</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  U_1 \cup U_2 = V
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the <a class="existingWikiWord" href="../../../../3/5/0/538/content.html">coproduct</a> in the <a class="existingWikiWord" href="../../../../../7/9/0/1/1097/content.html">category of open subsets</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, but that behaves very differently from the <a class="existingWikiWord" href="../../../../../7/3/5/0/537/content.html">disjoint coproducts</a> that we are used to from categories like <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>. On the other hand, when one comes to a category of <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a> or <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a> (a <a class="existingWikiWord" href="../../../../../1/4/2/0/241/content.html">Grothendieck topos</a>), this <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> <em>does</em> have disjoint coproducts.</p>
+<p>Another way to think of this is obtained by first forming the <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">fiber product</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_1</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_2</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math>, which is the intersection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>∩</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_1 \cap U_2</annotation></semantics></math> sitting in the <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a> diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><msub><mi>U</mi> <mn>1</mn></msub></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><msub><mi>U</mi> <mn>2</mn></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>V</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">  
+  \array{
+    U_1 \times_V U_2 &amp;\to&amp; U_1
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    U_2 &amp;\to&amp; V
+  }
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math>.</p>
+<p>The union <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>∪</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_1 \cup U_2</annotation></semantics></math> is again obtained from this by removing in the above diagram the bottom right corner and then forming the <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushout</a> over the resulting diagram: this is again <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>, i.e. the diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><msub><mi>U</mi> <mn>1</mn></msub></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><msub><mi>U</mi> <mn>2</mn></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><msub><mi>U</mi> <mn>1</mn></msub><mo>∪</mo><msub><mi>U</mi> <mn>2</mn></msub><mo>=</mo><mi>V</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">  
+  \array{
+    U_1 \times_V U_2 &amp;\to&amp; U_1
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    U_2 &amp;\to&amp; U_1 \cup U_2 = V
+  }
+
+</annotation></semantics></math></div>
+<p>is not only a <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a> also a <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushout</a> diagram.</p>
+<p>The important point about (covering) sieves is that they show up when the above situation is sent via the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> to <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math>. The crucial aspect here that gives rise to the peculiarities of sieves is that</p>
+<ul>
+<li>the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> preserves <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limits</a>, but not, in general, <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a></li>
+</ul>
+<p>As a result, the above discussion goes through equivalently for the <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a> <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">represented</a> by our open subsets all the way up to the last pushout. In <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> that last pushout reproduced the open subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>. In <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">[</mo><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">PSh(X) = [Op(X)^{op}, Set]</annotation></semantics></math> it instead reproduces the <em>sieve</em> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> generated by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_2</annotation></semantics></math>.</p>
+<p>Let’s go through this in detail. First of all notice that in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(X)</annotation></semantics></math> all limits and colimits do exist (see <a class="existingWikiWord" href="../../../../../2/8/2/1/1282/content.html">limits and colimits by example</a> for more on that); in particular the coproduct</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Y(U_1) \amalg Y(U_2)
+
+</annotation></semantics></math></div>
+<p>exists. Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> which we here indicate explicitly, even though often and elsewhere, notably elsewhere in this entry here, it is notationally suppressed.</p>
+<p>For the following it is helpful to say explicitly what the presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(U_1) \amalg Y(U_2)</annotation></semantics></math> is like. Since, as described at <a class="existingWikiWord" href="../../../../../2/8/2/1/1282/content.html">limits and colimits by example</a>, colimits of presheaves are computed objectwise, we know that this presheaf evaluated on any open set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>⊂</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">W \subset X</annotation></semantics></math> yields the set</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \begin{aligned}
+   (Y(U_1) \amalg Y(U_2))(W) 
+   &amp;= 
+    Y(U_1)(W) \amalg Y(U_2)(W)
+   \\
+   &amp;=
+   Hom(W,U_1) \amalg Hom(W, U_2)
+  \end{aligned}
+
+</annotation></semantics></math></div>
+<p>where the coproducts on the right are just those in <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> which are just ordinary disjoint unions of sets.</p>
+<p>So this says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(U_1) \amalg Y(U_2)</annotation></semantics></math> is the presheaf that assigns to any open set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> the disjoint union of the collections of maps from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_1</annotation></semantics></math> and those from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_2</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. (Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/6/8/0/867/content.html">poset</a> there is either none or one such map in each case, but it is helpful to speak generally of “sets of all maps”, since that is the general intuition useful for presheaf categories. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> just happens to be a particularly simple example.)</p>
+<p>Notice that in particular a given map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">W \to V</annotation></semantics></math> which factors both through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_1 \to V</annotation></semantics></math> as well as through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_2 \to V</annotation></semantics></math> will appear as two distinct elements in the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Y(U_1) \amalg Y(U_2))(W)</annotation></semantics></math>. This we’ll come back to in a minute.</p>
+<p>But first consider the fiber product from before, now after having applied the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a>. Since we know from general nonsense that this preserves fiber products, we know that the <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a> presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(U_1) \times_{Y(V)} Y(U_2)</annotation></semantics></math> in</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+   Y(U_1) \times_{Y(V)} Y(U_2) &amp;\to&amp; Y(U_2)
+   \\
+   \downarrow &amp;&amp; \downarrow
+   \\
+   Y(U_1)
+   &amp;\to&amp;
+   Y(V)
+  }
+
+</annotation></semantics></math></div>
+<p>is the same as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>∩</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(U_1 \times_V U_2) = Y(U_1 \cap U_2)</annotation></semantics></math>.</p>
+<p>But this is also easily checked explicitly. We go through this because this kind of reasoning for computing limits and colimits of presheaves will be needed throughout here: since for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> the covariant <a class="existingWikiWord" href="../../../../../6/2/3/0/326/content.html">hom-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Psh</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>:</mo><mi>Psh</mi><mo>→</mo><mi>PSh</mi></mrow><annotation encoding="application/x-tex">Psh(Y(W),-) : Psh \to PSh</annotation></semantics></math> preserves limits (by the very definition of <a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a>!) we have for every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> a pullback diagram of sets</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>,</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>,</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>,</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>,</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+  Hom(Y(W),Y(U_1) \times_{Y(V)} Y(U_2))
+   &amp;\to&amp; Hom(Y(W),Y(U_2))
+  \\
+  \downarrow &amp;&amp; \downarrow
+  \\
+  Hom(Y(W),Y(U_1))
+  &amp;\to&amp;
+  Hom(Y(W),Y(V))
+ }
+
+</annotation></semantics></math></div>
+<p>Again by the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a> this is simply</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>V</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+ \array{
+  (Y(U_1) \times_{Y(V)} Y(U_2) )(W)
+   &amp;\to&amp; 
+   Hom(W,U_2)
+  \\
+  \downarrow &amp;&amp; \downarrow
+  \\
+  Hom(W,U_1)
+  &amp;\to&amp;
+  Hom(W,V)
+ }
+  \,.
+
+</annotation></semantics></math></div>
+<p>This being a pullback diagram now says in words:</p>
+<blockquote>
+<p>The set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Y(U_1) \times_{Y(V)} Y(U_2) )(W)</annotation></semantics></math> is the set of those pairs of maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_2</annotation></semantics></math> that coincide as maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">W \to U_1 \to V</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>2</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">W \to U_2 \to V</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>.</p>
+</blockquote>
+<p>Clearly, this set is the same as the set of maps into the intersection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>∩</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_1 \cap U_2</annotation></semantics></math>, so indeed</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>∩</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Y(U_1) \times_{Y(V)} Y(U_2) = Y(U_1 \times_V U_2)
+  = Y(U_1 \cap U_2)
+  \,.
+
+</annotation></semantics></math></div>
+<p>So far so long-winded. Now let’s see what happens when we now form the pushout over</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    Y(U_1 \times_V U_2) &amp;\to&amp; Y(U_2) 
+    \\
+    \downarrow
+    \\
+    Y(U_1)
+  }
+
+</annotation></semantics></math></div>
+<p>that will go, for a moment, by its canonical but lengthy name <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Y(U_1) \coprod_{Y(U_1 \times_V U_2)} Y(U_2)
+</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></munder><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    Y(U_1 \times_V U_2) &amp;\to&amp; Y(U_2) 
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    Y(U_1)
+    &amp;\to&amp;
+    Y(U_1) \coprod_{Y(U_1 \times_V U_2)} Y(U_2)
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>Again, we can figure out what this presheaf is by computing objectwise what it does to any open subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>: since colimits of presheaves are computed objectwise, the diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>Hom</mi><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></munder><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    Hom(W, U_1 \times_V U_2)
+    &amp;\to&amp; 
+    Hom(W, U_2) 
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    Hom(W,U_1)
+    &amp;\to&amp;
+    (Y(U_1) \coprod_{Y(U_1 \times_V U_2)} Y(U_2))(W)
+  }
+
+</annotation></semantics></math></div>
+<p>must be a colimit in <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>. Again, this is easily read out in words:</p>
+<blockquote>
+<p>The set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(Y(U_1) \coprod_{Y(U_1 \times_V U_2)} Y(U_2))(W)</annotation></semantics></math> is the quotient of the disjoint union of the collection of maps from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_1</annotation></semantics></math> and those from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_2</annotation></semantics></math>, by the equivalence relation which identifies two such maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_2</annotation></semantics></math> if they both factor through a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>X</mi></msub><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_1 \times_X U_2</annotation></semantics></math>, i.e. if they both land in the intersection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>∩</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_1 \cap U_2</annotation></semantics></math> and coincide there.</p>
+</blockquote>
+<p>But this just means that contrary to the plain coproduct <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(U_1) \amalg Y(U_2)</annotation></semantics></math>, two maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">W \to U_2</annotation></semantics></math> that coincide as maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">W \to X</annotation></semantics></math> are no longer regarded as different elements of our set given by the pushout presheaf, but are regarded as being the same.</p>
+<p>So this means we find that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></munder><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mtext> maps </mtext><mspace width="thinmathspace"></mspace><mi>W</mi><mo>→</mo><mi>V</mi><mspace width="thinmathspace"></mspace><mtext> that factor through either </mtext><mspace width="thinmathspace"></mspace><msub><mi>U</mi> <mn>1</mn></msub><mspace width="thinmathspace"></mspace><mtext> or </mtext><mspace width="thinmathspace"></mspace><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">}</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (Y(U_1) \coprod_{Y(U_1 \times_V U_2)} Y(U_2))(W)
+  =
+  \{
+    \text{ maps } \,W \to V \,\text{ that factor through either }\, U_1
+    \,\text{ or }\, U_2
+  \}
+  \,.
+
+</annotation></semantics></math></div>
+<p>But this is by definition the assignment of the subfunctor corresponding to the sieve on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> generated by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_1 \to V</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_2 \to V</annotation></semantics></math>.</p>
+<p>So we find that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mrow><mi>sieve</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></msub><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><msub><mo>×</mo> <mi>V</mi></msub><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></munder><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  F_{sieve(U_1,U_2)}
+  = 
+  Y(U_1) \coprod_{Y(U_1 \times_V U_2)} Y(U_2)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Given that we made it to this point, we should go one small step further that will be very useful.</p>
+<p>In the present simple example we worked with a cover given by just two objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U_2</annotation></semantics></math>. Of course in general the cover will consist of more than just two objects. Then the above kind of notation becomes a bit cumbersome. But there is a simple reformulation that makes everything look nice again.</p>
+<p>Namely, let’s come back to the observation that the coproduct <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⨿</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y(U_1) \amalg Y(U_2)</annotation></semantics></math> does exist. Let’s just call this presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>U</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{U}</annotation></semantics></math> (not in general a <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable</a>!).</p>
+<p>Then it is easy to see by the same kind of objectwise reasoning that the colimiting presheaf that we are after is equivalently the colimit over the pair of <a class="existingWikiWord" href="../../../../../9/6/3/0/369/content.html">parallel morphisms</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mover><mo>→</mo><mrow><msub><mi>p</mi> <mn>1</mn></msub></mrow></mover><mover><mo>→</mo><mrow><msub><mi>p</mi> <mn>2</mn></msub></mrow></mover></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle></mrow><annotation encoding="application/x-tex">
+  \mathbf{U} \times_{Y(V)} \mathbf{U}
+  \stackrel{\stackrel{p_2}{\to}}{\stackrel{p_1}{\to}}
+  \mathbf{U}
+
+</annotation></semantics></math></div>
+<p>in that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mrow><mi>sieve</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>U</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow></msub><mo>≃</mo><mi>colim</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mover><mo>→</mo><mrow><msub><mi>p</mi> <mn>1</mn></msub></mrow></mover><mover><mo>→</mo><mrow><msub><mi>p</mi> <mn>2</mn></msub></mrow></mover></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  F_{sieve(U_1,U_2)} \simeq
+  colim ( 
+   \mathbf{U} \times_{Y(V)} \mathbf{U}
+   \stackrel{\stackrel{p_2}{\to}}{\stackrel{p_1}{\to}}
+   \mathbf{U}
+  )
+  \,.
+
+</annotation></semantics></math></div>
+<p>This description now has an evident direct generalization to the case where instead of just <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>1</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_1 \to V</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mn>2</mn></msub><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_2 \to V</annotation></semantics></math> we have an arbitrary collection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>V</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{U_i \to V\}</annotation></semantics></math> of open sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> covering <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>. One finds again with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>U</mi></mstyle><mo>:</mo><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>Y</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{U} := \coprod_i Y(U(i))
+
+</annotation></semantics></math></div>
+<p>that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mrow><mi>sieve</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow></msub><mo>≃</mo><mi>colim</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mover><mo>→</mo><mrow><msub><mi>p</mi> <mn>1</mn></msub></mrow></mover><mover><mo>→</mo><mrow><msub><mi>p</mi> <mn>2</mn></msub></mrow></mover></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  F_{sieve(\{U_i\})} \simeq
+  colim ( 
+   \mathbf{U} \times_{Y(V)} \mathbf{U}
+   \stackrel{\stackrel{p_2}{\to}}{\stackrel{p_1}{\to}}
+   \mathbf{U}
+  )
+
+</annotation></semantics></math></div>
+<p>is the presheaf that to every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> assigns the set of all maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">W \to V</annotation></semantics></math> that factor through any one of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math>.</p>
+<p>It is in this way that sieves and their associated subfunctors encapsulate the notion of <em>cover</em> of an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>: they tell us which of all the maps into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> do factor through the cover.</p>
+<p>And, to end this pedagogical piece with an outlook to indicate the gain in understanding this achieves:</p>
+<p>once we start forming <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mo>→</mo><mo>→</mo></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{U} \times_{Y(V)} \mathbf{U} \stackrel{\to}{\to} \mathbf{U}</annotation></semantics></math> there is no stopping. We can keep forming higher and higher such fiber products</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mover><mover><mo>→</mo><mo>→</mo></mover><mo>→</mo></mover><mo>→</mo></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mover><mo>→</mo><mo>→</mo></mover><mo>→</mo></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle><msub><mo>×</mo> <mrow><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow></msub><mstyle mathvariant="bold"><mi>U</mi></mstyle><mover><mo>→</mo><mo>→</mo></mover><mstyle mathvariant="bold"><mi>U</mi></mstyle><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+ \cdots
+\mathbf{U} \times_{Y(V)} \mathbf{U}
+ \times_{Y(V)} \mathbf{U}
+ \times_{Y(V)} \mathbf{U}
+\stackrel{\to}{\stackrel{\to}{\stackrel{\to}{\to}}}
+\mathbf{U} \times_{Y(V)} \mathbf{U}
+ \times_{Y(V)} \mathbf{U}
+\stackrel{\to}{\stackrel{\to}{\to}}
+\mathbf{U} \times_{Y(V)} \mathbf{U} \stackrel{\to}{\to} \mathbf{U}
+  \,.
+
+</annotation></semantics></math></div>
+<p>When one passes from just presheaves to <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-presheaves</a>, then <a class="existingWikiWord" href="../../../../../7/4/3/0/347/content.html">cover</a>ing presheaves will be given by the right kind of colimit over these <a class="existingWikiWord" href="../../../../../7/6/3/0/367/content.html">simplicial</a> diagrams (namely the <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimit</a>). More on that is at <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a>.</p>
+<h4 id="the_sheaf_condition_from_morphisms_out_of_a_sieve">The sheaf condition from morphisms out of a sieve</h4>
+<p>We now show that the subfunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mi>S</mi></msub></mrow><annotation encoding="application/x-tex">F_S</annotation></semantics></math> associated with a sieve <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> coming from a cover <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>X</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{U_i \to X\}</annotation></semantics></math> is the <em>right</em> kind of morphism to require a <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> to be a <a class="existingWikiWord" href="../../../../../2/3/3/1/1332/content.html">local object</a> for, by demonstrating that using it the usual <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf condition</a> on a presheaf with respect to the cover <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></msub><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\coprod_i U_i</annotation></semantics></math> is reproduced:</p>
+<p>From the above detailed discussion, recall that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi> <mrow><mi>sieve</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">F_{sieve(\{U_i\})}</annotation></semantics></math> is precisely the <a class="existingWikiWord" href="../../../../../6/7/7/0/776/content.html">coequalizer</a> of the obvious pair of morphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>∩</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \coprod_{i, j} \hom(-, U_i \cap U_j)
+    \stackrel{\to}{\to}
+  \coprod_i hom(-, U_i)
+
+</annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">hom(-, U_i) := Y(U_i)</annotation></semantics></math> denoting the presheaf <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">represented</a> under the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math>, as usual.</p>
+<p>Here the domain of this parallel pair is the <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a> of the evident map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></msub><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\coprod_i hom(-, U_i) \to hom(-,X)</annotation></semantics></math><br/>along itself, and the two parallel arrows are the projection maps out of this pullback:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>∩</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>j</mi></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+     \coprod_{i,j} hom(-,U_i \cap U_j)
+     &amp;\to&amp;
+     \coprod_j hom(-, U_j)
+     \\
+     \downarrow &amp;&amp; \downarrow
+     \\
+     \coprod_i hom(-, U_i)
+     &amp;\to&amp;
+     hom(-,X)
+  }
+
+</annotation></semantics></math></div>
+<p>Thus for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a>, maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>→</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">F \to G</annotation></semantics></math> are precisely the same as maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></msub><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">\coprod_i \hom(-, U_i) \to G</annotation></semantics></math> which coequalize the parallel pair. Applying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mrow><msup><mi>Set</mi> <mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow></msup></mrow></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom_{Set^{C^{op}}}(-,G)</annotation></semantics></math> to the colimit diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>∩</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">
+  \coprod_{i, j} \hom(-, U_i \cap U_j)
+    \stackrel{\to}{\to}
+  \coprod_i hom(-, U_i)
+  \to
+  F
+
+</annotation></semantics></math></div>
+<p>yields the limit diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Hom</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Hom</mi><mo stretchy="false">(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><mi>Hom</mi><mo stretchy="false">(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>hom</mi><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>∩</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Hom(F, G)
+  \to 
+  Hom(\coprod_i hom(-, U_i), G)
+  \stackrel{\to}{\to}
+  Hom(\coprod_{i, j} \hom(-, U_i \cap U_j), G)
+
+</annotation></semantics></math></div>
+<p>which using <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda</a> is the equalizer diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Hom</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mi>i</mi></munder><mi>G</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>G</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>∩</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Hom(F,G)
+  \to
+ \prod_i G(U_i) \stackrel{\to}{\to} \prod_{i, j} G(U_i \cap U_j)
+
+</annotation></semantics></math></div>
+<p>and hence identifies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Hom</mi><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Hom(F,G)</annotation></semantics></math> indeed as the set of <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a> data for the <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> condition on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../7/9/0/1/1097/content.html">category of open subsets</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and consider presheaves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><mo stretchy="false">[</mo><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><msup><mo stretchy="false">)</mo> <mi>op</mi></msup><mo>,</mo><mi>Set</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">PSh(X) := [Op(X)^{op}, Set]</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. For any open subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi>V</mi><mo>∈</mo><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">c = V \in Op(X)</annotation></semantics></math> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>d</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo>=</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{d_i\} = \{U_i\}</annotation></semantics></math> be a cover of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> by open subsets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math> in the ordinary sense (i.e. each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math> is an open subset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> and their joint union is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋃</mo> <mi>i</mi></msub><msub><mi>U</mi> <mi>i</mi></msub><mo>=</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">\bigcup_i U_i = V</annotation></semantics></math>), then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>:</mo><mo stretchy="false">(</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></msub><msub><mi>U</mi> <mi>i</mi></msub><msub><mo>↪</mo> <mi>i</mi></msub><mi>X</mi></mrow></mover><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi : (\coprod_i Y(U_i)) \stackrel{\coprod_i U_i \hookrightarrow_i X}{\to} Y(V)</annotation></semantics></math> (with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a>) is a <a class="existingWikiWord" href="../../../../../5/7/0/1/1075/content.html">local epimorphism</a> of presheaves on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> and its <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> – or equivalently its <a class="existingWikiWord" href="../../../../../2/6/4/1/1462/content.html">coimage</a> – is the subfunctor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>F</mi><mo>:</mo><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋃</mo> <mi>i</mi></msub><mi>Y</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>↪</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(F := \bigcup_i Y(U_i)) \hookrightarrow Y(V)</annotation></semantics></math> that sends each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∈</mo><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \in Op(X)</annotation></semantics></math> to the set of maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>→</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">W \to V</annotation></semantics></math> that factor through one of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">U_i</annotation></semantics></math>. The collection of all such maps for all choice of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> is the corresponding <em>covering sieve</em> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>f</mi><mo>:</mo><mi>W</mi><mo>→</mo><mi>V</mi><mo>∈</mo><mi>Mor</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mi>f</mi><mo>=</mo><mi>W</mi><mo>→</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>V</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{ f : W \to V  \in Mor(S) \;|\; f = W \to U_i \to V  \}</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>The situation for more general <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">sites</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> other than <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Op</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Op(X)</annotation></semantics></math> is literally the same as above, with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub><mo>,</mo><mi>W</mi><mo>,</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">U_i, W, V</annotation></semantics></math> etc. objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>.</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>A standard textbook account on sieves in <a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">category theory</a> is in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../7/0/2/2078/content.html">Peter Johnstone</a>, <em><a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Sketches of an Elephant</a></em>.</li>
+</ul>
+<p>In the context of <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-categories</a> sieves are discussed around def. 6.2.2.1 of</p>
+<ul id="Lurie">
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <em><a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></em></li>
+</ul>
+<p>In relation to <a class="existingWikiWord" href="../../../../../1/5/1/3/3151/content.html">cofibrations</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/6/7/1/1762/content.html">Ross Street</a>, <em>Homodular pseudofunctors and bicategories of modules</em>, <a href="https://arxiv.org/abs/2602.03149">arXiv:2602.03149</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

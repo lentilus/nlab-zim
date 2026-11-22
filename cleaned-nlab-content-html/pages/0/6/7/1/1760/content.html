@@ -1,0 +1,489 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      delooping in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      delooping
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#remarks">Remarks</a></li>
+<li><a href="#characterization_of_deloopable_objects">Characterization of deloopable objects</a></li>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#topological_loop_spaces">Topological loop spaces</a></li>
+<li><a href="#delooping_of_a_group_to_a_groupoid">Delooping of a group to a groupoid</a></li>
+</ul>
+<li><a href="#DeloopingOfHigherCategoricalStructures">Deloopings of higher categorical structures</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>delooping</em> of an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is, if it exists, a uniquely <a class="existingWikiWord" href="../../../../../9/0/5/0/509/content.html">pointed object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} A</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} A</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>≃</mo><mi>Ω</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  A \simeq \Omega(\mathbf{B} A)
+
+</annotation></semantics></math></div>
+<p>In particular, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">A = G</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> then its delooping</p>
+<ul>
+<li>
+<p>in the context <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> is the <a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℬ</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathcal{B}G</annotation></semantics></math></p>
+</li>
+<li>
+<p>in the context <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞-Grpd</a> is the one-object groupoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Under the <a class="existingWikiWord" href="../../../../../8/5/5/0/558/content.html">homotopy hypothesis</a> these two objects are identified: the <a class="existingWikiWord" href="../../../../../7/4/4/0/447/content.html">geometric realization</a> of the groupoid <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> is the classifying space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℬ</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathcal{B}G</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">|</mo><mo>≃</mo><mi>ℬ</mi><mi>G</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  |\mathbf{B}G| \simeq \mathcal{B}G
+  \,.
+
+</annotation></semantics></math></div>
+<p>See <a class="existingWikiWord" href="../../../../../9/3/1/6/6139/content.html">looping and delooping</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>Loop space objects are defined in any <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>C</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{C}</annotation></semantics></math> with <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullbacks</a>: for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> any <a class="existingWikiWord" href="../../../../../9/0/5/0/509/content.html">pointed object</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>C</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{C}</annotation></semantics></math> with point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">{*} \to X</annotation></semantics></math>, its <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a> is <a class="existingWikiWord" href="../../../../../8/7/4/0/478/content.html">the</a> <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\Omega X</annotation></semantics></math> of this point along itself:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Ω</mi><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>X</mi></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    \Omega X &amp;\to&amp; {*}
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    {*} &amp;\to&amp; X
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>Conversely, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is given and a <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>A</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    A &amp;\to&amp; {*}
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    {*} &amp;\to&amp; \mathbf{B}A
+  }
+
+</annotation></semantics></math></div>
+<p>exists, with the point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">{*} \to \mathbf{B} A</annotation></semantics></math> being essentially unique, by the above <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> has been realized as the <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} A</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>Ω</mi><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">
+  A = \Omega \mathbf{B} A
+
+</annotation></semantics></math></div>
+<p>and we say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} A</annotation></semantics></math> is the <strong>delooping</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+<p>See the section <a href="../../../../../5/7/7/1/1775/content.html#Delooping">delooping</a> at <a class="existingWikiWord" href="../../../../../../../missing.html">groupoid object in an (∞,1)-category</a> for more.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>C</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{C}</annotation></semantics></math> is even a <a class="existingWikiWord" href="../../../../../../../missing.html">stable (∞,1)-category</a> then all deloopings exist and are then also denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\Sigma A</annotation></semantics></math> and called the <strong><a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a></strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+<h2 id="characterization_of_deloopable_objects">Characterization of deloopable objects</h2>
+<p>In section 6.1.3 of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">Higher Topos Theory</a></li>
+</ul>
+<p>a definition of <a class="existingWikiWord" href="../../../../../5/7/7/1/1775/content.html">groupoid object in an (infinity,1)-category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>C</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{C}</annotation></semantics></math> is given as a homotopy simplicial object, i.e. a <a class="existingWikiWord" href="../../../../../9/9/0/1/1099/content.html">(infinity,1)-functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>:</mo><msup><mi>Δ</mi> <mi>op</mi></msup><mo>→</mo><mstyle mathvariant="bold"><mi>C</mi></mstyle></mrow><annotation encoding="application/x-tex">
+  C  : \Delta^{op} \to \mathbf{C}
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><msub><mi>C</mi> <mn>2</mn></msub><mover><mo>⇉</mo><mo>→</mo></mover><msub><mi>C</mi> <mn>1</mn></msub><mo>⇉</mo><msub><mi>C</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">
+  \cdots
+  C_2 \stackrel{\to}\rightrightarrows
+  C_1 
+  \rightrightarrows 
+ C_0
+
+</annotation></semantics></math></div>
+<p>satisfying certain conditions (prop. 6.1.2.6) which are such that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>0</mn></msub><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">C_0 = {*}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../7/1/0/1/1017/content.html">point</a> we have an internal <em>group</em> in a homotopical sense, given by an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">C_1</annotation></semantics></math> equipped with a coherently associative multiplication operation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>1</mn></msub><mo>×</mo><msub><mi>C</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>C</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">C_1 \times C_1 \to C_1</annotation></semantics></math> generalizing that of <a class="existingWikiWord" href="../../../../../9/3/4/0/439/content.html">Stasheff</a> <a class="existingWikiWord" href="../../../../../6/8/7/1/1786/content.html">H-space</a> from the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-category <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> to arbitrary <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>∞</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\infty,1)</annotation></semantics></math>-categories.</p>
+<p>Lurie calls the groupoid object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> an <em>effective</em> <a class="existingWikiWord" href="../../../../../5/7/7/1/1775/content.html">groupoid object in an (infinity,1)-category</a> precisely if it arises as the <a class="existingWikiWord" href="../../../../../9/7/7/1/1779/content.html">Čech nerve</a> (in particular the <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a> in the above sense) of some object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>C</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}C</annotation></semantics></math>.</p>
+<p>One of the characterizing properties of an <a class="existingWikiWord" href="../../../../0/1/1/1100/content.html">(infinity,1)-topos</a> is that <em>every</em> groupoid object in it is effective.</p>
+<p>This is the analog of <a class="existingWikiWord" href="../../../../../9/3/4/0/439/content.html">Stasheff</a>‘s classical result about <a class="existingWikiWord" href="../../../../../6/8/7/1/1786/content.html">H-spaces</a>.</p>
+<p>See the remark at the very end of section 6.1.2 in <a class="existingWikiWord" href="../../../../../7/3/0/1/1037/content.html">HTT</a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="topological_loop_spaces">Topological loop spaces</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">C = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> the <a class="existingWikiWord" href="../../../../../4/8/2/0/284/content.html">(infinity,1)-category</a> of <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>, a space is deloopable if it is an <a class="existingWikiWord" href="../../../../../6/9/9/2/2996/content.html">A-infinity-space</a> and hence homotopy equivalent to a <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a>.</p>
+<h3 id="delooping_of_a_group_to_a_groupoid">Delooping of a group to a groupoid</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> regarded as a <a class="existingWikiWord" href="../../../../../2/3/1/0/132/content.html">discrete groupoid</a> in the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-topos</a> <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a> of <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoids</a>.</p>
+<p>Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} G</annotation></semantics></math> exists and is, up to equivalence, the <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoid</a></p>
+<ul>
+<li>
+<p>with a single object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo></mrow><annotation encoding="application/x-tex">\bullet</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Hom</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mo>•</mo><mo>,</mo><mo>•</mo><mo stretchy="false">)</mo><mo>=</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">Hom_{\mathbf{B} G}(\bullet, \bullet) = G</annotation></semantics></math>, or equivalently <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Aut</mi> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mo>•</mo><mo stretchy="false">)</mo><mo>=</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">Aut_{\mathbf{B}G}(\bullet) = G</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>and with composition of morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} G</annotation></semantics></math> being given by the product operation in the group.</p>
+</li>
+</ul>
+<p>More informally but more suggestively we may write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>=</mo><mo stretchy="false">{</mo><mo>•</mo><mover><mo>→</mo><mi>g</mi></mover><mo>•</mo><mo stretchy="false">|</mo><mi>g</mi><mo>∈</mo><mi>G</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{B} G = \{ \bullet \stackrel{g}{\to} \bullet | g \in G\}
+
+</annotation></semantics></math></div>
+<p>or</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>=</mo><mo stretchy="false">{</mo><mo>•</mo><mo>⟲</mo><mi>g</mi><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mi>g</mi><mo>∈</mo><mi>G</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{B}G = \{ 
+     \bullet \righttoleftarrow g \;|\; g \in G 
+  \}
+
+</annotation></semantics></math></div>
+<p>to emphasize that there is really only a single object.</p>
+<p>Notice how the <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> works in this simple case:</p>
+<p>the universal 2-cell <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>G</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mo>*</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd><msup><mo>⇓</mo> <mi>η</mi></msup></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    G &amp;\to&amp; {*}
+    \\
+    \downarrow &amp;\Downarrow^{\eta}&amp; \downarrow
+    \\
+    {*} &amp;\to&amp; \mathbf{B}G
+  }
+
+</annotation></semantics></math></div>
+<p>filling this <a class="existingWikiWord" href="../../../../../5/9/8/7/27895/content.html">2-limit</a> diagram is the <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> from the constant <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>→</mo><mo>*</mo><mo>→</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">
+  G \to {*} \to \mathbf{B}G
+
+</annotation></semantics></math></div>
+<p>to itself, whose component map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>:</mo><mi>Obj</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Mor</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \eta : Obj(G) \to Mor(\mathbf{B}G)
+
+</annotation></semantics></math></div>
+<p>is just the identity map, using that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Obj</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>=</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">Obj(G) = G</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Mor</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo><mo>=</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">Mor(\mathbf{B}G) = G</annotation></semantics></math>.</p>
+<h2 id="DeloopingOfHigherCategoricalStructures">Deloopings of higher categorical structures</h2>
+<p>There is also a notion of delooping which takes a pointed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n, k+1)</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> to a pointed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+1, k)</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>C</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} C</annotation></semantics></math> in which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>C</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} C</annotation></semantics></math> has a single <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math>-cell <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo></mrow><annotation encoding="application/x-tex">\bullet</annotation></semantics></math>, and where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>hom</mi><mo stretchy="false">(</mo><mo>•</mo><mo>,</mo><mo>•</mo><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">\hom(\bullet, \bullet) = C</annotation></semantics></math>. This is a tautological construction if one accepts the <a class="existingWikiWord" href="../../../../../9/0/7/0/709/content.html">delooping hypothesis</a>, which views a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n, k+1)</annotation></semantics></math>-category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> as a special type of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+k+1)</annotation></semantics></math>-category, namely a pointed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+k+1)</annotation></semantics></math>-category: by viewing such as <em>a fortiori</em> a pointed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k-1)</annotation></semantics></math>-connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n+k+1)</annotation></semantics></math>-category, we get the delooping <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>C</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} C</annotation></semantics></math>.</p>
+<p>This is just a generalization of the fact that a <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> gives rise to a one-object category (which we are denoting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math>). For an important example: a <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> has an associated <strong>delooping <a class="existingWikiWord" href="../../../../../3/5/2/0/253/content.html">bicategory</a></strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math>, where</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math> has a single <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math>-cell <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo></mrow><annotation encoding="application/x-tex">\bullet</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-cells <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo><mo>→</mo><mo>•</mo></mrow><annotation encoding="application/x-tex">\bullet \to \bullet</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math> are named by objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>, and the composite of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo><mover><mo>→</mo><mi>a</mi></mover><mo>•</mo><mover><mo>→</mo><mi>b</mi></mover><mo>•</mo></mrow><annotation encoding="application/x-tex">\bullet \stackrel{a}{\to} \bullet \stackrel{b}{\to} \bullet</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>•</mo><mover><mo>→</mo><mrow><mi>a</mi><mo>⊗</mo><mi>b</mi></mrow></mover><mo>•</mo></mrow><annotation encoding="application/x-tex">\bullet \stackrel{a \otimes b}{\to} \bullet</annotation></semantics></math> (using the monoidal product <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊗</mo></mrow><annotation encoding="application/x-tex">\otimes</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>),</p>
+</li>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math>-cells of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math> are similarly named by morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>; the vertical composition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math>-cells in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math> is given by composition of morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>, and the horizontal composition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math>-cells in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>M</mi></mrow><annotation encoding="application/x-tex">\mathbf{B} M</annotation></semantics></math> is given by taking the monoidal product of the morphisms that name them in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Along similar lines, the delooping of a <a class="existingWikiWord" href="../../../../../5/4/2/0/245/content.html">braided monoidal category</a> produces a <a class="existingWikiWord" href="../../../../../1/6/7/3/3761/content.html">monoidal bicategory</a>, and delooping of <em>that</em> is a <a class="existingWikiWord" href="../../../../../5/7/4/0/475/content.html">tricategory</a> or (weak) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math>-category. See <a class="existingWikiWord" href="../../../../../9/0/7/0/709/content.html">delooping hypothesis</a> for more.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/3/1/6/6139/content.html">looping and delooping</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/6/1/21629/content.html">May recognition theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/2/6/8/28623/content.html">delooping via torsors</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a>, <a class="existingWikiWord" href="../../../../../3/3/3/3/3333/content.html">free loop space object</a>,</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a>, <a class="existingWikiWord" href="../../../../../4/8/2/5/5284/content.html">free loop space</a>, <a class="existingWikiWord" href="../../../../../1/0/9/4/4901/content.html">derived loop space</a></li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/8/2/2836/content.html">suspension object</a></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a>, <a class="existingWikiWord" href="../../../../../7/3/2/1/1237/content.html">reduced suspension</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Discussion in <a class="existingWikiWord" href="../../../../3/8/5/5830/content.html">homotopy type theory</a>:</p>
+<ul>
+<li id="BCFR23">
+<p><a class="existingWikiWord" href="../../../../../8/6/1/0/10168/content.html">Ulrik Buchholtz</a>, <a class="existingWikiWord" href="../../../../../8/3/6/4/4638/content.html">J. Daniel Christensen</a>, <a class="existingWikiWord" href="../../../../../8/9/1/5/25198/content.html">Jarl G. Taxerås Flaten</a>, <a class="existingWikiWord" href="../../../../../5/5/7/9/9755/content.html">Egbert Rijke</a>, <em>Central H-spaces and banded types</em> [<a href="https://arxiv.org/abs/2301.02636">arXiv:2301.02636</a>]</p>
+</li>
+<li id="Wärn23">
+<p><a class="existingWikiWord" href="../../../../../1/9/1/5/25191/content.html">David Wärn</a>, <em>Eilenberg-MacLane spaces and stabilisation in homotopy type theory</em> [<a href="https://arxiv.org/abs/2301.03685">arXiv:2301.03685</a>]</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

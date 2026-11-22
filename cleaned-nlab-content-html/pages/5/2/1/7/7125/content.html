@@ -1,0 +1,622 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Artin gluing in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Artin gluing
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#TheTopologicalCase">The topological case</a></li>
+<li><a href="#the_localic_case">The localic case</a></li>
+<li><a href="#the_toposic_case">The toposic case</a></li>
+<ul>
+<li><a href="#some_details_and_further_adjunctions">Some details and further adjunctions</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#remarks">Remarks</a></li>
+</ul>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><strong>Artin gluing</strong> is a fundamental construction in <a class="existingWikiWord" href="../../../../../8/5/4/0/458/content.html">locale</a> theory and <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> theory. The original example is the way in which a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> or <a class="existingWikiWord" href="../../../../../8/5/4/0/458/content.html">locale</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> may be glued together from an <a class="existingWikiWord" href="../../../../../1/2/7/3/3721/content.html">open subspace</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>U</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">i \colon U \hookrightarrow X</annotation></semantics></math> and its <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed</a> <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complement</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo lspace="verythinmathspace">:</mo><mi>K</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">j \colon K \hookrightarrow X</annotation></semantics></math>. The analogous construction for toposes gives the <a class="existingWikiWord" href="../../../../../1/4/2/0/241/content.html">sheaf topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(X)</annotation></semantics></math> via a gluing together of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(U)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(K)</annotation></semantics></math>, and applies more generally to give a sense of how to put two toposes together so that one becomes an <a class="existingWikiWord" href="../../../../../1/0/3/7/7301/content.html">open</a> <a class="existingWikiWord" href="../../../../../7/4/4/1/1447/content.html">subtopos</a> and the other a <a class="existingWikiWord" href="../../../../../0/7/3/6/16370/content.html">closed subtopos</a> of the gluing.</p>
+<h2 id="TheTopologicalCase">The topological case</h2>
+<p>Let us consider first the case of topological spaces. Let</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>U</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">i \colon U \hookrightarrow X</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../1/2/7/3/3721/content.html">open subspace</a>, and</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo lspace="verythinmathspace">:</mo><mi>K</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">j \colon K \hookrightarrow X</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complementary</a> <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed subspace</a>.</p>
+</li>
+</ul>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math> denote the topology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. There is an <a class="existingWikiWord" href="../../../../../7/1/9/0/917/content.html">injective</a> <a class="existingWikiWord" href="../../../../../2/1/6/9/9612/content.html">map</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">⟨</mo><msup><mi>i</mi> <mo>*</mo></msup><mo>,</mo><msup><mi>j</mi> <mo>*</mo></msup><mo stretchy="false">⟩</mo></mtd> <mtd><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mtd> <mtd><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>V</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>U</mi><mo>∩</mo><mi>V</mi><mo>,</mo><mi>K</mi><mo>∩</mo><mi>V</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \langle i^\ast, j^\ast \rangle 
+      &amp;\colon\;&amp; 
+    O(X) &amp;\longrightarrow&amp; O(U) \times O(K)
+    \\
+    &amp;&amp;
+    V 
+      &amp;\mapsto&amp; 
+    (U \cap V, K \cap V)  
+  }
+
+</annotation></semantics></math></div>
+<p>that is a <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> of <a class="existingWikiWord" href="../../../../../4/6/9/0/964/content.html">frames</a>. The general problem is to characterize the <a class="existingWikiWord" href="../../../../4/4/0/445/content.html">image</a> of this map: in terms of structure pertaining to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(U)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(K)</annotation></semantics></math>, which pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(W, W')</annotation></semantics></math> of relatively open sets in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> “glue together” to form an open set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∪</mo><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">W \cup W'</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>?</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>int</mi> <mi>X</mi></msub><mo lspace="verythinmathspace">:</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">int_X \colon P(X) \to P(X)</annotation></semantics></math> denote the <a class="existingWikiWord" href="../../../../../1/4/9/4/4941/content.html">interior</a> operation, assigning to a <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subset</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> its interior. This is a <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">left exact</a> <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X)</annotation></semantics></math>. (Indeed, topologies on the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> are in <a class="existingWikiWord" href="../../../../../6/7/3/8/8376/content.html">natural bijection</a> with <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">left exact</a> <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonads</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X)</annotation></semantics></math>.) Our problem is to understand when the inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∪</mo><mi>W</mi><mo>′</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  W \cup W' 
+   \;\xhookrightarrow{\phantom{--}}\;
+  int_X(W \cup W')
+
+</annotation></semantics></math></div>
+<p>obtains. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \in O(U)</annotation></semantics></math> is already open when considered as a subset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, this condition boils down to the condition that</p>
+<div class="maruku-equation" id="eq:ConditionOne"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  W' 
+   \;\xhookrightarrow{\phantom{--}}\;
+  int_X(W \cup W') 
+
+</annotation></semantics></math></div>
+<div class="un_thm">
+<h6 id="proposition">Proposition</h6>
+<p>A necessary and sufficient condition for <a class="maruku-eqref" href="#eq:ConditionOne">(1)</a> is that the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>↪</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W' \hookrightarrow int_X(W \cup K)</annotation></semantics></math> obtains.</p>
+</div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>The necessity is clear since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>⊆</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">W' \subseteq K</annotation></semantics></math>. The sufficiency is equivalent to having an inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>∩</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  W' \cap int_X(W \cup K) 
+   \;\xhookrightarrow{\phantom{--}}\;
+  int_X(W \cup W')  
+  \,.
+
+</annotation></semantics></math></div>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">W'</annotation></semantics></math> is relatively open in the subspace <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math>, we may write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>=</mo><mi>K</mi><mo>∩</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">W' = K \cap V</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V \in O(X)</annotation></semantics></math>, and so we must check that there is an inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>K</mi><mo>∩</mo><mi>V</mi><mo stretchy="false">)</mo><mo>∩</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mo stretchy="false">(</mo><mi>K</mi><mo>∩</mo><mi>V</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  (K \cap V) \cap int_X(W \cup K) 
+   \;\xhookrightarrow{\phantom{--}}\;
+  int_X(W \cup (K \cap V))
+
+</annotation></semantics></math></div>
+<p>or in other words – using distributivity and the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>int</mi> <mi>X</mi></msub></mrow><annotation encoding="application/x-tex">int_X</annotation></semantics></math> preserves intersections – an inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>∩</mo><mi>V</mi><mo>∩</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mo>∩</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  K \cap V \cap int_X(W \cup K) 
+   \;\xhookrightarrow{\phantom{--}}\;
+  int_X(W \cup K) \cap int_X(W \cup V)
+  \,.
+
+</annotation></semantics></math></div>
+<p>But this is clear, since we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>∩</mo><mi>V</mi><mo>∩</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  K \cap V \cap int_X(W \cup K) 
+   \;\xhookrightarrow{\phantom{--}}\;
+  int_X(W \cup K)
+
+</annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>∩</mo><mi>V</mi><mo>∩</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><mi>V</mi><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><mi>W</mi><mo>∪</mo><mi>V</mi><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  K \cap V \cap int_X(W \cup K) 
+   \;\xhookrightarrow{\phantom{--}}\;
+  V 
+    \;\xhookrightarrow{\phantom{--}}\;
+  W \cup V 
+    \;=\; 
+  int_X(W \cup V)
+  \,,
+
+</annotation></semantics></math></div>
+<p>where to derive the last equation, we use the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \in O(U)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> are open in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+</div>
+<div class="un_thm">
+<h6 id="proposition_2">Proposition</h6>
+<p>The operation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>∋</mo><mi>W</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mo>¬</mo><mi>U</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  O(U) \ni W 
+    \;\mapsto\; 
+  int_X(W \cup K) 
+    \;=\; 
+  int_X(W \cup \neg U) \in O(X)
+
+</annotation></semantics></math></div>
+<p>is the <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoint</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">i_\ast</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i^\ast \colon O(X) \to O(U)</annotation></semantics></math>.</p>
+</div>
+<p>This is well-known.</p>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V \in O(X)</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>V</mi><mo>⊆</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>W</mi><mo>∪</mo><mo>¬</mo><mi>U</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mtext>in</mtext><mspace width="mediummathspace"></mspace><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><mrow><mi>V</mi><mo>⊆</mo><mi>W</mi><mo>∪</mo><mo>¬</mo><mi>U</mi><mspace width="2em"></mspace><mtext>in</mtext><mspace width="mediummathspace"></mspace><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mfrac><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \frac
+    {V \subseteq int_X(W \cup \neg U) \qquad \text{in} \: O(X)}
+    {V \subseteq W \cup \neg U \qquad \text{in} \: P(X)}
+  \,,
+
+</annotation></semantics></math></div>
+<p>but the last condition is equivalent to having <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∩</mo><mi>V</mi><mo>⊆</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">U \cap V \subseteq W</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X)</annotation></semantics></math>, or to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mo>=</mo><mi>U</mi><mo>∩</mo><mi>V</mi><mo>⊆</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">i^\ast(V) = U \cap V \subseteq W</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math>.</p>
+</div>
+<p>Summarizing, the gluing condition (1) above (for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W' \in O(K)</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W \in O(U)</annotation></semantics></math>) translates into saying that there is an inclusion</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mphantom><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>−</mo></mrow></mphantom></mover><mspace width="thickmathspace"></mspace><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub><mi>W</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  W' 
+   \;\xhookrightarrow{\phantom{--}}\;
+  j^\ast i_\ast W
+  \,.
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><mo>,</mo><msup><mi>j</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">i^\ast, j^\ast</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../1/9/1/1915/content.html">restriction</a> maps and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><mo>⊣</mo><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">i^\ast \dashv i_\ast</annotation></semantics></math>.</p>
+<p>For future reference, observe that the operator <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">j^\ast i_\ast \colon O(U) \to O(K)</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">left exact</a>.</p>
+<p>We can turn all this around. Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> are topological spaces, and suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f \colon O(U) \to O(K)</annotation></semantics></math> is left exact. Then we can manufacture a topological space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> which contains <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> as an open subspace and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> as its closed complement, and (letting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math> being the inclusions as above) such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">f = j^\ast i_\ast</annotation></semantics></math>. The open sets of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> may be identified with pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(W, W') \in O(U) \times O(K)</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>⊆</mo><mi>f</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W' \subseteq f(W)</annotation></semantics></math>; here we are thinking of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(W, W')</annotation></semantics></math> as a stand-in for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∪</mo><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">W \cup W'</annotation></semantics></math>. In particular, open sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> give open sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mo>∅</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(W, \varnothing)</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, while open sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">W'</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> also give open sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∪</mo><mi>W</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">U \cup W'</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<h2 id="the_localic_case">The localic case</h2>
+<p>The development given above generalizes readily to the context of <a class="existingWikiWord" href="../../../../../8/5/4/0/458/content.html">locales</a>. Thus, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a locale, with corresponding <a class="existingWikiWord" href="../../../../../4/6/9/0/964/content.html">frame</a> denoted by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math>. Each element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U \in O(X)</annotation></semantics></math> gives rise to two distinct frames:</p>
+<ul>
+<li>
+<p>The frame whose elements are <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> (<a class="existingWikiWord" href="../../../../../0/8/4/8/8480/content.html">fixed points</a>) of the left exact <a class="existingWikiWord" href="../../../../../0/4/0/1/1040/content.html">idempotent monad</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U \vee - \colon O(X) \to O(X)</annotation></semantics></math>. The corresponding locale is the <a class="existingWikiWord" href="../../../../../2/2/7/3/3722/content.html">closed sublocale</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">\neg U</annotation></semantics></math> (more exactly, the frame surjection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Alg</mi><mo stretchy="false">(</mo><mi>U</mi><mo>∨</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X) \to Alg(U \vee -)</annotation></semantics></math> is identified with a sublocale <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>U</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\neg U \to X</annotation></semantics></math>).</p>
+</li>
+<li>
+<p>The frame whose elements are algebras of the left exact idempotent monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⇒</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U \Rightarrow - \colon O(X) \to O(X)</annotation></semantics></math>. (NB: for topological spaces, this is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⇒</mo><mi>V</mi><mo>=</mo><msub><mi>int</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>V</mi><mo>∪</mo><mo>¬</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U \Rightarrow V = int_X(V \cup \neg U)</annotation></semantics></math>. This is isomorphic as a frame (but not as a subset of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math>) to the <a class="existingWikiWord" href="../../../../../0/8/9/3/23980/content.html">principal ideal</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math> generated by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, which is more obviously the topology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>.) The sublocale corresponding to the frame surjection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Alg</mi><mo stretchy="false">(</mo><mi>U</mi><mo>⇒</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X) \to Alg(U \Rightarrow -)</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../1/2/7/3/3721/content.html">open sublocale</a> corresponding to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>Put <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mo>¬</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">K = \neg U</annotation></semantics></math>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><mo>:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i^\ast: O(X) \to O(U)</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup><mo>:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">j^\ast: O(X) \to O(K)</annotation></semantics></math> be the frame maps corresponding to the open and closed sublocales attached to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, with <a class="existingWikiWord" href="../../../../../1/2/0/1/1021/content.html">right adjoints</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">i_\ast</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">j_\ast</annotation></semantics></math>. Again we have a left exact functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">f = j^\ast i_\ast \colon O(U) \to O(K).</annotation></semantics></math></div>
+<p>Observe that this gives rise to a left exact comonad</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo><mo>↦</mo><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>′</mo><mo>∧</mo><mi>f</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="2em"></mspace><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(U) \times O(K) \to O(U) \times O(K): (W, W') \mapsto (W, W' \wedge f(W)) \qquad (2)</annotation></semantics></math></div>
+<p>whose coalgebras are pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>W</mi><mo>,</mo><mi>W</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(W, W')</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>≤</mo><mi>f</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W' \leq f(W)</annotation></semantics></math>. The coalgebra category forms a frame.</p>
+<div class="un_thm">
+<h6 id="theorem">Theorem</h6>
+<p>The frame map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><msup><mi>i</mi> <mo>*</mo></msup><mo>,</mo><msup><mi>j</mi> <mo>*</mo></msup><mo stretchy="false">⟩</mo><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\langle i^\ast, j^\ast \rangle \colon O(X) \to O(U) \times O(K)</annotation></semantics></math> is identified with the comonadic functor attached to the comonad (2). In particular, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math> can be recovered from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(U)</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(K)</annotation></semantics></math>, and the comonad (2).</p>
+</div>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo>+</mo><mi>K</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(U + K) \cong O(U) \times O(K)</annotation></semantics></math>, we can think of the frame map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><msup><mi>i</mi> <mo>*</mo></msup><mo>,</mo><msup><mi>j</mi> <mo>*</mo></msup><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle i^\ast, j^\ast \rangle</annotation></semantics></math> as giving a localic surjection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>+</mo><mi>K</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U + K \to X</annotation></semantics></math>.</p>
+<p>Again, we can turn all this around and say that given any two locales <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> and a left exact functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">f \colon O(U) \to O(K),</annotation></semantics></math></div>
+<p>we can manufacture a locale <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> whose frame <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math> is the category of coalgebras for the comonad</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mn>1</mn> <mrow><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></msub><mo>×</mo><mo>∧</mo><mo>∘</mo><mo stretchy="false">(</mo><mi>f</mi><mo>×</mo><msub><mn>1</mn> <mrow><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mo>→</mo><mi>O</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>×</mo><mi>O</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1_{O(U)} \times \wedge \circ (f \times 1_{O(K)}) \colon O(U) \times O(K) \to O(U) \times O(K) \qquad (3)</annotation></semantics></math></div>
+<p>so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is naturally identified with an open sublocale of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> with the corresponding closed sublocale, and with a localic surjection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>+</mo><mi>K</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">U + K \to X</annotation></semantics></math>. This is the (Artin) <strong>gluing construction</strong> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math>.</p>
+<h2 id="the_toposic_case">The toposic case</h2>
+<p>Now suppose given <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">toposes</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">E'</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../0/5/0/1/1050/content.html">left exact functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mi>E</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\Phi \colon E \to E'</annotation></semantics></math>. There is an induced left exact <a class="existingWikiWord" href="../../../../../6/7/8/1/1876/content.html">comonad</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>×</mo><mi>E</mi><mo>′</mo><mover><mo>→</mo><mrow><mi>δ</mi><mo>×</mo><mn>1</mn></mrow></mover><mi>E</mi><mo>×</mo><mi>E</mi><mo>×</mo><mi>E</mi><mo>′</mo><mover><mo>→</mo><mrow><mn>1</mn><mo>×</mo><mi>Φ</mi><mo>×</mo><mn>1</mn></mrow></mover><mi>E</mi><mo>×</mo><mi>E</mi><mo>′</mo><mo>×</mo><mi>E</mi><mo>′</mo><mover><mo>→</mo><mrow><mn>1</mn><mo>×</mo><mi>product</mi></mrow></mover><mi>E</mi><mo>×</mo><mi>E</mi><mo>′</mo><mspace width="2em"></mspace><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E \times E' \stackrel{\delta \times 1}{\to} E \times E \times E' \stackrel{1 \times \Phi \times 1}{\to} E \times E' \times E' \stackrel{1 \times product}{\to} E \times E' \qquad (3)</annotation></semantics></math></div>
+<p>whose category of coalgebras is again (by a basic theorem of topos theory; see for instance <a href="http://ncatlab.org/toddtrimble/published/Three+topos+theorems+in+one">here</a>) a topos, called the <strong>Artin gluing</strong> construction for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi></mrow><annotation encoding="application/x-tex">\Phi</annotation></semantics></math>, denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>Φ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(\Phi)</annotation></semantics></math>.</p>
+<p>Objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>Φ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(\Phi)</annotation></semantics></math> are triples <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>e</mi><mo>,</mo><mi>e</mi><mo>′</mo><mo>,</mo><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>e</mi><mo>′</mo><mo>→</mo><mi>Φ</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(e, e', f \colon e' \to \Phi(e))</annotation></semantics></math>. A morphism from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>e</mi> <mn>0</mn></msub><mo>,</mo><msubsup><mi>e</mi> <mn>0</mn> <mo>′</mo></msubsup><mo>,</mo><msub><mi>f</mi> <mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(e_0, e_0^', f_0)</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>e</mi> <mn>1</mn></msub><mo>,</mo><msubsup><mi>e</mi> <mn>1</mn> <mo>′</mo></msubsup><mo>,</mo><msub><mi>f</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(e_1, e_1^', f_1)</annotation></semantics></math> consists of a pair of maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo lspace="verythinmathspace">:</mo><msub><mi>e</mi> <mn>0</mn></msub><mo>→</mo><msub><mi>e</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">g \colon e_0 \to e_1</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>′</mo><mo lspace="verythinmathspace">:</mo><msubsup><mi>e</mi> <mn>0</mn> <mo>′</mo></msubsup><mo>→</mo><msubsup><mi>e</mi> <mn>1</mn> <mo>′</mo></msubsup></mrow><annotation encoding="application/x-tex">g'\colon e_0^' \to e_1^'</annotation></semantics></math> which respects the maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>f</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">f_0, f_1</annotation></semantics></math> :</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msubsup><mi>e</mi> <mn>0</mn> <mo>′</mo></msubsup></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>f</mi> <mn>0</mn></msub></mrow></mover></mtd> <mtd><mi>Φ</mi><mo stretchy="false">(</mo><msub><mi>e</mi> <mn>0</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>g</mi><mo>′</mo><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo><mi>Φ</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msubsup><mi>e</mi> <mn>1</mn> <mo>′</mo></msubsup></mtd> <mtd><munder><mo>→</mo><mrow><msub><mi>f</mi> <mn>1</mn></msub></mrow></munder></mtd> <mtd><mi>Φ</mi><mo stretchy="false">(</mo><msub><mi>e</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+    e_0^' &amp;\overset{f_0}{\to} &amp; \Phi (e_0)
+    \\
+    g'\downarrow &amp;&amp;\downarrow \Phi(g)
+    \\
+    e_1^' &amp;\underset{f_1}{\to} &amp; \Phi(e_1) 
+  }
+
+</annotation></semantics></math></div>
+<p>In other words, the Artin gluing is just the <a class="existingWikiWord" href="../../../../4/7/0/745/content.html">comma category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>′</mo><mo stretchy="false">↓</mo><mi>Φ</mi></mrow><annotation encoding="application/x-tex">E' \downarrow \Phi</annotation></semantics></math>. (In fact, this comma category is a topos whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi></mrow><annotation encoding="application/x-tex">\Phi</annotation></semantics></math> preserves pullbacks.)</p>
+<p>On the other hand, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is a topos and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">U\in E</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../4/7/6/0/674/content.html">subterminal object</a>, then it generates two <a class="existingWikiWord" href="../../../../../7/4/4/1/1447/content.html">subtoposes</a> that are <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complements</a> in the <a class="existingWikiWord" href="../../../../0/7/3/3705/content.html">lattice of subtoposes</a>, namely, an <a class="existingWikiWord" href="../../../../../1/7/3/6/16371/content.html">open subtopos</a> whose <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflector</a> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mi>U</mi></msup></mrow><annotation encoding="application/x-tex">(-)^U</annotation></semantics></math>, and a <a class="existingWikiWord" href="../../../../../0/7/3/6/16370/content.html">closed subtopos</a> whose reflector is the <a class="existingWikiWord" href="../../../../../2/9/5/0/592/content.html">pushout</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>↦</mo><mi>A</mi><msub><mo>+</mo> <mrow><mi>A</mi><mo>×</mo><mi>U</mi></mrow></msub><mi>U</mi></mrow><annotation encoding="application/x-tex">A\mapsto A +_{A\times U} U</annotation></semantics></math>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>Sh</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E=Sh(X)</annotation></semantics></math> is the topos of sheaves on a locale, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> corresponds to an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(X)</annotation></semantics></math>, hence an open sublocale with complement <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> (say), and the open subtopos can be identified with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(U)</annotation></semantics></math> and the closed one with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(K)</annotation></semantics></math>.</p>
+<p>Returning to the general case, let us denote the <a class="existingWikiWord" href="../../../../../7/4/4/1/1447/content.html">geometric embedding</a> of the open subtopos by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><msub><mi>E</mi> <mi>U</mi></msub><mo>↪</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">i\colon E_U \hookrightarrow E</annotation></semantics></math> and that of the closed subtopos by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo lspace="verythinmathspace">:</mo><msub><mi>E</mi> <mrow><mo>¬</mo><mi>U</mi></mrow></msub><mo>↪</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">j\colon E_{\neg U}\hookrightarrow E</annotation></semantics></math>. Then we have a composite functor, sometimes called the <strong>fringe functor</strong>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mi>U</mi></msub><mover><mo>→</mo><mrow><msub><mi>i</mi> <mo>*</mo></msub></mrow></mover><mi>E</mi><mover><mo>→</mo><mrow><msup><mi>j</mi> <mo>*</mo></msup></mrow></mover><msub><mi>E</mi> <mrow><mo>¬</mo><mi>U</mi></mrow></msub></mrow><annotation encoding="application/x-tex"> E_U \xrightarrow{i_*} E \xrightarrow{j^*} E_{\neg U} </annotation></semantics></math></div>
+<p>which is left exact.</p>
+<div class="un_thm">
+<h6 id="theorem_2">Theorem</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> be a subterminal object of a topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>, as above. Then the left exact left adjoint</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><msup><mi>i</mi> <mo>*</mo></msup><mo>,</mo><msup><mi>j</mi> <mo>*</mo></msup><mo stretchy="false">⟩</mo><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><msub><mi>E</mi> <mi>U</mi></msub><mo>×</mo><msub><mi>E</mi> <mrow><mo>¬</mo><mi>U</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\langle i^\ast, j^\ast \rangle \colon E \to E_U \times E_{\neg U}</annotation></semantics></math></div>
+<p>is canonically identified with the comonadic gluing construction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub><mo stretchy="false">)</mo><mo>→</mo><msub><mi>E</mi> <mi>U</mi></msub><mo>×</mo><msub><mi>E</mi> <mrow><mo>¬</mo><mi>U</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(j^\ast i_\ast) \to E_U \times E_{\neg U}</annotation></semantics></math>. In particular, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> can be recovered from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mi>U</mi></msub></mrow><annotation encoding="application/x-tex">E_U</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mrow><mo>¬</mo><mi>U</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E_{\neg U}</annotation></semantics></math>, and the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">j^* i_*</annotation></semantics></math>.</p>
+</div>
+<p>For a proof, see A4.5.6 in the <a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Elephant</a>.</p>
+<p>Once again, the import of this theorem may be turned around. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">f \colon E \to F</annotation></semantics></math> is any left exact functor, then the projection</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mo>×</mo><mi>F</mi><mover><mo>→</mo><mi>proj</mi></mover><mi>E</mi></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f) \to E \times F \stackrel{proj}{\to} E</annotation></semantics></math></div>
+<p>is easily identified with a <a class="existingWikiWord" href="../../../../../6/7/1/3/3176/content.html">logical functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f) \to \mathbf{Gl}(f)/X</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../4/7/6/0/674/content.html">subterminal object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 0, 0 \to f(1))</annotation></semantics></math>. This realizes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> as an <a class="existingWikiWord" href="../../../../../1/7/3/6/16371/content.html">open subtopos</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f)</annotation></semantics></math>. On the other hand, for the same subterminal object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>↪</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X \hookrightarrow 1</annotation></semantics></math>, the corresponding classifying map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><mn>1</mn><mo>→</mo><mi>Ω</mi></mrow><annotation encoding="application/x-tex">[X] \colon 1 \to \Omega</annotation></semantics></math></div>
+<p>induces a <a class="existingWikiWord" href="../../../../../0/5/3/0/350/content.html">Lawvere-Tierney topology</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math> given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo>≅</mo><mn>1</mn><mo>×</mo><mi>Ω</mi><mover><mo>→</mo><mrow><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo>×</mo><mn>1</mn></mrow></mover><mi>Ω</mi><mo>×</mo><mi>Ω</mi><mover><mo>→</mo><mo>∧</mo></mover><mi>Ω</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">\Omega \cong 1 \times \Omega \stackrel{[X] \times 1}{\to} \Omega \times \Omega \stackrel{\wedge}{\to} \Omega.</annotation></semantics></math></div>
+<p>Then, the category of sheaves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(j)</annotation></semantics></math>, or more exactly the left exact left adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Sh</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f) \to Sh(j)</annotation></semantics></math> to the category of sheaves, is naturally identified with the projection</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mo>×</mo><mi>F</mi><mover><mo>→</mo><mi>proj</mi></mover><mi>F</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f) \to E \times F \stackrel{proj}{\to} F,</annotation></semantics></math></div>
+<p>thus realizing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> as equivalent to the <a class="existingWikiWord" href="../../../../../0/7/3/6/16370/content.html">closed subtopos</a> (<a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Elephant</a>, A.4.5, pp. 205-206) attached to the subterminal object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<h3 id="some_details_and_further_adjunctions">Some details and further adjunctions</h3>
+<p>The sheaves in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f)</annotation></semantics></math> corresponding to the open resp. closed subtoposes can be described explicitly. Recall that the objects of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f)</annotation></semantics></math> have the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo>:</mo><mi>Y</mi><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, Y, u:Y\to f(X))</annotation></semantics></math>: then the open copy of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> corresponds to the subcategory on those objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo>:</mo><mi>Y</mi><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, Y, u:Y\to f(X))</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> an isomorphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> and the closed copy of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> to the subcategory with objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo>:</mo><mi>Y</mi><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X, Y, u:Y\to f(X))</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>≃</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X\simeq 1</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+<p>The <a class="existingWikiWord" href="../../../../../1/7/3/6/16371/content.html">open subtopos</a> corresponding to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/6/3/6/16369/content.html">dense</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f)</annotation></semantics></math> precisely if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>E</mi><mo>→</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">f:E\to F</annotation></semantics></math> preserves the initial object since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0,0\to f(0))</annotation></semantics></math> is the initial object in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">0\to f(0)</annotation></semantics></math> is an isomorphism precisely if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> preserves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math>.</p>
+<p>To summarize: given a left exact <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">f\colon E\to F</annotation></semantics></math> we get an open inclusion of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> with a further left adjoint:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>*</mo></msub><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mi>X</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>id</mi> <mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> i_\ast \colon E\to \mathbf{Gl}(f) \qquad X\mapsto (X,f(X),id_{f(X)})</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mspace width="2em"></mspace><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo><mo>↦</mo><mi>X</mi></mrow><annotation encoding="application/x-tex"> i^\ast\colon \mathbf{Gl}(f)\to E \qquad (X,Y,u)\mapsto X</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>!</mo></msub><mo lspace="verythinmathspace">:</mo><mi>E</mi><mo>→</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mi>X</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="1em"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex"> i_{!} \colon E\to \mathbf{Gl}(f) \qquad X\mapsto (X,0,0\to f(X)) \quad ,</annotation></semantics></math></div>
+<p>and a closed inclusion of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> into <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(f)</annotation></semantics></math> with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>*</mo></msub><mo lspace="verythinmathspace">:</mo><mi>F</mi><mo>→</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mi>X</mi><mo>↦</mo><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>X</mi><mo>,</mo><mi>X</mi><mo>→</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> j_\ast \colon F\to \mathbf{Gl}(f) \qquad X\mapsto (1,X,X\to 1)</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mspace width="2em"></mspace><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo><mo>↦</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex"> j^\ast\colon\mathbf{Gl}(f)\to F \qquad (X,Y,u)\mapsto Y</annotation></semantics></math></div>
+<p>that will lack the left adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">j_!</annotation></semantics></math> in general. The situation when <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">j_!</annotation></semantics></math> exists is characterized by the following observation:</p>
+<div class="un_thm">
+<h6 id="proposition_3">Proposition</h6>
+<p>The closed inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math> is essential i.e. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">j^\ast</annotation></semantics></math> has a left adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">j_!</annotation></semantics></math> precisely if the fringe functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> has a left adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6 id="proof_3">Proof</h6>
+<p>Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">j_!</annotation></semantics></math> exists. The fringe functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is up to natural isomorphism just <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">j^\ast i_\ast</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>*</mo></msup><msub><mi>j</mi> <mo>!</mo></msub><mo>⊣</mo><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">i^\ast j_!\dashv j^\ast i_\ast</annotation></semantics></math> since adjoints compose.</p>
+<p>Conversely, suppose that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mo>⊣</mo><mi>f</mi></mrow><annotation encoding="application/x-tex">l\dashv f</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo lspace="verythinmathspace">:</mo><mi>id</mi><mo>→</mo><mi>f</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\eta\colon id\to f{l}</annotation></semantics></math> the corresponding <a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">unit</a>. Define</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub><mo lspace="verythinmathspace">:</mo><mi>F</mi><mo>→</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mspace width="2em"></mspace><mi>Y</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>,</mo><mi>Y</mi><mo>,</mo><msub><mi>η</mi> <mi>Y</mi></msub><mo lspace="verythinmathspace">:</mo><mi>Y</mi><mo>→</mo><mi>f</mi><mi>l</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="1em"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex"> j_{!} \colon F\to \mathbf{Gl}(f) \qquad Y\mapsto (l(Y),Y,\eta_Y\colon Y\to f{l}(Y)) \quad .</annotation></semantics></math></div>
+<p>Now given morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo lspace="verythinmathspace">:</mo><msub><mi>Y</mi> <mn>1</mn></msub><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">\alpha\colon Y_1\to Y</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo lspace="verythinmathspace">:</mo><mi>Y</mi><mo>→</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u\colon Y\to f(X)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> by general properties of a unit there is precisely one morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mrow><mi>u</mi><mo>∘</mo><mi>α</mi></mrow><mo>¯</mo></mover><mo lspace="verythinmathspace">:</mo><mi>l</mi><mo stretchy="false">(</mo><msub><mi>Y</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\overline{u\circ\alpha}\colon l(Y_1)\to X</annotation></semantics></math> corresponding to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>∘</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">u\circ\alpha</annotation></semantics></math> under the adjunction such that the following diagram commutes:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>Y</mi> <mn>1</mn></msub></mtd> <mtd><mover><mo>→</mo><mrow><msub><mi>η</mi> <mrow><msub><mi>Y</mi> <mn>1</mn></msub></mrow></msub></mrow></mover></mtd> <mtd><mi>f</mi><mi>l</mi><mo stretchy="false">(</mo><msub><mi>Y</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>α</mi><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo><mi>f</mi><mo stretchy="false">(</mo><mover><mrow><mi>u</mi><mo>∘</mo><mi>α</mi></mrow><mo>¯</mo></mover><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>Y</mi></mtd> <mtd><munder><mo>→</mo><mi>u</mi></munder></mtd> <mtd><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ \array{
+    Y_1 &amp;\overset{\eta_{Y_1}}{\to} &amp; f{l}(Y_1)
+    \\
+    \alpha\downarrow &amp;&amp;\downarrow f(\overline{u\circ\alpha})
+    \\
+    Y &amp;\underset{u}{\to} &amp; f(X) 
+  }
+
+</annotation></semantics></math></div>
+<p>This establishes a bijective correspondence between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi> <mn>1</mn></msub><mo>→</mo><msup><mi>j</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y_1\to j^\ast(X,Y,u)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub><mo stretchy="false">(</mo><msub><mi>Y</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">j_!(Y_1)\to (X,Y,u)</annotation></semantics></math> which is natural since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> is.</p>
+</div>
+<p>In particular, the left adjoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">j_!</annotation></semantics></math> exists if the fringe functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../7/3/1/1/1137/content.html">direct image</a> of a geometric morphism, or the <a class="existingWikiWord" href="../../../../../8/3/1/1/1138/content.html">inverse image</a> of an <a class="existingWikiWord" href="../../../../../6/9/4/3/3496/content.html">essential geometric morphism</a>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mo>!</mo></msub><mo>⊣</mo><msup><mi>j</mi> <mo>*</mo></msup><mo>⊣</mo><msub><mi>j</mi> <mo>*</mo></msub><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mspace width="1em"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">j_!\dashv j^\ast\dashv j_\ast \colon \mathbf{Gl}(f)\to F\quad .</annotation></semantics></math></div>
+<p>The existence of a <em>right</em> adjoint for the fringe functor: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>⊣</mo><mi>r</mi><mo lspace="verythinmathspace">:</mo><mi>F</mi><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">f\dashv r\colon F\to E</annotation></semantics></math>, on the other hand, corresponds to the existence of an ‘amazing’ right adjoint for the open subtopos inclusion: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>*</mo></msub><mo>⊣</mo><msup><mi>i</mi> <mo>!</mo></msup><mo>:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">i_\ast\dashv i^!:\mathbf{Gl}(f)\to E</annotation></semantics></math>.</p>
+<p>One direction follows again from the composition of adjoints: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>j</mi> <mo>*</mo></msup><msub><mi>i</mi> <mo>*</mo></msub><mo>⊣</mo><msup><mi>i</mi> <mo>!</mo></msup><msub><mi>j</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">j^\ast i_\ast\dashv i^! j_\ast</annotation></semantics></math> , whereas for the other direction we define:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>!</mo></msup><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mspace width="2em"></mspace><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo><mo>↦</mo><mi>r</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>rf</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mi>X</mi><mspace width="1em"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+ i^!\colon \mathbf{Gl}(f)\to E \qquad (X,Y,u)\mapsto r(Y) \times_{rf(X)} X\quad .
+
+</annotation></semantics></math></div>
+<p>When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is fully faithful, the unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>rf</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \to rf(X)</annotation></semantics></math> is an iso, and so we can instead use</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>i</mi> <mo>!</mo></msup><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mspace width="2em"></mspace><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo><mo>↦</mo><mi>r</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="1em"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+ i^!\colon \mathbf{Gl}(f)\to E \qquad (X,Y,u)\mapsto r(Y)\quad .
+
+</annotation></semantics></math></div>
+<p>Note that in this case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is dense and we get a ‘co-cohesive’ adjoint string</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>!</mo></msub><mo>⊣</mo><msup><mi>i</mi> <mo>*</mo></msup><mo>⊣</mo><msub><mi>i</mi> <mo>*</mo></msub><mo>⊣</mo><msup><mi>i</mi> <mo>!</mo></msup><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">i_!\dashv i^\ast\dashv i_\ast \dashv i^!\colon \mathbf{Gl}(f)\to E</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>!</mo></msub></mrow><annotation encoding="application/x-tex">i_!</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">i_\ast</annotation></semantics></math> are fully faithful.</p>
+<h3 id="examples">Examples</h3>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><mo>*</mo><mo>↪</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">i:\ast\hookrightarrow E</annotation></semantics></math> is left exact where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo></mrow><annotation encoding="application/x-tex">\ast</annotation></semantics></math> is the degenerate topos with one identity morphism, <em>every</em> topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is trivially a result of Artin gluing: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>≃</mo><mi>E</mi><mo stretchy="false">↓</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">E\simeq E\downarrow i</annotation></semantics></math>.</p>
+<p>Of course, more interesting examples of the gluing construction abound as well. Here are a few:</p>
+<ul>
+<li>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> be an (elementary, not necessarily Grothendieck) topos, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>hom</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>:</mo><mi>E</mi><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">\hom(1, -): E \to Set</annotation></semantics></math> represent the terminal object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> – this of course is left exact. The gluing construction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Gl</mi></mstyle><mo stretchy="false">(</mo><mi>hom</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{Gl}(\hom(1, -))</annotation></semantics></math> is called the <strong>scone</strong> (Sierpinski cone), or the <a class="existingWikiWord" href="../../../../../8/4/4/4/4448/content.html">Freyd cover</a>, of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is a Grothendieck topos and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Δ</mi><mo lspace="verythinmathspace">:</mo><mi>Set</mi><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta \colon Set \to E</annotation></semantics></math> is the (essentially unique) left exact left adjoint, then we have a gluing construction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false">↓</mo><mi>Δ</mi></mrow><annotation encoding="application/x-tex">E \downarrow \Delta</annotation></semantics></math>. This gluing may be regarded as the result of <em>attaching a generic open point</em> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>A concrete instance of the constructions in both the preceding examples is the <a class="existingWikiWord" href="../../../../../9/7/4/7/7479/content.html">Sierpinski topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Set</mi> <mo>→</mo></msup></mrow><annotation encoding="application/x-tex">Set^{\to}</annotation></semantics></math> corresponding e.g. to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi><mo stretchy="false">↓</mo><msub><mi>id</mi> <mi>Set</mi></msub></mrow><annotation encoding="application/x-tex">Set\downarrow id_{Set}</annotation></semantics></math>: its objects are functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\to Y</annotation></semantics></math> between sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X,Y</annotation></semantics></math> and the closed copy of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> sits on the objects of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X\to 1</annotation></semantics></math> and the open copy on the objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mover><mo>→</mo><mo>≃</mo></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\overset{\simeq}{\to}Y</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Since a topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> is finitely bicomplete, the product functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊓</mo><mo>:</mo><mi>ℰ</mi><mo>×</mo><mi>ℰ</mi><mo>→</mo><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\sqcap:\mathcal{E}\times\mathcal{E}\to\mathcal{E}</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>↦</mo><mi>X</mi><mo>×</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">(X,Y)\mapsto X\times Y</annotation></semantics></math> is part of an adjoint string <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊔</mo><mo>⊣</mo><mo>▵</mo><mo>⊣</mo><mo>⊓</mo></mrow><annotation encoding="application/x-tex">\sqcup\dashv\triangle\dashv\sqcap</annotation></semantics></math> involving the <a class="existingWikiWord" href="../../../../../8/0/3/5/5308/content.html">diagonal functor</a> and the coproduct functor. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊓</mo></mrow><annotation encoding="application/x-tex">\sqcap</annotation></semantics></math> is left exact, Artin gluing applies. In the case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi><mo>=</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}=Set</annotation></semantics></math> , <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔾𝕝</mi><mo stretchy="false">(</mo><mo>⊓</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbb{Gl}(\sqcap)</annotation></semantics></math> yields the <a class="existingWikiWord" href="../../../../../4/2/5/7/7524/content.html">topos of hypergraphs</a>; this example is discussed in detail at <a class="existingWikiWord" href="../../../../../4/2/5/7/7524/content.html">hypergraph</a>. These cases are somewhat unusual in that the fringe functor here has a left adjoint which itself has a further left adjoint.</p>
+</li>
+</ul>
+<h3 id="remarks">Remarks</h3>
+<ul>
+<li>
+<p>Artin gluing for toposes carries over in some slight extra generality, replacing left exact functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> by <em>pullback-preserving functors</em>.</p>
+</li>
+<li>
+<p>Artin gluing applies also to other <a class="existingWikiWord" href="../../../../0/6/1/1605/content.html">doctrines</a>: <a class="existingWikiWord" href="../../../../../3/5/4/0/453/content.html">regular categories</a>, <a class="existingWikiWord" href="../../../../../6/8/4/0/486/content.html">pretoposes</a>, <a class="existingWikiWord" href="../../../../../9/3/5/1/1539/content.html">quasitoposes</a>, etc. See (<a href="#CJ">Carboni-Johnstone</a>) and (<a href="#JLS07">Johnstone-Lack-Sobocinski</a>).</p>
+</li>
+</ul>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/4/4/4/4448/content.html">Freyd cover</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../4/7/0/745/content.html">comma category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/1/7/7120/content.html">recollement</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul id="CJ">
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/2/4/5/5423/content.html">M. Artin</a>, <a class="existingWikiWord" href="../../../../../3/8/7/0/783/content.html">A. Grothendieck</a>, <a class="existingWikiWord" href="../../../../9/4/9/9495/content.html">J. L. Verdier</a>, <em>Théorie des Topos et Cohomologie Etale des Schémas (<a class="existingWikiWord" href="../../../../../0/0/5/5/5500/content.html">SGA4</a>)</em>, LNM <strong>269</strong> Springer Heidelberg 1972. (exposé IV, sect. 9; in particular: sect. 9.5)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/6/6/1/1667/content.html">Gavin Wraith</a>, <em>Artin Glueing</em> , JPAA <strong>4</strong> (1974) pp.345-358 <a href="http://www.sciencedirect.com/science/article/pii/0022404974900140">link</a>.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/9/8/8995/content.html">Aurelio Carboni</a>, <a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Connected limits, familial representability and Artin glueing</em> , Mathematical Structures in Computer Science <strong>5</strong> (1995) pp.441-459. (<a href="http://journals.cambridge.org/article_S0960129500001183">pdf</a>)</p>
+</li>
+</ul>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/9/8/8995/content.html">Aurelio Carboni</a>, <a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Corrigenda to ‘Connected limits…’</em> , Mathematical Structures in Computer Science <strong>14</strong> (2004) pp.185-187.</p>
+</li>
+<li>
+<p>Peter F. Faul, Graham R. Manuell, <em>Artin Glueings of Frames as Semidirect Products</em> , arXiv:1907.05104 (2019). (<a href="https://arxiv.org/abs/1907.05104">abstract</a>)</p>
+</li>
+<li>
+<p>Peter F. Faul, Graham Manuell, José Siqueira, <em>Artin glueings of toposes as adjoint split extensions</em> , arXiv:2012.04963 (2020). (<a href="https://arxiv.org/abs/2012.04963">abstract</a>)</p>
+</li>
+<li>
+<p><span class="newWikiWord">Matthias Hutzler<a href="/nlab/new/Matthias+Hutzler">?</a></span>, <em>Syntactic presentations for glued toposes and for crystalline toposes</em>, Phd. diss. Universität Augsburg 2021. (<a href="https://arxiv.org/abs/2206.11244">arXiv:2206.11244</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/6/1/4/4168/content.html">Mamuka Jibladze</a>, <em>Lower Bagdomain as a Glueing</em> , Proc. A. Razmadze Math. Inst. <strong>118</strong> (1998) pp.33-41. (<a href="http://www.rmi.ge/~jib/pubs/baglue.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em>Topos Theory</em> , Academic Press New York 1977 (Dover reprint 2014). (section 4.2, pp.107-112)</p>
+</li>
+<li>
+<p id="Johnstone"><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em><a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Sketches of an Elephant</a></em> , Oxford UP 2002. (sec. A2.1.12, pp.82-84; A4.5.6, p.208)</p>
+</li>
+<li id="JLS07">
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <a class="existingWikiWord" href="../../../../../0/4/0/3/3040/content.html">Steve Lack</a>, <a class="existingWikiWord" href="../../../../../6/8/5/7/7586/content.html">Pawel Sobocinski</a>, <em>Quasitoposes, Quasiadhesive Categories and Artin Glueing</em> , pp.312-326 in LNCS <strong>4624</strong> Springer Heidelberg 2007. (<a href="http://users.ecs.soton.ac.uk/ps/papers/calco07.pdf">preprint</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/5/4/1/1451/content.html">A. Kock</a>, T. Plewe, <em>Glueing analysis for complemented subtoposes</em> , TAC <strong>2</strong> (1996) pp.100-112. (<a href="http://www.tac.mta.ca/tac/volumes/1996/n9/n9.pdf">pdf</a>)</p>
+</li>
+<li>
+<p>J. C. Mitchell, A. Scedrov, <em>Notes on sconing and relators</em> , Springer LNCS <strong>702</strong> (1993) pp.352-378. (<a href="ftp://ftp.cis.upenn.edu/pub/papers/scedrov/rel.ps.Z">ps-draft</a>) <a href="https://pdfs.semanticscholar.org/ba4e/b38b05470481dc3c912fb37f0598bbda94fe.pdf">PDF</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/4/1/11422/content.html">Susan Niefield</a>, <em>The glueing construction and double categories</em> , JPAA <strong>216</strong> no.8/9 (2012) pp.1827-1836.</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

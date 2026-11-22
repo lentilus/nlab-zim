@@ -1,0 +1,799 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      BFSS matrix model in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      BFSS matrix model
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#OpenProblems">Open problems</a></li>
+<ul>
+<li><a href="#OpenProblemsGeneral">General</a></li>
+<li><a href="#ProblemsGroundState">Ground state</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+<ul>
+<li><a href="#general_2">General</a></li>
+<li><a href="#LightConeQuantizationOfM2BranesToBFSSMatrixModel">Quantization of the M2-brane sigma-model to a matrix model</a></li>
+<li><a href="#relation_to_m5branes">Relation to M5-branes</a></li>
+<li><a href="#ReferencesGroundStateProblem">Ground state problem</a></li>
+<li><a href="#ReferencesGravitonScattering">Graviton scattering</a></li>
+<li><a href="#black_holes">Black holes</a></li>
+<li><a href="#relation_to_lattice_gauge_theory">Relation to lattice gauge theory</a></li>
+<li><a href="#holography">Holography</a></li>
+<li><a href="#Cosmology">Cosmology</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em>BFSS matrix model</em> (<a href="#BanksFischlerShenkerSusskind96">Banks-Fischler-Shenker-Susskind 96</a>, <a href="#Seiberg97">Seiberg 97</a>) is the description of the <a class="existingWikiWord" href="../../../../../9/1/0/6/6019/content.html">worldline</a> dynamics of interacting <a class="existingWikiWord" href="../../../../../6/0/8/6/6806/content.html">D0-branes</a>. In the <a class="existingWikiWord" href="../../../../../2/3/7/6/6732/content.html">large N limit</a> of a large number of <a class="existingWikiWord" href="../../../../../6/0/8/6/6806/content.html">D0-branes</a> this is supposed to encode the <a class="existingWikiWord" href="../../../../../2/4/3/9/9342/content.html">strong coupling limit</a> of <a class="existingWikiWord" href="../../../../4/3/6/6347/content.html">type IIA string theory</a> known as <em><a class="existingWikiWord" href="../../../../../3/1/6/7/7613/content.html">M-theory</a></em> at least in certain corners of its <a class="existingWikiWord" href="../../../../../1/0/4/2/2401/content.html">moduli space</a>.</p>
+<p>The BFSS model is a limiting case of the <em><a class="existingWikiWord" href="../../../../../0/3/0/1/21030/content.html">BMN matrix model</a></em>, which improves on some of its shortcomings (see the <a href="#OpenProblems">Open problems</a> below).</p>
+<p>The BFSS matrix model was argued to arise in several seemingly rather different (but apparently secretly equivalent) ways:</p>
+<ol>
+<li>
+<p>as the <a class="existingWikiWord" href="../../../../../9/1/0/6/6019/content.html">worldline</a> theory of a large number of <a class="existingWikiWord" href="../../../../../6/0/8/6/6806/content.html">D0-branes</a> in <a class="existingWikiWord" href="../../../../4/3/6/6347/content.html">type IIA string theory</a>,</p>
+</li>
+<li>
+<p>as the <a class="existingWikiWord" href="../../../../../3/6/8/4/4863/content.html">Kaluza-Klein compactification</a> of <a class="existingWikiWord" href="../../../../../0/1/9/0/10910/content.html">10d super Yang-Mills theory</a> to 1+0 space dimensions,</p>
+</li>
+<li id="AsM2Regularization">
+<p>as a certain non-commutative regularization of the <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">light-cone gauge quantization</a> of the <a class="existingWikiWord" href="../../../../../9/5/0/5/5059/content.html">Green-Schwarz sigma-model</a> for the <a class="existingWikiWord" href="../../../../../8/4/0/6/6048/content.html">M2-brane</a> (<a href="#NicolaiHelling98">Nicolai-Helling 98</a>, <a href="#DasguptaNicolaiPlefka02">Dasgupta-Nicolai-Plefka 02</a>).</p>
+<p>In this picture matrix blocks around the diagonal correspond to blobs of <a class="existingWikiWord" href="../../../../7/3/6/16377/content.html">membrane</a>, while off-diagonal matrix elements correspond to thin tubes of membrane connecting these blobs.</p>
+</li>
+</ol>
+<center>
+<img src="https://ncatlab.org/nlab/files/MatrixMembrane.jpg" width="500"/>
+</center>
+<blockquote>
+<p>graphics grabbed from <a href="#DasguptaNicolaiPlefka02">Dasgupta-Nicolai-Plefka 02</a></p>
+</blockquote>
+<p>In any case, the BFSS matrix model ends up being a <a class="existingWikiWord" href="../../../../../2/3/6/2/2632/content.html">quantum mechanical</a> system whose bosonic degrees of freedom are a set of 9+1 large <a class="existingWikiWord" href="../../../../../6/3/3/4/4336/content.html">matrices</a>. These play the role of would-be <a class="existingWikiWord" href="../../../../../4/4/5/5/5544/content.html">coordinate functions</a> and their <a class="existingWikiWord" href="../../../../../4/6/1/0/10164/content.html">eigenvalues</a> may be interpreted as points in a <a class="existingWikiWord" href="../../../../../3/3/3/0/333/content.html">non-commutative</a> <a class="existingWikiWord" href="../../../../../4/8/7/3/3784/content.html">spacetime</a> thus defined.</p>
+<p>There is also the <a class="existingWikiWord" href="../../../../../1/1/9/0/10911/content.html">IKKT matrix model</a>, which takes this one step further by reducing one dimension further down to <a class="existingWikiWord" href="../../../../../4/9/5/1/11594/content.html">D(-1)-branes</a> in <a class="existingWikiWord" href="../../../../4/3/6/6347/content.html">type IIB string theory</a>.</p>
+<p>See also at <em><a class="existingWikiWord" href="../../../../../2/1/9/0/10912/content.html">membrane matrix model</a></em>.</p>
+<h2 id="OpenProblems">Open problems</h2>
+<h3 id="OpenProblemsGeneral">General</h3>
+<p>In the 1990s there was much excitement about the BFSS model (and then its cousin, the <a class="existingWikiWord" href="../../../../../1/1/9/0/10911/content.html">IKKT matrix model</a>), as people hoped it might provide a definition of <a class="existingWikiWord" href="../../../../../3/1/6/7/7613/content.html">M-theory</a>, whose formulation remains <a href="../../../../../3/1/6/7/7613/content.html#TheOpenProblem">elusive</a>. It is from these times that <a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a> changed the original suggestion that “M” is for “magic, mystery and membrane” to the suggestion that it is for “magic, mystery and matrix”. (See <a href="../../../../../3/1/6/7/7613/content.html#Witten14">Witten’s 2014 Kyoto prize speech</a>, last paragraph.)</p>
+<p>However, while the BFSS matrix model clearly sees something M-theoretic, just as clearly it is not the full answer. Notably it needs for its definition an ambient <a class="existingWikiWord" href="../../../../../0/8/5/9/19580/content.html">asymptotic</a> <a class="existingWikiWord" href="../../../../../3/8/6/2/2683/content.html">Minkowski spacetime</a> <a class="existingWikiWord" href="../../../../../0/2/0/6/6020/content.html">background</a>, a light cone limit and a peculiar scaling of <a class="existingWikiWord" href="../../../../../0/3/4/0/20430/content.html">string coupling</a> over <a class="existingWikiWord" href="../../../../../4/2/6/9/19624/content.html">string length</a>, all of which means that it pertains to a particular corner of a full theory.</p>
+<p>From <a href="#NicolaiHelling98">Nicolai-Helling 1998, p. 2</a>:</p>
+<blockquote>
+<p>Despite the recent excitement, however, we do not think that M(atrix) theory and the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">d= 11</annotation></semantics></math> supermembrane in their present incarnation are already the final answer in the search for M-Theory, even though they probably are important pieces of the puzzle. There are still too many ingredients missing that we would expect the final theory to possess. For one thing, we would expect a true theory of quantum gravity to exhibit certain pregeometrical features corresponding to a “dissolution” of space-time and the emergence of some kind of non-commutative geometry at short distances; although the matrix model does achieve that to some extent by replacing commuting coordinates by non-commuting matrices, it seems to us that a still more radical departure from conventional ideas about space and time may be required in order to arrive at a truly background independent formulation (the matrix model “lives” in nine <em>flat</em> transverse dimensions only). Furthermore, there should exist some huge and so far completely hidden symmetries generalizing not only the duality symmetries of extended supergravity and string theory, but also the principles underlying general relativity.</p>
+</blockquote>
+<p>From <a href="#MohammedMuruganNastase10">Mohammed-Murugan-Nastase 2010, p. 6</a>:</p>
+<blockquote>
+<p>If Matrix theory is to correctly describe M-theory (and its dimensional reduction to type IIA string theory) then it should be able to describe all D−branes in the theory and not just D2−branes. For example, a D4−brane wrapping an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mn>4</mn></msup></mrow><annotation encoding="application/x-tex">S^4</annotation></semantics></math> was found in [9], following the earlier works of [10, 11], but the solution is not without several unresolved subtleties. In general, finding the complete spectrum of D−branes from Matrix theory remains a very difficult problem. The D2− and D4−branes already found are reductions to ten dimensions of M2− and M5−branes, and while they are a minimum necessary for the spectrum of M-theory, they are by no means sufficient. Indeed, we would also need to find a D6−brane, coming from an eleven dimensional KK monopole, and a D8−brane.</p>
+</blockquote>
+<p>Then, even assuming that all the crucial <a class="existingWikiWord" href="../../../../../1/2/7/1/1721/content.html">cohomological</a> aspects of <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane</a> and <a class="existingWikiWord" href="../../../../../5/1/8/6/6815/content.html">M-brane</a> charges (in <a class="existingWikiWord" href="../../../../../9/5/0/6/6059/content.html">twisted differential K-theory</a>, <a class="existingWikiWord" href="../../../../../2/4/3/0/20342/content.html">twisted cohomotopy</a> etc.) are secretly encoded in the matrix model, somehow, none of this is manifest, making the matrix model spit out numbers about a conceptually elusive theory in close analogy to how <a class="existingWikiWord" href="../../../../../1/6/9/9/9961/content.html">lattice QCD</a> produces numbers without informing us about the actual conceptual nature of <a class="existingWikiWord" href="../../../../8/6/9/9687/content.html">confined</a> <a class="existingWikiWord" href="../../../../../3/1/1/0/10113/content.html">hadron</a> physics.</p>
+<p>A similar assessment has been given by <a class="existingWikiWord" href="../../../../../0/5/9/2/2950/content.html">Greg Moore</a>, from pages 43-44 of his <em><a class="existingWikiWord" href="../../../../../1/6/3/5/15361/content.html">Physical Mathematics and the Future</a></em> (2014, <a href="../../../../../1/6/3/5/15361/content.html#AGoodStartWasGivenByTheMatrixTheory">here</a>):</p>
+<blockquote>
+<p>A good start <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math>with defining M-theory<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math> was given by the Matrix theory approach of Banks, Fischler, Shenker and Susskind. We have every reason to expect that this theory produces the correct scattering amplitudes of modes in the 11-dimensional supergravity multiplet in 11-dimensional Minkowski space - even at energies sufficiently large that black holes should be created. (This latter phenomenon has never been explicitly demonstrated). But Matrix theory is only a beginning and does not give us the whole picture of M-theory. The program ran into increasing technical difficulties when more complicated compactifications were investigated. (For example, compactification on a six-dimensional torus is not very well understood at all. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math>…<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">]</annotation></semantics></math>). Moreover, to my mind, as it has thus far been practiced it has an important flaw: It has not led to much significant new mathematics.</p>
+<p>If history is a good guide, then we should expect that anything as profound and far-reaching as a fully satisfactory formulation of M-theory is surely going to lead to new and novel mathematics. Regrettably, it is a problem the community seems to have put aside - temporarily. But, ultimately, Physical Mathematics must return to this grand issue.</p>
+</blockquote>
+<h3 id="ProblemsGroundState">Ground state</h3>
+<p>There are furcher technical open issues, such as the open question whether the theory has a decent ground state the way it needs to have to make sense (see the references <a href="#ReferencesGroundStateProblem">below</a>).</p>
+<h2 id="related_concepts">Related concepts</h2>
+<div>
+<p><strong><a class="existingWikiWord" href="../../../../../4/5/8/5/15854/content.html">matrix models</a> for <a class="existingWikiWord" href="../../../../../4/7/1/0/174/content.html">brane</a> dynamics</strong>:</p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane</a></th><th><a class="existingWikiWord" href="../../../../../4/5/8/5/15854/content.html">matrix model</a></th></tr></thead><tbody><tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/0/8/6/6806/content.html">D0-brane</a></td><td style="text-align: left;"><a class="existingWikiWord" href="content.html">BFSS matrix model</a>, <br/> <a class="existingWikiWord" href="../../../../../0/3/0/1/21030/content.html">BMN matrix model</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/9/5/1/11594/content.html">D(-1)-brane</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/1/9/0/10911/content.html">IKKT matrix model</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/0/8/6/6803/content.html">D4-brane</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/2/2/2/22224/content.html">nuclear matrix model</a></td></tr>
+</tbody></table>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../5/1/8/6/6815/content.html">M-brane</a></th><th><a class="existingWikiWord" href="../../../../../4/5/8/5/15854/content.html">matrix model</a></th></tr></thead><tbody><tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/1/8/6/6818/content.html">D2-brane</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/1/9/0/10912/content.html">membrane matrix model</a></td></tr>
+</tbody></table>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/1/3/8/18319/content.html">K-matrix model</a></li>
+</ul>
+</div>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/8/5/9/19583/content.html">SYK model</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/5/9/7/17953/content.html">Myers effect</a></p>
+</li>
+</ul>
+<h2 id="References">References</h2>
+<h3 id="general_2">General</h3>
+<p>First inkling of <a class="existingWikiWord" href="../../../../../4/5/8/5/15854/content.html">matrix models</a> from the <a class="existingWikiWord" href="../../../../../2/3/7/6/6732/content.html">large N limit</a> of <a class="existingWikiWord" href="../../../../../2/2/3/6/6322/content.html">QCD</a>:</p>
+<ul>
+<li id="EguchiKawai82">
+<p><a class="existingWikiWord" href="../../../../../0/9/1/1/21190/content.html">Tohru Eguchi</a>, <a class="existingWikiWord" href="../../../../../1/9/1/1/21191/content.html">Hikaru Kawai</a>, <em>Reduction of Dynamical Degrees of Freedom in the Large-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> Gauge Theory</em>, Phys. Rev. Lett. 48, 1063 (1982) (<a href="http://inspirehep.net/record/176459">spire:176459</a>, <a href="https://doi.org/10.1103/PhysRevLett.48.1063">doi:10.1103/PhysRevLett.48.1063</a>)</p>
+</li>
+<li>
+<p>A. Gonzalez-Arroyo, M. Okawa, <em>A twisted model for large <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> lattice gauge theory</em>, Physics Letters B Volume 120, Issues 1–3, 6 January 1983, Pages 174-178 (<a href="https://doi.org/10.1016/0370-2693(83)90647-0">doi:10.1016/0370-2693(83)90647-0</a>)</p>
+</li>
+<li>
+<p>A. Gonzalez-Arroyo, M. Okawa, <em>Twisted-Eguchi-Kawai model: A reduced model for large- <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> lattice gauge theory</em>, Phys. Rev. D 27, 2397 (1983) (<a href="https://doi.org/10.1103/PhysRevD.27.2397">doi:10.1103/PhysRevD.27.2397</a>)</p>
+</li>
+</ul>
+<p>The original articles on the BFSS matrix model:</p>
+<ul>
+<li id="BanksFischlerShenkerSusskind96">
+<p><a class="existingWikiWord" href="../../../../../8/0/8/6/6808/content.html">Tom Banks</a>, <a class="existingWikiWord" href="../../../../../1/7/9/7/17971/content.html">Willy Fischler</a>, <a class="existingWikiWord" href="../../../../../1/4/6/6/16641/content.html">Stephen Shenker</a>, <a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Leonard Susskind</a>, <em>M Theory As A Matrix Model: A Conjecture</em>, Phys. Rev. D <strong>55</strong> (1997) [<a href="https://doi.org/10.1103/PhysRevD.55.5112">doi:10.1103/PhysRevD.55.5112</a>, <a href="http://arxiv.org/abs/hep-th/9610043">arXiv:hep-th/9610043</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Leonard Susskind</a>, <em>Another Conjecture about M(atrix) Theory</em> (<a href="https://arxiv.org/abs/hep-th/9704080">arXiv:hep-th/9704080</a>)</p>
+<blockquote>
+<p>(argument for <a class="existingWikiWord" href="../../../../8/0/1/21087/content.html">small N</a>-validity)</p>
+</blockquote>
+</li>
+</ul>
+<p>and with more details on the <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">discrete light front quantization</a> involved:</p>
+<ul>
+<li id="Sen97">
+<p><a class="existingWikiWord" href="../../../../../2/5/6/6/6652/content.html">Ashoke Sen</a>, <em>D0 Branes on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">T^n</annotation></semantics></math> and Matrix Theory</em>, Adv. Theor. Math. Phys. <strong>2</strong> (1998) 51-59 [<a href="https://arxiv.org/abs/hep-th/9709220">arXiv:hep-th/9709220</a>]</p>
+</li>
+<li id="Seiberg97">
+<p><a class="existingWikiWord" href="../../../../../2/2/7/6/6722/content.html">Nathan Seiberg</a>, <em>Why is the Matrix Model Correct?</em>, Phys. Rev. Lett. <strong>79</strong> (1997) 3577-3580 [<a href="https://arxiv.org/abs/hep-th/9710009">arXiv:hep-th/9710009</a>, <a href="https://doi.org/10.1103/PhysRevLett.79.3577">doi:10.1103/PhysRevLett.79.3577</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/0/1/9/9109/content.html">Adel Bilal</a>, <em>DLCQ of M-Theory as the Light-Like Limit</em>, Phys. Lett. B <strong>435</strong> (1998) 312-318 [<a href="https://arxiv.org/abs/hep-th/9805070">arXiv:hep-th/9805070</a>, <a href="https://doi.org/10.1016/S0370-2693(98)00811-9">doi:10.1016/S0370-2693(98)00811-9</a>]</p>
+</li>
+</ul>
+<p>In relation to <a class="existingWikiWord" href="../../../../../0/3/6/1/11630/content.html">U-duality</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/8/8/5/25888/content.html">Shmuel Elitzur</a>, <a class="existingWikiWord" href="../../../../../0/2/9/0/20920/content.html">Amit Giveon</a>, <a class="existingWikiWord" href="../../../../../2/8/0/8/18082/content.html">David Kutasov</a>, <a class="existingWikiWord" href="../../../../../9/5/0/5/25059/content.html">Eliezer Rabinovici</a>: <em>Algebraic Aspects of Matrix Theory on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mi>d</mi></msup></mrow><annotation encoding="application/x-tex">T^d</annotation></semantics></math></em>, Nucl. Phys. B <strong>509</strong> (1998) 122-144 [<a href="https://arxiv.org/abs/hep-th/9707217">arXiv:hep-th/9707217</a>, <a href="https://doi.org/10.1016/S0550-3213(97)00622-6">doi:10.1016/S0550-3213(97)00622-6</a>]</li>
+</ul>
+<p>In view of <a class="existingWikiWord" href="../../../../../8/2/4/1/21428/content.html">flat space holography</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Leonard Susskind</a>, <em>Holography in the flat space limit</em>, AIP Conf.Proc. 493 (1999) 1, 98-112, (<a href="https://inspirehep.net/literature/482388">spire</a>, <a href="https://arxiv.org/abs/hep-th/9901079">arXiv:hep-th/9901079</a>, <a href="https://doi.org/10.1063/1.1301570">doi:10.1063/1.1301570</a>)</li>
+</ul>
+<p>Review:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/0/1/9/9109/content.html">Adel Bilal</a>, <em>M(atrix) Theory : a Pedagogical Introduction</em>, Fortsch. Phys. <strong>47</strong> (1999) 5-28 [<a href="https://arxiv.org/abs/hep-th/9710136">arXiv:hep-th/9710136</a>, <a href="https://doi.org/10.1002/(SICI)1521-3978(199901)47:1/3%3C5::AID-PROP5%3E3.0.CO;2-B">doi:10.1002/(SICI)1521-3978(199901)47</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/8/6/6808/content.html">Tom Banks</a>, <em>Matrix Theory</em>, Nucl. Phys. Proc. Suppl. 67 (1998) 180-224 [<a href="https://arxiv.org/abs/hep-th/9710231">arXiv:hep-th/9710231</a>, <a href="https://doi.org/10.1016/S0920-5632(98)00130-3">doi:10.1016/S0920-5632(98)00130-3</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/6/1/8/8168/content.html">Washington Taylor</a>, <em>M(atrix) Theory: Matrix Quantum Mechanics as a Fundamental Theory</em>, Rev. Mod. Phys. <strong>73</strong> (2001) 419-462 [<a href="https://arxiv.org/abs/hep-th/0101126">arXiv:hep-th/0101126</a>]</p>
+</li>
+<li id="Carlevaro06">
+<p><a class="existingWikiWord" href="../../../../../3/7/2/7/27273/content.html">Luca Carlevaro</a>: <em>Three approaches to M-theory</em>, PhD thesis (2006) [<a href="https://libra.unine.ch/handle/123456789/16186">hdl:123456789/16186</a>, <a href="https://libra.unine.ch/server/api/core/bitstreams/b5eedf5f-8029-4700-83cb-806d0737a669/content">pdf</a>, <a href="https://inspirehep.net/literature/1253257">spire:1253257</a>]</p>
+</li>
+<li id="Ydri18">
+<p><a class="existingWikiWord" href="../../../../../9/0/2/1/21209/content.html">Badis Ydri</a>, <em>Review of M(atrix)-Theory, Type IIB Matrix Model and Matrix String Theory</em> [<a href="https://arxiv.org/abs/1708.00734">arXiv:1708.00734</a>), published as: <em>Matrix Models of String Theory</em>, IOP 2018 (<a href="https://iopscience.iop.org/book/978-0-7503-1726-9">ISBN:978-0-7503-1726-9</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/8/6/6/6681/content.html">Juan Maldacena</a>: <em>The BFSS conjecture, a review</em>, talk at <em><a href="https://indico.cern.ch/event/1284995/">Strings 2024</a></em> (2024) [<a href="https://indico.cern.ch/event/1284995/contributions/5975486">indico:5975486</a>, <a href="https://indico.cern.ch/event/1284995/contributions/5975486/attachments/2869735/5024000/Maldacena.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/5/1/5/25151/content.html">Henry W. Lin</a>: <em>TASI lectures on Matrix Theory from a modern viewpoint</em> [<a href="https://arxiv.org/abs/2508.20970">arXiv:2508.20970</a>]</p>
+</li>
+</ul>
+<p>Review in the context of the <a class="existingWikiWord" href="../../../../../5/9/8/4/4895/content.html">holographic principle</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/8/6/6/6681/content.html">Juan Maldacena</a>, <em>A simple quantum system that describes a black hole</em> [<a href="https://arxiv.org/abs/2303.11534">arXiv:2303.11534</a>, <a href="https://inspirehep.net/literature/2644529">inspire:2644529</a>]</li>
+</ul>
+<p>A review of further developments:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../9/3/0/10397/content.html">David Berenstein</a>, <em>Classical dynamics and thermalization in holographic matrix models</em>, talk at Leiden, October (2012) [<a href="http://www.lorentzcenter.nl/lc/web/2012/514/presentations/Berenstein.pdf">pdf</a>]</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/3/1/7/7135/content.html">Paul Townsend</a>, <em>M(embrane) theory on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mn>0</mn></msup></mrow><annotation encoding="application/x-tex">T^0</annotation></semantics></math></em>, Nucl. Phys. Proc. Suppl. <strong>68</strong> (1998) 11-16 [<a href="http://arxiv.org/abs/hep-th/9708034">arXiv:hep-th/9708034</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/3/8/5/25832/content.html">Chris D. A. Blair</a>, Johannes Lahnsteiner, <a class="existingWikiWord" href="../../../../../8/2/8/5/25828/content.html">Niels A. Obers</a>, Ziqi Yan. <em>Unification of Decoupling Limits in String and M-theory</em> [<a href="https://arxiv.org/abs/2311.10564">arXiv:2311.10564</a>]</p>
+</li>
+<li>
+<p>Henry W. Lin, Zechuan Zheng: <em>Bootstrapping Ground State Correlators in Matrix Theory, Part I</em> [<a href="https://arxiv.org/abs/2410.14647">arXiv:2410.14647</a>]</p>
+</li>
+<li>
+<p>Anna Biggs, Aidan Herderschee: <em>Higher-point correlators in the BFSS matrix model</em> [<a href="https://arxiv.org/abs/2503.14685">arXiv:2503.14685</a>]</p>
+</li>
+<li>
+<p>J. Kluson: <em>BBGKY Hierarchy for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> D0-Branes</em> [<a href="https://arxiv.org/abs/2601.21451">arXiv:2601.21451</a>]</p>
+</li>
+</ul>
+<p>Discussion as a solution to the open problem of defining <a class="existingWikiWord" href="../../../../../3/1/6/7/7613/content.html">M-theory</a> is in</p>
+<ul>
+<li id="Moore14"><a class="existingWikiWord" href="../../../../../0/5/9/2/2950/content.html">Gregory Moore</a>, section 12, p. 43-44 in: <em><a class="existingWikiWord" href="../../../../../1/6/3/5/15361/content.html">Physical Mathematics and the Future</a></em>, talk at <em><a href="http://physics.princeton.edu/strings2014/">Strings 2014</a></em> [<a href="http://physics.princeton.edu/strings2014/slides/Moore.pdf">talk slides</a>, <a href="http://www.physics.rutgers.edu/~gmoore/PhysicalMathematicsAndFuture.pdf">companion text pdf</a>, <a class="existingWikiWord" href="/nlab/files/MooreVisionTalk2014.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>where it says:</p>
+<blockquote>
+<p id="AGoodStartWasGivenByTheMatrixTheory"> A good start was given by the <a class="existingWikiWord" href="content.html">Matrix theory</a> approach of <a class="existingWikiWord" href="../../../../../8/0/8/6/6808/content.html">Banks</a>, <a class="existingWikiWord" href="../../../../../1/7/9/7/17971/content.html">Fischler</a>, Shenker and <a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Susskind</a>. We have every reason to expect that this theory produces the correct <a class="existingWikiWord" href="../../../../../8/3/0/8/8038/content.html">scattering amplitudes</a> of modes in the <a class="existingWikiWord" href="../../../../../5/6/8/4/4865/content.html">11-dimensional supergravity</a> multiplet in 11-dimensional <a class="existingWikiWord" href="../../../../../3/8/6/2/2683/content.html">Minkowski space</a> - even at energies sufficiently large that <a class="existingWikiWord" href="../../../../../6/8/2/4/4286/content.html">black holes</a> should be created. (This latter phenomenon has never been explicitly demonstrated). But Matrix theory is only a beginning and does not give us the whole picture of <a class="existingWikiWord" href="../../../../../3/1/6/7/7613/content.html">M-theory</a>. The program ran into increasing technical difficulties when more complicated compactifications were investigated. (For example, compactification on a six-dimensional torus is not very well understood at all. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[...]</annotation></semantics></math>). Moreover, to my mind, as it has thus far been practiced it has an important flaw: It has not led to much significant new mathematics.</p>
+<p>If history is a good guide, then we should expect that anything as profound and far-reaching as a fully satisfactory formulation of <a class="existingWikiWord" href="../../../../../3/1/6/7/7613/content.html">M-theory</a> is surely going to lead to new and novel mathematics. Regrettably, it is a problem the community seems to have put aside - temporarily. But, ultimately, Physical Mathematics must return to this grand issue.</p>
+</blockquote>
+<p>Derivation from <a class="existingWikiWord" href="../../../../../4/0/5/1/1504/content.html">open string field theory</a> is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/3/4/9/19438/content.html">Taejin Lee</a>, <em>Covariant Open String Field Theory on Multiple D<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>-Branes</em> (<a href="https://arxiv.org/abs/1703.06402">arXiv:1703.06402</a>)</li>
+</ul>
+<p>Relation to the <a class="existingWikiWord" href="../../../../../../../missing.html">6d (2,0)-supersymmetric QFT</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/3/0/9/19036/content.html">Micha Berkooz</a>, <a class="existingWikiWord" href="../../../../../1/6/6/1/11661/content.html">Moshe Rozali</a>, <a class="existingWikiWord" href="../../../../../2/2/7/6/6722/content.html">Nathan Seiberg</a>, <em>Matrix Description of M-theory on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">T^3</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mn>5</mn></msup></mrow><annotation encoding="application/x-tex">T^5</annotation></semantics></math></em> (<a href="http://arxiv.org/abs/hep-th/9704089">arXiv:hep-th/9704089</a>)</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p>Anna Biggs, Aidan Herderschee: <em>Higher-point correlators in the BFSS matrix model</em> [<a href="https://arxiv.org/abs/2503.14685">arXiv:2503.14685</a>]</p>
+</li>
+<li>
+<p>Oscar J.C. Dias, <a class="existingWikiWord" href="../../../../../6/2/1/0/20126/content.html">Jorge E. Santos</a>: <em>Localized states of BFSS super quantum mechanics</em> [<a href="https://arxiv.org/abs/2510.07379">arXiv:2510.07379</a>]</p>
+</li>
+<li>
+<p>Ethan Torres: <em>A Matrix Theory Construction of the IIA/IIB Wall</em> [<a href="https://arxiv.org/abs/2603.02199">arXiv:2603.02199</a>]</p>
+</li>
+<li>
+<p>Korin Aldam-Tajima, Vatche Sahakian: <em>On Entropic Gravity from BFSS Matrix Theory</em> [<a href="https://arxiv.org/abs/2604.00193">arXiv:2604.00193</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/0/2/1/21209/content.html">Badis Ydri</a>: <em>Endpoint formulation and Molien–Weyl structure for the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">N=2</annotation></semantics></math>, large–<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math> BFSS/BMN models</em> [<a href="https://arxiv.org/abs/2605.25647">arXiv:2605.25647</a>]</p>
+</li>
+</ul>
+<div>
+<h3 id="LightConeQuantizationOfM2BranesToBFSSMatrixModel">Quantization of the M2-brane sigma-model to a matrix model</h3>
+<p>The <a class="existingWikiWord" href="../../../../../2/7/2/2/2272/content.html">Poisson bracket</a>-formulation of the <a class="existingWikiWord" href="../../../../4/3/2/2347/content.html">classical</a> <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">light-cone gauge</a> <a class="existingWikiWord" href="../../../../../4/3/6/2/2634/content.html">Hamiltonian</a> for the <em><a class="existingWikiWord" href="../../../../../9/1/3/6/16319/content.html">bosonic</a></em> <a class="existingWikiWord" href="../../../../7/3/6/16377/content.html">relativistic membrane</a> and the corresponding matrix <a class="existingWikiWord" href="../../../../../1/0/3/4/4301/content.html">commutator</a> regularization is due to:</p>
+<ul>
+<li id="Hoppe82"><a class="existingWikiWord" href="../../../../9/0/6/6097/content.html">Jens Hoppe</a>: <em>Quantum theory of a massless relativistic surface and a two-dimensional bound state problem</em>, PhD thesis, MIT (1982) [<a href="http://hdl.handle.net/1721.1/15717">hdl:1721.1/15717</a>, <a class="existingWikiWord" href="/nlab/files/HoppeMembrane82.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>Some exact solutions:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/0/6/6097/content.html">Jens Hoppe</a>: <em>Exact algebraic M(em)brane solutions</em>, Asian J. Math. <strong>26</strong> 2 (2022) 253-256 [<a href="https://doi.org/10.4310/AJM.2022.v26.n2.a4">doi:10.4310/AJM.2022.v26.n2.a4</a>, <a href="https://arxiv.org/abs/2107.00569">arXiv:2107.00569</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/0/6/6097/content.html">Jens Hoppe</a>: <em>The fast non-commutative sharp drop</em>, Physics Letters B <strong>848</strong> (2024) 138357 [<a href="https://doi.org/10.1016/j.physletb.2023.138357">doi:10.1016/j.physletb.2023.138357</a>, <a href="https://arxiv.org/abs/2302.13146">arXiv:2302.13146</a>]</p>
+</li>
+</ul>
+<p>Discussion of the residual (in <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">light cone gauge</a>) <a class="existingWikiWord" href="../../../../../8/9/7/4/4798/content.html">gauge symmetry</a> of <a class="existingWikiWord" href="../../../../../0/3/1/8/28130/content.html">area-preserving diffeomorphisms</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/1/8/28131/content.html">Emmanuel G. Floratos</a>, <a class="existingWikiWord" href="../../../../../5/4/0/0/20045/content.html">John Iliopoulos</a>: <em>A note on the classical symmetries of the closed bosonic membranes</em>, Physics Letters B <strong>201</strong> 2 (1988) 237-240 [<a href="https://doi.org/10.1016/0370-2693(88)90220-1">doi:10.1016/0370-2693(88)90220-1</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/2/7/7210/content.html">Bernard de Wit</a>, U. Marquard, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>: <em>Area-preserving diffeomorphisms and supermembrane Lorentz invariance</em>, Commun. Math. Phys. <strong>128</strong> (1990) 39–62 [<a href="https://doi.org/10.1007/BF02097044">doi:10.1007/BF02097044</a>, <a href="https://inspirehep.net/literature/277216">inSpire:277216</a>]</p>
+</li>
+</ul>
+<p>On the regularized <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">light-cone gauge quantization</a> of the <a class="existingWikiWord" href="../../../../../9/5/0/5/5059/content.html">Green-Schwarz sigma model</a> for the <a class="existingWikiWord" href="../../../../../8/4/0/6/6048/content.html">M2-brane</a> on (<a class="existingWikiWord" href="../../../5/2/2507/content.html">super</a>) <a class="existingWikiWord" href="../../../../../3/8/6/2/2683/content.html">Minkowski spacetime</a>, yielding the <a class="existingWikiWord" href="content.html">BFSS matrix model</a>:</p>
+<p>Original articles:</p>
+<ul>
+<li id="deWitHoppeNicolai88"><a class="existingWikiWord" href="../../../../../0/1/2/7/7210/content.html">Bernard de Wit</a>, <a class="existingWikiWord" href="../../../../9/0/6/6097/content.html">Jens Hoppe</a>, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <em>On the Quantum Mechanics of Supermembranes</em>, Nucl. Phys. B <strong>305</strong> (1988) 545-581 [<a href="https://doi.org/10.1016/0550-3213(88)90116-2">doi:10.1016/0550-3213(88)90116-2</a>, <a href="http://inspirehep.net/record/261702">spire:261702</a>, <a href="http://pubman.mpdl.mpg.de/pubman/item/escidoc:153408:1/component/escidoc:153407/353961.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/deWitHoppeNicolai88.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>Observation that the spectrum is continuous:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/1/2/7/7210/content.html">Bernard de Wit</a>, W. Lüscher, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <em>The supermembrane is unstable</em>, Nucl. Phys. B <strong>320</strong> (1989) 135 [<a href="https://doi.org/10.1016/0550-3213(89)90214-9">doi:10.1016/0550-3213(89)90214-9</a>, <a href="http://inspirehep.net/record/266584/">spire:266584</a>]</li>
+</ul>
+<p>Review:</p>
+<ul>
+<li id="NicolaiHelling98">
+<p><a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <a class="existingWikiWord" href="../../../../../9/0/0/3/23009/content.html">Robert C. Helling</a>, <em>Supermembranes and M(atrix) Theory</em>, In: <em>Trieste 1998, Nonperturbative aspects of strings, branes and supersymmetry</em> (1998) 29-74 [<a href="http://arxiv.org/abs/hep-th/9809103">arXiv:hep-th/9809103</a>, <a href="http://inspirehep.net/record/476366">spire:476366</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/0/6/6097/content.html">Jens Hoppe</a>: <em>Membranes and Matrix Models</em> [<a href="https://arxiv.org/abs/hep-th/0206192">arXiv:hep-th/0206192</a>]</p>
+</li>
+<li id="DasguptaNicolaiPlefka02">
+<p>Arundhati Dasgupta, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <a class="existingWikiWord" href="../../../../8/2/0/10287/content.html">Jan Plefka</a>, <em>An Introduction to the Quantum Supermembrane</em>, Grav. Cosmol. <strong>8</strong> 1 (2002) and Rev. Mex. Fis. 49S1 (2003) 1-10 [<a href="http://arxiv.org/abs/hep-th/0201182">arXiv:hep-th/0201182</a>, <a href="https://inspirehep.net/literature/582067">spire:582067</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/8/1/8/18188/content.html">Gijs van den Oord</a>: <em>On Matrix Regularisation of Supermembranes</em>, MSc thesis (2006) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a class="existingWikiWord" href="/nlab/files/vdOoord-Supermembranes.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/7/3/0/20375/content.html">Meer Ashwinkumar</a>, <a class="existingWikiWord" href="../../../../../2/7/3/0/20372/content.html">Lennart Schmidt</a>, <a class="existingWikiWord" href="../../../../../0/6/9/9/9960/content.html">Meng-Chwan Tan</a>, Section 2 of: <em>Matrix Regularization of Classical Nambu Brackets and Super <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>-Branes</em> [<a href="https://arxiv.org/abs/2103.06666">arXiv:2103.06666</a>]</p>
+</li>
+</ul>
+<p>The generalization to <a class="existingWikiWord" href="../../../../../2/8/7/7/17782/content.html">pp-wave spacetimes</a> (leading to the <a class="existingWikiWord" href="../../../../../0/3/0/1/21030/content.html">BMN matrix model</a>):</p>
+<ul>
+<li id="DSJVR02"><a class="existingWikiWord" href="../../../../../6/2/4/9/19426/content.html">Keshav Dasgupta</a>, <a class="existingWikiWord" href="../../../../../6/3/0/1/21036/content.html">Mohammad Sheikh-Jabbari</a>, <a class="existingWikiWord" href="../../../6/8/18607/content.html">Mark Van Raamsdonk</a>, Section 2 of: <em>Matrix Perturbation Theory For M-theory On a PP-Wave</em>, JHEP 0205:056 (2002) [<a href="https://doi.org/10.1088/1126-6708/2002/05/056">doi:10.1088/1126-6708/2002/05/056</a>, <a href="https://arxiv.org/abs/hep-th/0205185">arXiv:hep-th/0205185</a>]</li>
+</ul>
+<p>*</p>
+<p>See also</p>
+<ul>
+<li id="DuffInamiPopeSezginStelle88">
+<p><a class="existingWikiWord" href="../../../../../4/6/8/4/4864/content.html">Mike Duff</a>, T. Inami, <a class="existingWikiWord" href="../../../../../2/4/7/0/10742/content.html">Christopher Pope</a>, <a class="existingWikiWord" href="../../../../../5/9/7/6/6795/content.html">Ergin Sezgin</a>, <a class="existingWikiWord" href="../../../../../4/5/2/6/16254/content.html">Kellogg Stelle</a>, <em>Semiclassical Quantization of the Supermembrane</em>, Nucl.Phys. B297 (1988) 515-538 (<a href="http://inspirehep.net/record/247064">spire:247064</a>)</p>
+</li>
+<li id="KabatTaylor97">
+<p>Daniel Kabat, <a class="existingWikiWord" href="../../../../../8/6/1/8/8168/content.html">Washington Taylor</a>, section 2 of: <em>Spherical membranes in Matrix theory</em>, Adv. Theor. Math. Phys. 2: 181-206, 1998 (<a href="https://arxiv.org/abs/hep-th/9711078">arXiv:hep-th/9711078</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/6/6/6654/content.html">Nathan Berkovits</a>, <em>Towards Covariant Quantization of the Supermembrane</em> (<a href="http://arxiv.org/abs/hep-th/0201151">arXiv:hep-th/0201151</a>)</p>
+</li>
+<li>
+<p>Qiang Jia, <em>On matrix description of D-branes</em> (<a href="https://arxiv.org/abs/1907.00142">arXiv:1907.00142</a>)</p>
+</li>
+</ul>
+<p>A new kind of <a class="existingWikiWord" href="../../../../../1/2/6/2/2621/content.html">perturbation series</a> for the quantized super-membrane:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/5/7/6/16756/content.html">Olaf Lechtenfeld</a>, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <em>A perturbative expansion scheme for supermembrane and matrix theory</em> (<a href="https://arxiv.org/abs/2109.00346">arXiv:2109.00346</a>)</li>
+</ul>
+<p>Relation to the string <a class="existingWikiWord" href="../../../../../2/7/9/2/2972/content.html">dilaton</a> under <a class="existingWikiWord" href="../../../../../0/5/7/9/9750/content.html">double dimensional reduction</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/0/5/4/24500/content.html">Krzysztof A. Meissner</a>, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <em>Fundamental Membranes and the String Dilaton</em>, J. High Energ. Phys. <strong>2022</strong> 219 (2022) [<a href="https://doi.org/10.1007/JHEP09(2022)219">doi:10.1007/JHEP09(2022)219</a>, <a href="https://arxiv.org/abs/2208.05822">arXiv:2208.05822</a>]</li>
+</ul>
+<p>Covariant discussion via <a class="existingWikiWord" href="../../../../../0/3/1/8/28130/content.html">volume-preserving diffeomorphism</a> symmetry:</p>
+<ul>
+<li>
+<p>So Katagiri: <em>A Lorentz Covariant Matrix Model for Bosonic M2-Branes: Nambu Brackets and Restricted Volume-Preserving Deformations</em> [<a href="https://arxiv.org/abs/2504.05940">arXiv2504.05940</a>]</p>
+</li>
+<li>
+<p>So Katagiri: <em>Quantum Stability at One Loop for BPS Membranes in a Lorentz-Covariant RVPD Matrix Model</em> [<a href="https://arxiv.org/abs/2509.23853">arXiv:2509.23853</a>]</p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/5/9/9/9955/content.html">Eric Bergshoeff</a>, <a class="existingWikiWord" href="../../../../../5/9/7/6/6795/content.html">Ergin Sezgin</a>, Y. Tanii, <a class="existingWikiWord" href="../../../../../5/3/1/7/7135/content.html">Paul K. Townsend</a>: <em>Super <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>-branes as gauge theories of volume preserving diffeomorphisms</em>, Annals of Physics <strong>199</strong> 2 (1990) 340-365 [<a href="https://doi.org/10.1016/0003-4916(90)90381-W">doi:10.1016/0003-4916(90)90381-W</a>]</li>
+</ul>
+</div>
+<p>See also in relation to the <a class="existingWikiWord" href="../../../../../3/8/6/6/6683/content.html">ABJM model</a>:</p>
+<ul>
+<li id="MohammedMuruganNastase10">Asadig Mohammed, Jeff Murugan, <a class="existingWikiWord" href="../../../../../1/1/8/6/6811/content.html">Horatiu Nastase</a>, <em>Looking for a Matrix model of ABJM</em>, Phys. Rev. D82:086004, 2010 (<a href="https://arxiv.org/abs/1003.2599">arXiv:1003.2599</a>)</li>
+</ul>
+<h3 id="relation_to_m5branes">Relation to M5-branes</h3>
+<p>Discussion of <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">light cone longitudal</a> <a class="existingWikiWord" href="../../../../../3/3/7/6/6733/content.html">M5-branes</a> in the <a class="existingWikiWord" href="content.html">BFSS matrix model</a> (for <a class="existingWikiWord" href="../../../../../9/8/3/6/16389/content.html">light cone transversal</a> M5-s see at <em><a class="existingWikiWord" href="../../../../../0/3/0/1/21030/content.html">BMN matrix model</a></em>):</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/8/6/6808/content.html">Tom Banks</a>, <a class="existingWikiWord" href="../../../../../2/2/7/6/6722/content.html">Nathan Seiberg</a>, <a class="existingWikiWord" href="../../../../../1/4/6/6/16641/content.html">Stephen Shenker</a>, <em>Branes from Matrices</em>, Nucl. Phys. B490:91-106, 1997 (<a href="https://arxiv.org/abs/hep-th/9612157">arXiv:hep-th/9612157</a>)</p>
+</li>
+<li>
+<p>Judith Castelino, Sangmin Lee, <a class="existingWikiWord" href="../../../../../8/6/1/8/8168/content.html">Washington Taylor</a>, <em>Longitudinal 5-branes as 4-spheres in Matrix theory</em>, Nucl. Phys. B526:334-350, 1998 (<a href="https://arxiv.org/abs/hep-th/9712105">arXiv:hep-th/9712105</a>)</p>
+<p>(introducing the <a class="existingWikiWord" href="../../0/20807/content.html">fuzzy 4-sphere</a>)</p>
+</li>
+</ul>
+<p>Discussion of a <a class="existingWikiWord" href="content.html">BFSS-like</a> <a class="existingWikiWord" href="../../../../../4/5/8/5/15854/content.html">matrix model</a> for <a class="existingWikiWord" href="../../../../../6/5/2/6/16256/content.html">MK6-branes</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../9/6/6/16697/content.html">Amihay Hanany</a>, Gilad Lifschytz, <em>M(atrix) Theory on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mn>6</mn></msup></mrow><annotation encoding="application/x-tex">T^6</annotation></semantics></math> and a m(atrix) Theory Description of KK Monopoles</em>, Nucl. Phys. B519:195-213, 1998 (<a href="https://arxiv.org/abs/hep-th/9708037">arXiv:hep-th/9708037</a>)</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p>Manuel Artime, <a class="existingWikiWord" href="../../../../1/9/9/9917/content.html">Ralph Blumenhagen</a>, Thomas Raml: <em>A Novel Matrix Model for the M5-brane?</em> [<a href="https://arxiv.org/abs/2607.05490">arXiv:2607.05490</a>]</p>
+</li>
+<li>
+<p>Manuel Artime, <a class="existingWikiWord" href="../../../../1/9/9/9917/content.html">Ralph Blumenhagen</a>, Thomas Raml: <em>A Quantum-Mechanical Model for the M5-Brane</em> [<a href="https://arxiv.org/abs/2609.25207">arXiv:2609.25207</a>]</p>
+</li>
+</ul>
+<h3 id="ReferencesGroundStateProblem">Ground state problem</h3>
+<p>There remains the problem of existence of a sensible ground state of the BFSS model.</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/1/2/7/7210/content.html">Bernard de Wit</a>, M. Luscher, <a class="existingWikiWord" href="../../../../../3/6/8/6/6863/content.html">Hermann Nicolai</a>, <em>The Supermembrane Is Unstable</em>, Nucl.Phys. B320 (1989) 135-159 (<a href="http://inspirehep.net/record/266584">spire:266584</a>, <a href="https://doi.org/10.1016/0550-3213(89)90214-9">doi:10.1016/0550-3213(89)90214-9</a>)</li>
+</ul>
+<p>A new attempt:</p>
+<ul>
+<li>
+<p>L. Boulton, M.P. Garcia del Moral, A. Restuccia, <em>The ground state of the D=11 supermembrane and matrix models on compact regions</em>, Nuclear Physics B Volume 910, September 2016, Pages 665-684 (<a href="https://arxiv.org/abs/1504.04071">arXiv:1504.04071</a>)</p>
+</li>
+<li>
+<p>L. Boulton, M.P. Garcia del Moral, A. Restuccia, <em>Measure of the potential valleys of the supermembrane theory</em>, Physics Letters B Volume 797, 2019, 134873 (<a href="https://arxiv.org/abs/1811.05758">arXiv:1811.05758</a>)</p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>Alexander Michel, Jaroslav Scheinpflug, <a class="existingWikiWord" href="../../../../../3/1/6/7/17613/content.html">Xi Yin</a>: <em>99.9…% of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SU</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SU(2)</annotation></semantics></math> BFSS ground state</em> [<a href="https://arxiv.org/abs/2611.09837">arXiv:2611.09837</a>]</li>
+</ul>
+<h3 id="ReferencesGravitonScattering">Graviton scattering</h3>
+<p>Computation of <a class="existingWikiWord" href="../../../../../4/0/8/4/4804/content.html">graviton</a> <a class="existingWikiWord" href="../../../../../8/3/0/8/8038/content.html">scattering amplitudes</a> with the BFSS matrix model:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/6/1/11620/content.html">Katrin Becker</a>, <a class="existingWikiWord" href="../../../../../9/1/6/1/11619/content.html">Melanie Becker</a>, <em>A Two-Loop Test of M(atrix) Theory</em>, Nucl.Phys. B506 (1997) 48-60 (<a href="https://arxiv.org/abs/hep-th/9705091">arXiv:hep-th/9705091</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/6/1/11620/content.html">Katrin Becker</a>, <a class="existingWikiWord" href="../../../../../9/1/6/1/11619/content.html">Melanie Becker</a>, <a class="existingWikiWord" href="../../../../../2/8/6/6/6682/content.html">Joseph Polchinski</a>, <a class="existingWikiWord" href="../../../../../6/3/5/7/7536/content.html">Arkady Tseytlin</a>, <em>Higher Order Graviton Scattering in M(atrix) Theory</em>, Phys. Rev. D <strong>56</strong> (1997) 3174-3178 [<a href="https://arxiv.org/abs/hep-th/9706072">arXiv:hep-th/9706072</a>, <a href="https://doi.org/10.1103/PhysRevD.56.R3174">doi:10.1103/PhysRevD.56.R3174</a>]</p>
+</li>
+<li>
+<p>also <a href="#KabatTaylor97">Kabat-Taylor 97</a></p>
+</li>
+<li>
+<p>M. Fabbrichesi, <em>Graviton scattering in matrix theory and supergravity</em>, in: Ceresole A., Kounnas C., <a class="existingWikiWord" href="../../../../../6/1/9/9/9916/content.html">Dieter Lüst</a>, <a class="existingWikiWord" href="../../../../../3/4/9/6/16943/content.html">Stefan Theisen</a> (eds.) <em>Quantum Aspects of Gauge Theories, Supersymmetry and Unification</em>, Lecture Notes in Physics, vol 525. Springer, Berlin, Heidelberg (<a href="https://arxiv.org/abs/hep-th/9811204">arXiv:hep-th/9811204</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/0/0/3/23009/content.html">Robert Helling</a>, <a class="existingWikiWord" href="../../../../8/2/0/10287/content.html">Jan Plefka</a>, Marco Serone, Andrew Waldron, <em>Three-graviton scattering in M-theory</em>, Nuclear Physics B <strong>559</strong> 1–2 (1999) 184-204 [<a href="https://arxiv.org/abs/hep-th/9905183">arXiv:hep-th/9905183</a>, <a href="https://doi.org/10.1016/S0550-3213(99)00451-4">doi:10.1016/S0550-3213(99)00451-4</a>]</p>
+</li>
+<li>
+<p>Robert Echols, <em>M-theory, supergravity and the matrix model: Graviton scattering and non-renormalization theorems</em>, PhD thesis, 1999 [<a href="https://web.calpoly.edu/~rechols/phys403/mythesis.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/4/6/26479/content.html">Aidan Herderschee</a>, <a class="existingWikiWord" href="../../../../../1/8/6/6/6681/content.html">Juan Maldacena</a>, <em>Three Point Amplitudes in Matrix Theory</em> [<a href="https://arxiv.org/abs/2312.12592">arXiv:2312.12592</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/8/6/6/6681/content.html">Juan Maldacena</a>, <em>Three point amplitudes + Soft theorems in the BFSS matrix model</em>, talk at <em><a href="https://online.kitp.ucsb.edu/online/strings-c24/">KITP Conference: Spacetime and String Theory</a></em> (Apr 2024) [<a href="https://doi.org/10.26081/K62T48">doi;10.26081/K62T48</a>]</p>
+</li>
+<li>
+<p>Yuhma Asano, Goro Ishiki, Yoshua Murayama: <em>Localization of the BFSS matrix model and three-point amplitude in M-theory</em> [<a href="https://arxiv.org/abs/2602.11667">arXiv:2602.11667</a>]</p>
+</li>
+</ul>
+<p>In relation to the <a class="existingWikiWord" href="../../../../../4/9/0/1/21094/content.html">soft graviton theorem</a>:</p>
+<ul>
+<li>
+<p>Noah Miller, <a class="existingWikiWord" href="../../../../../9/2/4/6/6429/content.html">Andrew Strominger</a>, Adam Tropper, Tianli Wang, <em>Soft Gravitons in the BFSS Matrix Model</em> [<a href="https://arxiv.org/abs/2208.14547">arXiv:2208.14547</a>]</p>
+</li>
+<li>
+<p>Adam Tropper, Tianli Wang, <em>Lorentz Symmetry and IR Structure of The BFSS Matrix Model</em> [<a href="https://arxiv.org/abs/2303.14200">arXiv:2303.14200</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/7/4/6/26479/content.html">Aidan Herderschee</a>, <a class="existingWikiWord" href="../../../../../1/8/6/6/6681/content.html">Juan Maldacena</a>, <em>Soft Theorems in Matrix Theory</em> [<a href="https://arxiv.org/abs/2312.15111">arXiv:2312.15111</a>]</p>
+</li>
+<li>
+<p>Davide Laurenzano, John F. Wheater: <em>A Soft Theorem from vertex-like operators in BFSS Theory</em> [<a href="https://arxiv.org/abs/2510.15488">arXiv:2510.15488</a>]</p>
+</li>
+</ul>
+<h3 id="black_holes">Black holes</h3>
+<p>Relation to <a class="existingWikiWord" href="../../../../../8/2/9/8/8928/content.html">black holes in string theory</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/8/6/6808/content.html">Tom Banks</a>, <a class="existingWikiWord" href="../../../../../1/7/9/7/17971/content.html">Willy Fischler</a>, <a class="existingWikiWord" href="../../../../../3/2/7/6/6723/content.html">Igor Klebanov</a>, <a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Leonard Susskind</a>, <em>Schwarzschild Black Holes from Matrix Theory</em>, Phys.Rev.Lett.80:226-229,1998 (<a href="https://arxiv.org/abs/hep-th/9709091">arXiv:hep-th/9709091</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/8/6/6808/content.html">Tom Banks</a>, <a class="existingWikiWord" href="../../../../../1/7/9/7/17971/content.html">Willy Fischler</a>, <a class="existingWikiWord" href="../../../../../3/2/7/6/6723/content.html">Igor Klebanov</a>, <a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Leonard Susskind</a>, <em>Schwarzchild Black Holes in Matrix Theory II</em>, JHEP 9801:008,1998 (<a href="https://arxiv.org/abs/hep-th/9711005">arXiv:hep-th/9711005</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/2/7/6/6723/content.html">Igor Klebanov</a>, <a class="existingWikiWord" href="../../../../../9/9/7/6/6799/content.html">Leonard Susskind</a>, <em>Schwarzschild Black Holes in Various Dimensions from Matrix Theory</em>, Phys.Lett.B416:62-66,1998 (<a href="https://arxiv.org/abs/hep-th/9709108">arXiv:hep-th/9709108</a>)</p>
+</li>
+<li>
+<p>Edi Halyo, <em>Six Dimensional Schwarzschild Black Holes in M(atrix) Theory</em> (<a href="https://arxiv.org/abs/hep-th/9709225">arXiv:hep-th/9709225</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/8/7/6/6788/content.html">Gary Horowitz</a>, <a class="existingWikiWord" href="../../../../../5/2/9/9/9925/content.html">Emil Martinec</a>, <em>Comments on Black Holes in Matrix Theory</em>, Phys. Rev. D 57, 4935 (1998) (<a href="https://arxiv.org/abs/hep-th/9710217">arXiv:hep-th/9710217</a>)</p>
+</li>
+<li id="KabatTaylor97">
+<p>Daniel Kabat, <a class="existingWikiWord" href="../../../../../8/6/1/8/8168/content.html">Washington Taylor</a>, <em>Spherical membranes in Matrix theory</em>, Adv.Theor.Math.Phys.2:181-206,1998 (<a href="https://arxiv.org/abs/hep-th/9711078">arXiv:hep-th/9711078</a>)</p>
+</li>
+<li>
+<p>Yoshifumi Hyakutake, <em>Black Hole and Fuzzy Objects in BFSS Matrix Model</em> [<a href="https://arxiv.org/abs/1801.07869">arXiv:1801.07869</a>]</p>
+</li>
+<li id="DuSahakian18">
+<p>Haoxing Du, Vatche Sahakian, <em>Emergent geometry from stochastic dynamics, or Hawking evaporation in M(atrix) theory</em> (<a href="https://arxiv.org/abs/1812.05020">arXiv:1812.05020</a>)</p>
+<blockquote>
+<p>(combination with <a class="existingWikiWord" href="../../../../../3/8/7/6/6783/content.html">random matrix theory</a>)</p>
+</blockquote>
+</li>
+<li>
+<p>Oscar J. C. Dias, <a class="existingWikiWord" href="../../../../../6/2/1/0/20126/content.html">Jorge E. Santos</a>: <em>The Low Energy Limit of BFSS Quantum Mechanics</em> [<a href="https://arxiv.org/abs/2407.15921">arXiv:2407.15921</a>]</p>
+</li>
+<li>
+<p>Angshuman Choudhury, Davide Laurenzano: <em>Entanglement Entropy for the Black 0-Brane</em> [<a href="https://arxiv.org/abs/2407.13336">arXiv:2407.13336</a>]</p>
+</li>
+</ul>
+<h3 id="relation_to_lattice_gauge_theory">Relation to lattice gauge theory</h3>
+<p>Relation to <a class="existingWikiWord" href="../../../../../1/6/9/9/9961/content.html">lattice gauge theory</a> and numerical tests of <a class="existingWikiWord" href="../../../../../2/4/4/4/4442/content.html">AdS/CFT</a>:</p>
+<ul>
+<li id="Joseph15">
+<p>Anosh Joseph, <em>Review of Lattice Supersymmetry and Gauge-Gravity Duality</em> (<a href="https://arxiv.org/abs/1509.01440">arXiv:1509.01440</a>)</p>
+</li>
+<li>
+<p>Veselin G. Filev, Denjoe O’Connor, <em>The BFSS model on the lattice</em>, JHEP 1605 (2016) 167 (<a href="https://arxiv.org/abs/1506.01366">arXiv:1506.01366</a>)</p>
+</li>
+<li id="Hanada16">
+<p>Masanori Hanada, <em>What lattice theorists can do for superstring/M-theory</em>, International Journal of Modern Physics AVol. 31, No. 22, 1643006 (2016) (<a href="https://arxiv.org/abs/1604.05421">arXiv:1604.05421</a>)</p>
+</li>
+<li>
+<p>Georg Bergner, Norbert Bodendorfer, Masanori Hanada, Stratos Pateloudis, Enrico Rinaldi, Andreas Schäfer, Pavlos Vranas, <a class="existingWikiWord" href="../../../../../8/9/8/5/25898/content.html">Hiromasa Watanabe</a>, <em>Confinement/deconfinement transition in the D0-brane matrix model – A signature of M-theory?</em>, JHEP 05 (2022) 096 [<a href="https://arxiv.org/abs/2110.01312">arXiv:2110.01312</a>]</p>
+</li>
+</ul>
+<h3 id="holography">Holography</h3>
+<p>On <a class="existingWikiWord" href="../../../../../2/4/4/4/4442/content.html">AdS/CFT</a> in the form of <a class="existingWikiWord" href="../../../../../6/6/9/0/20966/content.html">AdS2/CFT1</a> with the <a class="existingWikiWord" href="content.html">BFSS matrix model</a> on the CFT side and <a class="existingWikiWord" href="../../../../../8/2/9/8/8928/content.html">black hole-like solutions</a> in <a class="existingWikiWord" href="../../../../../4/0/2/7/7204/content.html">type IIA supergravity</a> on the AdS side:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/8/6/6/6681/content.html">Juan Maldacena</a>, Alexey Milekhin, <em>To gauge or not to gauge?</em>, JHEP 04 (2018) 084 (<a href="https://arxiv.org/abs/1802.00428">arxiv:1802.00428</a>)</p>
+</li>
+<li>
+<p>Alfred Bovon, <a class="existingWikiWord" href="../../../../../2/3/5/6/6532/content.html">Henning Samtleben</a>, <a class="existingWikiWord" href="../../../../../8/2/5/6/16528/content.html">Dimitrios Tsimpis</a>: <em>Holographic deformations of matrix models</em> [<a href="https://arxiv.org/abs/2503.15954">arXiv:2503.15954</a>]</p>
+</li>
+</ul>
+<p>and concerning the analog of its <a class="existingWikiWord" href="../../../../../2/2/0/0/10022/content.html">holographic entanglement entropy</a>:</p>
+<ul>
+<li>Tarek Anous, Joanna L. Karczmarek, Eric Mintun, <a class="existingWikiWord" href="../../../6/8/18607/content.html">Mark Van Raamsdonk</a>, Benson Way, <em>Areas and entropies in BFSS/gravity duality</em> (<a href="https://arxiv.org/abs/1911.11145">arXiv:1911.11145</a>)</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/3/8/5/25832/content.html">Chris D. A. Blair</a>, Johannes Lahnsteiner, <a class="existingWikiWord" href="../../../../../8/2/8/5/25828/content.html">Niels A. Obers</a>, Ziqi Yan: <em>Matrix Theory Reloaded: A BPS Road to Holography</em> [<a href="https://arxiv.org/abs/2410.03591">arXiv:2410.03591</a>]</p>
+</li>
+<li>
+<p>Fabian Hahner, <a class="existingWikiWord" href="../../../../../6/7/4/7/17476/content.html">Natalie M. Paquette</a>: <em>Twisting BFSS &amp; IKKT</em> [<a href="https://arxiv.org/abs/2602.22318">arXiv:2602.22318</a>]</p>
+</li>
+</ul>
+<h3 id="Cosmology">Cosmology</h3>
+<p>On <a class="existingWikiWord" href="../../../../../0/8/8/9/9880/content.html">non-perturbative</a> <a class="existingWikiWord" href="../../../4/1/1407/content.html">string theoretic</a> <a class="existingWikiWord" href="../../../../../0/2/2/8/8220/content.html">cosmology</a> (and the <a class="existingWikiWord" href="../../../../../6/8/9/9/9986/content.html">Brandenberger-Vafa mechanism</a>) via the <a class="existingWikiWord" href="content.html">BFSS</a>/<a class="existingWikiWord" href="../../../../../1/1/9/0/10911/content.html">IKKT matrix model</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/0/3/7/27303/content.html">Suddhasattwa Brahma</a>, <a class="existingWikiWord" href="../../../../../3/5/6/7/17653/content.html">Robert Brandenberger</a>, <a class="existingWikiWord" href="../../../../../4/0/3/7/27304/content.html">Samuel Laliberte</a>: <em>Emergent Cosmology from Matrix Theory</em>, J. High Energ. Phys. <strong>2022</strong> 67 (2022) [<a href="https://arxiv.org/abs/2107.11512">arXiv:2107.11512</a>, <a href="https://doi.org/10.1007/JHEP03(2022)067">doi:10.1007/JHEP03(2022)067</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/0/3/7/27303/content.html">Suddhasattwa Brahma</a>, <a class="existingWikiWord" href="../../../../../3/5/6/7/17653/content.html">Robert Brandenberger</a>, <a class="existingWikiWord" href="../../../../../4/0/3/7/27304/content.html">Samuel Laliberte</a>: <em>Emergent Early Universe Cosmology from BFSS Matrix Theory</em>, International Journal of Modern Physics D <strong>31</strong> 14 (2022) 2242004 [<a href="https://arxiv.org/abs/2205.06016">arXiv:2205.06016</a>, <a href="https://doi.org/10.1142/S0218271822420044">doi:10.1142/S0218271822420044</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/0/3/7/27303/content.html">Suddhasattwa Brahma</a>, <a class="existingWikiWord" href="../../../../../3/5/6/7/17653/content.html">Robert Brandenberger</a>, <a class="existingWikiWord" href="../../../../../4/0/3/7/27304/content.html">Samuel Laliberte</a>: <em>Emergent Metric Space-Time from Matrix Theory</em>, J. High Energ. Phys. <strong>2022</strong> 31 (2022) [<a href="https://arxiv.org/abs/2206.12468">arXiv:2206.12468</a>, <a href="https://doi.org/10.1007/JHEP09(2022)031">doi:10.1007/JHEP09(2022)031</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/0/3/7/27303/content.html">Suddhasattwa Brahma</a>, <a class="existingWikiWord" href="../../../../../3/5/6/7/17653/content.html">Robert Brandenberger</a>, <a class="existingWikiWord" href="../../../../../4/0/3/7/27304/content.html">Samuel Laliberte</a>: <em>BFSS Matrix Model Cosmology: Progress and Challenges</em>, Physics <strong>5</strong> 1 (2023) [<a href="https://arxiv.org/abs/2210.07288">arXiv:2210.07288</a>, <a href="https://doi.org/10.3390/physics5010001">doi:10.3390/physics5010001</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/5/6/7/17653/content.html">Robert Brandenberger</a>: <em>Emergent Metric Space-Time from the BFSS Matrix Model</em>, talk at Perimeter Institute (May 2023) [<a href="https://doi.org/10.48660/23050109">doi:10.48660/23050109</a>, video:<a href="https://pirsa.org/23050109">pirsa:23050109</a>, slides:<a href="https://pdf.pirsa.org/files/23050109.pdf">pdf</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/5/6/7/17653/content.html">Robert Brandenberger</a>, Julia Pasiecznik: <em>On the Origin of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SO</mi><mo stretchy="false">(</mo><mn>9</mn><mo stretchy="false">)</mo><mo>→</mo><mi>SO</mi><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo><mo>×</mo><mi>SO</mi><mo stretchy="false">(</mo><mn>6</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SO(9) \to SO(3) \times SO(6)</annotation></semantics></math> Symmetry Breaking in the IKKT Matrix Model</em> [<a href="https://arxiv.org/abs/2409.00254">arXiv:2409.00254</a>, <a href="https://inspirehep.net/literature/2824186">spire:2824186</a>]</p>
+</li>
+</ul>
+<p>See also at <em><a href="../../../../../1/1/9/0/10911/content.html#ReferencesComputerSimulation">IKKT matrix model – References – Computer simulation</a></em>.</p>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

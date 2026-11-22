@@ -1,0 +1,461 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Wick rotation in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Wick rotation
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<ul>
+<li><a href="#example">Example</a></li>
+<li><a href="#method">Method</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>What is called <em>Wick rotation</em> (after <a class="existingWikiWord" href="../../../../../7/3/3/0/10337/content.html">Gian-Carlo Wick</a>) is a method in <a class="existingWikiWord" href="../../../../../1/8/0/0/81/content.html">physics</a> for finding a construction in <a class="existingWikiWord" href="../../../../5/6/8/18653/content.html">relativistic field theory</a> on <a class="existingWikiWord" href="../../../../8/6/2/2683/content.html">Minkowski spacetime</a> or, more generally, on <a class="existingWikiWord" href="../../../../../4/3/5/0/534/content.html">Lorentzian manifolds</a>, from a related construction in <a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">Euclidean field theory</a> on <a class="existingWikiWord" href="../../../../../6/2/4/2/2426/content.html">Riemannian manifolds</a> in a way that involves or generalizes the idea of <a class="existingWikiWord" href="../../../../../4/7/2/5/15274/content.html">analytic continuation</a> for the <em><a class="existingWikiWord" href="../../../../../9/3/4/0/10439/content.html">time</a></em> <a class="existingWikiWord" href="../../../../../4/4/5/5/5544/content.html">coordinates</a>.</p>
+<center>
+<img src="https://ncatlab.org/nlab/files/WickRotation.jpg" width="400"/>
+</center>
+<blockquote>
+<p>The <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex plane</a> for a complexified <a class="existingWikiWord" href="../../../../../9/3/4/0/10439/content.html">time</a> <a class="existingWikiWord" href="../../../../../4/4/5/5/5544/content.html">coordinate</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>+</mo><mi>i</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">t + i s</annotation></semantics></math>. After Wick rotation it is the <a class="existingWikiWord" href="../../../../../6/8/3/6/16386/content.html">imaginary part</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> that replaces the “<a class="existingWikiWord" href="../../../../../6/8/3/6/16386/content.html">real</a>” time <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>.</p>
+<p>graphics grabbed from <a href="#FullingRuijsenaars87">Fulling-Ruijsenaars 87</a></p>
+</blockquote>
+<p>This is motivated by the observation that the <a class="existingWikiWord" href="../../../../../4/5/8/4/4854/content.html">Minkowski metric</a> (with the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-1,1,1,1)</annotation></semantics></math> convention for <a class="existingWikiWord" href="../../../../../2/0/9/1/21902/content.html">spacetime signature</a>) and the four-Euclidean metric are equivalent if the <a class="existingWikiWord" href="../../../../../9/3/4/0/10439/content.html">time</a> components of either are allowed to have <a class="existingWikiWord" href="../../../../../6/8/3/6/16386/content.html">imaginary</a> values. Hence Wick rotation, when it applies, involves <a class="existingWikiWord" href="../../../../../4/7/2/5/15274/content.html">analytic continuation</a> of <a class="existingWikiWord" href="../../../../../7/6/2/9/9267/content.html">n-point functions</a> to <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex valued</a> <a class="existingWikiWord" href="../../../../../9/3/4/0/10439/content.html">time</a> <a class="existingWikiWord" href="../../../../../4/4/5/5/5544/content.html">coordinates</a>.</p>
+<p>For <a class="existingWikiWord" href="../../../../5/6/8/18653/content.html">relativistic</a>/<a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">Euclidean</a> <a class="existingWikiWord" href="../../../../../0/9/2/0/290/content.html">quantum field theory</a> on <a class="existingWikiWord" href="../../../../8/6/2/2683/content.html">Minkowski spacetime</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mrow><mi>d</mi><mo>,</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^{d,1}</annotation></semantics></math>/<a class="existingWikiWord" href="../../../../../4/5/1/2/2154/content.html">Euclidean space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mrow><mi>d</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^{d+1}</annotation></semantics></math> Wick rotation is rigorously understood and takes the form of a <a class="existingWikiWord" href="../../../../../8/1/0/7/7018/content.html">theorem</a> relating the <a class="existingWikiWord" href="../../../../../8/5/6/3/3658/content.html">Wightman axioms</a> for <a class="existingWikiWord" href="../../../../../7/6/2/9/9267/content.html">n-point functions</a> in <a class="existingWikiWord" href="../../../../5/6/8/18653/content.html">relativistic field theory</a> to the <em><a class="existingWikiWord" href="../../../../../9/5/6/3/3659/content.html">Osterwalder-Schrader axioms</a></em> for <a class="existingWikiWord" href="../../../../../6/4/3/6/6346/content.html">correlators</a> in <a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">Euclidean field theory</a>.</p>
+<p>See for instance <a href="#FullingRuijsenaars87">Fulling-Ruijsenaars 87, section 2</a> for a clear account.</p>
+<p>More generally, in this context Wick rotation applies to relativistic field theory in <a class="existingWikiWord" href="../../../../../0/6/8/7/17860/content.html">thermal equilibrium</a> <a class="existingWikiWord" href="../../../../../1/7/2/4/4271/content.html">states</a> at <a class="existingWikiWord" href="../../../../9/4/9/9493/content.html">positive</a> <a class="existingWikiWord" href="../../../../../6/5/8/0/10856/content.html">temperature</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> (“<a class="existingWikiWord" href="../../../../../4/9/4/6/6494/content.html">KMS states</a>”), and then relates this to <a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">Euclidean field theory</a> with compact/periodic Euclidean time of length <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mn>1</mn><mo stretchy="false">/</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">\beta = 1/T</annotation></semantics></math> (see <a href="#FullingRuijsenaars87">Fulling-Ruijsenaars 87, section 3</a>):</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mrow><mrow><mtable><mtr><mtd><mtext>relativistic field theory</mtext></mtd></mtr> <mtr><mtd><mtext>on Minkowski spacetime</mtext></mtd></mtr> <mtr><mtd><msup><mi>ℝ</mi> <mrow><mi>d</mi><mo>,</mo><mn>1</mn></mrow></msup></mtd></mtr> <mtr><mtd><mtext>in a thermal equilibrium state</mtext></mtd></mtr> <mtr><mtd><mtext>at temperature</mtext><mspace width="thickmathspace"></mspace><mi>T</mi></mtd></mtr></mtable></mrow><mo>}</mo></mrow></mtd> <mtd><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mover><mo>↔</mo><mtext>Wick rotation</mtext></mover><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mtd> <mtd><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mtext>Euclidean field theory</mtext></mtd></mtr> <mtr><mtd><mtext>on Euclidean space</mtext></mtd></mtr> <mtr><mtd><msup><mi>ℝ</mi> <mi>d</mi></msup><mo>×</mo><msubsup><mi>S</mi> <mi>β</mi> <mn>1</mn></msubsup></mtd></mtr> <mtr><mtd><mtext>with compact/periodic Euclidean time</mtext></mtd></mtr> <mtr><mtd><mtext>of length</mtext><mspace width="thickmathspace"></mspace><mi>β</mi><mo>=</mo><mn>1</mn><mo stretchy="false">/</mo><mi>T</mi></mtd></mtr></mtable></mrow></mrow></mtd></mtr> <mtr><mtd><mphantom><mi>A</mi></mphantom></mtd></mtr> <mtr><mtd><munder><munder><mrow><msub><mrow><mo>⟨</mo><mi>T</mi><mo stretchy="false">|</mo><mo>:</mo><mstyle mathvariant="bold"><mi>Φ</mi></mstyle><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>1</mn></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mstyle mathvariant="bold"><mi>Φ</mi></mstyle><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>2</mn></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mi>⋯</mi><mstyle mathvariant="bold"><mi>Φ</mi></mstyle><mo stretchy="false">(</mo><msub><mi>x</mi> <mi>n</mi></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">|</mo><mi>T</mi><mo>⟩</mo></mrow> <mrow><msup><mi>ℝ</mi> <mrow><mi>d</mi><mo>,</mo><mn>1</mn></mrow></msup></mrow></msub></mrow><mo>⏟</mo></munder><mfrac linethickness="0"><mrow><mfrac linethickness="0"><mrow><mtext>equal-time n-point function</mtext></mrow><mrow><mtext>of relativistic fields</mtext></mrow></mfrac></mrow><mrow><mtext> in thermal equilibrium state </mtext><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mi>T</mi><mo stretchy="false">⟩</mo></mrow></mfrac></munder></mtd> <mtd><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace></mtd> <mtd><munder><munder><mrow><msub><mrow><mo>⟨</mo><mn>0</mn><mo stretchy="false">|</mo><mstyle mathvariant="bold"><mi>Φ</mi></mstyle><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>1</mn></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mstyle mathvariant="bold"><mi>Φ</mi></mstyle><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>2</mn></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mi>⋯</mi><mstyle mathvariant="bold"><mi>Φ</mi></mstyle><mo stretchy="false">(</mo><msub><mi>x</mi> <mi>n</mi></msub><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mn>0</mn><mo>⟩</mo></mrow> <mrow><msup><mi>ℝ</mi> <mi>d</mi></msup><mo>×</mo><msubsup><mi>S</mi> <mi>β</mi> <mn>1</mn></msubsup></mrow></msub></mrow><mo>⏟</mo></munder><mfrac linethickness="0"><mrow><mtext>correlator of Euclidean fields</mtext></mrow><mrow><mtext> for "Euclidean time" of periodicity</mtext><mspace width="thickmathspace"></mspace><mi>β</mi><mo>=</mo><mn>1</mn><mo stretchy="false">/</mo><mi>T</mi></mrow></mfrac></munder></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+  \left.
+  \array{
+     \text{relativistic field theory}
+     \\
+     \text{on Minkowski spacetime}
+     \\
+     \mathbb{R}^{d,1}
+     \\
+     \text{in a thermal equilibrium state}
+     \\
+     \text{at temperature}\; T
+  }
+  \right\}
+  &amp;
+  \;\;\;\;
+  \overset{ \text{Wick rotation} }{\leftrightarrow}
+  \;\;\;\;
+  &amp;
+  \left\{
+  \array{
+    \text{Euclidean field theory}
+    \\
+    \text{on Euclidean space}
+    \\
+    \mathbb{R}^d \times S^1_{\beta}
+    \\
+    \text{with compact/periodic Euclidean time}
+    \\
+    \text{of length} \; \beta = 1/T
+  }
+  \right.
+  \\
+  \phantom{A}
+  \\
+  \underset{
+    {
+    \text{equal-time n-point function} 
+    \atop 
+    \text{of relativistic fields}
+    }
+    \atop
+    \text{ in thermal equilibrium state } \; \vert T\rangle
+  }{
+  \underbrace{
+    \left\langle  T\vert  :\mathbf{\Phi}(x_1,t) \mathbf{\Phi}(x_2,t) \cdots \mathbf{\Phi}(x_n,t) : \vert T \right\rangle_{\mathbb{R}^{d,1}}
+  }}
+  &amp;\;=\;&amp;
+  \underset{
+    \text{correlator of Euclidean fields}
+    \atop
+    \text{ for "Euclidean time" of periodicity}\; \beta = 1/T
+  }{
+  \underbrace{
+  \left\langle 0 \vert \mathbf{\Phi}(x_1,t) \mathbf{\Phi}(x_2,t) \cdots \mathbf{\Phi}(x_n,t)  \vert 0 \right\rangle_{\mathbb{R}^{d} \times S^1_{\beta}}
+  }}
+  }
+
+</annotation></semantics></math></div>
+<p>In this form, Wick rotation is also known as <em><a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">thermal quantum field theory</a></em>. See there for more.</p>
+<center>
+<img src="https://ncatlab.org/nlab/files/EuclideanTime.jpg" width="580"/>
+</center>
+<blockquote>
+<p>graphics grabbed form <a href="#FrolovZelnikov11">Frolov-Zelnikov 11</a></p>
+</blockquote>
+<p>Wick rotation also applies on suitable <a class="existingWikiWord" href="../../../../../6/8/2/4/4286/content.html">black hole</a>-<a class="existingWikiWord" href="../../../../../4/8/7/3/3784/content.html">spacetimes</a> spring thermodynamics, such as the <a class="existingWikiWord" href="../../../../../5/6/4/4/4465/content.html">Bekenstein-Hawking entropy</a>, find elegant explanations, at least at the level of the manipulation of formulas (see e.g. <a href="#FullingRuijsenaars87">Fulling-Ruijsenaars 87, section 4</a>).</p>
+<h3 id="example">Example</h3>
+<p>Consider the Minkowski metric with the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1,1,1,1</annotation></semantics></math> convention for the tensor:</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msup><mi>s</mi> <mn>2</mn></msup><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">(</mo><mi>d</mi><mi>t</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>d</mi><mi>x</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>d</mi><mi>y</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>d</mi><mi>z</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">d s^{2}= -(d t)^{2} + (d x)^{2} + (d y)^{2} + (d z)^{2}</annotation></semantics></math></p>
+<p>and the four-dimensional Euclidean metric:</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msup><mi>s</mi> <mn>2</mn></msup><mo>=</mo><mi>d</mi><msup><mi>τ</mi> <mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>d</mi><mi>x</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>d</mi><mi>y</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi>d</mi><mi>z</mi><msup><mo stretchy="false">)</mo> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">d s^{2}= d \tau^{2} + (d x)^{2} + (d y)^{2} + (d z)^{2}</annotation></semantics></math>.</p>
+<p>Notice that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>t</mi><mo>=</mo><mi>i</mi><mo>⋅</mo><mi>d</mi><mi>τ</mi></mrow><annotation encoding="application/x-tex">d t = i\cdot d \tau</annotation></semantics></math>, the two are equivalent.</p>
+<h3 id="method">Method</h3>
+<p>A typical method for employing Wick rotation would be to make the substitution <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mi>i</mi><mi>τ</mi></mrow><annotation encoding="application/x-tex">t=i\tau</annotation></semantics></math> in a problem in Minkowski space. The resulting problem is in Euclidean space and is sometimes easier to solve, after which a reverse substitution can (sometimes) be performed, yielding a solution to the original problem.</p>
+<p>Technically, this works for any four-vector comparison between Minkowski space and Euclidean space, not just for space-time intervals.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/2/6/8/18626/content.html">reflection positivity</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>Wick rotation between <a class="existingWikiWord" href="../../../../5/6/8/18653/content.html">relativistic field theory</a> in terms of <a class="existingWikiWord" href="../../../../../8/5/6/3/3658/content.html">Wightman axioms</a> for <a class="existingWikiWord" href="../../../../../7/6/2/9/9267/content.html">n-point functions</a> on <a class="existingWikiWord" href="../../../../8/6/2/2683/content.html">Minkowski spacetime</a> and <a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">Euclidean field theory</a> in terms of <a class="existingWikiWord" href="../../../../../9/5/6/3/3659/content.html">Osterwalder-Schrader axioms</a> for <a class="existingWikiWord" href="../../../../../6/4/3/6/6346/content.html">correlators</a> on <a class="existingWikiWord" href="../../../../../4/5/1/2/2154/content.html">Euclidean space</a> is due to</p>
+<ul>
+<li id="OsterwalderSchrader73"><a class="existingWikiWord" href="../../../../../2/3/8/6/16832/content.html">Konrad Osterwalder</a>, <a class="existingWikiWord" href="../../../../2/9/9/19923/content.html">Robert Schrader</a>, <em>Axioms for Euclidean Green’s functions</em>, Comm. Math. Phys. Volume 31, Number 2 (1973), 83-112 (<a href="https://projecteuclid.org/euclid.cmp/1103858969">Euclid:1103858969</a>)</li>
+</ul>
+<p>The generalization of this for <a class="existingWikiWord" href="../../../../9/4/9/9493/content.html">positive</a> <a class="existingWikiWord" href="../../../../../0/6/8/7/17860/content.html">thermal equilibrium</a> <a class="existingWikiWord" href="../../../../../2/9/5/8/18592/content.html">vacuum states</a>, relating to <a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">thermal quantum field theory</a> with compact/periodic Euclidean time is discussed in</p>
+<ul>
+<li id="KleinLandau81">Abel Klein, Lawrence Landau, <em>Periodic Gaussian Osterwalder-Schrader positive processes and the two-sided Markov property on the circle</em>, Pacific Journal of Mathematics, Vol. 94, No. 2, 1981 (<a href="https://msp.org/pjm/1981/94-2/p12.xhtml">DOI: 10.2140/pjm.1981.94.341</a>, <a href="https://msp.org/pjm/1981/94-2/pjm-v94-n2-p12-s.pdf">pdf</a>)</li>
+</ul>
+<p>The idea here apparently goes back to</p>
+<ul>
+<li id="Bloch58">Claude Bloch, <em>Sur la détermination de l’état fondamental d’un système de particules</em>, Nucl. Phys. 7 (1958) 451</li>
+</ul>
+<p>This has maybe first been made precise, for the case of 1+1 dimensions, in</p>
+<ul>
+<li id="HoeghKrohn74"><a class="existingWikiWord" href="../../../../../7/2/9/9/19927/content.html">Raphael Høegh-Krohn</a>, <em>Relativistic Quantum Statistical Mechanics in two-dimensional Space-Time</em>, Communications in Mathematical Physics 38.3 (1974): 195-224 (<a href="https://www.duo.uio.no/bitstream/handle/10852/44072/1973-22.pdf">pdf</a>)</li>
+</ul>
+<p>Good review on the relation to <a class="existingWikiWord" href="../../../../../5/0/9/8/18905/content.html">thermal quantum field theory</a> and <a class="existingWikiWord" href="../../../../../5/6/4/4/4465/content.html">black hole thermodynamics</a> is in</p>
+<ul>
+<li id="FullingRuijsenaars87">
+<p>S.A. Fulling, S.N.M. Ruijsenaars, <em>Temperature, periodicity and horizons</em>, Physics Reports Volume 152, Issue 3, August 1987, Pages 135-176 (<a href="https://www1.maths.leeds.ac.uk/~siru/papers/p26.pdf">pdf</a>, <a href="https://doi.org/10.1016/0370-1573(87)90136-0">doi:10.1016/0370-1573(87)90136-0</a>)</p>
+</li>
+<li id="GibbonsPerry78">
+<p><a class="existingWikiWord" href="../../../../../0/6/7/6/6760/content.html">Gary Gibbons</a>, Malcolm J. Perry, <em>Black Holes and Thermal Green Functions</em>, Vol. 358, No. 1695 (1978) (<a href="https://www.jstor.org/stable/79482">jstor:79482</a>)</p>
+</li>
+</ul>
+<p>New formalization in terms of complex metrics:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/7/2/2/2271/content.html">Maxim Kontsevich</a>, <a class="existingWikiWord" href="../../../../../1/5/9/2/2951/content.html">Graeme Segal</a>, <em>Wick rotation and the positivity of energy in quantum field theory</em>, The Quarterly Journal of Mathematics <strong>72</strong> 1-2 (2021) 673–699 [<a href="https://arxiv.org/abs/2105.10161">arXiv:2105.10161</a>, <a href="https://doi.org/10.1093/qmath/haab027">doi:10.1093/qmath/haab027</a>]</li>
+</ul>
+<p>review talks:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/5/9/2/2951/content.html">Graeme Segal</a>, <em>Wick rotation and the positivity of energy in quantum field theory</em>, talk at Institut des Hautes Études Scientifiques (IHÉS), June 2014 (<a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=vTvXHL6ZJik">video recording</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/5/9/2/2951/content.html">Graeme Segal</a>, <em>Wick Rotation and the Positivity of Energy in Quantum Field Theory</em>, talk at IAS Physics Group Meeting, December 2021 (<a href="https://www.ias.edu/video/wick-rotation-and-positivity-energy-quantum-field-theory">video recording</a>)</p>
+</li>
+</ul>
+<p>Discussion of thermal Wick rotation on global <a class="existingWikiWord" href="../../../../../7/9/6/6/6697/content.html">anti-de Sitter spacetime</a> (which is already periodic in <em>real</em> time) is in</p>
+<ul>
+<li id="AllenFolacciGibbons87">B. Allen, A. Folacci, <a class="existingWikiWord" href="../../../../../0/6/7/6/6760/content.html">Gary Gibbons</a>, <em>Anti-de Sitter space at finite temperature</em>, Physics Letters B Volume 189, Issue 3, 7 May 1987, Pages 304-310 (<a href="https://doi.org/10.1016/0370-2693(87)91437-7">doi:10.1016/0370-2693(87)91437-7</a>)</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p>Dirk Schlingemann, <em>From euclidean field theory to quantum field theory</em> (<a href="http://arxiv.org/abs/hep-th/9802035">arXiv:hep-th/9802035</a>)</p>
+</li>
+<li id="Witten13">
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>, <em>The Feynman <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">i \epsilon</annotation></semantics></math> in String Theory</em> (<a href="http://arxiv.org/abs/1307.5124">arXiv:1307.5124</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/5/9/2/2954/content.html">Daniel S. Freed</a>; <em>Wick-Rotated Unitarity</em>, lecture 7 in: <em>Lectures on Field Theory and Topology</em>, CBMS Regional Conference Series in Mathematics <strong>133</strong>, AMS (2019) [<a href="https://doi.org/10.1090/cbms/133">doi:10.1090/cbms/133</a>, <a href="https://pubs.ams.org/ebooks/cbms/133">ams:cbms/133</a>, <a href="https://web.ma.utexas.edu/users/dafr/CBMS133.pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>On the (non-)existence of Wick rotation for <a class="existingWikiWord" href="../../../../../9/1/9/3/3919/content.html">quantum field theory on curved spacetimes</a>:</p>
+<p>MathOverflow comments:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/5/7/5/5752/content.html">Igor Khavkine</a> (<a href="https://mathoverflow.net/a/165317/381">MO:a/165317</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../1/1/6/16113/content.html">Robert Bryant</a> (<a href="https://mathoverflow.net/a/165345/381">MO:a/165345</a>)</p>
+</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li id="HollandsWald14"><a class="existingWikiWord" href="../../../../../4/9/1/0/10194/content.html">Stefan Hollands</a>, <a class="existingWikiWord" href="../../9/9633/content.html">Robert Wald</a>, p. 7-8 in: <em>Quantum fields in curved spacetime</em>, Physics Reports Volume 574, 16 April 2015, Pages 1-35 (<a href="https://arxiv.org/abs/1401.2026">arXiv:1401.2026</a>, <a href="https://doi.org/10.1016/j.physrep.2015.02.001">doi:10.1016/j.physrep.2015.02.001</a>)</li>
+</ul>
+<p>On the nonexistence of Wick rotation at finite <a class="existingWikiWord" href="../../../../../1/6/9/9/9961/content.html">lattice</a> spacing:</p>
+<ul>
+<li>B. P. Kosyakov, E. Yu. Popov, M. A. Vronsky, <em>Can Euclidean lattice quantum field theory be analytically continued into Minkowski space?</em> [<a href="https://arxiv.org/abs/2605.18787">arXiv:2605.18787</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

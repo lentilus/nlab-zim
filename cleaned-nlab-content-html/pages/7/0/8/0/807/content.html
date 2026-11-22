@@ -1,0 +1,813 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Euler characteristic in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Euler characteristic
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definitions">Definitions</a></li>
+<ul>
+<li><a href="#of_a_chain_complex">Of a chain complex</a></li>
+<li><a href="#OfATopologicalSpace">Of a topological space (or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid)</a></li>
+<li><a href="#of_an_object_in_a_symmetric_monoidal_category">Of an object in a symmetric monoidal category</a></li>
+<li><a href="#HomotopyCardinality">Homotopy cardinality (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid cardinality)</a></li>
+<li><a href="#of_posets_groupoids_and_categories">Of posets, groupoids and categories</a></li>
+<ul>
+<li><a href="#LECharOfCategory">Of finite categories</a></li>
+<li><a href="#LECharOfEnrichedCat">Of enriched and higher categories</a></li>
+</ul>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#UnderHomotopyColimits">Compatibility with homotopy colimits</a></li>
+<li><a href="#RelationBetweenDefinitions">Relations between the various definitions</a></li>
+<li><a href="#relation_between_euler_characteristic_and_groupoid_cardinality">Relation between Euler characteristic and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid cardinality</a></li>
+<li><a href="#basic_relations_for_euler_characteristics_of_topological_spaces">Basic relations for Euler characteristics of topological spaces</a></li>
+<li><a href="#gaussbonnet_theorem">Gauss-Bonnet theorem</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <strong>Euler characteristic</strong> of an object is – if it exists – its <a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">categorical</a> <a class="existingWikiWord" href="../../../../8/7/4/4787/content.html">dimension</a>.</p>
+<h2 id="definitions">Definitions</h2>
+<h3 id="of_a_chain_complex">Of a chain complex</h3>
+<p>There are two definitions of the Euler characteristic of a chain complex. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../2/2/0/227/content.html">commutative ring</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../6/0/1/1067/content.html">chain complex</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>.</p>
+<div class="num_defn" id="EulerCharOfChainComplexPointset">
+<h6 id="definition">Definition</h6>
+<p>If each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">V_n</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../8/7/2/2787/content.html">finitely generated</a> and <a class="existingWikiWord" href="../../../../../4/1/4/0/414/content.html">projective</a>, then the <strong>Euler characteristic</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> is the alternating sum of their <a class="existingWikiWord" href="../../../../../9/4/3/5/5349/content.html">ranks</a>, if this is finite:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>n</mi><mo>∈</mo><mi>ℤ</mi></mrow></munder><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><msub><mi>rk</mi> <mi>R</mi></msub><msub><mi>V</mi> <mi>n</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(V) 
+  \,\coloneqq\,
+  \sum_{n \in \mathbb{Z}} (-1)^n \, rk_R V_n
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_defn" id="EulerCharOfChainComplex">
+<h6 id="definition_2">Definition</h6>
+<p>If the <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> consists of finitely generated projective modules, then the <strong>Euler characteristic</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> is the alternating sum of its <a class="existingWikiWord" href="../../../../1/1/6/6117/content.html">Betti numbers</a> (the <a class="existingWikiWord" href="../../../../../9/4/3/5/5349/content.html">ranks</a> of its homology modules), if this is finite:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>n</mi><mo>∈</mo><mi>ℤ</mi></mrow></munder><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><msub><mi>rk</mi> <mi>R</mi></msub><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(V)
+  \,\coloneqq\,
+  \sum_{n \in \mathbb{Z}} (-1)^n \, rk_R H_n(V)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>When both of these are defined, they are equal. This is a consequence of the functoriality of the categorical definition (Definition <a class="maruku-ref" href="#EulerCharInSymMonCat"></a>).</p>
+<div class="num_remark" id="InvariantUnderQIso">
+<h6 id="remark">Remark</h6>
+<p>Definition <a class="maruku-ref" href="#EulerCharOfChainComplex"></a> shows that the Euler characteristic of chain complexes is invariant under the natural notion of <a class="existingWikiWord" href="../../../../../8/2/7/3/3728/content.html">equivalence</a> of chain complexes: (zig-zags of) <a class="existingWikiWord" href="../../../../../0/7/3/0/370/content.html">quasi-isomorphisms</a>.</p>
+</div>
+<h3 id="OfATopologicalSpace">Of a topological space (or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid)</h3>
+<div class="num_defn" id="EulerCharOfTopSpace">
+<h6 id="definition_3">Definition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> some <a class="existingWikiWord" href="../../../../2/2/0/227/content.html">ring</a>, its Euler characteristic over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is the Euler characteristic, according to Def. <a class="maruku-ref" href="#EulerCharOfChainComplex"></a>, of its <a class="existingWikiWord" href="../../../../../1/8/0/1/1081/content.html">homology</a> <a class="existingWikiWord" href="../../../../6/0/1/1067/content.html">chain complex</a> (for instance <a class="existingWikiWord" href="../../../../../5/8/2/5/5285/content.html">singular homology</a>), if this is finite: the alternating sum of its <a class="existingWikiWord" href="../../../../1/1/6/6117/content.html">Betti numbers</a></p>
+<div class="maruku-equation" id="eq:FormulaForTopologicalSpaceAsAltSumOfBettiNumbers"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mtd> <mtd><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow></munder><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><msub><mi>rk</mi> <mi>ℤ</mi></msub><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℤ</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow></munder><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><msub><mi>dim</mi> <mi>ℚ</mi></msub><msub><mi>H</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>ℚ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \begin{aligned}
+    \chi(X) 
+    &amp;
+    \;\coloneqq\; 
+    \sum_{n \in \mathbb{N}} 
+    \,
+    (-1)^n 
+    \,
+    rk_{\mathbb{Z}} H_n(X, \mathbb{Z})
+    \\
+    &amp;
+    \;=\;
+    \sum_{n \in \mathbb{N}} 
+    \,
+    (-1)^n 
+    \,
+    dim_{\mathbb{Q}} H_n(X, \mathbb{Q})
+  \end{aligned}
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is shown for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">R = \mathbb{Z}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integers</a> (<a class="existingWikiWord" href="../../../../../2/4/8/1/1842/content.html">integral cohomology</a>), and equivalently for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>ℚ</mi></mrow><annotation encoding="application/x-tex">R = \mathbb{Q}</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/9/9/2/2992/content.html">rational numbers</a> (<a class="existingWikiWord" href="../../../../../9/0/7/0/20709/content.html">rational cohomology</a>).<br/>(Choosing a ring with torsion, however, might result in a different “Euler characteristic”.)</p>
+<p>This definition is usually known as the <strong>Euler-Poincaré formula</strong>.</p>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>This is the special case of the formula for the <a class="existingWikiWord" href="../../../../../0/6/8/3/3860/content.html">Lefschetz number</a>: The Euler characteristic <a class="maruku-eqref" href="#eq:FormulaForTopologicalSpaceAsAltSumOfBettiNumbers">(1)</a> is the Lefschetz number of the <a class="existingWikiWord" href="../../../../../9/0/4/1/1409/content.html">identity map</a>, see <a href="../../../../../0/6/8/3/3860/content.html#LefschetzNumber">there</a>.</p>
+</div>
+</p>
+<p>Historically earlier was:</p>
+<div class="num_defn" id="EulerCharOfCWComplex">
+<h6 id="definitionproposition">Definition/Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a finite <a class="existingWikiWord" href="../../../../../4/8/3/0/384/content.html">CW-complex</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cell</mi><mo stretchy="false">(</mo><mi>X</mi><msub><mo stretchy="false">)</mo> <mi>k</mi></msub></mrow><annotation encoding="application/x-tex">cell(X)_k</annotation></semantics></math> for the set of its <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-cells. Then the Euler characteristic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>k</mi><mo>∈</mo><mi>ℕ</mi></mrow></munder><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>k</mi></msup><mo stretchy="false">|</mo><mi>cell</mi><mo stretchy="false">(</mo><mi>X</mi><msub><mo stretchy="false">)</mo> <mi>k</mi></msub><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(X) 
+  \;=\; 
+  \sum_{k \in \mathbb{N}} (-1)^k \vert cell(X)_k \vert
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is equivalently the Euler characteristic of the <a class="existingWikiWord" href="../../../../../5/1/3/8/8315/content.html">cellular</a> chain complex of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> according to Definition <a class="maruku-ref" href="#EulerCharOfChainComplexPointset"></a>. Thus, since the homology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> can be computed with cellular homology, this Euler characteristic agrees with the previous one.</p>
+<p>In the special case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/2/7/4/4728/content.html">surface</a>, Def. <a class="maruku-ref" href="#EulerCharOfCWComplex"></a> reduces to the historical definition by <a class="existingWikiWord" href="../../../../../6/1/1/6/6116/content.html">Leonhard Euler</a>, which implicitly was known already to Descartes around 1620:</p>
+<div class="num_defn" id="EulerCharOfSurface">
+<h6 id="definitionproposition_2">Definition/Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a convex <a class="existingWikiWord" href="../../../../../1/7/0/5/5071/content.html">polyhedron</a>. Then its Euler characteristic is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mi>Vertices</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><mi>Edges</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>+</mo><mo stretchy="false">|</mo><mi>Faces</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mi>ℤ</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \chi(X)
+  \;\coloneqq\; 
+   \vert Vertices(X)\vert 
+   - 
+   \vert Edges(X)\vert
+    + 
+   \vert Faces(X)\vert
+  \;\in\;
+  \mathbb{Z}
+  \,,
+
+</annotation></semantics></math></div>
+<p>hence the number of <a class="existingWikiWord" href="../../../../../0/6/7/8/8760/content.html">vertices</a> minus the number of <a class="existingWikiWord" href="../../../../../1/6/7/8/8761/content.html">edges</a> plus the number of <a class="existingWikiWord" href="../../../../../1/4/9/8/18941/content.html">faces</a> in the polyhedron.</p>
+</div>
+<p>In particular if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> may be embedded into the <a class="existingWikiWord" href="../../../../../1/5/4/7/27451/content.html">2-sphere</a>, this means that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>=</mo><mo stretchy="false">|</mo><mi>Vertices</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><mi>Edges</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>+</mo><mo stretchy="false">|</mo><mi>Faces</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  2 = \vert Vertices(X)\vert - \vert Edges(X)\vert + 
+   \vert Faces(X)\vert
+  \,.
+
+</annotation></semantics></math></div>
+<p>By removing one point from the 2-sphere not contained in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, the result may be thought of as a <a class="existingWikiWord" href="../../../../../8/4/3/8/18348/content.html">planar graph</a>. This has one <a class="existingWikiWord" href="../../../../../1/4/9/8/18941/content.html">face</a> less than <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> had (the one containing the point which was removed). Hence</p>
+<div class="num_cor" id="EulerFormulaForPlanarGraphs">
+<h6 id="corollary">Corollary</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../3/0/6/8/18603/content.html">Euler formula for planar graphs</a>)</strong></p>
+<p>For a planar <a class="existingWikiWord" href="../../../../../4/8/1/2/2184/content.html">graph</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>=</mo><mo stretchy="false">|</mo><mi>Vertices</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><mi>Edges</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mo>+</mo><mo stretchy="false">|</mo><mi>Faces</mi><mo stretchy="false">(</mo><mi>Γ</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  1 = \vert Vertices(\Gamma)\vert - \vert Edges(\Gamma)\vert + 
+   \vert Faces(\Gamma)\vert
+  \,.
+
+</annotation></semantics></math></div></div>
+<h3 id="of_an_object_in_a_symmetric_monoidal_category">Of an object in a symmetric monoidal category</h3>
+<p>All the definitions considered so far can be subsumed by the following general abstract one.</p>
+<div class="num_defn" id="EulerCharInSymMonCat">
+<h6 id="definition_4">Definition</h6>
+<p>The Euler characteristic of a <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dualizable object</a> in a <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a> is its categorical <a class="existingWikiWord" href="../../../../8/7/4/4787/content.html">dimension</a>: the <a class="existingWikiWord" href="../../../../../1/2/6/0/621/content.html">trace</a> of its <a class="existingWikiWord" href="../../../../1/4/8/18417/content.html">identity</a> <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a>.</p>
+</div>
+<p>Explicitly, this means the Euler characteristic of an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mover><mo>→</mo><mi>η</mi></mover><mi>X</mi><mo>⊗</mo><msup><mi>X</mi> <mo>*</mo></msup><mover><mo>→</mo><mo>≅</mo></mover><msup><mi>X</mi> <mo>*</mo></msup><mo>⊗</mo><mi>X</mi><mover><mo>→</mo><mi>ε</mi></mover><mi>S</mi></mrow><annotation encoding="application/x-tex"> S \xrightarrow{\eta} X \otimes X^* \xrightarrow{\cong} X^* \otimes X \xrightarrow{\varepsilon} S </annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> are the <a class="existingWikiWord" href="../../../../1/7/4/4717/content.html">unit</a> and counit of the dual pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msup><mi>X</mi> <mo>*</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X,X^*)</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the unit object of the symmetric monoidal category. This subsumes the previous definitions as follows:</p>
+<ul>
+<li>
+<p>In the category of chain complexes over a ring <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, an object is dualizable if it is finitely generated overall, and projective in each degree. Its dual is then given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>X</mi> <mo>*</mo></msup><msub><mo stretchy="false">)</mo> <mi>n</mi></msub><mo>=</mo><msub><mi>Hom</mi> <mi>R</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>n</mi></mrow></msub><mo>,</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(X^*)_n = Hom_R(X_{-n},R)</annotation></semantics></math>. The unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi></mrow><annotation encoding="application/x-tex">\eta</annotation></semantics></math> picks out <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mi>x</mi><mo>⊗</mo><msup><mi>x</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">\sum x \otimes x^*</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x\}</annotation></semantics></math> encompasses a basis for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">X_n</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msup><mi>x</mi> <mo>*</mo></msup><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x^*\}</annotation></semantics></math> is the dual basis.</p>
+<p>The symmetry isomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>⊗</mo><mi>Y</mi><mover><mo>→</mo><mo>≅</mo></mover><mi>Y</mi><mo>⊗</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">X \otimes Y \xrightarrow{\cong} Y \otimes X</annotation></semantics></math> introduces a sign <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>⊗</mo><mi>y</mi><mo>↦</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mrow><mo stretchy="false">|</mo><mi>y</mi><mo stretchy="false">|</mo></mrow></msup><mi>y</mi><mo>⊗</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">x\otimes y \mapsto (-1)^{|y|} y\otimes x</annotation></semantics></math>, so that when we then evaluate, we get a contribution of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> of even degree and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math> for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> of odd degree. Thus we recover Def. <a class="maruku-ref" href="#EulerCharOfChainComplexPointset"></a>. Note that the unit object is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> itself in degree zero, so that we see <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi(X)</annotation></semantics></math> only as an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> (so, for instance, the Euler characteristic in this sense of a rank-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> free <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ℤ</mi><mo stretchy="false">/</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbb{Z}/p)</annotation></semantics></math>-module is zero.</p>
+</li>
+<li>
+<p>In the <a class="existingWikiWord" href="../../../../../0/7/0/1/1070/content.html">derived category</a> of chain complexes over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, an object is dualizable if it is quasi-isomorphic to one of the form above. A similar argument shows that its Euler characteristic is then computed as in Def. <a class="maruku-ref" href="#EulerCharOfChainComplex"></a>.</p>
+</li>
+</ul>
+<p>The Euler characteristic of a topological space or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid can also be defined <em>directly</em> with this approach, without a detour into homology. Namely, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is any <span class="newWikiWord">Euclidean Neighborhood Retract<a href="/nlab/new/Euclidean+Neighborhood+Retract">?</a></span>, such as a finite <a class="existingWikiWord" href="../../../../../4/8/3/0/384/content.html">CW complex</a> or a <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a>, then its <a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectrum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Σ</mi> <mo>+</mo> <mn>∞</mn></msubsup><mi>X</mi></mrow><annotation encoding="application/x-tex">\Sigma_+^\infty X</annotation></semantics></math> is dualizable in the <a class="existingWikiWord" href="../../../../../9/5/3/2/2359/content.html">stable homotopy category</a>. Its dual is the <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> of its stable <a class="existingWikiWord" href="../../../../../5/1/9/3/3915/content.html">normal bundle</a>, with the unit of the duality being the <a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Thom collapse map</a>. Its categorical Euler characteristic is then an endomorphism of the sphere spectrum, which can be identified with an integer (via <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>π</mi> <mn>0</mn> <mi>s</mi></msubsup><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\pi_0^s(S) = \mathbb{Z}</annotation></semantics></math>). See around <a href="#DoldPuppe">DoldPuppe, corollary 4.6</a>).</p>
+<p>Since the categorical definition is purely in terms of the symmetric monoidal structure, Euler characteristics are preserved by any <a class="existingWikiWord" href="../../../../1/1/5/5117/content.html">symmetric monoidal functor</a> (as long as enough of its structure maps are isomorphisms). Since chains and homology can be made into symmetric monoidal functors, it follows that all the ways of defining the Euler characteristic of a space agree.</p>
+<p>See (<a href="#PontoShulman">PontoShulman</a>) and the discussion at <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> for more on this.</p>
+<h3 id="HomotopyCardinality">Homotopy cardinality (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid cardinality)</h3>
+<p>The <a href="../../../../../../../missing.html">above</a> Euler characteristic of a topological space is the alternating <em>sum</em> over sizes of <em>homology</em> groups. Similar in construction is the alternating <em>product</em> of sizes of <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy groups</a>. This goes by the name <em><a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">∞-groupoid cardinality</a></em> or <em><a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">homotopy cardinality</a></em> . But <a href="../../../../../../../missing.html">below</a> we shall see that Euler characteristic of higher categories interpolates between this homotopical and the above homological notion.</p>
+<div class="num_defn" id="EulerCharOfSpaceHomotopically">
+<h6 id="definition_5">Definition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> / <a class="existingWikiWord" href="../../../../../1/0/8/0/801/content.html">homotopy type</a> / <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a>, its <strong><a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">homotopy cardinality</a></strong> or <strong><a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">∞-groupoid cardinality</a></strong> is – if it exists – the <a class="existingWikiWord" href="../../../../../2/9/9/2/2992/content.html">rational number</a> given by the alternating product of <a class="existingWikiWord" href="../../../../../5/8/1/1/1185/content.html">cardinalities</a> of <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy groups</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>χ</mi> <mi>homotop</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo><mo>∈</mo><msub><mi>π</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></munder><munderover><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow> <mn>∞</mn></munderover><mo stretchy="false">(</mo><mo stretchy="false">|</mo><msub><mi>π</mi> <mi>k</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><msup><mo stretchy="false">)</mo> <mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>k</mi></msup></mrow></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi_{homotop}(X) 
+  \;\coloneqq\;
+  \sum_{[x] \in \pi_0(X)}
+    \prod_{k =1}^\infty (|\pi_k(X,x)|)^{(-1)^k}
+  \,.
+
+</annotation></semantics></math></div></div>
+<h3 id="of_posets_groupoids_and_categories">Of posets, groupoids and categories</h3>
+<p>The process of sending a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> to its <a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization of categories</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo></mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">{\vert C \vert} \in </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≃</mo></mrow><annotation encoding="application/x-tex">\simeq</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a> is a way to <em>present</em> <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>, and hence <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoids</a>, by a category: we can think of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">\vert C \vert</annotation></semantics></math> as the <a class="existingWikiWord" href="../../../../../0/5/9/1/1950/content.html">Kan fibrant replacement</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>: the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal solution</a> to <a class="existingWikiWord" href="../../../../../3/4/7/1/1743/content.html">weakly inverting</a> all <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<p>Up to the relevant notion of <a class="existingWikiWord" href="../../../../../8/2/7/3/3728/content.html">equivalence in an (infinity,1)-category</a> (which is <a class="existingWikiWord" href="../../../../../8/3/9/0/938/content.html">weak homotopy equivalence</a>), <em>every</em> <a class="existingWikiWord" href="../../../../../8/5/1/0/158/content.html">∞-groupoid</a> arises as the <a class="existingWikiWord" href="../../../../../4/4/4/0/444/content.html">nerve</a>/<a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization</a> of a category. In fact one can assume the category to be a <a class="existingWikiWord" href="../../../../6/8/0/867/content.html">poset</a>. (This follows from the existence of the <a class="existingWikiWord" href="../../../../../6/5/0/1/1056/content.html">Thomason model structure</a>, as discussed in more detail there.)</p>
+<p>Since the combinatorial data in a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> and all the more in a <a class="existingWikiWord" href="../../../../6/8/0/867/content.html">poset</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is much smaller than in that of its <a class="existingWikiWord" href="../../../../../0/5/9/1/1950/content.html">Kan fibrant replacement</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">\vert C \vert</annotation></semantics></math>, it is of interest to ask if one can read off the Euler characteristic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi(\vert C \vert)</annotation></semantics></math> already from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> itself. This is indeed the case:</p>
+<h4 id="LECharOfCategory">Of finite categories</h4>
+<div class="num_defn" id="EulerCharOfCat">
+<h6 id="definition_6">Definition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a finite <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a>. A <strong>weighting</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi> <mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></msup><mo lspace="verythinmathspace">:</mo><mi>ob</mi><mi>C</mi><mo>→</mo><mi>ℚ</mi></mrow><annotation encoding="application/x-tex">
+ k^{(-)} \colon ob C \to \mathbb{Q}
+
+</annotation></semantics></math></div>
+<p>satsifying</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>a</mi><mo>∈</mo><mi>ob</mi><mi>C</mi><mspace width="thickmathspace"></mspace><mo>:</mo><mspace width="thickmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>∈</mo><mi>ob</mi><mi>C</mi></mrow></munder><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><msup><mi>k</mi> <mi>b</mi></msup><mo>=</mo><mn>1</mn><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \forall a \in ob C \;:\; \sum_{b \in ob C} \vert C(a,b) \vert k^b
+  = 1
+  \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo></mrow><annotation encoding="application/x-tex">\vert C(a,b)\vert</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../5/8/1/1/1185/content.html">cardinality</a> of the <a class="existingWikiWord" href="../../../../../5/8/2/0/285/content.html">hom-set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C(a,b)</annotation></semantics></math>. A <strong>coweighting</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is a weighting on the <a class="existingWikiWord" href="../../../../../5/2/3/0/325/content.html">opposite category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">C^{op}</annotation></semantics></math>.</p>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> admits both a weighting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msup><mi>k</mi> <mi>a</mi></msup><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{k^a\}</annotation></semantics></math> and a coweighting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>k</mi> <mi>a</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{k_a\}</annotation></semantics></math>, then its <strong>Euler characteristic</strong> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>∈</mo><mi>ob</mi><mi>C</mi></mrow></munder><msup><mi>k</mi> <mi>a</mi></msup><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>a</mi><mo>∈</mo><mi>ob</mi><mi>C</mi></mrow></munder><msub><mi>k</mi> <mi>a</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>∈</mo><mi>ℚ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(C) := \sum_{a \in ob C} k^a = \sum_{a \in ob C} k_a
+  \;\;\;
+  \in \mathbb{Q}
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>The definition of Euler characteristic of <a class="existingWikiWord" href="../../../../6/8/0/867/content.html">posets</a> appears for instance in (<a href="#Rota">Rota</a>). For <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoids</a> it has been amplified in <a href="#BaezDolan">BaezDolan</a>. The joint generalization to categories is due to (<a href="#Leinster">Leinster</a>), where the above appears as def. 2.2.</p>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>Notice that this <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi(C)</annotation></semantics></math> is in general not an <a class="existingWikiWord" href="../../../../../0/1/9/3/3910/content.html">integer</a>, but a <a class="existingWikiWord" href="../../../../../2/9/9/2/2992/content.html">rational number</a>. However in sufficiently well-behaved cases, discussed <a href="../../../../../../../missing.html">below</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi(C)</annotation></semantics></math> coincides with the topological Euler characteristic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi(\vert C \vert)</annotation></semantics></math> of its <a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization</a>. Since that is integral, in these cases also <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi(C)</annotation></semantics></math> is.</p>
+</div>
+<h4 id="LECharOfEnrichedCat">Of enriched and higher categories</h4>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math> be an good enrichment category (for instance a <a class="existingWikiWord" href="../../../../../2/1/8/1/1812/content.html">cosmos</a>) which itself comes equipped with a good notion of cardinality, in the form of a monoidal functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><mo>:</mo><mi>V</mi><mo>→</mo><mi>ℝ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  |-| : V \to \mathbb{R}
+  \,.
+
+</annotation></semantics></math></div>
+<p>Then the above formula for the Euler characteristic of a category verbatim generalizes to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/2/0/232/content.html">enriched categories</a>. The ordinary case is recovered for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">V = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../1/5/9/0/951/content.html">FinSet</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><mo>:</mo><mi>FinSet</mi><mo>→</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">|-| : FinSet \to \mathbb{R}</annotation></semantics></math> the ordinary <a class="existingWikiWord" href="../../../../../5/8/1/1/1185/content.html">cardinality</a> operation.</p>
+<p>Since <a class="existingWikiWord" href="../../../../../3/3/5/0/533/content.html">strict infinity-categories</a> can be understood as arising from iterative enrichment</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mn>2</mn><mi>Cat</mi><mo>≃</mo><mi>Cat</mi><mo>−</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">
+  Str2Cat \simeq Cat-Cat
+
+</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mn>3</mn><mi>Cat</mi><mo>≃</mo><mi>Str</mi><mn>2</mn><mi>Cat</mi><mo>−</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">
+  Str3Cat \simeq Str2Cat-Cat
+
+</annotation></semantics></math></div>
+<p>etc, this gives a notion of Euler characteristic of strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-categories, hence in particular of <a class="existingWikiWord" href="../../../../../9/0/4/0/409/content.html">strict infinity-groupoids</a>.</p>
+<p>One should be able to show that applied to strict <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids this does reproduce <a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">homotopy cardinality</a>.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="UnderHomotopyColimits">Compatibility with homotopy colimits</h3>
+<p>Euler characteristic behaves well with respect to the basic operations in <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a>.</p>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>In a <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal</a> <a class="existingWikiWord" href="../../../../../6/7/0/1/1076/content.html">triangulated category</a> with <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dualizable objects</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X, Y, Z</annotation></semantics></math>, if</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Z</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>W</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    Z &amp;\to&amp; Y
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    X &amp;\to&amp; W
+  }
+
+</annotation></semantics></math></div>
+<p>is a <a class="existingWikiWord" href="../../../../../2/2/1/5/25122/content.html">homotopy pushout</a>, then the <a href="../../../../../../../missing.html">tractial Euler characteristic</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> exists and is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>+</mo><mi>χ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>−</mo><mi>χ</mi><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(W) = \chi(X) + \chi(Y) - \chi(Z)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is due to (<a href="#May">May, 1991</a>).</p>
+<h3 id="RelationBetweenDefinitions">Relations between the various definitions</h3>
+<p>The following propositions assert that and how the various definitions of Euler characteristics all suitably agree when thez jointly apply.</p>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>T</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_T(X)</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../6/8/0/867/content.html">poset</a> of inclusions of <a class="existingWikiWord" href="../../../../../1/2/4/0/421/content.html">simplices</a> of a <a class="existingWikiWord" href="../../../../../2/1/8/3/3812/content.html">triangulation</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. Then the poset Euler characteristic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>T</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_T(X)</annotation></semantics></math> coincides with the Euler characteristic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> as a topological space</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>χ</mi><mo stretchy="false">(</mo><msub><mi>P</mi> <mi>T</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(X) = \chi(P_T(X))
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This appears as (<a href="#Stanley">Stanley, 3.8</a>).</p>
+<p>The following proposition asserts that the definition <a class="maruku-ref" href="#EulerCharOfCat"></a> of Euler characteristic of a category is indeed consistent, in that it does compute the Euler characteristic, def. <a class="maruku-ref" href="#EulerCharOfTopSpace"></a> of the corresponding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid:</p>
+<div class="num_prop" id="PosteEulerCharGiveSpaceCharUnderRealization">
+<h6 id="proposition_3">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> be a finite <a class="existingWikiWord" href="../../../../6/8/0/867/content.html">poset</a> or, slightly more generally, a finite <a class="existingWikiWord" href="../../7/27807/content.html">skeletal</a> <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> with no nontrivial <a class="existingWikiWord" href="../../../../../6/5/2/0/256/content.html">endomorphisms</a>.</p>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo><mo>∈</mo></mrow><annotation encoding="application/x-tex">\vert C \vert \in </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≃</mo></mrow><annotation encoding="application/x-tex">\simeq</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../6/4/0/1/1046/content.html">∞Grpd</a> for its <a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization</a>. Then</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>=</mo><mi>χ</mi><mo stretchy="false">(</mo><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(C) = \chi(\vert C \vert)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>For posets this is due to Philipp Hall, appearing as ([Stanley, prop. 3.8.5]). For finite categories this is (<a href="#Leinster">Leinster, cor. 1.5, prop. 2.11</a>).</p>
+<div class="num_prop">
+<h6 id="proposition_4">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifold</a>, regard its <a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectrum</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>∞</mn></msup><mi>X</mi><mo>∈</mo><mi>Ho</mi><mo stretchy="false">(</mo><mi>Spec</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \Sigma^\infty X \in Ho(Spec)
+
+</annotation></semantics></math></div>
+<p>as an object in the <a class="existingWikiWord" href="../../../../../9/5/3/2/2359/content.html">stable homotopy category</a>. Then its Euler characteristic as an object of a <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a>, def. <a class="maruku-ref" href="#EulerCharInSymMonCat"></a> coincides with its topological Euler characteristic, def. <a class="maruku-ref" href="#EulerCharOfTopSpace"></a>.</p>
+</div>
+<p>This is due to … (?)</p>
+<div class="query">
+<p><a class="existingWikiWord" href="../../../../4/2/0/247/content.html">Mike</a>: Can the Euler characteristic of a category be recovered as the trace for a dualizable object in some symmetric monoidal category?</p>
+</div>
+<h3 id="relation_between_euler_characteristic_and_groupoid_cardinality">Relation between Euler characteristic and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid cardinality</h3>
+<p>For topological space / <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoids, there is both the notion of <a href="#OfATopologicalSpace">homological Euler characteristic</a> as well as the notion of <a href="#HomotopyCardinality">homotopy cardinality</a>.</p>
+<p>The latter looks a bit like the “exponential” of the former, so while similar to some extent they are very different notions, taken on face value. Still, the <a href="../../../../../../../missing.html">Euler characteristic of a category</a> or rather that <a href="../../../../../../../missing.html">of a higher category</a> does interpolate between the two notions:</p>
+<div class="num_prop" id="ReproducingGroupoidCardinality">
+<h6 id="proposition_5">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> a finite <a class="existingWikiWord" href="../../../../../8/2/0/0/28/content.html">groupoid</a>, its Euler characteristic as a category, def. <a class="maruku-ref" href="#EulerCharOfCat"></a>, coincides with its homotopical Euler characteristic, def. <a class="maruku-ref" href="#EulerCharOfSpaceHomotopically"></a> or <a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">groupoid cardinality</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>χ</mi> <mi>homotop</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \chi(C) = \chi_{homotop}(C)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This is noted in (<a href="#Leinster">Leinster, example 2.7</a>).</p>
+<div class="num_example">
+<h6 id="example">Example</h6>
+<p>For instance for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../1/4/7/0/741/content.html">finite group</a> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>G</mi><mo>≃</mo><mi>K</mi><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo><mo>∈</mo></mrow><annotation encoding="application/x-tex">B G \simeq K(G,1) \in </annotation></semantics></math> <a class="existingWikiWord" href="../../../../6/5/3/3567/content.html">Ho(Top)</a> be its <a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a>. This is the <a class="existingWikiWord" href="../../../../../0/0/1/6/6100/content.html">geometric realization</a> both of the one-object groupoids <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo stretchy="false">/</mo><mo stretchy="false">/</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">*//G</annotation></semantics></math> as well as of some finite <a class="existingWikiWord" href="../../../../6/8/0/867/content.html">poset</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>G</mi><mo>≃</mo><mo stretchy="false">|</mo><mo>*</mo><mo stretchy="false">/</mo><mo stretchy="false">/</mo><mi>G</mi><mo stretchy="false">|</mo><mo>≃</mo><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  B G \simeq |*//G| \simeq |C|
+  \,.
+
+</annotation></semantics></math></div>
+<p>By prop. <a class="maruku-ref" href="#PosteEulerCharGiveSpaceCharUnderRealization"></a> we have that the categorical Euler characteristic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> is the topological Euler characteristic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">B G</annotation></semantics></math>. But by prop. <a class="maruku-ref" href="#ReproducingGroupoidCardinality"></a> we have that the categorical Euler characteristic of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo stretchy="false">/</mo><mo stretchy="false">/</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">*//G</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">homotopy cardinality</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">B G</annotation></semantics></math>.</p>
+</div>
+<p>Typically for one and the same <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid, Eucler characteristic and homotopy cardinality are never both well defined: if the series for one converges, that for the other does not.</p>
+<p>However, by applying some standard apparent “tricks” on non-convergent series, often these can be made sense of after all, and then do agree with the other notion. For more on this see (<a href="#Baez05">Baez05</a>).</p>
+<h3 id="basic_relations_for_euler_characteristics_of_topological_spaces">Basic relations for Euler characteristics of topological spaces</h3>
+<p>
+<div class="num_prop" id="PoincareHopfTheorem">
+<h6>Proposition</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../6/1/2/0/20216/content.html">Poincaré–Hopf theorem</a>)</strong> <br/> (…)</p>
+</div>
+</p>
+<p>
+<div class="num_prop" id="EulerCharacteristicOfSpheres">
+<h6>Proposition</h6>
+<p><strong>(Euler characteristic of spheres)</strong> <br/> The Euler characteristic of an even dimensional sphere is 2, that of an odd dimensional sphere vanishes:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><msup><mi>S</mi> <mi>n</mi></msup><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mn>2</mn></mtd> <mtd><mo stretchy="false">|</mo></mtd> <mtd><mi>n</mi><mspace width="thinmathspace"></mspace><mtext>is even</mtext></mtd></mtr> <mtr><mtd><mn>0</mn></mtd> <mtd><mo stretchy="false">|</mo></mtd> <mtd><mtext>otherwise</mtext></mtd></mtr></mtable></mrow></mrow></mrow><annotation encoding="application/x-tex">
+  \chi(S^{n})
+  \;=\;
+  \left\{
+  \array{
+    2 &amp;\vert&amp; n \, \text{is even}
+    \\
+    0 &amp;\vert&amp; \text{otherwise}
+  }
+  \right.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+ (e.g. <a href="#Libgober">Libgober, p. 16</a>)</p>
+<p>
+<div class="num_prop" id="EulerCharacteristicOfCoveringSpaces">
+<h6>Proposition</h6>
+<p><strong>(Euler characteristic of covering spaces)</strong> <br/> If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mover><mo>→</mo><mi>q</mi></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \xrightarrow{q} Y</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../8/5/1/1587/content.html">covering space</a> over a <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../0/0/7/8/8700/content.html">degree</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>deg</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">deg(q) \in \mathbb{N}</annotation></semantics></math> (and the <a class="existingWikiWord" href="../../../../../2/0/3/8/8302/content.html">ordinary homology</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> is finitely generated) then the <a class="existingWikiWord" href="content.html">Euler characteristic</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>deg</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">deg(q)</annotation></semantics></math> times that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mi>ord</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>χ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+ \chi(X) \,=\, ord(G) \cdot \chi(Y)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+ (e.g. topospaces <a href="https://topospaces.subwiki.org/wiki/Euler_characteristic_of_covering_space_is_product_of_degree_of_covering_and_Euler_characteristic_of_base">here</a>)</p>
+<p>
+<div class="num_prop" id="EulerCharacteristicOfConnectedSums">
+<h6>Proposition</h6>
+<p><strong>(<a class="existingWikiWord" href="content.html">Euler characteristic</a> of <a class="existingWikiWord" href="../../../../../9/9/3/8/18399/content.html">connected sums</a>)</strong> <br/> Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> be <a class="existingWikiWord" href="../../../../../3/1/7/8/8713/content.html">closed manifolds</a> (<a class="existingWikiWord" href="../../../../../4/8/6/4/4684/content.html">topological</a> or <a class="existingWikiWord" href="../../../../../4/2/7/4/4724/content.html">differentiable</a>) of <a class="existingWikiWord" href="../../../../../0/2/5/8/18520/content.html">even</a> <a class="existingWikiWord" href="../../../../8/7/4/4787/content.html">dimension</a>. Then the <a class="existingWikiWord" href="content.html">Euler characteristic</a> of their <a class="existingWikiWord" href="../../../../../9/9/3/8/18399/content.html">connected sum</a> is the <a class="existingWikiWord" href="../../../../../6/3/7/8/8736/content.html">sum</a> of their separate <a class="existingWikiWord" href="content.html">Euler characteristics</a>, minus 2:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>X</mi><mo>♯</mo><mi>Y</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>χ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>X</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>+</mo><mi>χ</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Y</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">
+  \chi
+  \big(
+    X \sharp Y 
+  \big)
+  \;=\;
+  \chi
+  \big(X\big)
+  +
+  \chi
+  \big(Y\big)
+  -2
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+ (e.g. <a href="http://math.ucr.edu/~res/miscpapers/csums+echars.pdf">here</a>)</p>
+<h3 id="gaussbonnet_theorem">Gauss-Bonnet theorem</h3>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> an even-<a class="existingWikiWord" href="../../../../8/7/4/4787/content.html">dimension</a>al <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a>, its Euler characteristic may also be given by <a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integration</a> of <a class="existingWikiWord" href="../../../../../4/6/1/2/2164/content.html">infinitesimal</a> data: this is the statement of the higher dimensional <a class="existingWikiWord" href="../../../../../0/2/1/6/6120/content.html">Gauss-Bonnet theorem</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/4/6/26408/content.html">magnitude of an enriched category</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/4/5/6/6542/content.html">Euler class</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/3/4/1/11434/content.html">orbifold Euler characteristic</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/5/4/1/11455/content.html">arithmetic genus</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/2/0/20220/content.html">C-field tadpole cancellation</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>On <span class="newWikiWord">Leonard Euler<a href="/nlab/new/Leonard+Euler">?</a></span>‘s original formula for <a class="existingWikiWord" href="../../../../../1/7/0/5/5071/content.html">polyhedra</a>:</p>
+<ul>
+<li id="CBG08"><a class="existingWikiWord" href="../../../../../4/1/3/5/5314/content.html">John H. Conway</a>, <a class="existingWikiWord" href="../../../../../2/4/8/7/27842/content.html">Heidi Burgiel</a>, <a class="existingWikiWord" href="../../../../../3/4/8/7/27843/content.html">Chaim Goodman-Strauss</a>: <em>Euler’s Map Theorem</em>, chapter 7 of: <em>The Symmetries of Things</em>, CRC Press (2008) [<a href="https://www.routledge.com/The-Symmetries-of-Things/Conway-Burgiel-Goodman-Strauss/p/book/9781568812205">ISBN:9781568812205</a>]</li>
+</ul>
+<p>General review:</p>
+<ul>
+<li id="Libgober">Jonathan Libgober: <em>The Euler characteristic, Poincaré–Hopf theorem, and applications</em> [<a href="http://www.math.uchicago.edu/~may/VIGRE/VIGRE2010/REUPapers/Libgober.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Libgober_EulerCharacteristic.pdf" title="pdf">pdf</a>]</li>
+</ul>
+<p>Textbook account:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/1/4/3/3418/content.html">Edwin Spanier</a>, p. 156 onwards in: <em>Algebraic topology</em>, McGraw-Hill (1966)</li>
+</ul>
+<p>Proof that the Euler characteristic is (up to the overall multiplicative factor) the only additive homotopy invariant of a <a class="existingWikiWord" href="../../../../../8/2/7/0/10728/content.html">finite CW complexes</a>:</p>
+<ul>
+<li>V. A. Efremovich, Yuli B. Rudyak, <em>On the concept of the Euler characteristic</em>, Uspehi Mat. Nauk <strong>31</strong>:5(191) (1976), 239–240 <a href="http://www.ams.org/mathscinet-getitem?mr=458412">MR458412</a>, <a href="http://www.mathnet.ru/php/getFT.phtml?jrnid=rm&amp;paperid=3975&amp;volume=31&amp;year=1976&amp;issue=5&amp;fpage=239&amp;what=fullt">Russian pdf</a></li>
+</ul>
+<p>The description of Euler characteristics are categorical <a class="existingWikiWord" href="../../../../../1/2/6/0/621/content.html">traces</a> in <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal categories</a> is discussed in section 4 of</p>
+<ul>
+<li id="DoldPuppe"><a class="existingWikiWord" href="../../../../../3/3/1/6/6133/content.html">Albrecht Dold</a>, <a class="existingWikiWord" href="../../../../../4/3/1/6/6134/content.html">Dieter Puppe</a>, <em>Duality, trace and transfer</em> , Proceedings of the Steklov Institute of Mathematics, (1984), issue 4</li>
+</ul>
+<p>Behaviour of tracial Euler characteristic under <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimits</a> is discussed in</p>
+<ul>
+<li id="May"><a class="existingWikiWord" href="../../../../1/5/0/517/content.html">Peter May</a>, <em>The additivity of traces in triangulated categories</em> K-theory (1991) (<a href="http://www.math.uiuc.edu/K-theory/0474/">website</a>)</li>
+</ul>
+<p>Textbooks on combinatorial aspects of Euler characteristic include</p>
+<ul>
+<li id="Stanley">
+<p>Richard P. Stanley, <em>Enumerative Combinatorics</em> , Vol. I, Cambridge Studies in Advanced Mathematics 49, Cambridge University Press, corrected reprint (1997)</p>
+</li>
+<li id="Rota">
+<p><a class="existingWikiWord" href="../../../../../8/7/7/4/4778/content.html">Gian-Carlo Rota</a>, <em>On the foundations of combinatorial theory I: theory of Möbius functions</em> , Z. Wahrscheinlichkeitstheorie und Verw. Gebiete 2 (1964), 340–368.</p>
+</li>
+</ul>
+<p>The Euler characteristic of a smooth manifold as its <a class="existingWikiWord" href="../../../../8/7/4/4787/content.html">dimension</a> in the <a class="existingWikiWord" href="../../../../../9/5/3/2/2359/content.html">stable homotopy category</a> is discussed in example 3.7 of</p>
+<ul>
+<li id="PontoShulman"><a class="existingWikiWord" href="../../../../../5/3/1/6/6135/content.html">Kate Ponto</a>, <a class="existingWikiWord" href="../../../../4/2/0/247/content.html">Mike Shulman</a>, <em>Traces in symmetric monoidal categories</em> (<a href="http://www.sandiego.edu/~shulman/papers/traces_sym.pdf">pdf</a>, <a href="http://www.sandiego.edu/~shulman/papers/ccrtraces.pdf">slides</a>).</li>
+</ul>
+<p>See <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> for more on this</p>
+<p>The Euler characteristic of groupoids – <a class="existingWikiWord" href="../../../../../5/9/0/0/95/content.html">groupoid cardinality</a> – has been amplified in</p>
+<ul>
+<li id="BaezDolan"><a class="existingWikiWord" href="../../../../../1/3/0/0/31/content.html">John Baez</a>, <a class="existingWikiWord" href="../../../../../2/0/3/0/302/content.html">James Dolan</a>, <em>From Finite Sets to Feynman Diagrams</em> (<a href="http://arxiv.org/abs/math.QA/0004133">arXiv</a>)</li>
+</ul>
+<p>An exposition with an eye towards the relation between Euler characteristic and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-groupoid cardinality is in</p>
+<ul id="Baez05">
+<li><a class="existingWikiWord" href="../../../../../1/3/0/0/31/content.html">John Baez</a>, <em>The mysteries of counting: Euler characteristic versus homotopy cardinality</em> (<a href="http://math.ucr.edu/home/baez/counting/">web</a>) Lecture notes (2005)</li>
+</ul>
+<p>A treatment of this relation using <a class="existingWikiWord" href="../../../../../5/2/4/7/7425/content.html">Morava K-theories</a> is in</p>
+<ul>
+<li>Lior Yanovski, <em>Homotopy Cardinality via Extrapolation of Morava-Euler Characteristics</em> (<a href="https://arxiv.org/abs/2303.02603">arXiv:2303.02603</a>)</li>
+</ul>
+<p>The role of homotopy cardinality in <a class="existingWikiWord" href="../../../../../4/0/1/2/2104/content.html">quantization</a> is touched on towards the end of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/9/2/2954/content.html">Daniel Freed</a>, <a class="existingWikiWord" href="../../../../../5/4/1/3/3145/content.html">Mike Hopkins</a>, <a class="existingWikiWord" href="../../../../../2/1/6/0/612/content.html">Jacob Lurie</a>, <a class="existingWikiWord" href="../../../../../6/8/3/2/2386/content.html">Constantin Teleman</a>, <em><a class="existingWikiWord" href="../../../../../9/6/3/3/3369/content.html">Topological Quantum Field Theories from Compact Lie Groups</a></em></li>
+</ul>
+<p>The generalization of the definition of Euler characteristic from posets to categories is due to</p>
+<ul>
+<li>
+<p id="Leinster"><a class="existingWikiWord" href="../../../../../1/1/0/0/11/content.html">Tom Leinster</a>, <em>The Euler characteristic of a category</em> (<a href="http://arxiv.org/abs/math/0610260">arXiv:0610260</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/0/0/11/content.html">Tom Leinster</a>, <em>The Euler characteristic of a category as a sum of a divergent series</em> (<a href="http://arxiv.org/abs/0707.0835">arXiv:0707.0835</a>)</p>
+</li>
+</ul>
+<p>The compatibility of Euler characteristic of categories with <a class="existingWikiWord" href="../../../../../3/8/6/0/683/content.html">homotopy colimits</a> is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../6/6/3/4/4366/content.html">Thomas M. Fiore</a>, <a class="existingWikiWord" href="../../../../../6/1/2/0/10216/content.html">Wolfgang Lück</a>, <a class="existingWikiWord" href="../../../../../6/3/3/6/26336/content.html">Roman Sauer</a>, <em>Euler Characteristics of Categories and Homotopy Colimits</em> [<a href="http://arxiv.org/abs/1007.3868">arXiv:1007.3868</a>]</li>
+</ul>
+<p>More on Euler characteristics of categories is in</p>
+<ul>
+<li>Kazunori Noguchi, <em>The Euler characteristic of infinite acyclic categories with filtrations</em>, <a href="http://arxiv.org/abs/1004.2547">arxiv/1004.2547</a></li>
+</ul>
+<p>On “Negative sets” and Euler characteristic:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/7/3/1/1370/content.html">André Joyal</a>, <em>Regle des signes en algebre combinatoire</em> , Comptes Rendus Mathematiques de l’Academie des Sciences, La Societe Royale du Canada VII (1985), 285-290.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/0/1/11026/content.html">Steve Schanuel</a>, <em>Negative sets have Euler characteristic and dimension</em> , Lecture Notes in Mathematics 1488, Springer Verlag, Berlin, 1991, pp. 379-385.</p>
+</li>
+<li>
+<p>Daniel Loeb, <em>Sets with a negative number of elements</em> , Adv. Math. 91 (1992), 64-74.</p>
+</li>
+</ul>
+<p>Resumming divergent Euler characteristics:</p>
+<ul>
+<li>
+<p>William J. Floyd, Steven P. Plotnick, <em>Growth functions on Fuchsian groups and the Euler characteristic</em> , Invent. Math. 88 (1987), 1-29.</p>
+</li>
+<li>
+<p>R. I. Grigorchuk, <em>Growth functions, rewriting systems and Euler characteristic</em> , Mat. Zametki 58 (1995), 653-668, 798.</p>
+</li>
+<li>
+<p>James Propp, <em>Exponentiation and Euler measure</em> , Algebra Universalis 49 (2003), 459-471. (<a href="http://arxiv.org/abs/math/0204009">arXiv:math.CO/0204009</a>).</p>
+</li>
+<li>
+<p>James Propp, <em>Euler measure as generalized cardinality</em> . (<a href="http://arxiv.org/abs/math/0203289">arXiv</a>).</p>
+</li>
+</ul>
+<p>Euler characteristics of tame spaces:</p>
+<ul>
+<li>Lou van den Dries, <em>Tame Topology and O-Minimal Structures</em> Cambridge U. Press, Cambridge, 1998. Chapter 4.2: Euler Characteristic.</li>
+</ul>
+<p>Euler characteristics of groups:</p>
+<ul>
+<li>
+<p>G. Harder, <em>A Gauss-Bonnet formula for discrete arithmetically defined groups</em> , Ann. Sci. Ecole Norm. Sup. 4 (1971), 409-455.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../7/7/3/3777/content.html">Jean-Pierre Serre</a>, <em>Cohomologie des groups discretes</em> , Ann. Math. Studies 70 (1971), 77-169.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/7/5/3/3571/content.html">Kenneth Brown</a>, <em>Euler characteristics, in Cohomology of Groups</em> , Graduate Texts in Mathematics 182, Springer, 1982, pp. 230-272.</p>
+</li>
+<li>
+<p>O. Y. Viro, <em>Some integral calculus based on Euler characteristic</em>, in Topology and Geometry – Rohlin Seminar, Springer Lec. Notes in Math. <strong>1346</strong>, 127–138 (1988) <a href="http://dx.doi.org/10.1007/BFb0082775">doi</a></p>
+</li>
+</ul>
+<p>Complex cardinalities:</p>
+<ul>
+<li>
+<p>Andreas Blass, <em>Seven trees in one</em> , Jour. Pure Appl. Alg. 103 (1995), 1-21. (<a href="http://www.math.lsa.umich.edu/~ablass/cat.html">web</a>)</p>
+</li>
+<li>
+<p>Robbie Gates, <em>On the generic solution to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">P(X) = X</annotation></semantics></math> in distributive categories</em> , Jour. Pure Appl. Alg. 125 (1998), 191-212.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/1/6/6122/content.html">Marcelo Fiore</a>, <a class="existingWikiWord" href="../../../../../1/1/0/0/11/content.html">Tom Leinster</a>, <em>An objective representation of the Gaussian integers</em> , Jour. Symb. Comp. 37 (2004), 707-716. (<a href="http://arxiv.org/abs/math/0211454">arXiv</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/1/6/6122/content.html">Marcelo Fiore</a>, <a class="existingWikiWord" href="../../../../../1/1/0/0/11/content.html">Tom Leinster</a>, <em>Objects of categories as complex numbers</em> , Adv. Math. 190 (2005), 264-277 (<a href="http://arxiv.org/abs/math/0212377">arXiv:0212377</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/1/6/6122/content.html">Marcelo Fiore</a>, <em>Isomorphisms of generic recursive polynomial types</em> , to appear in 31st Symposium on Principles of Programming Languages (POPL04). (<a href="http://www.cl.cam.ac.uk/~mpf23/papers/Types/recisos.ps.gz">ps</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/0/9/9008/content.html">C. T. C. Wall</a>, <em>Arithmetic invariants of subdivision of complexes</em>, Canad. J. Math. 18(1966), 92-96, <a href="http://dx.doi.org/10.4153/CJM-1966-012-9">doi</a>, <a href="http://cms.math.ca/cjm/v18/cjm1966v18.0092-0096.pdf">pdf</a></p>
+</li>
+</ul>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="bold"><mi>A</mi></mstyle> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">\mathbf{A}^1</annotation></semantics></math>-Euler characteristic</p>
+<ul>
+<li>Arcila-Maya, Niny; Bethea, Candace; Opie, Morgan; Wickelgren, Kirsten; Zakharevich, Inna, <em>Compactly supported <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝔸</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{A}^1</annotation></semantics></math>-Euler characteristic and the Hochschild complex</em>, Topology and its Applications <strong>316</strong> (2022) 108108 <a href="https://doi.org/10.1016/j.topol.2022.108108">doi</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

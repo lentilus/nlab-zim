@@ -1,0 +1,363 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      currying in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      currying
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definitions">Definitions</a></li>
+<ul>
+<li><a href="#in_set_theory">In set theory</a></li>
+<li><a href="#in_dependent_type_theory"> In dependent type theory</a></li>
+<li><a href="#in_lambda_calculus_and_cccs">In lambda calculus and CCCs</a></li>
+<li><a href="#in_general">In general</a></li>
+</ul>
+<li><a href="#currying_in_which_variables">Currying in which variable(s)?</a></li>
+<li><a href="#see_also"> See also</a></li>
+<li><a href="#references"> References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Currying is a process of transforming an operation on two variables into an operation on one variable that returns a function taking the second variable as an argument. The term is used in <a class="existingWikiWord" href="../../../../../7/3/7/1/1737/content.html">computer science</a> and the <a class="existingWikiWord" href="../../../../../8/9/9/5/5998/content.html">lambda calculus</a>, where it is often technically important to have operations that act on only one variable at a time. But <a class="existingWikiWord" href="../../../../1/0/0/19/content.html">category theory</a> also recognises it as a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> in a <a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed monoidal category</a>, namely the <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> of an <a class="existingWikiWord" href="../../../../../3/1/3/1/1313/content.html">exponential object</a>; thus it is also known as taking the <strong>exponential transpose</strong>.</p>
+<p>The <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">inverse</a> operation is, in the straightforward style of <a class="existingWikiWord" href="../../../../../7/3/7/1/1737/content.html">computer science</a>, called <strong>uncurrying</strong>.</p>
+<p>Currying is named after <a class="existingWikiWord" href="../../../../../5/1/4/8/18415/content.html">Haskell Curry</a>, in accordance with <a class="existingWikiWord" href="../../../../../0/1/1/4/4110/content.html">Stigler's law of eponymy</a>, since it was invented by <a class="existingWikiWord" href="../../../../../2/7/3/8/18372/content.html">Moses Schönfinkel</a>. (Perhaps Curry helped popularize the application to lambda calculus?)</p>
+<h2 id="definitions">Definitions</h2>
+<h3 id="in_set_theory">In set theory</h3>
+<p>In <a class="existingWikiWord" href="../../../../../5/1/0/1/1015/content.html">set theory</a>, currying transforms a <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a> defined on a <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">product set</a> to a function that takes values in a <a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a>. That is, starting with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo>→</mo><mi>Z</mi><mo>,</mo></mrow><annotation encoding="application/x-tex"> f\colon X \times Y \to Z ,</annotation></semantics></math></div>
+<p>we <strong>curry</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> to produce</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><msup><mi>Z</mi> <mi>Y</mi></msup></mrow><annotation encoding="application/x-tex"> \hat{f}\colon X \to Z ^ Y </annotation></semantics></math></div>
+<p>according to the formula</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>y</mi><mo>↦</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">\hat{f}(x) = (y \mapsto f(x, y)).</annotation></semantics></math></div>
+<p>This is simply applying the universal property of the <a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Z</mi> <mi>Y</mi></msup></mrow><annotation encoding="application/x-tex">Z^Y</annotation></semantics></math>.</p>
+<h3 id="in_dependent_type_theory"> In dependent type theory</h3>
+<p>In <a class="existingWikiWord" href="../../../../7/9/6/6979/content.html">dependent type theory</a>, currying transforms a family of elements defined on a <a class="existingWikiWord" href="../../../5/7/7509/content.html">dependent pair type</a> to a family of elements that takes values in a <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent function type</a>. That is, starting with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>:</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></munder><mi>Y</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>⊢</mo><mi>f</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>:</mo><mi>Z</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">z:\sum_{x:X} Y(x) \vdash f(z):Z(z)</annotation></semantics></math></div>
+<p>we <strong>curry</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> to produce</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>X</mi><mo>⊢</mo><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>:</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>y</mi><mo>:</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></munder><mi>Z</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x:X \vdash \hat{f}(x):\prod_{y:Y(x)} Z(x, y)</annotation></semantics></math></div>
+<p>according to the formula</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≔</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">\hat{f}(x) \coloneqq (\lambda y.f(x, y)).</annotation></semantics></math></div>
+<p>This is simply applying the universal property of the <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent function type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>y</mi><mo>:</mo><mi>Y</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></msub><mi>Z</mi><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\prod_{y:Y(x)} Z(x, y)</annotation></semantics></math>.</p>
+<h3 id="in_lambda_calculus_and_cccs">In lambda calculus and CCCs</h3>
+<p>Similarly, in <a class="existingWikiWord" href="../../../../../8/9/9/5/5998/content.html">lambda calculus</a>, currying is a device which reduces the study of functions in several arguments to functions in one argument. For example, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is a lambda term in which variables <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math> occur freely (so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is effectively a “function” of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math>), the lambda calculus syntax favors the currified expression <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\lambda x. \lambda y. \phi</annotation></semantics></math>, which denotes the intuitive expression <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>↦</mo><mo stretchy="false">(</mo><mi>y</mi><mo>↦</mo><mi>ϕ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \mapsto (y \mapsto \phi)</annotation></semantics></math>, where one abstracts variables one at a time.</p>
+<p>Later it was observed (by Lawvere) that this is just a special case of a more general “curryfication” for <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed categories</a> (such as <a class="existingWikiWord" href="../../../../../0/9/1/0/190/content.html">Cat</a> or a <a class="existingWikiWord" href="../../../../../6/3/0/1/1036/content.html">nice category of spaces</a>), where one has a natural bijection of morphisms:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>X</mi><mo>×</mo><mi>Y</mi><mo>→</mo><mi>Z</mi></mrow><mrow><mi>X</mi><mo>→</mo><msup><mi>Z</mi> <mi>Y</mi></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{X \times Y \to Z}{X \to Z^Y}</annotation></semantics></math></div>
+<p>Indeed, cartesian closed categories are models for lambda calculus.</p>
+<h3 id="in_general">In general</h3>
+<p>In fact, currying can be done in any (right) <a class="existingWikiWord" href="../../../../6/4/0/469/content.html">closed monoidal category</a>. In that case, currying transforms a <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> whose <a class="existingWikiWord" href="../../../../../3/1/1/0/113/content.html">source</a> is a <a class="existingWikiWord" href="../../../../3/2/0/239/content.html">tensor product</a> to a morphism whose <a class="existingWikiWord" href="../../../../../4/1/1/0/114/content.html">target</a> is an <a class="existingWikiWord" href="../../../../4/8/0/849/content.html">internal hom</a>. That is, starting with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>⊗</mo><mi>Y</mi><mo>→</mo><mi>Z</mi><mo>,</mo></mrow><annotation encoding="application/x-tex"> f\colon X \otimes Y \to Z ,</annotation></semantics></math></div>
+<p>we <strong>curry</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> to produce</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mo stretchy="false">[</mo><mi>Y</mi><mo>,</mo><mi>Z</mi><mo stretchy="false">]</mo><mo>.</mo></mrow><annotation encoding="application/x-tex"> \hat{f}\colon X \to [Y, Z] .</annotation></semantics></math></div>
+<p>Currying is invertible and natural in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X, Y, Z</annotation></semantics></math>; that is, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>↦</mo><mover><mi>f</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">f \mapsto \hat{f}</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a> (in any closed monoidal category).</p>
+<h2 id="currying_in_which_variables">Currying in which variable(s)?</h2>
+<p>By convention, currying is always done on the <em>last</em> variable. This fits in very nicely with a convention that products associate on the left while internal homs associate on the right. More explicitly, if we use (as is common in computer science) ‘<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math>’ for the product (even if it is not cartesian) and ‘<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>to</mi></mrow><annotation encoding="application/x-tex">to</annotation></semantics></math>’ for the internal hom (so that we must use another symbol, say ‘<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊢</mo></mrow><annotation encoding="application/x-tex">\vdash</annotation></semantics></math>’, for the external hom), then we need no parentheses to generalise currying</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo>⊢</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex"> f\colon X \times Y \vdash Z </annotation></semantics></math></div>
+<p>to produce</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>⊢</mo><mi>Y</mi><mo>→</mo><mi>Z</mi><mo>;</mo></mrow><annotation encoding="application/x-tex"> \hat{f}\colon X \vdash Y \to Z ;</annotation></semantics></math></div>
+<p>by currying several <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math> times in succession, we turn</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><msub><mi>X</mi> <mn>1</mn></msub><mo>×</mo><mi>⋯</mi><mo>×</mo><msub><mi>X</mi> <mi>n</mi></msub><mo>⊢</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex"> f\colon X_1 \times \cdots \times X_n \vdash Z </annotation></semantics></math></div>
+<p>into</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mover><mover><mi>f</mi><mo stretchy="false">^</mo></mover><mi>⋮</mi></mover><mo stretchy="false">^</mo></mover><mo lspace="verythinmathspace">:</mo><msub><mi>X</mi> <mn>1</mn></msub><mo>⊢</mo><msub><mi>X</mi> <mn>2</mn></msub><mo>→</mo><mi>⋯</mi><mo>→</mo><msub><mi>X</mi> <mi>n</mi></msub><mo>→</mo><mi>Z</mi><mo>.</mo></mrow><annotation encoding="application/x-tex"> \hat{\overset\vdots{\hat{f}}}\colon X_1 \vdash X_2 \to \cdots \to X_n \to Z .</annotation></semantics></math></div>
+<p>This does not generalise to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math>, which is one way to see that even the untyped lambda calculus actually has two objects, one of which is a <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> and one of which can play every other role.</p>
+<p>In a closed <a class="existingWikiWord" href="../../../../../5/4/2/0/245/content.html">braided monoidal category</a> (such as a closed <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric monoidal category</a>, and including the cartesian closed categories such as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math> and the models of lambda calculus), we can also ‘curry through the first variable’ or ‘co-curry’ to produce a map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">ˇ</mo></mover><mo lspace="verythinmathspace">:</mo><mi>Y</mi><mo>⊢</mo><mi>X</mi><mo>→</mo><mi>Z</mi><mo>,</mo></mrow><annotation encoding="application/x-tex"> \check{f}\colon Y \vdash X \to Z ,</annotation></semantics></math></div>
+<p>but computer scientists (or even mathematicians who are being very careful) will see this as a composite operation whose first step is <a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">composition</a> with the <a class="existingWikiWord" href="../../../../../7/2/9/3/3927/content.html">braiding</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>×</mo><mi>X</mi><mo>⊢</mo><mi>X</mi><mo>×</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y \times X \vdash X \times Y</annotation></semantics></math>.</p>
+<p>In a left closed monoidal category, currying does not exist, but cocurrying does. Perhaps the product should associate on the right in a left closed monoidal category?</p>
+<h2 id="see_also"> See also</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">Cartesian product</a>, <a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a></li>
+<li>indexed <a class="existingWikiWord" href="../../../../../6/7/8/0/876/content.html">disjoint union</a>, indexed <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">Cartesian product</a></li>
+<li><a class="existingWikiWord" href="../../../../../4/8/9/6/6984/content.html">pair type</a>, <a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a></li>
+<li><a class="existingWikiWord" href="../../../5/7/7509/content.html">dependent pair type</a>, <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent function type</a></li>
+<li><a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">product</a>, <a class="existingWikiWord" href="../../../../../3/1/3/1/1313/content.html">exponential object</a></li>
+<li><a class="existingWikiWord" href="../../../6/8/8609/content.html">dependent sum</a>, <a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a></li>
+</ul>
+<h2 id="references"> References</h2>
+<p>For currying in <a class="existingWikiWord" href="../../../../7/9/6/6979/content.html">dependent type theory</a>, see</p>
+<ul>
+<li>
+<p>Section 1.2 and 1.4 in <em>Homotopy Type Theory: Univalent Foundations of Mathematics</em>, The <a class="existingWikiWord" href="../../../../../5/0/9/8/8905/content.html">Univalent Foundations Project</a>, Institute for Advanced Study, 2013. (<a href="http://homotopytypetheory.org/book/">web</a>, <a href="http://hottheory.files.wordpress.com/2013/03/hott-online-323-g28e4374.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/5/7/9/9755/content.html">Egbert Rijke</a>, Section 4.6 in <em><a class="existingWikiWord" href="../../../../../8/2/6/1/21628/content.html">Introduction to Homotopy Type Theory</a></em>, Cambridge Studies in Advanced Mathematics, Cambridge University Press (<a href="https://arxiv.org/abs/2212.11082">arXiv:2212.11082</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

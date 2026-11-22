@@ -1,0 +1,443 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      internal sheaf in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      internal sheaf
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#InTermsOf2Sheaves">In terms of external 2-sheaves</a></li>
+<li><a href="#ExplicitDefinition">Explicit definition</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The notions of <em><a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a></em>, <em><a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a></em> and <em><a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a></em> can be formulated <a class="existingWikiWord" href="../../../../../6/3/0/0/36/content.html">internal</a> to any <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a>. The ordinary such notions are recovered by internalization into <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>.</p>
+<p>More precisely, the direct internalization of these notions is into the <a class="existingWikiWord" href="../../../../2/3/5/5321/content.html">very large</a> <a class="existingWikiWord" href="../../../../../2/5/0/4/4052/content.html">2-topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒮</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_2(\mathcal{S},can)</annotation></semantics></math> of the given ambient topos <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>, since an internal presheaf is to be an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>-valued internal functor, but <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> does not quite sit inside itself. It does, however, sit inside <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒮</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_2(\mathcal{S},can)</annotation></semantics></math>, incarnated as the <a class="existingWikiWord" href="../../../../../0/4/4/4/4440/content.html">2-sheaf</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>𝒮</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar \mathcal{S}</annotation></semantics></math> corresponding to its <a class="existingWikiWord" href="../../../../../5/5/0/3/3055/content.html">codomain fibration</a>.</p>
+<p>Therefore, regarding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒮</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_2(\mathcal{S}, can)</annotation></semantics></math> as the <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a> of <a class="existingWikiWord" href="../../../../../3/0/4/0/403/content.html">internal categories</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>, an <a class="existingWikiWord" href="../../../../../5/9/8/5/5895/content.html">internal site</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> is an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar \mathbb{C}</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒮</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_2(\mathcal{S}, can)</annotation></semantics></math> and an internal presheaf is a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><msup><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover> <mi>op</mi></msup><mo>→</mo><mover><mi>𝒮</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">F : \bar \mathbb{C}^{op} \to \bar \mathcal{S}</annotation></semantics></math>.</p>
+<h2 id="definition">Definition</h2>
+<p>While it is straightforward to define an <a class="existingWikiWord" href="../../../../../5/9/8/5/5895/content.html">internal site</a>, hence the <a class="existingWikiWord" href="../../../../../2/6/5/2/2562/content.html">domain</a> of an internal (pre)sheaf, the definition of the codomain is slightly more subtle, for that needs to be a copy of the ambient <a class="existingWikiWord" href="../../../../../0/4/8/7/27840/content.html">universe</a> internalized into itself. One way to naturally say this is by passing to the <em>external</em> <a class="existingWikiWord" href="../../../../../0/4/4/4/4440/content.html">2-sheaves</a> <a class="existingWikiWord" href="../../../../../2/5/0/4/4052/content.html">2-topos</a>. This version of the definition we state in</p>
+<ul>
+<li><em><a href="#InTermsOf2Sheaves">In terms of external 2-sheaves</a></em>.</li>
+</ul>
+<p>But the resulting notion can of course be expressed entirely in terms of data in the ambient topos. This we spell out in</p>
+<ul>
+<li><em><a href="#ExplicitDefinition">Explicit definition</a></em>.</li>
+</ul>
+<h3 id="InTermsOf2Sheaves">In terms of external 2-sheaves</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../3/0/4/0/403/content.html">internal category</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi><mo>=</mo><mrow><mo>(</mo><msub><mi>C</mi> <mn>1</mn></msub><mover><munder><mo>→</mo><mi>t</mi></munder><mover><mo>→</mo><mi>s</mi></mover></mover><msub><mi>C</mi> <mn>0</mn></msub><mo>)</mo></mrow><mo>∈</mo><mi>𝒮</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbb{C} = 
+  \left(
+    C_1 \stackrel{\overset{s}{\to}}{\underset{t}{\to}}
+    C_0
+  \right)
+  \in \mathcal{S}
+  \,.
+
+</annotation></semantics></math></div>
+<div class="num_defn">
+<h6 id="definition_2">Definition</h6>
+<p>Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar \mathbb{C}</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../0/4/4/4/4440/content.html">2-sheaf</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><msup><mi>𝒮</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">
+  \bar \mathbb{C} : \mathcal{S}^{op} \to Cat
+
+</annotation></semantics></math></div>
+<p>that is <a class="existingWikiWord" href="../../../../1/3/0/311/content.html">represented</a> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math>. More explicitly, this is the <a class="existingWikiWord" href="../../../../../3/6/5/0/563/content.html">pseudofunctor</a> which to an <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">X \in \mathcal{S}</annotation></semantics></math> assigns</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><mi>X</mi><mo>↦</mo><mrow><mo>(</mo><mi>𝒮</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>C</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mover><munder><mo>→</mo><mrow><mi>𝒮</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></munder><mover><mo>→</mo><mrow><mi>𝒮</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></mover></mover><mi>𝒮</mi><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>)</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \bar \mathbb{C} : X 
+    \mapsto 
+  \left(
+    \mathcal{S}(X,C_1)
+    \stackrel{\overset{\mathcal{S}(X,s)}{\to}}{\underset{\mathcal{S}(X,t)}{\to}}
+    \mathcal{S}(X,C_0)
+  \right)
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="num_defn">
+<h6 id="definition_3">Definition</h6>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>𝒮</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><msup><mi>𝒮</mi> <mi>op</mi></msup><mo>→</mo><mi>Cat</mi></mrow><annotation encoding="application/x-tex">
+  \bar \mathcal{S} : \mathcal{S}^{op} \to Cat
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../0/4/4/4/4440/content.html">2-sheaf</a> that <a class="existingWikiWord" href="../../../../../6/3/5/1/1536/content.html">classifies</a> the <a class="existingWikiWord" href="../../../../../5/5/0/3/3055/content.html">codomain fibration</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../3/6/5/0/563/content.html">pseudofunctor</a> which sends an object to the corresponding <a class="existingWikiWord" href="../../../../../2/1/4/5/5412/content.html">slice topos</a> and morphisms to <a class="existingWikiWord" href="../../../../9/0/1/1091/content.html">base change</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>𝒮</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><mi>X</mi><mo>↦</mo><msub><mi>𝒮</mi> <mrow><mo stretchy="false">/</mo><mi>X</mi></mrow></msub></mrow><annotation encoding="application/x-tex">
+  \bar \mathcal{S} : X \mapsto \mathcal{S}_{/X}
+
+</annotation></semantics></math></div>
+<p>(also called the “<a class="existingWikiWord" href="../../../../../8/7/1/5/5178/content.html">self-indexing</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>”).</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>This is the incarnation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> itself, regard internal to its <a class="existingWikiWord" href="../../../../../0/4/4/4/4440/content.html">2-sheaf</a> <a class="existingWikiWord" href="../../../../../2/5/0/4/4052/content.html">2-topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒯</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_{2}(\mathcal{T}, can)</annotation></semantics></math>.</p>
+</div>
+<div class="num_defn">
+<h6 id="definition_4">Definition</h6>
+<p>An <strong>internal presheaf</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> (internal to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒯</mi></mrow><annotation encoding="application/x-tex">\mathcal{T}</annotation></semantics></math>) is a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><msup><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover> <mi>op</mi></msup><mo>→</mo><mover><mi>𝒮</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">
+  F : \bar \mathbb{C}^{op} \to \bar \mathcal{S}
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../../0/4/4/4/4440/content.html">2-sheaves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>. (Also called an “<a class="existingWikiWord" href="../../../../../0/0/1/5/5100/content.html">indexed functor</a>” between <a class="existingWikiWord" href="../../../../../8/7/1/5/5178/content.html">indexed categories</a>“.)</p>
+<p>Suppose moreover that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> is equipped with the structure of an <a class="existingWikiWord" href="../../../../../5/9/8/5/5895/content.html">internal site</a>. Then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> above is an <strong>internal sheaf</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> if it satisfies the evident <a class="existingWikiWord" href="../../../../../2/4/3/1/1342/content.html">descent</a> condition.</p>
+<p>A <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> of internal presheaves is simply a <a class="existingWikiWord" href="../../../../../4/9/1/0/194/content.html">2-morphism</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒮</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_2(\mathcal{S}, can)</annotation></semantics></math> (also called an “<a class="existingWikiWord" href="../../../../../0/0/1/5/5100/content.html">indexed natural transformation</a>”). This yields a <a class="existingWikiWord" href="../../../../1/1/0/111/content.html">category</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>ℂ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  PSh(\mathbb{C})
+
+</annotation></semantics></math></div>
+<p>of internal presheaves. Accordingly we have the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Sh(\mathbb{C}, \mathcal{S})
+  \hookrightarrow PSh(\mathbb{C}, \mathcal{S})
+
+</annotation></semantics></math></div>
+<p>of internal sheaves.</p>
+</div>
+<h3 id="ExplicitDefinition">Explicit definition</h3>
+<p>We unwind what the above amounts to more explicitly.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbb{C},J)</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../5/9/8/5/5895/content.html">internal site</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>, i.e. an <a class="existingWikiWord" href="../../../../../3/0/4/0/403/content.html">internal category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> equipped with an internal <a class="existingWikiWord" href="../../../../../8/1/6/0/618/content.html">coverage</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒮</mi> <mrow><msup><mi>ℂ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">\mathcal{S}^{\mathbb{C}^{op}}</annotation></semantics></math> be the topos of <a class="existingWikiWord" href="../../../../../4/1/9/4/4914/content.html">internal diagrams</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℂ</mi> <mi>op</mi></msup></mrow><annotation encoding="application/x-tex">\mathbb{C}^{op}</annotation></semantics></math>.</p>
+<div class="num_defn">
+<h6 id="definition_5">Definition</h6>
+<ol>
+<li>
+<p>An <strong>internal presheaf</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> is an internal diagram <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>∈</mo><msup><mi>𝒮</mi> <mrow><msup><mi>ℂ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">F \in \mathcal{S}^{\mathbb{C}^{op}}</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>An <strong>internal sheaf</strong> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> (with respect to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>) is an internal presheaf on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> satisfying one of the following equivalent conditions:</p>
+<ol>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> satisfies the <a href="../../../../../3/4/1/0/143/content.html#GeneralComponentwiseDefinition">usual sheaf condition</a> interpreted in the <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal language</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>.</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math>-sheaf for the <a class="existingWikiWord" href="../../../../../0/5/3/0/350/content.html">Lawvere-Tierney topology</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝒮</mi> <mrow><msup><mi>ℂ</mi> <mi>op</mi></msup></mrow></msup></mrow><annotation encoding="application/x-tex">\mathcal{S}^{\mathbb{C}^{op}}</annotation></semantics></math> induced by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>. (The equivalence is because the usual proof for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">\mathcal{S} = </annotation></semantics></math><a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> is constructive and can thus be internalized in an arbitrary topos.)</li>
+</ol>
+</li>
+</ol>
+</div>
+<h2 id="properties">Properties</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math> be as above.</p>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>The category of internal presheaves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(\mathbb{C}, \mathcal{S})</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">topos</a>.</p>
+</div>
+<p>This appears as (<a href="#Johnstone">Johnstone, cor. B.2.3.17</a>).</p>
+<div class="num_prop">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℂ</mi><mo>→</mo><mi>𝔻</mi></mrow><annotation encoding="application/x-tex">f : \mathbb{C} \to \mathbb{D}</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">internal functor</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>f</mi><mo stretchy="false">¯</mo></mover><mo>:</mo><mover><mi>ℂ</mi><mo stretchy="false">¯</mo></mover><mo>→</mo><mover><mi>𝔻</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar f : \bar \mathbb{C} \to \bar \mathbb{D}</annotation></semantics></math> for the corresponding morphism in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>Sh</mi><mo stretchy="false">^</mo></mover> <mn>2</mn></msub><mo stretchy="false">(</mo><mi>𝒮</mi><mo>,</mo><mi>can</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat Sh_2(\mathcal{S}, can)</annotation></semantics></math>. Precomposition with this morphism induces a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> of internal presheaf catgeories</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi> <mo>*</mo></msup><mo lspace="verythinmathspace">:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>𝔻</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f^* \colon PSh(\mathbb{D}, \mathcal{S}) 
+    \to 
+   PSh(\mathbb{C}, \mathcal{S})
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the <a class="existingWikiWord" href="../../../../../8/3/1/1/1138/content.html">inverse image</a> of a <a class="existingWikiWord" href="../../../../../6/5/4/0/456/content.html">geometric morphism</a> of <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">toposes</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>𝔻</mi><mo>,</mo><mi>𝒮</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f \colon PSh(\mathbb{C}, \mathcal{S})
+   \to 
+  PSh(\mathbb{D}, \mathcal{S})
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>This appears as (<a href="#Johnstone">Johnstone, cor. B.2.3.22</a>).</p>
+<p>The global section functors of internal sheaf toposes in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../3/7/9/4/4973/content.html">bounded geometric morphisms</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒮</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/1/9/4/4914/content.html">internal diagram</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>On internal presheaves in <a class="existingWikiWord" href="../../../../../4/2/1/0/124/content.html">elementary toposes</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/9/4/3/3493/content.html">Marta Bunge</a>, <em>Internal Presheaf Toposes</em>, <span class="newWikiWord">Cahiers,Cahiers de topologie et géométrie différentielle catégoriques<a href="/nlab/new/Cahiers%2CCahiers+de+topologie+et+g%C3%A9om%C3%A9trie+diff%C3%A9rentielle+cat%C3%A9goriques">?</a></span> <strong>18</strong> 3 (1977) 291-330 [<a href="http://www.numdam.org/item/?id=CTGDC_1977__18_3_291_0">numdam:CTGDC_1977__18_3_291_0</a>]</li>
+</ul>
+<p>On internal presheaves in a <a class="existingWikiWord" href="../../../../4/2/0/241/content.html">Grothendieck toposes</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/5/2/2/2259/content.html">Saunders MacLane</a>, <a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, Section V.7 of <em><a class="existingWikiWord" href="../../../../../6/0/1/1/1106/content.html">Sheaves in Geometry and Logic</a></em> (1992)</li>
+</ul>
+<p>and in section B2.3 of</p>
+<ul>
+<li id="Johnstone"><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter Johnstone</a>, <em><a class="existingWikiWord" href="../../../../../7/0/5/0/507/content.html">Sketches of an Elephant</a></em></li>
+</ul>
+<p>In these references internal presheaves are introduced in components as in the <a href="#ExplicitDefinition">explicit definition</a> above. The equivalence to the <a href="#InTermsOf2Sheaves">abstract formulation</a> above, in terms of morphisms between 2-sheaves, follows for instance with (<a href="#Johnstone">Johnstone, lemma B.2.3.13</a>).</p>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

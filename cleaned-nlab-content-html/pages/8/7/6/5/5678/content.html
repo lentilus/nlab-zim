@@ -1,0 +1,505 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Khovanov homology in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Khovanov homology
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#interpretation_in_qft">Interpretation in QFT</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#ReferencesKnotInvariantsViaTopologicalStringsAndFivebranes">Knot invariants via topological strings and 5-branes</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Khovanov homology</em> is a <a class="existingWikiWord" href="../../../../../4/0/6/2/2604/content.html">knot invariant</a> that is a <a class="existingWikiWord" href="../../../../../3/3/0/0/33/content.html">categorification</a> of the <a class="existingWikiWord" href="../../../../../7/3/6/5/5637/content.html">Jones polynomial</a>.</p>
+<p>It is a member of the family of Khovanov-Rozansky link homology theories which categorify the <a class="existingWikiWord" href="../../../../2/6/5/5628/content.html">HOMFLY-PT polynomial</a> and some of its one-variable specializations.</p>
+<h2 id="interpretation_in_qft">Interpretation in QFT</h2>
+<p>Khovanov homology has long been expected to appear as the <a class="existingWikiWord" href="../../../../2/0/7/7028/content.html">quantum observables</a> in <a class="existingWikiWord" href="../../../../../7/5/7/9/9757/content.html">D=4 TQFT</a> in higher analogy of how the <a class="existingWikiWord" href="../../../../../7/3/6/5/5637/content.html">Jones polynomial</a> arises as a <a class="existingWikiWord" href="../../../../2/0/7/7028/content.html">quantum observable</a> in 3-dimensional <a class="existingWikiWord" href="../../../../../5/7/5/2/2575/content.html">Chern-Simons</a> <a class="existingWikiWord" href="../../../../../5/3/0/0/10035/content.html">D=3 TQFT</a>. For instance for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi><mo lspace="verythinmathspace">:</mo><mi>K</mi><mo>→</mo><mi>K</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\Sigma \colon K \to K'</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../0/2/0/7/27020/content.html">knot cobordism</a> between two <a class="existingWikiWord" href="../../../../../6/2/6/2/2626/content.html">knots</a> there is a natural morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Φ</mi> <mi>Σ</mi></msub><mo lspace="verythinmathspace">:</mo><mi>𝒦</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mo>→</mo><mi>𝒦</mi><mo stretchy="false">(</mo><mi>K</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \Phi_\Sigma \colon \mathcal{K}(K) \to \mathcal{K}(K')
+
+</annotation></semantics></math></div>
+<p>between the Khovanov homologies associated to the two knots.</p>
+<p><a href="#Witten11">Witten 2011</a> argued, following indications in <a href="#GukovSchwarzVafa04">Gukov, Schwarz &amp; Vafa 2005</a>, that this <a class="existingWikiWord" href="../../../../../7/5/7/9/9757/content.html">4d TQFT</a> is related to the worldvolume theory of the image in <a class="existingWikiWord" href="../../../../../7/4/3/6/6347/content.html">type IIB string theory</a> of <a class="existingWikiWord" href="../../../../../2/0/8/6/6802/content.html">D3-branes</a> <a class="existingWikiWord" href="../../../../../4/3/5/6/16534/content.html">ending</a> on <a class="existingWikiWord" href="../../../../../9/4/0/6/6049/content.html">NS5-branes</a> in a <a class="existingWikiWord" href="../../../../../4/0/2/7/7204/content.html">type II supergravity</a> <a class="existingWikiWord" href="../../../../../0/2/0/6/6020/content.html">background</a> of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>9</mn></msup><mo>×</mo><msup><mi>S</mi> <mn>1</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^9 \times S^1</annotation></semantics></math> with the circle transverse to both kinds of branes, under one <a class="existingWikiWord" href="../../../../../9/7/1/6/6179/content.html">S-duality</a> and one <a class="existingWikiWord" href="../../../../../3/9/7/0/793/content.html">T-duality</a> operation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>D</mi><mn>3</mn><mo>−</mo><mi>NS</mi><mn>5</mn><mo stretchy="false">)</mo><mover><mo>↦</mo><mi>S</mi></mover><mo stretchy="false">(</mo><mi>D</mi><mn>3</mn><mo>−</mo><mi>D</mi><mn>5</mn><mo stretchy="false">)</mo><mover><mo>↦</mo><mi>T</mi></mover><mo stretchy="false">(</mo><mi>D</mi><mn>4</mn><mo>−</mo><mi>D</mi><mn>6</mn><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (D3-NS5) 
+    \stackrel{S}{\mapsto}
+  (D3-D5)
+    \stackrel{T}{\mapsto}
+  (D4-D6)
+  \,.
+
+</annotation></semantics></math></div>
+<p>To go from the <a class="existingWikiWord" href="../../../../../7/3/6/5/5637/content.html">Jones polynomial</a> to <a class="existingWikiWord" href="content.html">Khovanov homology</a>, one interprets the circle as Euclidean time. The <a class="existingWikiWord" href="../../../../../4/1/5/1/1514/content.html">path integral</a> with the circle is the <a class="existingWikiWord" href="../../../../../0/2/4/2/2420/content.html">partition function</a> (Witten index), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Tr</mi> <mi>ℋ</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mi>F</mi></msup><msup><mi>e</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>β</mi><mi>H</mi></mrow></msup></mrow><annotation encoding="application/x-tex">Tr_{\mathcal{H}}(-1)^F e^{-\beta H}</annotation></semantics></math>, of a 5D theory. Khovanov homology is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi></mrow><annotation encoding="application/x-tex">\mathcal{H}</annotation></semantics></math> itself, rather than the index.</p>
+<p>(See <a href="http://arxiv.org/PS_cache/arxiv/pdf/1101/1101.3216v1.pdf#page=14">Witten 2011, p. 14</a>).</p>
+<p>Earlier indication for this had come from the observation <a href="#Witten92">Witten92</a> that Chern-Simons theory is the effective background theory for the <a class="existingWikiWord" href="../../../../../3/4/2/4/4243/content.html">A-model</a> 2d <a class="existingWikiWord" href="../../../../3/2/4/4238/content.html">TCFT</a> (see <a href="../../../../3/2/4/4238/content.html#ActionFunctionals">TCFT – Worldsheet and effective background theories</a> for details).</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/2/0/7/27020/content.html">link cobordism</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/9/1/7/7196/content.html">categorification in representation theory</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<p>Exposition:</p>
+<ul>
+<li id="Lobb24"><a class="existingWikiWord" href="../../../../../4/4/0/8/28044/content.html">Andrew Lobb</a>: <em>A feeling for Khovanov homology</em>, Notices of the AMS <strong>71</strong> 5 (2024) [<a href="https://doi.org/10.1090/noti2928">doi:10.1090/noti2928</a>, <a href="https://www.ams.org/notices/202405/rnoti-p621.pdf">pdf</a>, <a href="https://www.maths.dur.ac.uk/users/andrew.lobb/notices.pdf">pdf</a>, full issue:<a href="https://www.ams.org/notices/202405/202405FullIssue.pdf">pdf</a>]</li>
+</ul>
+<p>Original articles:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/0/7/5/5700/content.html">Louis Crane</a>, <a class="existingWikiWord" href="../../../../../4/7/0/4/4074/content.html">Igor Frenkel</a>, <em>Four-dimensional topological quantum field theory, Hopf categories, and the canonical bases</em>, J. Math. Phys. <strong>35</strong> (1994) 5136-5154, <a href="http://arxiv.org/abs/hep-th/9405183">hep-th/9405183</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/0/4/4074/content.html">Igor Frenkel</a>, <a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em>Canonical bases in tensor products and graphical calculus for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>q</mi></msub><mo stretchy="false">(</mo><msub><mi>𝔰𝔩</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U_q(\mathfrak{sl}_2)</annotation></semantics></math></em>, Duke Math. J. <strong>87</strong> (1997) 409-480, <a href="http://www.ams.org/mathscinet-getitem?mr=1446615">MR99a:17019</a>, <a href="http://dx.doi.org/10.1215/S0012-7094-97-08715-9">doi</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../3/8/4/4838/content.html">Joseph Bernstein</a>, <a class="existingWikiWord" href="../../../../../4/7/0/4/4074/content.html">Igor Frenkel</a>, <a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em>A categorification of the Temperley-Lieb algebra and Schur quotients of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo stretchy="false">(</mo><mi>𝔰𝔩</mi><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">U(\mathfrak{sl}-2)</annotation></semantics></math> by projective and Zuckerman functors, Selecta. Math. <strong>5</strong> (1999) 199-241, <a href="http://www.ams.org/mathscinet-getitem?mr=1714141">MR2000i:17009</a>, <a href="http://dx.doi.org/10.1007/s000290050047">doi</a></em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/0/4/4074/content.html">Igor Frenkel</a>, <a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <a class="existingWikiWord" href="../../../../../2/0/7/5/5702/content.html">Catharina Stroppel</a>, <em>A categorification of finite-dimensional irreducible representations of quantum <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝔰𝔩</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\mathfrak{sl}_2</annotation></semantics></math> and their tensor products</em>, Selecta Math. (N.S.) <strong>12</strong> (2006), no. 3-4, 379–431, <a href="http://www.ams.org/mathscinet-getitem?mr=2305608">MR2008a:17014</a>, <a href="http://dx.doi.org/10.1007/s00029-007-0031-y">doi</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em>A categorification of the Jones polynomial</em>, Duke Math. J. <strong>101</strong> (2000) 359-426 [<a href="https://arxiv.org/abs/math/9908171">arXiv:math/9908171</a>, <a href="https://projecteuclid.org/journals/duke-mathematical-journal/volume-101/issue-3/A-categorification-of-the-Jones-polynomial/10.1215/S0012-7094-00-10131-7.full">doi:10.1215/S0012-7094-00-10131-7</a>, MR1740682 (2002j:57025)]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em>A functor-valued invariant of tangles</em>, Algebr. Geom. Topol. <strong>2</strong> (2002) 665-741 MR1928174 (2004d:57016)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em>Patterns in knot cohomology. I</em>, Experiment. Math. <strong>12</strong> (2003) 365–374</p>
+</li>
+<li id="Jacobsson04">
+<p>Magnus Jacobsson: <em>An invariant of link cobordisms from Khovanov homology</em>, Algebr. Geom. Topol. <strong>4</strong> (2004) 1211-1251 [<a href="https://arxiv.org/abs/math/0206303">arXiv:math/0206303</a>, <a href="https://doi.org/10.2140/agt.2004.4.1211">doi:10.2140/agt.2004.4.1211</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, An invariant of tangle cobordisms, Trans. Amer. Math. Soc. <strong>358</strong> (2006), no. 1, 315–327, arXiv:math.QA/0207264, <a href="http://www.ams.org/mathscinet/search/publdoc.html?pg1=MR&amp;s1=2171235&amp;loc=fromreflist">MR2006g:57046</a>, <a href="http://dx.doi.org/10.1090/S0002-9947-05-03665-2">doi</a></p>
+</li>
+<li>
+<p>Raphaël Rouquier, <em>Khovanov-Rozansky homology and 2-braid groups</em>, <a href="http://arxiv.org/abs/1203.5065">arxiv/1203.5065</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/7/0/2/22074/content.html">Carlo Collari</a>, <em>The Functoriality of Khovanov Homology and the Monodromy of Knots</em> (2013) [<a href="https://core.ac.uk/download/pdf/19204099.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/CollariKhovanovHomology.pdf" title="pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>Review and lecture notes:</p>
+<ul>
+<li id="Bar-Natan">
+<p><a class="existingWikiWord" href="../../../../9/6/5/5698/content.html">Dror Bar-Natan</a>, <em>On Khovanov’s categorification of the Jones polynomial</em>, Alg. Geom. Topology <strong>2</strong> (2002) 337-370 [<a href="http://arxiv.org/abs/math/0201043">arXiv:math.GT/0201043</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a> (notes by <a class="existingWikiWord" href="../../../../../5/3/3/6/26335/content.html">You Qi</a>), <em>Introduction to categorification</em>, lecture notes, Columbia University (2010, 2020) [<a href="https://www.math.columbia.edu/~khovanov/cat2020/">web</a>, <a href="https://you-qi2121.github.io/mypage/categorificationnotes.html">web</a>, full:<a href="https://www.dropbox.com/scl/fi/wdesax1c8il6tgwbi20t4/KhovanovYouQi-Categorification.pdf?rlkey=l5cm3khnzu604ijdnl06o89od&amp;dl=0">pdf</a>]</p>
+</li>
+<li>
+<p>Paul Turner, <em>Five Lectures on Khovanov Homology</em>, [<a href="http://arxiv.org/abs/math/0606464">math.GT/0606464</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, Robert Lipshitz, <em>Categorical lifting of the Jones polynomial: a survey</em>, Bulletin (New Series) of the American Mathematical Society (2022) [<a href="https://doi.org/10.1090/bull/1772">doi:10.1090/bull/1772</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/6/5/5698/content.html">Dror Bar-Natan</a>, <em>Khovanov’s homology for tangles and cobordisms</em>, Geom. Topol. <strong>9</strong> (2005), 1443–1499, <a href="http://www.ams.org/mathscinet-getitem?mr=2174270">MR2006g:57017</a></p>
+</li>
+</ul>
+<p>See also</p>
+<ul>
+<li>David Clark, <a class="existingWikiWord" href="../../../../../3/2/8/2/2823/content.html">Scott Morrison</a>, <a class="existingWikiWord" href="../../../../../2/2/8/2/2822/content.html">Kevin Walker</a>, <em>Fixing the functoriality of Khovanov homology</em> (<a href="http://arxiv.org/abs/math/0701339">arXiv:math/0701339</a> <a href="http://canyon23.net/math/talks/Kh%20200704.pdf">pdf slides</a>)</li>
+</ul>
+<p>Discussion via a <a class="existingWikiWord" href="../../../../../3/6/1/2/2163/content.html">cobordism category</a> of “foams”:</p>
+<ul>
+<li id="Khovanov04">
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sl</mi><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">sl(3)</annotation></semantics></math> link homology</em>, Algebr. Geom. Topol. <strong>4</strong> (2004) 1045-1081 [<a href="https://arxiv.org/abs/math/0304375">arXiv:math/0304375</a>, <a href="https://doi.org/10.2140/agt.2004.4.1045">doi:10.2140/agt.2004.4.1045</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/8/8/5/5882/content.html">Marco Mackaay</a>, <a class="existingWikiWord" href="../../../../../7/3/6/5/25637/content.html">Pedro Vaz</a>, <em>The universal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>sl</mi> <mn>3</mn></msub></mrow><annotation encoding="application/x-tex">sl_3</annotation></semantics></math>-link homology</em>, Algebr. Geom. Topol. <strong>7</strong> (2007) 1135-1169 [<a href="https://doi.org/10.2140/agt.2007.7.1135">doi:10.2140/agt.2007.7.1135</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/8/8/5/5882/content.html">Marco Mackaay</a>, <a class="existingWikiWord" href="../../../../../7/3/6/5/25637/content.html">Pedro Vaz</a>, <em>The foam and the matrix factorization <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>sl</mi> <mn>3</mn></msub></mrow><annotation encoding="application/x-tex">sl_3</annotation></semantics></math> link homologies are equivalent</em>, Algebr. Geom. Topol. <strong>8</strong> (2008) 309-342 [<a href="https://arxiv.org/abs/0710.0771">arXiv:0710.0771</a>, <a href="https://doi.org/10.2140/agt.2008.8.309">doi:10.2140/agt.2008.8.309</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/8/8/5/5882/content.html">Marco Mackaay</a>, <a class="existingWikiWord" href="../../../../../7/3/6/5/25637/content.html">Pedro Vaz</a>, <em>The diagrammatic Soergel category and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sl</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">sl(N)</annotation></semantics></math>-foams, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>&gt;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">N \gt 3</annotation></semantics></math> [<a href="https://arxiv.org/abs/0911.2485">arXiv:0911.2485</a>]</em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <a class="existingWikiWord" href="../../../../../6/1/4/5/25416/content.html">Louis-Hadrien Robert</a>, <em>Foam evaluation and Kronheimer–Mrowka theories</em>, Advances in Mathematics <strong>376</strong> (2021) 107433 [<a href="https://arxiv.org/abs/1808.09662">arXiv:1808.09662</a>, <a href="https://doi.org/10.1016/j.aim.2020.107433">doi:10.1016/j.aim.2020.107433</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <a class="existingWikiWord" href="../../../../../6/1/4/5/25416/content.html">Louis-Hadrien Robert</a>, <em>Conical <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SL</mi><mo stretchy="false">(</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SL(3)</annotation></semantics></math> foams</em>, Journal of Combinatorial Algebra <strong>6</strong> 1/2 (2022) 79-108 [<a href="https://arxiv.org/abs/2011.11077">arXiv:2011.11077</a>, <a href="https://doi.org/10.4171/jca/61">doi:10.4171/jca/61</a>]</p>
+</li>
+</ul>
+<p>Reviewed in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/9/6/5/5697/content.html">Mikhail Khovanov</a>, <em>Universal construction, foams and link homology</em>, lecture series at <em><a href="https://nyuad.nyu.edu/en/events/2023/march/quantum-field-theories-and-cobordisms.html">QFT and Cobordism</a></em>, <a class="existingWikiWord" href="../../../../../7/8/9/3/23987/content.html">CQTS</a> (Mar 2023) [<a href="../../../../../7/8/9/3/23987/content.html#KhovanovMar2023">web</a>, video 1:<a href="https://www.youtube.com/watch?v=Urh1NNcbCcc">YT</a>, 2:<a href="https://www.youtube.com/watch?v=SPBcAAmGT88">YT</a>]</li>
+</ul>
+<p>A proposal to incorporate the geometry of knots to Khovanov homology:</p>
+<ul>
+<li>Li Shen, Jian Liu, Guo-Wei Wei. <em>Evolutionary Khovanov homology</em> (2024) [<a href="https://arxiv.org/abs/2406.02821">arXiv:2406.02821</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>
+<p>Khaled Qazaqzeh, <a class="existingWikiWord" href="../../../../../7/2/4/5/25427/content.html">Nafaa Chbili</a>, <em>On Khovanov Homology of Quasi-Alternating Links</em>, Mediterr. J. Math. <strong>19</strong> 104 (2022) [<a href="https://arxiv.org/abs/2009.08624">arXiv:2009.08624</a>, <a href="https://doi.org/10.1007/s00009-022-02006-5">doi:10.1007/s00009-022-02006-5</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/2/4/5/25427/content.html">Nafaa Chbili</a>, <em>Quasi-alternating links, Examples and obstructions</em>, talk at <em><a href="https://nyuad.nyu.edu/en/events/2023/march/quantum-field-theories-and-cobordisms.html">QFT and Cobordism</a></em>, <a class="existingWikiWord" href="../../../../../7/8/9/3/23987/content.html">CQTS</a> (Mar 2023) [<a href="../../../../../7/8/9/3/23987/content.html#ChbiliMar2023">web</a>]</p>
+</li>
+</ul>
+<div>
+<h3 id="ReferencesKnotInvariantsViaTopologicalStringsAndFivebranes">Knot invariants via topological strings and 5-branes</h3>
+<p>On realization of <a class="existingWikiWord" href="../../../../../4/0/6/2/2604/content.html">knot invariants</a>/<a class="existingWikiWord" href="content.html">knot homology</a> via <a class="existingWikiWord" href="../../../../../4/6/5/7/7564/content.html">topological string theory</a> and <a class="existingWikiWord" href="../../../../../4/2/1/2/2124/content.html">BPS states</a>:</p>
+<ul>
+<li id="Witten92">
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>, <em>Chern-Simons gauge theory as a string theory</em>, in: <em>The Floer memorial volume</em>, Progr. Math. <strong>133</strong>, Birkhäuser (1995) 637-678 [<a href="https://doi.org/10.1007/978-3-0348-9217-9">doi:10.1007/978-3-0348-9217-9</a>, <a href="http://arxiv.org/abs/hep-th/9207094">arXiv/hep-th/9207094</a>, <a href="http://www.ams.org/mathscinet-getitem?mr=1362846">MR97j:57052</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/5/6/6513/content.html">Hirosi Ooguri</a>, <a class="existingWikiWord" href="../../../../../9/9/6/5/5699/content.html">Cumrun Vafa</a>: <em>Knot Invariants and Topological Strings</em>, Nucl. Phys. B <strong>577</strong> (2000) 419-438 [<a href="https://doi.org/10.1016/S0550-3213(00)00118-8">doi:10.1016/S0550-3213(00)00118-8</a>, <a href="https://arxiv.org/abs/hep-th/9912123">arXiv:hep-th/9912123</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/0/7/5/5701/content.html">Sergei Gukov</a>, <a class="existingWikiWord" href="../../../../../1/9/7/3/3791/content.html">Albert Schwarz</a>, <a class="existingWikiWord" href="../../../../../9/9/6/5/5699/content.html">Cumrun Vafa</a>: <em>Khovanov-Rozansky Homology and Topological Strings</em>, Lett. Math. Phys. <strong>74</strong> (2005) 53-74 [<a href="https://doi.org/10.1007/s11005-005-0008-8">doi:10.1007/s11005-005-0008-8</a><a href="https://arxiv.org/abs/hep-th/0412243">arXiv:hep-th/0412243</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/0/7/5/5701/content.html">Sergei Gukov</a>: <em>Surface Operators and Knot Homologies</em>, Fortschritte der Physik <strong>55</strong> 5-7 (2007) 473-490 [<a href="https://doi.org/10.1002/prop.200610385">doi:10.1002/prop.200610385</a>, <a href="https://arxiv.org/abs/0706.2369">arXiv:0706.2369</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/1/8/6/16811/content.html">Mina Aganagic</a>, <a class="existingWikiWord" href="../../../../../9/9/6/5/5699/content.html">Cumrun Vafa</a>, <em>Large <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> duality, mirror symmetry, and a Q-deformed A-polynomial for knots</em> [<a href="http://arxiv.org/abs/1204.4709">arXiv:1204.4709</a>]</p>
+</li>
+<li>
+<p>Kai Wang, Shengmao Zhu: <em>BPS invariants from framed links</em> [<a href="https://arxiv.org/abs/2502.16609">arXiv:2502.16609</a>]</p>
+</li>
+</ul>
+<p>Understanding this via <a class="existingWikiWord" href="../../../../../9/4/0/6/6049/content.html">NS5-branes</a>/<a class="existingWikiWord" href="../../../../../3/3/7/6/6733/content.html">M5-branes</a>:</p>
+<ul>
+<li id="Witten11">
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>, <em>Fivebranes and Knots</em>, Quantum Topology, Volume 3, Issue 1, 2012, pp. 1-137 [<a href="http://arxiv.org/abs/1101.3216">arXiv:1101.3216</a>, <a href="https://www.ems-ph.org/journals/show_abstract.php?issn=1663-487X&amp;vol=3&amp;iss=1&amp;rank=1">doi:10.4171/QT/26</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/0/8/8024/content.html">Davide Gaiotto</a>, <a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>, <em>Knot Invariants from Four-Dimensional Gauge Theory</em>, Advances in Theoretical and Mathematical Physics <strong>16</strong> 3 (2012) [<a href="https://dx.doi.org/10.4310/ATMP.2012.v16.n3.a5">doi:10.4310/ATMP.2012.v16.n3.a5</a>, <a href="https://arxiv.org/abs/1106.4789">arxiv:1106.4789</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>: <em>Khovanov Homology And Gauge Theory</em>, Geometry &amp; Topology Monographs <strong>18</strong> (2012) 291-308 [<a href="https://msp.org/gtm/2012/18/gtm-2012-18-014p.pdf">pdf</a>, <a href="https://arxiv.org/abs/1108.3103">arXiv:1108.3103</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/0/7/5/5701/content.html">Sergei Gukov</a>, <a class="existingWikiWord" href="../../../../../1/3/1/7/17131/content.html">Marko Stošić</a>: <em>Homological algebra of knots and BPS states</em>, Geometry &amp; Topology Monographs <strong>18</strong> (2012) 309-367 [<a href="https://doi.org/10.2140/gtm.2012.18.309">doi:10.2140/gtm.2012.18.309</a>, <a href="https://arxiv.org/abs/1112.0030">arXiv:1112.0030</a>]</p>
+</li>
+</ul>
+<p>Review:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/2/4/2/2424/content.html">Edward Witten</a>, <em>Khovanov Homology And Gauge Theory</em>, Clay Conference, Oxford (October 2013) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math><a class="existingWikiWord" href="/nlab/files/WittenOnKhovanovHomology2013.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li>
+<p>Ross Elliot, <a class="existingWikiWord" href="../../../../../1/0/7/5/5701/content.html">Sergei Gukov</a>: Section 1 of: <em>Exceptional knot homology</em>, Journal of Knot Theory and Its Ramifications <strong>25</strong> 03 (2016) 1640003 [<a href="https://doi.org/10.1142/S0218216516400034">doi:10.1142/S0218216516400034</a>, <a href="https://arxiv.org/abs/1505.01635">arXiv:1505.01635</a>]</p>
+</li>
+<li>
+<p>Satoshi Nawata, Alexei Oblomkov: <em>Lectures on knot homology</em>, in: <em>Physics and Mathematics of Link Homology</em>, Contemp. Math. <strong>680</strong> (2016) 137 [<a href="https://doi.org/10.1090/conm/680">doi:10.1090/conm/680</a>, <a href="https://arxiv.org/abs/1510.01795">arXiv:1510.01795</a>]</p>
+</li>
+</ul>
+<p>An alternative approach:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/3/7/27354/content.html">Márk Mezei</a>, <a class="existingWikiWord" href="../../../../../6/5/1/7/27156/content.html">Silviu S. Pufu</a>, Yifan Wang: <em>Chern-Simons theory from M5-branes and calibrated M2-branes</em>, J. High Energ. Phys. <strong>2019</strong> 165 (2019) [<a href="https://doi.org/10.1007/JHEP08(2019)165">doi:10.1007/JHEP08(2019)165</a>, <a href="https://arxiv.org/abs/1812.07572">arXiv:1812.07572</a>]</li>
+</ul>
+</div>
+<p>Related <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>Café discussions: <a href="http://golem.ph.utexas.edu/category/2008/11/categorification_in_glasgow.html">categorification in Glasgow</a>, <a href="http://golem.ph.utexas.edu/category/2009/04/kamnitzer_on_categorifying_tan.html">Kamnitzer on categorifying tangles</a>, <a href="http://golem.ph.utexas.edu/category/2009/02/link_homology_in_paris.html">link homology in Paris</a>, <a href="http://golem.ph.utexas.edu/category/2011/02/4d_qft_for_khovanov_homology.html">4d QFT and Khovanov homology</a></p>
+<p>Parts of the above remarks on the QFT interpretation makes use of comments provided by <a class="existingWikiWord" href="../../../../../3/0/0/0/3/content.html">Jacques Distler</a> in <a href="http://golem.ph.utexas.edu/category/2011/02/4d_qft_for_khovanov_homology.html#comments">this blog discussion</a>.</p>
+<p>More on relation to <a class="existingWikiWord" href="../../../../../4/1/6/1/1614/content.html">topological quantum field theory</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/6/9/9621/content.html">Nitu Kitchloo</a>, <em>Symmetry Breaking and Link Homologies I</em> [<a href="https://arxiv.org/abs/1910.07443">arXiv:1910.07443</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/6/9/9621/content.html">Nitu Kitchloo</a>, <em>Symmetry Breaking and Link Homologies II</em> [<a href="https://arxiv.org/abs/1910.07444">arXiv:1910.07444</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/2/6/9/9621/content.html">Nitu Kitchloo</a>, <em>Symmetry Breaking and Link Homologies III</em> [<a href="https://arxiv.org/abs/1910.07516">arXiv:1910.07516</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/0/7/5/5702/content.html">Catharina Stroppel</a>, <em>Categorification: tangle invariants and TQFTs</em> [<a href="https://arxiv.org/abs/2207.05139">arXiv:2207.05139</a>]</p>
+</li>
+</ul>
+<p>Relation to <a class="existingWikiWord" href="../../../../../7/3/8/1/1837/content.html">gauge theory</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/2/6/9/9621/content.html">Nitu Kitchloo</a>, <em>Symmetry breaking and homotopy types for link homologies</em>, talk at <em><a href="https://nyuad.nyu.edu/en/events/2023/march/quantum-field-theories-and-cobordisms.html">QFT and Cobordism</a></em>, <a class="existingWikiWord" href="../../../../../7/8/9/3/23987/content.html">CQTS</a> (Mar 2023) [<a href="../../../../../7/8/9/3/23987/content.html#KitchlooMar2023">web</a>, video:<a href="https://www.youtube.com/watch?v=StRyIjpER9I">YT</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,734 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Gauss law in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Gauss law
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<ul>
+<li><a href="#InElectromagnetism">In electromagnetism</a></li>
+<li><a href="#InYangMillsTheory">In Yang-Mills theory</a></li>
+<li><a href="#InHigherGaugeTheory">In higher gauge theory</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#as_a_phase_space_constraint">As a phase space constraint</a></li>
+<li><a href="#in_relation_to_locality">In relation to locality</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>The <em>Gauss law</em> is, originally, one of the <a class="existingWikiWord" href="../../../../../5/2/5/2/2525/content.html">equations of motion</a> of <a class="existingWikiWord" href="../../../../../8/3/8/1/1838/content.html">electromagnetism</a>, specifically of its <a class="existingWikiWord" href="../../../../2/1/9/9127/content.html">electric field</a>-sector, relating the <a class="existingWikiWord" href="../../../../../6/9/5/6/6596/content.html">divergence</a> of the <a class="existingWikiWord" href="../../../../2/1/9/9127/content.html">electric field</a> to the <a class="existingWikiWord" href="../../../../../0/5/8/1/1850/content.html">electric charge</a> density at each point of space. But the name has come to be commonly used also more generally for the corresponding equation of <a class="existingWikiWord" href="../../../../../1/7/8/1/1871/content.html">Yang-Mills theory</a> and also for <a class="existingWikiWord" href="../../../../../4/3/8/6/6834/content.html">higher gauge theories</a>, all of which are closely similar equations when formulated via <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential forms</a> in <a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">exterior calculus</a>.</p>
+<p>In the <a class="existingWikiWord" href="../../../../../0/8/6/2/2680/content.html">Hamiltonian</a> formulation of these theories, the Gauss law appears as a <a class="existingWikiWord" href="../../../../../9/9/2/6/26299/content.html">first class constraint</a> on the <a class="existingWikiWord" href="../../../../../0/2/8/3/3820/content.html">canonical phase space</a> whose <a class="existingWikiWord" href="../../../../../6/5/7/6/6756/content.html">Hamiltonian vector field</a> is that which generates the <a class="existingWikiWord" href="../../../../../8/9/7/4/4798/content.html">gauge transformations</a>.</p>
+<p>In form analogous to the Gauss law is a dual statement for the <a class="existingWikiWord" href="../../../../../6/2/1/9/9126/content.html">magnetic field</a>, accordingly also known as the <em>magnetic Gauss law</em> and as such also part of <a class="existingWikiWord" href="../../../../../9/7/9/7/7979/content.html">Maxwell's equations</a>. However, in traditional <a class="existingWikiWord" href="../../../../../0/8/6/2/2680/content.html">Hamiltonian</a> <a class="existingWikiWord" href="../../../../../0/2/8/3/3820/content.html">phase space</a>-formulation of <a class="existingWikiWord" href="../../../../../8/3/8/1/1838/content.html">electromagnetism</a>, where the magnetic but not the electric field is assumed to have a <a class="existingWikiWord" href="../../../../../9/3/1/9/9139/content.html">gauge potential</a>, the symmetry between these two laws is broken (the magnetic Gauss law is not a phase space constraint but a differential <a class="existingWikiWord" href="../../../../../2/9/4/4/4492/content.html">Bianchi identity</a> implied by the existence of a gauge potential).</p>
+<h2 id="statement">Statement</h2>
+<h3 id="InElectromagnetism">In electromagnetism</h3>
+<p>In its original form (named after <a href="#Gauß1877">Gauß 1877</a>), the <em>Gauß law</em> of <a class="existingWikiWord" href="../../../../../8/3/8/1/1838/content.html">electromagnetism</a> asserts that the total <a class="existingWikiWord" href="../../../../../6/9/7/6/6796/content.html">flux</a> of the <a class="existingWikiWord" href="../../../../2/1/9/9127/content.html">electric field</a> through any <a class="existingWikiWord" href="../../../../../3/1/7/8/8713/content.html">closed</a> <a class="existingWikiWord" href="../../../../../8/2/7/4/4728/content.html">surface</a> (in physical space) is proportional to the total <a class="existingWikiWord" href="../../../../../0/5/8/1/1850/content.html">electric charge</a> enclosed by that surface, otherwise irrespective of the charge distribution. In its differential form, the Gauss law is part of what later became <a class="existingWikiWord" href="../../../../../9/7/9/7/7979/content.html">Maxwell's equations</a> of <a class="existingWikiWord" href="../../../../../8/3/8/1/1838/content.html">electromagnetism</a>.</p>
+<p>In terms of modern <a class="existingWikiWord" href="../../../../../8/7/2/0/278/content.html">differential geometry</a>, with</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">X^3</annotation></semantics></math> denoting the <a class="existingWikiWord" href="../../../../../3/8/2/2/22283/content.html">3-dimensional</a> <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> representing physical space (in this context often but not necessarily assumed to be the <a class="existingWikiWord" href="../../../../../4/5/1/2/2154/content.html">Euclidean space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^3</annotation></semantics></math>),</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mi>dR</mi> <mn>2</mn></msubsup><mo stretchy="false">(</mo><msup><mi>ℝ</mi> <mn>4</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E \,\in\, \Omega^2_{dR}(\mathbb{R}^4)</annotation></semantics></math> denoting the <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential 2-form</a> which representes the electric field’s <a class="existingWikiWord" href="../../../../../6/9/7/6/6796/content.html">flux density</a></p>
+<p>(beware that this 2-form is the spatial <a class="existingWikiWord" href="../../../../../5/3/1/4/4135/content.html">Hodge dual</a> of the electric <a class="existingWikiWord" href="../../../../../2/2/7/2/2722/content.html">vector field</a> 1-form used elsewhere),</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>3</mn></msup><mo>↪</mo><msup><mi>X</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\Sigma^3 \hookrightarrow X^3</annotation></semantics></math> denoting an <a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">orientable</a> 3-<a class="existingWikiWord" href="../../../../../3/8/2/2/22283/content.html">dimensional</a> <a class="existingWikiWord" href="../../../../../0/7/1/6/6170/content.html">submanifold</a> <a class="existingWikiWord" href="../../../../../0/5/0/5/5050/content.html">with boundary</a>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∂</mo><msup><mi>Σ</mi> <mn>3</mn></msup><mo>=</mo><msup><mi>Σ</mi> <mn>2</mn></msup><mo>↪</mo><msup><mi>X</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\partial \Sigma^3 = \Sigma^2 \hookrightarrow X^3</annotation></semantics></math> denoting its <a class="existingWikiWord" href="../../../../../0/4/9/4/4940/content.html">boundary</a>, a <a class="existingWikiWord" href="../../../../../3/1/7/8/8713/content.html">closed</a> <a class="existingWikiWord" href="../../../../../1/2/3/2/2321/content.html">orientable</a> 2-<a class="existingWikiWord" href="../../../../../3/8/2/2/22283/content.html">dimensional</a> <a class="existingWikiWord" href="../../../../../0/7/1/6/6170/content.html">submanifold</a>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">Q \in \mathbb{R}</annotation></semantics></math> denoting the <strong>total <a class="existingWikiWord" href="../../../../../0/5/8/1/1850/content.html">electric charge</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\Sigma^3</annotation></semantics></math></strong>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><msup><mi>Σ</mi> <mn>2</mn></msup></mrow></msub><mi>E</mi></mrow><annotation encoding="application/x-tex">\int_{\Sigma^2} E</annotation></semantics></math> denoting the <a class="existingWikiWord" href="../../../../../8/7/5/8/8578/content.html">integral</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>, hence the <strong>total electric <a class="existingWikiWord" href="../../../../../6/9/7/6/6796/content.html">flux</a> through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\Sigma^2</annotation></semantics></math></strong>,</p>
+</li>
+</ul>
+<p>the Gauss law in its original <strong>integral form</strong> states that the last two quantities are proportional to each other:</p>
+<div class="maruku-equation" id="eq:IntegralFormOfEMGaussLaw"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="false"><mrow><msub><mo>∫</mo> <mrow><msup><mi>Σ</mi> <mn>2</mn></msup></mrow></msub></mrow><mi>E</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>∝</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>Q</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mstyle></mrow><annotation encoding="application/x-tex">
+  
+  \textstyle{\int_{\Sigma^2}} E
+  \;\;\propto\;\;
+  Q
+  \,,
+
+</annotation></semantics></math></div>
+<p>with the constant of proportionality depending on conventions but typically being the inverse of the <a class="existingWikiWord" href="../../../../../9/7/9/7/7979/content.html">permittivity of the vacuum</a>.</p>
+<p>By the <a class="existingWikiWord" href="../../../../../0/4/8/4/4840/content.html">Stokes theorem</a> and with</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mi>dR</mi> <mn>3</mn></msubsup><mo stretchy="false">(</mo><msup><mi>X</mi> <mn>3</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\rho \,\in\, \Omega^3_{dR}(X^3)</annotation></semantics></math> denoting a <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential 3-form</a> representing the electric charge density, i.e. such that</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mrow><msup><mi>Σ</mi> <mn>3</mn></msup></mrow></msub><mi>ρ</mi><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mi>Q</mi></mrow><annotation encoding="application/x-tex">\int_{\Sigma^3} \rho \,=\, Q</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\mathrm{d} E</annotation></semantics></math> denoting the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a> of the electric flux density, representing its <a class="existingWikiWord" href="../../../../../6/9/5/6/6596/content.html">divergence</a>,</p>
+</li>
+</ul>
+<p>the integral law <a class="maruku-eqref" href="#eq:IntegralFormOfEMGaussLaw">(1)</a> is equivalent to the following <strong>differential form</strong> of the Gauss law:</p>
+<div class="maruku-equation" id="eq:DifferentialFormOfEMGaussLaw"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mi>E</mi><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mi>ρ</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \mathrm{d} E \,=\, \rho
+  \,.
+
+</annotation></semantics></math></div>
+<p>It is in this differential form that the Gauss law is part of the modern form of <a class="existingWikiWord" href="../../../../../9/7/9/7/7979/content.html">Maxwell's equations</a> (see their formulation in <a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">exterior calculus</a> <a href="../../../../../9/7/9/7/7979/content.html#InTermsOfFaradayTensor">here</a>).</p>
+<h3 id="InYangMillsTheory">In Yang-Mills theory</h3>
+<p>The differential form of the Gauss law <a class="maruku-eqref" href="#eq:DifferentialFormOfEMGaussLaw">(2)</a> generalizes immediately to <a class="existingWikiWord" href="../../../../../1/7/8/1/1871/content.html">Yang-Mills theory</a> with <a class="existingWikiWord" href="../../../../../2/3/3/4/4332/content.html">gauge</a> <a class="existingWikiWord" href="../../../../7/0/0/77/content.html">Lie algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>mathfrak</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">mathfrak{g}</annotation></semantics></math> by enhancing the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a> to the corresponding <a class="existingWikiWord" href="../../../../../1/5/7/2/2751/content.html">covariant differential</a> with respect to the given <a class="existingWikiWord" href="../../../../../9/3/1/9/9139/content.html">gauge potential</a>.</p>
+<p>(…)</p>
+<h3 id="InHigherGaugeTheory">In higher gauge theory</h3>
+<p>The generalization of Gauss laws to <a class="existingWikiWord" href="../../../../../4/3/8/6/6834/content.html">higher gauge theory</a> may transparently be understood, in broad generality, by casting the corresponding <a href="../../../../../4/3/8/6/6834/content.html#HigherGaugeTheoryOfMaxwellType">higher Maxwell-type</a> <a class="existingWikiWord" href="../../../../../5/2/5/2/2525/content.html">equations of motion</a> into “<a class="existingWikiWord" href="../../../../../2/9/7/5/25792/content.html">duality-symmetric</a>” form (we follow <a href="#SS23">SS23</a>):</p>
+<p>Consider:</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>d</mi><mo>∈</mo><msub><mi>ℕ</mi> <mrow><mo>≥</mo><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">D = 1 + d \in \mathbb{N}_{\geq 2}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../4/8/7/3/3784/content.html">spacetime</a> dimension,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">X^D</annotation></semantics></math> a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>-dimensional <a class="existingWikiWord" href="../../../../../4/8/7/3/3784/content.html">spacetime</a> <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">manifold</a>,</p>
+</li>
+<li>
+<p>with <a class="existingWikiWord" href="../../../../../5/3/1/4/4135/content.html">Hodge star</a>-operator on <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential forms</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋆</mo><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mi>dR</mi> <mi>p</mi></msubsup><mo stretchy="false">(</mo><msup><mi>X</mi> <mi>D</mi></msup><mo stretchy="false">)</mo><mo>→</mo><msubsup><mi>Ω</mi> <mi>dR</mi> <mrow><mi>D</mi><mo>−</mo><mi>p</mi></mrow></msubsup><mo stretchy="false">(</mo><msup><mi>X</mi> <mi>D</mi></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \star \,\colon\,
+  \Omega^p_{dR}(X^D) \to \Omega^{D-p}_{dR}(X^D)
+
+</annotation></semantics></math></div>
+<p>satisfying (see <a href="../../../../../5/3/1/4/4135/content.html#eq:HodgeSquareOnRiemannian">there</a>)</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋆</mo><mspace width="thinmathspace"></mspace><mo>⋆</mo><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn><msup><mo stretchy="false">)</mo> <mrow><mi>p</mi><mo stretchy="false">(</mo><mi>D</mi><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  \star \, \star = - (-1)^{p(D-p)}
+  \,,
+
+</annotation></semantics></math></div></li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>Set</mi></mrow><annotation encoding="application/x-tex">I \,\in\, Set</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../0/6/4/4607/content.html">index set</a> of flux species</p>
+<p>(subsuming both electric fluxes and magnetic fluxes, both now allowed of further different species),</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><msub><mi>deg</mi> <mi>i</mi></msub><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msub><mi>ℕ</mi> <mrow><mo>≥</mo><mn>1</mn></mrow></msub><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\big( deg_i \,\in\, \mathbb{N}_{\geq 1} \big)_{i \in I}</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../0/6/4/4607/content.html">indexed set</a> of degrees,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>F</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>F</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mi>dR</mi> <mrow><msub><mi>deg</mi> <mi>i</mi></msub></mrow></msubsup><mo stretchy="false">(</mo><msup><mi>X</mi> <mi>D</mi></msup><mo stretchy="false">)</mo><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\vec F \,\equiv\,\big( F^{(i)} \,\in\, \Omega^{deg_i}_{dR}(X^D) \big)_{i \in I}</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../0/6/4/4607/content.html">indexed set</a> of <a class="existingWikiWord" href="../../../../../6/9/7/6/6796/content.html">flux densities</a></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo>=</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>P</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\vec P = \big( P^{(i)}  \big)_{i \in I}</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../0/6/4/4607/content.html">indexed set</a> of graded-symmetric <a class="existingWikiWord" href="../../../../../3/9/9/2/2993/content.html">polynomials</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../1/8/9/5/5981/content.html">variables</a>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>μ</mi><mo stretchy="false">→</mo></mover></mrow><annotation encoding="application/x-tex">\vec \mu</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../1/4/9/6/16941/content.html">invertible</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>×</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">I \times I</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/3/3/4/4336/content.html">matrix</a></p>
+</li>
+</ul>
+<p>then:</p>
+<p>
+<div class="num_defn" id="HigherMaxwellInDualitySymmetricForm">
+<h6>Definition</h6>
+<p>The corresponding <strong>higher Maxwell-type equations</strong> on these <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential forms</a>/<a class="existingWikiWord" href="../../../../../6/9/7/6/6796/content.html">flux densities</a> are, in <a class="existingWikiWord" href="../../../../../2/9/7/5/25792/content.html">duality-symmetric form</a>:</p>
+<ol>
+<li>
+<p>the system of <a class="existingWikiWord" href="../../../../../2/9/4/4/4492/content.html">Bianchi identity</a> <a class="existingWikiWord" href="../../../../../2/4/4/3/3442/content.html">differential equations</a></p>
+<div class="maruku-equation" id="eq:HigherBianchiIdentities"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mspace width="thinmathspace"></mspace><mover><mi>F</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">(</mo><mover><mi>F</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  \mathrm{d}\,\vec F 
+  \,=\,
+  \vec P\big(
+    \vec F
+  \big)
+
+</annotation></semantics></math></div></li>
+<li>
+<p>the self-<a class="existingWikiWord" href="../../../../../5/3/1/4/4135/content.html">Hodge duality</a> condition</p>
+<div class="maruku-equation" id="eq:HigherSelfDuality"><span class="maruku-eq-number">(4)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋆</mo><mspace width="thinmathspace"></mspace><mover><mi>F</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mover><mi>μ</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">(</mo><mover><mi>F</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \star \, \vec F
+  \,=\,
+  \vec \mu\big(\vec F\big)
+  \,.
+
+</annotation></semantics></math></div></li>
+</ol>
+<p></p>
+</div>
+</p>
+<p>To extract a Gauss law from such a system of equations, consider the case that the <a class="existingWikiWord" href="../../../../../4/8/7/3/3784/content.html">spacetime</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">X^D</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/4/3/6/6349/content.html">globally hyperbolic</a> with associated (by <a href="../../../../../5/0/3/6/6305/content.html#FoliationOfGloballyHyperbolicSpacetimes">this Prop.</a>) smooth <a class="existingWikiWord" href="../../../../1/2/3/3217/content.html">foliation</a> by <a class="existingWikiWord" href="../../../../../1/4/0/6/6041/content.html">spacelike</a> <a class="existingWikiWord" href="../../../../../5/0/3/6/6305/content.html">Cauchy surfaces</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi> <mi>d</mi></msup></mrow><annotation encoding="application/x-tex">X^d</annotation></semantics></math> exhibited by a <a class="existingWikiWord" href="../../../../../4/1/9/1/1914/content.html">diffeomorphism</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi> <mi>D</mi></msup><mspace width="thinmathspace"></mspace><mo>≃</mo><mspace width="thinmathspace"></mspace><mi>ℝ</mi><mo>×</mo><msup><mi>X</mi> <mi>d</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  X^D 
+  \,\simeq\,
+  \mathbb{R} \times X^d
+  \,.
+
+</annotation></semantics></math></div>
+<p>This identifies the <a class="existingWikiWord" href="../../../../../3/7/5/1/11573/content.html">de Rham differential</a> with the <a class="existingWikiWord" href="../../../../../1/3/3/8/8331/content.html">total differential</a> of a <a class="existingWikiWord" href="../../../../../6/4/1/1/1146/content.html">double complex</a> of <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential forms</a>, bigraded by spatial and by temporal degree:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><msub><mi mathvariant="normal">d</mi> <mi>t</mi></msub><mo>+</mo><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">d</mi> <mi>t</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">d</mi> <mi>t</mi></msub><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mn>0</mn><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mn>0</mn><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">d</mi> <mi>t</mi></msub><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mo>−</mo><msub><mi mathvariant="normal">d</mi> <mi>t</mi></msub><mo>∘</mo><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathrm{d}
+  \,=\,
+  \mathrm{d}_t + \mathrm{d}_s
+  \,,
+  \;\;\;\;\;
+  \mathrm{d}_t \circ \mathrm{d}_t \,=\, 0
+  \,,
+  \;\;\;\;\;
+  \mathrm{d}_s \circ \mathrm{d}_s \,=\, 0
+  \,,
+  \;\;\;\;\;
+  \mathrm{d}_s \circ \mathrm{d}_t \,=\, 
+  - 
+  \mathrm{d}_t \circ \mathrm{d}_s
+  \,. 
+
+</annotation></semantics></math></div>
+<p>Denoting by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mi>dR</mi> <mi>p</mi></msubsup><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>X</mi> <mi>D</mi></msup><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><msub><mi>ι</mi> <mrow><msub><mo>∂</mo> <mi>t</mi></msub></mrow></msub></mrow></msub><mo>↪</mo><msubsup><mi>Ω</mi> <mi>dR</mi> <mi>p</mi></msubsup><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>X</mi> <mi>D</mi></msup><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><msub><mi>ι</mi> <mrow><msub><mo>∂</mo> <mi>t</mi></msub></mrow></msub></mrow></msub></mrow><annotation encoding="application/x-tex">
+  \Omega^p_{dR}\big(
+    X^D
+  \big)_{\iota_{\partial_t}}
+  \hookrightarrow
+  \Omega^p_{dR}\big(
+    X^D
+  \big)_{\iota_{\partial_t}}
+
+</annotation></semantics></math></div>
+<p>the <a class="existingWikiWord" href="../../../../../5/0/6/8/8605/content.html">kernel</a> of the <a class="existingWikiWord" href="../../../../../3/4/7/4/24743/content.html">contraction</a> with the corresponding <a class="existingWikiWord" href="../../../../../1/4/0/6/6041/content.html">timelike</a> <a class="existingWikiWord" href="../../../../../2/2/7/2/2722/content.html">vector field</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∂</mo> <mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\partial_t</annotation></semantics></math>, every <a class="existingWikiWord" href="../../../../../6/9/7/6/6796/content.html">flux density</a> now has a unique decomposition into a summand that has none and a summand that has one factor of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\mathrm{d}t</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>F</mi><mo stretchy="false">→</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>+</mo><mspace width="thinmathspace"></mspace><mo>⋆</mo><mover><mi>E</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>,</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext>for</mtext><mspace width="thickmathspace"></mspace><mrow><mo>{</mo><mspace width="thinmathspace"></mspace><mtable columnalign="left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>B</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>∈</mo><msubsup><mi>Ω</mi> <mi>dR</mi> <mrow><msub><mi>deg</mi> <mi>i</mi></msub></mrow></msubsup><mo stretchy="false">(</mo><msup><mi>X</mi> <mi>D</mi></msup><msub><mo stretchy="false">)</mo> <mrow><msub><mi>ι</mi> <mrow><msub><mo>∂</mo> <mi>t</mi></msub></mrow></msub><mo>=</mo><mn>0</mn></mrow></msub><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mover><mi>E</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>E</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>∈</mo><msubsup><mi>Ω</mi> <mi>dR</mi> <mrow><msub><mi>deg</mi> <mi>i</mi></msub></mrow></msubsup><mo stretchy="false">(</mo><msup><mi>X</mi> <mi>D</mi></msup><msub><mo stretchy="false">)</mo> <mrow><msub><mi>ι</mi> <mrow><msub><mo>∂</mo> <mi>t</mi></msub></mrow></msub><mo>=</mo><mn>0</mn></mrow></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \vec F
+  \;=\;
+  \vec B
+  \,+\,
+  \star
+  \vec E
+  \,,
+  \;\;\;\;
+  \text{for}
+  \;
+  \left\{
+  \,
+  \begin{array}{l}
+    \vec B \,\equiv\,
+    \big(   
+      B^{(i)} 
+        \in 
+     \Omega^{deg_i}_{dR}(X^D)_{\iota_{\partial_t} = 0}
+    \big)
+    \\
+    \vec E \,\equiv\,
+    \big(   
+      E^{(i)} 
+        \in 
+     \Omega^{deg_i}_{dR}(X^D)_{\iota_{\partial_t} = 0}
+    \big)
+    \,.
+  \end{array}
+  \right.
+
+</annotation></semantics></math></div>
+<p>In terms of these components, the higher <a class="existingWikiWord" href="../../../../../2/9/4/4/4492/content.html">Bianchi identities</a> <a class="maruku-eqref" href="#eq:HigherBianchiIdentities">(3)</a> are equivalent to the following system of <a class="existingWikiWord" href="../../../../../2/4/4/3/3442/content.html">differential equations</a>:</p>
+<ul>
+<li>
+<p><strong>higher Gauss laws</strong></p>
+<div class="maruku-equation" id="eq:HigherGaussLaw"><span class="maruku-eq-number">(5)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">(</mo><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  \mathrm{d}_s
+  \,
+  \vec B
+  \;=\;
+  \vec P\big( \vec B \big)
+
+</annotation></semantics></math></div></li>
+<li>
+<p><strong>higher Faraday-Ampère laws</strong></p>
+<div class="maruku-equation" id="eq:HigherFaradayAmpereLaw"><span class="maruku-eq-number">(6)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">d</mi> <mi>t</mi></msub><mspace width="thinmathspace"></mspace><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mo>−</mo><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mo>⋆</mo><mover><mi>E</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>+</mo><mspace width="thinmathspace"></mspace><msub><mi mathvariant="normal">d</mi> <mi>s</mi></msub><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mo>⋆</mo><msup><mi>E</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>∧</mo><mfrac><mi>δ</mi><mrow><mi>δ</mi><msup><mi>B</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup></mrow></mfrac><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">(</mo><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \mathrm{d}_t
+  \,
+  \vec B
+  \;=\;
+  - 
+  \mathrm{d}_s \, 
+  \star \vec E
+  \,+\,
+  \mathrm{d}_s
+  \,
+  \big(\star E^{(i)}\big)
+  \wedge
+  \frac{\delta}{\delta B^{(i)}}
+  \vec P\big(
+    \vec B
+  \big)
+  \,.
+
+</annotation></semantics></math></div></li>
+</ul>
+<p>Hence in the <a class="existingWikiWord" href="../../../../../2/9/7/5/25792/content.html">duality-symmetric formulation</a> of <a class="existingWikiWord" href="../../../../../4/3/8/6/6834/content.html">higher gauge theory</a>, the Gauss law is just the spatial component of the <a class="existingWikiWord" href="../../../../../2/9/4/4/4492/content.html">Bianchi identity</a>.</p>
+<p>Moreover, one finds that the higher Gauss law <a class="maruku-eqref" href="#eq:HigherGaussLaw">(5)</a> is a <a class="existingWikiWord" href="../../../../../9/9/2/6/26299/content.html">first class constraint</a> in that it is preserved by the time evolution presribed by the higher Faraday-Ampère law <a class="maruku-eqref" href="#eq:HigherGaussLaw">(5)</a>, so that the solution space of the <a href="../../../../../4/3/8/6/6834/content.html#HigherGaugeTheoryOfMaxwellType">higher Maxwell equations</a> is identified with the space of flux densities on any <a class="existingWikiWord" href="../../../../../5/0/3/6/6305/content.html">Cauchy surface</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ι</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msup><mi>X</mi> <mi>d</mi></msup><mo>↪</mo><msup><mi>X</mi> <mi>D</mi></msup></mrow><annotation encoding="application/x-tex">
+  \iota
+  \,\colon\,
+  X^d \hookrightarrow X^D
+
+</annotation></semantics></math></div>
+<p>that satisfy (just) the higher Gauss law:</p>
+<center>
+<img src="/nlab/files/HigherGaussLaw-231221.jpg" width="800"/>
+</center>
+<p>In examples relevant in practice, the <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functorial</a> assignment of these canonical solution spaces is <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representable</a> by the <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">formal dual</a> of a <a class="existingWikiWord" href="../../../../../8/7/8/7/17878/content.html">dgc-algebra</a> which embodies the <a class="existingWikiWord" href="../../../../../2/9/4/4/4492/content.html">Bianchi identities</a> as abstract dg-algebraic relations:</p>
+<div class="maruku-equation" id="eq:CharacteristicCEAlgebra"><span class="maruku-eq-number">(7)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔞</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≔</mo><mspace width="thickmathspace"></mspace><mi>ℝ</mi><mo maxsize="1.8em" minsize="1.8em">[</mo><mover><mi>b</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msubsup><mi>b</mi> <mrow><msub><mi>deg</mi> <mi>i</mi></msub></mrow> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msubsup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">]</mo><mo maxsize="1.8em" minsize="1.8em">/</mo><mo maxsize="1.8em" minsize="1.8em">(</mo><mi mathvariant="normal">d</mi><mover><mi>b</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo stretchy="false">(</mo><mover><mi>b</mi><mo stretchy="false">→</mo></mover><mo stretchy="false">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  
+  CE(\mathfrak{a})
+  \;\coloneqq\;
+  \mathbb{R}\Big[
+    \vec b
+    \,\equiv\,
+    \big(
+      b^{(i)}_{deg_i}
+    \big)
+  \Big]
+  \Big/
+  \Big(
+    \mathrm{d} \vec b \,=\, \vec P(\vec b)
+  \Big)
+  \,,
+
+</annotation></semantics></math></div>
+<p>as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.8em" minsize="1.8em">{</mo><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>B</mi> <mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mi>dR</mi> <mrow><msub><mi>deg</mi> <mi>i</mi></msub></mrow></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">|</mo><mspace width="thinmathspace"></mspace><mi mathvariant="normal">d</mi><mspace width="thinmathspace"></mspace><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">(</mo><mover><mi>B</mi><mo stretchy="false">→</mo></mover><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">}</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>Hom</mi> <mi>dgAlg</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>CE</mi><mo stretchy="false">(</mo><mi>𝔞</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mi>dR</mi> <mo>•</mo></msubsup><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Big\{
+  \vec B
+  \,\in\,
+  \big(
+    B^{(i)}
+    \,\in\,
+    \Omega^{deg_i}_{dR}(-)
+  \big)_{i \in I}
+  \,\Big\vert\,
+  \mathrm{d}\, \vec B \,=\, \vec P\big(\vec B\big)
+  \Big\}
+  \;\;\;
+  \simeq
+  \;\;\;
+  Hom_{dgAlg}\big(
+    CE(\mathfrak{a})
+    ,\,
+    \Omega^{\bullet}_{dR}(-)
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is equivalently the <a class="existingWikiWord" href="../../../../../8/9/0/0/98/content.html">Chevalley-Eilenberg algebra</a> of a characteristic <a class="existingWikiWord" href="../../../../../4/9/0/0/94/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<msub><mi>L</mi> <mn>∞</mn></msub>
+</mrow>
+<annotation encoding="application/x-tex">L_\infty</annotation>
+</semantics>
+</math>-algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔞</mi></mrow><annotation encoding="application/x-tex">\mathfrak{a}</annotation></semantics></math> (by the discussion <a href="../../../../../4/9/0/0/94/content.html#ReformulationInTermsOfSemifreeDGAlgebra">there</a>), making the right hand side the <a class="existingWikiWord" href="../../../../2/7/4/4727/content.html">flat <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<msub><mi>L</mi> <mn>∞</mn></msub>
+</mrow>
+<annotation encoding="application/x-tex">L_\infty</annotation>
+</semantics>
+</math>-algebra valued differential forms</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>SolSpace</mi><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msub><mi>Ω</mi> <mi>dR</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>X</mi> <mi>d</mi></msup><mo>;</mo><mspace width="thinmathspace"></mspace><mi>𝔞</mi><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mi>flat</mi></msub><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  SolSpace
+  \;\simeq\;
+  \Omega_{dR}\big(
+    X^d
+    ;\, 
+    \mathfrak{a}
+  \big)_{flat}
+  \,,
+
+</annotation></semantics></math></div>
+<p>with the higher Gauss law being exactly the flatness condition.</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p><strong>(ordinary Gauss law as special case of higher Gauss law)</strong> <br/> The ordinary case (<a href="#InElectromagnetism">above</a>) of the Gauss law in <a class="existingWikiWord" href="../../../../../9/5/5/6/6559/content.html">vacuum</a> <a class="existingWikiWord" href="../../../../../8/3/8/1/1838/content.html">electromagnetism</a> (ie. with vanishing <a class="existingWikiWord" href="../../../../../0/5/8/1/1850/content.html">electric charge</a> density) is obtained from Def. <a class="maruku-ref" href="#HigherMaxwellInDualitySymmetricForm"></a> by setting</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>≡</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">D \equiv 4</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>≡</mo><mo stretchy="false">{</mo><mi>el</mi><mo>,</mo><mi>mag</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">I \equiv \{el, mag\}</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>P</mi><mo stretchy="false">→</mo></mover><mo>≡</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\vec P \equiv 0</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>μ</mi><mo stretchy="false">→</mo></mover><mo>≡</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mn>0</mn></mtd> <mtd><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mtd></mtr> <mtr><mtd><mn>1</mn></mtd> <mtd><mn>0</mn></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mrow><annotation encoding="application/x-tex">\vec \mu \equiv \left[\array{ 0 &amp; -1 \\ 1 &amp; 0 }\right]</annotation></semantics></math>.</p>
+</li>
+</ul>
+<p>This gives the electric and magnetic Gauss laws as</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><msup><mi>B</mi> <mrow><mo stretchy="false">(</mo><mi>el</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">\mathrm{d} B^{(el)} \,=\, 0</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">d</mi><msup><mi>B</mi> <mrow><mo stretchy="false">(</mo><mi>mag</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">\mathrm{d} B^{(mag)} \,=\, 0</annotation></semantics></math></p>
+</li>
+</ul>
+<p>where self-duality constraint identifies the elctric flux density equivalently as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>B</mi> <mrow><mo stretchy="false">(</mo><mi>el</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><msup><mi>E</mi> <mrow><mo stretchy="false">(</mo><mi>mag</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">B^{(el)} \,=\, E^{(mag)}</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../9/5/2/6/6259/content.html">chiral boson</a> in 2d)</strong> <br/> (…)</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../6/6/8/1/1866/content.html">RR-fields</a> in <a class="existingWikiWord" href="../../../../../6/2/9/6/16926/content.html">D=10 supergravity</a>)</strong> <br/> (…)</p>
+</div>
+</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../9/4/8/1/1849/content.html">C-field</a> in <a class="existingWikiWord" href="../../../../../5/6/8/4/4865/content.html">D=11 supergravity</a>)</strong> <br/> (…)</p>
+</div>
+</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/9/2/6/26299/content.html">constrained mechanics</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/9/2/6/26299/content.html">first class constraint</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/8/3/6/26389/content.html">uncertainty of fluxes</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<p>Named after:</p>
+<ul>
+<li id="Gauß1877">
+<p><a class="existingWikiWord" href="../../../../../2/9/5/1/11592/content.html">Carl F. Gauß</a>, <em>Theoria attractionis corporum sphaeroidicorum ellipticorum homogeneorum, methodo nova tractata</em>, Commentationes Societatis Regiae Scientiarum Göttingensis Recentiores. Comm. Class. Math. <strong>2</strong> (1813) 1–24 [<a href="http://resolver.sub.uni-goettingen.de/purl?PPN35283028X_0002_2NS">PPN35283028X_0002_2NS</a>]</p>
+<p>reprinted in: <em>Carl Friedrich Gauss – Werke</em> <strong>5</strong>, Springer (1877) 2-22 [<a href="https://doi.org/10.1007/978-3-642-49319-5_1">doi:10.1007/978-3-642-49319-5_1</a>]</p>
+</li>
+</ul>
+<p>For more see any of the references at <em><a class="existingWikiWord" href="../../../../../9/7/9/7/7979/content.html">Maxwell's equations</a></em>, such as:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/9/7/5/25798/content.html">Friedrich W. Hehl</a>, <a class="existingWikiWord" href="../../../../../0/0/8/5/25800/content.html">Yuri N. Obukhov</a>, I.1 &amp; B1.45 in: <em>Foundations of Classical Electrodynamics – Charge, Flux, and Metric</em>, Progress in Mathematical Physics <strong>33</strong>, Springer (2003) [<a href="https://doi.org/10.1007/978-1-4612-0051-2">doi:10.1007/978-1-4612-0051-2</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li>Wikipedia, <em><a href="https://en.wikipedia.org/wiki/Gauss%27s_law">Gauss’s law</a></em></li>
+</ul>
+<h3 id="as_a_phase_space_constraint">As a phase space constraint</h3>
+<p>Discussion of the Gauss law as a <a class="existingWikiWord" href="../../../../../3/5/9/7/7953/content.html">first-class</a> <a class="existingWikiWord" href="../../../../../9/9/2/6/26299/content.html">constraint</a> on <a class="existingWikiWord" href="../../../../../0/2/8/3/3820/content.html">phase space</a>:</p>
+<p>In <a class="existingWikiWord" href="../../../../../8/3/8/1/1838/content.html">Maxwell theory</a>:</p>
+<ul>
+<li id="BlaschkeGieres21">
+<p><a class="existingWikiWord" href="../../../../../3/9/3/6/26393/content.html">Daniel N. Blaschke</a>, <a class="existingWikiWord" href="../../../../../4/9/3/6/26394/content.html">François Gieres</a>, equation (5.8) in: <em>On the canonical formulation of gauge field theories and Poincaré transformations</em>, Nuclear Physics B <strong>965</strong> (2021) 115366 [<a href="https://doi.org/10.1016/j.nuclphysb.2021.115366">doi:10.1016/j.nuclphysb.2021.115366</a>, <a href="https://arxiv.org/abs/2004.14406">arXiv:2004.14406</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/7/5/5712/content.html">Marc Henneaux</a>, <a class="existingWikiWord" href="../../../../../3/1/7/5/5713/content.html">Claudio Teitelboim</a>, p. 456 in: <em><a class="existingWikiWord" href="../../../../../1/5/7/5/5751/content.html">Quantization of Gauge Systems</a></em>, Princeton University Press 1992 [<a href="https://press.princeton.edu/books/paperback/9780691037691/quantization-of-gauge-systems">ISBN:9780691037691</a>, <a href="https://www.jstor.org/stable/j.ctv10crg0r">jstor:j.ctv10crg0r</a>]</p>
+</li>
+</ul>
+<p>In <a class="existingWikiWord" href="../../../../../1/7/8/1/1871/content.html">Yang-Mills theory</a>:</p>
+<ul>
+<li id="FriedmanPapastamatiou83"><a class="existingWikiWord" href="../../../../../6/9/3/6/26396/content.html">John L. Friedman</a>, Nicholas J. Papastamatiou, equation (3.9) in: <em>On the canonical quantization of Yang-Mills theories</em>, Nuclear Physics B <strong>219</strong> 1 (1983) 125-142 [<a href="https://doi.org/10.1016/0550-3213(83)90431-5">doi:10.1016/0550-3213(83)90431-5</a>]</li>
+</ul>
+<p>In <a class="existingWikiWord" href="../../../../../4/3/8/6/6834/content.html">higher gauge theory</a>:</p>
+<ul>
+<li id="SS23"><a class="existingWikiWord" href="../../../../../2/1/5/2/2512/content.html">Hisham Sati</a>, <a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>, <em><a class="existingWikiWord" href="/schreiber/show/Flux+Quantization+on+Phase+Space">Flux Quantization on Phase Space</a></em> [<a href="https://arxiv.org/abs/2312.12517">arXiv:2312.12517</a>]</li>
+</ul>
+<h3 id="in_relation_to_locality">In relation to locality</h3>
+<p>The Gauss law in relation to non-<a class="existingWikiWord" href="../../../../../5/5/1/9/9155/content.html">locality</a> of charged states in <a class="existingWikiWord" href="../../../../../0/9/2/0/290/content.html">quantum field theory</a>:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/5/6/26510/content.html">Giovanni Morchio</a>, <a class="existingWikiWord" href="../../../../../9/2/5/1/11529/content.html">Franco Strocchi</a>, <em>Localization and symmetries</em>, J. Phys. A <strong>40</strong> (2007) 3173-3188 [<a href="https://arxiv.org/abs/math-ph/0607015">arXiv:math-ph/0607015</a>, <a href="https://doi.org/10.1088/1751-8113/40/12/S17">doi:10.1088/1751-8113/40/12/S17</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/6/7/7629/content.html">Detlev Buchholz</a>, Fabio Ciolli, <a class="existingWikiWord" href="../../../../../9/6/8/6/6869/content.html">Giuseppe Ruzzi</a>, Ezio Vasselli, <em>Gauss’s law, the manifestations of gauge fields, and their impact on local observables</em> [<a href="https://arxiv.org/abs/2212.11009">arXiv:2212.11009</a>]</p>
+</li>
+</ul>
+<p>see also in relation to <a class="existingWikiWord" href="../../../../../4/3/9/8/18934/content.html">infraparticles</a>:</p>
+<ul>
+<li id="Buchholz86"><a class="existingWikiWord" href="../../../../../9/2/6/7/7629/content.html">Detlev Buchholz</a>, <em>Gauss’ law and the infraparticle problem</em>, Phys. Lett. B <strong>174</strong> (1986) 331-334 [<a href="https://doi.org/10.1016/0370-2693(86)91110-X">doi:10.1016/0370-2693(86)91110-X</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

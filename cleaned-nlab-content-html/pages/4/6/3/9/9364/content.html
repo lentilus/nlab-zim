@@ -1,0 +1,392 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      polynomial monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      polynomial monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#parametric_right_adjointness">Parametric right adjointness</a></li>
+<li><a href="#cartesianness">Cartesianness</a></li>
+<li><a href="#relation_to_clubs">Relation to clubs</a></li>
+<li><a href="#relation_to_generalized_multicategories">Relation to generalized multicategories</a></li>
+<li><a href="#relation_to_object_classifiers">Relation to object classifiers</a></li>
+</ul>
+<li><a href="#see_also">See also</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="definition">Definition</h2>
+<p>A <strong>polynomial monad</strong> is a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> on a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> whose underlying <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a> is a <a class="existingWikiWord" href="../../../../../3/0/0/4/4003/content.html">polynomial functor</a> and whose unit and multiplication are <a class="existingWikiWord" href="../../../../../9/9/3/9/9399/content.html">cartesian natural transformations</a>. This is of course equivalent to being a monad in the <a class="existingWikiWord" href="../../../../../3/5/2/0/253/content.html">bicategory</a> of polynomial functors and cartesian transformations.</p>
+<h2 id="examples">Examples</h2>
+<p>A basic example is the free-monoid monad (<a href="#GambinoKock09">Gambino-Kock 09, Example 1.9</a>). This is exhibited by the polynomial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>←</mo><msup><mi>ℕ</mi> <mstyle scriptlevel="0"><mo>′</mo></mstyle></msup><mo>→</mo><mi>ℕ</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1\leftarrow \mathbb{N}^\prime\rightarrow  \mathbb{N}\rightarrow 1</annotation></semantics></math> where the middle arrow is such that for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n\in \mathbb{N}</annotation></semantics></math> its fiber over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> has cardinality <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>.</p>
+<p>One can construct the free monad on a polynomial endofunctor, and it is a polynomial monad.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="parametric_right_adjointness">Parametric right adjointness</h3>
+<p>Every polynomial monad is a <a class="existingWikiWord" href="../../../../0/0/4/4004/content.html">p.r.a. monad</a>.</p>
+<h3 id="cartesianness">Cartesianness</h3>
+<p>Since all polynomial functors preserve <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullbacks</a>, a polynomial monad is necessarily a <a class="existingWikiWord" href="../../../../../7/7/5/0/577/content.html">cartesian monad</a>. Note that cartesian transformations between polynomial functors also have an explicit description: they are given by diagrams</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>↙</mo></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo>↘</mo></mtd></mtr> <mtr><mtd><mi>W</mi></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mi>Z</mi></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>↖</mo></mtd> <mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo>↗</mo></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>X</mi><mo>′</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo>′</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex"> \array{
+  &amp; &amp; X &amp; \to &amp; Y\\
+  &amp; \swarrow &amp; &amp; &amp; &amp; \searrow \\
+  W &amp;&amp; \downarrow &amp;&amp; \downarrow &amp;&amp; Z \\
+  &amp; \nwarrow &amp; &amp; &amp; &amp; \nearrow \\
+  &amp; &amp; X' &amp; \to &amp; Y'
+  }
+</annotation></semantics></math></div>
+<p>in which the middle square is a pullback. Thus, all the data of a polynomial monad can be described very concretely. This gives a convenient way to produce cartesian monads, and indeed very many cartesian monads arising in practice are in fact polynomial. Polynomial monads have close relations with a number of other notions.</p>
+<h3 id="relation_to_clubs">Relation to clubs</h3>
+<p>Polynomial monads (on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> rather than a slice of it) are, in some sense, the most natural base monads for the theory of <a class="existingWikiWord" href="../../../../../8/4/7/3/3748/content.html">clubs</a>. Although the club construction can be performed over any cartesian monad, if this monad is polynomial, then all clubs over it are also polynomial, since polynomial functors are a <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieve</a> with respect to cartesian transformations. Moreover, the club monoidal structure can be seen as just an instance of the explicit construction of composition for polynomials (see 1.11 of (<a href="#GambinoKock09">Gambino-Kock</a>)).</p>
+<h3 id="relation_to_generalized_multicategories">Relation to generalized multicategories</h3>
+<p>The bicategory of polynomial functors and cartesian transformations is in fact the horizontal bicategory of a <a class="existingWikiWord" href="../../../../../1/5/2/0/251/content.html">double category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi>Poly</mi><mo>̲</mo></munder></mrow><annotation encoding="application/x-tex">\underline{Poly}</annotation></semantics></math>, whose vertical arrows are the morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and whose cells are diagrams like</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>W</mi></mtd> <mtd><mo>←</mo></mtd> <mtd><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Z</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>W</mi><mo>′</mo></mtd> <mtd><mo>←</mo></mtd> <mtd><mi>X</mi><mo>′</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi><mo>′</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Z</mi><mo>′</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex"> \array{
+  W &amp; \leftarrow &amp; X &amp; \to &amp; Y &amp; \to &amp; Z \\
+  \downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow &amp;&amp;\downarrow\\
+  W' &amp; \leftarrow &amp; X' &amp; \to &amp; Y' &amp; \to &amp; Z'
+}
+</annotation></semantics></math></div>
+<p>in which the <em>middle</em> square (only) is a pullback. Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>′</mo><mo>=</mo><mi>Z</mi><mo>′</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">W'=Z'=1</annotation></semantics></math>, so the bottom polynomial is determined by a single morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>′</mo><mo>:</mo><mi>X</mi><mo>′</mo><mo>→</mo><mi>Y</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">g':X'\to Y'</annotation></semantics></math>, and that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">W=Z</annotation></semantics></math>. Then to give the rest of the diagram is to give an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>, a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">Y\to Z</annotation></semantics></math>, and a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>′</mo><msub><mo>×</mo> <mrow><mi>Y</mi><mo>′</mo></mrow></msub><mi>Y</mi><mo>→</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X' \times_{Y'} Y \to Z</annotation></semantics></math>. By adjointness, the latter is equivalent to giving a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><msub><mi>Π</mi> <mrow><mi>g</mi><mo>′</mo></mrow></msub><mo stretchy="false">(</mo><mi>Z</mi><mo>×</mo><mi>X</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y\to \Pi_{g'}(Z\times X')</annotation></semantics></math>; but this codomain is just <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">T Z</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is the polynomial functor determined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">g'</annotation></semantics></math>.</p>
+<p>Thus, a polynomial equipped with a cartesian transformation to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>←</mo><mi>X</mi><mo>′</mo><mo>→</mo><mi>Y</mi><mo>′</mo><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \leftarrow X' \to Y' \to 1</annotation></semantics></math> is exactly a “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-span” such as arises in the theory of <a class="existingWikiWord" href="../../../../../0/2/9/1/1920/content.html">generalized multicategories</a>. A similar argument shows that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is a polynomial monad, then the slice double category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi>Poly</mi><mo>̲</mo></munder></mrow><annotation encoding="application/x-tex">\underline{Poly}</annotation></semantics></math> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">g'</annotation></semantics></math> is equivalent to the double category of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-spans (a.k.a. the “horizontal Kleisli” double category). Therefore, polynomial monads cartesianly-over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>, being the horizontal monads in this double category, are precisely <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-multicategories. (Such polynomial monads on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> itself, rather than any slice, are the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-clubs mentioned above; in general a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-multicategory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><msub><mi>X</mi> <mn>0</mn></msub><mo>←</mo><msub><mi>X</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>X</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">T X_0 \leftarrow X_1 \to X_0</annotation></semantics></math> is identified with the monad it induces on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">/</mo><msub><mi>X</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">C/X_0</annotation></semantics></math>.)</p>
+<h3 id="relation_to_object_classifiers">Relation to object classifiers</h3>
+<p>Polynomial monads have a natural interpretation in terms of <a class="existingWikiWord" href="../../../../../2/2/3/2/2322/content.html">object classifiers</a>. Specifically, given any polynomial <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>←</mo><mi>B</mi><mover><mo>→</mo><mi>g</mi></mover><mi>A</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 \leftarrow B \xrightarrow{g} A \to 1</annotation></semantics></math>, generating a polynomial functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">P_{1,g,1}</annotation></semantics></math>, we can consider the class <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math> of all pullbacks of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math>. A cartesian unit <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Id</mi><mo>→</mo><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">Id \to P_{1,g,1}</annotation></semantics></math> says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>id</mi> <mn>1</mn></msub><mo>:</mo><mn>1</mn><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">id_1 : 1\to 1</annotation></semantics></math> is a pullback of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math>, and therefore so are all identities. Similarly, the composite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub><mo>∘</mo><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">P_{1,g,1} \circ P_{1,g,1}</annotation></semantics></math> involves the classifying object for a pair of composable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math>-morphisms, and so a cartesian multiplication <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub><mo>∘</mo><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub><mo>→</mo><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">P_{1,g,1} \circ P_{1,g,1} \to P_{1,g,1}</annotation></semantics></math> tells us that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math> is closed under composition.</p>
+<p>Thus, a polynomial monad (on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>≅</mo><mi>C</mi><mo stretchy="false">/</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">C \cong C/1</annotation></semantics></math>) can be regarded as a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> together with a coherent way to make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math> into a category. More precisely, consider the slice category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cart</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">Cart(C)/g</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cart</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cart(C)</annotation></semantics></math> is the category whose objects are morphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and whose morphisms are pullback squares. This comes with source and target functors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cart</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>g</mi><mo>⇉</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">Cart(C)/g \rightrightarrows C</annotation></semantics></math>. To make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mrow><mn>1</mn><mo>,</mo><mi>g</mi><mo>,</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">P_{1,g,1}</annotation></semantics></math> into a polynomial monad is then equivalent to giving unit and composition functors enhancing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cart</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>g</mi><mo>⇉</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">Cart(C)/g \rightrightarrows C</annotation></semantics></math> to a <a class="existingWikiWord" href="../../../../../1/5/2/0/251/content.html">double category</a> such that the forgetful map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cart</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>g</mi><mo>→</mo><mi>Cart</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Cart(C)/g \to Cart(C)</annotation></semantics></math> is a double functor (Theorem 5.3.3 of <a href="#Weber15">Weber 2015</a>).</p>
+<p>For example, consider the free monoid monad above determined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>ℕ</mi><mstyle scriptlevel="0"><mo>′</mo></mstyle><mo>→</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">g:\mathbb{N}\prime \to \mathbb{N}</annotation></semantics></math>. To exhibit a function as a pullback of this <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> is to say that its fibers are finite and have been equipped with bijections to canonical finite sets, which we may as well think of as giving them linear orders. To give the monad structure on this functor is equivalent to noting that every identity map has ordered finite fibers, and the composite of functions with ordered finite fibers again has ordered finite fibers, in a way that is associative, unital, and stable under pullback.</p>
+<p>Other interesting examples include:</p>
+<ul>
+<li>The monad for symmetric strict monoidal categories on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math>: its <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math> consists of discrete (op)fibrations with ordered finite fibers in which all reindexing functions are bijections.</li>
+<li>The monad for cartesian strict monoidal categories on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math>: its <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math> consists of discrete fibrations with ordered finite fibers.</li>
+<li>The monad for cocartesian strict monoidal categories on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math>: its <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">S_g</annotation></semantics></math> consists of discrete opfibrations with ordered finite fibers.</li>
+</ul>
+<p>The class of discrete <a class="existingWikiWord" href="../../../../../1/6/6/3/3661/content.html">Conduche functors</a> with ordered finite fibers is <em>almost</em> an example; it wants to be classified by the bicategory <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>FinSpan</mi></mrow><annotation encoding="application/x-tex">FinSpan</annotation></semantics></math> of spans between finite sets, but that is not an object of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math>. Thus, a polynomial monad in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math> determined by a discrete Conduche functor with ordered finite fibers is a reasonable substitute for the nonexistent notion of “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>FinSpan</mi></mrow><annotation encoding="application/x-tex">FinSpan</annotation></semantics></math>-club”.</p>
+<p>Identifying the classes of morphisms corresponding to standard polynomial monads like these also tells us how to identify when a polynomial monad is induced by a <a class="existingWikiWord" href="../../../../../8/4/7/3/3748/content.html">club</a> (or more generally a <a class="existingWikiWord" href="../../../../../0/2/9/1/1920/content.html">generalized multicategory</a>) over them: when the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> for that monad belongs to the appropriate class, compatibly. For instance, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is the monad for cartesian strict monoidal categories, then a polynomial monad on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cat</mi></mrow><annotation encoding="application/x-tex">Cat</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>-club just when the morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> in its defining polynomial is a discrete fibration with ordered finite fibers, and its composition and unit respect that structure.</p>
+<h2 id="see_also">See also</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../2/7/2/8/28272/content.html">familial 2-monad</a></li>
+</ul>
+<h2 id="references">References</h2>
+<p>A fairly comprehensive discussion of the notion is due to</p>
+<ul id="GambinoKock09">
+<li><a class="existingWikiWord" href="../../../../../1/2/0/3/3021/content.html">Nicola Gambino</a>, <a class="existingWikiWord" href="../../../../../8/2/4/2/2428/content.html">Joachim Kock</a>, <em>Polynomial functors and polynomial monads</em>, (2009); (<a href="http://arxiv.org/abs/0906.4931">arXiv:0906.4931</a>)</li>
+</ul>
+<p>The <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a> of <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> over polynomial monads is in</p>
+<ul id="BataninBerger13">
+<li><a class="existingWikiWord" href="../../../../../9/9/0/2/2099/content.html">Michael Batanin</a>, <a class="existingWikiWord" href="../../../../../3/1/8/2/2813/content.html">Clemens Berger</a>, <em>Homotopy theory for algebras over polynomial monads</em> (<a href="http://arxiv.org/abs/1305.0086">arXiv:1305.0086</a>)</li>
+</ul>
+<p>An application to the theory of <a class="existingWikiWord" href="../../../../../5/3/7/1/1735/content.html">opetopes</a> in discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/2/4/2/2428/content.html">Joachim Kock</a>, <a class="existingWikiWord" href="../../../../../0/7/3/1/1370/content.html">André Joyal</a>, <a class="existingWikiWord" href="../../../../../9/9/0/2/2099/content.html">Michael Batanin</a>, <a class="existingWikiWord" href="../../../../../9/3/6/5/5639/content.html">Jean-François Mascari</a> (2010); Polynomial functors and opetopes; Advances in Mathematics, vol 224, pages 2690–2737, <a href="http://arxiv.org/abs/0706.1033">arXiv:0706.1033</a>
+<p id="KJBM">, §4.3-4.6, where the main result is that the polynomial monad of stable opetopes is a least fixpoint of the Baez-Dolan construction for polynomial monads.</p>
+</li>
+</ul>
+<p>An extension of type theory with a universe of associative and unital polynomial monads to define <a class="existingWikiWord" href="../../../../../0/6/9/5/15960/content.html"> opetopic types</a> in order to encode fully coherent algebraic structures is in</p>
+<ul>
+<li id="AlliouxFinsterSozeau20"><a class="existingWikiWord" href="../../../../../8/9/2/2/22298/content.html">Antoine Allioux</a>, <a class="existingWikiWord" href="../../../../../7/7/8/9/9877/content.html">Eric Finster</a>, <a class="existingWikiWord" href="../../../../../9/9/2/2/22299/content.html">Matthieu Sozeau</a>, <em>Types are internal infinity-groupoids</em> (<a href="https://hal.inria.fr/hal-03133144/document">PDF</a>)</li>
+</ul>
+<p>Polynomial monads as a “generalization of small categories” for homotopy theory are studied in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/9/0/2/2099/content.html">Michael Batanin</a>, Florian De Leger; <em>Grothendieck’s homotopy theory, polynomial monads and delooping of spaces of long knots</em>, 2017: <a href="https://arxiv.org/abs/1712.00904">arxiv</a></li>
+</ul>
+<p>The relation between polynomial monads, object classifiers, and models of (homotopy) type theory is studied in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/9/4/4913/content.html">Steve Awodey</a>, <em>Natural models of homotopy type theory</em>, 2017: <a href="https://arxiv.org/abs/1406.3219">arxiv</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/9/4/4913/content.html">Steve Awodey</a>, Clive Newstead; <em>Polynomial pseudomonads and dependent type theory</em>, 2018: <a href="https://arxiv.org/abs/1802.00997">arxiv</a></p>
+</li>
+<li>
+<p>Clive Newstead, <em>Algebraic models of dependent type theory</em>, 2021: <a href="https://arxiv.org/abs/2103.06155">arxiv</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/1/9/4/4913/content.html">Steve Awodey</a>, <em>Algebraic type theory</em>, <a href="https://hott.github.io/HoTT-2023/slides/awodey.pdf">slides from HoTT 2023</a></p>
+</li>
+</ul>
+<p>The presentation of polynomial monads on a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℰ</mi></mrow><annotation encoding="application/x-tex">\mathcal{E}</annotation></semantics></math> with pullbacks in terms of <a class="existingWikiWord" href="../../../../../1/5/2/0/251/content.html">strict double categories</a> is in Theorem 5.3.3 of:</p>
+<ul>
+<li id="Weber2015"><a class="existingWikiWord" href="../../../../../3/1/4/5/5413/content.html">Mark Weber</a>, <em>Polynomials in categories with pullbacks</em>, Theory and Applications of Categories, <strong>30</strong>:16 (2015) 533–598. (<a href="http://tac.mta.ca/tac/volumes/30/16/30-16abs.html">journal</a>)</li>
+</ul>
+<p>This data was called <strong>bagdomain data</strong> in:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter T. Johnstone</a>, <em>Variations on the bagdomain theme</em>, Theoretical Computer Science 136.1 (1994): 3</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

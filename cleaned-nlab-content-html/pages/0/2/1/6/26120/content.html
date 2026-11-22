@@ -1,0 +1,1703 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      quantum state monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      quantum state monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#preliminaries">Preliminaries</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#TheDefiningAdjunction">The defining adjunction</a></li>
+<li><a href="#the_linear_state_monad">The linear state monad</a></li>
+<li><a href="#the_linear_store_comonad">The linear store comonad</a></li>
+<li><a href="#KleisliStructure">Kleisli structure</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#quantum_observables_are_the_quantum_state_contextful_scalars">Quantum observables are the Quantum state contextful scalars</a></li>
+<li><a href="#QuantumChannelsAreQuantumStateTransformations">Quantum channels that are Quantum state transformations</a></li>
+<li><a href="#HeisenbergEvolution">Heisenberg evolution is action of Quantum state transformations</a></li>
+</ul>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#interaction_with_quantumenvironment_monad">Interaction with QuantumEnvironment monad</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <em><a class="existingWikiWord" href="../../../../../4/3/1/1/11134/content.html">state monads</a></em> and <em><a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">costate comonads</a></em> (<a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">store comonads</a>) are typically discussed on <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed categories</a> — but, of course, the analogous construction exists on any <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">closed monoidal category</a>.</p>
+<p>An immediate non-cartesian example is a <a class="existingWikiWord" href="../../../../../9/9/1/0/199/content.html">category of vector spaces</a>. At least for a <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional vector space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> (and generally on a <a class="existingWikiWord" href="../../../../../6/1/7/0/716/content.html">compact closed category</a>), the <em>linear <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>-state/store (co)monads</em> merge into a single <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a> (see <a href="#FrobeniusStructure">below</a>) which reflects some core structure of <a class="existingWikiWord" href="../../../../../7/1/7/3/3717/content.html">open quantum systems</a> (<a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">mixed states</a>, <a class="existingWikiWord" href="../../../../../1/4/5/3/3541/content.html">quantum channels</a> and their <a class="existingWikiWord" href="../../../../../8/2/0/7/7028/content.html">quantum observables</a>).</p>
+<p>Due to this fact and the general broad identification of (multiplicative) <a class="existingWikiWord" href="../../../../../3/5/0/1/1053/content.html">linear logic</a> with a form of <a class="existingWikiWord" href="../../../../../2/4/2/6/6242/content.html">quantum logic</a>, the linear (co)state (co)monad may deserve to be called the <em>quantum state monad</em> (cf. the similar situation for the <em><a class="existingWikiWord" href="../../../../8/8/4/24880/content.html">quantum reader monad</a></em>).</p>
+<p>For example, <a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum channels</a> turn out to be embodied by <a class="existingWikiWord" href="../../../../../9/3/1/6/26139/content.html">monad transformations</a> between such quantum state monads, so that with this terminology the plausible and desireable statement “<em>quantum channels are quantum state transformations</em>” becomes an actual theorem (see <a href="#QuantumChannelsAreQuantumStateTransformations">below</a>).</p>
+<h2 id="preliminaries">Preliminaries</h2>
+<p>For definiteness (only), we consider the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mrow><annotation encoding="application/x-tex">Mod_{\mathbb{C}}</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../3/9/2/9/9293/content.html">complex vector spaces</a> with, as usual:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal structure</a> given by the <a class="existingWikiWord" href="../../../../9/7/7/17790/content.html">tensor product of vector spaces</a>,</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thickmathspace"></mspace></mrow><annotation encoding="application/x-tex">\;</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝟙</mi><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{1} \,\equiv\, \mathbb{C}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../5/6/1/2/2165/content.html">complex numbers</a> themselves,</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thickmathspace"></mspace></mrow><annotation encoding="application/x-tex">\;</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊸</mo><mi class="mathscript">ℋ</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\mathscr{H} \multimap \mathscr{H}'</annotation></semantics></math> the vector space of <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear maps</a></p>
+<div class="maruku-equation" id="eq:InternalHomHomIsomorphism"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⊣</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  
+  \mathscr{H} \otimes (\text{-})
+  \;\;\dashv\;\;
+  \mathscr{H} \multimap (\text{-})
+
+</annotation></semantics></math></div></li>
+</ul>
+<p>Throughout the following we fix</p>
+<div class="maruku-equation" id="eq:TheFinDimHilbertSpace"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msub><mi>FinDimMod</mi> <mi>ℂ</mi></msub><mo>↪</mo><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mrow><annotation encoding="application/x-tex">
+  
+  \mathscr{H} \,\in\, FinDimMod_{\mathbb{C}} \hookrightarrow Mod_{\mathbb{C}}
+
+</annotation></semantics></math></div>
+<p>a <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a> <a class="existingWikiWord" href="../../../../../3/9/2/9/9293/content.html">complex vector space</a>.</p>
+<p>But most or all of the following discussion works for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mrow><annotation encoding="application/x-tex">Mod_{\mathbb{C}}</annotation></semantics></math> replaced by any <a class="existingWikiWord" href="../../../../../8/8/0/6/26088/content.html">symmetric monoidal closed category</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> taken from a <a class="existingWikiWord" href="../../../../../6/1/7/0/716/content.html">compact closed</a> <a class="existingWikiWord" href="../../../../../6/2/1/0/126/content.html">subcategory</a>.</p>
+<p>In this vein, for notational purposes only (at this point) we choose on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>:</p>
+<ol>
+<li>
+<p>a <a class="existingWikiWord" href="../../../../../5/8/3/6/16385/content.html">Hermitian</a> <a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>⟨</mo><mo>⋅</mo><mo stretchy="false">|</mo><mo>⋅</mo><mo>⟩</mo></mrow></mrow><annotation encoding="application/x-tex">\left\langle\cdot \vert \cdot\right\rangle</annotation></semantics></math>, hence consider it as a <a class="existingWikiWord" href="../../../../../4/0/1/6/26104/content.html">finite-dimensional Hilbert space</a> and use <a class="existingWikiWord" href="../../../../../8/0/1/1/11108/content.html">bra-ket</a> notation to denote the generic elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mi>ψ</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">
+  \left\vert \psi \right\rangle
+  \,\equiv\,
+  \psi \,\in\, \mathscr{H}
+
+</annotation></semantics></math></div>
+<p>and those of its <a class="existingWikiWord" href="../../../../../6/1/2/7/7216/content.html">linear dual space</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊸</mo><mi>𝟙</mi></mrow><annotation encoding="application/x-tex">
+  \mathscr{H}^\ast
+  \,\equiv\,
+  \mathscr{H} \multimap \mathbb{1}
+
+</annotation></semantics></math></div>
+<p>by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>≡</mo><mspace width="thinmathspace"></mspace><mrow><mo>⟨</mo><mi>ψ</mi><mo stretchy="false">|</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  \left\langle \phi \right\vert
+  \,\equiv\,
+  \left\langle \psi \vert (\text{-}) \right\rangle
+  \,\in\,
+  \mathscr{H}^\ast
+
+</annotation></semantics></math></div></li>
+<li>
+<p>an <a class="existingWikiWord" href="../../../../../2/8/2/7/7282/content.html">orthonormal linear basis</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><msub><mo maxsize="1.2em" minsize="1.2em">)</mo> <mrow><mi>w</mi><mo lspace="verythinmathspace">:</mo><mi>W</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\big(\left\vert w \right\rangle \,\in\, \mathscr{H} \big)_{w \colon W}</annotation></semantics></math>, hence such that</p>
+<div class="maruku-equation" id="eq:OrthonormalBasis"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>,</mo><mi>w</mi><mo>′</mo><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>W</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⊢</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mrow><mo>⟨</mo><mi>w</mi><mo stretchy="false">|</mo><mi>w</mi><mo>′</mo><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><msub><mi>δ</mi> <mrow><mi>w</mi><mo>,</mo><mi>w</mi><mo>′</mo></mrow></msub></mrow><annotation encoding="application/x-tex">
+  
+  w,w' \,\colon\, W
+  \;\;\;\;
+    \vdash
+  \;\;\;\;
+  \left\langle w \vert w' \right\rangle
+  \,=\,
+  \delta_{w, w'}
+
+</annotation></semantics></math></div>
+<p>(<a class="existingWikiWord" href="../../../../../5/5/8/9/9855/content.html">Kronecker delta</a>).</p>
+</li>
+</ol>
+<p>Furthermore, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi><mo>∈</mo><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\psi \in \mathscr{H}</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>∈</mo><mi class="mathscript">𝒦</mi></mrow><annotation encoding="application/x-tex">\phi \in \mathscr{K}</annotation></semantics></math> we leave the <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a>-symbol implicit in</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>≡</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>ψ</mi><mo>⊗</mo><mrow><mo>⟨</mo><mi>ϕ</mi><mo stretchy="false">|</mo><mtext>-</mtext><mo>⟩</mo></mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>∈</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \left\vert \psi \right\rangle
+  \left\langle \phi \right\vert
+  \;\;
+    \equiv
+  \;\;
+  \psi 
+    \otimes 
+  \left\langle \phi \vert \text{-} \right\rangle
+  \;\;
+  \in
+  \;\;
+  \mathscr{H} \otimes \mathscr{K}^\ast
+  \,.
+
+</annotation></semantics></math></div>
+<p>In this <a class="existingWikiWord" href="../../../../../8/0/1/1/11108/content.html">bra-ket</a>-notation, the <a class="existingWikiWord" href="../../../../../6/1/7/0/716/content.html">compact closure</a> for <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> (see <a href="../../../../../7/4/4/5/15447/content.html#CompactClosure">there</a>) is witnessed by the following <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a></p>
+<div class="maruku-equation" id="eq:CompactClosureViaBraKetNotation"><span class="maruku-eq-number">(4)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo maxsize="1.8em" minsize="1.8em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mi class="mathscript">ℋ</mi><mo>′</mo><mo maxsize="1.8em" minsize="1.8em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>∼</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>′</mo><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mo maxsize="1.8em" minsize="1.8em">(</mo><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>w</mi><mo>′</mo></mrow></munder><mrow><mo>|</mo><mi>w</mi><mo>′</mo><mo>⟩</mo></mrow><mo>⋅</mo><msub><mi>A</mi> <mrow><mi>w</mi><mo>′</mo><mo>,</mo><mi>w</mi></mrow></msub><mo maxsize="1.8em" minsize="1.8em">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><mi>w</mi><mo>,</mo><mi>w</mi><mo>′</mo></mrow></munder><mrow><mo>|</mo><mi>w</mi><mo>′</mo><mo>⟩</mo></mrow><msub><mi>A</mi> <mrow><mi>w</mi><mo>′</mo><mo>,</mo><mi>w</mi></mrow></msub><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \Big(
+      \mathscr{H}
+      \multimap
+      \mathscr{H}'
+    \Big)
+    &amp;\overset{\;\; \sim \;\;}{\longrightarrow}&amp;
+    \mathscr{H}' \otimes \mathscr{H}^\ast
+    \\
+    \Big(
+      \left\vert w \right\rangle
+      \,\mapsto\,
+      \underset{w'}{\sum}
+      \left\vert w' \right\rangle
+      \cdot
+      A_{w', w}
+    \Big) 
+    &amp;\mapsto&amp;
+      \underset{w,w'}{\sum} 
+      \left\vert w' \right\rangle
+      A_{w', w}
+      \left\langle w \right\vert
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<h2 id="definition">Definition</h2>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/0/1/6/26104/content.html">finite-dimensional Hilbert space</a> — or generally an object in a <a class="existingWikiWord" href="../../../../../6/1/7/0/716/content.html">compact closed category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>QuTypes</mi></mrow><annotation encoding="application/x-tex">QuTypes</annotation></semantics></math> — its <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>-<a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjunction</a> is <a class="existingWikiWord" href="../../../../../4/8/9/0/10984/content.html">ambidextrous</a> and associated to a pair of <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monads</a>, in linear version of the classical <a class="existingWikiWord" href="../../../../../4/3/1/1/11134/content.html">state monads</a>/<a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">store comonad</a>-construction:</p>
+<div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/QuantumStateFrobeniusMonads-230919.jpg" width="680px"/>
+</div>
+<p>Moreover, these (co)monads may equivalently be understood as the (<a class="existingWikiWord" href="../../../../3/0/6/26030/content.html">co</a>-)<a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monads</a> induced by the <a class="existingWikiWord" href="../../../../8/1/5/5180/content.html">endomorphism algebra</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>End</mi><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>≃</mo><mspace width="thinmathspace"></mspace><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">End(\mathscr{H}) \,\simeq\, \mathscr{H}^\ast \otimes \mathscr{H}</annotation></semantics></math>, which is a <a class="existingWikiWord" href="../../../../../6/2/6/3/3626/content.html">Frobenius algebra</a> (by general arguments as recalled in <a href="../../../../../6/2/6/3/3626/content.html#Lauda2006">Lauda 2006</a>, made explicit for instance in <a href="../../../../8/1/5/5180/content.html#Vicary11">Vicary 2011 Lem 3.17</a>) and as such makes its (<a class="existingWikiWord" href="../../../../3/0/6/26030/content.html">co</a>-)<a class="existingWikiWord" href="../../../../../9/7/0/1/21079/content.html">writer monad</a> into a <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a>.</p>
+<p><br/></p>
+<p>We next spell this out in more detail</p>
+<blockquote>
+<p>(Beware that there is now a switch in conventions. Will streamline later.)</p>
+</blockquote>
+<h3 id="TheDefiningAdjunction">The defining adjunction</h3>
+<p>The <a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a>-<a class="existingWikiWord" href="../../../../../4/9/4/0/494/content.html">adjunction</a> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> <a class="maruku-eqref" href="#eq:TheFinDimHilbertSpace">(2)</a></p>
+<div class="maruku-equation" id="eq:TheInternalHomAdjunction"><span class="maruku-eq-number">(5)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Mod</mi> <mi>ℂ</mi></msub><munderover><mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⊥</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace></mrow><munder><mo>⟶</mo><mrow><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow></munder><mover><mo>⟵</mo><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow></mover></munderover><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mrow><annotation encoding="application/x-tex">
+  
+  Mod_{\mathbb{C}}
+  \underoverset
+    {
+       \underset{
+         \mathscr{H} \multimap (\text{-})
+       }{\longrightarrow}}
+    {
+      \overset{
+        \mathscr{H} \otimes (\text{-})
+      }{\longleftarrow}
+    }
+    {\;\; \bot \;\;}
+  Mod_{\mathbb{C}}
+
+</annotation></semantics></math></div>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>⊣</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex">\big(\mathscr{H} \otimes (\text{-}) \,\dashv\, \mathscr{H} \multimap (\text{-})\big)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">unit</a> is:</p>
+<div class="maruku-equation" id="eq:TheAdjunctionUnit"><span class="maruku-eq-number">(6)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ret</mi> <mrow><mi>𝟙</mi><mo>,</mo><mi>𝟙</mi></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>State</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">(</mo><mrow><mo>|</mo><mi>ψ</mi><mo>′</mo><mo>⟩</mo></mrow><mo>↦</mo><mrow><mo>|</mo><mi>ψ</mi><mo>′</mo><mo>⟩</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    (\text{-})
+    &amp;\overset{
+      ret
+       ^{ \mathscr{H}State }
+       _{\mathbb{1},\mathbb{1}}
+    }{\longrightarrow}&amp;
+    \mathscr{H} 
+      \multimap
+    \big(
+     \mathscr{H}
+       \otimes
+     (\text{-})
+    \big)
+    \\
+    \left\vert \psi \right\rangle
+    &amp;\mapsto&amp;
+    \big(
+      \left\vert \psi' \right\rangle
+      \mapsto
+      \left\vert \psi' \right\rangle 
+      \otimes
+      \left\vert \psi \right\rangle
+    \big)
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>Using the <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric braiding</a>, an orthonormal basis <a class="maruku-eqref" href="#eq:OrthonormalBasis">(3)</a> and the compact closure <a class="maruku-eqref" href="#eq:CompactClosureViaBraKetNotation">(4)</a> we may equivalently write this as the “insertion of an identity” in the form known from <a class="existingWikiWord" href="../../../../../2/3/6/2/2632/content.html">quantum mechanics</a> textbooks:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ret</mi> <mrow><mi>𝟙</mi><mo>,</mo><mi>𝟙</mi></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>State</mi></mrow></msubsup></mrow></mover></mtd> <mtd><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">|</mo><mi>ψ</mi><mo stretchy="false">⟩</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>w</mi></munder><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    (\text{-})
+    &amp;
+    \overset{
+      ret
+       ^{ \mathscr{H}State }
+       _{\mathbb{1},\mathbb{1}}
+    }{\longrightarrow}&amp;
+    \mathscr{H}^\ast
+      \otimes
+    \mathscr{H}
+      \otimes
+    (\text{-})
+    \\
+    \vert \psi \rangle
+    &amp;\mapsto&amp;
+    \sum_w
+    \left\vert w \right\rangle
+    \left\langle w \right\vert 
+    \otimes
+    \left\vert \psi \right\rangle
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>The <a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">adjunction counit</a> is the <a class="existingWikiWord" href="../../../../../7/8/8/5/5887/content.html">evaluation map</a>:</p>
+<div class="maruku-equation" id="eq:TheAdjunctionCounit"><span class="maruku-eq-number">(7)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>obt</mi> <mrow></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>ϕ</mi><mo stretchy="false">|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \mathscr{H}
+    \otimes
+    \big(
+      \mathscr{H}
+      \multimap
+      (\text{-})
+    \big)
+    &amp;\overset{
+      obt^{ \mathscr{H}Store }_{}
+    }{\longrightarrow}&amp;
+    (\text{-})
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\vert \text{-} \right\rangle
+    &amp;\mapsto&amp;
+    \left\langle \phi \vert \psi \right\rangle
+    \,
+    \left\vert \text{-} \right\rangle    
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>which — again using the <a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric braiding</a>, an orthonormal basis <a class="maruku-eqref" href="#eq:OrthonormalBasis">(3)</a> and the compact closure <a class="maruku-eqref" href="#eq:CompactClosureViaBraKetNotation">(4)</a> — is equivalently the <a class="existingWikiWord" href="../../../../../8/3/6/3/3638/content.html">partial trace</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>:</p>
+<div class="maruku-equation" id="eq:TheAdjunctionCounit"><span class="maruku-eq-number">(8)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>obt</mi> <mrow></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mi>w</mi></munder><mrow><mo>⟨</mo><mi>w</mi><mo stretchy="false">|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo stretchy="false">|</mo><mi>w</mi><mo>⟩</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    \otimes
+    (\text{-})
+    &amp;\overset{
+      obt^{ \mathscr{H}Store }_{}
+    }{\longrightarrow}&amp;
+    (\text{-})
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\vert \text{-} \right\rangle
+    &amp;\mapsto&amp;
+    \underset{w}{\sum}
+    \left\langle w \vert \psi \right\rangle
+    \left\langle \phi \vert w \right\rangle 
+    \otimes
+    \left\vert \text{-} \right\rangle
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<h3 id="the_linear_state_monad">The linear state monad</h3>
+<p>The adjunction <a class="maruku-eqref" href="#eq:TheInternalHomAdjunction">(5)</a> <a href="../../../../../5/5/2/0/255/content.html#RelationBetweenAdjunctionsAndMonads">induces</a> a linear version of the <a class="existingWikiWord" href="../../../../../4/3/1/1/11134/content.html">state monad</a>:</p>
+<p>The <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a> is</p>
+<div class="maruku-equation" id="eq:UnderlyingEndofunctorOfQuantumStateMonad"><span class="maruku-eq-number">(9)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><mi class="mathscript">ℋ</mi><mi>State</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mtd> <mtd><mo>⟶</mo></mtd> <mtd><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mtd></mtr> <mtr><mtd><mi class="mathscript">𝒱</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo maxsize="1.8em" minsize="1.8em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">𝒱</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ 
+  \array{
+    \mathllap{
+      \mathscr{H}
+      State
+      \;\colon\;
+    }
+    Mod_{\mathbb{C}}
+    &amp;\longrightarrow&amp;
+    Mod_{\mathbb{C}}
+    \\
+    \mathscr{V}
+    &amp;\mapsto&amp;
+    \Big(
+    \mathscr{H}
+    \multimap
+    \big(
+      \mathscr{H}
+      \otimes
+      \mathscr{V}
+    \big)
+    \Big)
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>The join operation is induced from the adjunction counit <a class="maruku-eqref" href="#eq:TheAdjunctionCounit">(8)</a> as:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><mi class="mathscript">ℋ</mi></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>join</mi> <mrow><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>State</mi></mrow></msubsup></mrow></mover></mtd> <mtd><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><mi class="mathscript">ℋ</mi></mtd></mtr> <mtr><mtd><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>ϕ</mi><mo stretchy="false">|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}^\ast
+    \otimes
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    \otimes
+    \mathscr{H}
+    &amp;
+    \overset{
+      join^{\mathscr{H}State}_{(\text{-})}
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}^\ast
+    \otimes
+    \mathscr{H}
+    \\
+    \left\langle \text{-} \right\vert
+    \otimes
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\vert \text{-} \right\rangle
+    &amp;\mapsto&amp;
+    \left\langle \phi \vert \psi \right\rangle
+    \,
+    \left\langle \text{-} \right\vert
+    \otimes
+    \left\vert \text{-} \right\rangle
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<h3 id="the_linear_store_comonad">The linear store comonad</h3>
+<p>The adjunction <a class="maruku-eqref" href="#eq:TheInternalHomAdjunction">(5)</a> <a href="../../../../../5/5/2/0/255/content.html#RelationBetweenAdjunctionsAndMonads">induces</a> a linear version of the <a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">costate comonad</a>:</p>
+<p>The <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctor</a> is</p>
+<div class="maruku-equation" id="eq:UnderlyingEndofunctorOfQuantumCostateComonad"><span class="maruku-eq-number">(10)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><mi class="mathscript">ℋ</mi><mi>Store</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mtd> <mtd><mo>⟶</mo></mtd> <mtd><msub><mi>Mod</mi> <mi>ℂ</mi></msub></mtd></mtr> <mtr><mtd><mi class="mathscript">𝒱</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mi class="mathscript">𝒱</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+ 
+  \array{
+    \mathllap{
+      \mathscr{H}
+      Store
+      \;\colon\;
+    }
+    Mod_{\mathbb{C}}
+    &amp;\longrightarrow&amp;
+    Mod_{\mathbb{C}}
+    \\
+    \mathscr{V}
+    &amp;\mapsto&amp;
+    \mathscr{H}
+    \otimes
+    \big(
+      \mathscr{H}
+      \multimap
+      \mathscr{V}
+    \big)
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>The duplication (cojoin) operation in the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>-CoState comonad <a class="maruku-eqref" href="#eq:UnderlyingEndofunctor">(?)</a> is induced from the adjunction unit <a class="maruku-eqref" href="#eq:TheAdjunctionUnit">(6)</a> as follows:</p>
+<div class="maruku-equation" id="eq:DuplicationOperation"><span class="maruku-eq-number">(11)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>dupl</mi> <mrow><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="2.4em" minsize="2.4em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo maxsize="1.8em" minsize="1.8em">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mo maxsize="2.4em" minsize="2.4em">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>w</mi></munder><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \mathscr{H}
+      \otimes
+    \big(
+      \mathscr{H}
+      \multimap
+      (\text{-})
+    \big)
+    &amp;
+    \overset{
+      dupl
+        ^{ \mathscr{H}Store }
+        _{ (\text{-}) }
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}
+    \otimes
+    \bigg(
+      \mathscr{H}
+      \multimap
+      \Big(
+        \mathscr{H}
+          \otimes
+        \big(
+          \mathscr{H}
+          \multimap
+          (\text{-})
+        \big)
+      \Big)
+    \bigg)
+    \\
+    \left\vert \psi \right \rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\vert \text{-} \right \rangle
+    &amp;\mapsto&amp;
+    \sum_w
+    \left\vert \psi \right\rangle
+    \left\langle w \right\vert
+    \otimes
+    \left\vert w \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\vert \text{-} \right \rangle
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>Finally, the obtain-operation (the <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">comonad counit</a>) is the adjunction counit <a class="maruku-eqref" href="#eq:TheAdjunctionCounit">(8)</a></p>
+<h3 id="KleisliStructure">Kleisli structure</h3>
+<p>We assume an ambient <a class="existingWikiWord" href="../../../../../6/1/7/0/716/content.html">compact closed category</a> such as that of <a class="existingWikiWord" href="../../../../../7/4/4/5/15447/content.html">finite-dimensional vector spaces</a>.</p>
+<p>For the formula in Prop. <a class="maruku-ref" href="#KleisliCompositionIsSuperoperatorComposition"></a> to come out naturally, we take – without loss of generality – the generic object on which to apply the linear store comonad to be a <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dual object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo>≔</mo><mo stretchy="false">(</mo><mi class="mathscript">𝒦</mi><mo>⊸</mo><mi>𝟙</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathscr{K}^\ast \coloneqq (\mathscr{K} \multimap \mathbb{1})</annotation></semantics></math>.</p>
+<p>
+<div class="num_remark" id="TheCoKleisliMorphisms">
+<h6>Remark</h6>
+<p><strong>(the coKleisli morphisms)</strong> <br/> The <a class="existingWikiWord" href="../../../../../4/4/5/6/16544/content.html">coKleisli morphisms</a> of the quantum store comonad <a class="maruku-eqref" href="#eq:UnderlyingEndofunctor">(?)</a></p>
+<div class="maruku-equation" id="eq:KleisliMorphism"><span class="maruku-eq-number">(12)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⟶</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  
+  \mathcal{O}_A
+  \;\colon\;
+  \mathscr{H}
+    \otimes
+  \big(
+  \mathscr{H}
+    \multimap
+  \mathscr{K}^\ast
+  \big)
+  \longrightarrow
+  \mathscr{K}^\ast
+
+</annotation></semantics></math></div>
+<p>are <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphically</a> of the form</p>
+<div class="maruku-equation" id="eq:KleisliMorphismUnderCompactClosure"><span class="maruku-eq-number">(13)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo>⟶</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  
+  \mathcal{O}_A
+  \;\colon\;
+  \mathscr{H}
+    \otimes
+  \mathscr{H}^\ast
+    \otimes
+  \mathscr{K}^\ast
+    \longrightarrow
+  \mathscr{K}^\ast
+
+</annotation></semantics></math></div>
+<p>and as such are equivalently (<a class="existingWikiWord" href="../../../../../9/1/5/0/519/content.html">adjunct</a> to) morphisms of the form</p>
+<div class="maruku-equation" id="eq:SuperoperatorOnMatrices"><span class="maruku-eq-number">(14)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo>⟶</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  
+  A
+  \;\colon\;
+  \mathscr{H}
+    \otimes
+  \mathscr{K}^\ast
+    \longrightarrow
+  \mathscr{H}
+    \otimes
+  \mathscr{K}^\ast
+
+</annotation></semantics></math></div>
+<p>which in turn are isomorphically “<em><a class="existingWikiWord" href="../../../../../1/4/0/1/11041/content.html">superoperators</a></em>” of the form</p>
+<div class="maruku-equation" id="eq:Superoperator"><span class="maruku-eq-number">(15)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">𝒦</mi><mo>⊸</mo><mi class="mathscript">ℋ</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>⟶</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">𝒦</mi><mo>⊸</mo><mi class="mathscript">ℋ</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \big(
+    \mathscr{K} \multimap \mathscr{H}
+  \big)
+  \longrightarrow
+  \big(
+    \mathscr{K} \multimap \mathscr{H}
+  \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_prop" id="KleisliCompositionIsSuperoperatorComposition">
+<h6>Proposition</h6>
+<p>The <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli composition</a> on <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli morphisms</a> <a class="maruku-eqref" href="#eq:KleisliMorphism">(12)</a> of the quantum store comonad is given by the plain composition of the linear duals of the corresponding <a class="existingWikiWord" href="../../../../../1/4/0/1/11041/content.html">superoperators</a> <a class="maruku-eqref" href="#eq:SuperoperatorOnMatrices">(14)</a>:</p>
+<div class="maruku-equation" id="eq:KleisliComposition"><span class="maruku-eq-number">(16)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>extend</mi> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msup><msub><mi>𝒪</mi> <mrow><mi>A</mi><mo>′</mo></mrow></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>∘</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>extend</mi> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msup><msub><mi>𝒪</mi> <mi>A</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow><mi>A</mi><mo>∘</mo><mi>A</mi><mo>′</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  \big(
+    extend^{\mathscr{H}Store}
+      \mathcal{O}_{A'}
+  \big)
+  \circ
+  \big(
+    extend^{\mathscr{H}Store}
+      \mathcal{O}_{A}
+  \big)
+  \;\;=\;\;
+  \Big(
+    \left\vert \psi \right\rangle
+    \left\langle \phi, \kappa \right\vert
+    \,\mapsto\,    
+    \left\vert \psi \right\rangle
+    \left\langle \phi, \kappa \right\vert
+    A \circ A'
+  \Big)
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+ Here for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi><mo>∈</mo><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\psi \in \mathscr{H}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>∈</mo><mi class="mathscript">𝒦</mi></mrow><annotation encoding="application/x-tex">\kappa \in \mathscr{K}</annotation></semantics></math> we denote their tensor product as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>|</mo><mi>ψ</mi><mo>,</mo><mi>κ</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">𝒦</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \left\vert \psi, \kappa \right\rangle
+  \,\in\,
+  \mathscr{H} \otimes \mathscr{K}
+  \,.
+
+</annotation></semantics></math></div>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>The relation between a Kleisli morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_A</annotation></semantics></math> <a class="maruku-eqref" href="#eq:KleisliMorphismUnderCompactClosure">(13)</a> and the corresponding super-operator <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> <a class="maruku-eqref" href="#eq:SuperoperatorOnMatrices">(14)</a> on matrices is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd> <mtd><mo>⟶</mo></mtd> <mtd><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mi>κ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow><mi>A</mi><mrow><mo>|</mo><mi>ψ</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathllap{
+      \mathcal{O}_A
+      \;\colon\;
+    }
+    \mathscr{H} 
+      \otimes 
+    \mathscr{H}^\ast
+      \otimes
+    \mathscr{K}^\ast
+    &amp;\longrightarrow&amp;
+    \mathscr{K}^\ast
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\langle \kappa \right\vert
+    &amp;\mapsto&amp;    
+    \left\langle
+      \phi, \kappa
+    \right\vert
+     A
+    \left\vert
+      \psi, -
+    \right\rangle    
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>With this and the cojoin operation <a class="maruku-eqref" href="#eq:DuplicationOperation">(11)</a> it follows that the extend-operation turns <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_A</annotation></semantics></math> into</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>dupl</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo>,</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="2.4em" minsize="2.4em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo maxsize="1.8em" minsize="1.8em">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.8em" minsize="1.8em">)</mo><mo maxsize="2.4em" minsize="2.4em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><msub><mi>𝒪</mi> <mi>A</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mo stretchy="false">(</mo><mi class="mathscript">𝒦</mi><mo>′</mo><msup><mo stretchy="false">)</mo> <mo>*</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mi>κ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>w</mi></munder><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mi>κ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><munder><munder><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>w</mi><mo>,</mo><mi>k</mi><mo>′</mo></mrow></munder><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow><mi>A</mi><mrow><mo>|</mo><mi>w</mi><mo>,</mo><mi>k</mi><mo>′</mo><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>,</mo><mi>k</mi><mo>′</mo><mo>|</mo></mrow></mrow><mo>⏟</mo></munder><mrow><mo>=</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow><mi>A</mi></mrow></munder></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}
+      \otimes
+    \big(
+      \mathscr{H}
+      \multimap
+      \mathscr{K}^\ast
+    \big)
+    &amp;
+      \overset{
+        dupl^{ \mathscr{H}Store }_{\mathscr{K}^\ast,\mathscr{K}^\ast}
+      }{\longrightarrow}
+    &amp;
+    \mathscr{H}
+    \otimes
+    \bigg(
+      \mathscr{H}
+      \multimap
+      \Big(
+        \mathscr{H}
+        \otimes
+        \big(
+          \mathscr{H}
+          \multimap
+          \mathscr{K}^\ast
+        \big)
+      \Big)
+    \bigg)
+    &amp;\overset{
+      \mathscr{H} 
+      \otimes
+      \big(
+        \mathscr{H}
+          \multimap
+        \mathcal{O}_A
+      \big)
+    }{\longrightarrow}&amp;
+    \mathscr{H}
+    \otimes
+    \big(
+      \mathscr{H}
+      \multimap
+      (\mathscr{K}')^\ast
+    \big)
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\langle \kappa \right\vert
+    &amp;\mapsto&amp;
+    \sum_w
+    \left\vert \psi \right\rangle
+    \left\langle w \right\vert
+    \otimes
+    \left\vert w \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\langle \kappa \right\vert
+    &amp;\mapsto&amp;
+    \;\;
+    \underset{
+      = 
+        \left\vert \psi \right\rangle
+        \left\langle \phi, \kappa \right\vert
+         A      
+    }{
+    \underbrace{
+    \sum_{w, k'}
+        \left\vert \psi \right\rangle
+        \left\langle \phi, \kappa \right\vert
+         A
+        \left\vert w, k' \right\rangle
+        \left\langle w, k' \right\vert
+    }
+    }
+  }
+
+</annotation></semantics></math></div>
+<p>hence</p>
+<div class="maruku-equation" id="eq:StoreExtension"><span class="maruku-eq-number">(17)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mpadded lspace="-100%width" width="0"><mrow><msup><mi>exend</mi> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msup><msub><mi>𝒪</mi> <mi>A</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace></mrow></mpadded><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>,</mo><mi>κ</mi><mo>|</mo></mrow><mi>A</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \mathllap{
+      exend^{\mathscr{H} Store}
+      \mathcal{O}_A
+      \;\colon\;
+    }
+    \mathscr{H}
+      \otimes
+    \mathscr{H}^\ast
+      \otimes
+    \mathscr{K}^\ast
+    &amp;\longrightarrow&amp;
+    \mathscr{H}
+      \otimes
+    \mathscr{H}^\ast
+      \otimes
+    \mathscr{K}^\ast
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi, \kappa \right\vert
+    &amp;\mapsto&amp;    
+    \left\vert \psi \right\rangle
+    \left\langle \phi, \kappa \right\vert
+    A
+  }
+
+</annotation></semantics></math></div>
+<p>This implies the claim <a class="maruku-eqref" href="#eq:KleisliComposition">(16)</a>.</p>
+</div>
+</p>
+<p>The same argument applies with the second copy of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">𝒦</mi></mrow><annotation encoding="application/x-tex">\mathscr{K}</annotation></semantics></math> replaced by some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">𝒦</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\mathscr{K}'</annotation></semantics></math>: The Kleisli category is the <a class="existingWikiWord" href="../../../../../5/2/3/0/325/content.html">opposite</a> of that of superoperators of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">𝒦</mi><mo>⟶</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">𝒦</mi><mo>′</mo><mo>⟶</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">𝒦</mi><mo>″</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathscr{H}\otimes\mathscr{K}
+  \longrightarrow
+  \mathscr{H}\otimes\mathscr{K}'
+  \longrightarrow
+  \mathscr{H}\otimes\mathscr{K}''
+  \,.
+
+</annotation></semantics></math></div>
+<h2 id="examples">Examples</h2>
+<h3 id="quantum_observables_are_the_quantum_state_contextful_scalars">Quantum observables are the Quantum state contextful scalars</h3>
+<blockquote>
+<p>(The following now starts out a little repetitive, recalling a special case of the general statement above. Will streamline…)</p>
+</blockquote>
+<p>For the classical <a class="existingWikiWord" href="../../../../../9/4/0/9/19049/content.html">costate comonad</a> on a <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed category</a> its value and its operations on the <a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a> (the <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a> in this case) are vacuous. Quite in contrast, the linear CoState comonad on the tensor unit encodes core structure of <a class="existingWikiWord" href="../../../../../2/3/6/2/2632/content.html">quantum physics</a>:</p>
+<p>
+<div class="num_remark" id="QuantumObservablesAsQuantumStateContextfulScalars">
+<h6>Example</h6>
+<p><strong>(quantum observables as quantum state contextful scalars)</strong> <br/></p>
+<p>First notice that the quantum store on the tensor unit</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mi>Store</mi><mo stretchy="false">(</mo><mi>𝟙</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≡</mo><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mi>𝟙</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">
+  \mathscr{H}Store(\mathbb{1})
+  \;\equiv\;
+  \mathscr{H} 
+    \otimes
+  \big(
+    \mathscr{H}
+    \multimap
+    \mathbb{1}
+  \big)
+  \;=\;
+  \mathscr{H} \otimes \mathscr{H}^\ast  
+
+</annotation></semantics></math></div>
+<p>is the home of <a class="existingWikiWord" href="../../../../../7/9/5/3/3597/content.html">density matrices</a>/<a class="existingWikiWord" href="../../../../../8/5/7/3/3758/content.html">mixed quantum states</a> generalizing the <a class="existingWikiWord" href="../../../../../1/8/9/7/7981/content.html">pure states</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>.</p>
+<p>Moreover, an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>-CoState <a class="existingWikiWord" href="../../../../../4/4/5/6/16544/content.html">coKleisli morphism</a> on the tensor unit is equivalently a <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear operator</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi class="mathscript">ℋ</mi><mo>→</mo><mi class="mathscript">ℋ</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  A \,\colon\, \mathscr{H} \to \mathscr{H}
+  \,,
+
+</annotation></semantics></math></div>
+<p>hence a <a class="existingWikiWord" href="../../../../../8/2/0/7/7028/content.html">quantum observables</a> – incarnated via its <a class="existingWikiWord" href="../../../../../4/2/2/9/9224/content.html">expectation values</a> on quantum states</p>
+<div class="maruku-equation" id="eq:CoKleisliMorphism"><span class="maruku-eq-number">(18)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow></mover></mtd> <mtd><mi>𝟙</mi></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mi>A</mi><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    &amp;\overset{\mathcal{O}_A}{\longrightarrow}&amp;
+    \mathbb{1}
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    &amp;\mapsto&amp;
+    \left\langle \phi \right\vert
+    A
+    \left\vert \psi \right\rangle  
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p>Composition of quantum observables <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_A</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mrow><mi>A</mi><mo>′</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_{A'}</annotation></semantics></math> <a class="maruku-eqref" href="#eq:CoKleisliMorphism">(18)</a> in the <a class="existingWikiWord" href="../../../../../4/4/5/6/16544/content.html">coKleisli category</a> is given by ordinary composition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∘</mo><mi>A</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">A \circ A'</annotation></semantics></math> of the corresponding <a class="existingWikiWord" href="../../../../../1/8/6/4/4681/content.html">linear operators</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mrow><mi>A</mi><mo>′</mo></mrow></msub><mo>∘</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><msubsup><mi>ext</mi> <mrow><mi>𝟙</mi><mo>,</mo><mi>𝟙</mi></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup><msub><mi>𝒪</mi> <mi>A</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>𝒪</mi> <mrow><mi>A</mi><mo>′</mo><mo>∘</mo><mi>A</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mi>A</mi><mi>A</mi><mo>′</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathcal{O}_{A'}
+  \circ
+  \big(
+    ext^{ \mathscr{H}Store }_{\mathbb{1},\mathbb{1}} 
+    \mathcal{O}_A
+  \big)
+  \;\;
+    =
+  \;\;
+  \mathcal{O}_{ A' \circ A }
+  \;\colon\;
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \,\mapsto\,
+    \left\langle \phi \right\vert
+    A A'
+    \left\vert \psi \right\rangle
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>From <a class="maruku-eqref" href="#eq:DuplicationOperation">(11)</a> we find that the extension operation is given as follows:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>dupl</mi> <mrow><mi>𝟙</mi><mo>,</mo><mi>𝟙</mi></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi class="mathscript">ℋ</mi><mo>⊗</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi class="mathscript">ℋ</mi><mo>⊸</mo><msub><mi>𝒪</mi> <mi>A</mi></msub><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>w</mi></munder><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mpadded lspace="-50%width" width="0"><munder><munder><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>w</mi></munder><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mi>A</mi><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow></mrow><mo>⏟</mo></munder><mrow><mo>=</mo><mspace width="thinmathspace"></mspace><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mi>A</mi></mrow></munder></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}
+      \otimes
+    \mathscr{H}^\ast
+    &amp;
+      \overset{
+        dupl^{ \mathscr{H}Store }_{\mathbb{1},\mathbb{1}}
+      }{\longrightarrow}
+    &amp;
+    \mathscr{H}
+    \otimes
+    \big(
+      \mathscr{H}
+      \multimap
+      \mathscr{H}
+      \otimes
+      \mathscr{H}^\ast
+    \big)
+    &amp;\overset{
+      \mathscr{H} 
+      \otimes
+      \big(
+        \mathscr{H}
+          \multimap
+        \mathcal{O}_A
+      \big)
+    }{\longrightarrow}&amp;
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    &amp;\mapsto&amp;
+    \sum_w
+    \left\vert \psi \right\rangle
+    \left\langle w \right\vert
+    \otimes
+    \left\vert w \right\rangle
+    \left\langle \phi \right\vert
+    &amp;\mapsto&amp;
+    \;\;
+    \mathclap{
+    \underset{
+    {
+      =\, 
+      \left\vert \psi \right\rangle
+      \left\langle \phi \right\vert
+      A  
+    }
+    }
+    {
+      \underbrace{
+        \sum_w
+        \left\vert \psi \right\rangle
+        \left\langle w \right\vert
+        \otimes
+        \left\langle \phi \right\vert
+         A
+        \left\vert w \right\rangle
+      }
+    }
+    }
+  }
+
+</annotation></semantics></math></div>
+<p>hence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>ext</mi> <mrow><mi>𝟙</mi><mo>,</mo><mi>𝟙</mi></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mi>A</mi><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mo maxsize="1.8em" minsize="1.8em">)</mo><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.8em" minsize="1.8em">(</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mspace width="thinmathspace"></mspace><mo>↦</mo><mspace width="thinmathspace"></mspace><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mi>A</mi><mo maxsize="1.8em" minsize="1.8em">)</mo></mrow><annotation encoding="application/x-tex">
+  ext^{ \mathscr{H}Store }_{\mathbb{1},\mathbb{1}}
+  \,\colon\,
+  \Big(
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \,\mapsto\,
+    \left\langle \phi \right\vert
+    A
+    \left\vert \psi \right\rangle
+  \Big)
+  \,\mapsto\,
+  \Big(
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \,\mapsto\,
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    A
+  \Big)
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="Traces">
+<h6>Remark</h6>
+<p>Understanding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}Store</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../../6/8/9/0/10986/content.html">Frobenius monad</a> as <a href="#FrobeniusStructure">above</a> makes it natural to combine the <a class="existingWikiWord" href="../../../../../1/5/1/9/9151/content.html">monad unit</a> <a class="maruku-eqref" href="#eq:TheAdjunctionUnit">(6)</a> with the Kleisli morphisms of Rem. <a class="maruku-ref" href="#TheCoKleisliMorphisms"></a>.</p>
+<p>This gives the <em><a class="existingWikiWord" href="../../../../../1/2/6/0/621/content.html">trace</a></em> of linear operators, as seen via <a class="maruku-eqref" href="#eq:StoreExtension">(17)</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>𝟙</mi></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ret</mi> <mi>𝟙</mi> <mrow><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mi>State</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ext</mi> <mrow><mi>𝟙</mi><mo>,</mo><mi>𝟙</mi></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>obt</mi> <mi>𝟙</mi> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi>𝟙</mi></mtd></mtr> <mtr><mtd><mn>1</mn></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mi>w</mi></munder><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mi>w</mi></munder><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mi>A</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>tr</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>A</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathbb{1}
+    &amp;\overset{ret^{\mathscr{H}^\ast State}_{\mathbb{1}}}{\longrightarrow}&amp;
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    &amp;\overset{
+      ext^{\mathscr{H}Store}_{\mathbb{1}, \mathbb{1}} \mathcal{O}_{A}
+    }{\longrightarrow}&amp;
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    &amp;\overset{obt^{\mathscr{H}Store}_{\mathbb{1}}}{\longrightarrow}&amp;
+    \mathbb{1}
+    \\
+    1
+    &amp;\mapsto&amp;
+    \underset{w}{\sum}
+    \left\vert w \right\rangle
+    \left\langle w \right\vert
+    &amp;\mapsto&amp;
+    \underset{w}{\sum}
+    \left\vert w \right\rangle
+    \left\langle w \right\vert    
+    A
+    &amp;\mapsto&amp;
+    tr\big( A \big)
+  }
+
+</annotation></semantics></math></div>
+<p>and generally the <a class="existingWikiWord" href="../../../../../8/3/6/3/3638/content.html">partial trace</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ret</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mi>State</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ext</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup><mo>,</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>obt</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><mi class="mathscript">ℋ</mi><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mrow><mo>⟨</mo><mi>κ</mi><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd></mtd> <mtd><mo>↦</mo></mtd> <mtd></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>κ</mi><mo>|</mo></mrow><msub><mi>tr</mi> <mi class="mathscript">ℋ</mi></msub><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>A</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{K}^\ast
+    &amp;\overset{ret^{\mathscr{H}^\ast State}_{\mathscr{K}^\ast}}{\longrightarrow}&amp;
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    \otimes
+    \mathscr{K}^\ast
+    &amp;\overset{
+      ext^{\mathscr{H}Store}_{\mathscr{K}^\ast, \mathscr{K}^\ast} \mathcal{O}_{A}
+    }{\longrightarrow}&amp;
+    \mathscr{H}
+    \otimes
+    \mathscr{H}^\ast
+    \otimes
+    \mathscr{K}^\ast
+    &amp;\overset{obt^{\mathscr{H}Store}_{\mathscr{K}^\ast}}{\longrightarrow}&amp;
+    \mathscr{K}^\ast
+    \\
+    \left\langle \kappa \right\vert
+    &amp;\mapsto&amp;
+    &amp;\mapsto&amp;
+    &amp;\mapsto&amp;
+    \left\langle \kappa \right\vert
+    tr_{\mathscr{H}}\big(A \big)
+  }
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<h3 id="QuantumChannelsAreQuantumStateTransformations">Quantum channels that are Quantum state transformations</h3>
+<p>
+<div class="num_remark" id="UnitaryQuantumChannelsAsQUantumStateTransformations">
+<h6>Example</h6>
+<p><strong>(unitary quantum channels are quantum state transformations)</strong> <br/> If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>→</mo><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">U \,\colon\, \mathscr{H}_1 \to \mathscr{H}_2</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">invertible map</a> with <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">inverse</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mo>†</mo></msup><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>→</mo><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">U^\dagger \,\colon\, \mathscr{H}_2 \to \mathscr{H}_1</annotation></semantics></math>, then the “<a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum channel</a>”</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup></mrow></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}_1
+      \otimes
+    \mathscr{H}_1^\ast
+      \otimes
+    (\text{-})
+    &amp;
+    \overset{
+      U \otimes U^{\dagger \ast}
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}_2
+      \otimes
+    \mathscr{H}_2^\ast
+      \otimes
+    (\text{-})
+  }
+
+</annotation></semantics></math></div>
+<p>is a <a href="../../../../../5/5/2/0/255/content.html#TransformationOfMonadsOnFixedCategory">transformation of</a> quantum state monads.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>By direct unwinding of the definitions, we find that the counit is respected</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>obt</mi> <mrow><msub><mi class="mathscript">𝒦</mi> <mn>2</mn></msub></mrow> <mrow><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>U</mi><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup><mi>U</mi><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><mrow><mo>⟨</mo><mi>ϕ</mi><mo stretchy="false">|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><msubsup><mi>obt</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mi>Store</mi></mrow></msubsup><mo maxsize="1.2em" minsize="1.2em">(</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}_1
+      \otimes
+    \mathscr{H}_1^\ast
+      \otimes
+    (\text{-})
+    &amp;
+    \overset{
+      U 
+        \otimes
+      U^{\dagger \ast}
+      \,
+        \otimes
+      (\text{-})
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}_2
+      \otimes
+    \mathscr{H}_2^\ast
+      \otimes
+    (\text{-})
+    &amp;
+    \overset{ 
+      obt^{\mathscr{H}_2Store}_{\mathscr{K}_2} 
+    }{\longrightarrow}
+    &amp;
+    (\text{-})
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\langle \text{-} \right\vert    
+    &amp;\mapsto&amp;
+    U
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    U^\dagger
+    \otimes
+    \left\langle \text{-} \right\vert    
+    &amp;\mapsto&amp;
+    \left\langle \phi \right\vert
+      U^\dagger
+      U
+    \left\vert \psi \right\rangle
+    \otimes
+    \left\langle \text{-} \right\vert        
+    \\
+    &amp;&amp; &amp;=&amp;
+    \left\langle \phi \vert \psi \right\rangle
+    \otimes
+    \left\langle \text{-} \right\vert        
+    \\
+    &amp;&amp; &amp;=&amp;
+    obt^{\mathscr{H}_1 Store}_{\mathscr{K}^\ast}
+    \big(
+      \left\vert \psi \right\rangle
+      \left\langle \phi \right\vert
+      \otimes
+      \left\langle \text{-} \right\vert    
+    \big)
+  }
+
+</annotation></semantics></math></div>
+<p>by the property that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mo>†</mo></msup></mrow><annotation encoding="application/x-tex">U^\dagger</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../0/7/0/700/content.html">left inverse</a> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>,</p>
+<p>and the unit is respected</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>ret</mi> <mrow><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow> <mrow><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mi>State</mi></mrow></msubsup></mrow></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mi>w</mi></munder><mrow><mo>|</mo><mi>w</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>w</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>1</mn></msub></mrow></munder><mi>U</mi><mrow><mo>|</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>⟩</mo></mrow><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>2</mn></msub></mrow></munder><mrow><mo>|</mo><msub><mi>w</mi> <mn>2</mn></msub><mo>⟩</mo></mrow><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>2</mn></msub><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><mtext>-</mtext><mo>⟩</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    (\text{-})
+    &amp;
+    \overset{
+      ret^{ \mathscr{H}_1State }_{(\text{-})}
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}_1
+    \otimes
+    \mathscr{H}_1^\ast
+    \otimes
+    (\text{-})    
+    &amp;
+    \overset{
+      U \otimes U^{\dagger\ast}
+      \otimes
+      (\text{-})
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}_2
+    \otimes
+    \mathscr{H}_2^\ast
+    \otimes
+    (\text{-})    
+    \\
+    \underset{w}{\sum}
+    \left\vert w \right\rangle
+    \left\langle w \right\vert
+    \otimes
+    \left\vert \text{-} \right\rangle    
+    &amp;\mapsto&amp;
+    \underset{w_1}{\sum}
+    U
+    \left\vert w_1 \right\rangle
+    \left\langle w_1 \right\vert
+    U^{\dagger}
+    \otimes
+    \left\vert \text{-} \right\rangle    
+    \\
+    &amp;&amp; &amp;=&amp;
+    \underset{w_2}{\sum}
+    \left\vert w_2 \right\rangle
+    \left\langle w_2 \right\vert
+    \otimes
+    \left\vert \text{-} \right\rangle    
+    \mathrlap{\,,}
+  }
+
+</annotation></semantics></math></div>
+<p>because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mo>†</mo></msup></mrow><annotation encoding="application/x-tex">U^\dagger</annotation></semantics></math> is also a <a class="existingWikiWord" href="../../../../../4/0/7/0/704/content.html">right inverse</a> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, using here the <a class="existingWikiWord" href="../../../../../6/1/7/0/716/content.html">compact closure</a> identification</p>
+<div class="maruku-equation" id="eq:SeeingThatUnitaryQuantumChannelPreservesSatteReturn"><span class="maruku-eq-number">(19)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup></mtd> <mtd><mover><mo>⟶</mo><mo>∼</mo></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊸</mo><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub></mtd> <mtd><mover><mo>⟶</mo><mo>∼</mo></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup></mtd></mtr> <mtr><mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>1</mn></msub></mrow></munder><mi>U</mi><mrow><mo>|</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>⟩</mo></mrow><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><munder><mrow><mi>U</mi><mo>∘</mo><mi>Id</mi><mo>∘</mo><msup><mi>U</mi> <mo>†</mo></msup></mrow><mo>⏟</mo></munder><mi mathvariant="normal">Id</mi></munder></mtd> <mtd><mo>↦</mo></mtd> <mtd><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>2</mn></msub></mrow></munder><mrow><mo>|</mo><msub><mi>w</mi> <mn>2</mn></msub><mo>⟩</mo></mrow><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>2</mn></msub><mo>|</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  
+  \array{ 
+    \mathscr{H}_2
+    \otimes
+    \mathscr{H}_2^\ast
+    &amp;\overset{\sim}{\longrightarrow}&amp;
+    \mathscr{H}_2 \multimap \mathscr{H}_2
+    &amp;\overset{\sim}{\longrightarrow}&amp;
+    \mathscr{H}_2
+    \otimes
+    \mathscr{H}_2^\ast
+    \\
+    \underset{w_1}{\sum}
+    U
+    \left\vert w_1 \right\rangle
+    \left\langle w_1 \right\vert
+    U^{\dagger}
+    &amp;\mapsto&amp;     
+    \underset{
+      \mathrm{Id}
+    }{
+    \underbrace{
+      U
+      \circ 
+      Id
+      \circ
+      U^{\dagger}
+    }
+    }
+    &amp;\mapsto&amp;
+    \underset{w_2}{\sum}
+    \left\vert w_2 \right\rangle
+    \left\langle w_2 \right\vert
+    \mathrlap{\,.}
+  }
+
+</annotation></semantics></math></div>
+<p>Therefore also the join and cojoin are preserved, eg.:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><msubsup><mi>dupl</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mi>Store</mi></mrow></msubsup></mrow></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup><mo>⊗</mo><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup><mo>⊗</mo><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>⊗</mo><mi mathvariant="normal">id</mi></mrow></mover></mtd> <mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup><mo>⊗</mo><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup><mo>⊗</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mpadded lspace="-50%width" width="0"><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>1</mn></msub></mrow></munder><mspace width="thinmathspace"></mspace><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mrow></mpadded></mtd> <mtd><mo>↦</mo></mtd> <mtd><mpadded lspace="-50%width" width="0"><mrow><mi>U</mi><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mo maxsize="1.8em" minsize="1.8em">(</mo><munder><munder><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>1</mn></msub></mrow></munder><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup><mo>⊗</mo><mi>U</mi><mrow><mo>|</mo><msub><mi>w</mi> <mn>1</mn></msub><mo>⟩</mo></mrow></mrow><mo>⏟</mo></munder><mrow><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo><mrow><msub><mi>w</mi> <mn>2</mn></msub></mrow></munder><mrow><mo>⟨</mo><msub><mi>w</mi> <mn>2</mn></msub><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>|</mo><msub><mi>w</mi> <mn>2</mn></msub><mo>⟩</mo></mrow></mrow></munder><mo maxsize="1.8em" minsize="1.8em">)</mo><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><msup><mi>U</mi> <mo>†</mo></msup><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow></mrow></mpadded></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd></mtd> <mtd><mo>=</mo></mtd> <mtd><mpadded lspace="-50%width" width="0"><mrow><msubsup><mi>dupl</mi> <mrow><msup><mi class="mathscript">𝒦</mi> <mo>*</mo></msup></mrow> <mrow><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mi>Store</mi></mrow></msubsup><mo>∘</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup><mo>⊗</mo><mi>id</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mo maxsize="1.2em" minsize="1.2em">(</mo><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ϕ</mi><mo>|</mo></mrow><mo>⊗</mo><mrow><mo>⟨</mo><mtext>-</mtext><mo>|</mo></mrow><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    \mathscr{H}_1
+      \otimes
+    \mathscr{H}_1^\ast
+      \otimes
+    (\text{-})
+    &amp;
+    \overset{
+      dupl^{\mathscr{H}_1 Store}_{\mathscr{K}^\ast}
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}_1
+      \otimes
+    \mathscr{H}_1^\ast
+      \otimes
+    \mathscr{H}_1
+      \otimes
+    \mathscr{H}_1^\ast
+      \otimes
+    (\text{-})
+    &amp;
+    \overset{
+      U \otimes U^{\dagger\ast}
+      \otimes
+      U \otimes U^{\dagger\ast}
+      \,
+      \otimes \mathrm{id}
+    }{\longrightarrow}
+    &amp;
+    \mathscr{H}_2
+      \otimes
+    \mathscr{H}_2^\ast
+      \otimes
+    \mathscr{H}_2
+      \otimes
+    \mathscr{H}_2^\ast
+      \otimes
+    (\text{-})
+    \\
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\langle \text{-} \right\vert  
+    &amp;\mapsto&amp;
+    \mathclap{
+    \underset{w_1}{\sum}
+    \,
+    \left\vert \psi \right\rangle 
+    \left\langle w_1 \right\vert 
+    \otimes
+    \left\vert w_1 \right\rangle
+    \left\langle \phi \right\vert U^\dagger
+    \otimes
+    \left\langle \text{-} \right\vert  
+    }
+    &amp;\mapsto&amp;
+    \mathclap{
+    U \left\vert \psi \right\rangle 
+    \Big(
+    \underset{
+      =
+    \underset{w_2}{\sum}
+      \left\langle w_2 \right\vert 
+      \otimes
+      \left\vert w_2 \right\rangle
+    }
+    {
+    \underbrace{
+      \underset{w_1}{\sum}
+      \left\langle w_1 \right\vert 
+      U^\dagger
+      \otimes
+      U
+      \left\vert w_1 \right\rangle
+    }
+    }
+    \Big)
+    \left\langle \phi \right\vert U^\dagger
+    \otimes
+    \left\langle \text{-} \right\vert  
+    }
+    \\
+    &amp;&amp; 
+    &amp;=&amp;
+    \mathclap{
+    dupl^{\mathscr{H}_2 Store}_{\mathscr{K}^\ast}
+    \circ
+    \big(
+      U \otimes U^{\dagger \ast} 
+      \otimes id
+    \big)
+    \big(
+    \left\vert \psi \right\rangle
+    \left\langle \phi \right\vert
+    \otimes
+    \left\langle \text{-} \right\vert  
+    \big)
+    }
+  }
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="PartialTraceAsComonadicQuantumStateTransformation">
+<h6>Example</h6>
+<p>A <a class="existingWikiWord" href="../../../../../6/8/1/6/26186/content.html">partial trace quantum channel</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo>⊗</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo>⊗</mo><msup><mi class="mathscript">ℬ</mi> <mo>*</mo></msup><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd> <mtd><mover><mo>→</mo><mrow><mi>id</mi><mo>⊗</mo><msup><mi>trace</mi> <mi class="mathscript">ℬ</mi></msup></mrow></mover></mtd> <mtd><mi class="mathscript">ℋ</mi><mo>⊗</mo><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup></mtd></mtr> <mtr><mtd><mrow><mo>|</mo><mi>ψ</mi><mo>,</mo><mi>β</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>β</mi><mo>′</mo><mo>,</mo><mi>ψ</mi><mo>′</mo><mo>|</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>|</mo><mi>ψ</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>β</mi><mo>′</mo><mo stretchy="false">|</mo><mi>β</mi><mo>⟩</mo></mrow><mrow><mo>⟨</mo><mi>ψ</mi><mo>′</mo><mo>|</mo></mrow><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    (\text{-})
+    \otimes
+    \mathscr{H}
+    \otimes
+    \mathscr{B}
+    \otimes
+    \mathscr{B}^\ast
+    \otimes
+    \mathscr{H}^\ast
+    &amp;
+    \xrightarrow{
+      id 
+      \otimes
+      trace^{\mathscr{B}}
+    }
+    &amp;
+    \mathscr{H} \otimes \mathscr{H}^\ast
+    \\
+    \left\vert \psi, \beta \right\rangle
+    \left\langle \beta', \psi' \right\vert
+    &amp;\mapsto&amp;
+    \left\vert \psi \right\rangle
+    \left\langle \beta' \vert \beta \right\rangle
+    \left\langle \psi' \right\vert
+    \mathrlap{\,.}
+  }  
+
+</annotation></semantics></math></div>
+<p>is a comonadic quantum state transformation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>trace</mi> <mi class="mathscript">ℬ</mi></msup><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo stretchy="false">)</mo><mi>State</mi><munderover><mo>⟶</mo><mrow><mi>comon</mi><mspace width="thickmathspace"></mspace><mi>transf</mi></mrow><mrow></mrow></munderover><mi class="mathscript">ℋ</mi><mi>State</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  trace^{\mathscr{B}}
+  \,\colon\,
+  (\mathscr{H} \otimes \mathscr{B})State
+  \underoverset{ comon\;transf }{}{\longrightarrow}
+  \mathscr{H}State
+  \,.
+
+</annotation></semantics></math></div>
+<p></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Since the structure maps of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mo>⊗</mo><mi class="mathscript">ℬ</mi><mo stretchy="false">)</mo><mi mathvariant="normal">State</mi></mrow><annotation encoding="application/x-tex">(\mathscr{H} \otimes \mathscr{B})\mathrm{State}</annotation></semantics></math>-comonad are <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor products</a> of structure maps of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mi mathvariant="normal">State</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}\mathrm{State}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℬ</mi><mi mathvariant="normal">State</mi></mrow><annotation encoding="application/x-tex">\mathscr{B}\mathrm{State}</annotation></semantics></math>, it is sufficient to show this for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mo>=</mo><mi>𝟙</mi></mrow><annotation encoding="application/x-tex">\mathscr{H} = \mathbb{1}</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../5/2/1/0/10125/content.html">tensor unit</a>, hence for the case that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi><mi mathvariant="normal">State</mi><mo>=</mo><mi mathvariant="normal">Id</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}\mathrm{State} = \mathrm{Id}</annotation></semantics></math>. But in this case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">trace</mi> <mi class="mathscript">ℬ</mi></msup><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><msup><mi>obt</mi> <mrow><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mi mathvariant="normal">Store</mi></mrow></msup><mrow></mrow></mrow><annotation encoding="application/x-tex">\mathrm{trace}^{\mathscr{B}} \,=\, obt^{ \mathscr{H}^\ast\mathrm{Store} }{}</annotation></semantics></math>, which is a comonadic transformation (in fact the <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal</a> one) by <a href="../../../../../5/5/2/0/255/content.html#IdentityMonadIsInitial">this example</a>).</p>
+<p>Alternatively, onee readily checks the required conditions explicitly:</p>
+<div style="margin: -20px 0px 20px 10px">
+<img src="/nlab/files/PartialTraceAsQuantumStateComonTransf-230924b.jpg" width="800px"/>
+</div>
+<p></p>
+</div>
+</p>
+<h3 id="HeisenbergEvolution">Heisenberg evolution is action of Quantum state transformations</h3>
+<p>namely on the quantum-state contextful scalars:</p>
+<p>
+<div class="num_remark">
+<h6>Example</h6>
+<p>The quantum state transformation induced by a <a class="existingWikiWord" href="../../../../../5/5/1/6/26155/content.html">unitary quantum channel</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, according to Exp. <a class="maruku-ref" href="#UnitaryQuantumChannelsAsQUantumStateTransformations"></a>, is invertible (its inverse given by the inverse unitary quantum channel) and hence it induces a functor between the <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli categories</a> (by the discussion <a href="../../../../../5/5/2/0/255/content.html#ExtensionOfFreeModalesAlsoIsomorphicMonadTransformation">here</a>) which on the quantum-state contextful scalars <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{O}_A</annotation></semantics></math> (Exp. <a class="maruku-ref" href="#QuantumObservablesAsQuantumStateContextfulScalars"></a>) is given by <a class="existingWikiWord" href="../../../../../7/9/4/8/8497/content.html">conjugation</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo>⊗</mo><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup></mtd> <mtd><mover><mo>⟵</mo><mrow><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo>⊗</mo><mi>U</mi><mo>⊗</mo><msup><mi>U</mi> <mrow><mo>†</mo><mo>*</mo></mrow></msup></mrow></mover></mtd> <mtd><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo>⊗</mo><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup></mtd></mtr> <mtr><mtd><mi>Kl</mi><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mi>Store</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi>Kl</mi><mo stretchy="false">(</mo><mi class="mathscript">ℋ</mi><mi>Store</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mrow><mo>[</mo><mrow><mtable><mtr><mtd><msub><mi class="mathscript">ℋ</mi> <mn>1</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>1</mn> <mo>*</mo></msubsup></mtd></mtr> <mtr><mtd><mo maxsize="1.8em" minsize="1.8em">↓</mo><mpadded width="0"><mrow><msub><mi>𝒪</mi> <mi>A</mi></msub></mrow></mpadded></mtd></mtr> <mtr><mtd><mi>𝟙</mi></mtd></mtr></mtable></mrow><mo>]</mo></mrow></mtd> <mtd><mo>↦</mo></mtd> <mtd><mrow><mo>[</mo><mrow><mtable><mtr><mtd><msub><mi class="mathscript">ℋ</mi> <mn>2</mn></msub><mo>⊗</mo><msubsup><mi class="mathscript">ℋ</mi> <mn>2</mn> <mo>*</mo></msubsup></mtd></mtr> <mtr><mtd><mo maxsize="1.8em" minsize="1.8em">↓</mo><mpadded width="0"><mrow><msub><mi>𝒪</mi> <mrow><mi>U</mi><mo>⋅</mo><mi>A</mi><mo>⋅</mo><msup><mi>U</mi> <mo>†</mo></msup></mrow></msub></mrow></mpadded></mtd></mtr> <mtr><mtd><mi>𝟙</mi></mtd></mtr></mtable></mrow><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>]</mo></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    (\text{-})
+    \otimes
+    \mathscr{H}_1
+    \otimes
+    \mathscr{H}_1^\ast
+    &amp;
+    \overset{
+      (\text{-})
+      \otimes
+      U \otimes U^{\dagger\ast}
+    }{\longleftarrow}
+    &amp;
+    (\text{-})
+    \otimes
+    \mathscr{H}_2
+    \otimes
+    \mathscr{H}_2^\ast
+    \\
+    Kl(\mathscr{H}Store)
+    &amp;\longrightarrow&amp;
+    Kl(\mathscr{H}Store)
+    \\
+    \left[
+    \array{
+      \mathscr{H}_1
+      \otimes
+      \mathscr{H}_1^\ast
+      \\
+      \Big\downarrow\mathrlap{ \mathcal{O}_A }
+      \\
+      \mathbb{1}
+    }
+    \right]
+    &amp;\mapsto&amp;
+    \left[
+    \array{
+      \mathscr{H}_2
+      \otimes
+      \mathscr{H}_2^\ast
+      \\
+      \Big\downarrow\mathrlap{ 
+        \mathcal{O}_{ U \cdot A \cdot U^\dagger } 
+      }
+      \\
+      \mathbb{1}
+    }
+    \;\;\;\;\;\;
+    \right]
+  }
+
+</annotation></semantics></math></div>
+<p>This transformation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>U</mi><mo>⋅</mo><mi>A</mi><mo>⋅</mo><msup><mi>U</mi> <mo>†</mo></msup></mrow><annotation encoding="application/x-tex">
+  A \;\mapsto\; U \cdot A \cdot U^\dagger
+
+</annotation></semantics></math></div>
+<p>is of course the <a class="existingWikiWord" href="../../../../../9/2/3/6/6329/content.html">Heisenberg picture</a>-evolution of <a class="existingWikiWord" href="../../../../../8/2/0/7/7028/content.html">quantum observables</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> under unitary transformations <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../8/5/7/3/3758/content.html">quantum states</a>.</p>
+<p></p>
+</div>
+</p>
+<h2 id="properties">Properties</h2>
+<h3 id="interaction_with_quantumenvironment_monad">Interaction with QuantumEnvironment monad</h3>
+<p>
+<div class="num_prop" id="QuantumStoreDistributesOverQuantumReader">
+<h6>Proposition</h6>
+<p>For</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dualizable</a> linear type</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../1/0/5/0/501/content.html">finite</a> classical type,</p>
+</li>
+</ul>
+<p>we have:</p>
+<ol>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>QuantumState comonad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mi>Store</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}^\ast Store</annotation></semantics></math> <a href="../../../../../9/3/9/0/939/content.html#ComonadDistributingOverMonad">distributes over</a> the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math><a class="existingWikiWord" href="../../../../8/8/4/24880/content.html">QuantumEnvironment</a> monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>◯</mo> <mi>W</mi></msub></mrow><annotation encoding="application/x-tex">\bigcirc_W</annotation></semantics></math>,</p>
+</li>
+<li>
+<p>the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../8/8/4/24880/content.html">QuantumEnvironment</a> comonad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>★</mo> <mi>W</mi></msub></mrow><annotation encoding="application/x-tex">\bigstar_W</annotation></semantics></math> <a href="../../../../../9/3/9/0/939/content.html#ComonadDistributingOverMonad">distributes over</a> over the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi class="mathscript">ℋ</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}</annotation></semantics></math>QuantumState monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi class="mathscript">ℋ</mi> <mo>*</mo></msup><mi>Store</mi></mrow><annotation encoding="application/x-tex">\mathscr{H}^\ast Store</annotation></semantics></math>.</p>
+</li>
+</ol>
+<div style="margin: -20px 0px 20px 0px">
+<img src="/nlab/files/DistrStrucQuantumStoreOverQuantumReader-231002.jpg" width="700px"/>
+</div>
+<p></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>The relevant conditions (from <a href="../../../../../9/3/9/0/939/content.html#BrookesVanStone93">Brookes &amp; Van Stone 1993 Def. 3</a>, see <a href="../../../../../9/3/9/0/939/content.html#MonadDistributingOverComonad">there</a>) all follows immediately from the distributivity of the <a class="existingWikiWord" href="../../../../../9/3/2/0/239/content.html">tensor product</a> (being a <a class="existingWikiWord" href="../../../0/1/1020/content.html">left adjoint</a>) over the <a class="existingWikiWord" href="../../../../../8/7/0/1/1078/content.html">direct sum</a> (being a <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a>).</p>
+<p>For definiteness, we spell it out. In the first direction we have:</p>
+<div style="margin: -20px 0px 20px 0px">
+<img src="/nlab/files/DistrCondQuantumStoreOverQuantumEnvrn-231002.jpg" width="800px"/>
+</div>
+<p>and in the converse direction we have:</p>
+<div style="margin: -20px 0px 20px 0px">
+<img src="/nlab/files/DistrCondQuantumEnvrnOverQuantumStore-231002.jpg" width="800px"/>
+</div>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="QuantumStateReaderKleisliCategory">
+<h6>Example</h6>
+<p>The two-sided <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a> induced by Prop. <a class="maruku-ref" href="#QuantumStoreDistributesOverQuantumReader"></a> (via <a href="../../../../../9/3/9/0/939/content.html#BrookesVanStone93">Brookes &amp; Van Stone 1993 Thm. 2</a>) equivalently has (by arguing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-wise just as in Prop. <a class="maruku-ref" href="#KleisliCompositionIsSuperoperatorComposition"></a>):</p>
+<ul>
+<li>as morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-indexed sets of linear operators</li>
+</ul>
+<div style="margin: -20px 0px 20px 0px">
+<img src="/nlab/files/QuantumStateReaderKleisliMap-230929b.jpg" width="700px"/>
+</div>
+<ul>
+<li>with composition given by their <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-wise operator products</li>
+</ul>
+<div style="margin: -20px 0px 20px 0px">
+<img src="/nlab/files/QuantumStateReaderKleisliComposition-230929b.jpg" width="700px"/>
+</div>
+<p></p>
+</div>
+</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../8/8/4/24880/content.html">quantum reader monad</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

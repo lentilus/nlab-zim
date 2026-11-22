@@ -1,0 +1,611 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      sheafification in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      sheafification
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#existence">Existence</a></li>
+<li><a href="#construction">Construction</a></li>
+</ul>
+<li><a href="#for_sheaves_with_values_in_categories_other_than_">For sheaves with values in categories other than <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math></a></li>
+<ul>
+<li><a href="#with_values_in_models_for_finitelimit_theories">With values in models for finite-limit theories</a></li>
+<li><a href="#using_the_ipcproperty">Using the IPC-property</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>Given a <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, the <em>sheafification</em> <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> universally turns <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> into <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a>.</p>
+<p>It is characterized as being the <a class="existingWikiWord" href="../../../../../0/2/0/1/1020/content.html">left</a> <a class="existingWikiWord" href="../../../4/0/494/content.html">adjoint functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Sh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L : PSh(C) \to Sh(C)</annotation></semantics></math> to the inclusion <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(C) \hookrightarrow PSh(C)</annotation></semantics></math> of sheaves into all presheaves, exhibiting this as a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a>.</p>
+<p>Therefore sheafification is a special case of a very general phenomenon of <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localizations</a> of categories. See <a class="existingWikiWord" href="../../../../../3/9/0/1/1093/content.html">category of sheaves</a> for more.</p>
+<h2 id="definition">Definition</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,J)</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> in the sense of: <a class="existingWikiWord" href="../../../../../3/2/2/0/223/content.html">small category</a> equipped with a <a class="existingWikiWord" href="../../../../../8/1/6/0/618/content.html">coverage</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">category of presheaves</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>:</mo><mi>C</mi><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  j : C \to PSh(C)
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../9/9/4/0/499/content.html">Yoneda embedding</a>. Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>:</mo><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  i :  Sh_J(C) \hookrightarrow PSh(C)
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../3/9/0/1/1093/content.html">category of sheaves</a>: the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> on those presheaves that are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaves</a>.</p>
+<h3 id="existence">Existence</h3>
+<div class="num_prop" id="ExistenceOfLeftAdjoint">
+<h6 id="proposition">Proposition</h6>
+<p>The inclusion of sheaves into presheaves admits a <a class="existingWikiWord" href="../../../../../0/2/0/1/1020/content.html">left</a> <a class="existingWikiWord" href="../../../4/0/494/content.html">adjoint functor</a>, which hence exhibits <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Sh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh(C)</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a> or reflective <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>i</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mover><mo>↪</mo><mover><mo>←</mo><mi>L</mi></mover></mover><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (L \dashv i) : Sh_J(C) \stackrel{\overset{L}{\leftarrow}}{\hookrightarrow}
+   PSh(C)
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>This follows by general properties discussed at <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a>. We spell out the argument using the theory of <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> at a set of morphisms satisfying a <a class="existingWikiWord" href="../../../../../9/1/3/1/1319/content.html">calculus of fractions</a>.</p>
+<p>Recall from the discussion at <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_J(C)</annotation></semantics></math> is by definition the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math> on the <a class="existingWikiWord" href="../../../../../2/3/3/1/1332/content.html">local objects</a> with respect to the morphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mrow><mo>{</mo><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><munder><mi>lim</mi> <mo>→</mo></munder><mrow><mo>(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></msub><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mo>)</mo></mrow><mo>→</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>U</mi><msub><mo stretchy="false">}</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub><mo>∈</mo><mi>J</mi><mo>}</mo></mrow></mrow><annotation encoding="application/x-tex">
+  W = 
+  \left\{
+  S(\{U_i\}) := \lim_\to\left( 
+    \coprod_{i,j} j(U_i) \times_{j(U)} j(U_j) \stackrel{\to}{\to} \coprod_i j(U_i) \right) \to j(U)
+   |
+   \;\;
+  \{U_i \to U\}_{i \in I} \in J
+  \right\}
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieve</a> inclusions for all <a class="existingWikiWord" href="../../../../../7/3/4/4/4437/content.html">covering</a> families of the <a class="existingWikiWord" href="../../../../../8/1/6/0/618/content.html">coverage</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi></mrow><annotation encoding="application/x-tex">J</annotation></semantics></math>. (Here the <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>lim</mi> <mo>→</mo></msub></mrow><annotation encoding="application/x-tex">\lim_\to</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../6/7/7/0/776/content.html">coequalizer</a> of the two injection maps, as indicated. This is spelled out in more detail at <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> and at <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieve</a>.)</p>
+<p>Now we invoke the following results:</p>
+<ol>
+<li>
+<p>The <a href="../../../../../5/8/9/3/3985/content.html#LocalizationProposition">localization proposition</a> says that every <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> of a <a class="existingWikiWord" href="../../../../7/9/0/974/content.html">locally presentable category</a> on the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/3/1/1332/content.html">local objects</a> for a <a class="existingWikiWord" href="../../../../../7/3/8/3/3837/content.html">small set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> of morphisms is a <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategory</a>, given by the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> at these morphisms;</p>
+</li>
+<li>
+<p>By <a href="../../../../../9/1/6/0/619/content.html#CharacterizationByLocalization">Gabriel-Zisman's theorem</a> every reflective subcategory is the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> at the collection of morphisms inverted by the left adjoint (which by the localization proposition is the saturation of the original set of morphisms).</p>
+</li>
+<li>
+<p>If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> satisfies the axioms of a <a class="existingWikiWord" href="../../../../../9/1/3/1/1319/content.html">calculus of fractions</a> then, by the discussion there, this localization is equivalently given by the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">PSh(C)[W^{-1}]</annotation></semantics></math> whose objects are those of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math> and whose morphisms are given by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mrow><msub><mi>lim</mi> <mo>→</mo></msub></mrow> <mrow><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mover><mo>→</mo><mrow><mi>w</mi><mo>∈</mo><mi>W</mi></mrow></mover><mi>X</mi></mrow></msub><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)[W^{-1}](X,A) \simeq {\lim_{\to}}_{\hat X  \stackrel{w \in W}{\to} X} PSh_C(\hat X,A)</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>Notice that an object is a <a class="existingWikiWord" href="../../../../../2/3/3/1/1332/content.html">local object</a> with respect to the above set of morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> precisely if it is local with respect to the set of all <a class="existingWikiWord" href="../../../../../7/3/8/3/3837/content.html">small</a> <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a> (in the <a class="existingWikiWord" href="../../../../0/4/0/404/content.html">arrow category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Arr</mi><mo stretchy="false">(</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Arr(PSh(C))</annotation></semantics></math> ) of such morphims (since the <a class="existingWikiWord" href="../../../../../6/2/3/0/326/content.html">hom-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh_C(-,A)</annotation></semantics></math> sends colimits in the first argument to <a class="existingWikiWord" href="../../../../1/3/0/314/content.html">limits</a>, and a limit of <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a> is an isomorphism).</p>
+<p>Let hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math> be the completion of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math> under forming small colimits in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Arr</mi><mo stretchy="false">(</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Arr(PSh(C))</annotation></semantics></math>.</p>
+<p>We claim that the morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math> form a <a class="existingWikiWord" href="../../../../../9/1/3/1/1319/content.html">calculus of fractions</a>. The first condition to check is that for all morphisms of presheaves <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \to j(U)</annotation></semantics></math> and every covering family <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>U</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{U_i \to U\}</annotation></semantics></math> there is a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">Y \to X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../../5/5/7/3/3755/content.html">commuting diagram</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Y</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mi>s</mi></mpadded></msup></mtd></mtr> <mtr><mtd><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    Y &amp;\to&amp; S(\{U_i\})
+    \\
+    \downarrow &amp;&amp; \downarrow^{\mathrlap{s}}
+    \\
+    X &amp;\to&amp; j(U)
+  }
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math>. (It is sufficient to demand this for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi>W</mi><mo>⊂</mo><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">s \in W \subset \bar W</annotation></semantics></math> to deduce the stability conditions for all morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math>, since by <a class="existingWikiWord" href="../../../../../8/5/0/2/2058/content.html">universal colimits</a> in the <a class="existingWikiWord" href="../../../../../2/4/8/3/3842/content.html">presheaf topos</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math> the pullback of a colimit is a colimit of pullbacks.)</p>
+<p>Similarly, to see that we can find <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">Y \to X</annotation></semantics></math> we use the <a class="existingWikiWord" href="../../../../../8/2/2/1/1228/content.html">co-Yoneda lemma</a> to decompose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a> of <a class="existingWikiWord" href="../../../../../1/1/3/0/311/content.html">representables</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>≃</mo><mrow><msub><mi>lim</mi> <mo>→</mo></msub><msub><mo></mo><mi>j</mi></msub></mrow><msub><mi>K</mi> <mi>j</mi></msub></mrow><annotation encoding="application/x-tex">X \simeq {\lim_{\to}_j} K_j</annotation></semantics></math> and then use <a class="existingWikiWord" href="../../../../../8/5/0/2/2058/content.html">universal colimits</a> to deduce that we are looking at a diagram of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mi>r</mi></msub><msup><mi>s</mi> <mo>*</mo></msup><msub><mi>K</mi> <mi>r</mi></msub></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mi>s</mi></mpadded></msup></mtd></mtr> <mtr><mtd><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mi>r</mi></msub><mi>j</mi><mo stretchy="false">(</mo><msub><mi>K</mi> <mi>r</mi></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    {\lim_{\to}}_r s^* K_r &amp;\to&amp; S(\{U_i\})
+    \\
+    \downarrow &amp;&amp; \downarrow^{\mathrlap{s}}
+    \\
+    {\lim_\to}_r j(K_r) &amp;\to&amp; j(U)
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math> is closed under colimits, it is hence sufficient that we show the stability condition for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> any representable. So we need to fill diagrams of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>Y</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mi>s</mi></mpadded></msup></mtd></mtr> <mtr><mtd><mi>j</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    Y &amp;\to&amp; S(\{U_i\})
+    \\
+    \downarrow &amp;&amp; \downarrow^{\mathrlap{s}}
+    \\
+    j(K) &amp;\to&amp; j(U)
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>For this now use the single condition on a <a class="existingWikiWord" href="../../../../../8/1/6/0/618/content.html">coverage</a>: that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>U</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{U_i \to U\}</annotation></semantics></math> a covering family in the <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,J)</annotation></semantics></math> we can find a covering family <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>K</mi> <mi>j</mi></msub><mo>→</mo><mi>K</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{K_j \to K\}</annotation></semantics></math> such that every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi> <mi>j</mi></msub><mo>→</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">K_j \to K</annotation></semantics></math> factors through one of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>U</mi></mrow><annotation encoding="application/x-tex">U_i \to U</annotation></semantics></math>. But this means that also the <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieves</a> factor, and we have a commuting diagram</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>K</mi> <mi>j</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><mi>j</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    S(\{K_j\}) &amp;\to&amp; S(\{U_i\})
+    \\
+    \downarrow &amp;&amp; \downarrow
+    \\
+    j(K) &amp;\to&amp; j(U)
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>This shows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math> satisfies the first condition at <a class="existingWikiWord" href="../../../../../0/0/4/0/400/content.html">factorization system</a>.</p>
+<p>The second condition at <a class="existingWikiWord" href="../../../../../9/1/3/1/1319/content.html">calculus of fractions</a> demands that if two composites of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mover><mo>→</mo><mo>→</mo></mover><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>→</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+   X \stackrel{\to}{\to} S(\{U_i\}) \to j(U)
+
+</annotation></semantics></math></div>
+<p>are equal in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math>, then there is a morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">Y \to X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math> such that the two composites</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>X</mi><mover><mo>→</mo><mo>→</mo></mover><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Y \to X \stackrel{\to}{\to} S(\{U_i\})
+
+</annotation></semantics></math></div>
+<p>are equal. But the <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieve</a> inclusions are <a class="existingWikiWord" href="../../../../../1/7/5/0/571/content.html">monomorphisms</a>, hence this condition is trivially satisfied (choose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">Y \to X</annotation></semantics></math> to be the <a class="existingWikiWord" href="../../../../../7/1/4/8/18417/content.html">identity</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>). Again by decomposing into colimits by the <a class="existingWikiWord" href="../../../../../8/2/2/1/1228/content.html">co-Yoneda lemma</a> and using <a class="existingWikiWord" href="../../../../../8/5/0/2/2058/content.html">universal colimits</a> and the pasting law for <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullbacks</a>, the same follows for general morphisms in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mi>k</mi></msub><msub><mi>X</mi> <mi>k</mi></msub></mtd> <mtd><mover><mo>→</mo><mo>≃</mo></mover></mtd> <mtd><mi>X</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mi>k</mi></msub><mi>S</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mrow><mi>k</mi><mo>,</mo><mi>i</mi></mrow></msub><mo stretchy="false">)</mo></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>Y</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><mo stretchy="false">↓</mo></mtd></mtr> <mtr><mtd><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mi>k</mi></msub><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>k</mi></msub><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>→</mo><mo>≃</mo></mover></mtd> <mtd><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    {\lim_\to}_k X_k &amp;\stackrel{\simeq}{\to}&amp; X
+    \\
+    \downarrow \downarrow &amp;&amp; \downarrow \downarrow
+    \\
+    {\lim_\to}_k S(U_{k,i}) &amp;\to&amp; Y
+    \\
+    \downarrow &amp;&amp; \downarrow 
+    \\
+    {\lim_\to}_k j(U_k) &amp;\stackrel{\simeq}{\to}&amp; j(U)
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>by applying the above on each component <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math> of the colimit.</p>
+<p>This gives us the <a class="existingWikiWord" href="../../../../../8/7/4/6/26478/content.html">localization</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L : PSh(C) \to Sh_J(C)</annotation></semantics></math> as described at <a class="existingWikiWord" href="../../../../../9/1/3/1/1319/content.html">calculus of fractions</a>. By the discussion there we have that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_J(C)</annotation></semantics></math> is equivalently given by the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">PSh(C)[W^{-1}]</annotation></semantics></math> with the same objects as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math> and <a class="existingWikiWord" href="../../../../../5/8/2/0/285/content.html">hom-sets</a> given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mo stretchy="false">{</mo><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mover><mo>→</mo><mrow><mi>w</mi><mo>∈</mo><mover><mi>W</mi><mo stretchy="false">^</mo></mover></mrow></mover><mi>X</mi><mo stretchy="false">}</mo></mrow></msub><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  PSh(C)[W^{-1}](X,A) 
+   \simeq
+ {\lim_\to}_{\{\hat X \stackrel{w \in \hat W}{\to} X\}}
+  PSh_C(\hat X,A)
+  \,.
+
+</annotation></semantics></math></div>
+<p>So we have that for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \in PSh(C)</annotation></semantics></math> a presheaf and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∈</mo><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \in Sh_J(C)</annotation></semantics></math> the <a class="existingWikiWord" href="../../../../../5/8/2/0/285/content.html">hom-set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sh_C(L(X),A)</annotation></semantics></math> is given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Sh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mover><mo>→</mo><mrow><mi>w</mi><mo>∈</mo><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow></mover><mi>X</mi></mrow></msub><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Sh_C(L(X), A) \simeq
+  {\lim_{\to}}_{\hat X \stackrel{w \in \bar W}{\to} X} PSh_C(\hat X,A)
+  \,.
+
+</annotation></semantics></math></div>
+<p>But if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> is a sheaf, it is a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/3/3/1/1332/content.html">local object</a> and hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mover><mi>X</mi><mo stretchy="false">^</mo></mover><mover><mo>→</mo><mi>w</mi></mover><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh_C(\hat X \stackrel{w}{\to} X, A)</annotation></semantics></math> is an <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>∈</mo><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">w \in \bar W</annotation></semantics></math>. Hence the above colimit is over a diagram constant on its value at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mi>Id</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">w = Id : X \to X</annotation></semantics></math> therefore we have a <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural isomorphism</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>≃</mo><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo>,</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots \simeq
+  PSh_C(X,A)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This demonstrates the <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L \dashv i)</annotation></semantics></math>.</p>
+</div>
+<h3 id="construction">Construction</h3>
+<div class="num_cor">
+<h6 id="corollary">Corollary</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \in PSh(C)</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/4/1/0/146/content.html">presheaf</a> on the <a class="existingWikiWord" href="../../../../../7/4/1/0/147/content.html">site</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(C,J)</annotation></semantics></math>, its <strong>sheafification</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(X)</annotation></semantics></math> is the presheaf given on any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>∈</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">U \in C</annotation></semantics></math> by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>:</mo><mi>U</mi><mo>↦</mo><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mo stretchy="false">{</mo><mover><mi>U</mi><mo stretchy="false">^</mo></mover><mover><mo>→</mo><mi>w</mi></mover><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></msub><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mover><mi>U</mi><mo stretchy="false">^</mo></mover><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  L(X) : U \mapsto {\lim_\to}_{\{\hat U \stackrel{w}{\to} j(U)\}} PSh_C(\hat U, X)
+  \,,
+
+</annotation></semantics></math></div>
+<p>where the <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a> on the right is over all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>∈</mo><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">w \in \bar W</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>By the <a class="existingWikiWord" href="../../../../../6/6/4/0/466/content.html">Yoneda lemma</a> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>,</mo><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  L(X)(U) \simeq PSh_C(j(U), L(X))
+  \,.
+
+</annotation></semantics></math></div>
+<p>By the <a href="#ExistenceOfLeftAdjoint">above proposition</a> this is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>≃</mo><msub><mi>Sh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>,</mo><mi>L</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots \simeq Sh_C(L(j(U)), L(X))
+  \,.
+
+</annotation></semantics></math></div>
+<p>By the proof of the above proposition, using the formulas discussed at <a class="existingWikiWord" href="../../../../../9/1/3/1/1319/content.html">calculus of fractions</a>, this hom-set is given by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>⋯</mi><mo>≃</mo><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mo stretchy="false">{</mo><mover><mi>U</mi><mo stretchy="false">^</mo></mover><mover><mo>→</mo><mrow><mi>w</mi><mo>∈</mo><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow></mover><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></msub><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mover><mi>U</mi><mo stretchy="false">^</mo></mover><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \cdots \simeq {\lim_\to}_{\{ \hat U \stackrel{w \in \bar W}{\to} j(U)\}} PSh_C(\hat U, X)
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p></p>
+<p>By the definition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math>, the morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>U</mi><mo stretchy="false">^</mo></mover><mo>→</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat U \to j(U)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>W</mi><mo stretchy="false">¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar W</annotation></semantics></math> are colimits of diagrams of <a class="existingWikiWord" href="../../../../../7/3/4/4/4437/content.html">covering</a> <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieves</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>U</mi><mo stretchy="false">^</mo></mover><mo>≃</mo><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mo stretchy="false">{</mo><mi>K</mi><mo>→</mo><mi>U</mi><mo stretchy="false">}</mo></mrow></msub><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>K</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>→</mo><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mo stretchy="false">{</mo><mi>K</mi><mo>→</mo><mi>U</mi><mo stretchy="false">}</mo></mrow></msub><mi>j</mi><mo stretchy="false">(</mo><mi>K</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \hat U \simeq 
+    {\lim_\to}_{\{K \to U\}} S(\{K_i\}) \to {\lim_\to}_{\{K \to U\}} j(K)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This means (…) that the above colimit may be computed as two consecutive colimits of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><munder><mi>lim</mi> <mo>→</mo></munder></mrow> <mrow><mo stretchy="false">{</mo><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>→</mo><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></msub><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  {\lim_{\to}}_{\{S(\{U_i\}) \to j(U)\}} PSh_C(S(\{U_i\}), X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>One such application is called the <a class="existingWikiWord" href="../../../../../0/2/5/1/1520/content.html">plus construction</a>.</p>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p></p>
+<p>A morphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">S(\{U_i\}) \to X</annotation></semantics></math> out of a <a class="existingWikiWord" href="../../../../../8/4/3/0/348/content.html">sieve</a> into any presheaf is in components precisely a <a class="existingWikiWord" href="../../../../../8/9/7/1/1798/content.html">matching family</a> of the presheaf <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> on the <a class="existingWikiWord" href="../../../../../7/3/4/4/4437/content.html">covering</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo>→</mo><mi>U</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{U_i \to U\}</annotation></semantics></math>.</p>
+<p></p>
+</div>
+</p>
+<div class="proof">
+<h6 id="proof_3">Proof</h6>
+<p>Use that the sieve is the <a class="existingWikiWord" href="../../../../../6/7/7/0/776/content.html">coequalizer</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>→</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mi>i</mi></munder><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><mover><mo>→</mo><mo>→</mo></mover><munder><mo lspace="thinmathspace" rspace="thinmathspace">∐</mo> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>i</mi></msub><mo stretchy="false">)</mo><msub><mo>×</mo> <mrow><mi>j</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></mrow></msub><mi>j</mi><mo stretchy="false">(</mo><msub><mi>U</mi> <mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  S(\{U_i\}) \to \coprod_i j(U_i) \stackrel{\to}{\to}
+   \coprod_{i,j} j(U_i) \times_{j(U)} j(U_j)
+
+</annotation></semantics></math></div>
+<p>and that the <a class="existingWikiWord" href="../../../../../6/2/3/0/326/content.html">hom-functor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>PSh</mi> <mi>C</mi></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh_C(-,X)</annotation></semantics></math> sends <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a> to <a class="existingWikiWord" href="../../../../1/3/0/314/content.html">limits</a>. More details on this computation are at <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>The <a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">unit</a> of the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L \dashv i)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> has as components natural morphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>L</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">
+  X \to L X
+
+</annotation></semantics></math></div>
+<p>in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">PSh(C)</annotation></semantics></math>, from any presheaf into its sheafification. By general properties of <a class="existingWikiWord" href="../../../../../9/1/6/0/619/content.html">reflective subcategories</a> these morphisms are mapped to <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphisms</a> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>:</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Sh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L : PSh(C) \to Sh(C)</annotation></semantics></math>. Therefore these are <a class="existingWikiWord" href="../../../../../8/8/0/1/1088/content.html">local isomorphisms</a>.</p>
+<p>So every presheaf is related by a <a class="existingWikiWord" href="../../../../../8/8/0/1/1088/content.html">local isomorphism</a> to its sheafification.</p>
+</div>
+<h2 id="for_sheaves_with_values_in_categories_other_than_">For sheaves with values in categories other than <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math></h2>
+<p>For presheaves with values in categories other than <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>, sheafification may be a difficult problem, unless one has some extra assumptions.</p>
+<h3 id="with_values_in_models_for_finitelimit_theories">With values in models for finite-limit theories</h3>
+<p>Consider a type of structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> defined in terms of an <a class="existingWikiWord" href="../../../../../3/6/6/0/663/content.html">essentially algebraic theory</a> finite limits (such as <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">groups</a>, <a class="existingWikiWord" href="../../../../../6/0/2/0/206/content.html">algebras</a>, <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>, etc.), then <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/4/6/4/4641/content.html">models</a> are preserved by both <a class="existingWikiWord" href="../../../../../7/3/1/1/1137/content.html">direct images</a> and <a class="existingWikiWord" href="../../../../../8/3/1/1/1138/content.html">inverse images</a> of <a class="existingWikiWord" href="../../../../../6/5/4/0/456/content.html">geometric morphisms</a>. Therefore, the <a class="existingWikiWord" href="../../../../../3/9/1/0/193/content.html">adjunction</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>L</mi><mo>⊣</mo><mi>i</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>Sh</mi> <mi>J</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>→</mo><mi>PSh</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(L \dashv i) : Sh_J(C) \to PSh(C)</annotation></semantics></math> directly induces an adjunction between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-models in sheaves and presheaves. And since finite limits of sheaves and presheaves are computed pointwise, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-models in the category of (pre)sheaves are the same as (pre)sheaves of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-models-in-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Set</mi></mrow><annotation encoding="application/x-tex">Set</annotation></semantics></math>.</p>
+<h3 id="using_the_ipcproperty">Using the IPC-property</h3>
+<p>If a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> satisfies the following assumptions, sheafification of presheaves in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msup><mi>S</mi> <mi>op</mi></msup><mo>,</mo><mi>A</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[S^{op}, A]</annotation></semantics></math> exists and is constructed analogously as for <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>-valued sheaves.</p>
+<ul>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> admits small <a class="existingWikiWord" href="../../../../1/3/0/314/content.html">limits</a>;</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> admits small <a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimits</a>;</li>
+<li>small <a class="existingWikiWord" href="../../../../../8/9/8/0/898/content.html">filtered colimits</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> are exact;</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> satisfies the <a class="existingWikiWord" href="../../../../../7/0/1/1/1107/content.html">IPC-property</a> .</li>
+</ul>
+<p>This is true for instance for</p>
+<ul>
+<li>
+<p>the category <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> of sets;</p>
+</li>
+<li>
+<p>the category <a class="existingWikiWord" href="../../../../../2/0/2/0/202/content.html">Grp</a> of groups;</p>
+</li>
+<li>
+<p>the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mi>Alg</mi></mrow><annotation encoding="application/x-tex">k Alg</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-algebras;</p>
+</li>
+<li>
+<p>the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Mod</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Mod(R)</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html">modules</a>,</p>
+</li>
+</ul>
+<p>(but all of these are also <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>-models for finite-limit theories <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>).</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><strong>sheafification</strong>, <a class="existingWikiWord" href="../../../../../3/7/5/7/7573/content.html">plus-construction on presheaves</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-sheafification</a> / <a class="existingWikiWord" href="../../../../../2/3/1/1/1132/content.html">∞-stackification</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>The description of sheafification in terms of <a class="existingWikiWord" href="../../../../../8/8/0/1/1088/content.html">local isomorphisms</a> is in section 16.3 (for <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a>-valued presheaves) and section 17.4 (for more general presheaves) of</p>
+<ul>
+<li>Kashiwara–Schapira, <em><a class="existingWikiWord" href="../../../../../5/7/9/0/975/content.html">Categories and Sheaves</a></em></li>
+</ul>
+<p>The description in terms of <a class="existingWikiWord" href="../../../../0/1/1/1104/content.html">dense monomorphisms</a> using <a class="existingWikiWord" href="../../../../../0/5/3/0/350/content.html">Lawvere-Tierney topology</a> is in section V.3 of</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/5/2/2/2259/content.html">Saunders Mac Lane</a> and <a class="existingWikiWord" href="../../../../../7/5/2/2/2257/content.html">Ieke Moerdijk</a>, <em><a class="existingWikiWord" href="../../../../../6/0/1/1/1106/content.html">Sheaves in Geometry and Logic</a></em></li>
+</ul>
+<p>Sheafification is shown to be instance of <a class="existingWikiWord" href="../../../../../8/9/8/0/10898/content.html">bicategory-enriched</a> <a class="existingWikiWord" href="../../../../../1/4/0/6/26041/content.html">Cauchy completion</a> in:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/0/4/24029/content.html">Renato Betti</a> and <a class="existingWikiWord" href="../../../../../5/9/9/8/8995/content.html">Aurelio Carboni</a>, <em>Cauchy-completion and the associated sheaf</em>, Cahiers de topologie et géométrie différentielle 23.3 (1982): 243-256. (<a href="https://www.numdam.org/item/CTGDC_1982__23_3_243_0.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/0/4/24029/content.html">Renato Betti</a> and <a class="existingWikiWord" href="../../../../../8/5/2/8/8258/content.html">Robert Walters</a>, <em>The symmetry of the Cauchy-completion of a category</em>, Category Theory: Applications to Algebra, Logic and Topology Proceedings of the International Conference Held at Gummersbach, July 6–10, 1981. Berlin, Heidelberg: Springer Berlin Heidelberg, 2006.</p>
+</li>
+</ul>
+<p>Extension of sheafification of presheaves with values in other categories has been advanced in</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../3/9/5/8/8593/content.html">Alex Heller</a>, K. A. Rowe, <em>On the category of sheaves</em>, Amer. J. Math. 84, 1962, 205-216</p>
+</li>
+<li>
+<p>Barr, Grillet, and Van Osdol, <em>Exact categories and categories of sheaves</em>, Lecture Notes in Math., Vol. 236, Springer, Berlin, 1971</p>
+</li>
+<li>
+<p>Friedrich Ulmer, <em>On the existence and exactness of the associated sheaf functor</em>, J. Pure Appl. Algebra 3, 1971, 295-306</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../5/1/3/3154/content.html">Alexander Rosenberg</a>, <em>Almost quotient categories, sheaves and localizations</em>, 181 p. Seminar on supermanifolds 25, University of Stockholm, D. Leites editor, 1988 (in Russian; partial remake in English exists)</p>
+</li>
+</ul>
+<p>Discussion in <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a> is in</p>
+<ul>
+<li id="QuirinTabareau16">Kevin Quirin, Nicolas Tabareau, <em>Lawvere-Tierney sheafification in Homotopy Type Theory</em>, Journal of Formalized Reasoning, Vol 9, No 2, (2016) (<a href="https://jfr.unibo.it/article/view/6232">web</a>)</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

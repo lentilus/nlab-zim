@@ -1,0 +1,963 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      fiber integration in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      fiber integration
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<ul>
+<li><a href="#FiberwiseIntegrationOfOrdinaryDifferentialForms">Fiberwise integration of ordinary differential forms</a></li>
+<li><a href="#FiberwiseIntegrationOfPseudoforms">Fiberwise integration of fiberwise pseudoforms</a></li>
+<li><a href="#in_generalized_cohomology_via_pontryaginthom_collapse_maps">In generalized cohomology via Pontryagin-Thom collapse maps</a></li>
+<ul>
+<li><a href="#along_maps_of_manifolds">Along maps of manifolds</a></li>
+<li><a href="#along_representable_morphisms_of_stacks">Along representable morphisms of stacks</a></li>
+</ul>
+<li><a href="#InGeneralizedCohomologyByUmkehrMaps">In generalized cohomology by Umkehr maps via abstract duality</a></li>
+<ul>
+<li><a href="#abstract_duality_and_atiyahmilnorspanier_duality__pontryaginthom_collapse">Abstract duality and Atiyah-Milnor-Spanier duality + Pontryagin-Thom collapse</a></li>
+<li><a href="#in_linear_homotopytype_theory">In linear homotopy-type theory</a></li>
+</ul>
+<li><a href="#in_generalized_differential_cohomology">In generalized differential cohomology</a></li>
+<li><a href="#InKKTheory">In KK-theory</a></li>
+<ul>
+<li><a href="#KKPushForwardAlongEmbedding">Along an embedding</a></li>
+<li><a href="#KKPushforwardAlongSubmersion">Along a proper submersion</a></li>
+<li><a href="#AlongAFibrationOfClosedSpinCManifolds">Along a smooth fibration of closed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Spin</mi> <mi>c</mi></msup></mrow><annotation encoding="application/x-tex">Spin^c</annotation></semantics></math>-manifolds</a></li>
+<li><a href="##KKPushforwardAlongGeneralMap">Along a general K-oriented map</a></li>
+<li><a href="#KKPushforwardAlongGeneralMap">In twisted K-theory</a></li>
+</ul>
+<li><a href="#of_cohesive_differential_form_data">Of cohesive differential form data</a></li>
+</ul>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#to_the_point">To the point</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#ReferencesInKKTheory">In noncommutative topology and KK-theory</a></li>
+<li><a href="#abstract_formulation">Abstract formulation</a></li>
+</ul>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Fiber integration</em> or <em>push-forward</em> is a process that sends <a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">generalized cohomology</a> classes on a <a class="existingWikiWord" href="../../../../../0/5/1/1/1150/content.html">bundle</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">E \to B</annotation></semantics></math> of <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifolds</a> to cohomology classes on the base <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> of the bundle, by <em>evaluating them on each fiber</em> in some sense.</p>
+<p>This sense is such that if the cohomology in question is <a class="existingWikiWord" href="../../../../../5/0/3/2/2305/content.html">de Rham cohomology</a> then fiber integration is ordinary <a class="existingWikiWord" href="../../../../5/6/7/7651/content.html">integration</a> of <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">differential form</a>s over the fibers. Generally, the fiber integration over a bundle of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>-dimensional fibers reduces the degree of the cohomology class by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+<p>Composing pullback of cohomology classes with fiber integration yields the notion of <a class="existingWikiWord" href="../../../../../8/3/9/3/3938/content.html">transgression</a>.</p>
+<h2 id="definition">Definition</h2>
+<p>Consider a smooth <a class="existingWikiWord" href="../../../../../5/8/4/4/4485/content.html">submersion</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>⟶</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">
+  f \colon X \longrightarrow B
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifolds</a>, whose <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> have <a class="existingWikiWord" href="../../../../../3/8/2/2/22283/content.html">dimension</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>.</p>
+<h3 id="FiberwiseIntegrationOfOrdinaryDifferentialForms">Fiberwise integration of ordinary differential forms</h3>
+<p>For simplicity, we assume the fibers to be <a class="existingWikiWord" href="../../../../2/3/2/2321/content.html">oriented</a> in this subsection. That is, we are given a section of the principal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Z</mi></mstyle><mo stretchy="false">/</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\mathbf{Z}/2</annotation></semantics></math>-bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Or</mi><mo stretchy="false">(</mo><msub><mi>T</mi> <mi>f</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Or(T_f)</annotation></semantics></math> of fiberwise orientations, defined as the quotient of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Λ</mi> <mi>d</mi></msup><msub><mi>T</mi> <mi>f</mi></msub></mrow><annotation encoding="application/x-tex">\Lambda^d T_f</annotation></semantics></math> by the Lie group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mstyle mathvariant="bold"><mi>R</mi></mstyle> <mrow><mo>&gt;</mo><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\mathbf{R}_{\gt0}</annotation></semantics></math>. More generally, we can integrate <strong>fiberwise pseudoforms</strong>, analogously to the usual notion of integral of <a class="existingWikiWord" href="../../../../../2/2/2/9/9222/content.html">densities</a>/<a class="existingWikiWord" href="../../../../../7/6/6/5/25667/content.html">pseudoforms</a>, as discussed in the next subsection.</p>
+<p>For any <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifold</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math>, denote the set of <a class="existingWikiWord" href="../../../../../3/1/9/1/1913/content.html">smooth differential n-forms</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Ω</mi> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega^n(M)</annotation></semantics></math>, as usual.</p>
+<p>The <em>fiberwise integration of differential forms</em> along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is a map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><msubsup><mi>Ω</mi> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>Ω</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msup><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>,</mo></mrow></mpadded></mrow><annotation encoding="application/x-tex">
+  f_* 
+    \,\colon\,
+  \Omega^n_\int(X) \longrightarrow \Omega^{n-d}(B)
+  \mathrlap{\,,}
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Ω</mi> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⊂</mo><msup><mi>Ω</mi> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega^n_\int(X)\subset \Omega^n(X)</annotation></semantics></math> denotes the subspace of <strong>fiberwise integrable</strong> differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-forms, defined below. For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msubsup><mi>Ω</mi> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega \in \Omega^n_\int(X)</annotation></semantics></math>, the value of the differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-d)</annotation></semantics></math>-form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_*(\omega)</annotation></semantics></math> at some collection of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-d)</annotation></semantics></math> <a class="existingWikiWord" href="../../../../6/9/1/1961/content.html">tangent vector</a> <a class="existingWikiWord" href="../../../../../2/2/7/2/2722/content.html">fields</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mn>1</mn></msub><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mi>v</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">v_1, \cdots, v_{n-d}</annotation></semantics></math> is defined as follows.</p>
+<ol>
+<li>
+<p>First, lift each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">v_i</annotation></semantics></math> to a <a class="existingWikiWord" href="../../../../../4/0/7/0/704/content.html">section</a> of the quotient bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>X</mi><mo stretchy="false">/</mo><msub><mi>T</mi> <mi>f</mi></msub></mrow><annotation encoding="application/x-tex">T X/T_f</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi> <mi>f</mi></msub><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">T_f \to X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../8/7/4/4781/content.html">relative tangent bundle</a>, i.e., the kernel of the <a class="existingWikiWord" href="../../../../../2/8/5/7/17582/content.html">tangent map</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>X</mi><mo>→</mo><mi>T</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">T f\colon T X\to T B</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Lift these to sections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">u_i</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">T X</annotation></semantics></math> in some arbitrary way.</p>
+</li>
+<li>
+<p>Substitute the resulting vector fields on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> into the differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>, obtaining a differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\psi</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/1/6/8/8616/content.html">Pull back</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\psi</annotation></semantics></math> to each of the <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> of the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f\colon X\to B</annotation></semantics></math>, obtaining a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-form on each of these fibers, which does not depend on the choices of liftings <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">u_i</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Multiply the resulting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-forms by the given orientations of the fibers, obtaining a 1-<a class="existingWikiWord" href="../../../../../2/2/2/9/9222/content.html">density</a> on each fiber.</p>
+</li>
+<li>
+<p>If the resulting 1-density is <a class="existingWikiWord" href="../../../../../8/7/5/8/8578/content.html">integrable</a> over each fiber (which is always true for properly supported forms), we say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math> is <strong>fiberwise integrable</strong> and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msubsup><mi>Ω</mi> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega\in\Omega^n_\int(X)</annotation></semantics></math>. Then the fiberwise integral gives a number for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b\in B</annotation></semantics></math>, which depends smoothly on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>This is the value of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_*(\omega)</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mn>1</mn></msub><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mi>v</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">v_1, \cdots, v_{n-d}</annotation></semantics></math>.</p>
+<p>Cf. <a href="../../../../../../../missing.html">Greub, Halperin &amp; Vanstone 1973 vol I, Section VII.7.12</a>.</p>
+<h3 id="FiberwiseIntegrationOfPseudoforms">Fiberwise integration of fiberwise pseudoforms</h3>
+<p>Somewhat more generally, if the fibers are not oriented (or orientable), we can still define integrals of <strong>fiberwise pseudoforms</strong>.</p>
+<p>Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f\colon X\to B</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../5/8/4/4/4485/content.html">submersion</a>. The <a class="existingWikiWord" href="../../../../../7/4/5/1/1547/content.html">vector bundle</a> of <strong>fiberwise differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-pseudoforms</strong> along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is defined as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mi>Λ</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msup><msup><mi>T</mi> <mo>*</mo></msup><mi>X</mi><mo>=</mo><msup><mi>Λ</mi> <mi>n</mi></msup><msup><mi>T</mi> <mo>*</mo></msup><mi>X</mi><msub><mo>×</mo> <mrow><mstyle mathvariant="bold"><mi>Z</mi></mstyle><mo stretchy="false">/</mo><mn>2</mn></mrow></msub><mi>Or</mi><mo stretchy="false">(</mo><msub><mi>T</mi> <mi>f</mi></msub><mo stretchy="false">)</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\tilde\Lambda^n T^*X=\Lambda^n T^*X \times_{\mathbf{Z}/2} Or(T_f) \to X</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Or</mi><mo stretchy="false">(</mo><msub><mi>T</mi> <mi>f</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Or(T_f)</annotation></semantics></math> denotes the principal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>Z</mi></mstyle><mo stretchy="false">/</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\mathbf{Z}/2</annotation></semantics></math> bundle of fiberwise orientations defined above. A <strong>differential n-pseudoform</strong> is a section of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mi>Λ</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msup><msup><mi>T</mi> <mo>*</mo></msup><mi>X</mi></mrow><annotation encoding="application/x-tex">\tilde\Lambda^n T^*X</annotation></semantics></math>. The vector space of such sections is denoted by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mover><mi>Ω</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tilde\Omega^n(f)</annotation></semantics></math>.</p>
+<p>As above, we can define a subspace <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mover><mi>Ω</mi><mo stretchy="false">˜</mo></mover> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>⊂</mo><msup><mover><mi>Ω</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tilde\Omega^n_\int(f)\subset \tilde\Omega^n(f)</annotation></semantics></math> of <strong>fiberwise integrable differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-pseudoforms</strong> and the integration map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∫</mo><mo lspace="verythinmathspace">:</mo><msubsup><mover><mi>Ω</mi><mo stretchy="false">˜</mo></mover> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>Ω</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msup><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">\int\colon\tilde\Omega^n_\int(f)\to \Omega^{n-d}(B).</annotation></semantics></math></div>
+<p>Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msup><mover><mi>Ω</mi><mo stretchy="false">˜</mo></mover> <mi>n</mi></msup><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega\in\tilde\Omega^n(f)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">n-d</annotation></semantics></math> <a class="existingWikiWord" href="../../../../6/9/1/1961/content.html">tangent vector</a> <a class="existingWikiWord" href="../../../../../2/2/7/2/2722/content.html">fields</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>v</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">v_1, \ldots, v_{n-d}</annotation></semantics></math>, the value <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mi>ω</mi><mo stretchy="false">(</mo><msub><mi>v</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>v</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_*\omega(v_1,\ldots,v_{n-d})</annotation></semantics></math> is defined as follows. First, produce a smooth family of differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-forms on fibers, as described above. Then perform the following two steps.</p>
+<ol>
+<li>
+<p>First, lift each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">v_i</annotation></semantics></math> to a <a class="existingWikiWord" href="../../../../../4/0/7/0/704/content.html">section</a> of the quotient bundle <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>X</mi><mo stretchy="false">/</mo><msub><mi>T</mi> <mi>f</mi></msub></mrow><annotation encoding="application/x-tex">T X/T_f</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi> <mi>f</mi></msub><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">T_f \to X</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../8/7/4/4781/content.html">relative tangent bundle</a>, i.e., the kernel of the <a class="existingWikiWord" href="../../../../../2/8/5/7/17582/content.html">tangent map</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>T</mi><mi>X</mi><mo>→</mo><mi>T</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">T f\colon T X\to T B</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Lift these to sections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">u_i</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">T X</annotation></semantics></math> in some arbitrary way.</p>
+</li>
+<li>
+<p>Substitute the resulting vector fields on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> into the fiberwise differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-pseudoform <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math>, obtaining a fiberwise differential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-pseudoform <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\psi</annotation></semantics></math>.</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/1/6/8/8616/content.html">Pull back</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi></mrow><annotation encoding="application/x-tex">\psi</annotation></semantics></math> to each of the <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> of the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f\colon X\to B</annotation></semantics></math>, obtaining a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>-pseudoform on each of these fibers, which does not depend on the choices of liftings <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">u_i</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>If the resulting 1-density is <a class="existingWikiWord" href="../../../../../8/7/5/8/8578/content.html">integrable</a> over each fiber (which is always true for properly supported pseudoforms), we say that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math> is <strong>fiberwise integrable</strong> and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>∈</mo><msubsup><mover><mi>Ω</mi><mo stretchy="false">˜</mo></mover> <mo>∫</mo> <mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\omega\in\tilde\Omega^n_\int(X)</annotation></semantics></math>. Then the fiberwise integral gives a number for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b\in B</annotation></semantics></math>, which depends smoothly on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>This is the value of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_*(\omega)</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mn>1</mn></msub><mo>,</mo><mi>⋯</mi><mo>,</mo><msub><mi>v</mi> <mrow><mi>n</mi><mo>−</mo><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">v_1, \cdots, v_{n-d}</annotation></semantics></math>.</p>
+<h3 id="in_generalized_cohomology_via_pontryaginthom_collapse_maps">In generalized cohomology via Pontryagin-Thom collapse maps</h3>
+<h4 id="along_maps_of_manifolds">Along maps of manifolds</h4>
+<p>Here is the rough outline of the construction via <a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Pontryagin-Thom collapse maps</a>.</p>
+<p>The basic strategy is this:</p>
+<ol>
+<li>
+<p>start with a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">E \to B</annotation></semantics></math></p>
+</li>
+<li>
+<p>make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> bigger without changing its homotopy type such that the map from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> becomes an <a class="existingWikiWord" href="../../../../../3/7/3/4/4373/content.html">embedding</a>;</p>
+</li>
+<li>
+<p>choose an <a class="existingWikiWord" href="../../../../../4/1/9/3/3914/content.html">orientation</a> structure that makes the cohomology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> equivalent to that of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Th</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Th(E)</annotation></semantics></math> (the <a class="existingWikiWord" href="../../../../../2/1/9/3/3912/content.html">Thom isomorphism</a>);</p>
+</li>
+<li>
+<p>compose the Thom isomorphism with the pullback along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>→</mo><mi>Th</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B \to Th(E)</annotation></semantics></math> to get an “Umkehr” map from cohomology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> to cohomology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>Now in detail.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">p : E \to B</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/5/1/1/1150/content.html">bundle</a> of smooth compact <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifolds</a> with typical <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fiber</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>.</p>
+<p>By the <a class="existingWikiWord" href="../../../../../8/0/2/8/18208/content.html">Whitney embedding theorem</a> one can choose an embedding <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>:</mo><mi>E</mi><mo>↪</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">e:E \hookrightarrow \mathbb{R}^n</annotation></semantics></math> for some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∈</mo><mi>ℕ</mi></mrow><annotation encoding="application/x-tex">n \in \mathbb{N}</annotation></semantics></math>. From this one obtains an embedding</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo><mo>:</mo><mi>E</mi><mo>↪</mo><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  (p,e) : E \hookrightarrow B \times \mathbb{R}^n
+  \,.
+
+</annotation></semantics></math></div>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N_{(p,e)} (E)</annotation></semantics></math> be the <a class="existingWikiWord" href="../../../../../5/1/9/3/3915/content.html">normal bundle</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> relative to this embedding. It is a rank <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>dim</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">n- dim F</annotation></semantics></math> bundle over the image of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">B \times \mathbb{R}^n</annotation></semantics></math>.</p>
+<p>Fix a <a class="existingWikiWord" href="../../../../../8/0/0/6/6008/content.html">tubular neighbourhood</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">B \times \mathbb{R}^n</annotation></semantics></math> and identify it with the total space of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">N_{(p,e)}</annotation></semantics></math>. Then collapsing the whole <a class="existingWikiWord" href="../../../../../7/4/9/0/947/content.html">complement</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mo>∖</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B \times \mathbb{R}^n \setminus N_{(p,e)}(E)</annotation></semantics></math> to a point gives the <a class="existingWikiWord" href="../../../../../3/1/9/3/3913/content.html">Thom space</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N_{(p,e)}(E)</annotation></semantics></math>, and the quotient map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mo>→</mo><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mo stretchy="false">/</mo><mo stretchy="false">(</mo><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mo>−</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>≃</mo><mi>Th</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  B \times \mathbb{R}^n 
+  \to 
+  B \times \mathbb{R}^n / (B \times \mathbb{R}^n - N_{(p,e)}(E))
+  \simeq
+  Th(N_{(p,e)}(E))
+
+</annotation></semantics></math></div>
+<p>factors through the <a class="existingWikiWord" href="../../../../../6/2/0/3/3026/content.html">one-point compactification</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><msup><mo stretchy="false">)</mo> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">(B \times \mathbb{R}^n)^*</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">B \times \mathbb{R}^n</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><msup><mo stretchy="false">)</mo> <mo>*</mo></msup><mo>≅</mo><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">(B \times \mathbb{R}^n)^*\cong \Sigma^n B_+</annotation></semantics></math> (see <a href="../../../../../6/2/0/3/3026/content.html#MonoidalFunctoriality">here</a>), the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-fold <a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">B_+</annotation></semantics></math> (or, equivalently, the <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash product</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> with the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-sphere: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub><mo>=</mo><msup><mi>S</mi> <mi>n</mi></msup><mo>∧</mo><msub><mi>B</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">\Sigma^n B_+= S^n \wedge B_+</annotation></semantics></math>), we obtain a factorization</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mo>→</mo><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub><mover><mo>→</mo><mi>τ</mi></mover><mi>Th</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  B \times \mathbb{R}^n \to \Sigma^n B_+ \stackrel{\tau}{\to} Th(N_{(p,e)}(E))
+  \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math> is called the <a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Pontrjagin-Thom collapse map</a>.</p>
+<p>Explicitly, as sets we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub><mo>≃</mo><mi>B</mi><mo>×</mo><msup><mi>ℝ</mi> <mi>n</mi></msup><mo>∪</mo><mo stretchy="false">{</mo><mn>∞</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\Sigma^n B_+ \simeq B \times \mathbb{R}^n \cup \{\infty\}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Th</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>e</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>e</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msub><mo>∪</mo><mo stretchy="false">{</mo><mn>∞</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">Th(N_{(e,p)}(E)) = N_{(e,p)} \cup \{\infty\}</annotation></semantics></math>, and for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊂</mo><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub></mrow><annotation encoding="application/x-tex">U \subset \Sigma^n B_+</annotation></semantics></math> a tubular neighbourhood of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>:</mo><mi>U</mi><mo>→</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>e</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi : U \to N_{(e,p)}(E)</annotation></semantics></math> an isomorphism, the map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>:</mo><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub><mover><mo>→</mo><mrow></mrow></mover><mi>Th</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \tau : \Sigma^n B_+ \stackrel{}{\to} Th(N_{(p,e)}(E))
+
+</annotation></semantics></math></div>
+<p>is defined by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>:</mo><mi>x</mi><mo>↦</mo><mrow><mo>{</mo><mrow><mtable><mtr><mtd><mi>ϕ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mo stretchy="false">|</mo></mtd> <mtd><mi>x</mi><mo>∈</mo><mi>U</mi></mtd></mtr> <mtr><mtd><mn>∞</mn></mtd> <mtd><mo stretchy="false">|</mo></mtd> <mtd><mi>otherwise</mi></mtd></mtr></mtable></mrow></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \tau : x \mapsto 
+  \left\{
+    \array{
+      \phi(x) &amp; | &amp; x \in U
+      \\
+      \infty &amp; | &amp; otherwise
+    }
+  \right.
+  \,.
+
+</annotation></semantics></math></div>
+<p>Now let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> be some <a class="existingWikiWord" href="../../../../../2/1/3/2/2312/content.html">multiplicative cohomology theory</a>, and assume that the Thom space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Th</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Th(N_{(p,e)}(E))</annotation></semantics></math> has an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/1/9/3/3914/content.html">orientation</a>, so that we have a <a class="existingWikiWord" href="../../../../../2/1/9/3/3912/content.html">Thom isomorphism</a>. Then combined with the <a class="existingWikiWord" href="../../../../../0/2/8/8/8820/content.html">suspension isomorphism</a> the pullback along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math> produces a morphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mi>F</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>H</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>dim</mi><mi>F</mi></mrow></msup><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \int_F  
+    \;
+    \colon
+    \;
+     H^\bullet(E) 
+     \longrightarrow
+     H^{\bullet - dim F}(B)
+
+</annotation></semantics></math></div>
+<p>of <a class="existingWikiWord" href="../../../../../2/9/2/2/2292/content.html">cohomology rings</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo><msup><mrow></mrow> <mpadded width="0"><mrow><msub><mo>≃</mo> <mrow><mi>Thom</mi><mspace width="thickmathspace"></mspace><mi>iso</mi></mrow></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msup><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mi>n</mi><mo>−</mo><mi>dim</mi><mi>F</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Th</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mrow><mo stretchy="false">(</mo><mi>p</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo><mpadded width="0"><mrow><msubsup><mi>τ</mi> <mrow><mi>Pontrjagin</mi><mo>−</mo><mi>Thom</mi><mspace width="thickmathspace"></mspace><mi>collapse</mi></mrow> <mo>*</mo></msubsup></mrow></mpadded></mtd></mtr> <mtr><mtd><msup><mover><mi>H</mi><mo stretchy="false">˜</mo></mover> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mi>n</mi><mo>−</mo><mi>dim</mi><mi>F</mi></mrow></msup><mo maxsize="1.2em" minsize="1.2em">(</mo><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub><mo maxsize="1.2em" minsize="1.2em">)</mo></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo><msup><mrow></mrow> <mpadded width="0"><mrow><msub><mo>≃</mo> <mrow><mi>suspension</mi><mspace width="thickmathspace"></mspace><mi>iso</mi></mrow></msub></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msup><mi>H</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>dim</mi><mi>F</mi></mrow></msup><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+   H^\bullet(E)
+   \\
+   \big\downarrow
+   {}^{
+      \mathrlap{
+        \simeq_{Thom\;iso}
+      }
+   }
+   \\
+   \tilde H^{
+      \bullet + n - dim F
+   }
+   \big(
+     Th(N_{(p,e)}(E))
+   \big)
+   \\
+   \big\downarrow
+   \mathrlap{
+     \tau^\ast_{
+       Pontrjagin-Thom\;collapse
+     }
+   }
+   \\
+   \tilde H^{\bullet + n - dim F}
+   \big(
+     \Sigma^n B_+
+   \big)
+   \\
+   \big\downarrow
+   {}^\mathrlap{
+     \simeq_{suspension\;iso}
+   }   
+   \\
+   H^{\bullet - dim F}(B)
+   }
+   \,.
+
+</annotation></semantics></math></div>
+<p>This operation is independent of the choices involved. It is the <strong>fiber integration</strong> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>-cohomology along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">p : E \to B</annotation></semantics></math>.</p>
+<h4 id="along_representable_morphisms_of_stacks">Along representable morphisms of stacks</h4>
+<p>The above definition generalizes to one of push-forward in generalized cohomology on <a class="existingWikiWord" href="../../../../../2/4/1/0/142/content.html">stacks</a> over <a class="existingWikiWord" href="../../../../../5/3/1/0/135/content.html">SmthMfd</a> along <a class="existingWikiWord" href="../../../../../6/7/4/2/2476/content.html">representable morphisms of stacks</a>.</p>
+<p>(…)</p>
+<h3 id="InGeneralizedCohomologyByUmkehrMaps">In generalized cohomology by Umkehr maps via abstract duality</h3>
+<p>We discuss now a general abstract reformulation in terms of <a class="existingWikiWord" href="../../../../5/1/0/151/content.html">duality</a> in <a class="existingWikiWord" href="../../../../../8/8/2/2/2288/content.html">stable homotopy theory</a> and <a class="existingWikiWord" href="../../../../../8/7/3/1/1378/content.html">higher algebra</a> of the above traditional constructions.</p>
+<h4 id="abstract_duality_and_atiyahmilnorspanier_duality__pontryaginthom_collapse">Abstract duality and Atiyah-Milnor-Spanier duality + Pontryagin-Thom collapse</h4>
+<div class="num_defn" id="SpanierDualityOperation">
+<h6 id="definition_2">Definition</h6>
+<p>Write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>≔</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mo>∨</mo></msup><mo>∘</mo><msubsup><mi>Σ</mi> <mo>+</mo> <mn>∞</mn></msubsup><mo>≔</mo><msub><mi>L</mi> <mi>whe</mi></msub><mi>Top</mi><mo>→</mo><mi>𝕊</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">
+  D \coloneqq (-)^\vee\circ \Sigma^\infty_+ \coloneqq L_{whe} Top \to \mathbb{S}Mod
+
+</annotation></semantics></math></div>
+<p>for the <a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Spanier-Whitehead duality</a> map which sends a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> first to its <a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectrum</a> and then that to its <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dual object</a> in the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-category of spectra</a>.</p>
+</div>
+<p>(<a href="#ABG11">ABG 11, def 10.3</a>).</p>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact manifold</a>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><msup><mi>ℝ</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">X \to \mathbb{R}^n</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../3/7/3/4/4373/content.html">embedding</a> and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>S</mi> <mi>n</mi></msup><mo>→</mo><msup><mi>X</mi> <mrow><msub><mi>ν</mi> <mi>n</mi></msub></mrow></msup></mrow><annotation encoding="application/x-tex">S^n \to X^{\nu_n}</annotation></semantics></math> for the classical <a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Pontryagin-Thom collapse map</a> for this situation, and write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕊</mi><mo>→</mo><msup><mi>X</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>T</mi><mi>X</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  \mathbb{S} \to X^{-T X}
+
+</annotation></semantics></math></div>
+<p>for the corresponding <a class="existingWikiWord" href="../../../../../9/3/1/6/6139/content.html">looping</a> map from the <a class="existingWikiWord" href="../../../../../7/1/3/5/5317/content.html">sphere spectrum</a> to the <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> of the negative <a class="existingWikiWord" href="../../../../6/9/1/1961/content.html">tangent bundle</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. Then <a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Atiyah duality</a> produces an <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>T</mi><mi>X</mi></mrow></msup><mo>≃</mo><mi>D</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">
+  X^{- T X} \simeq D X
+
+</annotation></semantics></math></div>
+<p>which identifies the <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> with the <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dual object</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>Σ</mi> <mo>+</mo> <mn>∞</mn></msubsup><mi>X</mi></mrow><annotation encoding="application/x-tex">\Sigma^\infty_+ X</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕊</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">\mathbb{S} Mod</annotation></semantics></math> and this constitutes a <a class="existingWikiWord" href="../../../../../5/5/7/3/3755/content.html">commuting diagram</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd></mtd> <mtd></mtd> <mtd><msup><mi>X</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>T</mi><mi>X</mi></mrow></msup></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>↗</mo></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mo>≃</mo></mpadded></msup></mtd></mtr> <mtr><mtd><mi>𝕊</mi></mtd> <mtd><munder><mo>→</mo><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>X</mi><mo>→</mo><mo>*</mo><mo stretchy="false">)</mo></mrow></munder></mtd> <mtd><mi>D</mi><mi>X</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    &amp;&amp; X^{- T X}
+    \\
+    &amp; \nearrow &amp; \downarrow^{\mathrlap{\simeq}}
+    \\
+    \mathbb{S}
+    &amp;\underset{D(X \to \ast)}{\to}&amp;
+    D X
+  }
+
+</annotation></semantics></math></div>
+<p>identifying the classical <a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Pontryagin-Thom collapse map</a> with the abstract <a class="existingWikiWord" href="../../../../../9/3/0/0/10039/content.html">dual morphism</a> construction of prop. <a class="maruku-ref" href="#SpanierDualityOperation"></a>.</p>
+<p>More generally, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">W \hookrightarrow X</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../3/7/3/4/4373/content.html">embedding</a> of <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifolds</a>, then <a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Atiyah duality</a> identifies the <a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Pontryagin-Thom collapse maps</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕊</mi><mo>→</mo><msup><mi>X</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>T</mi><mi>X</mi></mrow></msup><mo>→</mo><msup><mi>W</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>T</mi><mi>W</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  \mathbb{S} \to X^{-T X} \to W^{- T W}
+
+</annotation></semantics></math></div>
+<p>with the abstract <a class="existingWikiWord" href="../../../../../9/3/0/0/10039/content.html">dual morphisms</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕊</mi><mo>→</mo><mi>D</mi><mi>X</mi><mo>→</mo><mi>D</mi><mi>W</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbb{S} \to D X \to D W
+  \,.
+
+</annotation></semantics></math></div></div>
+<p>(<a href="#ABG11">ABG 11, prop. 10.5</a>).</p>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>Given now <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>∈</mo><msub><mi>CRing</mi> <mn>∞</mn></msub></mrow><annotation encoding="application/x-tex">E \in CRing_\infty</annotation></semantics></math> an <a class="existingWikiWord" href="../../../../../2/8/3/1/1382/content.html">E-∞ ring</a>, then the <a class="existingWikiWord" href="../../../../../9/3/0/0/10039/content.html">dual morphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝕊</mi><mo>→</mo><mi>D</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\mathbb{S} \to D X</annotation></semantics></math> induces under <a class="existingWikiWord" href="../../../../../0/6/9/0/960/content.html">smash product</a> a similar Pontryagin-Thom collapse map, but now not in <a class="existingWikiWord" href="../../../../../7/1/3/5/5317/content.html">sphere spectrum</a>-<a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-modules</a> but in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-modules</a>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>→</mo><mi>D</mi><mi>X</mi><msub><mo>⊗</mo> <mi>𝕊</mi></msub><mi>E</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  E \to D X \otimes_{\mathbb{S}} E
+  \,.
+
+</annotation></semantics></math></div>
+<p>The image of this under the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">cohomology</a> functor produces</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><msub><mo>⊗</mo> <mi>𝕊</mi></msub><mi>E</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo><mo>→</mo><mi>E</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [D X \otimes_{\mathbb{S}} E, E] \to E
+  \,.
+
+</annotation></semantics></math></div>
+<p>If now one has a <a class="existingWikiWord" href="../../../../../2/1/9/3/3912/content.html">Thom isomorphism</a> (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../4/1/9/3/3914/content.html">orientation</a>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><msub><mo>⊗</mo> <mi>𝕊</mi></msub><mi>E</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo><mo>≃</mo><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex"> [D X \otimes_{\mathbb{S}} E, E] \simeq [X,E]</annotation></semantics></math> that identifies the cohomology of the dual object with the original cohomology, then together with produces the <strong>Umkehr map</strong></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo><mo>≃</mo><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><msub><mo>⊗</mo> <mi>𝕊</mi></msub><mi>E</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo><mo>→</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">
+  [X,E] \simeq [D X \otimes_{\mathbb{S}} E, E] \to E
+
+</annotation></semantics></math></div>
+<p>that pushes the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-cohomology of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-cohomology of the point. Analogously if instead of the terminal map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">X \to \ast</annotation></semantics></math> we start with a more general map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \to Y</annotation></semantics></math>.</p>
+<p>More generally a <a class="existingWikiWord" href="../../../../../2/1/9/3/3912/content.html">Thom isomorphism</a> may not exists, but <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>D</mi><mi>X</mi><msub><mo>⊗</mo> <mi>𝕊</mi></msub><mi>E</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[D X \otimes_{\mathbb{S}} E, E]</annotation></semantics></math> may still be equivalent to a <a class="existingWikiWord" href="../../../../../9/0/7/1/1709/content.html">twisted cohomology</a>-variant <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>E</mi><msub><mo stretchy="false">]</mo> <mi>χ</mi></msub></mrow><annotation encoding="application/x-tex">[X,E]_{\chi}</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>X</mi><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[X,E]</annotation></semantics></math>, namely to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>Γ</mi> <mi>X</mi></msub><mo stretchy="false">(</mo><mi>χ</mi><mo stretchy="false">)</mo><mo>,</mo><mi>E</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\Gamma_X(\chi),E]</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo lspace="verythinmathspace">:</mo><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>E</mi><mi>Line</mi><mo>↪</mo><mi>E</mi><mi>Mod</mi></mrow><annotation encoding="application/x-tex">\chi \colon \Pi(X) \to E Line \hookrightarrow E Mod</annotation></semantics></math> is an (<a class="existingWikiWord" href="../../../../../../../missing.html">flat</a>) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-module bundle</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>≃</mo><munder><mi>lim</mi><mo>→</mo></munder></mrow><annotation encoding="application/x-tex">\Gamma \simeq \underset{\to}{\lim}</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-colimit</a> (the <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">generalized Thom spectrum</a> construction). In this case the above yields a <em><a class="existingWikiWord" href="../../../../../6/2/1/0/10126/content.html">twisted Umkehr map</a></em>.</p>
+</div>
+<p>(<a href="#ABG10">ABG 10, 9.1</a>)</p>
+<h4 id="in_linear_homotopytype_theory">In linear homotopy-type theory</h4>
+<p>We may formulate the above still a bit more abstractly in <a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">linear homotopy-type theory</a> (following <em><a class="existingWikiWord" href="/schreiber/show/Homotopy-type+semantics+for+quantization">Homotopy-type semantics for quantization</a></em>: see at <a class="existingWikiWord" href="../../../../../3/0/9/0/10903/content.html">indexed monoidal infinity-category</a> the section on <em><a href="../../../../../3/0/9/0/10903/content.html#FundamentalClasses">Fundamental classes</a></em> and following.</p>
+<p><br/></p>
+<div>
+<p><strong><a class="existingWikiWord" href="../../../../../9/0/7/1/1709/content.html">twisted</a> <a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">generalized cohomology theory</a> is conjecturally <a class="existingWikiWord" href="../../../../9/8/5/5891/content.html">∞-categorical</a> <a class="existingWikiWord" href="../../../../../4/0/0/7/7004/content.html">semantics</a> of <a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">linear homotopy type theory</a></strong>:</p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">linear homotopy type theory</a></th><th><a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">generalized cohomology theory</a></th><th><a class="existingWikiWord" href="../../../../../2/3/6/2/2632/content.html">quantum theory</a></th></tr></thead><tbody><tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../0/9/0/10901/content.html">linear type</a></td><td style="text-align: left;">(<a class="existingWikiWord" href="../../../../../5/5/9/5/5955/content.html">module</a>-)<a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectrum</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/0/1/1/11105/content.html">multiplicative conjunction</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/1/1/7/17114/content.html">smash product of spectra</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/0/1/1/11107/content.html">composite system</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">dependent linear type</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/5/1/6/6157/content.html">module spectrum bundle</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/1/5/5/5512/content.html">Frobenius reciprocity</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/0/5/5/5502/content.html">six operation yoga</a> in <a class="existingWikiWord" href="../../../../../0/8/8/0/10880/content.html">Wirthmüller context</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dual type</a> (linear negation)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Spanier-Whitehead duality</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/0/1/1/11104/content.html">invertible type</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/7/1/1709/content.html">twist</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/5/7/6/6757/content.html">prequantum line bundle</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/6/1/6/6164/content.html">generalized homology</a> <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectrum</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/3/9/7/7936/content.html">space of quantum states</a> (“<a class="existingWikiWord" href="../../../../../8/0/1/1/11108/content.html">bra</a>”)</td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dual</a> of <a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/4/7/1/1746/content.html">generalized cohomology</a> <a class="existingWikiWord" href="../../../../../0/1/5/0/510/content.html">spectrum</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/3/9/7/7936/content.html">space of quantum states</a> (“<a class="existingWikiWord" href="../../../../../8/0/1/1/11108/content.html">ket</a>”)</td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/0/1/1/11106/content.html">linear implication</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/6/8/9/9867/content.html">bivariant cohomology</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/2/0/7/7028/content.html">quantum operators</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/7/0/1/11072/content.html">exponential modality</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../7/9/0/10971/content.html">Fock space</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a> over <a class="existingWikiWord" href="../../../../../4/9/0/1/11094/content.html">finite homotopy type</a> (of twist)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectrum</a> (<a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a>)</td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dualizable</a> <a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a> over <a class="existingWikiWord" href="../../../../../4/9/0/1/11094/content.html">finite homotopy type</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Atiyah duality</a> between <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> and <a class="existingWikiWord" href="../../../../../3/1/1/6/6113/content.html">suspension spectrum</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;">(twisted) <a class="existingWikiWord" href="../../../../../6/5/0/1/11056/content.html">self-dual type</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/0/8/3/3803/content.html">Poincaré duality</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../6/5/1/2/2156/content.html">inner product</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a> coinciding with <a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/8/9/0/10984/content.html">ambidexterity</a>, <a class="existingWikiWord" href="../../../../../8/7/0/1/11078/content.html">semiadditivity</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a> coinciding with <a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a> up to <a class="existingWikiWord" href="../../../../../4/0/1/1/11104/content.html">invertible type</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/8/0/10880/content.html">Wirthmüller isomorphism</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>f</mi></msub><mo>⊣</mo><msup><mi>f</mi> <mo>*</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\sum_f \dashv f^\ast)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">counit</a></td><td style="text-align: left;">pushforward in <a class="existingWikiWord" href="../../../../../4/6/1/6/6164/content.html">generalized homology</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;">(twisted-)<a class="existingWikiWord" href="../../../../../6/5/0/1/11056/content.html">self-duality</a>-<a href="../../../../../6/5/0/1/11056/content.html#RelationToDaggerCompactStructure">induced dagger</a> of this counit</td><td style="text-align: left;">(<a class="existingWikiWord" href="../../../../../6/2/1/0/10126/content.html">twisted</a>-)<a class="existingWikiWord" href="content.html">Umkehr map</a>/<a class="existingWikiWord" href="content.html">fiber integration</a></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/0/0/4/4003/content.html">linear polynomial functor</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../2/3/0/321/content.html">correspondence</a></td><td style="text-align: left;">space of <a class="existingWikiWord" href="../../../../../6/9/8/8/18896/content.html">trajectories</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/0/0/4/4003/content.html">linear polynomial functor</a> with <a class="existingWikiWord" href="../../../../../6/0/1/1/11106/content.html">linear implication</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../2/2/5/5221/content.html">integral kernel</a> (<a class="existingWikiWord" href="../../../../../4/3/2/1/1234/content.html">pure motive</a>)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/1/3/0/10318/content.html">prequantized Lagrangian correspondence</a>/<a class="existingWikiWord" href="../../../../../0/2/5/2/2520/content.html">action functional</a></td></tr>
+<tr><td style="text-align: left;">composite of this <a class="existingWikiWord" href="../../../../../6/0/1/1/11106/content.html">linear implication</a> with daggered-counit followed by unit</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../2/2/5/5221/content.html">integral transform</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/7/1/0/10178/content.html">motivic</a>/cohomological <a class="existingWikiWord" href="../../../../../4/1/5/1/1514/content.html">path integral</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../2/6/0/621/content.html">trace</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/0/8/0/807/content.html">Euler characteristic</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/2/4/2/2420/content.html">partition function</a></td></tr>
+</tbody></table>
+</div>
+<p>(…)</p>
+<h3 id="in_generalized_differential_cohomology">In generalized differential cohomology</h3>
+<p>See</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/9/9/7/7999/content.html">fiber integration in differential cohomology</a></p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/0/0/6/6007/content.html">fiber integration in ordinary differential cohomology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/0/0/8/8000/content.html">fiber integration in differential K-theory</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="InKKTheory">In KK-theory</h3>
+<p>We discuss fiber integration/push-forward/<a class="existingWikiWord" href="../../../../../0/3/8/9/9830/content.html">Gysin maps</a> in <a class="existingWikiWord" href="../../../../../5/1/5/9/9515/content.html">operator K-theory</a>, hence in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> (<a href="#ConnesSkandalis84">Connes-Skandalis 85</a>, <a href="#BMRS07">BMRS 07, section 3</a>). For more see at <em><a class="existingWikiWord" href="../../../../../0/0/0/6/16000/content.html">fiber integration in K-theory</a>.</em></p>
+<p>The following discusses KK-pushforward</p>
+<ol>
+<li>
+<p><em><a href="#KKPushForwardAlongEmbedding">Along an embedding</a></em></p>
+</li>
+<li>
+<p><em><a href="#KKPushforwardAlongSubmersion">Along a submersion</a></em></p>
+</li>
+<li>
+<p><em><a href="#AlongAFibrationOfClosedSpinCManifolds">Along a fibration of closed spin^c manifolds</a></em></p>
+</li>
+<li>
+<p><em><a href="#KKPushforwardAlongGeneralMap">Along a general K-oriented map</a></em></p>
+</li>
+<li>
+<p><em><a href="#KKPushforwardAlongGeneralMap">In twisted K-theory</a></em></p>
+</li>
+</ol>
+<p>The construction goes back to (<a href="#Connes82">Connes 82</a>), where it is given over smooth manifolds. Then (<a href="#ConnesSkandalis84">Connes-Skandalis 84</a>, <a href="#HilsumSkandalis87">Hilsum-Skandalis 87</a>) generalize this to maps between <a class="existingWikiWord" href="../../../../../7/1/2/3/3217/content.html">foliations</a> by KK-elements betwen the <a class="existingWikiWord" href="../../../../../6/1/2/0/216/content.html">groupoid convolution algebras</a> of the coresponding <a class="existingWikiWord" href="../../../../../8/1/0/5/5018/content.html">holonomy groupoids</a> and (<a href="#RouseWang10">Rouse-Wang 10</a>) further generalize to the case where a <a class="existingWikiWord" href="../../../../../7/1/9/8/8917/content.html">circle 2-bundle</a> twist is present over these foliations. A purely algebraic generalization to (K-oriented) maps between otherwise arbitrary <a class="existingWikiWord" href="../../../../../5/4/5/9/9545/content.html">noncommutative spaces</a>/<a class="existingWikiWord" href="../../../../../4/7/4/2/2474/content.html">C*-algebras</a> is in (<a href="#BMRS07">BMRS 07</a>).</p>
+<h4 id="KKPushForwardAlongEmbedding">Along an embedding</h4>
+<p>(<a href="../../../../../../../missing.html">Connes-Skandalis 84, above prop. 2.8</a>)</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>↪</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">h \colon X \hookrightarrow Y</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../3/7/3/4/4373/content.html">embedding</a> of <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth manifolds</a>.</p>
+<p>The push-forward constructed from this is supposed to be an element in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>!</mo><mo lspace="verythinmathspace">:</mo><msub><mi>KK</mi> <mi>d</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  h! \colon KK_d(C(X), C(Y))
+
+</annotation></semantics></math></div>
+<p>in terms of which the push-forward on <a class="existingWikiWord" href="../../../../../5/1/5/9/9515/content.html">operator K-theory</a> is induced by postcomposition:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi> <mo>!</mo></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msup><mi>K</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mi>KK</mi> <mo>•</mo></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mi>h</mi><mo>!</mo><mo>∘</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow></mover><msub><mi>KK</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mi>d</mi></mrow></msub><mo stretchy="false">(</mo><mi>ℂ</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>≃</mo><msup><mi>KK</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><mi>d</mi></mrow></msup><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  h_! 
+    \;\colon\;
+  K^\bullet(X) 
+   \simeq 
+  KK_\bullet(\mathbb{C}, X)
+  \stackrel{h!\circ (-)}{\to}
+  KK_{\bullet+d}(\mathbb{C},Y)
+  \simeq
+ KK^{\bullet+d}(Y)
+ \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mi>dim</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>−</mo><mi>dim</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">d = dim(X) - dim(Y)</annotation></semantics></math>.</p>
+<p>Now, if we could “thicken” <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a bit, namely to a <a class="existingWikiWord" href="../../../../../8/0/0/6/6008/content.html">tubular neighbourhood</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mo>↪</mo><mi>U</mi><mover><mo>↪</mo><mi>j</mi></mover><mi>Y</mi></mrow><annotation encoding="application/x-tex">
+  h  \;\colon\; X \hookrightarrow U \stackrel{j}{\hookrightarrow} Y
+
+</annotation></semantics></math></div>
+<p>of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(X)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> without changing the K-theory of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, then the element in question will just be the KK-element</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>!</mo><mo>∈</mo><mi>KK</mi><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>,</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  j! \in KK(C_0(U), C(Y))
+
+</annotation></semantics></math></div>
+<p>induced directly from the <a class="existingWikiWord" href="../../../../../4/7/4/2/2474/content.html">C*-algebra</a> homomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>→</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_0(U) \to C(Y)</annotation></semantics></math> from the <a class="existingWikiWord" href="../../../../../2/9/2/9/9292/content.html">algebra of functions</a> <a class="existingWikiWord" href="../../../../../0/9/5/9/9590/content.html">vanishing at infinity</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> to functions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>, given by extending these functions by 0 to functions on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>. Or rather, it will be that element composed with the assumed KK-equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ψ</mi><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mo>≃</mo> <mi>KK</mi></msub></mrow></mover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \psi \colon C(X) \stackrel{\simeq_{KK}}{\to} C_0(U)
+  \,.
+
+</annotation></semantics></math></div>
+<p>The bulk of the technical work in constructing the push-forward is in constructing this equivalence. (<a href="#BMRS07">BMRS 07, example 3.3</a>)</p>
+<p>In order for it to exist at all, assume that the <a class="existingWikiWord" href="../../../../../5/1/9/3/3915/content.html">normal bundle</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo>≔</mo><msup><mi>h</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>T</mi><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>T</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">
+  N_Y X \coloneqq h^\ast(T Y)/ T X
+
+</annotation></semantics></math></div>
+<p>has a <a class="existingWikiWord" href="../../../../../0/1/7/6/6710/content.html">spin^c structure</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S(N_Y X)</annotation></semantics></math> for the associated <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinor bundle</a>.</p>
+<p>Then there is an invertible element in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ι</mi> <mi>X</mi></msup><mo>!</mo><mo>∈</mo><msub><mi>KK</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  \iota^X! \in KK_n(C(X), C_0(N_Y X))
+
+</annotation></semantics></math></div>
+<p>hence a KK-equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ι</mi> <mi>X</mi></msup><mo>!</mo><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mo>≃</mo></mover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\iota^X! \colon C(X) \stackrel{\simeq}{\to} C_0(N_Y X)</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_0(-)</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../2/9/2/9/9292/content.html">algebra of functions</a> <a class="existingWikiWord" href="../../../../../0/9/5/9/9590/content.html">vanishing at infinity</a>.</p>
+<p>This is defined as follows. Consider the pullback <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>π</mi> <mi>n</mi> <mo>*</mo></msubsup><mi>S</mi><mo stretchy="false">(</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi></mrow><annotation encoding="application/x-tex">\pi_n^\ast S(N_Y X) \to N_Y X</annotation></semantics></math> of this spinor to the normal bundle itself along the projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>N</mi></msub><mo lspace="verythinmathspace">:</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\pi_N \colon N_Y X \to X</annotation></semantics></math>. Then…</p>
+<p>Moreover, a choice of a <a class="existingWikiWord" href="../../../../../0/2/7/2/2720/content.html">Riemannian metric</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> allows to find a <a class="existingWikiWord" href="../../../../../4/1/9/1/1914/content.html">diffeomorphism</a> between the <a class="existingWikiWord" href="../../../../../8/0/0/6/6008/content.html">tubular neighbourhood</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi> <mrow><mi>h</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">U_{h(X)}</annotation></semantics></math> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(X)</annotation></semantics></math> and a neighbourhood of the zero-section of of the normal bundle</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Φ</mi><mo lspace="verythinmathspace">:</mo><msub><mi>U</mi> <mrow><mi>h</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><mo>↪</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \Phi \colon U_{h(X)} \hookrightarrow N_Y X
+  \,.
+
+</annotation></semantics></math></div>
+<p>This induces a KK-equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>Φ</mi><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mo>≃</mo> <mi>KK</mi></msub></mrow></mover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  [\Phi] \colon C_0(N_Y X) \stackrel{\simeq_{KK}}{\to} C_0(U)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Therefore the push-forward in operator K-theory along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>↪</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \hookrightarrow Y</annotation></semantics></math> is given by postcomposing in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>!</mo><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><munderover><mo>→</mo><mrow><msub><mo>≃</mo> <mi>KK</mi></msub></mrow><mrow><msup><mi>i</mi> <mi>X</mi></msup><mo>!</mo></mrow></munderover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>N</mi> <mi>Y</mi></msub><mi>X</mi><mo stretchy="false">)</mo><munderover><mo>→</mo><mrow><msub><mo>≃</mo> <mi>KK</mi></msub></mrow><mi>Φ</mi></munderover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mi>j</mi><mo>!</mo></mrow></mover><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  h! \colon
+  C(X)
+    \underoverset{\simeq_{KK}}{i^X!}{\to}
+  C_0(N_Y X)
+    \underoverset{\simeq_{KK}}{\Phi}{\to}
+  C_0(U)
+    \stackrel{j!}{\to}
+  C(Y)
+  \,.
+
+</annotation></semantics></math></div>
+<h4 id="KKPushforwardAlongSubmersion">Along a proper submersion</h4>
+<p>(<a href="../../../../../../../missing.html">Connes-Skandalis 84, above prop. 2.9</a>)</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">\pi \colon X \to Z</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/1/8/9/9816/content.html">K-oriented</a> <a class="existingWikiWord" href="../../../../../9/3/2/8/18239/content.html">proper</a> <a class="existingWikiWord" href="../../../../../5/8/4/4/4485/content.html">submersion</a> of compact smooth manifolds, the push-forward map along it is reduced to the <a href="#KKPushForwardAlongEmbedding">above</a> case of an embedding by</p>
+<ol>
+<li>
+<p>using that by the <a class="existingWikiWord" href="../../../../../8/0/2/8/18208/content.html">Whitney embedding theorem</a> every compact <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> may be embedded into some <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℝ</mi> <mrow><mn>2</mn><mi>q</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\mathbb{R}^{2q}</annotation></semantics></math> such as to yield an embedding</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Z</mi><mo>×</mo><msup><mi>ℝ</mi> <mrow><mn>2</mn><mi>q</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  h \colon X \to Z \times \mathbb{R}^{2 q} 
+
+</annotation></semantics></math></div></li>
+<li>
+<p>using that there is a KK-equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ι</mi> <mi>Z</mi></msup><mo>!</mo><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><msub><mo>≃</mo> <mi>KK</mi></msub></mrow></mover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>Z</mi><mo>×</mo><msup><mi>ℝ</mi> <mrow><mn>2</mn><mi>q</mi></mrow></msup><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \iota^Z! \colon C(Z) \stackrel{\simeq_{KK}}{\to} C_0(Z \times \mathbb{R}^{2q})
+  \,.
+
+</annotation></semantics></math></div></li>
+</ol>
+<p>The resulting push-forward is then given by postcomposition in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>!</mo><mo lspace="verythinmathspace">:</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mi>h</mi><mo>!</mo></mrow></mover><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>Z</mi><mo>×</mo><msup><mi>ℝ</mi> <mn>2</mn></msup><mi>q</mi><mo stretchy="false">)</mo><munderover><mo>→</mo><mrow><msub><mo>≃</mo> <mi>KK</mi></msub></mrow><mrow><mo stretchy="false">(</mo><msup><mi>ι</mi> <mi>Z</mi></msup><mo>!</mo><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow></munderover><mi>C</mi><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \pi! \colon C(X) \stackrel{h!}{\to} C_0(Z \times \mathbb{R}^{2}q)
+   \underoverset{\simeq_{KK}}{(\iota^Z!)^{-1}}{\to} 
+  C(Z)
+  \,.
+
+</annotation></semantics></math></div>
+<p>(<a href="#BMRS07">BMRS 07, example 3.4</a>)</p>
+<h4 id="AlongAFibrationOfClosedSpinCManifolds">Along a smooth fibration of closed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Spin</mi> <mi>c</mi></msup></mrow><annotation encoding="application/x-tex">Spin^c</annotation></semantics></math>-manifolds</h4>
+<p>Specifically, for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">\pi \colon X \to Z</annotation></semantics></math> a smooth fibration over a closed smooth manifold whose <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X/Z</annotation></semantics></math> are</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../3/1/7/8/8713/content.html">closed</a><a class="existingWikiWord" href="../../../../../8/5/9/3/3958/content.html">smooth</a> <a class="existingWikiWord" href="../../../../../0/1/7/6/6710/content.html">spin^c</a> <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifolds</a> of even <a class="existingWikiWord" href="../../../../../7/8/7/4/4787/content.html">dimension</a></li>
+</ul>
+<p>the push-forward element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>!</mo><mo>∈</mo><mi>KK</mi><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi! \in KK(C_0(X), C_0(Z))</annotation></semantics></math> is given by the <a class="existingWikiWord" href="../../../../4/5/9/9541/content.html">Fredholm</a>-<a class="existingWikiWord" href="../../../../../9/3/4/5/5439/content.html">Hilbert module</a> obatined from the fiberwise <a class="existingWikiWord" href="../../../../../6/9/7/7/7796/content.html">spin^c Dirac operator</a> acting on the fiberwise <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinors</a>. (<a href="../../../../../../../missing.html">Connes-Skandalis 84, proof of lemma 4.7</a>, <a href="../../../../../../../missing.html">BMRS 07, example 3.9</a>).</p>
+<p>In detail, write</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>T</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">
+  T(X/Z) \hookrightarrow T X
+
+</annotation></semantics></math></div>
+<p>for the sub-bundle of the total <a class="existingWikiWord" href="../../../../6/9/1/1961/content.html">tangent bundle</a> on the <a class="existingWikiWord" href="../../../../8/7/4/4781/content.html">vertical vectors</a> and choose a <a class="existingWikiWord" href="../../../../../0/2/7/2/2720/content.html">Riemannian metric</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>g</mi> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msup></mrow><annotation encoding="application/x-tex">g^{X/Z}</annotation></semantics></math> on this bundle (hence a collection of Riemannian metric on the fibers <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X/Z</annotation></semantics></math> smoothly varying along <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math>). Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">S_{X/Z}</annotation></semantics></math> for the corresponding <a class="existingWikiWord" href="../../../../../3/7/2/5/5273/content.html">spinor bundle</a>.</p>
+<p>A choice of horizontal complenet <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>X</mi><mo>≃</mo><msup><mi>T</mi> <mi>H</mi></msup><mi>X</mi><mo>⊕</mo><mi>T</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T X \simeq T^H X \oplus T(X/Z)</annotation></semantics></math> induces an <a class="existingWikiWord" href="../../../../7/7/4/4771/content.html">affine connection</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>∇</mo> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\nabla^{X/Z}</annotation></semantics></math>. This combined with the <a class="existingWikiWord" href="../../../../../7/7/5/6/6577/content.html">symbol map</a>/Clifford multiplication of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi> <mo>*</mo></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T^\ast (X/Z)</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">S_{X/Z}</annotation></semantics></math> induces a fiberwise <a class="existingWikiWord" href="../../../../../6/9/7/7/7796/content.html">spin^c Dirac operator</a>, acting in each fiber on the <a class="existingWikiWord" href="../../../../../6/4/6/1/1646/content.html">Hilbert space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi> <mn>2</mn></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi><mo>,</mo><msub><mi>S</mi> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L^2(X/Z, S_{X/Z})</annotation></semantics></math>.</p>
+<p>This yields a <a class="existingWikiWord" href="../../../../4/5/9/9541/content.html">Fredholm</a>-<a class="existingWikiWord" href="../../../../../0/4/5/9/9540/content.html">Hilbert bimodule</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>D</mi> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msub><mo>,</mo><msup><mi>L</mi> <mn>2</mn></msup><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi><mo>,</mo><msub><mi>S</mi> <mrow><mi>X</mi><mo stretchy="false">/</mo><mi>Z</mi></mrow></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  (D_{X/Z}, L^2(X/Z, S_{X/Z}))
+
+</annotation></semantics></math></div>
+<p>which defines an element in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mo>!</mo><mo>∈</mo><mi>KK</mi><mo stretchy="false">(</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><msub><mi>C</mi> <mn>0</mn></msub><mo stretchy="false">(</mo><mi>Z</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \pi ! \in KK(C_0(X), C_0(Z))
+  \,. 
+
+</annotation></semantics></math></div>
+<p>Postcompositon with this is the push-forward map in K/KK-theory, equivalently the <a class="existingWikiWord" href="../../../../../0/4/3/6/6340/content.html">index</a> map of the collection of Dirac operators.</p>
+<h4 id="#KKPushforwardAlongGeneralMap">Along a general K-oriented map</h4>
+<p>(<a href="../../../../../../../missing.html">Connes-Skandalis 84, def. 2.1</a>)</p>
+<p>Now for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \to Y</annotation></semantics></math> an arbitray <a class="existingWikiWord" href="../../../../../6/1/8/9/9816/content.html">K-oriented</a> smooth proper map, we may reduce push-forward along it to the above two cases by factoring it through its <a class="existingWikiWord" href="../../../../../3/2/8/9/9823/content.html">graph map</a>, followed by projection to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>X</mi><mover><mo>→</mo><mrow><mi>graph</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mover><mi>X</mi><mo>×</mo><mi>Y</mi><mover><mo>→</mo><mrow><msub><mi>p</mi> <mi>Y</mi></msub></mrow></mover><mi>Y</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f \;\colon\;
+  X \stackrel{graph(f)}{\to}
+  X \times Y
+  \stackrel{p_Y}{\to}
+  Y
+  \,.
+
+</annotation></semantics></math></div>
+<p>Hence push-forward along such a general map is postcomposition in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> with</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>!</mo><mo>≔</mo><msub><mi>p</mi> <mi>Y</mi></msub><mo>!</mo><mo>∘</mo><mi>graph</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>!</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  f! \coloneqq p_Y !\circ graph(f)!
+  \,.
+
+</annotation></semantics></math></div>
+<p>(<a href="#BMRS07">BMRS 07, example 3.5</a>)</p>
+<h4 id="KKPushforwardAlongGeneralMap">In twisted K-theory</h4>
+<p>We discuss push forward in K-theory more generally by <a class="existingWikiWord" href="../../../../../2/3/8/9/9832/content.html">Poincaré duality C*-algebras</a> hence <a class="existingWikiWord" href="../../../../../4/2/6/0/624/content.html">dual objects</a> in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a>.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>Q</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">i \colon Q \to X</annotation></semantics></math> be a map of <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../5/8/4/1/1485/content.html">manifolds</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><msup><mi>B</mi> <mn>2</mn></msup><mi>U</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\chi \colon X \to B^2 U(1)</annotation></semantics></math> modulate a <a class="existingWikiWord" href="../../../../../7/1/9/8/8917/content.html">circle 2-bundle</a> regarded as a <a class="existingWikiWord" href="../../../../../0/7/8/1/1870/content.html">twist for K-theory</a>. Then forming <a class="existingWikiWord" href="../../../../../6/1/2/0/216/content.html">twisted groupoid convolution algebras</a> yields a <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> morphism of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mrow><msup><mi>i</mi> <mo>*</mo></msup><mi>χ</mi></mrow></msub><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">)</mo><mover><mo>⟵</mo><mrow><msup><mi>i</mi> <mo>*</mo></msup></mrow></mover><msub><mi>C</mi> <mi>χ</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+  C_{i^\ast \chi}(Q)
+  \stackrel{i^\ast}{\longleftarrow}
+  C_{\chi}(X)
+  \,,
+
+</annotation></semantics></math></div>
+<p>with notation as in <a href="../../../../../../../missing.html#233;+duality+algebra#CStarAlgebraOf2BundleOnManifold">this definition</a>. By <a href="../../../../../../../missing.html#233;+duality+algebra#DualOfCompactManifoldWithTwist">this proposition</a> the <a class="existingWikiWord" href="../../../../../9/3/0/0/10039/content.html">dual morphism</a> is of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mfrac><mrow><msub><mi>W</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><msub><mi>τ</mi> <mi>Q</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msup><mi>i</mi> <mo>*</mo></msup><mi>χ</mi></mrow></mfrac></msub><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><msub><mi>i</mi> <mo>!</mo></msub></mrow></mover><msub><mi>C</mi> <mfrac><mrow><msub><mi>W</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><msub><mi>τ</mi> <mi>X</mi></msub><mo stretchy="false">)</mo></mrow><mi>χ</mi></mfrac></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  C_{\frac{W_3(\tau_Q)}{i^\ast \chi}}(Q)
+  \stackrel{i_!}{\longrightarrow}
+  C_{\frac{W_3(\tau_X)}{\chi}}(X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>If we assume that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> has a <a class="existingWikiWord" href="../../../../../0/1/7/6/6710/content.html">spin^c structure</a> then this is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi> <mfrac><mrow><msub><mi>W</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><msub><mi>τ</mi> <mi>Q</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msup><mi>i</mi> <mo>*</mo></msup><mi>χ</mi></mrow></mfrac></msub><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">)</mo><mover><mo>⟶</mo><mrow><msub><mi>i</mi> <mo>!</mo></msub></mrow></mover><msub><mi>C</mi> <mfrac><mn>1</mn><mi>χ</mi></mfrac></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  C_{\frac{W_3(\tau_Q)}{i^\ast \chi}}(Q)
+  \stackrel{i_!}{\longrightarrow}
+  C_{\frac{1}{\chi}}(X)
+  \,.
+
+</annotation></semantics></math></div>
+<p>Postcomposition with this map in <a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> now yields a map from the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><msub><mi>W</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><msub><mi>τ</mi> <mi>Q</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msup><mi>i</mi> <mo>*</mo></msup><mi>χ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{W_3(\tau_Q)}{i^\ast \chi}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/7/8/1/1870/content.html">twisted K-theory</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math> to the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>χ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\chi^{-1}</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/7/8/1/1870/content.html">twisted K-theory</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mo>!</mo></msub><mo lspace="verythinmathspace">:</mo><msub><mi>K</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><msub><mi>W</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><msub><mi>τ</mi> <mi>Q</mi></msub><mo stretchy="false">)</mo><mo>−</mo><msup><mi>i</mi> <mo>*</mo></msup><mi>χ</mi></mrow></msub><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>→</mo><msub><mi>K</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>χ</mi></mrow></msub><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  i_! \colon K_{\bullet + W_3(\tau_Q) - i^\ast \chi}(Q) \to K_{\bullet -\chi}
+  \,.
+
+</annotation></semantics></math></div>
+<p>If we here think of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo lspace="verythinmathspace">:</mo><mi>Q</mi><mo>↪</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">i \colon Q \hookrightarrow X</annotation></semantics></math> as being the inclusion of a <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane</a> <a class="existingWikiWord" href="../../../../../9/1/0/6/6019/content.html">worldvolume</a>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>χ</mi></mrow><annotation encoding="application/x-tex">\chi</annotation></semantics></math> would be the class of the <a class="existingWikiWord" href="../../../../../0/2/0/6/6020/content.html">background</a> <a class="existingWikiWord" href="../../../../../3/4/8/1/1843/content.html">B-field</a> and an element</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>ξ</mi><mo stretchy="false">]</mo><mo>∈</mo><msub><mi>K</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">+</mo><msub><mi>W</mi> <mn>3</mn></msub><mo stretchy="false">(</mo><msub><mi>τ</mi> <mi>Q</mi></msub><mo stretchy="false">)</mo><mo>−</mo><msup><mi>i</mi> <mo>*</mo></msup><mi>χ</mi></mrow></msub><mo stretchy="false">(</mo><mi>Q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  [\xi] \in K_{\bullet + W_3(\tau_Q) - i^\ast \chi}(Q)
+
+</annotation></semantics></math></div>
+<p>is called (the K-class of) a <em><a class="existingWikiWord" href="../../../../../9/3/0/6/6039/content.html">Chan-Paton gauge field</a></em> on the D-brane satisfying the <em><a class="existingWikiWord" href="../../../../../0/0/1/8/8100/content.html">Freed-Witten-Kapustin anomaly cancellation</a></em> mechanism. (The orginal <em><a class="existingWikiWord" href="../../../../../0/0/1/8/8100/content.html">Freed-Witten anomaly cancellation</a></em> assumes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ξ</mi></mrow><annotation encoding="application/x-tex">\xi</annotation></semantics></math> given by a <a class="existingWikiWord" href="../../../../../8/6/8/1/1868/content.html">twisted line bundle</a> in which case it exhibits a <a class="existingWikiWord" href="../../../../../7/0/7/6/6707/content.html">twisted spin^c structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math>.) Finally its <a class="existingWikiWord" href="content.html">push-forward</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>i</mi> <mo>!</mo></msub><mi>ξ</mi><mo stretchy="false">]</mo><mo>∈</mo><msub><mi>K</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>χ</mi></mrow></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  [i_! \xi] \in K_{\bullet- \chi}(X)
+
+</annotation></semantics></math></div>
+<p>is called the corresponding <em><a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane charge</a></em>.</p>
+<h3 id="of_cohesive_differential_form_data">Of cohesive differential form data</h3>
+<p>In <a class="existingWikiWord" href="../../../../../8/7/2/1/1278/content.html">differential cohomology</a> realized in <a class="existingWikiWord" href="../../../../../9/5/0/7/7059/content.html">cohesive homotopy type theory</a> there is a canonical fiber integration map for the curvature coefficients of a given diffential cohomology theory. See at <em><a href="../../../../../8/7/5/8/8578/content.html#InCohesiveHomotopyTypeTheory">integration of differential forms – In cohesive homotopy-type theory</a></em>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="to_the_point">To the point</h3>
+<p>When <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is a point, one obtains integration aginst the <a class="existingWikiWord" href="../../../../2/0/6/6021/content.html">fundamental class</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∫</mo> <mi>E</mi></msub><mo>:</mo><msup><mi>H</mi> <mo>•</mo></msup><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>→</mo><msup><mi>H</mi> <mrow><mo>•</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mi>dim</mi><mi>E</mi></mrow></msup><mo stretchy="false">(</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\int_E:H^\bullet(E)\to H^{\bullet-dim E}(*)
+
+</annotation></semantics></math></div>
+<p>taking values in the coefficients of the given cohomology theory. Note that in this case <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Σ</mi> <mi>n</mi></msup><msub><mi>B</mi> <mo>+</mo></msub><mo>=</mo><msup><mi>S</mi> <mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\Sigma^n B_+=S^n</annotation></semantics></math>, and this hints to a relationship between the Thom-Pontryagin construction and <a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Spanier-Whitehead duality</a>. And indeed <a class="existingWikiWord" href="../../../../../7/7/1/6/6177/content.html">Atiyah duality</a> gives a homotopy equivalence between the <a class="existingWikiWord" href="../../../../../3/2/3/4/4323/content.html">Thom spectrum</a> of the stable normal bundle of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> and the Spanier-Whitehead dual of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math>. …</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/2/2/7/7222/content.html">Grothendieck-Riemann-Roch theorem</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/8/1/1/11189/content.html">transfer context</a>, <a class="existingWikiWord" href="../../../../../9/6/0/1/11069/content.html">sheaf with transfer</a>, <a class="existingWikiWord" href="../../../../../6/5/6/0/10656/content.html">Becker-Gottlieb transfer</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/8/7/8/8788/content.html">geometric quantization by push-forward</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/1/0/10126/content.html">twisted Umkehr map</a></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/0/0/6/16000/content.html">fiber integration in K-theory</a></li>
+</ul>
+</li>
+</ul>
+<div>
+<p>The following terms all refer to essentially the same concept:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="content.html">fiber integration in generalized cohomology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="content.html">push-forward in generalized cohomology</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="content.html">Umkehr map</a>, <a class="existingWikiWord" href="../../../../../6/2/1/0/10126/content.html">twisted Umkehr map</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/3/8/9/9830/content.html">Gysin map</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/1/9/3/3916/content.html">Pontrjagin-Thom collapse map</a></p>
+</li>
+</ul></div>
+<h2 id="references">References</h2>
+<h3 id="general">General</h3>
+<ul>
+<li id="Adams74">
+<p><a class="existingWikiWord" href="../../../../7/2/7/7271/content.html">Frank Adams</a>, pages 25-27 in <em><a class="existingWikiWord" href="../../../../../9/4/1/7/17149/content.html">Stable homotopy and generalized homology</a></em>, Chicago Lectures in mathematics, 1974</p>
+</li>
+<li id="Kochmann96">
+<p><a class="existingWikiWord" href="../../../../../7/1/2/7/17217/content.html">Stanley Kochmann</a>, section 4.3 of <em><a class="existingWikiWord" href="../../../../2/2/7/17221/content.html">Bordism, Stable Homotopy and Adams Spectral Sequences</a></em>, AMS 1996</p>
+</li>
+</ul>
+<p>On fiber integration of differential forms:</p>
+<ul>
+<li id="GreubHalperinVanstone1973"><a class="existingWikiWord" href="../../../../8/2/6/6281/content.html">Werner Greub</a>, <a class="existingWikiWord" href="../../../../../2/8/2/6/6282/content.html">Stephen Halperin</a>, <a class="existingWikiWord" href="../../../../../3/8/2/6/6283/content.html">Ray Vanstone</a>; section VII of <em>De Rham Cohomology of Manifolds and Vector Bundles</em>, voume I of: <em><a class="existingWikiWord" href="../../../../../0/8/2/6/6280/content.html">Connections, Curvature, and Cohomology</a></em>, Academic Press (1973) [<a href="https://www.elsevier.com/books/connections-curvature-and-cohomology-v1/greub/978-0-12-302701-6">ISBN:978-0-12-302701-6</a>
+<p>]</p>
+</li>
+</ul>
+<p>A quick summary can be found from <a href="http://www.math.wisc.edu/~gstgc/slides/Koytcheff.pdf#page=14">slide 14</a> on in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/1/9/3/3917/content.html">Robin Koytcheff</a>, <em>A homotopy-theoretic view of Bott-Taubes integrals</em> (<a href="http://www.math.wisc.edu/~gstgc/slides/Koytcheff.pdf">pdf slides</a>)</li>
+</ul>
+<p>More details are in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../0/0/3/5/5300/content.html">Ralph Cohen</a>, <a class="existingWikiWord" href="../../../../../0/1/1/1/11110/content.html">John Klein</a>, <em>Umkehr Maps</em> (<a href="http://arxiv.org/abs/0711.0540">arXiv:0711.0540</a>)</li>
+</ul>
+<h3 id="ReferencesInKKTheory">In noncommutative topology and KK-theory</h3>
+<p>Push-forward in <a class="existingWikiWord" href="../../../../../0/7/8/1/1870/content.html">twisted K-theory</a> is discussed in</p>
+<ul id="CareyWang05">
+<li><a class="existingWikiWord" href="../../../../../2/6/6/4/4662/content.html">Alan Carey</a>, <a class="existingWikiWord" href="../../../../../4/6/6/4/4664/content.html">Bai-Ling Wang</a>, <em>Thom isomorphism and Push-forward map in twisted K-theory</em> (<a href="http://arxiv.org/abs/math/0507414">arXiv:math/0507414</a>)</li>
+</ul>
+<p>and section 10 of (<a href="#ABG10">ABG, 10</a>)</p>
+<p>Discussion of fiber integration <a class="existingWikiWord" href="../../../../../0/3/8/9/9830/content.html">Gysin maps</a>/Umkehr maps in <a class="existingWikiWord" href="../../../../../5/4/5/9/9545/content.html">noncommutative topology</a>/<a class="existingWikiWord" href="../../../../../7/6/6/5/5667/content.html">KK-theory</a> as <a href="#InKKTheory">above</a> is in the following references.</p>
+<p>The definition of the element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>!</mo><mo>∈</mo><mi>KK</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>,</mo><mi>C</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f! \in KK(C(X), C(Y))</annotation></semantics></math> for a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math>-oriented map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f \colon X \to Y</annotation></semantics></math> between smooth manifolds goes back to section 11 in</p>
+<ul>
+<li id="Connes82"><a class="existingWikiWord" href="../../../../../7/6/4/2/2467/content.html">Alain Connes</a>, <em>A survey of foliations and operator algebras</em>, Proceedings of the A.M.S., 38, 521-628 (1982) (<a href="http://www.alainconnes.org/docs/foliationsfine.pdf">pdf</a>)</li>
+</ul>
+<p>The functoriality of this construction is demonstrated in section 2 of the following article, which moreover generalizes the construction to maps between <a class="existingWikiWord" href="../../../../../7/1/2/3/3217/content.html">foliations</a> hence to KK-elements between <a class="existingWikiWord" href="../../../../../6/1/2/0/216/content.html">groupoid convolution algebras</a> of <a class="existingWikiWord" href="../../../../../8/1/0/5/5018/content.html">holonomy groupoids</a>:</p>
+<ul>
+<li id="ConnesSkandalis84"><a class="existingWikiWord" href="../../../../../7/6/4/2/2467/content.html">Alain Connes</a>, <a class="existingWikiWord" href="../../../../../0/5/4/9/9450/content.html">Georges Skandalis</a>, <em>The longitudinal index theorem for foliations</em>. Publ. Res. Inst. Math. Sci. 20,
+<p>no. 6, 1139–1183 (1984) (<a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.165.4218">web</a>)</p>
+</li>
+</ul>
+<p>More on this is in</p>
+<ul>
+<li id="HilsumSkandalis87"><a class="existingWikiWord" href="../../../../../5/3/8/9/9835/content.html">Michel Hilsum</a>, <a class="existingWikiWord" href="../../../../../0/5/4/9/9450/content.html">Georges Skandalis</a>, <em>Morphismes K-orienté d’espace de feuille et fonctoralité en théorie de Kasparov</em>, Annales scientifiques de l’École Normale Supérieure, Sér. 4, 20 no. 3 (1987), p. 325-390 (<a href="http://www.numdam.org/item?id=ASENS_1987_4_20_3_325_0">numdam</a>)</li>
+</ul>
+<p>(the article that introuced <a class="existingWikiWord" href="../../../../../5/1/3/4/4315/content.html">Hilsum-Skandalis morphisms</a>).</p>
+<p>This is further generalized to <a class="existingWikiWord" href="../../../../../7/1/9/8/8917/content.html">circle 2-bundle</a>-twisted convolution algebras of foliations in</p>
+<ul>
+<li id="RouseWang10">Paulo Carrillo Rouse, <a class="existingWikiWord" href="../../../../../4/6/6/4/4664/content.html">Bai-Ling Wang</a>, <em>Twisted longitudinal index theorem for foliations and wrong way functoriality</em> (<a href="http://arxiv.org/abs/1005.3842">arXiv:1005.3842</a>)</li>
+</ul>
+<p>Dicussion for general <a class="existingWikiWord" href="../../../../../4/7/4/2/2474/content.html">C*-algebras</a> is in section 3 of</p>
+<ul>
+<li id="BMRS07">Jacek Brodzki, <a class="existingWikiWord" href="../../../../../2/7/8/5/5872/content.html">Varghese Mathai</a>, <a class="existingWikiWord" href="../../../../0/7/4/4701/content.html">Jonathan Rosenberg</a>, <a class="existingWikiWord" href="../../../../../7/4/0/5/5047/content.html">Richard Szabo</a>, <em>Noncommutative correspondences, duality and D-branes in bivariant K-theory</em>, Adv. Theor. Math. Phys.13:497-552,2009 (<a href="http://arxiv.org/abs/0708.2648">arXiv:0708.2648</a>)</li>
+</ul>
+<p>and specifically including also <a class="existingWikiWord" href="../../../../../0/7/8/1/1870/content.html">twisted K-theory</a> again (and the relation to <a class="existingWikiWord" href="../../../../../3/1/7/6/6713/content.html">D-brane charge</a>) in section 7 of</p>
+<ul>
+<li id="BrodzkiMathaiRosenbergSzabo06">Jacek Brodzki, <a class="existingWikiWord" href="../../../../../2/7/8/5/5872/content.html">Varghese Mathai</a>, <a class="existingWikiWord" href="../../../../0/7/4/4701/content.html">Jonathan Rosenberg</a>, <a class="existingWikiWord" href="../../../../../7/4/0/5/5047/content.html">Richard Szabo</a>, <em>D-Branes, RR-Fields and Duality on Noncommutative Manifolds</em>, Commun. Math. Phys. 277:643-706,2008 (<a href="http://arxiv.org/abs/hep-th/0607020">arXiv:hep-th/0607020</a>)</li>
+</ul>
+<h3 id="abstract_formulation">Abstract formulation</h3>
+<p>The abstract formulation in <a class="existingWikiWord" href="../../../../../8/8/2/2/2288/content.html">stable homotopy theory</a> via <a class="existingWikiWord" href="../../../../../../../missing.html">(infinity,1)-module bundles</a> is sketched in section 9 of</p>
+<ul>
+<li id="ABG10"><a class="existingWikiWord" href="../../../../../6/9/1/4/4196/content.html">Matthew Ando</a>, <a class="existingWikiWord" href="../../../../../8/9/1/4/4198/content.html">Andrew Blumberg</a>, <a class="existingWikiWord" href="../../../../../9/9/1/4/4199/content.html">David Gepner</a>, <em>Twists of K-theory and TMF</em>, in Robert S. Doran, Greg Friedman, <a class="existingWikiWord" href="../../../../0/7/4/4701/content.html">Jonathan Rosenberg</a>, <em>Superstrings, Geometry, Topology, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi> <mo>*</mo></msup></mrow><annotation encoding="application/x-tex">C^*</annotation></semantics></math>-algebras</em>, Proceedings of Symposia in Pure Mathematics <a href="http://www.ams.org/bookstore-getitem/item=PSPUM-81">vol 81</a>, American Mathematical Society (<a href="http://arxiv.org/abs/1002.3004">arXiv:1002.3004</a>)</li>
+</ul>
+<p>and in section 10 of</p>
+<ul>
+<li id="ABG11"><a class="existingWikiWord" href="../../../../../6/9/1/4/4196/content.html">Matthew Ando</a>, <a class="existingWikiWord" href="../../../../../8/9/1/4/4198/content.html">Andrew Blumberg</a>, <a class="existingWikiWord" href="../../../../../9/9/1/4/4199/content.html">David Gepner</a>, <em>Parametrized spectra, multiplicative Thom spectra, and the twisted Umkehr map</em> (<a href="http://arxiv.org/abs/1112.2203">arXiv:1112.2203</a>)</li>
+</ul>
+<p>This is reviewed and used also in</p>
+<ul>
+<li id="Nuiten13"><a class="existingWikiWord" href="../../../../../9/0/1/0/10109/content.html">Joost Nuiten</a>, <em><a class="existingWikiWord" href="/schreiber/show/master+thesis+Nuiten">Cohomological quantization of boundary prequantum field theory</a></em>, MSc thesis, Utrecht 2013</li>
+</ul>
+<p>Formulation of this in <a class="existingWikiWord" href="../../../../../0/8/6/8/18680/content.html">linear homotopy-type theory</a> is discussed in</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>, <em><a class="existingWikiWord" href="/schreiber/show/Homotopy-type+semantics+for+quantization">Homotopy-type semantics for quantization</a></em></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

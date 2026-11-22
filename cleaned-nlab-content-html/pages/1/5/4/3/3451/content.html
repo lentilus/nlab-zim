@@ -1,0 +1,706 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      monodromy in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      monodromy
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#InPointSetTopology">In point-set topology</a></li>
+<ul>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+</ul>
+<li><a href="#InHomotopyTheory">In homotopy theory</a></li>
+<li><a href="#InHomotopyTypeTheory">In homotopy type theory</a></li>
+<ul>
+<li><a href="#transport_and_monodromy">Transport and monodromy</a></li>
+<li><a href="#induced_equivalences_on_homotopy_groups">Induced equivalences on homotopy groups</a></li>
+<li><a href="#formalization_in_cubical_agda">Formalization in Cubical Agda</a></li>
+</ul>
+<li><a href="#in_cohesive_toposes">In cohesive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Toposes</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Monodromy</em> is the name for the <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a> of the <a class="existingWikiWord" href="../../../../../5/8/5/2/2585/content.html">homotopy groups</a> of a <a class="existingWikiWord" href="../../../../../5/3/1/2/2135/content.html">space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> on <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> of <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering spaces</a> or <a class="existingWikiWord" href="../../../../../7/4/4/3/3447/content.html">locally constant ∞-stacks</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<h2 id="InPointSetTopology">In point-set topology</h2>
+<p>We discuss monodromy of <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering spaces</a> in elementary <a class="existingWikiWord" href="../../../../../0/1/0/2/2010/content.html">point-set topology</a>.</p>
+<h3 id="definition">Definition</h3>
+<div class="num_defn" id="CoveringSpaceMonodromy">
+<h6 id="definition_2">Definition</h6>
+<p><strong>(monodromy of a <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering space</a>)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mover><mo>→</mo><mi>p</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">E \overset{p}{\to} X</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering space</a>. Write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_1(X)</annotation></semantics></math> for the <a class="existingWikiWord" href="../../../../../5/6/1/0/165/content.html">fundamental groupoid</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>Define a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mi>E</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⟶</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">
+  Fib_E
+    \;\colon\;
+  \Pi_1(X)
+    \longrightarrow
+  Set
+
+</annotation></semantics></math></div>
+<p>to the <a class="existingWikiWord" href="../../../../1/1/0/111/content.html">category</a> <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> of <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a> as follows:</p>
+<ol>
+<li>
+<p>to a point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x \in X</annotation></semantics></math> assign the <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fiber</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>∈</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">p^{-1}(\{x\}) \in Set</annotation></semantics></math>;</p>
+</li>
+<li>
+<p>to the <a class="existingWikiWord" href="../../../../../3/5/2/8/8253/content.html">homotopy class</a> of a <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">path</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> connecting <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≔</mo><mi>γ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \coloneqq \gamma(0)</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>≔</mo><mi>γ</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y \coloneqq \gamma(1)</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> assign the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>p</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>y</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p^{-1}(\{x\}) \longrightarrow p^{-1}(\{y\})</annotation></semantics></math> which takes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo>∈</mo><msup><mi>p</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat x \in p^{-1}(\{x\})</annotation></semantics></math> to the endpoint of a path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>γ</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat \gamma</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> which lifts <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> through <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> with starting point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat \gamma(0) = \hat x</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msup><mi>p</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow></mrow></mover></mtd> <mtd><msup><mi>p</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo>=</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+    p^{-1}(x) &amp;\overset{}{\longrightarrow}&amp; p^{-1}(y)
+    \\
+    (\hat x = \hat \gamma(0)) &amp;\mapsto&amp; \hat \gamma(1)
+  }
+  \,.
+
+</annotation></semantics></math></div></li>
+</ol>
+<p>This construction is well defined for a given representative <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> due to the unique path-lifting property of covering spaces (<a href="../../../../../7/8/5/1/1587/content.html#CoveringSpacePathLifting">this lemma</a>) and it is independent of the choice of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> in the given homotopy class of paths due to the homotopy-lifting property (<a href="../../../../../7/8/5/1/1587/content.html#CoveringSpacesHomotopyLifting">this lemma</a>). Similarly, these two lifting properties give that this construction respects composition in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_1(X)</annotation></semantics></math> and hence is indeed a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a>.</p>
+</div>
+<p>Hence this defines a “<a class="existingWikiWord" href="../../../../../5/8/4/3/3485/content.html">permutation</a> <a class="existingWikiWord" href="../../../../../3/5/4/8/18453/content.html">groupoid representation</a>” of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_1(X)</annotation></semantics></math>.</p>
+<div class="num_prop">
+<h6 id="proposition">Proposition</h6>
+<p>Given a <a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a> between two <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering spaces</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mi>i</mi></msub><mover><mo>→</mo><mrow><msub><mi>p</mi> <mi>i</mi></msub></mrow></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">E_i \overset{p_i}{\to} X</annotation></semantics></math>, hence a <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous function</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><msub><mi>E</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>E</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">f \colon E_1 \to E_2</annotation></semantics></math> which respects <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fibers</a> in that the <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagram</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msub><mi>E</mi> <mn>1</mn></msub></mtd> <mtd></mtd> <mtd><mover><mo>⟶</mo><mi>f</mi></mover></mtd> <mtd></mtd> <mtd><msub><mi>E</mi> <mn>2</mn></msub></mtd></mtr> <mtr><mtd></mtd> <mtd><msub><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>p</mi> <mn>1</mn></msub></mrow></mpadded></msub><mo>↘</mo></mtd> <mtd></mtd> <mtd><msub><mo>↙</mo> <mpadded width="0"><mrow><msub><mi>p</mi> <mn>2</mn></msub></mrow></mpadded></msub></mtd></mtr> <mtr><mtd></mtd> <mtd></mtd> <mtd><mi>X</mi></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+  \array{
+    E_1 &amp;&amp; \overset{f}{\longrightarrow} &amp;&amp; E_2
+    \\
+    &amp; {}_{\mathllap{p_1}}\searrow &amp;&amp; \swarrow_{\mathrlap{p_2}}
+    \\
+    &amp;&amp; X
+  }
+
+</annotation></semantics></math></div>
+<p><a class="existingWikiWord" href="../../../../../5/5/7/3/3755/content.html">commutes</a>, then the component functions</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><msub><mo stretchy="false">|</mo> <mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msubsup><mi>p</mi> <mn>1</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo><mo>⟶</mo><msubsup><mi>p</mi> <mn>2</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  f\vert_{\{x\}} \;\colon\; p_1^{-1}(\{x\}) \longrightarrow p_2^{-1}(\{x\})
+
+</annotation></semantics></math></div>
+<p>are compatible with the monodromy <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mi>E</mi></msub></mrow><annotation encoding="application/x-tex">Fib_{E}</annotation></semantics></math> (def. <a class="maruku-ref" href="#CoveringSpaceMonodromy"></a>) along any <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">path</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> between points <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math> from def. <a class="maruku-ref" href="#CoveringSpaceMonodromy"></a> in that the following <a class="existingWikiWord" href="../../../../../3/1/3/0/313/content.html">diagrams</a> of <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a> <a class="existingWikiWord" href="../../../../../5/5/7/3/3755/content.html">commute</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><msubsup><mi>p</mi> <mn>1</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mover><mo>⟶</mo><mrow><mi>f</mi><msub><mo stretchy="false">|</mo> <mrow><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo></mrow></msub></mrow></mover></mtd> <mtd><msubsup><mi>p</mi> <mn>2</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><msup><mrow></mrow> <mpadded lspace="-100%width" width="0"><mrow><msub><mi>Fib</mi> <mrow><msub><mi>E</mi> <mn>1</mn></msub></mrow></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow></mpadded></msup><mo stretchy="false">↓</mo></mtd> <mtd></mtd> <mtd><msup><mo stretchy="false">↓</mo> <mpadded width="0"><mrow><msub><mi>Fib</mi> <mrow><msub><mi>E</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow></mpadded></msup></mtd></mtr> <mtr><mtd><msubsup><mi>p</mi> <mn>1</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mtd> <mtd><munder><mo>⟶</mo><mrow><mi>f</mi><msub><mo stretchy="false">|</mo> <mrow><mo stretchy="false">{</mo><mi>y</mi><mo stretchy="false">}</mo></mrow></msub></mrow></munder></mtd> <mtd><msubsup><mi>p</mi> <mn>2</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \array{
+     p_1^{-1}(x) &amp;\overset{f\vert_{\{x\}}}{\longrightarrow}&amp; p_2^{-1}(x)
+     \\
+     {}^{\mathllap{Fib_{E_1}([\gamma])}}\downarrow
+       &amp;&amp;
+     \downarrow^{\mathrlap{ Fib_{E_2}([\gamma]) }}
+     \\
+     p_1^{-1}(y) &amp;\underset{f\vert_{\{y\}}}{\longrightarrow}&amp; p_2^{-1}(y)
+  }
+  \,.
+
+</annotation></semantics></math></div>
+<p>This means that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> induces a <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural transformation</a> between the monodromy functors of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">E_1</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">E_2</annotation></semantics></math>, respectively, and hence that constructing monodromy is itself a functor from the <a class="existingWikiWord" href="../../../../1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering spaces</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> to that of <a class="existingWikiWord" href="../../../../../5/8/4/3/3485/content.html">permutation representations</a> of the <a class="existingWikiWord" href="../../../../../5/6/1/0/165/content.html">fundamental groupoid</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Fib</mi><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><mi>Cov</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>⟶</mo><msup><mi>Set</mi> <mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msup><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Fib
+   \;\colon\;
+  Cov(X)
+    \longrightarrow
+  Set^{\Pi_1(X)}
+  \,.
+
+</annotation></semantics></math></div></div>
+<div class="proof">
+<h6 id="proof">Proof</h6>
+<p>For any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo>∈</mo><msubsup><mi>p</mi> <mn>1</mn> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msubsup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat x \in p_1^{-1}(x)</annotation></semantics></math> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>γ</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat \gamma</annotation></semantics></math> be the unique path in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">\hat \gamma(0) = \hat x</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∘</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo>=</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">p \circ \hat \gamma = \gamma</annotation></semantics></math>. By definition <a class="maruku-ref" href="#CoveringSpaceMonodromy"></a> we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mrow><msub><mi>E</mi> <mn>1</mn></msub></mrow></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo><mo>=</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  Fib_{E_1}([\gamma(f)])(\hat x) = \hat \gamma(1)
+
+</annotation></semantics></math></div>
+<p>and hence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mi>Fib</mi> <mrow><msub><mi>E</mi> <mn>1</mn></msub></mrow></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  f(Fib_{E_1}([\gamma(f)])(\hat x)) = f(\hat \gamma(1))
+
+</annotation></semantics></math></div>
+<p>Now <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∘</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">f \circ \hat \gamma</annotation></semantics></math> satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∘</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f \circ \hat \gamma(0) = f(\hat x)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∘</mo><mi>f</mi><mo>∘</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo>=</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">p \circ f \circ \hat \gamma = \gamma</annotation></semantics></math> by the fact that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> preserves fibers. Hence by uniqueness of path lifting (<a href="../../../../../7/8/5/1/1587/content.html#CoveringSpacePathLifting">this lemma</a>), <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∘</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover></mrow><annotation encoding="application/x-tex">f \circ \hat \gamma</annotation></semantics></math> is the unique lift of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> with starting point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(\hat x)</annotation></semantics></math>. By def. <a class="maruku-ref" href="#CoveringSpaceMonodromy"></a> this means that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mrow><msub><mi>E</mi> <mn>2</mn></msub></mrow></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  Fib_{E_2}([\gamma])(f(\hat x))
+  = 
+  f (\hat \gamma(1))
+  \,.
+
+</annotation></semantics></math></div>
+<p>This is the equality to be shown.</p>
+</div>
+<h3 id="properties">Properties</h3>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../3/4/9/7/17943/content.html">fundamental theorem of covering spaces</a>)</strong></p>
+<p>The <a class="existingWikiWord" href="../../../../../8/1/4/8/18418/content.html">reconstruction of covering spaces from monodromy</a> is an <a class="existingWikiWord" href="../../../../../6/1/4/8/18416/content.html">inverse functor</a> to the monodromy functor. The resulting <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalence of categories</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Cov</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><munderover><mrow></mrow><munder><mo>⟶</mo><mi>Fib</mi></munder><mover><mo>⟵</mo><mi>Rec</mi></mover></munderover><msup><mi>Set</mi> <mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">
+  Cov(X)
+    \underoverset
+      {\underset{Fib}{\longrightarrow}}
+      {\overset{Rec}{\longleftarrow}}
+      {}
+  Set^{\Pi_1(X)}
+
+</annotation></semantics></math></div>
+<p>between the <a class="existingWikiWord" href="../../../../../4/5/4/8/18454/content.html">category of covering spaces</a> and the <a class="existingWikiWord" href="../../../../../5/8/4/3/3485/content.html">permutation</a> <a class="existingWikiWord" href="../../../../../3/5/4/8/18453/content.html">groupoid representations</a> of the <a class="existingWikiWord" href="../../../../../5/6/1/0/165/content.html">fundamental groupoid</a> is known as the <em><a class="existingWikiWord" href="../../../../../3/4/9/7/17943/content.html">fundamental theorem of covering spaces</a></em>.</p>
+</div>
+<div class="num_example" id="CoveringSpaceFundamentalGroupoid">
+<h6 id="example">Example</h6>
+<p><strong>(<a class="existingWikiWord" href="../../../../../5/6/1/0/165/content.html">fundamental groupoid</a> of covering space)</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mover><mo>⟶</mo><mi>p</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">E \overset{p}{\longrightarrow} X</annotation></semantics></math> be a covering space.</p>
+<p>Then the <a class="existingWikiWord" href="../../../../../5/6/1/0/165/content.html">fundamental groupoid</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_1(E)</annotation></semantics></math> of the total space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalently</a> the <a class="existingWikiWord" href="../../../../../6/3/5/1/1536/content.html">Grothendieck construction</a> of the <a class="existingWikiWord" href="content.html">monodromy</a> functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mi>E</mi></msub><mspace width="thickmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thickmathspace"></mspace><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Set</mi></mrow><annotation encoding="application/x-tex">Fib_E \;\colon\; \Pi_1(X) \to Set</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>≃</mo><mspace width="thickmathspace"></mspace><msub><mo>∫</mo> <mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></msub><msub><mi>Fib</mi> <mi>E</mi></msub></mrow><annotation encoding="application/x-tex">
+  \Pi_1(E)
+   \;\simeq\;
+  \int_{\Pi_1(X)} Fib_E
+
+</annotation></semantics></math></div>
+<p>whose</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a> are pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,\hat x)</annotation></semantics></math> consisting of a point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x \in X</annotation></semantics></math> and en element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo>∈</mo><msub><mi>Fib</mi> <mi>E</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat x \in Fib_E(x)</annotation></semantics></math>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mover><mi>γ</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>x</mi><mo>′</mo><mo>,</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[\hat \gamma] \colon (x,\hat x) \to (x', \hat x')</annotation></semantics></math> are morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">]</mo><mo lspace="verythinmathspace">:</mo><mi>x</mi><mo>→</mo><mi>x</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">[\gamma] \colon x \to x'</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_1(X)</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mi>E</mi></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>γ</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo stretchy="false">)</mo><mo>=</mo><mover><mi>x</mi><mo stretchy="false">^</mo></mover><mo>′</mo></mrow><annotation encoding="application/x-tex">Fib_E([\gamma])(\hat x) = \hat x'</annotation></semantics></math>.</p>
+</li>
+</ul>
+</div>
+<div class="proof">
+<h6 id="proof_2">Proof</h6>
+<p>By the uniqueness of the path-lifting (<a href="../../../../../7/8/5/1/1587/content.html#CoveringSpacePathLifting">this lemma</a>) and the very definition of the <a class="existingWikiWord" href="content.html">monodromy</a> functor.</p>
+</div>
+<div class="num_prop" id="MonodromyConnectednessOfCoveringSpace">
+<h6 id="proposition_2">Proposition</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">path-connected topological space</a> and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mover><mo>→</mo><mi>p</mi></mover><mi>X</mi></mrow><annotation encoding="application/x-tex">E \overset{p}{\to} X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../7/8/5/1/1587/content.html">covering space</a>. Then the total space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math> is</p>
+<ol>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">path-connected</a> precisely if the <a class="existingWikiWord" href="content.html">monodromy</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mi>E</mi></msub></mrow><annotation encoding="application/x-tex">Fib_E</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/0/0/6/6000/content.html">transitive action</a>;</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/6/0/3/3065/content.html">simply connected</a> precisely if the <a class="existingWikiWord" href="content.html">monodromy</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Fib</mi> <mi>E</mi></msub></mrow><annotation encoding="application/x-tex">Fib_E</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../9/2/0/7/7029/content.html">free action</a>.</p>
+</li>
+</ol>
+</div>
+<div class="proof">
+<h6 id="proof_3">Proof</h6>
+<p>By example <a class="maruku-ref" href="#CoveringSpaceFundamentalGroupoid"></a>.</p>
+</div>
+<h2 id="InHomotopyTheory">In homotopy theory</h2>
+<p>More generally, given a <a class="existingWikiWord" href="../../../../../0/9/0/3/3090/content.html">Serre fibration</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>F</mi></mtd> <mtd><mo>↪</mo></mtd> <mtd><mi>E</mi></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd> <mtd><msup><mo></mo><mrow><msub><mo></mo><mrow><mo stretchy="false">(</mo><mi>pb</mi><mo stretchy="false">)</mo></mrow></msub></mrow></msup></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo><mpadded width="0"><mrow><msup><mo></mo><mi>p</mi></msup></mrow></mpadded></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi>B</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    F &amp;\hookrightarrow&amp; E
+    \\
+    \big\downarrow 
+      &amp;^{_{(pb)}}&amp; 
+    \big\downarrow\mathrlap{^p}
+    \\
+    \ast &amp;\longrightarrow&amp; B
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>over a <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected topological space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>, there is a canonical <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">group action</a> of the <a class="existingWikiWord" href="../../../../../4/0/9/0/904/content.html">fundamental group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_1(B)</annotation></semantics></math> of the base space on the higher <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy groups</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mrow><mo>•</mo><mo>≥</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{\bullet \geq 1}(F)</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fiber</a> space, by <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <a class="existingWikiWord" href="../../../../8/2/0/281/content.html">automorphisms</a>.</p>
+<p>(cf. <a href="#Steenrod1951">Steenrod 1951 §17</a>, <a href="#Whitehead1978">Whitehead 1978, §4.2</a>, <a href="#Spanier1981">Spanier 1981 §7.2</a>, <a href="#May1999">May 1999 May19997.3</a>, <a href="#UFP13">UFP 2013 §2.3 &amp; §4.8</a>)</p>
+<h2 id="InHomotopyTypeTheory">In homotopy type theory</h2>
+<p>In <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>, <a class="existingWikiWord" href="content.html">monodromy</a> arises naturally from the <a class="existingWikiWord" href="../../../../../4/8/9/3/23984/content.html">transport</a> of <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">dependent types</a> along <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">paths</a>. This gives an intrinsic formulation of monodromy, without first specifying a path-lifting operation in a topological total space.</p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> be a type and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>:</mo><mi>B</mi><mo>→</mo><mi>𝒰</mi></mrow><annotation encoding="application/x-tex">P:B\to\mathcal{U}</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">type family</a>, with associated <a class="existingWikiWord" href="../../../../../9/0/5/7/7509/content.html">dependent sum</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>≔</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow></msub><mi>P</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E\coloneqq\sum_{b:B}P(b)</annotation></semantics></math> and projection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">pr</mi> <mn>1</mn></msub><mo>:</mo><mi>E</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\mathrm{pr}_1:E\to B</annotation></semantics></math>. For each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b:B</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../8/9/6/1/1698/content.html">homotopy fiber</a> of this projection over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math> is equivalent to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(b)</annotation></semantics></math>, as exhibited by the <a class="existingWikiWord" href="../../../../../5/8/7/0/785/content.html">homotopy pullback</a> square</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>P</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mstyle displaystyle="false"><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>x</mi><mo>:</mo><mi>B</mi></mrow></msub></mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mstyle></mtd></mtr> <mtr><mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo></mtd> <mtd></mtd> <mtd><mo maxsize="1.2em" minsize="1.2em">↓</mo><mpadded width="0"><mrow><msup><mo></mo><mrow><msub><mi mathvariant="normal">pr</mi> <mn>1</mn></msub></mrow></msup></mrow></mpadded></mtd></mtr> <mtr><mtd><mo>*</mo></mtd> <mtd><mover><mo>→</mo><mrow><mspace width="thickmathspace"></mspace><mi>b</mi><mspace width="thickmathspace"></mspace></mrow></mover></mtd> <mtd><mi>B</mi><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{array}{ccc}
+  P(b) 
+  &amp; \longrightarrow &amp; 
+  \textstyle{\sum_{x:B}} P(x) 
+  \\
+  \big\downarrow 
+   &amp;&amp; 
+  \big\downarrow\mathrlap{^{\mathrm{pr}_1}} 
+  \\
+  \ast 
+  &amp; \xrightarrow{\ b\ } &amp; B
+  \mathrlap{\,.}
+\end{array}
+
+</annotation></semantics></math></div>
+<p>Thus, a family of types over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> determines a fibration whose fibers are specified by the family itself.</p>
+<h3 id="transport_and_monodromy">Transport and monodromy</h3>
+<p>For a path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>:</mo><mi>x</mi><msub><mo>=</mo> <mi>B</mi></msub><mi>y</mi></mrow><annotation encoding="application/x-tex">p:x=_B y</annotation></semantics></math>, <a class="existingWikiWord" href="../../../../../4/8/9/3/23984/content.html">transport</a> determines a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi> <mo>*</mo></msub><mo>:</mo><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><mi>P</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p_*:P(x)\to P(y)</annotation></semantics></math>. By <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">path induction</a>, transport along a reflexivity path is the identity, while transport along the inverse path provides a homotopy inverse. Hence every path induces an <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>P</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(x)\simeq P(y)</annotation></semantics></math>.</p>
+<p>Moreover, transport is compatible with <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">path</a> <a class="existingWikiWord" href="../../../../6/0/4/24061/content.html">concatenation</a>. Given composable paths <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo lspace="verythinmathspace">:</mo><mi>x</mi><mo>=</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">p \colon x=y</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo lspace="verythinmathspace">:</mo><mi>y</mi><mo>=</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">q \colon  y=z</annotation></semantics></math>, the triangle</p>
+<svg height="97.661pt" version="1.2" viewbox="0 0 242.966 97.661" width="242.966pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-1" overflow="visible">
+<path d="M 4.40625 -4.734375 L 6.90625 -4.734375 C 8.96875 -4.734375 11.015625 -6.25 11.015625 -7.953125 C 11.015625 -9.109375 10.03125 -10.171875 8.15625 -10.171875 L 3.5625 -10.171875 C 3.28125 -10.171875 3.140625 -10.171875 3.140625 -9.890625 C 3.140625 -9.734375 3.28125 -9.734375 3.5 -9.734375 C 4.40625 -9.734375 4.40625 -9.625 4.40625 -9.453125 C 4.40625 -9.421875 4.40625 -9.34375 4.34375 -9.109375 L 2.34375 -1.109375 C 2.203125 -0.578125 2.171875 -0.4375 1.125 -0.4375 C 0.84375 -0.4375 0.703125 -0.4375 0.703125 -0.15625 C 0.703125 0 0.828125 0 0.921875 0 C 1.203125 0 1.5 -0.03125 1.78125 -0.03125 L 3.53125 -0.03125 C 3.8125 -0.03125 4.125 0 4.40625 0 C 4.53125 0 4.6875 0 4.6875 -0.28125 C 4.6875 -0.4375 4.5625 -0.4375 4.328125 -0.4375 C 3.4375 -0.4375 3.421875 -0.53125 3.421875 -0.6875 C 3.421875 -0.765625 3.4375 -0.859375 3.453125 -0.9375 Z M 5.484375 -9.15625 C 5.609375 -9.703125 5.671875 -9.734375 6.25 -9.734375 L 7.734375 -9.734375 C 8.84375 -9.734375 9.765625 -9.375 9.765625 -8.265625 C 9.765625 -7.875 9.578125 -6.609375 8.890625 -5.921875 C 8.640625 -5.65625 7.921875 -5.09375 6.5625 -5.09375 L 4.46875 -5.09375 Z M 5.484375 -9.15625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-2" overflow="visible">
+<path d="M 3.921875 1.671875 C 3.515625 2.234375 2.9375 2.734375 2.203125 2.734375 C 2.03125 2.734375 1.3125 2.703125 1.09375 2.03125 C 1.125 2.046875 1.203125 2.046875 1.234375 2.046875 C 1.6875 2.046875 1.984375 1.65625 1.984375 1.3125 C 1.984375 0.96875 1.703125 0.84375 1.46875 0.84375 C 1.234375 0.84375 0.71875 1.03125 0.71875 1.75 C 0.71875 2.515625 1.359375 3.03125 2.203125 3.03125 C 3.6875 3.03125 5.203125 1.671875 5.609375 0.015625 L 7.078125 -5.796875 C 7.09375 -5.859375 7.125 -5.953125 7.125 -6.046875 C 7.125 -6.265625 6.9375 -6.421875 6.71875 -6.421875 C 6.578125 -6.421875 6.265625 -6.359375 6.15625 -5.90625 L 5.046875 -1.53125 C 4.96875 -1.265625 4.96875 -1.234375 4.859375 -1.078125 C 4.5625 -0.65625 4.0625 -0.15625 3.34375 -0.15625 C 2.515625 -0.15625 2.4375 -0.96875 2.4375 -1.375 C 2.4375 -2.21875 2.84375 -3.359375 3.25 -4.4375 C 3.40625 -4.875 3.5 -5.078125 3.5 -5.375 C 3.5 -6 3.046875 -6.5625 2.328125 -6.5625 C 0.953125 -6.5625 0.40625 -4.40625 0.40625 -4.28125 C 0.40625 -4.234375 0.46875 -4.15625 0.5625 -4.15625 C 0.703125 -4.15625 0.71875 -4.21875 0.78125 -4.421875 C 1.125 -5.671875 1.703125 -6.265625 2.28125 -6.265625 C 2.40625 -6.265625 2.671875 -6.265625 2.671875 -5.78125 C 2.671875 -5.390625 2.5 -4.953125 2.28125 -4.390625 C 1.546875 -2.4375 1.546875 -1.953125 1.546875 -1.59375 C 1.546875 -0.171875 2.5625 0.15625 3.3125 0.15625 C 3.734375 0.15625 4.28125 0.015625 4.796875 -0.53125 L 4.8125 -0.515625 C 4.59375 0.359375 4.4375 0.9375 3.921875 1.671875 Z M 3.921875 1.671875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-3" overflow="visible">
+<path d="M 7.0625 -6.078125 C 6.578125 -5.984375 6.40625 -5.625 6.40625 -5.34375 C 6.40625 -4.984375 6.6875 -4.875 6.890625 -4.875 C 7.34375 -4.875 7.65625 -5.25 7.65625 -5.65625 C 7.65625 -6.28125 6.9375 -6.5625 6.3125 -6.5625 C 5.40625 -6.5625 4.90625 -5.671875 4.765625 -5.390625 C 4.421875 -6.5 3.5 -6.5625 3.234375 -6.5625 C 1.71875 -6.5625 0.90625 -4.609375 0.90625 -4.28125 C 0.90625 -4.234375 0.96875 -4.15625 1.078125 -4.15625 C 1.1875 -4.15625 1.21875 -4.25 1.25 -4.296875 C 1.75 -5.953125 2.75 -6.265625 3.1875 -6.265625 C 3.859375 -6.265625 3.984375 -5.640625 3.984375 -5.28125 C 3.984375 -4.953125 3.90625 -4.609375 3.71875 -3.90625 L 3.21875 -1.859375 C 3 -0.96875 2.5625 -0.15625 1.765625 -0.15625 C 1.703125 -0.15625 1.328125 -0.15625 1.015625 -0.34375 C 1.546875 -0.453125 1.671875 -0.890625 1.671875 -1.078125 C 1.671875 -1.375 1.4375 -1.546875 1.15625 -1.546875 C 0.796875 -1.546875 0.421875 -1.234375 0.421875 -0.765625 C 0.421875 -0.140625 1.109375 0.15625 1.75 0.15625 C 2.46875 0.15625 2.984375 -0.421875 3.296875 -1.03125 C 3.53125 -0.15625 4.28125 0.15625 4.828125 0.15625 C 6.34375 0.15625 7.140625 -1.796875 7.140625 -2.125 C 7.140625 -2.203125 7.09375 -2.265625 7 -2.265625 C 6.859375 -2.265625 6.84375 -2.1875 6.8125 -2.0625 C 6.40625 -0.765625 5.546875 -0.15625 4.875 -0.15625 C 4.34375 -0.15625 4.0625 -0.53125 4.0625 -1.140625 C 4.0625 -1.46875 4.125 -1.71875 4.359375 -2.6875 L 4.890625 -4.71875 C 5.109375 -5.609375 5.609375 -6.265625 6.296875 -6.265625 C 6.328125 -6.265625 6.75 -6.265625 7.0625 -6.078125 Z M 7.0625 -6.078125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-4" overflow="visible">
+<path d="M 1.890625 -1.203125 C 2.53125 -1.9375 3.046875 -2.390625 3.796875 -3.0625 C 4.6875 -3.84375 5.078125 -4.21875 5.28125 -4.4375 C 6.328125 -5.46875 6.84375 -6.328125 6.84375 -6.453125 C 6.84375 -6.5625 6.734375 -6.5625 6.703125 -6.5625 C 6.59375 -6.5625 6.5625 -6.5 6.5 -6.40625 C 6.125 -5.765625 5.765625 -5.453125 5.375 -5.453125 C 5.0625 -5.453125 4.90625 -5.578125 4.609375 -5.9375 C 4.296875 -6.3125 4.046875 -6.5625 3.625 -6.5625 C 2.53125 -6.5625 1.875 -5.21875 1.875 -4.90625 C 1.875 -4.859375 1.890625 -4.765625 2.03125 -4.765625 C 2.140625 -4.765625 2.15625 -4.828125 2.203125 -4.921875 C 2.453125 -5.53125 3.171875 -5.625 3.453125 -5.625 C 3.765625 -5.625 4.0625 -5.53125 4.375 -5.390625 C 4.9375 -5.15625 5.1875 -5.15625 5.328125 -5.15625 C 5.4375 -5.15625 5.5 -5.15625 5.5625 -5.171875 C 5.078125 -4.59375 4.28125 -3.875 3.609375 -3.265625 L 2.09375 -1.875 C 1.1875 -0.953125 0.640625 -0.078125 0.640625 0.03125 C 0.640625 0.125 0.71875 0.15625 0.796875 0.15625 C 0.890625 0.15625 0.90625 0.140625 1.015625 -0.046875 C 1.25 -0.421875 1.734375 -0.96875 2.28125 -0.96875 C 2.59375 -0.96875 2.734375 -0.859375 3.03125 -0.484375 C 3.328125 -0.15625 3.578125 0.15625 4.046875 0.15625 C 5.515625 0.15625 6.34375 -1.75 6.34375 -2.078125 C 6.34375 -2.140625 6.328125 -2.234375 6.171875 -2.234375 C 6.0625 -2.234375 6.046875 -2.171875 6 -2.03125 C 5.671875 -1.140625 4.796875 -0.796875 4.21875 -0.796875 C 3.90625 -0.796875 3.609375 -0.890625 3.296875 -1.03125 C 2.6875 -1.265625 2.53125 -1.265625 2.34375 -1.265625 C 2.1875 -1.265625 2.03125 -1.265625 1.890625 -1.203125 Z M 1.890625 -1.203125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-1" overflow="visible">
+<path d="M 4.84375 3.625 C 4.84375 3.578125 4.84375 3.546875 4.59375 3.296875 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.59375 2.96875 -9.078125 4.6875 -10.84375 C 4.84375 -10.96875 4.84375 -11 4.84375 -11.046875 C 4.84375 -11.140625 4.765625 -11.171875 4.703125 -11.171875 C 4.515625 -11.171875 3.296875 -10.09375 2.5625 -8.640625 C 1.796875 -7.125 1.453125 -5.546875 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.328125 2.765625 4.546875 3.734375 4.703125 3.734375 C 4.765625 3.734375 4.84375 3.703125 4.84375 3.625 Z M 4.84375 3.625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-2" overflow="visible">
+<path d="M 4.203125 -3.703125 C 4.203125 -4.84375 4.046875 -6.6875 3.21875 -8.40625 C 2.34375 -10.203125 1.109375 -11.171875 0.953125 -11.171875 C 0.890625 -11.171875 0.8125 -11.140625 0.8125 -11.046875 C 0.8125 -11 0.8125 -10.96875 1.078125 -10.71875 C 2.5625 -9.21875 3.390625 -6.765625 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.546875 0.8125 3.578125 0.8125 3.625 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.375 2.671875 3.09375 1.203125 C 3.859375 -0.3125 4.203125 -1.921875 4.203125 -3.703125 Z M 4.203125 -3.703125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-1" overflow="visible">
+<path d="M 4.71875 -4.09375 C 4.734375 -4.125 4.75 -4.1875 4.75 -4.234375 C 4.75 -4.296875 4.703125 -4.375 4.609375 -4.375 C 4.5 -4.375 4.09375 -3.984375 3.921875 -3.703125 C 3.8125 -3.921875 3.515625 -4.375 2.90625 -4.375 C 1.71875 -4.375 0.421875 -3 0.421875 -1.53125 C 0.421875 -0.5 1.09375 0.09375 1.859375 0.09375 C 2.34375 0.09375 2.765625 -0.1875 3.0625 -0.453125 C 3.046875 -0.421875 2.734375 0.828125 2.703125 1 C 2.546875 1.578125 2.546875 1.59375 1.921875 1.59375 C 1.8125 1.59375 1.671875 1.59375 1.671875 1.78125 C 1.671875 1.84375 1.71875 1.921875 1.828125 1.921875 C 1.953125 1.921875 2.1875 1.90625 2.3125 1.890625 L 2.84375 1.890625 C 3.625 1.890625 3.8125 1.921875 3.890625 1.921875 C 3.921875 1.921875 4.078125 1.921875 4.078125 1.734375 C 4.078125 1.59375 3.9375 1.59375 3.8125 1.59375 C 3.34375 1.59375 3.34375 1.53125 3.34375 1.453125 C 3.34375 1.4375 3.34375 1.390625 3.390625 1.234375 Z M 3.25 -1.234375 C 3.21875 -1.078125 3.21875 -1.046875 3.046875 -0.859375 C 2.53125 -0.265625 2.09375 -0.171875 1.890625 -0.171875 C 1.421875 -0.171875 1.203125 -0.59375 1.203125 -1.109375 C 1.203125 -1.578125 1.46875 -2.640625 1.6875 -3.078125 C 1.96875 -3.6875 2.453125 -4.09375 2.921875 -4.09375 C 3.578125 -4.09375 3.75 -3.328125 3.75 -3.25 C 3.75 -3.21875 3.734375 -3.140625 3.71875 -3.09375 Z M 3.25 -1.234375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-2" overflow="visible">
+<path d="M 0.515625 1.203125 C 0.4375 1.515625 0.421875 1.59375 0.015625 1.59375 C -0.125 1.59375 -0.234375 1.59375 -0.234375 1.78125 C -0.234375 1.875 -0.15625 1.921875 -0.09375 1.921875 C 0 1.921875 0.046875 1.890625 0.78125 1.890625 C 1.484375 1.890625 1.703125 1.921875 1.765625 1.921875 C 1.8125 1.921875 1.953125 1.921875 1.953125 1.734375 C 1.953125 1.59375 1.8125 1.59375 1.703125 1.59375 C 1.21875 1.59375 1.21875 1.53125 1.21875 1.453125 C 1.21875 1.375 1.40625 0.671875 1.703125 -0.484375 C 1.828125 -0.265625 2.140625 0.09375 2.671875 0.09375 C 3.890625 0.09375 5.15625 -1.3125 5.15625 -2.75 C 5.15625 -3.734375 4.53125 -4.375 3.734375 -4.375 C 3.140625 -4.375 2.65625 -3.96875 2.375 -3.671875 C 2.15625 -4.375 1.5 -4.375 1.40625 -4.375 C 1.046875 -4.375 0.796875 -4.140625 0.640625 -3.84375 C 0.40625 -3.390625 0.296875 -2.890625 0.296875 -2.859375 C 0.296875 -2.765625 0.359375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.578125 -2.765625 0.65625 -3.03125 C 0.78125 -3.53125 0.96875 -4.09375 1.375 -4.09375 C 1.625 -4.09375 1.6875 -3.875 1.6875 -3.625 C 1.6875 -3.53125 1.640625 -3.296875 1.625 -3.21875 Z M 2.34375 -3.0625 C 2.390625 -3.21875 2.390625 -3.25 2.546875 -3.421875 C 2.921875 -3.875 3.34375 -4.09375 3.703125 -4.09375 C 4.203125 -4.09375 4.390625 -3.609375 4.390625 -3.171875 C 4.390625 -2.796875 4.171875 -1.734375 3.875 -1.15625 C 3.609375 -0.609375 3.140625 -0.171875 2.671875 -0.171875 C 2 -0.171875 1.828125 -0.953125 1.828125 -1.015625 C 1.828125 -1.046875 1.859375 -1.15625 1.859375 -1.1875 Z M 2.34375 -3.0625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph3-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph3-1" overflow="visible">
+<path d="M 3.46875 -1.046875 C 3.65625 -0.921875 3.671875 -0.921875 3.734375 -0.921875 C 3.859375 -0.921875 3.96875 -1.03125 3.96875 -1.171875 C 3.96875 -1.328125 3.859375 -1.375 3.796875 -1.40625 C 3.421875 -1.5625 3.046875 -1.71875 2.65625 -1.859375 C 3.40625 -2.171875 3.625 -2.25 3.75 -2.296875 C 3.875 -2.359375 3.96875 -2.390625 3.96875 -2.546875 C 3.96875 -2.6875 3.859375 -2.796875 3.734375 -2.796875 C 3.671875 -2.796875 3.625 -2.765625 3.5625 -2.734375 L 2.5 -2.0625 C 2.515625 -2.171875 2.546875 -2.4375 2.546875 -2.515625 C 2.5625 -2.671875 2.625 -3.109375 2.625 -3.234375 C 2.625 -3.375 2.515625 -3.46875 2.375 -3.46875 C 2.25 -3.46875 2.125 -3.375 2.125 -3.234375 C 2.125 -3.234375 2.203125 -2.5625 2.203125 -2.53125 C 2.21875 -2.4375 2.25 -2.15625 2.25 -2.0625 L 1.1875 -2.734375 C 1.140625 -2.765625 1.09375 -2.796875 1.03125 -2.796875 C 0.90625 -2.796875 0.78125 -2.6875 0.78125 -2.546875 C 0.78125 -2.390625 0.890625 -2.34375 0.953125 -2.3125 C 1.328125 -2.15625 1.71875 -2 2.109375 -1.859375 C 1.34375 -1.546875 1.140625 -1.46875 1 -1.421875 C 0.890625 -1.359375 0.78125 -1.328125 0.78125 -1.171875 C 0.78125 -1.03125 0.90625 -0.921875 1.03125 -0.921875 C 1.09375 -0.921875 1.21875 -1 1.296875 -1.0625 C 1.40625 -1.125 1.65625 -1.28125 1.765625 -1.34375 C 2 -1.5 2.09375 -1.5625 2.25 -1.65625 C 2.25 -1.546875 2.21875 -1.296875 2.203125 -1.203125 L 2.125 -0.484375 C 2.125 -0.34375 2.25 -0.25 2.375 -0.25 C 2.515625 -0.25 2.625 -0.34375 2.625 -0.484375 C 2.625 -0.484375 2.5625 -1.15625 2.546875 -1.1875 C 2.546875 -1.28125 2.515625 -1.5625 2.5 -1.65625 Z M 3.46875 -1.046875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph4-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph4-1" overflow="visible">
+<path d="M 3.296875 2.484375 C 3.390625 2.484375 3.5 2.484375 3.5 2.359375 C 3.5 2.328125 3.5 2.3125 3.359375 2.1875 C 2 0.90625 1.671875 -0.9375 1.671875 -2.484375 C 1.671875 -5.34375 2.84375 -6.671875 3.359375 -7.140625 C 3.5 -7.265625 3.5 -7.265625 3.5 -7.328125 C 3.5 -7.375 3.46875 -7.4375 3.359375 -7.4375 C 3.203125 -7.4375 2.703125 -6.9375 2.625 -6.84375 C 1.296875 -5.453125 1.015625 -3.671875 1.015625 -2.484375 C 1.015625 -0.265625 1.953125 1.53125 3.296875 2.484375 Z M 3.296875 2.484375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph4-2" overflow="visible">
+<path d="M 3.0625 -2.484375 C 3.0625 -3.421875 2.90625 -4.546875 2.296875 -5.71875 C 1.8125 -6.640625 0.90625 -7.4375 0.71875 -7.4375 C 0.625 -7.4375 0.59375 -7.375 0.59375 -7.328125 C 0.59375 -7.28125 0.59375 -7.265625 0.71875 -7.140625 C 2.109375 -5.828125 2.421875 -4.015625 2.421875 -2.484375 C 2.421875 0.359375 1.234375 1.71875 0.734375 2.171875 C 0.609375 2.296875 0.59375 2.3125 0.59375 2.359375 C 0.59375 2.40625 0.625 2.484375 0.71875 2.484375 C 0.890625 2.484375 1.375 1.96875 1.453125 1.890625 C 2.78125 0.5 3.0625 -1.296875 3.0625 -2.484375 Z M 3.0625 -2.484375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph5-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph5-1" overflow="visible">
+<path d="M 2.015625 -2.484375 C 2.015625 -2.8125 1.734375 -3.03125 1.46875 -3.03125 C 1.15625 -3.03125 0.90625 -2.78125 0.90625 -2.484375 C 0.90625 -2.15625 1.1875 -1.9375 1.453125 -1.9375 C 1.78125 -1.9375 2.015625 -2.1875 2.015625 -2.484375 Z M 2.015625 -2.484375 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="106.685365" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-1" y="16.620308"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="118.10946" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-1" y="16.620308"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="123.781023" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-2" y="16.620308"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="131.424491" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-2" y="16.620308"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="6.815034" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-1" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="18.239129" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-1" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="23.910692" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-3" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="32.196929" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-2" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="205.913924" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-1" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="217.338019" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-1" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="223.008336" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph0-4" y="84.408004"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="230.446268" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph1-2" y="84.408004"></use>
+</g>
+<path d="M 19.715422 20.823551 L 80.221599 -20.553956 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996541,0,0,-0.996541,121.466059,46.790581)"></path>
+<path d="M -2.486244 2.868153 C -2.031095 1.146856 -1.01904 0.333482 0.00150153 0.000796546 C -1.017707 -0.335197 -2.033482 -1.148478 -2.48625 -2.868483 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.822565,0.562448,0.562448,-0.822565,201.607692,67.406061)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="174.962363" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-1" y="41.356444"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="179.672264" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph3-1" y="42.598383"></use>
+</g>
+<path d="M -80.098603 -20.820503 L -19.329799 20.553084 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996541,0,0,-0.996541,121.466059,46.790581)"></path>
+<path d="M -2.486941 2.868098 C -2.032975 1.14578 -1.02105 0.333493 -0.00119202 -0.000473726 C -1.021057 -0.335177 -2.034722 -1.14834 -2.486449 -2.87051 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.823691,-0.560823,-0.560823,-0.823691,102.399154,26.174723)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="57.929606" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-2" y="41.356444"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="63.239923" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph3-1" y="42.597137"></use>
+</g>
+<path d="M -77.205784 -34.010662 L 77.579647 -34.010662 " style="fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996541,0,0,-0.996541,121.466059,46.790581)"></path>
+<path d="M -2.485844 2.870939 C -2.031146 1.146222 -1.019835 0.334822 -0.000684437 0.00163807 C -1.019835 -0.335466 -2.031146 -1.146866 -2.485844 -2.867662 " style="fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996541,0,0,-0.996541,199.016307,80.685226)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="108.446253" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph4-1" y="91.634918"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="112.548264" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-2" y="91.634918"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="117.858581" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph5-1" y="91.634918"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="120.788411" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph2-1" y="91.634918"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="125.854575" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph4-2" y="91.634918"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="129.956587" xlink:href="#PGRvMZM1wcTH6Q1IK6Ybeb0FFt8=-glyph3-1" y="92.875611"></use>
+</g>
+</g>
+</svg>
+<p><a class="existingWikiWord" href="../../../../../5/5/7/3/3755/content.html">commutes</a> up to <a class="existingWikiWord" href="../../../../../8/4/7/1/1748/content.html">homotopy</a>, expressing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>p</mi><mo>⋅</mo><mi>q</mi><msub><mo stretchy="false">)</mo> <mo>*</mo></msub><mo>∼</mo><msub><mi>q</mi> <mo>*</mo></msub><mo>∘</mo><msub><mi>p</mi> <mo>*</mo></msub></mrow><annotation encoding="application/x-tex">(p\cdot q)_* \sim q_* \circ p_*</annotation></semantics></math>.</p>
+<p>Now fix a basepoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi> <mn>0</mn></msub><mo>:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b_0:B</annotation></semantics></math> and write <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>≔</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>b</mi> <mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F\coloneqq P(b_0)</annotation></semantics></math>. Restricting transport to the <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><msub><mi>b</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>≔</mo><mo stretchy="false">(</mo><msub><mi>b</mi> <mn>0</mn></msub><msub><mo>=</mo> <mi>B</mi></msub><msub><mi>b</mi> <mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega(B,b_0)\coloneqq(b_0=_B b_0)</annotation></semantics></math> yields the <strong>monodromy map</strong></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="0em" rspace="thinmathspace">mon</mo> <mrow><mi>P</mi><mo>,</mo><msub><mi>b</mi> <mn>0</mn></msub></mrow></msub><mo>:</mo><mi>Ω</mi><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><msub><mi>b</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>⟶</mo><mo lspace="0em" rspace="thinmathspace">Aut</mo><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="2em"></mspace><mi>γ</mi><mo>↦</mo><msub><mi>γ</mi> <mo>*</mo></msub><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\operatorname{mon}_{P,b_0}
+:
+\Omega(B,b_0)\longrightarrow\operatorname{Aut}(F),
+\qquad
+\gamma\mapsto\gamma_*.
+
+</annotation></semantics></math></div>
+<p>Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="0em" rspace="thinmathspace">Aut</mo><mo stretchy="false">(</mo><mi>F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{Aut}(F)</annotation></semantics></math> denotes the type of self-equivalences of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math>. The identity and composition properties of transport give the corresponding compatibility with the loop-space structure. In this sense, monodromy is the action of loops on the fiber induced by the dependent type family.</p>
+<h3 id="induced_equivalences_on_homotopy_groups">Induced equivalences on homotopy groups</h3>
+<p>Passing from fiber self-equivalences to <a class="existingWikiWord" href="../../../../../3/0/9/0/903/content.html">homotopy groups</a> introduces a subtlety concerning basepoints.</p>
+<p>Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>0</mn></msub><mo>:</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">f_0:F</annotation></semantics></math> and a loop <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>:</mo><msub><mi>b</mi> <mn>0</mn></msub><mo>=</mo><msub><mi>b</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\gamma:b_0=b_0</annotation></semantics></math>, transport determines <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>1</mn></msub><mo>≔</mo><msub><mi>γ</mi> <mo>*</mo></msub><mo stretchy="false">(</mo><msub><mi>f</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>:</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">f_1\coloneqq\gamma_*(f_0):F</annotation></semantics></math>, which need not coincide with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">f_0</annotation></semantics></math>. Consequently, the fiber self-equivalence canonically determines an equivalence of <a class="existingWikiWord" href="../../../../../3/5/7/0/10753/content.html">pointed types</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><msub><mi>f</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><msub><mo>≃</mo> <mo>*</mo></msub><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><msub><mi>f</mi> <mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(F,f_0)\simeq_*(F,f_1)</annotation></semantics></math>, and hence induces group isomorphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><msub><mi>f</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>≅</mo><msub><mi>π</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><msub><mi>f</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>,</mo><mspace width="2em"></mspace><mi>n</mi><mo>≥</mo><mn>1</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\pi_n(F,f_0)\cong\pi_n(F,f_1),
+\qquad n\geq 1.
+
+</annotation></semantics></math></div>
+<p>To obtain an automorphism of a single fixed-basepoint homotopy group, one must account for the change of basepoint. A specified path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><msub><mi>f</mi> <mn>1</mn></msub><mo>=</mo><msub><mi>f</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r:f_1=f_0</annotation></semantics></math>, for instance, supplies an additional identification between the two based homotopy groups.</p>
+<p>Thus, while transport canonically defines monodromy on the underlying fiber, its formulation as an action of the <a class="existingWikiWord" href="../../../../../4/0/9/0/904/content.html">fundamental group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><msub><mi>b</mi> <mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_1(B,b_0)</annotation></semantics></math> by automorphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi> <mi>n</mi></msub><mo stretchy="false">(</mo><mi>F</mi><mo>,</mo><msub><mi>f</mi> <mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_n(F,f_0)</annotation></semantics></math> requires further attention to the basepoint data and its compatibility with loop composition.</p>
+<p>For the underlying constructions in homotopy type theory, see <a href="#UFP13">UFP 2013, §§2.3 and 4.8</a>.</p>
+<h3 id="formalization_in_cubical_agda">Formalization in Cubical Agda</h3>
+<p>A machine-checked formalization of the transport-based monodromy constructions discussed above is available in <a class="existingWikiWord" href="../../../../../4/3/9/6/6934/content.html">Cubical Agda</a>.</p>
+<p>The formalization covers transport equivalences, identity and composition compatibility, loop-space monodromy, pointed transport, induced equivalences on higher homotopy groups, and explicit change-of-basepoint constructions.</p>
+<p>The accompanying mathematical exposition (Shadow Paper) provides a detailed account of these constructions, together with their mathematical references and explicit correspondences to the formal code.</p>
+<ul>
+<li><a href="https://github.com/hw4375-collab/Monodromy-CubicalAgda/blob/main/agda/NLabMonodromy.agda">Cubical Agda source code</a></li>
+<li><a href="https://github.com/hw4375-collab/Monodromy-CubicalAgda/blob/main/paper/main.pdf">Mathematical exposition (Shadow Paper)</a></li>
+<li><a href="https://github.com/hw4375-collab/Monodromy-CubicalAgda/tree/main/alignment">Mathematics-to-Agda correspondence</a></li>
+<li><a href="https://github.com/hw4375-collab/Monodromy-CubicalAgda">Repository and reproducibility instructions</a></li>
+</ul>
+<p>The implementation has been type-checked with Agda 2.8.0 and Cubical Library v0.9. Mathematical and semantic review is pending.</p>
+<p>The current formalization does not establish the full fundamental-group action on fixed-basepoint higher homotopy groups discussed in the preceding section.</p>
+<h2 id="in_cohesive_toposes">In cohesive <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-Toposes</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">\mathbf{H}</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../../../missing.html">cohesive (∞,1)-topos</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∈</mo><mstyle mathvariant="bold"><mi>H</mi></mstyle></mrow><annotation encoding="application/x-tex">X \in \mathbf{H}</annotation></semantics></math> any object. Then the <a class="existingWikiWord" href="../../../../../7/4/4/3/3447/content.html">locally constant ∞-stacks</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> are represented by morphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>LConst</mi><mi>Core</mi><mo stretchy="false">(</mo><mn>∞</mn><mi>Grpd</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \to LConst Core(\infty Grpd)</annotation></semantics></math>. By adjunction such morphisms are equivalent to <a class="existingWikiWord" href="../../../../../../../missing.html">(∞,1)-functors</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Core</mi><mo stretchy="false">(</mo><mn>∞</mn><mi>Grpd</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi(X) \to Core(\infty Grpd)</annotation></semantics></math> This morphism exhibits the <strong>monodromy</strong> of the <a class="existingWikiWord" href="../../../../../7/4/4/3/3447/content.html">locally constant ∞-stack</a>.</p>
+<p>Specifically, the restriction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><msub><mi>Ω</mi> <mi>x</mi></msub><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>↪</mo><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>→</mo><mn>∞</mn><mi>Grpd</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}\Omega_x \Pi(X) \hookrightarrow \Pi(X) \to \infty Grpd</annotation></semantics></math> to the <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><msub><mi>Ω</mi> <mi>x</mi></msub><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{B}\Omega_x \Pi(X)</annotation></semantics></math> of the <a class="existingWikiWord" href="../../../../../4/8/6/0/684/content.html">loop space object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ω</mi> <mi>x</mi></msub><mi>Π</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega_x \Pi(X)</annotation></semantics></math> at a chosen baspoint <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mo>*</mo><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x : {*} \to X</annotation></semantics></math> is the <strong>monodromy <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a></strong> of loops based at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x \in X</annotation></semantics></math> on the fiber of the locally constant <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>∞</mn></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math>-stack over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>.</p>
+<h2 id="references">References</h2>
+<p>Discussion in <a class="existingWikiWord" href="../../../../../5/7/0/8/18075/content.html">topological</a> <a class="existingWikiWord" href="../../../../../6/7/0/0/76/content.html">homotopy theory</a>:</p>
+<ul>
+<li id="Steenrod1951">
+<p><a class="existingWikiWord" href="../../../../../2/6/1/5/5162/content.html">Norman Steenrod</a>, Section 17 of: <em>The Topology of Fibre Bundles</em>, Princeton Mathematical Series <strong>14</strong>, Princeton University Press (1951) [<a href="https://www.jstor.org/stable/j.ctt1bpm9t5">jstor:j.ctt1bpm9t5</a>]</p>
+</li>
+<li id="Whitehead1978">
+<p><a class="existingWikiWord" href="../../../../../5/6/1/6/6165/content.html">George Whitehead</a>, Section IV.3 of: <em>Elements of Homotopy Theory</em>, Graduate Texts in Mathematics <strong>61</strong>, Springer (1978) [<a href="https://doi.org/10.1007/978-1-4612-6318-0">doi:10.1007/978-1-4612-6318-0</a>]</p>
+</li>
+<li id="Spanier1981">
+<p><a class="existingWikiWord" href="../../../../../8/1/4/3/3418/content.html">Edwin Spanier</a>, Section 7.2 of: <em>Algebraic Topology</em>, McGraw-Hill (1966), Springer (1981) [7<a href="https://doi.org/10.1007/978-1-4684-9322-1">doi:10.1007/978-1-4684-9322-1</a>]</p>
+</li>
+<li id="May1999">
+<p><a class="existingWikiWord" href="../../../../../7/1/5/0/517/content.html">Peter May</a>, Section 7.3 of: <em><a class="existingWikiWord" href="../../../../../6/0/7/5/5706/content.html">A Concise Course in Algebraic Topology</a></em>, University of Chicago Press (1999) [<a href="https://press.uchicago.edu/ucp/books/book/chicago/C/bo3777031.html">ISBN:9780226511832</a>, <a href="https://www.math.uchicago.edu/~may/CONCISE/ConciseRevised.pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>Formulation in <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>:</p>
+<ul>
+<li id="UFP13"><a class="existingWikiWord" href="../../../../../5/0/9/8/8905/content.html">Univalent Foundations Project</a>; section 2.3 &amp; 4.8 of: <em><a class="existingWikiWord" href="../../../../../9/4/8/9/9849/content.html">Homotopy Type Theory – Univalent Foundations of Mathematics</a></em> (2013) [<a href="https://homotopytypetheory.org/book/">web</a>, <a href="https://homotopytypetheory.org/book/hott-online.pdf">pdf</a>]</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../6/8/3/3861/content.html">eom</a>: <em><a href="https://encyclopediaofmath.org/wiki/Monodromy_transformation">Monodromy transformation</a></em></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

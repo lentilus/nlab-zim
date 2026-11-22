@@ -1,0 +1,406 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      lambda-calculus in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      lambda-calculus
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#concepts">Concepts</a></li>
+<ul>
+<li><a href="#abstraction_and_application">Abstraction and application</a></li>
+<li><a href="#evaluation_and_reduction">Evaluation and Reduction</a></li>
+</ul>
+<li><a href="#variants">Variants</a></li>
+<ul>
+<li><a href="#pure_lambda_calculus">Pure lambda calculus</a></li>
+<li><a href="#SimplyTypedLambdaCalculus">Simply typed lambda calculus</a></li>
+<li><a href="#functional_programming">Functional programming</a></li>
+</ul>
+<li><a href="#related_entries">Related entries</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The <strong>lambda calculus</strong> is:</p>
+<ul>
+<li>
+<p>a simple <a class="existingWikiWord" href="../../../../../4/9/3/8/8394/content.html">programming language</a>;</p>
+</li>
+<li>
+<p>a <em>model of computation</em> (akin to <a class="existingWikiWord" href="../../../../8/8/8/18888/content.html">Turing machine</a>s and <a class="existingWikiWord" href="../../../../../1/2/4/6/16421/content.html">recursive function</a>s), through which we can study the computability and complexity of <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">functions</a> and predicates; and</p>
+</li>
+<li>
+<p>an <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal language</a> for <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed categories</a> (for more on this see at <em><a class="existingWikiWord" href="../../../../../6/3/6/7/7636/content.html">relation between type theory and category theory</a></em>).</p>
+</li>
+</ul>
+<p>It comes in both <em>typed</em> and <em>untyped</em> versions.</p>
+<h2 id="concepts">Concepts</h2>
+<h3 id="abstraction_and_application">Abstraction and application</h3>
+<p>The basic constructs of lambda calculus are <em><a class="existingWikiWord" href="../../../../../0/7/8/7/7870/content.html">lambda abstractions</a></em> and <em>applications</em>. If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> is an expression of some sort involving a free variable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> (possibly vacuously), then the lambda abstraction</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>t</mi></mrow><annotation encoding="application/x-tex"> \lambda x. t </annotation></semantics></math></div>
+<p>is intended to represent the function which takes one input and returns the result of substituting that input for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>. Thus, for instance, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x. (x+1))</annotation></semantics></math> is the function which adds one to its argument. Lambda expressions are often convenient, even outside lambda calculus proper, for referring to a function without giving it a name.</p>
+<p>Application is how we “undo” abstraction, by applying a function to an argument. The application of the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> to the argument <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> is generally denoted simply by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">f t</annotation></semantics></math>. Applications can be parenthesized, so for instance <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(t)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">(f)t</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>f</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(f t)</annotation></semantics></math> all denote the same thing as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">f t</annotation></semantics></math>.</p>
+<p>Application is generally considered to associate to the left. Thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mi>v</mi><mi>w</mi></mrow><annotation encoding="application/x-tex">u v w</annotation></semantics></math> denotes the application of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math>, followed by application of the result (assumed to again be a function) to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math>. This allows the representation of functions of multiple variables in terms of functions of one variable via “currying” (named for Haskell Curry, although it was invented by Moses Schönfinkel): after being applied to the first argument, we return a function which, applied to the next argument, returns a function which, when applied to the next argument, … , returns a value. For instance, the “addition” function of two variables can be denoted <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x. (\lambda y. x+y))</annotation></semantics></math>: when applied to an argument <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>, it returns a function which, when applied to an argument <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math>, returns <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x+y</annotation></semantics></math>. This is so common that it is generally abbreviated <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mi>y</mi><mo>.</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x y. x+y)</annotation></semantics></math>.</p>
+<h3 id="evaluation_and_reduction">Evaluation and Reduction</h3>
+<p><em>Evaluation</em> or <em>reduction</em> is the process of “computing” the “value” of a lambda term. The most basic operation is called <em><a class="existingWikiWord" href="../../../../../6/0/5/7/7506/content.html">beta reduction</a></em> and consists in taking a lambda abstraction at its word about what it is supposed to do when applied to an input. For instance, the application <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">(\lambda x. x+1) 3</annotation></semantics></math> reduces to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3+1</annotation></semantics></math> (and thereby, presuming appropriate rules for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="verythinmathspace" rspace="0em">+</mo></mrow><annotation encoding="application/x-tex">+</annotation></semantics></math>, to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math>). In general, the beta reduction of a term <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x.t)(u)</annotation></semantics></math> is defined as the <a class="existingWikiWord" href="../../../../../9/0/6/7/7609/content.html#avoiding+variable+capture">capture-avoiding substitution</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><msub><mo>→</mo> <mi>β</mi></msub><mi>t</mi><mo stretchy="false">[</mo><mi>u</mi><mo stretchy="false">/</mo><mi>x</mi><mo stretchy="false">]</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">(\lambda x.t)(u) \to_\beta t[u/x].</annotation></semantics></math></div>
+<p>Terms which can be connected by a <a class="existingWikiWord" href="../../../../../9/0/0/4/4009/content.html">zigzag</a> of beta reductions (in either direction) are said to be <em>beta-equivalent</em>.</p>
+<p>Another basic operation often assumed in the lambda calculus is <em><a class="existingWikiWord" href="../../../../../7/0/5/7/7507/content.html">eta reduction</a>/expansion</em>, which consists of identifying a function, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> with the lambda abstraction <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x. f x)</annotation></semantics></math> which does nothing other than apply <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> to its argument. (It is called “reduction” or “expansion” depending on which “direction” it goes in, from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x. f x)</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> or vice versa.)</p>
+<p>A more basic operation than either of these, which is often not even mentioned at all, is <em>alpha equivalence</em>; this consists of the renaming of bound variables, e.g. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>f</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x. f x) \to (\lambda y. f y)</annotation></semantics></math>.</p>
+<p>More complicated systems that build on the lambda calculus, such as various <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theories</a>, will often have other rules of evaluation as well.</p>
+<p>In good situations, lambda calculus reduction is <em><a class="existingWikiWord" href="../../../../../9/9/9/5/5999/content.html">confluent</a></em> (the <a class="existingWikiWord" href="../../../../../4/6/9/0/10964/content.html">Church-Rosser theorem</a>), so that every term has at most one <em><a class="existingWikiWord" href="../../../../../1/6/4/9/19461/content.html">normal form</a></em>, and two terms are equivalent precisely when they have the same normal form. A term is said to be <em>normalizing</em> if its reduction is also terminating—more precisely, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> is said to be <em>weakly-normalizing</em> if there exists a finite sequence of reductions</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>→</mo><msub><mi>t</mi> <mn>1</mn></msub><mo>→</mo><msub><mi>t</mi> <mn>2</mn></msub><mo>→</mo><mi>…</mi><mo>→</mo><msub><mi>t</mi> <mi>n</mi></msub><mo>↛</mo></mrow><annotation encoding="application/x-tex"> t \to t_1 \to t_2 \to \dots \to t_n \nrightarrow </annotation></semantics></math></div>
+<p>terminating in a normal form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">t_n</annotation></semantics></math>, and <em>strongly-normalizing</em> if <em>all</em> sequences of reductions lead to a (by confluence, necessarily unique) normal form. In general, there exist terms which do not normalize by any reduction sequence, although simply-typed lambda calculus and many other typed variants of lambda calculus are strongly-normalizing.</p>
+<h2 id="variants">Variants</h2>
+<h3 id="pure_lambda_calculus">Pure lambda calculus</h3>
+<p>In the untyped (or “pure”) lambda calculus, every term can be applied to any other term. As an example of the sort of freedom this allows, we can form the term <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>=</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">u = \lambda x. x x</annotation></semantics></math> which applies its argument to itself, and then define</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> \omega = u(u) </annotation></semantics></math></div>
+<p>as the self-application of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math>. Performing beta-reduction on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi></mrow><annotation encoding="application/x-tex">\omega</annotation></semantics></math> yields</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><msub><mo>→</mo> <mi>β</mi></msub><mi>x</mi><mi>x</mi><mo stretchy="false">[</mo><mi>u</mi><mo stretchy="false">/</mo><mi>x</mi><mo stretchy="false">]</mo><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ω</mi><msub><mo>→</mo> <mi>β</mi></msub><mi>ω</mi><msub><mo>→</mo> <mi>β</mi></msub><mi>…</mi></mrow><annotation encoding="application/x-tex"> \omega \to_\beta x x[u/x] = u(u) = \omega \to_\beta \omega \to_\beta \dots</annotation></semantics></math></div>
+<p>thus giving the classic example of a non-terminating program.</p>
+<p>In pure untyped lambda calculus, we can define <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">natural numbers</a> using the <a class="existingWikiWord" href="../../../../../9/6/2/2/22269/content.html">Church numerals</a>: the number <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> is represented by the operation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-fold iteration. Thus for instance we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>=</mo><mi>λ</mi><mi>f</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2 = \lambda f. (\lambda x.f (f x))</annotation></semantics></math>, the function which takes a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> as input and returns a function that applies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> twice. Similarly <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>=</mo><mi>λ</mi><mi>f</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1 = \lambda f. (\lambda x.f x)</annotation></semantics></math> is the identity on functions, while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>=</mo><mi>λ</mi><mi>f</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">0 = \lambda f. (\lambda x . x)</annotation></semantics></math> takes any function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> to the identity function (the 0th iterate of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math>). We can then construct (very inefficiently) all of arithmetic, and prove that the arithmetic functions expressible by lambda terms are exactly the same as those computable by Turing machines or (total) recursive functions.</p>
+<p>The most natural sort of <em>model</em> of pure lambda calculus is a <a class="existingWikiWord" href="../../../../../2/2/3/6/16322/content.html">reflexive object</a> in a cartesian closed category, that is, an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> together with a pair of maps</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable><mtr><mtd><mi>U</mi></mtd> <mtd><mover><munder><mo>⇄</mo><mi>ℓ</mi></munder><mi>a</mi></mover></mtd> <mtd><msup><mi>U</mi> <mi>U</mi></msup></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\array{U &amp; \overset{a}{\underset{\ell}{\rightleftarrows}} &amp; U^U} 
+
+</annotation></semantics></math></div>
+<p>representing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>pplication and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">\ell</annotation></semantics></math>ambda, such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∘</mo><mi>ℓ</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a \circ \ell = 1</annotation></semantics></math> (to validate the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math> equation). Such data thereby witnesses the <a class="existingWikiWord" href="../../../../../3/1/3/1/1313/content.html">exponential object</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mi>U</mi></msup></mrow><annotation encoding="application/x-tex">U^U</annotation></semantics></math> as a <a class="existingWikiWord" href="../../../../../0/0/7/0/700/content.html">retract</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>. Of course there are no nontrivial such models in sets, but they do exist in other categories, such as <a class="existingWikiWord" href="../../../../../2/6/5/2/2562/content.html">domain</a>s. It is worth remarking that a necessary condition on such <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> is that every term <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><msup><mi>U</mi> <mi>U</mi></msup></mrow><annotation encoding="application/x-tex">f \colon U^U</annotation></semantics></math> have a fixed-point; see <a class="existingWikiWord" href="../../../../../7/5/0/8/8057/content.html">fixed-point combinator</a>.</p>
+<p>From the point of view of <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a> and in particular the “types à la Church” perspective, such a reflexive object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> can also be seen as the intrinsic type of <em>every</em> lambda term, and so the untyped lambda calculus is sometimes referred to (a bit cheekily) as really being “uni-typed”. On the other hand, from the “types à la Curry” perspective, it is also possible to begin with the pure lambda calculus as a foundation, and then try to ascribe individual terms more precise types. For example, the normalizing terms of pure lambda calculus can be characterized precisely as those which are typable in an <a class="existingWikiWord" href="../../../../8/1/8/28188/content.html">intersection type</a> system.</p>
+<h3 id="SimplyTypedLambdaCalculus">Simply typed lambda calculus</h3>
+<p>In <em><a class="existingWikiWord" href="../../../../../0/3/3/6/16330/content.html">simply typed</a></em> lambda calculus (cf. <em><a class="existingWikiWord" href="../../../../../0/3/3/6/16330/content.html">simple type theory</a></em>), each variable and term has a <em><a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a></em>, and we can only form the application <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">f t</annotation></semantics></math> if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> is of some type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> while <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is of a <a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>=</mo><msup><mi>B</mi> <mi>A</mi></msup></mrow><annotation encoding="application/x-tex">A \to B = B^A</annotation></semantics></math> whose domain is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>; the type of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">f t</annotation></semantics></math> is then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>. Similarly, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> is a variable of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math> is a term of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> involving <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">\lambda x. t</annotation></semantics></math> has type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A\to B</annotation></semantics></math>.</p>
+<p>Without some further type and term constructors, there is not much that can be done, but if we add a <a class="existingWikiWord" href="../../../../../1/8/1/1/1181/content.html">natural numbers object</a> (that is, a type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> with constants <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>→</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">N\to N</annotation></semantics></math>, along with a “definition-by-recursion” operator), then we can express many recursive functions. (We cannot by this means express <em>all</em> computable functions, although we can go beyond <a class="existingWikiWord" href="../../../../../2/0/2/0/10202/content.html">primitive recursive function</a>s; for instance we can define the <a class="existingWikiWord" href="../../../../../2/0/2/0/10202/content.html">Ackermann function</a>. One way to increase the expressiveness to all <a class="existingWikiWord" href="../../../../../2/0/2/0/10202/content.html">partial recursive function</a>s is to add a <a class="existingWikiWord" href="../../../../../5/9/7/2/22795/content.html">fixpoint</a> <a class="existingWikiWord" href="../../../../1/4/7/17418/content.html">combinator</a>, or an unbounded search operator).</p>
+<p>Simply typed lambda calculus is the natural <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal language</a> of <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed categories</a>. This means that</p>
+<ul>
+<li>
+<p>Every cartesian closed category gives rise to a simply typed lambda calculus whose basic types are its objects, and whose basic terms are its morphisms, while</p>
+</li>
+<li>
+<p>Every simply typed lambda calculus “generates” a cartesian closed category whose objects are its types and whose morphisms are its equivalence classes of terms.</p>
+</li>
+</ul>
+<p>These two operations are adjoint in an appropriate sense.</p>
+<h3 id="functional_programming">Functional programming</h3>
+<p>Most <a class="existingWikiWord" href="../../../../../4/7/9/8/8974/content.html">functional</a> <a class="existingWikiWord" href="../../../../../4/9/3/8/8394/content.html">programming languages</a>, such as Lisp, ML, and Haskell, are at least loosely based on lambda calculus.</p>
+<h2 id="related_entries">Related entries</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../1/4/7/17418/content.html">combinator</a>, <a class="existingWikiWord" href="../../../../1/4/7/17418/content.html">combinatory logic</a></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../7/5/0/8/8057/content.html">fixed-point combinator</a></li>
+</ul>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/3/6/7/7636/content.html">relation between type theory and category theory</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/1/9/4/24912/content.html">quantum lambda-calculus</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p>Textbook accounts:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/5/3/5/25351/content.html">J. Roger Hindley</a>, <a class="existingWikiWord" href="../../../../../2/2/6/8/8622/content.html">Jonathan P. Seldin</a>, <em>Lambda-Calculus and Combinators – An Introduction</em>, Cambridge University Press (2008) [<a href="https://doi.org/10.1017/CBO9780511809835">doi:10.1017/CBO9780511809835</a>]</li>
+</ul>
+<p>Introduction to <a class="existingWikiWord" href="../../../../../0/3/3/6/16330/content.html">simply typed</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>-calculus:</p>
+<ul>
+<li id="Girard89"><a class="existingWikiWord" href="../../../../../7/0/6/7/7607/content.html">Jean-Yves Girard</a> (translated and with appendiced by <a class="existingWikiWord" href="../../../../../9/7/0/2/2079/content.html">Paul Taylor</a> and <a class="existingWikiWord" href="../../../../../6/0/3/5/5306/content.html">Yves Lafont</a>), <em>Proofs and Types</em>, Cambridge University Press (1989) [<a href="">ISBN:978-0-521-37181-0</a>, <a href="http://www.paultaylor.eu/stable/Proofs+Types.html">webpage</a>, <a href="https://www.paultaylor.eu/stable/prot.pdf">pdf</a>]</li>
+</ul>
+<p>The idea that untyped lambda calculus can be modeled internally to a cartesian closed category as a <a class="existingWikiWord" href="../../../../../2/2/3/6/16322/content.html">reflexive object</a> (an object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math> such that the exponential <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>U</mi> <mi>U</mi></msup></mrow><annotation encoding="application/x-tex">U^U</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../0/0/7/0/700/content.html">retract</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>) was formulated explicitly in:</p>
+<ul>
+<li id="Scott80"><a class="existingWikiWord" href="../../../../8/3/8/8388/content.html">Dana S. Scott</a>, <em>Relating theories of the lambda calculus</em>, in: <em>To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and Formalism</em>, Academic Press (1980) 403–450 [<a class="existingWikiWord" href="/nlab/files/Scott-RelatingTheories.pdf" title="">pdf</a>]</li>
+</ul>
+<p>This followed his earlier work constructing an explicit such model in the category of domains:</p>
+<ul>
+<li id="Scott70">
+<p><a class="existingWikiWord" href="../../../../8/3/8/8388/content.html">Dana S. Scott</a>, <em>Outline of a mathematical theory of computation</em>, in: Proceedings of the <em>Fourth Annual Princeton Conference on Information Sciences and Systems</em> (1970) 169–176. [<a href="https://ropas.snu.ac.kr/~kwang/520/readings/sco70.pdf">pdf</a>, <a class="existingWikiWord" href="/nlab/files/Scott-TheoryOfComputation.pdf" title="pdf">pdf</a>]</p>
+</li>
+<li id="Scott76">
+<p><a class="existingWikiWord" href="../../../../8/3/8/8388/content.html">Dana Scott</a>, <em>Data types as lattices</em>. SIAM Journal of Computing <strong>5</strong> 3 (1976) 522–587 [<a href="https://doi.org/10.1137/0205037">doi:10.1137/0205037</a>, <a href="https://www.cs.ox.ac.uk/files/3287/PRG05.pdf">pdf</a>]</p>
+</li>
+</ul>
+<p>Another, more recent take on pure lambda calculus as a certain kind of <a class="existingWikiWord" href="../../../../../6/3/5/0/536/content.html">algebraic theory</a> (called a “<a class="existingWikiWord" href="../../../../../3/3/3/6/16333/content.html">lambda theory</a>”) can be found in</p>
+<ul>
+<li id="Hyland13"><a class="existingWikiWord" href="../../../../1/9/4/4918/content.html">Martin Hyland</a>. <em>Classical lambda calculus in modern dress</em> Mathematical Structures in Computer Science, 27(5) (2017) 762-781. doi:<a href="https://doi.org/10.1017/S0960129515000377">10.1017/S0960129515000377</a>. <a href="http://arxiv.org/abs/1211.5762">arxiv:1211.5762</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

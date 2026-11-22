@@ -1,0 +1,536 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Nakayama's lemma in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Nakayama's lemma
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#statement">Statement</a></li>
+<li><a href="#examples_and_consequences">Examples and consequences</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p><em>Nakayama’s lemma</em> is a family of simple but fundamental results of <a class="existingWikiWord" href="../../../../../5/1/1/2/2115/content.html">commutative algebra</a> which are frequently used to lift information from the <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fiber</a> of a <a class="existingWikiWord" href="../../../../../3/4/1/0/143/content.html">sheaf</a> over a point (as for example a <a class="existingWikiWord" href="../../../../../8/4/0/2/2048/content.html">coherent sheaf</a> over a <a class="existingWikiWord" href="../../../../../5/3/8/1/1835/content.html">scheme</a>) to give information on the <a class="existingWikiWord" href="../../../../../7/1/6/1/1617/content.html">stalk</a> at that point.</p>
+<h2 id="statement">Statement</h2>
+<p>We first state and prove a pair of fundamental geometric facts (Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a>) concerning the relationships between annihilators, supports, and tensor products of modules and then deduce as corollaries two standard formulations (Cor. <a class="maruku-ref" href="#FirstSpecialVersion"></a> and Cor. <a class="maruku-ref" href="#SecondSpecialVersion"></a>) of “Nakayama’s lemma” from which various other instances thereof can in turn be derived (as is done in <a href="https://stacks.math.columbia.edu/tag/00DV">Stacks 00DV</a>).</p>
+<p>As motivation, recall the following general fact:</p>
+<p>
+<div class="num_prop" id="GeneralNakayamaMotivation">
+<h6>Proposition</h6>
+<p><strong>(motivation)</strong> Given <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">commutative ring</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">R ,</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">natural</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">n ,</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/8/4/7/7482/content.html">tuple</a> of <a class="existingWikiWord" href="../../../../../3/3/2/0/233/content.html"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>R</mi>
+</mrow>
+<annotation encoding="application/x-tex">R</annotation>
+</semantics>
+</math>-modules</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( M _ i \right) _ { i \in n } ,</annotation></semantics></math></p>
+<ol>
+<li>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">i \in n ,</annotation></semantics></math> one has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊆</mo><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">supp \left( M _ i \right) \subseteq \mathcal{V} \left( Ann \left( M _ i \right) \right) .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊆</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋂</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">supp \left( \underset{ i \in n }{ \bigotimes } M _ i \right) \subseteq \bigcap _ { i \in n } supp \left( M _ i \right) .</annotation></semantics></math></p>
+</li>
+</ol>
+<p>(Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi></mrow><annotation encoding="application/x-tex">\mathcal{V}</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/00DZ">zero locus</a>,<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi></mrow><annotation encoding="application/x-tex">supp</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/00L1">support</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi></mrow><annotation encoding="application/x-tex">Ann</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/07T7">annihilator</a>. For convenience, we assume the <a class="existingWikiWord" href="../../../../../0/0/2/1/1200/content.html">Von Neumann convention</a> so that, e.g., the quantification “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math>” is equivalent to “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mrow><mo>{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>}</mo></mrow></mrow><annotation encoding="application/x-tex">i \in \left\{ 0 , \dots , n-1 \right\}</annotation></semantics></math>”.)</p>
+</div>
+</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>As for the first claim, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in supp \left( M _ i \right) ,</annotation></semantics></math> i.e., if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">M _ i \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0 ,</annotation></semantics></math> then the elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∖</mo><mi>𝔭</mi></mrow><annotation encoding="application/x-tex">R \setminus \mathfrak{p}</annotation></semantics></math> act nontrivially on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">M _ i \otimes R _ { \mathfrak{p} } ,</annotation></semantics></math> hence nontrivially on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">M _ i ,</annotation></semantics></math> hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊆</mo><mi>𝔭</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">Ann \left( M _ i \right) \subseteq \mathfrak{p} .</annotation></semantics></math> As for the second claim, recall that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>≃</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( \underset{ i \in n }{ \bigotimes } M _ i \right) \otimes R _ { \mathfrak{p} } \simeq \underset{ i \in n }{ \bigotimes } \left( M _ i \otimes R _ { \mathfrak{p} } \right) ,</annotation></semantics></math> hence that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>supp</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in supp \left( \underset{ i \in n }{ \bigotimes } M _ i \right) ,</annotation></semantics></math> i.e., if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( \underset{ i \in n }{ \bigotimes } M _ i \right) \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0 ,</annotation></semantics></math> then for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math> one must have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">M _ i \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0 ,</annotation></semantics></math> i.e.,<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in supp \left( M _ i \right) .</annotation></semantics></math></p>
+</div>
+</p>
+<p>Our first, geometric incarnation of Nakayama’s lemma is just the assertion that if the modules in the statement of Prop. <a class="maruku-ref" href="#GeneralNakayamaMotivation"></a> are finitely generated, then the inclusions in the same are equalities.</p>
+<p>
+<div class="num_prop" id="GeneralNakayamaLemma">
+<h6>Proposition</h6>
+<p><strong>(“geometric Nakayama”)</strong> Given <a class="existingWikiWord" href="../../../../../7/2/2/0/227/content.html">commutative ring</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">R ,</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../5/8/8/0/885/content.html">natural</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">n ,</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../2/8/4/7/7482/content.html">tuple</a> of <a class="existingWikiWord" href="../../../../../7/8/7/2/2787/content.html">finitely generated</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( M _ i \right) _ { i \in n } ,</annotation></semantics></math></p>
+<ol>
+<li>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">i \in n ,</annotation></semantics></math> one has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>=</mo><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">supp \left( M _ i \right) = \mathcal{V} \left( Ann \left( M _ i \right) \right) .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋂</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">supp \left( \underset{ i \in n }{ \bigotimes } M _ i \right) = \bigcap _ { i \in n } supp \left( M _ i \right) .</annotation></semantics></math></p>
+</li>
+</ol>
+<p>(Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi></mrow><annotation encoding="application/x-tex">\mathcal{V}</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/00DZ">zero locus</a>,<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi></mrow><annotation encoding="application/x-tex">supp</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/00L1">support</a>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi></mrow><annotation encoding="application/x-tex">Ann</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/07T7">annihilator</a>. For convenience, we assume the <a class="existingWikiWord" href="../../../../../0/0/2/1/1200/content.html">Von Neumann convention</a> so that, e.g., the quantification “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math>” is equivalent to “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mrow><mo>{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>}</mo></mrow></mrow><annotation encoding="application/x-tex">i \in \left\{ 0 , \dots , n-1 \right\}</annotation></semantics></math>”.)</p>
+</div>
+</p>
+<p>We give an “element-free” proof below. The two key ideas are that finitely-generated <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules are (precisely) those which can be “built up” inductively from cyclic <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules via extensions and that the relevant properties of the former are sufficiently determined by those of the latter, which are standard and/or easily verified.</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>Recall the following seven basic facts (essentially two “induction principles”, three “interaction principles”, and two “base cases” of our “induction” up from cyclic modules):</p>
+<ol>
+<li>
+<p>The middle term of a short exact sequence is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> iff its left and right terms are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></p>
+</li>
+<li>
+<p>The middle component of a morphism of short exact sequences is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> iff its left and right components are <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">0 .</annotation></semantics></math></p>
+</li>
+<li>
+<p>Given prime <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in Spec (R) ,</annotation></semantics></math> the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>↦</mo><mi>N</mi><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow><annotation encoding="application/x-tex">N \mapsto N \otimes R _ { \mathfrak{p} }</annotation></semantics></math> is exact.</p>
+</li>
+<li>
+<p>The (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-ary) functor of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>N</mi> <mi>i</mi></msub><mo>)</mo></mrow> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mo>↦</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>N</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\left( N _ i \right) _ { i \in n } \mapsto \underset{ i \in n }{ \bigotimes } N _ i</annotation></semantics></math> is right exact in all arguments.</p>
+</li>
+<li>
+<p>Given prime <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in Spec (R)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-tuple of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>N</mi> <mi>i</mi></msub><mo>)</mo></mrow> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( N _ i \right) _ { i \in n } ,</annotation></semantics></math> one has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>N</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>≃</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><msub><mi>N</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\left( \underset{ i \in n }{ \bigotimes } N _ i \right) \otimes R _ { \mathfrak{p} } \simeq \underset{ i \in n }{ \bigotimes } \left( N _ i \otimes R _ { \mathfrak{p} } \right) .</annotation></semantics></math></p>
+</li>
+<li>
+<p>Given prime <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in Spec (R)</annotation></semantics></math> and ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo>⊆</mo><mi>R</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">J \subseteq R ,</annotation></semantics></math> one has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>J</mi><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">\left( R / J \right) \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0</annotation></semantics></math> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>𝒱</mi><mrow><mo>(</mo><mi>J</mi><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in \mathcal{V} \left( J \right) .</annotation></semantics></math></p>
+</li>
+<li>
+<p>Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-tuple of ideals <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>J</mi> <mi>i</mi></msub><mo>⊆</mo><mi>R</mi><mo>)</mo></mrow> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( J _ i \subseteq R \right) _ { i \in n } ,</annotation></semantics></math> one has <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><msub><mi>J</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>≃</mo><mi>R</mi><mo stretchy="false">/</mo><mrow><mo>(</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><msub><mi>J</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\underset{ i \in n }{ \bigotimes } \left( R / J _ i \right) \simeq R / \left( \sum _ { i \in n } J _ i \right) .</annotation></semantics></math></p>
+</li>
+</ol>
+<p>The argument goes in four parts:</p>
+<ol>
+<li>
+<p>Suppose we are given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">i \in n .</annotation></semantics></math> By the hypothesis that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">M _ i</annotation></semantics></math> is finitely generated there exists natural <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d _ i</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math> is a quotient of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi> <mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow></msup><mo>.</mo></mrow><annotation encoding="application/x-tex">R ^ { d _ i } .</annotation></semantics></math> It follows (by taking the image under said quotient of the standard length-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d _ i</annotation></semantics></math> filtration of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi> <mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow></msup></mrow><annotation encoding="application/x-tex">R ^ { d _ i }</annotation></semantics></math>) that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">M _ i</annotation></semantics></math> admits a length-<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d _ i</annotation></semantics></math> filtration with cyclic cokernels; denote this filtration and its associated <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d _ i</annotation></semantics></math>-tuple of short exact sequences as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mn>0</mn></mrow></msub><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><mn>0</mn></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><mi>…</mi><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>d</mi> <mi>i</mi></msub><mo>−</mo><mn>1</mn></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> 0 \ = \ M _ { i , 0 } \ \overset{ \iota _ { i , 0 } }{ \hookrightarrow } \ \dots \ \overset{ \iota _ { i , d _ i - 1 } }{ \hookrightarrow } \ M _ {i , d _ i } \ = \ M _ i </annotation></semantics></math></div>
+<p>and</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub><mspace width="thickmathspace"></mspace><mover><mo>↠</mo><mrow><msub><mi>π</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><mi>R</mi><mo stretchy="false">/</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>)</mo></mrow> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub></mrow><annotation encoding="application/x-tex"> \left( \ 0 \ \to \ M_{ i , j } \ \overset{ \iota _ { i , j } }{ \hookrightarrow } \ M_{ i , j + 1 } \ \overset{ \pi _ { i , j } }{ \twoheadrightarrow } \ R / I_{ i , j } \ \to \ 0 \ \right)_{ j \in d _ i } </annotation></semantics></math></div>
+<p>with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊆</mo><mi>R</mi><mo>)</mo></mrow> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub></mrow><annotation encoding="application/x-tex">\left( I _ { i , j } \subseteq R \right) _ { j \in d _ i }</annotation></semantics></math> ideals.</p>
+</li>
+<li>
+<p>We now show, given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">i \in n ,</annotation></semantics></math> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>=</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋃</mo> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><mi>𝒱</mi><mrow><mo>(</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathcal{V} \left( Ann \left( M _ i \right) \right) = \bigcup _ { j \in d _ i } \mathcal{V} \left( I _ { i , j } \right) .</annotation></semantics></math> Applying recalled fact 2, it follows (inductively) that all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∈</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">f \in Ann \left( M _ i \right)</annotation></semantics></math> act as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math> on all the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">/</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">R / I _ { i , j } ,</annotation></semantics></math> hence that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊆</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋂</mo> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>.</mo></mrow><annotation encoding="application/x-tex">Ann \left( M _ i \right) \subseteq \bigcap_{ j \in d _ i } I _ { i , j } .</annotation></semantics></math> Conversely, it’s clear for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">j \in d _ i</annotation></semantics></math> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⊆</mo><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">I _ { i , j } M _ { i , j + 1 } \subseteq M _ { i , j } ,</annotation></semantics></math> from which it follows (reverse inductively) that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊆</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\prod _ { j \in d _ i } I _ { i , j } \subseteq Ann \left( M _ i \right) .</annotation></semantics></math> We conclude that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊆</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊆</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">⋂</mo> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\prod _ { j \in d _ i } I _ { i , j } \subseteq Ann \left( M _ i \right) 
+\subseteq \bigcap_{ j \in d _ i } I _ { i , j } ,</annotation></semantics></math> whence the (sub)claim.</p>
+</li>
+<li>
+<p>We now show, given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math> and prime <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in Spec (R) ,</annotation></semantics></math> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">M _ i \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0</annotation></semantics></math> iff there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">j \in d _ i</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>𝒱</mi><mrow><mo>(</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in \mathcal{V} \left( I _ { i , j } \right) .</annotation></semantics></math> Applying recalled fact 3, we have a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d _ i</annotation></semantics></math>-tuple of short exact sequences</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mover><mo>↠</mo><mrow><msub><mi>π</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><mi>R</mi><mo stretchy="false">/</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>)</mo></mrow> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow></msub><mo>.</mo></mrow><annotation encoding="application/x-tex"> \left( \ 0 \ \to \ M_{ i , j } \otimes R _ { \mathfrak{p} } \ \overset{ \iota _ { i , j } \otimes 1 _ { R _ { \mathfrak{p} } } }{ \hookrightarrow } \ M_{ i , j + 1 } \otimes R _ { \mathfrak{p} } \ \overset{ \pi _ { i , j } \otimes 1 _ { R _ { \mathfrak{p} } } }{ \twoheadrightarrow } \ R / I_{ i , j } \otimes R _ { \mathfrak{p} } \ \to \ 0 \ \right)_{ j \in d _ i } . </annotation></semantics></math></div>
+<p>Applying recalled fact 1, it follows (inductively) that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">M \ \,&amp;#x2244;\, \  0</annotation></semantics></math> iff there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">j \in d _ i</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">\left( R / I _ { i , j } \right) \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0 .</annotation></semantics></math> Applying recalled fact 6 this holds iff in turn there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">j \in d _ i</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>𝒱</mi><mrow><mo>(</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in \mathcal{V} \left( I _ { i , j } \right) .</annotation></semantics></math></p>
+</li>
+<li>
+<p>We now show, given a prime <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>Spec</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in Spec (R) ,</annotation></semantics></math> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">\left( \underset{ i \in n }{ \bigotimes } M _ i \right) \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0</annotation></semantics></math> iff for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math> there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">j \in d _ i</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>𝒱</mi><mrow><mo>(</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in \mathcal{V} \left( I _ { i , j } \right) .</annotation></semantics></math> Suppose first that there exists <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i _ { nil } \in n</annotation></semantics></math> such that there exists no <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub></mrow></msub></mrow><annotation encoding="application/x-tex">j \in d _ { i _ { nil } }</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>𝒱</mi><mrow><mo>(</mo><msub><mi>I</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>,</mo><mi>j</mi></mrow></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in \mathcal{V} \left( I _ { i _ { nil } , j } \right) .</annotation></semantics></math> Applying recalled facts 3 and 6, we obtain a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub></mrow></msub></mrow><annotation encoding="application/x-tex">d _ { i _ { nil } }</annotation></semantics></math>-tuple of isomorphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mo>↠</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>)</mo></mrow> <mrow><mi>j</mi><mo>∈</mo><msub><mi>d</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub></mrow></msub></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex"> \left( \ 0 \ \to \ \ M_{ i _ { nil } , j } \otimes R _ { \mathfrak{p} } \ \overset{ \iota _ { i _ { nil } , j } \otimes 1 _ { R _ { \mathfrak{p} } } }{ \hookrightarrow } \ M_{ i _ { nil } , j + 1 } \otimes R _ { \mathfrak{p} } \ \twoheadrightarrow \ 0 \ \to \ 0 \ \right) _ { j \in d _ { i _ { nil } } } , </annotation></semantics></math></div>
+<p>from which it follows (inductively) that the composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mover><mo>→</mo><mrow><msub><mi>ι</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>,</mo><msub><mi>d</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub></mrow></msub><mo>−</mo><mn>1</mn></mrow></msub><mo>∘</mo><mi>…</mi><mo>∘</mo><msub><mi>ι</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub><mo>,</mo><mn>0</mn></mrow></msub></mrow></mover><msub><mi>M</mi> <mrow><msub><mi>i</mi> <mi>nil</mi></msub></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow><annotation encoding="application/x-tex"> 0 \overset{ \iota _ { i _ { nil } , d _ { i _ { nil } } - 1 } \circ \dots \circ \iota _ { i _ { nil } , 0 } }{ \to } M _ { i _ { nil } } \otimes R _ { \mathfrak{p} } </annotation></semantics></math></div>
+<p>is an isomorphism. Applying recalled fact 5, we conclude by the above that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>≃</mo><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">\left(  \underset{ i \in n }{ \bigotimes } M _ i \right) \otimes R _ { \mathfrak{p} } \simeq 0 .</annotation></semantics></math> Suppose now instead that for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math> there exists maximal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub><mo>∈</mo><msub><mi>d</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">j _ { i , sup } \in d _ i </annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔭</mi><mo>∈</mo><mi>𝒱</mi><mrow><mo>(</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow></msub><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{p} \in \mathcal{V} \left( I _ { i , j _ { i , sup } } \right) .</annotation></semantics></math> Applying recalled facts 3, 4, 6, and 7, we obtain an epimorphism</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mover><mo>↠</mo><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>π</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><msub><mi>I</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>,</mo></mrow><annotation encoding="application/x-tex"> \left( \underset{ i \in n }{ \bigotimes } M _ { i , j _ { i , sup } } \right) \otimes R _ { \mathfrak{p} } \ \overset{ \left( \underset{ i \in n }{ \bigotimes } \pi _ { i , j _ { i , sup } } \right) \otimes 1 _ { R _ { \mathfrak{p} } } }{ \twoheadrightarrow } \ \left( \underset{ i \in n }{ \bigotimes } \left( R / I _ { i , j _ { i , sup } } \right) \right) \otimes R _ { \mathfrak{p} } \ \ \,&amp;#x2244;\, \  \ 0 , </annotation></semantics></math></div>
+<p>hence that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">\left( \underset{ i \in n }{ \bigotimes } M _ { i , j _ { i , sup } } \right) \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0 .</annotation></semantics></math> Applying recalled facts 3 and 6 (and the maximality of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow><annotation encoding="application/x-tex">j _ { i , sup }</annotation></semantics></math>), we obtain isomorphisms</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mover><mo>↪</mo><mrow><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub></mrow></mover><mspace width="thickmathspace"></mspace><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mo>↠</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>→</mo><mspace width="thickmathspace"></mspace><mn>0</mn><mspace width="thickmathspace"></mspace><mo>)</mo></mrow> <mrow><mtable columnalign="center" rowspacing="0.5ex"><mtr><mtd><mi>i</mi><mo>∈</mo><mi>n</mi></mtd></mtr> <mtr><mtd><mi>j</mi><mo>∈</mo><mrow><mo>{</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub><mo>+</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>d</mi> <mi>i</mi></msub><mo>−</mo><mn>1</mn><mo>}</mo></mrow></mtd></mtr></mtable></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex"> \left( \ 0 \ \to \ \ M_{ i , j } \otimes R _ { \mathfrak{p} } \ \overset{ \iota _ { i , j } \otimes 1 _ { R _ { \mathfrak{p} } } }{ \hookrightarrow } \ M_{ i , j + 1 } \otimes R _ { \mathfrak{p} } \ \twoheadrightarrow \ 0 \ \to \ 0 \ \right) _ { \substack{ i \in n \\ j \in \left\{ j _ { i , sup } + 1 , \dots , d _ { i } - 1 \right\} } } , </annotation></semantics></math></div>
+<p>from which it follows (inductively) that the tensored composite</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><msub><mi>M</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub></mrow></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>)</mo></mrow><mover><mo>→</mo><mrow><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><mrow><mo>(</mo><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>d</mi> <mi>i</mi></msub><mo>−</mo><mn>1</mn></mrow></msub><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub><mo>)</mo></mrow><mo>∘</mo><mi>…</mi><mo>∘</mo><mrow><mo>(</mo><msub><mi>ι</mi> <mrow><mi>i</mi><mo>,</mo><msub><mi>j</mi> <mrow><mi>i</mi><mo>,</mo><mi>sup</mi></mrow></msub><mo>+</mo><mn>1</mn></mrow></msub><mo>⊗</mo><msub><mn>1</mn> <mrow><msub><mi>R</mi> <mi>𝔭</mi></msub></mrow></msub><mo>)</mo></mrow><mo>)</mo></mrow></mrow></mover><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex"> \underset{ i \in n }{ \bigotimes } \left( M _ { i , j _ { i , sup } } \otimes R _ { \mathfrak{p} } \right) \overset{ \underset{ i \in n }{ \bigotimes } \left( \left( \iota _ { i , d _ i - 1 } \otimes 1 _ { R _ { \mathfrak{p} } } \right) \circ \dots \circ \left( \iota _ { i , j _ { i , sup } + 1 }  \otimes 1 _ { R _ { \mathfrak{p} } } \right) \right) }{ \to } \underset{ i \in n }{ \bigotimes } \left( M _ i \otimes R _ { \mathfrak{p} } \right) </annotation></semantics></math></div>
+<p>is an isomorphism. Applying recalled fact 5 (twice), we conclude by the above that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>⊗</mo><msub><mi>R</mi> <mi>𝔭</mi></msub><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">\left( \underset{ i \in n }{ \bigotimes } M _ i \right) \otimes R _ { \mathfrak{p} } \ \,&amp;#x2244;\, \  0 .</annotation></semantics></math></p>
+</li>
+</ol>
+<p>Claims 1 and 2 of Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a> are immediate from subarguments 2 and 3 and 2 and 4 above respectively.</p>
+</div>
+</p>
+<p>Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a> immediately gives the following corollary, which we include for general interest:</p>
+<p>
+<div class="num_cor" id="SupportTensorIntersection">
+<h6>Corollary</h6>
+<p><strong>(Bounds on the annihilator of a tensor product of finitely generated modules)</strong> Given commutative ring <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">R ,</annotation></semantics></math> natural <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">n ,</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math>-tuple of finitely generated <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\left( M _ i \right) _ { i \in n } ,</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mspace width="thickmathspace"></mspace><mo>⊆</mo><mspace width="thickmathspace"></mspace><mi>Ann</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mspace width="thickmathspace"></mspace><mo>⊆</mo><mspace width="thickmathspace"></mspace><mi>rad</mi><mrow><mo>(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex"> \sum _ { i \in n } Ann \left( M _ i \right) \ \subseteq \ Ann \left( \underset{ i \in n }{ \bigotimes } M _ i \right) \ \subseteq \ rad \left( \sum _ { i \in n } Ann \left( M _ i \right) \right) . </annotation></semantics></math></div>
+<p>(Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi></mrow><annotation encoding="application/x-tex">Ann</annotation></semantics></math> denotes the <a href="https://stacks.math.columbia.edu/tag/07T7">annihilator</a> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>rad</mi></mrow><annotation encoding="application/x-tex">rad</annotation></semantics></math> denotes the <a class="existingWikiWord" href="../../../../../5/7/1/6/6175/content.html">radical</a>. For convenience, we assume the <a class="existingWikiWord" href="../../../../../0/0/2/1/1200/content.html">Von Neumann convention</a> so that, e.g., the quantification “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">i \in n</annotation></semantics></math>” is equivalent to “<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mrow><mo>{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>}</mo></mrow></mrow><annotation encoding="application/x-tex">i \in \left\{ 0 , \dots , n-1 \right\}</annotation></semantics></math>”.)</p>
+</div>
+</p>
+<p>
+<div class="proof">
+<h6>Proof</h6>
+<p>The left inclusion follows from that each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">Ann \left( M _ i \right)</annotation></semantics></math> (manifestly) annihilates <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>.</mo></mrow><annotation encoding="application/x-tex">\underset{ i \in n }{ \bigotimes } M _ i .</annotation></semantics></math> The right inclusion follows from that by claims 1 and 2 of Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow></mtd> <mtd><mo>=</mo><mi>supp</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⋂</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mi>supp</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⋂</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><mi>𝒱</mi><mrow><mo>(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>,</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\begin{aligned}
+\mathcal{V} \left( Ann \left( \underset{ i \in n }{ \bigotimes } M _ i \right) \right)
+&amp; = supp \left( \underset{ i \in n }{ \bigotimes } M _ i \right) \\
+&amp; = \bigcap _ { i \in n } supp \left( M _ i \right) \\
+&amp; = \bigcap _ { i \in n } \mathcal{V} \left( Ann \left( M _ i \right) \right) \\
+&amp; = \mathcal{V} \left( \sum _ { i \in n } Ann \left( M _ i \right) \right) ,
+\end{aligned}
+
+</annotation></semantics></math></div>
+<p>hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>rad</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><munder><mo>⨂</mo><mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></munder><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>=</mo><mi>rad</mi><mrow><mo>(</mo><msub><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>i</mi><mo>∈</mo><mi>n</mi></mrow></msub><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mi>i</mi></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">rad \left( Ann \left( \underset{ i \in n }{ \bigotimes } M _ i \right) \right)
+ = rad \left( \sum _ { i \in n } Ann \left( M _ i \right) \right) .</annotation></semantics></math></p>
+</div>
+</p>
+<p>We now deduce more familiar forms of Nakayama’s lemma can as corollaries of the above. Sometimes, as for instance in the <a href="https://stacks.math.columbia.edu/tag/00DV">Stacks Project</a>, wherein all 11(!) other formulations of the lemma are straightforwardly reduced to the following, Nakayama’s lemma is stated instead as:</p>
+<p>
+<div class="num_cor" id="FirstSpecialVersion">
+<h6>Corollary</h6>
+<p><strong>(Nakayama, version 1)</strong> Given commutative ring <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">R ,</annotation></semantics></math> finitely generated <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">M ,</annotation></semantics></math> and ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>⊆</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">I \subseteq R</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>M</mi><mo>=</mo><mi>M</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">I M = M ,</annotation></semantics></math> there exists element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">f \in R</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mn>1</mn><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>mod</mi><mspace width="thickmathspace"></mspace><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f = 1 \ (mod \ I)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>M</mi><mo>=</mo><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">f M = 0 .</annotation></semantics></math></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>From that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>M</mi><mo>=</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">I M = M</annotation></semantics></math> it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>⊗</mo><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>I</mi><mo>)</mo></mrow><mo>≃</mo><mn>0</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">M \otimes \left( R / I \right) \simeq 0 ,</annotation></semantics></math> i.e. that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><mi>M</mi><mo>⊗</mo><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>I</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>=</mo><mi>∅</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">supp \left( M \otimes \left( R / I \right) \right) = \emptyset ,</annotation></semantics></math> hence by claims 1 and 2 of Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><mi>M</mi><mo>)</mo></mrow><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathcal{V} \left( Ann \left( M \right) \right)</annotation></semantics></math> is disjoint from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒱</mi><mrow><mo>(</mo><mi>I</mi><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathcal{V} \left( I \right) ,</annotation></semantics></math> i.e. that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><mi>M</mi><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">Ann \left( M \right)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math> are comaximal. The <a href="https://stacks.math.columbia.edu/tag/00DT">Chinese Remainder theorem</a> then constructs the desired <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">f \in R</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mn>1</mn><mspace width="thickmathspace"></mspace><mo stretchy="false">(</mo><mi>mod</mi><mspace width="thickmathspace"></mspace><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f = 1\ (mod\ I)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mn>0</mn><mspace width="thickmathspace"></mspace><mrow><mo>(</mo><mi>mod</mi><mspace width="thickmathspace"></mspace><mi>Ann</mi><mrow><mo>(</mo><mi>M</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">f = 0\ \left( mod\ Ann \left( M \right) \right) .</annotation></semantics></math></p>
+</div>
+</p>
+<p>Alternatively, Nakayama’s lemma is often understood as a means by which information about the fiber of a module at a point can be used to characterize that of its stalk at said point:</p>
+<p>
+<div class="num_cor" id="SecondSpecialVersion">
+<h6>Corollary</h6>
+<p><strong>(Nakayama, version 2)</strong> Given <a class="existingWikiWord" href="../../../../../8/9/4/0/498/content.html">local ring</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> with maximal ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>⊆</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\mathfrak{m} \subseteq R</annotation></semantics></math> and finitely generated <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">M ,</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">M \ \,&amp;#x2244;\, \  0</annotation></semantics></math> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>⊗</mo><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo>)</mo></mrow><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">M \otimes \left( R / \mathfrak{m} \right) \ \,&amp;#x2244;\, \  0 .</annotation></semantics></math></p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>Observe that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>∈</mo><mi>supp</mi><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m} \in supp \left( R / \mathfrak{m} \right) ,</annotation></semantics></math> hence by claim 2 of Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a> that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>∈</mo><mi>supp</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m} \in supp (M)</annotation></semantics></math> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>∈</mo><mi>supp</mi><mrow><mo>(</mo><mi>M</mi><mo>⊗</mo><mrow><mo>(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m} \in supp \left( M \otimes \left( R / \mathfrak{m} \right) \right) .</annotation></semantics></math> Conclude by that an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module is (essentially tautologically) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="thickmathspace"></mspace><mspace width="thinmathspace"></mspace><mi>≄</mi><mspace width="thinmathspace"></mspace><mspace width="thickmathspace"></mspace><mn>0</mn></mrow><annotation encoding="application/x-tex">\ \,&amp;#x2244;\, \  0</annotation></semantics></math> iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi></mrow><annotation encoding="application/x-tex">\mathfrak{m}</annotation></semantics></math> is in its support.</p>
+</div>
+</p>
+<h2 id="examples_and_consequences">Examples and consequences</h2>
+<p>The finiteness hypotheses in the statements of Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a> and Cor. <a class="maruku-ref" href="#SupportTensorIntersection"></a> are necessary:</p>
+<p>
+<div class="num_remark" id="NoInfiniteNakayama">
+<h6>Example</h6>
+<p>Viewing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Q} / \mathbb{Z}</annotation></semantics></math> as a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>-module,</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>⊊</mo><mi>𝒱</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">supp \left( \mathbb{Q} / \mathbb{Z} \right) \subsetneq \mathcal{V} \left( Ann \left( \mathbb{Q} / \mathbb{Z} \right) \right) ,</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>supp</mi><mrow><mo>(</mo><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>⊗</mo><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>⊊</mo><mi>supp</mi><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>∩</mo><mi>supp</mi><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">supp \left( \left( \mathbb{Q} / \mathbb{Z} \right) \otimes \left( \mathbb{Q} / \mathbb{Z} \right) \right) \subsetneq supp \left( \mathbb{Q} / \mathbb{Z} \right) \cap supp \left( \mathbb{Q} / \mathbb{Z} \right) ,</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>⊗</mo><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>⊋</mo><mi>rad</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>+</mo><mi>Ann</mi><mrow><mo>(</mo><mi>ℚ</mi><mo stretchy="false">/</mo><mi>ℤ</mi><mo>)</mo></mrow><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">Ann \left( \left( \mathbb{Q} / \mathbb{Z} \right) \otimes \left( \mathbb{Q} / \mathbb{Z} \right) \right) \supsetneq rad \left( Ann \left( \mathbb{Q} / \mathbb{Z} \right) + Ann \left( \mathbb{Q} / \mathbb{Z} \right) \right) ,</annotation></semantics></math></p>
+</li>
+</ul>
+<p>contradicting claims 1 and 2 of Prop. <a class="maruku-ref" href="#GeneralNakayamaLemma"></a> and Cor. <a class="maruku-ref" href="#SupportTensorIntersection"></a> respectively sans the finiteness hypotheses.</p>
+</div>
+</p>
+<p>Likewise, the right inclusion in Cor. <a class="maruku-ref" href="#SupportTensorIntersection"></a> can be tight even when the left one isn’t:</p>
+<p>
+<div class="num_remark" id="SupportTensorIntersectionTight">
+<h6>Example</h6>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>ℤ</mi><mrow><mo>[</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>x</mi> <mn>1</mn></msub><mo>]</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">R = \mathbb{Z} \left[ x _ 0, x _ 1 \right] ,</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>0</mn></msub><mo>=</mo><mi>R</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>⊕</mo><mi>R</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">M _ 0 = R / ( x _ 0 ) \oplus R / ( x _ 1 ) ,</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>1</mn></msub><mo>=</mo><mi>R</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>−</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">M _ 1 = R / ( x _ 0 - x _ 1 ) .</annotation></semantics></math> Then, viewing <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>0</mn></msub></mrow><annotation encoding="application/x-tex">M _ 0</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">M _ 1</annotation></semantics></math> as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-modules,</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">Ann \left( M _ 0 \right) = ( x _ 0 x_ 1 ) .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>−</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">Ann \left( M _ 1 \right) = ( x _ 0 - x _ 1 ) .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>)</mo></mrow><mo>+</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>−</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>x</mi> <mn>1</mn></msub><msup><mo stretchy="false">)</mo> <mn>2</mn></msup><mo>.</mo></mrow><annotation encoding="application/x-tex">Ann \left( M _ 0 \right) + Ann \left( M _ 1 \right) = ( x _ 0 - x _ 1 ) + ( x _ 0 , x_ 1 ) ^ 2 .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>rad</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>)</mo></mrow><mo>+</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">rad \left( Ann \left( M _ 0 \right) + Ann \left( M _ 1 \right) \right) = ( x _ 0 , x_ 1 ) .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi> <mn>0</mn></msub><mo>⊗</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>≃</mo><mi>R</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>⊕</mo><mi>R</mi><mo stretchy="false">/</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">M _ 0 \otimes M _ 1 \simeq R / ( x _ 0 , x _ 1 ) \oplus R / ( x _ 0 , x _ 1 ) .</annotation></semantics></math></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>⊗</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>=</mo><mo stretchy="false">(</mo><msub><mi>x</mi> <mn>0</mn></msub><mo>,</mo><msub><mi>x</mi> <mn>1</mn></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">Ann \left( M _ 0 \otimes M _ 1 \right) = ( x _ 0 , x_ 1 ) .</annotation></semantics></math></p>
+</li>
+</ul>
+<p>In particular,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>)</mo></mrow><mo>+</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>⊊</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>⊗</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>=</mo><mi>rad</mi><mrow><mo>(</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>0</mn></msub><mo>)</mo></mrow><mo>+</mo><mi>Ann</mi><mrow><mo>(</mo><msub><mi>M</mi> <mn>1</mn></msub><mo>)</mo></mrow><mo>)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex"> Ann \left( M _ 0 \right) + Ann \left( M _ 1 \right) \subsetneq Ann \left( M _ 0 \otimes M _ 1 \right) = rad \left( Ann \left( M _ 0 \right) + Ann \left( M _ 1 \right) \right) , </annotation></semantics></math></div>
+<p>exemplifying the claimed phenomenon.</p>
+</div>
+</p>
+<p>Cor. <a class="maruku-ref" href="#SecondSpecialVersion"></a> has the following two notable consequences:</p>
+<p>
+<div class="num_remark" id="SpreadingEpicness">
+<h6>Example</h6>
+<p>Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a local ring with maximal ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>⊆</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\mathfrak{m} \subseteq R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>N</mi><mo>→</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">f \colon N \to M</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module map. The latter gives rise to an exact sequence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mover><mo>→</mo><mi>f</mi></mover><mi>M</mi><mover><mo>→</mo><mi>p</mi></mover><mi>M</mi><mo stretchy="false">/</mo><mi>N</mi><mo>→</mo><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex"> N \stackrel{f}{\to} M \stackrel{p}{\to} M / N \to 0 . </annotation></semantics></math></div>
+<p>Tensoring with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi></mrow><annotation encoding="application/x-tex">R / \mathfrak{m}</annotation></semantics></math> is a right exact functor, so we have an exact sequence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>⊗</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mi>f</mi><mo>⊗</mo><msub><mn>1</mn> <mrow><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi></mrow></msub></mrow></mover><mi>M</mi><mo>⊗</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo stretchy="false">)</mo><mover><mo>→</mo><mrow><mi>p</mi><mo>⊗</mo><msub><mn>1</mn> <mrow><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi></mrow></msub></mrow></mover><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">/</mo><mi>N</mi><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo stretchy="false">)</mo><mo>→</mo><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex"> N \otimes (R / \mathfrak{m}) \stackrel{f \otimes 1 _ { R / \mathfrak{m} }}{\to} M \otimes (R / \mathfrak{m}) \stackrel{p \otimes 1 _ { R / \mathfrak{m} }}{\to} (M / N) \otimes (R / \mathfrak{m}) \to 0 . </annotation></semantics></math></div>
+<p>Cor. <a class="maruku-ref" href="#SecondSpecialVersion"></a> says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">/</mo><mi>N</mi><mo>≃</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">M / N \simeq 0 </annotation></semantics></math> if(f) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">/</mo><mi>N</mi><mo stretchy="false">)</mo><mo>⊗</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo stretchy="false">)</mo><mo>≃</mo><mn>0</mn><mo>.</mo></mrow><annotation encoding="application/x-tex">(M / N) \otimes (R / \mathfrak{m}) \simeq 0 .</annotation></semantics></math> Equivalently, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is epic if(f) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>⊗</mo><msub><mn>1</mn> <mrow><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f \otimes 1 _ { R / \mathfrak{m} }</annotation></semantics></math> is epic. In particular, to check whether a finite set of elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>v</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">v_{1}, \ldots, v_{n}</annotation></semantics></math> generates <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">M ,</annotation></semantics></math> it suffices to check whether the residue classes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi> <mi>i</mi></msub><mo lspace="mediummathspace" rspace="mediummathspace">mod</mo><mi>𝔪</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">v_i \mod \mathfrak{m} M</annotation></semantics></math> generate the vector space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mi>M</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">M / \mathfrak{m} M ,</annotation></semantics></math> which is a linear algebra calculation (as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi></mrow><annotation encoding="application/x-tex">R / \mathfrak{m}</annotation></semantics></math> is a field).</p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="InverseFunctionTheorem">
+<h6>Example</h6>
+<p>Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../8/1/0/2/2018/content.html">Noetherian</a> local ring with maximal ideal <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>⊆</mo><mi>R</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m} \subseteq R .</annotation></semantics></math> A typical example is the stalk at a point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> of a Noetherian scheme as locally ringed space, and we will write as if we were in that situation. As <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is Noetherian, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi></mrow><annotation encoding="application/x-tex">\mathfrak{m}</annotation></semantics></math> is finitely generated. Suppose <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>⊗</mo><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">/</mo><mi>𝔪</mi><mo stretchy="false">)</mo><mo>≅</mo><mi>𝔪</mi><mo stretchy="false">/</mo><msup><mi>𝔪</mi> <mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\mathfrak{m} \otimes (R / \mathfrak{m}) \cong \mathfrak{m} / \mathfrak{m}^2</annotation></semantics></math> – the cotangent space – is a vector space of dimension <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">n .</annotation></semantics></math> We would like to know whether a collection of functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>f</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">f_1, \ldots, f_n</annotation></semantics></math> that vanish at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi></mrow><annotation encoding="application/x-tex">\mathfrak{m}</annotation></semantics></math> form a local coordinate system.</p>
+<p>For this, it suffices to check whether the differentials <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msub><mi>f</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><mi>d</mi><msub><mi>f</mi> <mi>n</mi></msub></mrow><annotation encoding="application/x-tex">d f_1, \ldots, d f_n</annotation></semantics></math> at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m} ,</annotation></semantics></math> belonging to the cotangent space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo stretchy="false">/</mo><msup><mi>𝔪</mi> <mn>2</mn></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m}/\mathfrak{m}^2 ,</annotation></semantics></math> are linearly independent. (For then they span the cotangent space, and one concludes from Nakayama that the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math> generate <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi></mrow><annotation encoding="application/x-tex">\mathfrak{m}</annotation></semantics></math> as an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>-module, thereby forming a local coordinate system at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔪</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">\mathfrak{m} .</annotation></semantics></math>) In this way, Nakayama’s lemma operates as a kind of “inverse function theorem”.</p>
+</div>
+</p>
+<p>To cement this further, the following statement is offered in <a href="#Harris">Harris</a> as a corollary of Nakayama’s lemma (corollary 14.10, page 179):</p>
+<p>
+<div class="num_prop" id="HarrisCorollary">
+<h6>Proposition</h6>
+<p><strong>(Inverse Function Theorem)</strong> A map between complex projective varieties of dimension <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math> which is a bijection and has injective derivative at every point is an isomorphism.</p>
+</div>
+</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../2/4/4/5/5442/content.html">Stacks Project</a>: <a href="https://stacks.math.columbia.edu/tag/07RC">07RC</a></p>
+</li>
+<li>
+<p>Wikipedia: <em><a href="https://en.wikipedia.org/wiki/Nakayama%27s_lemma">Nakayama lemma</a></em></p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

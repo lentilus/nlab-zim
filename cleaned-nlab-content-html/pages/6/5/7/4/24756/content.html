@@ -1,0 +1,398 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      internal logic of set theory in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      internal logic of set theory
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#section_Ideas">Ideas</a></li>
+<li><a href="#section_Families_of_sets">Families of sets</a></li>
+<li><a href="#section_Indexed_disjoint_unions_and_cartesian_products">Indexed disjoint unions and cartesian products</a></li>
+<li><a href="#section_Subsingletons_and_singletons">Subsingletons and singletons</a></li>
+<li><a href="#section_Support_of_a_set">Support of a set</a></li>
+<li><a href="#section_Internal_logical_operators">Internal logical operators</a></li>
+<li><a href="#section_Internal_equality">Internal equality</a></li>
+<li><a href="#section_Internal_and_external_axioms">Internal and external axioms</a></li>
+<li><a href="#section_See_also">See also</a></li>
+</ul>
+</div>
+<p><h2 id="section_Ideas">Ideas</h2></p>
+<p>In any <a class="existingWikiWord" href="../../../../../5/7/0/0/75/content.html">foundational</a> <a class="existingWikiWord" href="../../../../../5/1/0/1/1015/content.html">set theory</a> out there, the <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a> and <a class="existingWikiWord" href="../../../../9/1/0/196/content.html">functions</a>, however defined, form a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a>. As a result, the set theory should have an internalization of the <a class="existingWikiWord" href="../../../../../7/3/0/3/3037/content.html">predicate logic</a> used to define the <a class="existingWikiWord" href="../../../../../5/1/0/1/1015/content.html">set theory</a>, the <a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a> of the resulting <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">category of sets</a> induced by the <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingletons</a>, the <a class="existingWikiWord" href="../../../../../7/1/9/0/917/content.html">injections</a>, and the <a class="existingWikiWord" href="../../../../../8/5/7/4/24758/content.html">support sets</a> of the set theory. This article will describe the internal logic of set theory, in the language of <a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html#logic+over+type+theory">predicate logic over set theory</a>.</p>
+<p><h2 id="section_Families_of_sets">Families of sets</h2></p>
+<p>We begin with the definition of <a class="existingWikiWord" href="../../../../../5/6/1/4/4165/content.html">families of sets</a> and <a class="existingWikiWord" href="../../../../../7/0/6/4/4607/content.html">indexed sets</a>. Recall that a <a class="existingWikiWord" href="../../../../../3/6/0/2/2063/content.html">fiber</a> or <a class="existingWikiWord" href="../../../../../2/6/6/1/1662/content.html">preimage</a> of a <a class="existingWikiWord" href="../../../../9/1/0/196/content.html">function</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> with <a class="existingWikiWord" href="../../../../../2/6/5/2/2562/content.html">domain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> and <a class="existingWikiWord" href="../../../../../4/1/1/0/114/content.html">codomain</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> at an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b \in B</annotation></semantics></math> is the set of all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a \in A</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">f(a) = b</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>a</mi><mo>∈</mo><mi>A</mi><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{a \in A \vert f(a) = b\}</annotation></semantics></math></div>
+<p>This could be thought of in turn as a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>b</mi></msub></mrow><annotation encoding="application/x-tex">S_b</annotation></semantics></math> indexed by the element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b \in B</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi> <mi>b</mi></msub><mo>≔</mo><mo stretchy="false">{</mo><mi>a</mi><mo>∈</mo><mi>A</mi><mo stretchy="false">|</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S_b \coloneqq \{a \in A \vert f(a) = b\}</annotation></semantics></math></div>
+<p>The whole <a class="existingWikiWord" href="../../../../../8/8/1/5/5188/content.html">collection</a> of sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>b</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(S_b)_{b \in B}</annotation></semantics></math> is then the family of sets.</p>
+<p><h2 id="section_Indexed_disjoint_unions_and_cartesian_products">Indexed disjoint unions and cartesian products</h2></p>
+<p>Given a family of sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>i</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(S_i)_{i \in I}</annotation></semantics></math> indexed by the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math>, the indexed disjoint union is defined as the set of all pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i, a)</annotation></semantics></math> consisting of an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">i \in I</annotation></semantics></math> and an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><msub><mi>S</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a \in S_i</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨄</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></munder><msub><mi>S</mi> <mi>i</mi></msub><mo>≔</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi>i</mi><mo>∈</mo><mi>I</mi><mo>,</mo><mi>a</mi><mo>∈</mo><msub><mi>S</mi> <mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\biguplus_{i \in I} S_i \coloneqq \{(i, a) \vert i \in I, a \in S_i\}</annotation></semantics></math></div>
+<p>The indexed cartesian product is defined as the set of all pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i, f)</annotation></semantics></math> consisting of an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow><annotation encoding="application/x-tex">i \in I</annotation></semantics></math> and a <a class="existingWikiWord" href="../../../../9/1/0/196/content.html">function</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>I</mi><mo>→</mo><msub><mi>S</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f:I \to S_i</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>i</mi><mo>∈</mo><mi>I</mi></mrow></munder><msub><mi>S</mi> <mi>i</mi></msub><mo>≔</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi>i</mi><mo>∈</mo><mi>I</mi><mo>,</mo><mi>f</mi><mo>:</mo><mi>I</mi><mo>→</mo><msub><mi>S</mi> <mi>i</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\prod_{i \in I} S_i \coloneqq \{(i, f) \vert i \in I, f:I \to S_i\}</annotation></semantics></math></div>
+<p><h2 id="section_Subsingletons_and_singletons">Subsingletons and singletons</h2></p>
+<p>A <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a> is a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> which has at most one element: every two elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">b \in S</annotation></semantics></math> are equal to each other</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">isSubsingleton</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo>≔</mo><mo>∀</mo><mi>a</mi><mo>∈</mo><mi>S</mi><mo>.</mo><mo>∀</mo><mi>b</mi><mo>∈</mo><mi>S</mi><mo>.</mo><mi>a</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">\mathrm{isSubsingleton}(S) \coloneqq \forall a \in S.\forall b \in S. a = b</annotation></semantics></math></div>
+<p>A <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a> is a <a class="existingWikiWord" href="../../../../../0/2/5/0/520/content.html">pointed</a> subsingleton. Equivalently, a <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a> is a <a class="existingWikiWord" href="../../../../../0/2/5/0/520/content.html">pointed set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> with specified element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math> such that every element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">b \in S</annotation></semantics></math> is equal to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>, or a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> where there exists an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math> such that every element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">b \in S</annotation></semantics></math> is equal to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">isSingleton</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo>≔</mo><mo>∃</mo><mi>a</mi><mo>∈</mo><mi>S</mi><mo>.</mo><mo>∀</mo><mi>b</mi><mo>∈</mo><mi>S</mi><mo>.</mo><mi>a</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">\mathrm{isSingleton}(S) \coloneqq \exists a \in S.\forall b \in S. a = b</annotation></semantics></math></div>
+<p>Every subsingleton is a <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subset</a> of a <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a>.</p>
+<p>In the internal logic of set theory, subsingletons represent the internal <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">propositions</a>, families of subsingletons represent the internal <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">predicates</a>, the <a class="existingWikiWord" href="../../../../../1/6/4/0/461/content.html">empty set</a> represents the internal <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth value</a> <a class="existingWikiWord" href="../../../../../2/2/6/4/4622/content.html">false</a>, and <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singletons</a> represent the internal <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth value</a> <a class="existingWikiWord" href="../../../../../0/4/3/4/4340/content.html">true</a>.</p>
+<p>Since any family of sets is defined by the fibers of a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A \to B</annotation></semantics></math>, every family of subsingletons is defined such that the fibers of the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A \to B</annotation></semantics></math> are all subsingletons. However, that is just the requirement that the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A \to B</annotation></semantics></math> be an <a class="existingWikiWord" href="../../../../../7/1/9/0/917/content.html">injection</a>. Similarly, every family of singletons is equivalently just a <a class="existingWikiWord" href="../../../../../4/0/5/0/504/content.html">bijection</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>≃</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A \simeq B</annotation></semantics></math>.</p>
+<p><h2 id="section_Support_of_a_set">Support of a set</h2></p>
+<p>Every set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> has a unique function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>:</mo><mi>S</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">u:S \to 1</annotation></semantics></math> into any <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> with point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>∈</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">* \in 1</annotation></semantics></math>, defined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo>*</mo></mrow><annotation encoding="application/x-tex">u(a) = *</annotation></semantics></math> for all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math>.</p>
+<p>Recall that the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> of a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A \to B</annotation></semantics></math> is the subset of all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">b \in B</annotation></semantics></math> which are of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(a)</annotation></semantics></math> for all elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a \in A</annotation></semantics></math></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">image</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>≔</mo><mo stretchy="false">{</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi>a</mi><mo>∈</mo><mi>A</mi><mo>,</mo><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{image}(f) \coloneqq \{f(a) \vert a \in A, f:A \to B\}</annotation></semantics></math></div>
+<p>The <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the set is defined as the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> of the unique function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>:</mo><mi>S</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">u:S \to 1</annotation></semantics></math>.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo><mo>≔</mo><mo stretchy="false">{</mo><mi>u</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">|</mo><mi>a</mi><mo>∈</mo><mi>S</mi><mo>,</mo><mi>u</mi><mo>:</mo><mi>S</mi><mo>→</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">[S] \coloneqq \{u(a) \vert a \in S, u:S \to 1\}</annotation></semantics></math></div>
+<p>Since the <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image</a> is always a <a class="existingWikiWord" href="../../../../../3/7/8/0/873/content.html">subset</a> of the <a class="existingWikiWord" href="../../../../../4/1/1/0/114/content.html">codomain</a> of the <a class="existingWikiWord" href="../../../../9/1/0/196/content.html">function</a>, the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of a set is thus a <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a>. The support enables us to make every set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> into a <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a>.</p>
+<p>One could also apply the support to any family of sets <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>b</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo>∈</mo><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(S_b)_{b \in S}</annotation></semantics></math>, resulting in the family of subsingletons <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">[</mo><msub><mi>S</mi> <mi>b</mi></msub><mo stretchy="false">]</mo><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo>∈</mo><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">([S_b])_{b \in S}</annotation></semantics></math>. Since every family of subsingletons is equivalently an <a class="existingWikiWord" href="../../../../../7/1/9/0/917/content.html">injection</a>, this is the same as the usual <a class="existingWikiWord" href="../../../../../5/4/4/0/445/content.html">image factorization</a> of every function into an <a class="existingWikiWord" href="../../../../../7/1/9/0/917/content.html">injection</a> and a <a class="existingWikiWord" href="../../../../../8/1/9/0/918/content.html">surjection</a>.</p>
+<p><h2 id="section_Internal_logical_operators">Internal logical operators</h2></p>
+<p>Supports are important because they will allow us to define the logical operators <a class="existingWikiWord" href="../../../../../5/1/2/4/4215/content.html">conjunction</a>, <a class="existingWikiWord" href="../../../../../7/1/2/4/4217/content.html">disjunction</a>, <a class="existingWikiWord" href="../../../../../0/8/0/2/2080/content.html">implication</a>, <a class="existingWikiWord" href="../../../../../7/9/4/9/19497/content.html">logical equivalence</a>, <a class="existingWikiWord" href="../../../../../9/6/8/0/869/content.html">negation</a>, <a class="existingWikiWord" href="../../../../../7/4/9/6/6947/content.html">existential quantification</a>, and <a class="existingWikiWord" href="../../../../../8/4/9/6/6948/content.html">universal quantification</a> internal to the set theory:</p>
+<p>The logical <a class="existingWikiWord" href="../../../../../5/1/2/4/4215/content.html">conjunction</a> of two subsingletons is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">cartesian product</a> of the two subsingletons:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∧</mo><mi>B</mi><mo>≔</mo><mo stretchy="false">[</mo><mi>A</mi><mo>×</mo><mi>B</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A \wedge B \coloneqq [A \times B]</annotation></semantics></math></div>
+<p>The logical <a class="existingWikiWord" href="../../../../../7/1/2/4/4217/content.html">disjunction</a> of two subsingletons is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the <a class="existingWikiWord" href="../../../../7/8/0/876/content.html">disjoint union</a> of the two subsingletons:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∨</mo><mi>B</mi><mo>≔</mo><mo stretchy="false">[</mo><mi>A</mi><mo>⊎</mo><mi>B</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A \vee B \coloneqq [A \uplus B]</annotation></semantics></math></div>
+<p>The logical <a class="existingWikiWord" href="../../../../../0/8/0/2/2080/content.html">implication</a> of two subsingletons is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the <a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a> of the two subsingletons:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⇒</mo><mi>B</mi><mo>≔</mo><mo stretchy="false">[</mo><msup><mi>B</mi> <mi>A</mi></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A \implies B \coloneqq [B^A]</annotation></semantics></math></div>
+<p>The logical <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a> of two subsingletons is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the set of <a class="existingWikiWord" href="../../../../../4/0/5/0/504/content.html">bijections</a> of the two subsingletons:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⇔</mo><mi>B</mi><mo>≔</mo><mo stretchy="false">[</mo><mi>A</mi><mo>≃</mo><mi>B</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">A \iff B \coloneqq [A \simeq B]</annotation></semantics></math></div>
+<p>The logical <a class="existingWikiWord" href="../../../../../9/6/8/0/869/content.html">negation</a> of a subsingleton is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the <a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a> into the <a class="existingWikiWord" href="../../../../../1/6/4/0/461/content.html">empty set</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mi>A</mi><mo>≔</mo><mo stretchy="false">[</mo><msup><mi>∅</mi> <mi>A</mi></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\neg A \coloneqq [\emptyset^A]</annotation></semantics></math></div>
+<p>The logical <a class="existingWikiWord" href="../../../../../7/4/9/6/6947/content.html">existential quantification</a> of a family of subsingletons <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>b</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(S_b)_{b \in B}</annotation></semantics></math> ranging over the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the indexed <a class="existingWikiWord" href="../../../../7/8/0/876/content.html">disjoint union</a> of the family of subsingletons:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>b</mi><mo>∈</mo><mi>B</mi><mo>.</mo><msub><mi>S</mi> <mi>b</mi></msub><mo>≔</mo><mrow><mo>[</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">⨄</mo> <mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow></munder><msub><mi>S</mi> <mi>b</mi></msub><mo>]</mo></mrow></mrow><annotation encoding="application/x-tex">\exists b \in B.S_b \coloneqq \left[\biguplus_{b \in B} S_b\right]</annotation></semantics></math></div>
+<p>The logical <a class="existingWikiWord" href="../../../../../8/4/9/6/6948/content.html">universal quantification</a> of a family of subsingletons <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi> <mi>b</mi></msub><msub><mo stretchy="false">)</mo> <mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">(S_b)_{b \in B}</annotation></semantics></math> ranging over the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> is defined as the <a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of the indexed <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">cartesian product</a> of the family of subsingletons:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>b</mi><mo>∈</mo><mi>B</mi><mo>.</mo><msub><mi>S</mi> <mi>b</mi></msub><mo>≔</mo><mrow><mo>[</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow></munder><msub><mi>S</mi> <mi>b</mi></msub><mo>]</mo></mrow></mrow><annotation encoding="application/x-tex">\forall b \in B.S_b \coloneqq \left[\prod_{b \in B} S_b\right]</annotation></semantics></math></div>
+<p>All these operations are not restricted only to <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingletons</a>, they are also defined over general <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a>. However, by definition, these operations result in a <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a>.</p>
+<p><h2 id="section_Internal_equality">Internal equality</h2></p>
+<p>The internal equality relation in a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is represented by the initial reflexive graph structure on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>. By a <em>graph structure</em> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> we mean a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and a pair of function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">s:R \to S</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">t:R \to S</annotation></semantics></math>. The set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is called the <em>carrier set</em> of the graph structure. We do not assume the two functions are <a class="existingWikiWord" href="../../../../../3/7/8/3/23873/content.html">jointly injective</a>, so the graph structures are really <a class="existingWikiWord" href="../../../../../9/8/1/0/189/content.html">directed pseudograph</a> structures. By a <em>reflexive graph structure</em>, we mean that every element of the carrier set has a loop: there is a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">refl</mi><mo>:</mo><mi>S</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\mathrm{refl}:S \to R</annotation></semantics></math> such that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">(</mo><mi mathvariant="normal">refl</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">s(\mathrm{refl}(a)) = a</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi mathvariant="normal">refl</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">t(\mathrm{refl}(a)) = a</annotation></semantics></math>.</p>
+<p>A <em>graph structure homomorphism</em> between two graph structures on the carrier set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R, s, t)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mo>′</mo><mo>,</mo><mi>s</mi><mo>′</mo><mo>,</mo><mi>t</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R,', s', t')</annotation></semantics></math> is a function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f: R \to R'</annotation></semantics></math>, such that for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">p \in R</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>′</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>s</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">s'(f(p)) = s(p)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>′</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t'(f(p)) = t(p)</annotation></semantics></math>.</p>
+<p>A <em>reflexive graph structure homomorphism</em> is a graph structure homomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>R</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f:R \to R'</annotation></semantics></math> between two graph structures <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo>,</mo><mi mathvariant="normal">refl</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R, s, t, \mathrm{refl})</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>′</mo><mo>,</mo><mi>s</mi><mo>′</mo><mo>,</mo><mi>t</mi><mo>′</mo><mo>,</mo><mi mathvariant="normal">refl</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R', s', t', \mathrm{refl}')</annotation></semantics></math> on a carrier set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> where additionally, for every element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">a \in S</annotation></semantics></math> of the carrier set, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="normal">refl</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">refl</mi><mo>′</mo><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(\mathrm{refl}(a)) = \mathrm{refl}'(f(a))</annotation></semantics></math>.</p>
+<p>A reflexive graph structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Id</mi> <mi>S</mi></msub><mo>,</mo><msub><mi>s</mi> <mi mathvariant="normal">Id</mi></msub><mo>,</mo><msub><mi>t</mi> <mi mathvariant="normal">Id</mi></msub><mo>,</mo><msub><mi mathvariant="normal">refl</mi> <mi>S</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathrm{Id}_S, s_{\mathrm{Id}}, t_{ \mathrm{Id}}, \mathrm{refl}_S)</annotation></semantics></math> on a carrier set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> is an <em>initial reflexive graph structure</em> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> if for every other reflexive graph structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo>,</mo><mi mathvariant="normal">refl</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R, s, t, \mathrm{refl})</annotation></semantics></math> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, there exists a unique reflexive graph structure homomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><msub><mi mathvariant="normal">Id</mi> <mi>S</mi></msub><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">f:\mathrm{Id}_S \to R</annotation></semantics></math>.</p>
+<p>Every set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> has an initial reflexive graph structure given by the <a class="existingWikiWord" href="../../../../../0/5/3/2/2350/content.html">diagonal function</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>.</p>
+<p>It could be shown from this <a class="existingWikiWord" href="../../../../../3/4/0/1/1043/content.html">universal property</a> that the functions <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mi mathvariant="normal">Id</mi></msub></mrow><annotation encoding="application/x-tex">s_\mathrm{Id}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi> <mi mathvariant="normal">Id</mi></msub></mrow><annotation encoding="application/x-tex">t_\mathrm{Id}</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../3/7/8/3/23873/content.html">jointly injective</a>, and thus that <a class="existingWikiWord" href="../../../../../9/0/6/9/19609/content.html">axiom K</a> holds internally in set theory.</p>
+<p><h2 id="section_Internal_and_external_axioms">Internal and external axioms</h2></p>
+<p>Since every logical operation in <a class="existingWikiWord" href="../../../../../7/3/0/3/3037/content.html">predicate logic</a> have been internalized in the set theory itself, one then has to distinguish between the axioms written in the external predicate logic used to define the set theory, and the axioms written in the predicate logic internal to the set theory.</p>
+<p>For example, the external <a class="existingWikiWord" href="../../../../../7/7/0/8/18077/content.html">law of double negation</a> states that for any proposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> the double negation of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> implies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>¬</mo><mi>P</mi><mo>⇒</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\neg \neg P \implies P</annotation></semantics></math>. The <strong>internal law of double negation</strong> would say that for every <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, the subsingleton <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>¬</mo><mo>¬</mo><mi>S</mi><mo>⇒</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">\neg \neg S \implies S</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a>, or equivalently, that for every set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> there is an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">doubleneg</mi> <mi>S</mi></msub><mo>∈</mo><mo>¬</mo><mo>¬</mo><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo><mo>⇒</mo><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathrm{doubleneg}_S \in \neg \neg [S] \implies [S]</annotation></semantics></math>.</p>
+<p>Similarly, the external <a class="existingWikiWord" href="../../../../../7/9/4/0/497/content.html">law of excluded middle</a> states that for any proposition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> it is possible to derive that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mo>¬</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">P \vee \neg P</annotation></semantics></math>. The <strong>internal law of excluded middle</strong> would say that for every for every <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>∨</mo><mo>¬</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">S \vee \neg S</annotation></semantics></math> is a singleton, or equivalently, that for every set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math>, there is a element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">lem</mi> <mi>S</mi></msub><mo>∈</mo><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo><mo>∨</mo><mo>¬</mo><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathrm{lem}_S \in[S] \vee \neg [S]</annotation></semantics></math>.</p>
+<p><h2 id="section_See_also">See also</h2></p>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../9/1/2/0/10219/content.html">split support</a></li>
+<li><a class="existingWikiWord" href="../../../../../3/8/5/0/583/content.html">internal logic</a></li>
+<li><a class="existingWikiWord" href="../../../../../9/7/9/6/6979/content.html">dependent type theory</a></li>
+<li><a class="existingWikiWord" href="../../../../../7/2/7/2/2727/content.html">propositions as types</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/2/2/0/220/content.html">Trimble on ETCS II</a></li>
+</ul>
+<div>
+<p><strong><a class="existingWikiWord" href="../../../../../0/7/3/8/8370/content.html">computational trinitarianism</a></strong> = <br/> <strong><a class="existingWikiWord" href="../../../../../7/2/7/2/2727/content.html">propositions as types</a></strong> +<strong><a class="existingWikiWord" href="../../../../../4/1/0/7/7014/content.html">programs as proofs</a></strong> +<strong><a class="existingWikiWord" href="../../../../3/6/7/7636/content.html">relation type theory/category theory</a></strong></p>
+<table><thead><tr><th><a class="existingWikiWord" href="../../../../../1/3/3/0/331/content.html">logic</a></th><th><a class="existingWikiWord" href="../../../../../5/1/0/1/1015/content.html">set theory</a> (<a class="existingWikiWord" href="content.html">internal logic</a> of)</th><th><a class="existingWikiWord" href="../../../../../9/1/0/0/19/content.html">category theory</a></th><th><a class="existingWikiWord" href="../../../../../4/9/1/1/1194/content.html">type theory</a></th></tr></thead><tbody><tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">predicate</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/6/1/4/4165/content.html">family of sets</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/9/5/3/3598/content.html">display morphism</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">dependent type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/9/6/6980/content.html">proof</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/1/7/2/2711/content.html">element</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/2/0/1/1024/content.html">generalized element</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/9/5/5980/content.html">term</a>/<a class="existingWikiWord" href="../../../../../4/5/3/8/8354/content.html">program</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/3/0/1/11037/content.html">cut rule</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/2/1/0/125/content.html">composition</a> of <a class="existingWikiWord" href="../../../../../8/6/2/6/6268/content.html">classifying morphisms</a> / <a class="existingWikiWord" href="../../../../../3/2/3/0/323/content.html">pullback</a> of <a class="existingWikiWord" href="../../../../../8/9/5/3/3598/content.html">display maps</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/6/7/7609/content.html">substitution</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/3/0/1/11037/content.html">cut elimination</a> for <a class="existingWikiWord" href="../../../../../0/8/0/2/2080/content.html">implication</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/1/7/4/4717/content.html">counit</a> for hom-tensor adjunction</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../0/5/7/7506/content.html">beta reduction</a></td></tr>
+<tr><td style="text-align: left;">introduction rule for <a class="existingWikiWord" href="../../../../../0/8/0/2/2080/content.html">implication</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/1/7/4/4710/content.html">unit</a> for hom-tensor adjunction</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/0/5/7/7507/content.html">eta conversion</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/4/3/4/4340/content.html">true</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/4/2/1/1249/content.html">singleton</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a>/<a class="existingWikiWord" href="../../../../../1/7/0/7/7071/content.html">(-2)-truncated object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/6/0/7/7065/content.html">h-level 0</a>-<a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a>/<a class="existingWikiWord" href="../../../../../3/8/9/6/6983/content.html">unit type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/2/6/4/4622/content.html">false</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/6/4/0/461/content.html">empty set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/7/3/0/372/content.html">initial object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../8/9/6/6986/content.html">empty type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a>, <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth value</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/0/5/0/505/content.html">subsingleton</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/7/6/0/674/content.html">subterminal object</a>/<a class="existingWikiWord" href="../../../../../1/7/0/7/7071/content.html">(-1)-truncated object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">h-proposition</a>, <a class="existingWikiWord" href="../../../../../1/8/0/7/7081/content.html">mere proposition</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../1/2/4/4216/content.html">logical conjunction</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">cartesian product</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">product</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/8/9/6/6984/content.html">product type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/1/2/4/4217/content.html">disjunction</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../7/8/0/876/content.html">disjoint union</a> (<a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproduct</a> (<a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">(-1)-truncation</a> of)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/8/9/6/6985/content.html">sum type</a> (<a class="existingWikiWord" href="../../../../../4/3/0/7/7034/content.html">bracket type</a> of)</td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/0/2/2080/content.html">implication</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/6/8/0/869/content.html">negation</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/9/8/0/894/content.html">function set</a> into <a class="existingWikiWord" href="../../../../../1/6/4/0/461/content.html">empty set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/4/8/0/849/content.html">internal hom</a> into <a class="existingWikiWord" href="../../../../../2/7/3/0/372/content.html">initial object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/7/9/6/6970/content.html">function type</a> into <a class="existingWikiWord" href="../../../../8/9/6/6986/content.html">empty type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/4/9/6/6948/content.html">universal quantification</a></td><td style="text-align: left;">indexed <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">cartesian product</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/4/9/6/6947/content.html">existential quantification</a></td><td style="text-align: left;">indexed <a class="existingWikiWord" href="../../../../7/8/0/876/content.html">disjoint union</a> (<a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html">support</a> of)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/6/8/8609/content.html">dependent sum</a> (<a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">(-1)-truncation</a> of)</td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/0/5/7/7509/content.html">dependent sum type</a> (<a class="existingWikiWord" href="../../../../../4/3/0/7/7034/content.html">bracket type</a> of)</td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/9/4/9/19497/content.html">logical equivalence</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/0/5/0/504/content.html">bijection</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>/<a class="existingWikiWord" href="../../../../../7/9/7/1/1797/content.html">adjoint equivalence</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence of types</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/5/7/4/24758/content.html">support set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/5/7/4/24754/content.html">support object</a>/<a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">(-1)-truncation</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/3/0/7/7034/content.html">propositional truncation</a>/<a class="existingWikiWord" href="../../../../../4/3/0/7/7034/content.html">bracket type</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/4/9/7/7949/content.html">n-image</a> of <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphism</a> into <a class="existingWikiWord" href="../../../../../7/0/3/0/307/content.html">terminal object</a>/<a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">n-truncation</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/1/6/0/10615/content.html">n-truncation modality</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/0/2/0/207/content.html">equality</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/5/3/2/2350/content.html">diagonal function</a>/<a class="existingWikiWord" href="../../../../../8/4/3/2/2348/content.html">diagonal subset</a>/<a class="existingWikiWord" href="../../../../../5/5/8/4/24855/content.html">diagonal relation</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/3/4/0/437/content.html">path space object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../9/5/3/3596/content.html">identity type</a>/<a class="existingWikiWord" href="../../../../../2/2/4/6/26422/content.html">path type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/9/4/0/490/content.html">completely presented set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/9/5/1/1591/content.html">discrete object</a>/<a class="existingWikiWord" href="../../../../../1/7/0/7/7071/content.html">0-truncated object</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-level 2</a>-<a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a>/<a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a>/<a class="existingWikiWord" href="../../../../../3/8/0/7/7083/content.html">h-set</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a> with <a class="existingWikiWord" href="../../../../../4/8/4/0/484/content.html">equivalence relation</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/7/7/1/1775/content.html">internal 0-groupoid</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/6/4/8/8469/content.html">Bishop set</a>/<a class="existingWikiWord" href="../../../../../5/8/3/2/22385/content.html">setoid</a> with its <a class="existingWikiWord" href="../../../../../0/2/8/5/25820/content.html">pseudo-equivalence relation</a> an actual <a class="existingWikiWord" href="../../../../../4/8/4/0/484/content.html">equivalence relation</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/0/8/5/5802/content.html">equivalence class</a>/<a class="existingWikiWord" href="../../../../../0/9/8/0/890/content.html">quotient set</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/9/8/0/891/content.html">quotient</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/7/0/7/7074/content.html">quotient type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/5/7/2/2757/content.html">induction</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/9/5/0/590/content.html">colimit</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/3/9/6/6935/content.html">inductive type</a>, <a class="existingWikiWord" href="../../../../7/4/3/3476/content.html">W-type</a>, <a class="existingWikiWord" href="../../../../../8/3/6/7/7638/content.html">M-type</a></td></tr>
+<tr><td style="text-align: left;">higher <a class="existingWikiWord" href="../../../../../7/5/7/2/2757/content.html">induction</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../../../missing.html">higher colimit</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../3/9/6/6936/content.html">higher inductive type</a></td></tr>
+<tr><td style="text-align: left;">-</td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">0-truncated</a> <a class="existingWikiWord" href="../../../../../../../missing.html">higher colimit</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/5/7/2/22759/content.html">quotient inductive type</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/2/5/1/1527/content.html">coinduction</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/1/3/0/314/content.html">limit</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../4/2/6/8/8624/content.html">coinductive type</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../8/2/5/2/2528/content.html">preset</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> without <a class="existingWikiWord" href="../../../../9/5/3/3596/content.html">identity types</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a> of <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth values</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../0/3/0/306/content.html">subobject classifier</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">type of propositions</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">domain of discourse</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../0/4/8/7/27840/content.html">universe</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../2/2/3/2/2322/content.html">object classifier</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/4/0/7/7045/content.html">type universe</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/1/6/0/10611/content.html">modality</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../9/8/9/8/8989/content.html">closure operator</a>, (<a class="existingWikiWord" href="../../../../../0/4/0/1/1040/content.html">idempotent</a>) <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/0/7/8/8707/content.html">modal type theory</a>, <a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad (in computer science)</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/5/0/1/1053/content.html">linear logic</a></td><td style="text-align: left;"></td><td style="text-align: left;">(<a class="existingWikiWord" href="../../../../../4/4/2/0/244/content.html">symmetric</a>, <a class="existingWikiWord" href="../../../../../9/6/4/0/469/content.html">closed</a>) <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal category</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../1/0/9/0/10901/content.html">linear type theory</a>/<a class="existingWikiWord" href="../../../../../8/3/6/9/9638/content.html">quantum computation</a></td></tr>
+<tr><td style="text-align: left;"><a class="existingWikiWord" href="../../../../3/0/1/11036/content.html">proof net</a></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../2/6/0/626/content.html">string diagram</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../2/6/2/22626/content.html">quantum circuit</a></td></tr>
+<tr><td style="text-align: left;">(absence of) <a class="existingWikiWord" href="../../../../../0/2/3/8/8320/content.html">contraction rule</a></td><td style="text-align: left;"></td><td style="text-align: left;">(absence of) <a class="existingWikiWord" href="../../../../../9/4/3/2/2349/content.html">diagonal</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../7/6/9/0/10967/content.html">no-cloning theorem</a></td></tr>
+<tr><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../5/1/6/1/11615/content.html">synthetic mathematics</a></td><td style="text-align: left;"><a class="existingWikiWord" href="../../../../../3/1/6/1/11613/content.html">domain specific embedded programming language</a></td></tr>
+</tbody></table>
+</div></div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

@@ -1,0 +1,667 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      delooping via torsors in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      delooping via torsors
+  </h1>
+<div id="revision">
+<h1 id="section_table_of_contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#construction">Construction</a></li>
+<ul>
+<li><a href="#left_torsors">Left torsors</a></li>
+<li><a href="#the_moduli_type">The moduli type</a></li>
+</ul>
+<li><a href="#delooping_properties">Delooping properties</a></li>
+<ul>
+<li><a href="#connectedness_and_truncation">Connectedness and truncation</a></li>
+<li><a href="#recovering_the_group_from_loops">Recovering the group from loops</a></li>
+</ul>
+<li><a href="#pathtorsor_characterization">Path-torsor characterization</a></li>
+<ul>
+<li><a href="#statement">Statement</a></li>
+<li><a href="#construction_of_the_group_action">Construction of the group action</a></li>
+<li><a href="#proof_that_the_path_type_is_a_torsor">Proof that the path type is a torsor</a></li>
+<li><a href="#proof_that_the_construction_is_an_equivalence">Proof that the construction is an equivalence</a></li>
+</ul>
+<li><a href="#formalization_in_cubical_agda">Formalization in Cubical Agda</a></li>
+<ul>
+<li><a href="#torsor_structures">Torsor structures</a></li>
+<li><a href="#moduli_and_loops">Moduli and loops</a></li>
+<li><a href="#comparison_and_classification">Comparison and classification</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>In <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>, a fundamental characterization of <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a> is that <strong>the delooping of a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> is <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalent</a> to the <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> of <a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsors</a> for that group</strong>:</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <a class="existingWikiWord" href="../../../../../6/3/0/0/36/content.html">internal</a> to <a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a> (<a class="existingWikiWord" href="../../../../../1/6/3/6/26361/content.html">0-truncated</a> <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">types</a>) there is (up to appropriate <a class="existingWikiWord" href="../../../../../6/8/3/6/26386/content.html">universe-level</a> adjustment) an <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><mi>G</mi><msub><mi mathvariant="normal">Tors</mi> <mi>L</mi></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathbf{B}G \simeq G\mathrm{Tors}_L(G).
+
+</annotation></semantics></math></div>
+<p>between:</p>
+<ol>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../6/9/4/2/22496/content.html">delooping groupoid</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>,</mo><mi mathvariant="normal">pt</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbf{B} G,\mathrm{pt})</annotation></semantics></math> (a <a class="existingWikiWord" href="../../../../5/7/0/10753/content.html">pointed</a> <a class="existingWikiWord" href="../../../../../5/5/7/0/10755/content.html">connected</a> <a class="existingWikiWord" href="../../../../../6/4/6/0/646/content.html">1-type</a> equipped with a group-compatible identification of its <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop space</a>/<a class="existingWikiWord" href="../../../../../7/1/4/8/18417/content.html">identity</a> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Id</mi> <mrow><mi>pt</mi><mo>,</mo><mi>pt</mi></mrow></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">Id_{pt,pt} \mathbf{B}G \simeq G</annotation></semantics></math></p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli type</a> of left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsors</a>.</p>
+</li>
+</ol>
+<p>We make this explicit below.</p>
+<p>The key observation is that for every <a class="existingWikiWord" href="../../../../../0/8/9/5/5980/content.html">term</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo lspace="verythinmathspace">:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">t \colon \mathbf{B}G</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../2/2/4/6/26422/content.html">path type</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>t</mi></msub><mo>≔</mo><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>=</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  P_t
+    \coloneqq
+  (\mathrm{pt} = t)
+
+</annotation></semantics></math></div>
+<p>naturally carries a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a> <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a>, where the group <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">acts</a> by path <a class="existingWikiWord" href="../../../../../1/6/0/4/24061/content.html">concatenation</a>. This gives a <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi>G</mi><msub><mi mathvariant="normal">Tors</mi> <mi>L</mi></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd><mi>t</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mi>P</mi> <mi>t</mi></msub><mpadded width="0"><mrow><mspace width="thinmathspace"></mspace><mo>.</mo></mrow></mpadded></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    \mathbf{B}G &amp;\longrightarrow&amp; G\mathrm{Tors}_L(G)
+    \\
+    t &amp; \mapsto&amp;  P_t
+    \mathrlap{\,.}
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>and the theorem asserts that this function exhibits an <a class="existingWikiWord" href="../../../../../2/8/0/7/7082/content.html">equivalence</a>.</p>
+<p>This characterization reveals a relationship between algebraic <a class="existingWikiWord" href="../../../../../8/8/7/5/5788/content.html">symmetries</a> and <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity types</a>: the <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is represented by loops in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math>, while the points of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> can be recovered as torsors for those symmetries.</p>
+<p>The following sections explain the construction, its mathematical proof, and its implementation in <a class="existingWikiWord" href="../../../../../4/3/9/6/6934/content.html">Cubical Agda</a>, with explicit references to the machine-checked declarations.</p>
+<h2 id="construction">Construction</h2>
+<h3 id="left_torsors">Left torsors</h3>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> whose <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a> is a <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a> (meaning: an <a class="existingWikiWord" href="../../../../8/0/7/7083/content.html">h-set</a>). A left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a> on a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> is an operation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>G</mi><mo>×</mo><mi>X</mi></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi>X</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>g</mi><mo>⋅</mo><mi>x</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    G\times X &amp;\longrightarrow&amp; X
+    \\
+    (g,x) &amp;\mapsto&amp; g\cdot x
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>satisfying the usual <a class="existingWikiWord" href="../../../../../1/1/4/1/1411/content.html">unit</a> and <a class="existingWikiWord" href="../../../../../2/4/7/4/4742/content.html">associativity</a> laws.</p>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>:</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x,y:X</annotation></semantics></math>, define the <em>type of transporters</em> by</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Trans</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>≔</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>g</mi><mo>:</mo><mi>G</mi></mrow></munder><mo stretchy="false">(</mo><mi>g</mi><mo>⋅</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \mathrm{Trans}_G(x,y)
+  \coloneqq
+  \sum_{g:G}(g\cdot x=y).
+
+</annotation></semantics></math></div>
+<p>A <em>left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a></em> is a left action on a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> equipped with a term of type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">‖</mo><mi>X</mi><msub><mo stretchy="false">‖</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\|X\|_{-1}</annotation></semantics></math> and a proof of</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow></munder><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>y</mi><mo>:</mo><mi>X</mi></mrow></munder><mo lspace="0em" rspace="thinmathspace">isContr</mo><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Trans</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  \prod_{x:X}\prod_{y:X}
+  \operatorname{isContr}(\mathrm{Trans}_G(x,y)).
+
+</annotation></semantics></math></div>
+<p>The first condition <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">‖</mo><mi>X</mi><msub><mo stretchy="false">‖</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\|X\|_{-1}</annotation></semantics></math> asserts mere <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabitation</a> without selecting a distinguished element. The second says that every pair of points admits a unique transporter; one should verify that this is indeed the HoTT presentation of <a class="existingWikiWord" href="../../../../../9/2/0/7/7029/content.html">free</a> and transitive.</p>
+<p>For any chosen <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x:X</annotation></semantics></math>, the orbit map</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>G</mi></mtd> <mtd><mo>⟶</mo></mtd> <mtd><mi>X</mi></mtd></mtr> <mtr><mtd><mi>g</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>g</mi><mo>⋅</mo><mi>x</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+  \begin{array}{ccc}
+    G &amp;\longrightarrow&amp; X
+    \\
+    g &amp;\mapsto&amp; g\cdot x
+  \end{array}
+
+</annotation></semantics></math></div>
+<p>is an <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a>. Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>:</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">y:X</annotation></semantics></math>, consider the <a class="existingWikiWord" href="../../../../6/0/2/2063/content.html">fiber</a> of the orbit map over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mtable columnalign="right left right left right left right left right left" columnspacing="0em" displaystyle="true"><mtr><mtd><msub><mi mathvariant="normal">fib</mi> <mrow><msub><mi mathvariant="normal">orb</mi> <mi>x</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>g</mi><mo>:</mo><mi>G</mi></mrow></munder><mo stretchy="false">(</mo><msub><mi mathvariant="normal">orb</mi> <mi>x</mi></msub><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>g</mi><mo>:</mo><mi>G</mi></mrow></munder><mo stretchy="false">(</mo><mi>g</mi><mo>⋅</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="false">)</mo></mtd></mtr> <mtr><mtd></mtd> <mtd><mo>=</mo><msub><mi mathvariant="normal">Trans</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>.</mo></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\begin{aligned}
+\mathrm{fib}_{\mathrm{orb}_x}(y)
+  &amp;= \sum_{g:G}(\mathrm{orb}_x(g)=y) \\
+  &amp;= \sum_{g:G}(g\cdot x=y) \\
+  &amp;= \mathrm{Trans}_G(x,y).
+\end{aligned}
+
+</annotation></semantics></math></div>
+<p>In <a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a>, a function is an equivalence if and only if every fiber is <a class="existingWikiWord" href="../../../../../5/6/0/7/7065/content.html">contractible</a>. Therefore we have</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo>(</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo> <mrow><mi>y</mi><mo>:</mo><mi>X</mi></mrow></munder><mo lspace="0em" rspace="thinmathspace">isContr</mo><mo stretchy="false">(</mo><msub><mi mathvariant="normal">Trans</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>)</mo></mrow><mo>→</mo><mo lspace="0em" rspace="thinmathspace">isEquiv</mo><mo stretchy="false">(</mo><msub><mi mathvariant="normal">orb</mi> <mi>x</mi></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\left(
+\prod_{y:X}\operatorname{isContr}(\mathrm{Trans}_G(x,y))
+\right)
+\to
+\operatorname{isEquiv}(\mathrm{orb}_x).
+
+</annotation></semantics></math></div>
+<p>Thus a choice of origin identifies a torsor with the group, but this identification is not part of the torsor structure.</p>
+<p>The <strong>regular left torsor</strong> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> itself, equipped with left multiplication.</p>
+<h3 id="the_moduli_type">The moduli type</h3>
+<p>Fix a <a class="existingWikiWord" href="../../../../../5/0/0/7/7005/content.html">univalent universe</a> of small sets. Let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub><mo>≔</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>X</mi><mo>:</mo><msub><mi mathvariant="normal">hSet</mi> <mi>ℓ</mi></msub></mrow></munder><msub><mo lspace="0em" rspace="thinmathspace">LeftTorsorStructure</mo> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+G Tors_L
+\coloneqq
+\sum_{X:\mathrm{hSet}_{\ell}}
+\operatorname{LeftTorsorStructure}_G(X)
+
+</annotation></semantics></math></div>
+<p>denote the <a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli type</a> of small left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a>s.</p>
+<p>Its elements consist of carrier sets equipped with <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">group action</a>s and proofs of the torsor conditions. Since the relevant law fields are <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a>s, the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a> applies.</p>
+<p>For two torsors <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math>, it identifies their <a class="existingWikiWord" href="../../../../../2/2/4/6/26422/content.html">path type</a> with the type of equivariant equivalences:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>T</mi><mo>=</mo><mi>U</mi><mo stretchy="false">)</mo><mo>≃</mo><msub><mo lspace="0em" rspace="thinmathspace">Equiv</mo> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>T</mi><mo>,</mo><mi>U</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+(T=U)\simeq\operatorname{Equiv}_G(T,U).
+
+</annotation></semantics></math></div>
+<p>Hence identity paths in the moduli type encode the symmetries of torsor structures.</p>
+<p>The regular left torsor determines a distinguished point</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi> <mi mathvariant="normal">reg</mi></msub><mo>:</mo><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub><mo>.</mo></mrow><annotation encoding="application/x-tex">
+T_{\mathrm{reg}}:G Tors_L.
+
+</annotation></semantics></math></div>
+<h2 id="delooping_properties">Delooping properties</h2>
+<h3 id="connectedness_and_truncation">Connectedness and truncation</h3>
+<p>The <a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub></mrow><annotation encoding="application/x-tex">G Tors_L</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected</a>.</p>
+<p>Indeed, any <a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> is merely <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited</a>. Given a temporary choice <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>:</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">x:T</annotation></semantics></math>, the orbit map gives a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-equivariant <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a> between the regular torsor and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math>. The <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a> turns this into a <a class="existingWikiWord" href="../../../../../2/2/4/6/26422/content.html">path</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi> <mi mathvariant="normal">reg</mi></msub><mo>=</mo><mi>T</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+T_{\mathrm{reg}}=T.
+
+</annotation></semantics></math></div>
+<p>Since <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connectedness</a> requires only the <a class="existingWikiWord" href="../../../../../4/3/0/7/7034/content.html">propositional truncation</a> of this path, the choice of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> can be eliminated.</p>
+<p>Moreover, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub></mrow><annotation encoding="application/x-tex">G Tors_L</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../6/4/6/0/646/content.html">1-type</a>. By the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a>, its <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a>s are equivalent to types of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-equivariant equivalences between <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a>s, which are themselves sets.</p>
+<p>Thus the moduli type of torsors is a <a class="existingWikiWord" href="../../../../5/7/0/10753/content.html">pointed</a> connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-type.</p>
+<h3 id="recovering_the_group_from_loops">Recovering the group from loops</h3>
+<p>At the regular basepoint, the <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop type</a> is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo stretchy="false">(</mo><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub><mo>,</mo><msub><mi>T</mi> <mi mathvariant="normal">reg</mi></msub><mo stretchy="false">)</mo><mo>≃</mo><msub><mo lspace="0em" rspace="thinmathspace">Aut</mo> <mi>G</mi></msub><mo stretchy="false">(</mo><msub><mi>T</mi> <mi mathvariant="normal">reg</mi></msub><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\Omega(G Tors_L,T_{\mathrm{reg}})
+\simeq
+\operatorname{Aut}_G(T_{\mathrm{reg}}).
+
+</annotation></semantics></math></div>
+<p>An equivariant <a class="existingWikiWord" href="../../../../../1/8/2/0/281/content.html">automorphism</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>G</mi><mo>→</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">f:G\to G</annotation></semantics></math> of the regular left torsor satisfies</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>gx</mi><mo stretchy="false">)</mo><mo>=</mo><mi>gf</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+f(gx)=gf(x).
+
+</annotation></semantics></math></div>
+<p>Taking <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=1</annotation></semantics></math> gives</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><mi>gf</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+f(g)=gf(1).
+
+</annotation></semantics></math></div>
+<p>Consequently, every such automorphism is a <em>right translation</em></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi> <mi>h</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≔</mo><mi>xh</mi></mrow><annotation encoding="application/x-tex">
+R_h(x)\coloneqq xh
+
+</annotation></semantics></math></div>
+<p>for a unique <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>:</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">h:G</annotation></semantics></math>. Evaluation at the group unit therefore gives an equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="0em" rspace="thinmathspace">Aut</mo> <mi>G</mi></msub><mo stretchy="false">(</mo><msub><mi>T</mi> <mi mathvariant="normal">reg</mi></msub><mo stretchy="false">)</mo><mo>≃</mo><mi>G</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\operatorname{Aut}_G(T_{\mathrm{reg}})\simeq G.
+
+</annotation></semantics></math></div>
+<p>Combining these equivalences yields</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Ω</mi><mo stretchy="false">(</mo><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub><mo>,</mo><msub><mi>T</mi> <mi mathvariant="normal">reg</mi></msub><mo stretchy="false">)</mo><mo>≃</mo><mi>G</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\Omega(G Tors_L,T_{\mathrm{reg}})
+\simeq G.
+
+</annotation></semantics></math></div>
+<p>This is an equivalence of underlying types. Compatibility with the group structure requires additional coherence between composition of equivariant automorphisms and <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">path concatenation</a>.</p>
+<p>In particular, if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(g)</annotation></semantics></math> is the loop corresponding to the right translation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi> <mi>g</mi></msub></mrow><annotation encoding="application/x-tex">R_g</annotation></semantics></math> under the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a>, the composition convention used here gives</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>gh</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>p</mi><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">
+p(gh)=p(g)\cdot p(h),
+
+</annotation></semantics></math></div>
+<p>where the right-hand operation is path concatenation.</p>
+<p>This explains how the multiplication of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> is represented by composition of identity paths in the moduli type of torsors.</p>
+<h2 id="pathtorsor_characterization">Path-torsor characterization</h2>
+<p>The central result of the <a class="existingWikiWord" href="content.html">torsor delooping</a> construction is that <strong>any <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a> of a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> is equivalent to the type of <a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a>s for that group</strong>.</p>
+<p>This is the content of <a href="#MyersSatiSchreiber2024">Myers, Sati &amp; Schreiber 2024, Lem 5.8</a>.</p>
+<h3 id="statement">Statement</h3>
+<p><strong>Lemma (Any delooping is equivalent to the type of torsors).</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a>, and let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>,</mo><mi mathvariant="normal">pt</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathbf{B}G,\mathrm{pt})</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>: a <a class="existingWikiWord" href="../../../../5/7/0/10753/content.html">pointed</a> <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-type equipped with a looping <a class="existingWikiWord" href="../../../../../0/2/1/0/120/content.html">equivalence</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi><mo>:</mo><msub><mi>Ω</mi> <mi mathvariant="normal">pt</mi></msub><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">
+\ell:\Omega_{\mathrm{pt}}\mathbf{B}G\simeq G
+
+</annotation></semantics></math></div>
+<p>compatible with the group structures.</p>
+<p>Then the assignment</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mtd> <mtd><mover><mo>→</mo><mo>≃</mo></mover></mtd> <mtd><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub></mtd></mtr> <mtr><mtd><mi>t</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><msub><mo lspace="0em" rspace="thinmathspace">Id</mo> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{array}{ccc}
+\mathbf{B}G &amp;\xrightarrow{\simeq}&amp; G Tors_L
+\\
+t &amp;\mapsto&amp; \operatorname{Id}_{\mathbf{B}G}(\mathrm{pt},t)
+\end{array}
+
+</annotation></semantics></math></div>
+<p>defines an equivalence between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> and the type of left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsors.</p>
+<p>The group action on the <a class="existingWikiWord" href="../../../../../6/9/5/3/3596/content.html">identity type</a> is induced by <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">concatenation of identifications</a>, using the inverse of the given looping equivalence.</p>
+<h3 id="construction_of_the_group_action">Construction of the group action</h3>
+<p>Fix <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">t:\mathbf{B}G</annotation></semantics></math> and define the <em>path torsor</em></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>t</mi></msub><mo>≔</mo><msub><mo lspace="0em" rspace="thinmathspace">Id</mo> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+P_t\coloneqq\operatorname{Id}_{\mathbf{B}G}(\mathrm{pt},t).
+
+</annotation></semantics></math></div>
+<p>For <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">g:G</annotation></semantics></math>, the inverse looping equivalence determines a loop <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mo lspace="0em" rspace="thinmathspace">Id</mo> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>,</mo><mi mathvariant="normal">pt</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\ell^{-1}(g):\operatorname{Id}_{\mathbf{B}G}(\mathrm{pt},\mathrm{pt})</annotation></semantics></math>.</p>
+<p>Concatenation with this loop defines a left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>G</mi><mo>×</mo><msub><mi>P</mi> <mi>t</mi></msub></mtd> <mtd><mo>⟶</mo></mtd> <mtd><msub><mi>P</mi> <mi>t</mi></msub></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>p</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{array}{ccc}
+G\times P_t &amp;\longrightarrow&amp; P_t
+\\
+(g,p) &amp;\mapsto&amp; \ell^{-1}(g)\cdot p
+\end{array}
+
+</annotation></semantics></math></div>
+<p>Here the operation on the right is <a class="existingWikiWord" href="../../../../../4/8/6/6/6684/content.html">path concatenation</a>. The compatibility of the looping equivalence with the group structure ensures the unit and associativity laws.</p>
+<p>This is the construction described in equation (160) of <a href="#MyersSatiSchreiber2024">Myers, Sati &amp; Schreiber 2024</a>.</p>
+<h3 id="proof_that_the_path_type_is_a_torsor">Proof that the path type is a torsor</h3>
+<p>We first verify that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>t</mi></msub></mrow><annotation encoding="application/x-tex">P_t</annotation></semantics></math> is a left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor.</p>
+<p><strong>Mere inhabitation.</strong></p>
+<p>Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected</a>, for every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">t:\mathbf{B}G</annotation></semantics></math> there merely exists an identification from <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">pt</mi></mrow><annotation encoding="application/x-tex">\mathrm{pt}</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>, expressed by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">‖</mo><msub><mi>P</mi> <mi>t</mi></msub><msub><mo stretchy="false">‖</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\|P_t\|_{-1}</annotation></semantics></math>.</p>
+<p>This establishes mere <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabitation</a> without choosing a distinguished path.</p>
+<p><strong>Existence of a transporter.</strong></p>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>,</mo><mi>q</mi><mo>:</mo><msub><mo lspace="0em" rspace="thinmathspace">Id</mo> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p,q:\operatorname{Id}_{\mathbf{B}G}(\mathrm{pt},t)</annotation></semantics></math>. We wish to construct a group element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>:</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">g:G</annotation></semantics></math> satisfying <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>⋅</mo><mi>q</mi><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">g\cdot q=p</annotation></semantics></math>.</p>
+<p>By path inversion and concatenation of identifications, the composite <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>⋅</mo><msup><mi>q</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">p\cdot q^{-1}</annotation></semantics></math> is a loop at <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">pt</mi></mrow><annotation encoding="application/x-tex">\mathrm{pt}</annotation></semantics></math>. Applying the looping equivalence gives</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>≔</mo><mi>ℓ</mi><mo stretchy="false">(</mo><mi>p</mi><mo>⋅</mo><msup><mi>q</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo><mo>:</mo><mi>G</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+g\coloneqq\ell(p\cdot q^{-1}):G.
+
+</annotation></semantics></math></div>
+<p>By construction, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>q</mi><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">\ell^{-1}(g)\cdot q=p</annotation></semantics></math>, up to the canonical identification supplied by the equivalence and the groupoid laws for paths. Hence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> transports <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>.</p>
+<p>This corresponds to the explicit construction in equation (161) of <a href="#MyersSatiSchreiber2024">Myers, Sati &amp; Schreiber 2024</a>.</p>
+<p><strong>Uniqueness of the transporter.</strong></p>
+<p>Suppose another group element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>′</mo><mo>:</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">g':G</annotation></semantics></math> also satisfies <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>′</mo><mo>⋅</mo><mi>q</mi><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">g'\cdot q=p</annotation></semantics></math>. By definition of the action, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>q</mi><mo>=</mo><mi>p</mi><mo>=</mo><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo>′</mo><mo stretchy="false">)</mo><mo>⋅</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">\ell^{-1}(g)\cdot q=p=\ell^{-1}(g')\cdot q</annotation></semantics></math>.</p>
+<p>Concatenating with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>q</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">q^{-1}</annotation></semantics></math> and using the groupoid laws for paths gives <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\ell^{-1}(g)=\ell^{-1}(g')</annotation></semantics></math>. Since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi></mrow><annotation encoding="application/x-tex">\ell</annotation></semantics></math> is an equivalence, it follows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mi>g</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">g=g'</annotation></semantics></math>.</p>
+<p>More precisely, the type of transporters is</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="0em" rspace="thinmathspace">Trans</mo> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>q</mi><mo>,</mo><mi>p</mi><mo stretchy="false">)</mo><mo>≔</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mrow><mi>g</mi><mo>:</mo><mi>G</mi></mrow></munder><mo stretchy="false">(</mo><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>q</mi><mo>=</mo><mi>p</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\operatorname{Trans}_G(q,p)
+\coloneqq
+\sum_{g:G}(\ell^{-1}(g)\cdot q=p).
+
+</annotation></semantics></math></div>
+<p>This is the fiber over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math> of the orbit map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>↦</mo><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">g\mapsto\ell^{-1}(g)\cdot q</annotation></semantics></math>. Since this map is the composite of the looping equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>ℓ</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\ell^{-1}</annotation></semantics></math> with concatenation by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math>, both of which are equivalences, its fibers are contractible.</p>
+<p>Thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi>t</mi></msub></mrow><annotation encoding="application/x-tex">P_t</annotation></semantics></math> satisfies the unique-transporter condition and, together with mere inhabitation, is a left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor.</p>
+<p>This is the uniqueness argument corresponding to equation (162) of <a href="#MyersSatiSchreiber2024">Myers, Sati &amp; Schreiber 2024</a>.</p>
+<h3 id="proof_that_the_construction_is_an_equivalence">Proof that the construction is an equivalence</h3>
+<p>We have shown that the assignment <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>↦</mo><msub><mi>P</mi> <mi>t</mi></msub></mrow><annotation encoding="application/x-tex">t\mapsto P_t</annotation></semantics></math> defines a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>→</mo><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub></mrow><annotation encoding="application/x-tex">F:\mathbf{B}G\to G Tors_L</annotation></semantics></math>. It remains to prove that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math> is an equivalence.</p>
+<p>The source <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}G</annotation></semantics></math> is a pointed connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-type by assumption. As established above, the <a class="existingWikiWord" href="../../../../../2/4/9/6/6942/content.html">moduli type</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub></mrow><annotation encoding="application/x-tex">G Tors_L</annotation></semantics></math> is also a pointed connected <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-type, with the regular torsor as its distinguished point.</p>
+<p>At <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mi mathvariant="normal">pt</mi></mrow><annotation encoding="application/x-tex">t=\mathrm{pt}</annotation></semantics></math>, the associated torsor is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi mathvariant="normal">pt</mi></msub><mo>=</mo><msub><mo lspace="0em" rspace="thinmathspace">Id</mo> <mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi></mrow></msub><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>,</mo><mi mathvariant="normal">pt</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P_{\mathrm{pt}}=\operatorname{Id}_{\mathbf{B}G}(\mathrm{pt},\mathrm{pt})</annotation></semantics></math>. The looping equivalence identifies this torsor with the regular left <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor, giving the required basepoint identification.</p>
+<p>Moreover, a path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>:</mo><mi>s</mi><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">r:s=t</annotation></semantics></math> induces a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-equivariant equivalence by concatenation:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center center" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><msub><mi>P</mi> <mi>s</mi></msub></mtd> <mtd><mover><mo>→</mo><mo>≃</mo></mover></mtd> <mtd><msub><mi>P</mi> <mi>t</mi></msub></mtd></mtr> <mtr><mtd><mi>q</mi></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>q</mi><mo>⋅</mo><mi>r</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">
+\begin{array}{ccc}
+P_s &amp;\xrightarrow{\simeq}&amp; P_t
+\\
+q &amp;\mapsto&amp; q\cdot r
+\end{array}
+
+</annotation></semantics></math></div>
+<p>Its inverse is given by concatenation with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">r^{-1}</annotation></semantics></math>. Equivariance follows from associativity of path concatenation.</p>
+<p>By the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a>, this equivariant equivalence corresponds to a path <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(s)=F(t)</annotation></semantics></math> in the moduli type.</p>
+<p>At the basepoint, this construction induces an equivalence on <a class="existingWikiWord" href="../../../../../5/9/6/1/1695/content.html">loop types</a>. Indeed, equivariant automorphisms of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi> <mi mathvariant="normal">pt</mi></msub></mrow><annotation encoding="application/x-tex">P_{\mathrm{pt}}</annotation></semantics></math> are determined by their value at the identity path, and the induced action on loops agrees with this identification.</p>
+<p>We now apply the fundamental lemma for <a class="existingWikiWord" href="../../../../5/7/0/10753/content.html">pointed</a> <a class="existingWikiWord" href="../../../../../6/2/6/1/1626/content.html">connected</a> types: a pointed map between connected types that induces an equivalence on loop types is itself an equivalence, in the present <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-truncated setting.</p>
+<p>Consequently,</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><menclose notation="box"><mrow><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo>≃</mo><mi>G</mi><msub><mi mathvariant="normal">Tors</mi> <mi>L</mi></msub><mo>.</mo></mrow></menclose></mrow><annotation encoding="application/x-tex">
+\boxed{\mathbf{B}G\simeq G\mathrm{Tors}_L.}
+
+</annotation></semantics></math></div>
+<p>This completes the proof of the torsor characterization of deloopings.</p>
+<h2 id="formalization_in_cubical_agda">Formalization in Cubical Agda</h2>
+<p>The constructions described above have been formalized in <a class="existingWikiWord" href="../../../../../4/3/9/6/6934/content.html">Cubical Agda</a>, using existing library interfaces for <a class="existingWikiWord" href="../../../../../5/0/0/7/7005/content.html">univalence</a>, the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a>, and <a class="existingWikiWord" href="../../../../../1/8/6/1/1681/content.html">Eilenberg–Mac Lane types</a>.</p>
+<p>The verified development consists of twelve modules, all checked with Agda’s <code>--safe</code> option. The source code and mathematical exposition are available in the <a class="existingWikiWord" href="../../../../9/5/8/28593/content.html">nLab materials</a> index:</p>
+<ul>
+<li><a href="../../../../9/5/8/28593/content.html#TorsorDelooping">Delooping via Torsors — nLab Materials</a></li>
+<li><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/tree/torsor-delooping-v0.1/src/TorsorDelooping">Verified Cubical Agda source, v0.1</a></li>
+<li><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/papers/TorsorDelooping/main.pdf">Mathematical companion paper</a></li>
+</ul>
+<p>The following declarations are local to this development; the underlying Cubical library provides the general-purpose type-theoretic interfaces.</p>
+<h3 id="torsor_structures">Torsor structures</h3>
+<ul>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/LeftAction.agda">LeftAction.agda</a> defines <code>LeftAction</code> and <code>Equivariant</code>.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/LeftTorsor.agda">LeftTorsor.agda</a> defines <code>IsLeftTorsor</code> and <code>LeftTorsor</code>, using mere inhabitation and contractible transporters.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/Regular.agda">Regular.agda</a> constructs the regular left torsor <code>regularLeftTorsor</code>.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/Morphisms.agda">Morphisms.agda</a> establishes that equivariant maps between left torsors are equivalences.</p>
+</li>
+</ul>
+<h3 id="moduli_and_loops">Moduli and loops</h3>
+<ul>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/Moduli.agda">Moduli.agda</a> constructs <code>LeftTorsorModuli</code> and establishes <code>torsorPathEquiv</code> through the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a>.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/Delooping.agda">Delooping.agda</a> proves connectedness, the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-type property, and <code>torsorLoopEquivGroup</code>.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/LoopGroup.agda">LoopGroup.agda</a>, <a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/SIPPathEmbedding.agda">SIPPathEmbedding.agda</a>, and <a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/SIPCoherence.agda">SIPCoherence.agda</a> establish the composition coherence for regular-torsor loops, including <code>regularTorsorLoop-comp</code>.</p>
+</li>
+</ul>
+<h3 id="comparison_and_classification">Comparison and classification</h3>
+<ul>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/EM1Comparison.agda">EM1Comparison.agda</a> constructs a comparison map from the library’s <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>EM</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">EM_1(G)</annotation></semantics></math> to <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub></mrow><annotation encoding="application/x-tex">G Tors_L</annotation></semantics></math> and proves its basepoint loop-equivalence property.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/UniverseLiftedComparison.agda">UniverseLiftedComparison.agda</a> proves <code>liftedEm1ToTorsorEquiv</code>, a universe-lifted equivalence between <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>EM</mi> <mn>1</mn></msub><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">EM_1(G)</annotation></semantics></math> and the torsor moduli type.</p>
+</li>
+<li>
+<p><a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/src/TorsorDelooping/PathTorsor.agda">PathTorsor.agda</a> formalizes the path-torsor characterization associated with <a href="#MyersSatiSchreiber2024">Myers, Sati &amp; Schreiber 2024, Lem 5.8</a>.</p>
+</li>
+</ul>
+<p>The last module introduces <code>PointedLoopGroupData</code>, consisting of connectedness, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math>-truncation, a loop equivalence, and explicit unit and multiplication coherences.</p>
+<p>It constructs <code>pathTorsorAction</code>, <code>pathTorsorOrbitEquiv</code>, <code>pathTorsor</code>, and <code>pathTorsorModuli</code>, together with the basepoint comparison and the equivalence induced on loop types.</p>
+<p>Its main result, <code>liftedPathTorsorModuliEquiv</code>, establishes the universe-lifted equivalence</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo lspace="0em" rspace="thinmathspace">Lift</mo> <mrow><mi>ℓ</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><mstyle mathvariant="bold"><mi>B</mi></mstyle><mi>G</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>G</mi><msub><mi>Tors</mi> <mi>L</mi></msub><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\operatorname{Lift}_{\ell+1}(\mathbf{B}G)
+\simeq
+G Tors_L.
+
+</annotation></semantics></math></div>
+<p>Here the formalization uses a chosen loop equivalence <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>≃</mo><mo stretchy="false">(</mo><mi mathvariant="normal">pt</mi><mo>=</mo><mi mathvariant="normal">pt</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G\simeq(\mathrm{pt}=\mathrm{pt})</annotation></semantics></math>, inverse in direction to the equivalence used in the mathematical exposition above.</p>
+<p>The universe lifting accounts for the universe level of the torsor moduli type. The final declaration is an equivalence of underlying types, with basepoint comparison paths established separately; no additional pointed-equivalence or group-isomorphism package is claimed.</p>
+<p>All twelve modules pass Agda’s <code>--safe</code> type-checking mode with the pinned Cubical library.</p>
+<p>The development concerns set-level groups and their homotopy-theoretic deloopings. The construction of particular groups, such as the multiplicative group of invertible complex numbers, and their subsequent applications to topological quantum gates remain future work.</p>
+<p>For the complete mathematical explanation, statement-to-declaration index, and reproducibility information, see the accompanying <a href="#WangTorsorDelooping2026">mathematical companion paper</a>.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">group action</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/6/7/1/1760/content.html">delooping</a></li>
+<li><a class="existingWikiWord" href="../../../../../8/6/7/0/768/content.html">classifying space</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/3/8/5/5830/content.html">homotopy type theory</a></li>
+<li><a class="existingWikiWord" href="../../../../../5/0/0/7/7005/content.html">univalence</a></li>
+<li><a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a></li>
+<li><a class="existingWikiWord" href="../../../../../1/8/6/1/1681/content.html">Eilenberg-Mac Lane space</a></li>
+</ul>
+<h2 id="References">References</h2>
+<ul>
+<li id="MyersSatiSchreiber2024">
+<p><a class="existingWikiWord" href="../../../../../7/0/2/0/20207/content.html">David Jaz Myers</a>, <a class="existingWikiWord" href="../../../../../2/1/5/2/2512/content.html">Hisham Sati</a>, <a class="existingWikiWord" href="../../../../../4/5/0/0/54/content.html">Urs Schreiber</a>; §5.2, esp. Lem. 5.5–5.8 of: <em><a class="existingWikiWord" href="/schreiber/show/Topological+Quantum+Gates+in+Homotopy+Type+Theory">Topological Quantum Gates in Homotopy Type Theory</a></em>, Comm. Math. Phys. <strong>405</strong>, 172 (2024) [<a href="https://doi.org/10.1007/s00220-024-05020-8">doi:10.1007/s00220-024-05020-8</a>, <a href="https://arxiv.org/abs/2303.02382">arXiv:2303.02382</a>]</p>
+</li>
+<li>
+<p>The <a href="https://github.com/agda/cubical">Cubical Agda library</a>, providing <a class="existingWikiWord" href="../../../../../5/0/0/7/7005/content.html">univalence</a>, the <a class="existingWikiWord" href="../../../../0/1/5/25103/content.html">structure identity principle</a>, <a class="existingWikiWord" href="../../../../../6/3/9/6/6936/content.html">higher inductive</a> <a class="existingWikiWord" href="../../../../../1/8/6/1/1681/content.html">Eilenberg–Mac Lane types</a>, and connected-type equivalence results;</p>
+</li>
+<li id="WangTorsorDelooping2026">
+<p><a class="existingWikiWord" href="../../../../../6/1/6/8/28616/content.html">Hongwei Wang</a>: <em>Torsors, Univalence, and Delooping: A Mathematical Companion to a Cubical Agda Formalization</em> (2026), version 0.1 [<a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/blob/torsor-delooping-v0.1/papers/TorsorDelooping/main.pdf">pdf</a>, <a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/tree/torsor-delooping-v0.1/papers/TorsorDelooping">sources</a>, <a href="https://github.com/HongweiWang42/TopologicalQuantumProgramming-CubicalAgda/tree/torsor-delooping-v0.1">github</a>, <a href="../../../../9/5/8/28593/content.html#TorsorDelooping">nLab materials</a>]</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

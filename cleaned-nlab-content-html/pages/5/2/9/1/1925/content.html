@@ -1,0 +1,658 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      heap in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link as="style" href="/stylesheets/instiki.css?1676280126" rel="preload"/>
+<link as="style" href="/stylesheets/mathematics.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/syntax.css?1660229990" rel="preload"/>
+<link as="style" href="/stylesheets/nlab.css?1676280126" rel="preload"/>
+<link as="script" href="/javascripts/prototype.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/effects.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/dragdrop.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/controls.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/application.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/page_helper.js?1660229990" rel="preload"/>
+<link as="script" href="/javascripts/thm_numbering.js?1660229990" rel="preload"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="http://localhost/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="http://localhost/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      heap
+  </h1>
+<div id="revision">
+<h1 id="heaps">Heaps</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#Idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#properties">Properties</a></li>
+<ul>
+<li><a href="#StructureGroupsOfHeaps">Structure groups of heaps</a></li>
+<li><a href="#HeapsAndTorsors">Relation to torsors</a></li>
+<li><a href="#groups_as_pointed_heaps">Groups as pointed heaps</a></li>
+</ul>
+<li><a href="#empty">The empty heap</a></li>
+<li><a href="#examples_in_homotopy_theory">Examples in homotopy theory</a></li>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="Idea">Idea</h2>
+<p>In <a class="existingWikiWord" href="../../../../../6/0/2/0/206/content.html">algebra</a>, a <em>heap</em> is an algebraic <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> which is almost that of a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> structure but without the specification of a <a class="existingWikiWord" href="../../../../../1/1/4/1/1411/content.html">neutral element</a>.</p>
+<p>While closely related to notions such as <em><a class="existingWikiWord" href="../../../../../7/5/1/2/2157/content.html">affine space</a></em>, <em><a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">principal homogeneous space</a></em> and <em><a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a></em>, the concept of heap is simpler in the sense that it postulates just a single set with a single <a class="existingWikiWord" href="../../../../7/3/8/8375/content.html">ternary</a> operation obeying two <a class="existingWikiWord" href="../../../../../2/2/9/5/5922/content.html">axioms</a> (see Def. <a class="maruku-ref" href="#TheDefinition"></a> below).</p>
+<p>Concretely, any <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> gives a heap where this ternary operation is defined from the group’s <a class="existingWikiWord" href="../../../../../3/4/6/1/1643/content.html">binary operation</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mtext>-</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\text{-})\cdot(\text{-})</annotation></semantics></math> and <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">inversion</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(-)^{-1}</annotation></semantics></math> by</p>
+<div class="maruku-equation" id="eq:HeapOperationInAGroup"><span class="maruku-eq-number">(1)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>↦</mo><mspace width="thickmathspace"></mspace><mi>a</mi><mo>⋅</mo><msup><mi>b</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">
+  
+  t
+  \,\colon\,
+  (a,b,c) 
+  \;\mapsto\; 
+  a \cdot b^{-1} \cdot c
+
+</annotation></semantics></math></div>
+<p>and every heap arises this way, up to <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> (cf. Prop. <a class="maruku-ref" href="#PrinIsEssentiallySurjective"></a> below) from a group that may be called its <em><a class="existingWikiWord" href="../../../../1/7/7/7715/content.html">structure group</a></em>.</p>
+<p>However, the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of heaps (Def. <a class="maruku-ref" href="#CategoryOfHeaps"></a> below) is not <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalent</a> to the <a class="existingWikiWord" href="../../../../../2/0/2/0/202/content.html">category of groups</a>. Instead:</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p><br/>The <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of heaps (Def. <a class="maruku-ref" href="#CategoryOfHeaps"></a>) is <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalent</a> to the evident category of <a class="existingWikiWord" href="../../../../../9/1/9/8/8919/content.html">pairs</a> consisting of a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> and a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>.</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>On the one hand, for any heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, choosing any element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>′</mo><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">h' \in H</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../../3/0/5/0/10503/content.html">endofunctions</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>h</mi><mo>,</mo><mi>h</mi><mo>′</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo lspace="verythinmathspace">:</mo><mi>H</mi><mo>→</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">t(h,h',-) \colon H \to H</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">h \in H</annotation></semantics></math> constitute a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> under <a class="existingWikiWord" href="../../../1/0/125/content.html">composition</a>, and the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> of the heap manifestly carries the <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> of a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor. On the other hand, given a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> and a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> we can make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> into a heap as follows: given elements <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">a,b,c \in H</annotation></semantics></math> let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">t(a,b,c) = g c</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math> is the unique <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>∈</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">g \in G</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>b</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">g b = a</annotation></semantics></math>.</p>
+</div>
+</p>
+<p>There is also a <a class="existingWikiWord" href="../../../../../1/5/1/0/151/content.html">dual</a> version of the concept of heap, see at <em><a class="existingWikiWord" href="../../../../../9/2/9/1/1929/content.html">quantum heap</a></em>.</p>
+<p>
+<div class="num_remark" id="Disambiguation">
+<h6>Remark</h6>
+<p><strong>(disambiguation)</strong> <br/> Heaps in the sense of algebra should not be confused with either</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Heap">heaps</a> in the sense of theoretical <a class="existingWikiWord" href="../../../../../7/3/7/1/1737/content.html">computer science</a>,</li>
+</ul>
+<p>nor with</p>
+<ul>
+<li><em>heaps of pieces</em> in the <a class="existingWikiWord" href="../../../../../0/1/8/3/3810/content.html">combinatorial</a> sense of <a href="https://link.springer.com/chapter/10.1007/BFb0072524">Viennot 2006</a>.</li>
+</ul>
+<p></p>
+</div>
+</p>
+<p>
+<div class="num_remark" id="Synonyms">
+<h6>Remark</h6>
+<p><strong>(synonyms)</strong> <br/> There are also a number of synonyms for the term ‘heap’; <a href="#HeapsAndTorsors">below</a> we consider ‘<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a>’ in this light. In Russian one term for a heap is ‘груда’ (‘gruda’) meaning a heap of soil; this is a pun as it is parallel to the Russian word ‘группа’ (‘gruppa’) meaning a group: forgetting the unit element is sort of creating an amorphous version. This term also appears in English as ‘groud’. In universal algebra the standard name is <strong>associative Malcev algebra</strong> (in various spellings, including Mal’cev, Mal’tsev and Maltsev), other names include <strong>herd</strong>.</p>
+</div>
+</p>
+<p>There is an oidification (<a class="existingWikiWord" href="../../../0/0/25/content.html">horizontal categorification</a>) of heaps, sometimes called <em>heapoids</em>.</p>
+<h2 id="definition">Definition</h2>
+<p>
+<div class="num_defn" id="TheDefinition">
+<h6>Definition</h6>
+<p>A <strong>heap</strong> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>H</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(H,t)</annotation></semantics></math> is a <a class="existingWikiWord" href="../../../../../7/5/4/0/457/content.html">inhabited set</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> equipped with a ternary operation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo lspace="verythinmathspace">:</mo><mi>H</mi><mo>×</mo><mi>H</mi><mo>×</mo><mi>H</mi><mo>→</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">t \colon H \times H \times H\to H</annotation></semantics></math> satisfying the following two relations</p>
+<ol>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> t(b,b,c) = c = t(c,b,b)</annotation></semantics></math>,</p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mo>=</mo><mi>t</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mi>d</mi><mo>,</mo><mi>e</mi><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow><annotation encoding="application/x-tex"> t\big(a,b,t(c,d,e)\big) = t\big(t(a,b,c),d,e\big) </annotation></semantics></math>.</p>
+</li>
+</ol>
+<p></p>
+</div>
+</p>
+<p>More generally, a ternary operation in some <a class="existingWikiWord" href="../../../../0/1/2/2105/content.html">variety of algebras</a> satisfying the first pair of equations is called a <a class="existingWikiWord" href="../../../../../4/6/2/2/2264/content.html">Malcev operation</a>. A Malcev operation is called <em>associative</em> if it also satisfies the latter equation (i.e. it makes its domain into a heap).</p>
+<p>A heap is <strong>abelian</strong> if it additionally satisfies the relation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+  t(a,b,c) = t(c,b,a)
+
+</annotation></semantics></math></div>
+<p>
+<div class="num_remark">
+<h6>Remark</h6>
+<p>A heap always satisfies the relation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>d</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mi>d</mi><mo>,</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(a, t(d, c, b), e) = t(t(a, b, c), d, e)</annotation></semantics></math> (<a href="#HollingsLawson">Hollings and Lawson 2017</a>, theorem 8.2.13).</p>
+</div>
+</p>
+<p>
+<div class="num_defn" id="CategoryOfHeaps">
+<h6>Definition</h6>
+<p>A <em><a class="existingWikiWord" href="../../../../../2/0/0/3/3002/content.html">homomorphism</a></em> of heaps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo lspace="verythinmathspace">:</mo><mi>H</mi><mo>→</mo><mi>H</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f \colon H \to H'</annotation></semantics></math> is, of course, a <a class="existingWikiWord" href="../../../../../6/9/1/0/196/content.html">function</a> of the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying</a> <a class="existingWikiWord" href="../../../../9/1/0/195/content.html">set</a> which respects the ternary operations.</p>
+<p>This defines a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Heap</mi></mrow><annotation encoding="application/x-tex">Heap</annotation></semantics></math> whose <a class="existingWikiWord" href="../../../../../2/1/1/0/112/content.html">objects</a> are heaps and whose <a class="existingWikiWord" href="../../../../../0/1/1/0/110/content.html">morphisms</a> are heap homomorphisms.</p>
+</div>
+</p>
+<p>The <a class="existingWikiWord" href="../../../../8/2/0/285/content.html">hom-sets</a> of the <a class="existingWikiWord" href="../../../../../6/9/8/0/896/content.html">full subcategory</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>AbHeap</mi></mrow><annotation encoding="application/x-tex">AbHeap</annotation></semantics></math> of abelian heaps inherit an abelian heap structure from the pointwise operation in the codomain: given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>,</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo lspace="verythinmathspace">:</mo><mi>H</mi><mo>→</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">f,g,h\colon H \to G</annotation></semantics></math>, the function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>↦</mo><msub><mi>t</mi> <mi>G</mi></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>,</mo><mi>g</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>,</mo><mi>h</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a\mapsto t_G(f(a),g(a),h(a))</annotation></semantics></math> is again a heap homomorphism.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="StructureGroupsOfHeaps">Structure groups of heaps</h3>
+<p>As indicated in <a class="maruku-eqref" href="#eq:HeapOperationInAGroup">(1)</a> a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> becomes a heap by setting</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mspace width="thinmathspace"></mspace><mo>∈</mo><mspace width="thinmathspace"></mspace><mi>G</mi><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mo>⊢</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mi>a</mi><mo>⋅</mo><msup><mi>b</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mi>c</mi><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  a,b,c \,\in\, G
+  \;\;\;\;\;\;
+  \vdash
+  \;\;\;\;\;\;
+  t(a,b,c) \,\coloneqq\, a \cdot b^{-1} \cdot c
+  \,.
+
+</annotation></semantics></math></div>
+<p>
+<div class="num_prop" id="PrinIsEssentiallySurjective">
+<h6>Proposition</h6>
+<p>This construction <a class="maruku-eqref" href="#eq:HeapOperationInAGroup">(1)</a> defines a <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Prin</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>Grp</mi><mo>⟶</mo><mi>Heap</mi></mrow><annotation encoding="application/x-tex">
+  Prin 
+    \,\colon\, 
+  Grp \longrightarrow Heap
+
+</annotation></semantics></math></div>
+<p>from the category <a class="existingWikiWord" href="../../../../../2/0/2/0/202/content.html">Grp</a> of <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">groups</a> to that of heaps, which is <a class="existingWikiWord" href="../../../../../4/9/3/0/394/content.html">essentially surjective</a>, meaning that, up to <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a> all heaps arise in this way.</p>
+<p>In fact, there is also a functor</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>Heap</mi><mo>⟶</mo><mi>Grp</mi></mrow><annotation encoding="application/x-tex">
+  Str 
+   \,\colon\,
+  Heap \longrightarrow Grp
+
+</annotation></semantics></math></div>
+<p>such that</p>
+<ol>
+<li>
+<p>there exist <a class="existingWikiWord" href="../../../../../1/2/1/0/121/content.html">natural</a> group isomorphisms of the form</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Prin</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>≅</mo><mspace width="thinmathspace"></mspace><mi>G</mi></mrow><annotation encoding="application/x-tex">Str\big(Prin(G)\big) \,\cong\, G</annotation></semantics></math></p>
+</li>
+<li>
+<p>there exist heap isomorphisms of the form</p>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Prin</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>≅</mo><mspace width="thinmathspace"></mspace><mi>H</mi></mrow><annotation encoding="application/x-tex">Prin\big(Str(H)\big) \,\cong\, H</annotation></semantics></math></p>
+<p>which however are <em>not</em> <a class="existingWikiWord" href="../../../../../2/2/1/0/122/content.html">natural</a> (whence we do <em>not</em> have an <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalence of categories</a>).</p>
+</li>
+</ol>
+<p></p>
+</div>
+ This group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> is called the <em>structure group</em> of the heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>. 
+<div class="proof">
+<h6>Proof</h6>
+<p>Given a heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, the claimed <a class="existingWikiWord" href="../../../../1/7/7/7715/content.html">structure group</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> is described, up to <a class="existingWikiWord" href="../../../../../9/2/0/0/29/content.html">isomorphism</a>, by any of the following constructions:</p>
+<ol>
+<li>
+<p>Choosing any <a class="existingWikiWord" href="../../../../../1/1/7/2/2711/content.html">element</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">e</mi><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">\mathrm{e} \in H</annotation></semantics></math>, then the <a class="existingWikiWord" href="../../../../../3/4/6/1/1643/content.html">binary operation</a></p>
+<div class="maruku-equation" id="eq:BinaryOperationInFirstModel"><span class="maruku-eq-number">(2)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>b</mi><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">e</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  a \cdot b \,\coloneqq\, t(a, \mathrm{e} ,b)
+  \,.
+
+</annotation></semantics></math></div>
+<p>constitutes a <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> <a class="existingWikiWord" href="../../../../../8/0/7/7/7708/content.html">structure</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, with <a class="existingWikiWord" href="../../../../../1/1/4/1/1411/content.html">neutral element</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\mathrm{e}</annotation></semantics></math>.</p>
+<p>This serves as the required structure group: <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi>H</mi><mo>,</mo><mo>⋅</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H) \,\coloneqq\, (H, \cdot)</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>Take the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying set</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> to be that of <a class="existingWikiWord" href="../../../../../2/0/8/5/5802/content.html">equivalence classes</a> of <a class="existingWikiWord" href="../../../../../9/1/9/8/8919/content.html">pairs</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>H</mi><mo>×</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">(a,b) \in H\times H</annotation></semantics></math>, subject to the <a class="existingWikiWord" href="../../../../../4/8/4/0/484/content.html">equivalence relation</a></p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>∼</mo><mspace width="thinmathspace"></mspace><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mtext>iff</mtext><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mspace width="thickmathspace"></mspace><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>=</mo><mspace width="thinmathspace"></mspace><mi>a</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">
+  (a,b) \,\sim\, (a',b')
+  \;\;\;\;\text{iff}\;\;\;\;
+  t(a,b,b') \,=\, a'
+
+</annotation></semantics></math></div>
+<p>(the idea is to think of the pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b)</annotation></semantics></math> as the representative of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><msup><mi>b</mi> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">a b^{-1}</annotation></semantics></math>)</p>
+<p>and take the <a class="existingWikiWord" href="../../../../../3/4/6/1/1643/content.html">binary operation</a> on the group to be given on representatives by</p>
+<div class="maruku-equation" id="eq:BinaryOperationInSecondModel"><span class="maruku-eq-number">(3)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>⋅</mo><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mi>d</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>.</mo></mrow><annotation encoding="application/x-tex">
+  
+  (a,b) \cdot (c,d) 
+  \,\coloneqq\, 
+  \big( t(a,b,c), d \big)
+  \,.
+
+</annotation></semantics></math></div>
+<p>This again defines a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math>.</p>
+<p>Notice that:</p>
+<ul>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">inverse</a> of (the <a class="existingWikiWord" href="../../../../../2/0/8/5/5802/content.html">equivalence class</a> of) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,b)</annotation></semantics></math> is (the equivalence class of) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b,a)</annotation></semantics></math></p>
+</li>
+<li>
+<p>the <a class="existingWikiWord" href="../../../../../1/1/4/1/1411/content.html">neutral element</a> is (the equivalence class of) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,a)</annotation></semantics></math> (for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Finally, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> is realized also as an actual <a class="existingWikiWord" href="../../../../../2/5/2/3/3252/content.html">subgroup</a> of the <a class="existingWikiWord" href="../../../../5/7/9/19755/content.html">symmetric group</a> on the <a class="existingWikiWord" href="../../../../../9/3/0/3/3039/content.html">underlying set</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, analogously to <a class="existingWikiWord" href="../../../../../0/1/1/6/26110/content.html">Cayley's theorem</a> for groups. We take the elements of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> to be set <a class="existingWikiWord" href="../../../../../4/0/5/0/504/content.html">bijections</a> of the form</p>
+<div class="maruku-equation" id="eq:GroupActionInThirdModel"><span class="maruku-eq-number">(4)</span><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mo lspace="verythinmathspace">:</mo><mspace width="thinmathspace"></mspace><mi>H</mi><mo>→</mo><mi>H</mi><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex">
+   
+   t(a,b,-) \,\colon\, H \rightarrow H
+   \,,
+
+</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">a,b \in H</annotation></semantics></math>, with <a class="existingWikiWord" href="../../../1/0/125/content.html">composition</a> as the group’s <a class="existingWikiWord" href="../../../../../3/4/6/1/1643/content.html">binary operation</a>.</p>
+<p>Notice here that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><msub><mo>⋅</mo> <mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow></msub><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>t</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>t</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mi>d</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thinmathspace"></mspace><mo>,</mo></mrow><annotation encoding="application/x-tex"> 
+   t(a,b,-) \cdot_{Str(H)} t(c,d,-) 
+   \;=\;
+   t\big(a,b,t(c,d,-)\big) \;=\; t\big(t(a,b,c),d,-\big)
+   \,, 
+
+</annotation></semantics></math></div>
+<p>so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> is closed under this operation.</p>
+<p>The first axiom of a heap shows that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> contains the <a class="existingWikiWord" href="../../../../../1/1/4/1/1411/content.html">neutral element</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(a,a,-)</annotation></semantics></math> (for any <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math>), and the <a class="existingWikiWord" href="../../../../../2/1/0/1/1012/content.html">inverse element</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(a,b,-)</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(b,a,-)</annotation></semantics></math>; thus <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> is a subgroup of the symmetric group of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>.</p>
+</li>
+</ol>
+<p>It remains to see that these constructions all agree and are functorial.</p>
+<p>First to show that the <a class="existingWikiWord" href="../../../../../4/8/4/0/484/content.html">equivalence relation</a> used in the second construction is symmetric, and that it coincides with that implicitly used in the third construction, notice that the following are equivalent:</p>
+<ul>
+<li>
+<p>(i) the bijections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(a,b,-)</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(a',b',-)</annotation></semantics></math> coincide</p>
+</li>
+<li>
+<p>(ii) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">t(a,b,b') = a'</annotation></semantics></math></p>
+</li>
+<li>
+<p>(iii) <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">t(a',b',b) = a</annotation></semantics></math></p>
+</li>
+</ul>
+<p>Namely:</p>
+<p>(ii) follows from (i) and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">t(a',b',b') = a'</annotation></semantics></math>.</p>
+<p>(ii) implies (iii) as follows. Given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">t(a,b,b') = a'</annotation></semantics></math>, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(t(a,b,b'),b',b) = t(a',b',b)</annotation></semantics></math>, but</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex"> t(t(a,b,b'),b',b) = t(a,b,t(b',b',b)) = t(a,b,b) = a</annotation></semantics></math></div>
+<p>so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">t(a',b',b) = a</annotation></semantics></math>. (iii) implies (ii) by a similar argument.</p>
+<p>(i) follows from (ii) by the calculation:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>b</mi><mo>′</mo><mo stretchy="false">)</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>′</mo><mo>,</mo><mi>b</mi><mo>′</mo><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex"> t(a,b,x) = t(a,b,t(b',b',x)) = t(t(a,b,b'),b',x) = t(a',b',x). </annotation></semantics></math></div>
+<p>Since the composition laws can also be seen to agree, the second two constructions of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> are canonically isomorphic.</p>
+<p>To compare them to the first construction, observe that for a fixed <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">e</mi><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">\mathrm{e} \in H</annotation></semantics></math>, any equivalence class contains a unique pair of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a,\mathrm{e})</annotation></semantics></math>. (If <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b,c)</annotation></semantics></math> is in the equivalence class, then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math> is determined by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi mathvariant="normal">e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = t(b,c,\mathrm{e})</annotation></semantics></math>.) This sets up a bijection between the first two constructions, which we can easily show is an isomorphism.</p>
+<p>Finally, the second construction is manifestly functorial.</p>
+</div>
+</p>
+<p>The following proposition expands on the fact that a group is the same as a <a class="existingWikiWord" href="../../../../../8/3/2/7/17238/content.html">pointed</a> heap, i.e. a heap with a chosen element:</p>
+<p>
+<div class="num_prop">
+<h6>Proposition</h6>
+<p>The category of groups is equivalent (in fact, isomorphic) to the <a class="existingWikiWord" href="../../../../../8/4/7/0/748/content.html">slice category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">↓</mo><mi mathvariant="normal">Heap</mi></mrow><annotation encoding="application/x-tex">1 \downarrow \mathrm{Heap}</annotation></semantics></math> where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> is the terminal heap and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Heap</mi></mrow><annotation encoding="application/x-tex">\mathrm{Heap}</annotation></semantics></math> is the category of heaps (Def. <a class="maruku-ref" href="#CategoryOfHeaps"></a>).</p>
+</div>
+<div class="proof">
+<h6>Proof</h6>
+<p>The one-element set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> is a heap in a unique way, and for any heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, any function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mn>1</mn><mo>→</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">f: 1 \to H</annotation></semantics></math> or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>H</mi><mo>→</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f: H \to 1</annotation></semantics></math> is a heap homomorphism, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> is the terminal object in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Heap</mi></mrow><annotation encoding="application/x-tex">\mathrm{Heap}</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">↓</mo><mi mathvariant="normal">Heap</mi></mrow><annotation encoding="application/x-tex">1 \downarrow \mathrm{Heap}</annotation></semantics></math> is the category of pointed heaps. As noted in the proof of the previous proposition, a heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> with a chosen point <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">\mathrm{e}</annotation></semantics></math> becomes a group with multiplication <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>b</mi><mspace width="thinmathspace"></mspace><mo>≔</mo><mspace width="thinmathspace"></mspace><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi mathvariant="normal">e</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a \cdot b \,\coloneqq\, t(a, \mathrm{e} ,b)</annotation></semantics></math>, and a morphism of pointed heaps then becomes a group homomorphism. This gives a functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">↓</mo><mi mathvariant="normal">Heap</mi><mo>→</mo><mi mathvariant="normal">Grp</mi></mrow><annotation encoding="application/x-tex">1 \downarrow \mathrm{Heap} \to \mathrm{Grp}</annotation></semantics></math>, which is an isomorphism (hence, equivalence) thanks to the functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Grp</mi><mo>→</mo><mn>1</mn><mo stretchy="false">↓</mo><mi mathvariant="normal">Heap</mi></mrow><annotation encoding="application/x-tex">\mathrm{Grp} \to 1 \downarrow \mathrm{Heap}</annotation></semantics></math> sending any group to the corresponding pointed heap.</p>
+</div>
+</p>
+<h3 id="HeapsAndTorsors">Relation to torsors</h3>
+<p>Given a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>, a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a> is a nonempty set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> with a free and transitive action of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>, which we may write as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>G</mi><mo>×</mo><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>X</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mi>g</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>g</mi><mi>x</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex"> \begin{array}{ccl}
+G \times X &amp;\to&amp; X \\
+(g, x) &amp;\mapsto&amp; g x 
+\end{array}
+
+</annotation></semantics></math></div>
+<p>Equivalently, a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor is a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> with an <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">action</a> of the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> but also a “division” operation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>X</mi><mo>×</mo><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>G</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mi>x</mi><mo stretchy="false">/</mo><mi>y</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex"> \begin{array}{ccl}
+X \times X &amp;\to&amp; G \\
+(x, y) &amp;\mapsto&amp; x/y
+\end{array}
+
+</annotation></semantics></math></div>
+<p>obeying</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">/</mo><mi>y</mi><mo stretchy="false">)</mo><mi>y</mi><mo>=</mo><mi>x</mi><mspace width="2em"></mspace><mtext>and</mtext><mspace width="2em"></mspace><mo stretchy="false">(</mo><mi>g</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">/</mo><mi>x</mi><mo>=</mo><mi>g</mi></mrow><annotation encoding="application/x-tex"> (x/y) y = x \qquad \text{and} \qquad (g x)/x = g</annotation></semantics></math></div>
+<p>Given a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> together with a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, we can make <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> into a heap by giving it the ternary operation</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtable columnalign="center center left" displaystyle="false" rowspacing="0.5ex"><mtr><mtd><mi>X</mi><mo>×</mo><mi>X</mi><mo>×</mo><mi>X</mi></mtd> <mtd><mo>→</mo></mtd> <mtd><mi>X</mi></mtd></mtr> <mtr><mtd><mo stretchy="false">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo stretchy="false">)</mo></mtd> <mtd><mo>↦</mo></mtd> <mtd><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">/</mo><mi>y</mi><mo stretchy="false">)</mo><mi>z</mi></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex"> \begin{array}{ccl}
+X \times X \times X &amp;\to&amp; X \\
+(x, y, z) &amp;\mapsto&amp; (x/y) z
+\end{array}
+
+</annotation></semantics></math></div>
+<p>Conversely, from any heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> we can construct a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> together with a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor whose underlying set is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> itself. To see this, note that the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G = Str(H)</annotation></semantics></math> (Prop. <a class="maruku-ref" href="#PrinIsEssentiallySurjective"></a>) comes equipped with a canonical <a class="existingWikiWord" href="../../../../../0/8/2/0/280/content.html">group action</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, as is most clear from the third definition <a class="maruku-eqref" href="#eq:GroupActionInThirdModel">(4)</a>.</p>
+<p>This action is</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/0/0/6/6000/content.html">transitive</a></p>
+<p>since <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">t(b,a,a) = b</annotation></semantics></math></p>
+</li>
+</ul>
+<p>and</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/2/0/7/7029/content.html">free</a></p>
+<p>since if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">t(a,b,c) = c</annotation></semantics></math> then <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>,</mo><mi>c</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">t(a,b,x) = t(a,b,t(c,c,x)) = t(t(a,b,c),c,x) = t(c,c,x) = x</annotation></semantics></math> for each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>, so <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t(a,b,-)</annotation></semantics></math> is the identity.</p>
+</li>
+</ul>
+<p>Therefore, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> is an <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math>-<a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a>.</p>
+<p>In fact, the category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Heap</mi></mrow><annotation encoding="application/x-tex">Heap</annotation></semantics></math> is <a class="existingWikiWord" href="../../../../../0/0/8/0/800/content.html">equivalent</a> to the following category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Tors</mi></mrow><annotation encoding="application/x-tex">Tors</annotation></semantics></math>: its objects are pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(G,H)</annotation></semantics></math> consisting of a group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> and a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math>-torsor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>, and its morphisms are pairs <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ϕ</mi><mo>,</mo><mi>f</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mi>G</mi><mo>,</mo><mi>H</mi><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mi>G</mi><mo>′</mo><mo>,</mo><mi>H</mi><mo>′</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\phi,f):(G,H)\to (G',H')</annotation></semantics></math> consisting of a group homomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>:</mo><mi>G</mi><mo>→</mo><mi>G</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">\phi:G\to G'</annotation></semantics></math> and a <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math>-equivariant map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>H</mi><mo>→</mo><mi>H</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">f:H\to H'</annotation></semantics></math>.</p>
+<h3 id="groups_as_pointed_heaps">Groups as pointed heaps</h3>
+<p>As indicated in the discussion above, a heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> acquires a group structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>↦</mo><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>e</mi><mo>,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b) \mapsto t(a, e, b)</annotation></semantics></math> as soon as an element <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>∈</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">e \in H</annotation></semantics></math> is selected (and this <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math> is then the identity element of the group). Notice that every function <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>→</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">1 \to H</annotation></semantics></math> from a terminal set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> is in fact a heap homomorphism when we consider that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> carries a unique heap structure. In different words: the free heap on a terminal set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> itself with its unique heap structure.</p>
+<p>It follows that the category of groups <a class="existingWikiWord" href="../../../../../2/0/2/0/202/content.html">Grp</a> is equivalent to the <a class="existingWikiWord" href="../../../../4/7/0/745/content.html">comma category</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">↓</mo><mi>Heap</mi></mrow><annotation encoding="application/x-tex">1 \downarrow Heap</annotation></semantics></math>, with both categories considered as categories over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Heap</mi></mrow><annotation encoding="application/x-tex">Heap</annotation></semantics></math> (via <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Prin</mi><mo>:</mo><mi>Grp</mi><mo>→</mo><mi>Heap</mi></mrow><annotation encoding="application/x-tex">Prin: Grp \to Heap</annotation></semantics></math> and the forgetful functor <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>:</mo><mn>1</mn><mo stretchy="false">↓</mo><mi>Heap</mi><mo>→</mo><mi>Heap</mi></mrow><annotation encoding="application/x-tex">U: 1 \downarrow Heap \to Heap</annotation></semantics></math> that forgets the point). This says that groups are equivalent to pointed heaps.</p>
+<p>Both of these forgetful functors are <a class="existingWikiWord" href="../../../../../0/2/3/1/1320/content.html">monadic</a> over <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Heap</mi></mrow><annotation encoding="application/x-tex">Heap</annotation></semantics></math>. In the case of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>:</mo><mn>1</mn><mo stretchy="false">↓</mo><mi>Heap</mi><mo>→</mo><mi>Heap</mi></mrow><annotation encoding="application/x-tex">U: 1 \downarrow Heap \to Heap</annotation></semantics></math>, the <a class="existingWikiWord" href="../../../../5/2/0/255/content.html">monad</a> is <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⊔</mo><mo lspace="verythinmathspace" rspace="0em">−</mo></mrow><annotation encoding="application/x-tex">1 \sqcup -</annotation></semantics></math>, where the monad structure is induced from the <a class="existingWikiWord" href="../../../../../8/8/1/0/188/content.html">monoid</a> structure that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math> carries with respect to the <a class="existingWikiWord" href="../../../../../1/7/6/4/4671/content.html">cocartesian monoidal product</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊔</mo></mrow><annotation encoding="application/x-tex">\sqcup</annotation></semantics></math>. The free pointed heap on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> is therefore the heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⊔</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">1 \sqcup H</annotation></semantics></math>, equipped with the pointing given by the coproduct coprojection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>→</mo><mn>1</mn><mo>⊔</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">1 \to 1 \sqcup H</annotation></semantics></math>.</p>
+<p>It follows that the free group on a heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> can be constructed abstractly as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⊔</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">1 \sqcup H</annotation></semantics></math>. This is analogous to how the free <a class="existingWikiWord" href="../../../../../6/2/2/0/226/content.html">vector space</a> on an <a class="existingWikiWord" href="../../../../../7/5/1/2/2157/content.html">affine space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> can be described as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⊔</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">1 \sqcup A</annotation></semantics></math>, although it is true that <a class="existingWikiWord" href="../../../../../8/3/5/0/538/content.html">coproducts</a> of affine spaces are vastly easier to describe concretely than coproducts of heaps.</p>
+<p>Here is a more group-theoretic description of the free group on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H)</annotation></semantics></math> be the structure group, given as the group of heap automorphisms of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">)</mo><mo>:</mo><mi>H</mi><mo>→</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">t(a, b, -): H \to H</annotation></semantics></math>. Let</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>:</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>×</mo><mi>H</mi><mo>→</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">\alpha: Str(H) \times H \to H</annotation></semantics></math></div>
+<p>denote the tautological action. Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(H)</annotation></semantics></math> denote the free group on the underlying set of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math>. For groups <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>,</mo><mi>G</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">G, G'</annotation></semantics></math>, let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>*</mo><mi>G</mi><mo>′</mo></mrow><annotation encoding="application/x-tex">G \ast G'</annotation></semantics></math> denote their free product (coproduct). Then the free group on the heap <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../3/4/4/8/8443/content.html">quotient</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>*</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H) \ast F(H)</annotation></semantics></math> given by the coequalizer of two maps</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>,</mo><mi>γ</mi><mo>:</mo><mi>F</mi><mo stretchy="false">(</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>×</mo><mi>H</mi><mo stretchy="false">)</mo><mo>⇉</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>*</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\beta, \gamma: F(Str(H) \times H) \rightrightarrows Str(H) \ast F(H)</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math> is the composition of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>:</mo><mi>F</mi><mo stretchy="false">(</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>×</mo><mi>H</mi><mo stretchy="false">)</mo><mo>→</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(\alpha): F(Str(H) \times H) \to F(H)</annotation></semantics></math> followed by the coproduct coprojection <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>*</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(H) \to Str(H) \ast F(H)</annotation></semantics></math>, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math> is the unique group homomorphism that extends the function</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>×</mo><mi>H</mi><mo>→</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>*</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H) \times H \to Str(H) \ast F(H)</annotation></semantics></math></div>
+<p>mapping a pair <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>θ</mi><mo>,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\theta, h)</annotation></semantics></math> to their product <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>⋅</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">\theta \cdot h</annotation></semantics></math> in the group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>*</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Str(H) \ast F(H)</annotation></semantics></math>.</p>
+<p>The meaning of the construction is that group homomorphisms <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>*</mo><mi>F</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>→</mo><mi>G</mi></mrow><annotation encoding="application/x-tex">Str(H) \ast F(H) \to G</annotation></semantics></math> that factor through the coequalizer are in natural bijection with pairs</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>ϕ</mi><mo>:</mo><mi>Str</mi><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">)</mo><mo>→</mo><mi>G</mi><mo>,</mo><mi>f</mi><mo>:</mo><mi>H</mi><mo>→</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\phi: Str(H) \to G, f: H \to G)</annotation></semantics></math></div>
+<p>where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is a homomorphism and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math> is a function, satisfying the torsor homomorphism condition</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>ϕ</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>f</mi><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(\theta(h)) = \phi(\theta) \cdot f(h)</annotation></semantics></math></div>
+<p>which is an equivalent way of describing a heap homomorphism <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>→</mo><mi>Prin</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H \to Prin(G)</annotation></semantics></math>.</p>
+<h2 id="empty">The empty heap</h2>
+<p>If we wish <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Heap</mi></mrow><annotation encoding="application/x-tex">Heap</annotation></semantics></math> to be an <a class="existingWikiWord" href="../../../../../8/0/9/2/2908/content.html">algebraic category</a>, then we must remove the clause that the underlying set of a heap must be nonempty (see also at <em><a class="existingWikiWord" href="../../../../../0/1/4/2/22410/content.html">pseudo-torsor</a></em>). Then the <a class="existingWikiWord" href="../../../../../1/6/4/0/461/content.html">empty set</a> becomes a heap in a unique way.</p>
+<p>However, in this case, some of the above theorems relating heaps to groups break down. It is of course still true that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Grp</mi><mo>≃</mo><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">↓</mo><mi>Heap</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Grp \simeq (1\downarrow Heap)</annotation></semantics></math>, since any pointed heap must be inhabited; but the empty heap does not have a structure group. For this reason, one usually requires a heap to be inhabited.</p>
+<p>On the other hand, we could generalize the notion of <a class="existingWikiWord" href="../../../../../6/1/1/0/116/content.html">group</a> to allow for an empty group. This even remains a purely algebraic notion: we can define a group as an <a class="existingWikiWord" href="../../../../../8/6/1/3/3168/content.html">inhabited</a> <a class="existingWikiWord" href="../../../../../6/9/6/2/22696/content.html">invertible semigroup</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>S</mi><mo>,</mo><mo>⋅</mo><mo>,</mo><mo stretchy="false">(</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><msup><mo stretchy="false">)</mo> <mrow><mo lspace="verythinmathspace" rspace="0em">−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(S,\cdot,(-)^{-1})</annotation></semantics></math> or an inhabited <a class="existingWikiWord" href="../../../../../3/9/6/2/22693/content.html">associative quasigroup</a>. Then any <a class="existingWikiWord" href="../../../../../6/9/6/2/22696/content.html">invertible semigroup</a> or <a class="existingWikiWord" href="../../../../../3/9/6/2/22693/content.html">associative quasigroup</a> is a possibly-empty-heap, and every possibly-empty-heap arises in this way from its automorphism invertible semigroup or automorphism associative quasigroup (defined by either method (2) or (3)); the category of possibly-empty-heaps is equivalent to the category of invertible semigroups equipped with torsors over the point, and the category of associative quasigroups equipped with torsors over the point; etc.</p>
+<p>This is even <a class="existingWikiWord" href="../../../../../8/4/9/0/948/content.html">constructive</a>; the theorems can be proved uniformly, rather than by treating the empty and inhabited cases separately. (This rather trivial method is obvious to a classical mathematician, but it's not constructively valid, since a invertible semigroup/associative quasigroup/heap as defined here can't be constructively proved empty or inhabited; it can only be proved empty iff not inhabited. Indeed, taking any group <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math> and any <a class="existingWikiWord" href="../../../../../1/0/3/0/301/content.html">truth value</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>, the invertible subsemigroup or associative subquasigroup <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>x</mi><mo>∈</mo><mi>G</mi><mspace width="thickmathspace"></mspace><mo stretchy="false">|</mo><mspace width="thickmathspace"></mspace><mi>P</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{x \in G \;|\; P\}</annotation></semantics></math> is empty or inhabited iff <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is false or true.)</p>
+<h2 id="examples_in_homotopy_theory">Examples in homotopy theory</h2>
+<p>The map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo><mo>→</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]\to[0,1]</annotation></semantics></math> that sends <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>↦</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">0\mapsto 0</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">/</mo><mn>3</mn><mo>↦</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1/3\mapsto 1</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false">/</mo><mn>3</mn><mo>↦</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">2/3\mapsto 0</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>↦</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1\mapsto 1</annotation></semantics></math>, and interpolates linearly between these points yields an associative Malcev operation on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>Σ</mi><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\Sigma X,Y]</annotation></semantics></math>, where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math> are (unpointed) spaces, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math> is the <a class="existingWikiWord" href="../../../../../2/9/7/1/1792/content.html">suspension</a> functor, and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo>,</mo><mo lspace="verythinmathspace" rspace="0em">−</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-,-]</annotation></semantics></math> denotes the set of morphisms in the <a class="existingWikiWord" href="../../../../../4/6/2/0/264/content.html">homotopy category</a>.</p>
+<p>Thus, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>Σ</mi><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[\Sigma X,Y]</annotation></semantics></math> is a (nonabelian) heap. Likewise, the full mapping space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Map</mi><mo stretchy="false">(</mo><mi>Σ</mi><mi>X</mi><mo>,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Map(\Sigma X,Y)</annotation></semantics></math> can be turned into an (∞,1)-heap, defined as an (∞,1)-algebra (in spaces) over the algebraic theory of heaps.</p>
+<p>See Vokřínek  for more information.</p>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/9/0/931/content.html">torsor</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/5/1/2/2157/content.html">affine space</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../4/6/2/2/2264/content.html">Malcev variety</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../3/5/4/24535/content.html">truss</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../6/1/4/2/22416/content.html">A. K. Sushkevich</a>, <em>Theory of generalised groups</em>, DNTVU, Kharkov-Kiev (1937) (Russian original: <a class="existingWikiWord" href="../../../../../6/1/4/2/22416/content.html">А. К. Сушкевич</a>, <em>Теория обобщенных групп</em>, Государственное научно-техническое издательство Украины, 1937).</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/7/0/2/2078/content.html">Peter T. Johnstone</a>, <em>The ‘closed subgroup theorem’ for localic herds and pregroupoids</em>, Journal of Pure and Applied Algebra <strong>70</strong> (1991) 97-106 [<a href="http://dx.doi.org/10.1016/0022-4049(91)90010-y">doi:10.1016/0022-4049(91)90010-y</a>]</p>
+</li>
+<li>
+<p>G. M. Bergman, A.O. Hausknecht, Ch.IV §22 pp 95 in: <em>Cogroups and co-rings in categories of associative rings</em>, AMS (1996) [<a href="https://bookstore.ams.org/surv-45">ams:surv-45</a>]</p>
+</li>
+<li id="HollingsLawson">
+<p><a class="existingWikiWord" href="../../../../../7/1/4/2/22417/content.html">Christopher D. Hollings</a>, <a class="existingWikiWord" href="../../../../../6/9/3/8/8396/content.html">Mark V. Lawson</a>, <em>Wagner’s theory of generalised heaps</em>, Springer (2017) [<a href="https://doi.org/10.1007/978-3-319-63621-4">doi:10.1007/978-3-319-63621-4</a>]</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/0/9/0/908/content.html">Zoran Škoda</a>, <em>Quantum heaps, cops and heapy categories</em>, Mathematical Communications <strong>12</strong> 1 (2007) 1-9 [<a href="http://arxiv.org/abs/math.QA/0701749">math.QA/0701749</a>]</p>
+</li>
+<li>
+<p>Thomas Booker, <a class="existingWikiWord" href="../../../../../2/6/7/1/1762/content.html">Ross Street</a>, <em>Torsors, herds and flocks</em>, J. Algebra <strong>330</strong> (2011) 346-374 [<a href="https://core.ac.uk/download/pdf/81154582.pdf">pdf</a> <a href="https://arxiv.org/abs/0912.4551">arXiv:0912.4551</a>]</p>
+</li>
+</ul>
+<p>Review:</p>
+<ul>
+<li>
+<p>Wikipedia: <em><a href="https://en.wikipedia.org/wiki/Heap_%28mathematics%29">Heap (mathematics)</a></em></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/0/0/31/content.html">John Baez</a>, <em><a href="http://math.ucr.edu/home/baez/torsors.html">Torsors made easy</a></em> (2009)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/3/0/0/31/content.html">John Baez</a>, <em><a href="https://golem.ph.utexas.edu/category/2020/08/the_group_with_no_elements.html">The group with no elements</a></em> (2020)</p>
+</li>
+</ul>
+<p>In the context of <a class="existingWikiWord" href="../../../../../8/8/2/2/2288/content.html">stable homotopy theory</a>:</p>
+<ul>
+<li><a class="existingWikiWord" href="../../../1/1/21125/content.html">Lukáš Vokřínek</a>, <em>Heaps and unpointed stable homotopy theory</em>, Archivum Mathematicum <strong>50</strong> 5 (2014) 323-332 [<a href="https://arxiv.org/abs/1312.1709">arXiv:1312.1709</a>, <a href="http://dx.doi.org/10.5817/AM2014-5-323">doi:10.5817/AM2014-5-323</a>]</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

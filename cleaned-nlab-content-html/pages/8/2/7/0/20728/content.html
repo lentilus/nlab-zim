@@ -1,0 +1,979 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      monads of probability, measures, and valuations in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      monads of probability, measures, and valuations
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#functor_unit_and_multiplication">Functor, unit and multiplication</a></li>
+<ul>
+<li><a href="#the_functor_random_outcomes">The functor: random outcomes</a></li>
+<li><a href="#the_unit_deterministic_random_variables">The unit: deterministic random variables</a></li>
+<li><a href="#the_multiplication_mixing_probability_measures">The multiplication: mixing probability measures.</a></li>
+</ul>
+<li><a href="#algebras_expectation_values">Algebras: expectation values</a></li>
+<li><a href="#kleisli_morphisms_random_maps">Kleisli morphisms: random maps</a></li>
+<li><a href="#monoidal_structure_products_and_marginals">Monoidal structure: products and marginals</a></li>
+<li><a href="#duality">Duality</a></li>
+<li><a href="#detailed_list">Detailed list</a></li>
+<li><a href="#see_also">See also</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>In many <a class="existingWikiWord" href="../../../../../2/6/5/6/26562/content.html">categorical approaches to probability theory</a>, one considers a <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../5/3/1/2/2135/content.html">spaces</a>, such as <a class="existingWikiWord" href="../../../../../3/5/6/1/1653/content.html">measurable spaces</a> or <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>, and equips this category with a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> whose <a class="existingWikiWord" href="../../../../../3/2/1/0/123/content.html">functor</a> part assigns to each space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> of <a class="existingWikiWord" href="content.html">measures</a>, <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measures</a>, or <a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">valuations</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, or a variation thereof.</p>
+<p>For probability theory, this can be interpreted as adding to the <a class="existingWikiWord" href="../../../../../7/1/0/1/1017/content.html">points</a> of a space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> new “random points”, modelled as probability measures or valuations. The old points, which we can think of as deterministic, are embedded in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> via the unit of the monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">X\to P X</annotation></semantics></math>. Just as well, the <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli morphisms</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> can be seen as <a class="existingWikiWord" href="../../../../4/1/6/26148/content.html">stochastic maps</a>. (Monads can be seen as ways of extending our spaces and functions to account for new phenomena, see for example <em><a class="existingWikiWord" href="../../../../1/6/6/16618/content.html">extension system</a></em> and <em><a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad in computer science</a></em>.) Note that these probability measures are technically different from <a class="existingWikiWord" href="../../../../../3/0/5/6/16503/content.html">random elements</a>: they rather correspond to the <a class="existingWikiWord" href="../../../../../1/9/8/2/22891/content.html">laws</a> of the random elements.</p>
+<p><a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">Algebras</a> of probability and measure monads can be interpreted as generalized <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex spaces</a> or <a class="existingWikiWord" href="../../../../../3/0/0/3/3003/content.html">conical spaces</a> of a certain kind. For <a class="existingWikiWord" href="../../../../../1/2/0/4/4021/content.html">probability theory</a>, in particular, the algebras of a probability monad can be seen as spaces equipped with a notion of <a class="existingWikiWord" href="../../../../../4/2/2/9/9224/content.html">expectation value</a> of a <a class="existingWikiWord" href="../../../../../3/0/5/6/16503/content.html">random variable</a>.</p>
+<p>The details vary depending on the monad and on the category under consideration.</p>
+<p>Many choices of categories and of monads are possible, depending on which aspects of measure theory or probability one wants to study. See <a href="#detailed_list">the table below</a> for more details.</p>
+<p>Note that “probability monad” and “measure monad” are not used here as technical terms with a definition. Here we just explain what most monads of this kind look like. (There are ongoing works which may give a general, precise definition of probability monad.) The term “probability monad” was coined by Giry (see <a href="#giry80">here</a>), to refer to what we today call the <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a>.</p>
+<h2 id="functor_unit_and_multiplication">Functor, unit and multiplication</h2>
+<h3 id="the_functor_random_outcomes">The functor: random outcomes</h3>
+<p>The basic idea, that holds for all monads of this sort, is that of forming spaces of <a class="existingWikiWord" href="../../../../../3/0/5/6/16503/content.html">random elements</a>, or rather their <a class="existingWikiWord" href="../../../../../1/9/8/2/22891/content.html">laws</a>.</p>
+<p>Consider a category <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math>, whose objects we can think of as “spaces of outcomes” with possibly extra structure, such as <a class="existingWikiWord" href="../../../../../3/5/6/1/1653/content.html">measurable spaces</a>, or <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a>, or even just <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">sets</a>. A <em>probability monad</em> assigns to each space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> a space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> which we can think of as a space of “laws of random outcomes on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>” or other measure-like entities. For example,</p>
+<ul>
+<li>The <a class="existingWikiWord" href="../../../../../0/8/7/0/20780/content.html">distribution monad</a> assigns to each <a class="existingWikiWord" href="../../../../../5/9/1/0/195/content.html">set</a> the <a class="existingWikiWord" href="../../../../../0/8/7/0/20780/content.html#finite_distributions">space of finite distributions</a> on it.</li>
+<li>The <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a> assigns to each <a class="existingWikiWord" href="../../../../../3/5/6/1/1653/content.html">measurable space</a> the <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html#definition">space of probability measures</a> over it.</li>
+<li>The <a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html">extended probabilistic powerdomain</a> assigns to each <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological space</a> the <a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html#spaces_of_valuations">space of continuous valuations</a> on it.</li>
+<li>The <a class="existingWikiWord" href="../../../../7/7/0/20778/content.html">Kantorovich monad</a> assigns to each <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric space</a> the <a class="existingWikiWord" href="../../../../7/7/0/20778/content.html#wasserstein_spaces">Wasserstein space</a> over it.</li>
+</ul>
+<p>(See also the table <a href="#detailed_list">below</a>.)</p>
+<p>A possible interpretation of probability monads, which uses the interpretation of <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monads</a> as encoding generalized <a class="existingWikiWord" href="../../../../0/2/3/3208/content.html">theories</a>, is that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> is a space of “formal generalized convex combinations” (in the sense of <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex space</a>) of points of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. For instance, for the <a class="existingWikiWord" href="../../../../../0/8/7/0/20780/content.html">distribution monad</a>, given the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>heads</mi><mo>,</mo><mi>tails</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{heads,tails\}</annotation></semantics></math> of possible outcomes of a coin flip, the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> contains for example the distribution that assigns probability <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo stretchy="false">/</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math> to both outcomes. This can be thought of as the formal convex combination</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mspace width="thinmathspace"></mspace><mi>heads</mi><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mspace width="thinmathspace"></mspace><mi>tails</mi><mo>.</mo></mrow><annotation encoding="application/x-tex">
+\frac{1}{2}\, heads + \frac{1}{2}\,tails.
+
+</annotation></semantics></math></div>
+<p>On the morphisms, the functor gives for example the <a class="existingWikiWord" href="../../../../../2/8/9/8/18982/content.html">pushforward of measures</a>.</p>
+<h3 id="the_unit_deterministic_random_variables">The unit: deterministic random variables</h3>
+<p>The <a class="existingWikiWord" href="../../../../../0/1/7/4/4710/content.html">unit</a> of the <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a> gives, for each space of outcomes, a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">X\to P X</annotation></semantics></math>, which we can think of as picking out “those outcomes which are not really random”, or “Dirac delta” (see <a class="existingWikiWord" href="../../../../../9/7/7/0/20779/content.html">Dirac measure</a> and <a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html#dirac_valuation">Dirac valuation</a>).</p>
+<p>These can be seen as the laws of a <a class="existingWikiWord" href="../../../../../6/8/8/2/22886/content.html">deterministic random variable</a>.</p>
+<h3 id="the_multiplication_mixing_probability_measures">The multiplication: mixing probability measures.</h3>
+<p>The multiplication of the monad is a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>P</mi><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P P X\to P X</annotation></semantics></math> for all objects <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. This can be thought of as of <a class="existingWikiWord" href="../../../../../2/6/9/6/26962/content.html">mixing</a> or <a class="existingWikiWord" href="../../../../../3/9/7/7/17793/content.html">averaging</a> probability measures.</p>
+<p>The following example is taken from <a href="#notesperrone">Perrone ‘19, Example 5.1.2</a>. Suppose that you have two coins in your pocket. Suppose that one coin is fair, with “heads” on one face and “tails” on the other face; suppose the second coin has “heads” on both sides. Suppose now that you draw a coin randomly, and flip it. We can sketch the probabilities in the following way: <svg height="105.63pt" version="1.2" viewbox="0 0 462.709 105.63" width="462.709pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-1" overflow="visible">
+<path d="M 3.390625 -3.609375 C 3.390625 -4.484375 3.75 -5.796875 5.25 -6.90625 C 5.671875 -7.21875 6.0625 -7.6875 6.0625 -8.453125 C 6.0625 -9.359375 5.4375 -10.484375 3.296875 -10.484375 C 1.6875 -10.484375 0.796875 -9.4375 0.796875 -8.484375 C 0.796875 -7.953125 1.203125 -7.828125 1.421875 -7.828125 C 1.6875 -7.828125 2.046875 -8.015625 2.046875 -8.453125 C 2.046875 -8.796875 1.78125 -9.0625 1.421875 -9.0625 C 1.328125 -9.0625 1.296875 -9.0625 1.265625 -9.046875 C 1.59375 -9.828125 2.453125 -10.1875 3.25 -10.1875 C 4.921875 -10.1875 4.921875 -9.09375 4.921875 -8.53125 C 4.921875 -7.65625 4.65625 -7.375 4.40625 -7.109375 C 3.390625 -6.015625 3.0625 -4.625 3.0625 -3.71875 L 3.0625 -3.015625 C 3.0625 -2.734375 3.0625 -2.6875 3.234375 -2.6875 C 3.390625 -2.6875 3.390625 -2.78125 3.390625 -3.046875 Z M 3.953125 -0.734375 C 3.953125 -1.109375 3.625 -1.4375 3.234375 -1.4375 C 2.78125 -1.4375 2.5 -1.09375 2.5 -0.734375 C 2.5 -0.28125 2.859375 0 3.21875 0 C 3.640625 0 3.953125 -0.328125 3.953125 -0.734375 Z M 3.953125 -0.734375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-2" overflow="visible">
+<path d="M 5.390625 -5.515625 C 5.21875 -5.515625 4.65625 -5.515625 4.65625 -4.90625 C 4.65625 -4.546875 4.90625 -4.28125 5.265625 -4.28125 C 5.609375 -4.28125 5.890625 -4.5 5.890625 -4.921875 C 5.890625 -5.921875 4.859375 -6.640625 3.640625 -6.640625 C 1.90625 -6.640625 0.515625 -5.09375 0.515625 -3.21875 C 0.515625 -1.3125 1.953125 0.15625 3.640625 0.15625 C 5.59375 0.15625 6.046875 -1.640625 6.046875 -1.765625 C 6.046875 -1.90625 5.9375 -1.90625 5.890625 -1.90625 C 5.765625 -1.90625 5.75 -1.859375 5.703125 -1.6875 C 5.375 -0.625 4.578125 -0.171875 3.765625 -0.171875 C 2.859375 -0.171875 1.65625 -0.96875 1.65625 -3.234375 C 1.65625 -5.703125 2.921875 -6.3125 3.65625 -6.3125 C 4.234375 -6.3125 5.046875 -6.09375 5.390625 -5.515625 Z M 5.390625 -5.515625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-3" overflow="visible">
+<path d="M 6.828125 -3.1875 C 6.828125 -5.109375 5.375 -6.640625 3.640625 -6.640625 C 1.859375 -6.640625 0.453125 -5.0625 0.453125 -3.1875 C 0.453125 -1.28125 1.9375 0.15625 3.640625 0.15625 C 5.390625 0.15625 6.828125 -1.3125 6.828125 -3.1875 Z M 3.640625 -0.171875 C 3.09375 -0.171875 2.421875 -0.421875 2 -1.140625 C 1.59375 -1.8125 1.578125 -2.6875 1.578125 -3.328125 C 1.578125 -3.890625 1.578125 -4.796875 2.046875 -5.46875 C 2.453125 -6.109375 3.109375 -6.34375 3.640625 -6.34375 C 4.21875 -6.34375 4.84375 -6.078125 5.234375 -5.5 C 5.703125 -4.8125 5.703125 -3.875 5.703125 -3.328125 C 5.703125 -2.796875 5.703125 -1.875 5.3125 -1.171875 C 4.90625 -0.46875 4.21875 -0.171875 3.640625 -0.171875 Z M 3.640625 -0.171875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4" overflow="visible">
+<path d="M 2.59375 -9.171875 C 2.59375 -9.5625 2.28125 -9.90625 1.859375 -9.90625 C 1.46875 -9.90625 1.140625 -9.59375 1.140625 -9.1875 C 1.140625 -8.734375 1.5 -8.453125 1.859375 -8.453125 C 2.328125 -8.453125 2.59375 -8.84375 2.59375 -9.171875 Z M 0.53125 -6.40625 L 0.53125 -5.96875 C 1.484375 -5.96875 1.625 -5.875 1.625 -5.15625 L 1.625 -1.109375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.625 -0.03125 2.0625 -0.03125 C 2.21875 -0.03125 3.078125 -0.03125 3.59375 0 L 3.59375 -0.4375 C 2.625 -0.4375 2.5625 -0.5 2.5625 -1.09375 L 2.5625 -6.5625 Z M 0.53125 -6.40625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-5" overflow="visible">
+<path d="M 6.625 -3.625 C 6.625 -5 6.625 -5.421875 6.28125 -5.890625 C 5.859375 -6.484375 5.15625 -6.5625 4.640625 -6.5625 C 3.203125 -6.5625 2.640625 -5.328125 2.515625 -5.03125 L 2.5 -5.03125 L 2.5 -6.5625 L 0.46875 -6.40625 L 0.46875 -5.96875 C 1.484375 -5.96875 1.609375 -5.859375 1.609375 -5.140625 L 1.609375 -1.109375 C 1.609375 -0.4375 1.4375 -0.4375 0.46875 -0.4375 L 0.46875 0 C 0.859375 -0.03125 1.671875 -0.03125 2.078125 -0.03125 C 2.515625 -0.03125 3.328125 -0.03125 3.703125 0 L 3.703125 -0.4375 C 2.75 -0.4375 2.578125 -0.4375 2.578125 -1.109375 L 2.578125 -3.875 C 2.578125 -5.4375 3.609375 -6.265625 4.53125 -6.265625 C 5.453125 -6.265625 5.65625 -5.515625 5.65625 -4.59375 L 5.65625 -1.109375 C 5.65625 -0.4375 5.5 -0.4375 4.53125 -0.4375 L 4.53125 0 C 4.90625 -0.03125 5.71875 -0.03125 6.140625 -0.03125 C 6.5625 -0.03125 7.375 -0.03125 7.765625 0 L 7.765625 -0.4375 C 7.015625 -0.4375 6.640625 -0.4375 6.625 -0.875 Z M 6.625 -3.625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-6" overflow="visible">
+<path d="M 4.28125 -9.546875 C 4.28125 -9.890625 4.28125 -9.90625 3.984375 -9.90625 C 3.640625 -9.5 2.890625 -8.953125 1.359375 -8.953125 L 1.359375 -8.515625 C 1.703125 -8.515625 2.4375 -8.515625 3.265625 -8.90625 L 3.265625 -1.140625 C 3.265625 -0.609375 3.21875 -0.4375 1.90625 -0.4375 L 1.4375 -0.4375 L 1.4375 0 C 1.84375 -0.03125 3.296875 -0.03125 3.78125 -0.03125 C 4.28125 -0.03125 5.703125 -0.03125 6.109375 0 L 6.109375 -0.4375 L 5.640625 -0.4375 C 4.328125 -0.4375 4.28125 -0.609375 4.28125 -1.140625 Z M 4.28125 -9.546875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-7" overflow="visible">
+<path d="M 6.546875 -2.5 L 6.21875 -2.5 C 6.171875 -2.25 6.0625 -1.421875 5.90625 -1.1875 C 5.8125 -1.0625 4.953125 -1.0625 4.515625 -1.0625 L 1.75 -1.0625 C 2.15625 -1.40625 3.0625 -2.359375 3.453125 -2.703125 C 5.71875 -4.796875 6.546875 -5.5625 6.546875 -7.046875 C 6.546875 -8.75 5.203125 -9.90625 3.46875 -9.90625 C 1.75 -9.90625 0.734375 -8.421875 0.734375 -7.140625 C 0.734375 -6.390625 1.390625 -6.390625 1.421875 -6.390625 C 1.75 -6.390625 2.125 -6.609375 2.125 -7.09375 C 2.125 -7.5 1.84375 -7.78125 1.421875 -7.78125 C 1.296875 -7.78125 1.265625 -7.78125 1.21875 -7.765625 C 1.5 -8.78125 2.3125 -9.46875 3.28125 -9.46875 C 4.546875 -9.46875 5.3125 -8.40625 5.3125 -7.046875 C 5.3125 -5.78125 4.59375 -4.671875 3.734375 -3.71875 L 0.734375 -0.359375 L 0.734375 0 L 6.171875 0 Z M 6.546875 -2.5 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-8" overflow="visible">
+<path d="M 6.625 -3.625 C 6.625 -5 6.625 -5.421875 6.28125 -5.890625 C 5.859375 -6.484375 5.15625 -6.5625 4.640625 -6.5625 C 3.359375 -6.5625 2.765625 -5.59375 2.5625 -5.140625 L 2.546875 -5.140625 L 2.546875 -10.328125 L 0.46875 -10.171875 L 0.46875 -9.734375 C 1.484375 -9.734375 1.609375 -9.640625 1.609375 -8.90625 L 1.609375 -1.109375 C 1.609375 -0.4375 1.4375 -0.4375 0.46875 -0.4375 L 0.46875 0 C 0.859375 -0.03125 1.671875 -0.03125 2.078125 -0.03125 C 2.515625 -0.03125 3.328125 -0.03125 3.703125 0 L 3.703125 -0.4375 C 2.75 -0.4375 2.578125 -0.4375 2.578125 -1.109375 L 2.578125 -3.875 C 2.578125 -5.4375 3.609375 -6.265625 4.53125 -6.265625 C 5.453125 -6.265625 5.65625 -5.515625 5.65625 -4.59375 L 5.65625 -1.109375 C 5.65625 -0.4375 5.5 -0.4375 4.53125 -0.4375 L 4.53125 0 C 4.90625 -0.03125 5.71875 -0.03125 6.140625 -0.03125 C 6.5625 -0.03125 7.375 -0.03125 7.765625 0 L 7.765625 -0.4375 C 7.015625 -0.4375 6.640625 -0.4375 6.625 -0.875 Z M 6.625 -3.625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-9" overflow="visible">
+<path d="M 5.703125 -3.453125 C 6.03125 -3.453125 6.0625 -3.453125 6.0625 -3.734375 C 6.0625 -5.234375 5.25 -6.640625 3.453125 -6.640625 C 1.75 -6.640625 0.453125 -5.109375 0.453125 -3.265625 C 0.453125 -1.296875 1.96875 0.15625 3.625 0.15625 C 5.390625 0.15625 6.0625 -1.453125 6.0625 -1.765625 C 6.0625 -1.859375 5.984375 -1.921875 5.890625 -1.921875 C 5.78125 -1.921875 5.75 -1.84375 5.71875 -1.765625 C 5.328125 -0.515625 4.328125 -0.171875 3.703125 -0.171875 C 3.078125 -0.171875 1.578125 -0.59375 1.578125 -3.171875 L 1.578125 -3.453125 Z M 1.59375 -3.734375 C 1.71875 -6.078125 3.015625 -6.34375 3.4375 -6.34375 C 5.03125 -6.34375 5.125 -4.25 5.140625 -3.734375 Z M 1.59375 -3.734375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10" overflow="visible">
+<path d="M 5.75 -3.96875 C 5.75 -4.78125 5.75 -5.375 5.09375 -5.953125 C 4.578125 -6.4375 3.90625 -6.640625 3.25 -6.640625 C 2.03125 -6.640625 1.09375 -5.84375 1.09375 -4.875 C 1.09375 -4.4375 1.375 -4.234375 1.71875 -4.234375 C 2.0625 -4.234375 2.328125 -4.484375 2.328125 -4.84375 C 2.328125 -5.453125 1.78125 -5.453125 1.5625 -5.453125 C 1.90625 -6.078125 2.625 -6.34375 3.21875 -6.34375 C 3.90625 -6.34375 4.78125 -5.78125 4.78125 -4.4375 L 4.78125 -3.84375 C 1.78125 -3.796875 0.65625 -2.546875 0.65625 -1.40625 C 0.65625 -0.21875 2.03125 0.15625 2.9375 0.15625 C 3.921875 0.15625 4.59375 -0.453125 4.875 -1.15625 C 4.921875 -0.46875 5.390625 0.078125 6.03125 0.078125 C 6.34375 0.078125 7.203125 -0.140625 7.203125 -1.328125 L 7.203125 -2.15625 L 6.875 -2.15625 L 6.875 -1.328125 C 6.875 -0.46875 6.515625 -0.359375 6.3125 -0.359375 C 5.75 -0.359375 5.75 -1.140625 5.75 -1.375 Z M 4.78125 -2.09375 C 4.78125 -0.640625 3.6875 -0.15625 3.046875 -0.15625 C 2.328125 -0.15625 1.71875 -0.6875 1.71875 -1.40625 C 1.71875 -3.359375 4.25 -3.546875 4.78125 -3.578125 Z M 4.78125 -2.09375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-11" overflow="visible">
+<path d="M 4.46875 -10.171875 L 4.46875 -9.734375 C 5.484375 -9.734375 5.59375 -9.640625 5.59375 -8.90625 L 5.59375 -5.609375 C 5.28125 -6.046875 4.640625 -6.5625 3.734375 -6.5625 C 2.015625 -6.5625 0.515625 -5.109375 0.515625 -3.203125 C 0.515625 -1.3125 1.9375 0.15625 3.578125 0.15625 C 4.703125 0.15625 5.359375 -0.59375 5.5625 -0.875 L 5.5625 0.15625 L 7.671875 0 L 7.671875 -0.4375 C 6.65625 -0.4375 6.53125 -0.53125 6.53125 -1.265625 L 6.53125 -10.328125 Z M 5.5625 -1.75 C 5.5625 -1.46875 5.5625 -1.421875 5.359375 -1.109375 C 5 -0.578125 4.390625 -0.15625 3.640625 -0.15625 C 3.265625 -0.15625 1.65625 -0.296875 1.65625 -3.1875 C 1.65625 -4.265625 1.828125 -4.859375 2.15625 -5.34375 C 2.453125 -5.8125 3.046875 -6.265625 3.796875 -6.265625 C 4.71875 -6.265625 5.234375 -5.59375 5.390625 -5.359375 C 5.5625 -5.109375 5.5625 -5.078125 5.5625 -4.8125 Z M 5.5625 -1.75 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12" overflow="visible">
+<path d="M 4.890625 -6.296875 C 4.890625 -6.5625 4.890625 -6.640625 4.734375 -6.640625 C 4.609375 -6.640625 4.328125 -6.3125 4.234375 -6.171875 C 3.765625 -6.546875 3.3125 -6.640625 2.828125 -6.640625 C 1.03125 -6.640625 0.484375 -5.65625 0.484375 -4.84375 C 0.484375 -4.671875 0.484375 -4.15625 1.0625 -3.640625 C 1.53125 -3.21875 2.046875 -3.109375 2.71875 -2.984375 C 3.546875 -2.8125 3.734375 -2.765625 4.109375 -2.46875 C 4.375 -2.25 4.578125 -1.921875 4.578125 -1.5 C 4.578125 -0.859375 4.203125 -0.15625 2.890625 -0.15625 C 1.90625 -0.15625 1.1875 -0.71875 0.859375 -2.203125 C 0.796875 -2.46875 0.796875 -2.484375 0.796875 -2.5 C 0.765625 -2.5625 0.703125 -2.5625 0.65625 -2.5625 C 0.484375 -2.5625 0.484375 -2.484375 0.484375 -2.21875 L 0.484375 -0.1875 C 0.484375 0.078125 0.484375 0.15625 0.640625 0.15625 C 0.71875 0.15625 0.734375 0.140625 0.984375 -0.171875 C 1.0625 -0.28125 1.0625 -0.3125 1.28125 -0.546875 C 1.84375 0.15625 2.65625 0.15625 2.90625 0.15625 C 4.46875 0.15625 5.234375 -0.71875 5.234375 -1.890625 C 5.234375 -2.6875 4.75 -3.171875 4.609375 -3.3125 C 4.078125 -3.765625 3.671875 -3.859375 2.6875 -4.03125 C 2.25 -4.125 1.15625 -4.328125 1.15625 -5.234375 C 1.15625 -5.6875 1.46875 -6.375 2.8125 -6.375 C 4.4375 -6.375 4.53125 -4.984375 4.5625 -4.53125 C 4.578125 -4.40625 4.671875 -4.40625 4.71875 -4.40625 C 4.890625 -4.40625 4.890625 -4.484375 4.890625 -4.75 Z M 4.890625 -6.296875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-13" overflow="visible">
+<path d="M 2.5 -5.984375 L 4.59375 -5.984375 L 4.59375 -6.421875 L 2.5 -6.421875 L 2.5 -9.15625 L 2.171875 -9.15625 C 2.15625 -7.765625 1.625 -6.328125 0.265625 -6.28125 L 0.265625 -5.984375 L 1.53125 -5.984375 L 1.53125 -1.84375 C 1.53125 -0.1875 2.640625 0.15625 3.421875 0.15625 C 4.359375 0.15625 4.859375 -0.78125 4.859375 -1.84375 L 4.859375 -2.6875 L 4.53125 -2.6875 L 4.53125 -1.875 C 4.53125 -0.796875 4.09375 -0.171875 3.515625 -0.171875 C 2.5 -0.171875 2.5 -1.5625 2.5 -1.8125 Z M 2.5 -5.984375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-14" overflow="visible">
+<path d="M 2.5625 -10.328125 L 0.484375 -10.171875 L 0.484375 -9.734375 C 1.5 -9.734375 1.625 -9.640625 1.625 -8.90625 L 1.625 -1.109375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.640625 -0.03125 2.078125 -0.03125 C 2.53125 -0.03125 3.28125 -0.03125 3.6875 0 L 3.6875 -0.4375 C 2.734375 -0.4375 2.5625 -0.4375 2.5625 -1.109375 Z M 2.5625 -10.328125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1" overflow="visible">
+<path d="M 3.109375 -6.3125 C 3.109375 -6.59375 3.09375 -6.59375 2.828125 -6.59375 C 2.421875 -6.203125 1.890625 -5.96875 0.953125 -5.96875 L 0.953125 -5.640625 C 1.21875 -5.640625 1.75 -5.640625 2.328125 -5.90625 L 2.328125 -0.8125 C 2.328125 -0.453125 2.296875 -0.328125 1.359375 -0.328125 L 1.015625 -0.328125 L 1.015625 0 C 1.421875 -0.03125 2.265625 -0.03125 2.71875 -0.03125 C 3.171875 -0.03125 4.03125 -0.03125 4.4375 0 L 4.4375 -0.328125 L 4.09375 -0.328125 C 3.140625 -0.328125 3.109375 -0.453125 3.109375 -0.8125 Z M 3.109375 -6.3125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2" overflow="visible">
+<path d="M 2.796875 -2.03125 C 2.953125 -2.171875 3.375 -2.5 3.53125 -2.640625 C 4.140625 -3.203125 4.734375 -3.75 4.734375 -4.65625 C 4.734375 -5.828125 3.734375 -6.59375 2.5 -6.59375 C 1.3125 -6.59375 0.53125 -5.6875 0.53125 -4.8125 C 0.53125 -4.328125 0.90625 -4.25 1.046875 -4.25 C 1.265625 -4.25 1.5625 -4.40625 1.5625 -4.78125 C 1.5625 -5.296875 1.078125 -5.296875 0.953125 -5.296875 C 1.234375 -6.015625 1.90625 -6.265625 2.390625 -6.265625 C 3.3125 -6.265625 3.796875 -5.484375 3.796875 -4.65625 C 3.796875 -3.625 3.0625 -2.875 1.890625 -1.671875 L 0.640625 -0.375 C 0.53125 -0.265625 0.53125 -0.25 0.53125 0 L 4.4375 0 L 4.734375 -1.78125 L 4.421875 -1.78125 C 4.390625 -1.578125 4.3125 -1.078125 4.203125 -0.890625 C 4.140625 -0.8125 3.390625 -0.8125 3.21875 -0.8125 L 1.453125 -0.8125 Z M 2.796875 -2.03125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-3" overflow="visible">
+<path d="M 4.859375 -3.171875 C 4.859375 -4.234375 4.75 -4.875 4.421875 -5.5 C 3.984375 -6.375 3.171875 -6.59375 2.625 -6.59375 C 1.375 -6.59375 0.921875 -5.671875 0.78125 -5.390625 C 0.421875 -4.65625 0.40625 -3.6875 0.40625 -3.171875 C 0.40625 -2.515625 0.4375 -1.515625 0.90625 -0.71875 C 1.375 0.015625 2.109375 0.203125 2.625 0.203125 C 3.109375 0.203125 3.953125 0.0625 4.453125 -0.921875 C 4.828125 -1.640625 4.859375 -2.515625 4.859375 -3.171875 Z M 2.625 -0.0625 C 2.296875 -0.0625 1.609375 -0.234375 1.40625 -1.265625 C 1.296875 -1.828125 1.296875 -2.765625 1.296875 -3.28125 C 1.296875 -3.96875 1.296875 -4.65625 1.40625 -5.203125 C 1.609375 -6.21875 2.375 -6.3125 2.625 -6.3125 C 2.96875 -6.3125 3.65625 -6.15625 3.84375 -5.25 C 3.96875 -4.703125 3.96875 -3.953125 3.96875 -3.28125 C 3.96875 -2.703125 3.96875 -1.8125 3.84375 -1.25 C 3.640625 -0.203125 2.953125 -0.0625 2.625 -0.0625 Z M 2.625 -0.0625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1" overflow="visible">
+<path d="M 4.609375 -7.03125 C 4.671875 -7.15625 4.671875 -7.1875 4.671875 -7.21875 C 4.671875 -7.34375 4.578125 -7.4375 4.4375 -7.4375 C 4.28125 -7.4375 4.25 -7.328125 4.203125 -7.21875 L 0.640625 2.0625 C 0.578125 2.203125 0.578125 2.21875 0.578125 2.25 C 0.578125 2.375 0.6875 2.484375 0.8125 2.484375 C 0.96875 2.484375 1.015625 2.359375 1.046875 2.265625 Z M 4.609375 -7.03125 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="ElYsG_bksPVe7b3DxOJPtFIslPI=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="227.76607" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-1" y="15.791685"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="83.61799" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-2" y="57.572336"></use>
+<use x="90.098918" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-3" y="57.572336"></use>
+<use x="97.389961" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4" y="57.572336"></use>
+<use x="101.440541" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-5" y="57.572336"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="112.028637" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-6" y="57.572336"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="352.016845" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-2" y="57.572336"></use>
+<use x="358.497772" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-3" y="57.572336"></use>
+<use x="365.788816" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4" y="57.572336"></use>
+<use x="369.839395" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-5" y="57.572336"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="380.427491" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-7" y="57.572336"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="7.075104" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-8" y="99.811381"></use>
+<use x="15.176264" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-9" y="99.811381"></use>
+<use x="21.657191" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10" y="99.811381"></use>
+<use x="28.948234" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-11" y="99.811381"></use>
+<use x="37.049394" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12" y="99.811381"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="160.133971" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-13" y="99.811381"></use>
+<use x="165.804782" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10" y="99.811381"></use>
+<use x="173.095826" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4" y="99.811381"></use>
+<use x="177.146405" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-14" y="99.811381"></use>
+<use x="181.196985" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12" y="99.811381"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="275.472962" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-8" y="99.811381"></use>
+<use x="283.574121" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-9" y="99.811381"></use>
+<use x="290.055049" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10" y="99.811381"></use>
+<use x="297.346092" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-11" y="99.811381"></use>
+<use x="305.447252" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12" y="99.811381"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="428.531829" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-13" y="99.811381"></use>
+<use x="434.20264" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10" y="99.811381"></use>
+<use x="441.493684" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4" y="99.811381"></use>
+<use x="445.544263" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-14" y="99.811381"></use>
+<use x="449.594843" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12" y="99.811381"></use>
+</g>
+<path d="M -10.138931 37.441024 L -104.848427 6.932187 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"></path>
+<path d="M -4.144911 4.781738 C -3.388218 1.914562 -1.699697 0.559308 -0.00187113 0.0000261221 C -1.70081 -0.556419 -3.385465 -1.912317 -4.144889 -4.78119 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(-0.948488,0.30554,0.30554,0.948488,126.34978,45.844297)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="154.015403" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1" y="24.459324"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="159.289429" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1" y="24.459324"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="164.563455" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2" y="24.459324"></use>
+</g>
+<path d="M 10.138881 37.64878 L 113.785824 6.410836 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"></path>
+<path d="M -4.143824 4.781796 C -3.386238 1.914816 -1.699358 0.556196 -0.000348435 -0.000379031 C -1.699455 -0.557486 -3.38704 -1.913605 -4.143773 -4.782495 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.954068,0.287533,0.287533,-0.954068,344.977004,46.355207)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="297.03643" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1" y="24.606807"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="302.310456" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1" y="24.606807"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="307.584482" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2" y="24.606807"></use>
+</g>
+<path d="M -147.328739 -10.676151 L -183.917392 -30.863805 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"></path>
+<path d="M -4.143193 4.782115 C -3.389377 1.912728 -1.70028 0.559891 -0.000151194 -0.00210737 C -1.700081 -0.559496 -3.386663 -1.91222 -4.145168 -4.7799 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(-0.872494,0.481414,0.481414,0.872494,47.58682,83.580036)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="46.294726" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1" y="67.337132"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="51.568752" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1" y="67.337132"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="56.842778" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2" y="67.337132"></use>
+</g>
+<path d="M -114.072029 -10.676151 L -78.698556 -31.408676 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"></path>
+<path d="M -4.143903 4.782973 C -3.388952 1.913047 -1.699933 0.558318 -0.00066374 0.00019943 C -1.69938 -0.559105 -3.387472 -1.911874 -4.145277 -4.782301 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.859709,0.503815,0.503815,-0.859709,153.129376,84.129412)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="139.208269" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1" y="67.616155"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="144.482295" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1" y="67.616155"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="149.756322" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2" y="67.616155"></use>
+</g>
+<path d="M 122.013762 -10.676151 L 85.42511 -30.863805 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"></path>
+<path d="M -4.14435 4.782754 C -3.387101 1.911473 -1.698005 0.558636 -0.0013083 -0.00146892 C -1.701238 -0.558857 -3.38782 -1.911582 -4.142892 -4.781156 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(-0.872494,0.481414,0.481414,0.872494,315.987847,83.580036)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="325.240636" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1" y="69.81844"></use>
+</g>
+<path d="M 155.270472 -10.676151 L 190.643946 -31.408676 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"></path>
+<path d="M -4.146144 4.781659 C -3.387812 1.913715 -1.698793 0.558987 0.000476495 0.000867642 C -1.69824 -0.558437 -3.386332 -1.911205 -4.144137 -4.781633 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.859709,0.503815,0.503815,-0.859709,421.530403,84.129412)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="407.606127" xlink:href="#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-3" y="70.09846"></use>
+</g>
+</g>
+</svg> Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be the set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>heads</mi><mo>,</mo><mi>tails</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{heads,tails\}</annotation></semantics></math>. A coin gives a <em>law</em> according to which we will obtain “heads” or “tails” so it determines an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math>. Since the choice of coin is also random (we also have a <em>law on the coins</em>), the law on the coins determines an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P P X</annotation></semantics></math>. By averaging, the resulting overall probabilities are</p>
+<svg height="63.703pt" version="1.2" viewbox="0 0 164.461 63.703" width="164.461pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-1" overflow="visible">
+<path d="M 3.390625 -3.59375 C 3.390625 -4.484375 3.75 -5.78125 5.25 -6.90625 C 5.671875 -7.21875 6.046875 -7.671875 6.046875 -8.453125 C 6.046875 -9.359375 5.421875 -10.46875 3.28125 -10.46875 C 1.6875 -10.46875 0.796875 -9.4375 0.796875 -8.484375 C 0.796875 -7.9375 1.203125 -7.828125 1.421875 -7.828125 C 1.6875 -7.828125 2.03125 -8 2.03125 -8.453125 C 2.03125 -8.796875 1.78125 -9.0625 1.40625 -9.0625 C 1.328125 -9.0625 1.296875 -9.0625 1.265625 -9.046875 C 1.59375 -9.8125 2.453125 -10.171875 3.25 -10.171875 C 4.921875 -10.171875 4.921875 -9.09375 4.921875 -8.515625 C 4.921875 -7.640625 4.65625 -7.359375 4.40625 -7.09375 C 3.390625 -6.015625 3.0625 -4.625 3.0625 -3.71875 L 3.0625 -3 C 3.0625 -2.734375 3.0625 -2.671875 3.234375 -2.671875 C 3.390625 -2.671875 3.390625 -2.78125 3.390625 -3.046875 Z M 3.9375 -0.734375 C 3.9375 -1.109375 3.609375 -1.4375 3.234375 -1.4375 C 2.78125 -1.4375 2.5 -1.078125 2.5 -0.734375 C 2.5 -0.28125 2.859375 0 3.21875 0 C 3.625 0 3.9375 -0.328125 3.9375 -0.734375 Z M 3.9375 -0.734375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-2" overflow="visible">
+<path d="M 6.625 -3.609375 C 6.625 -5 6.625 -5.421875 6.28125 -5.890625 C 5.84375 -6.46875 5.140625 -6.5625 4.640625 -6.5625 C 3.359375 -6.5625 2.765625 -5.59375 2.5625 -5.125 L 2.546875 -5.125 L 2.546875 -10.328125 L 0.46875 -10.15625 L 0.46875 -9.734375 C 1.484375 -9.734375 1.609375 -9.625 1.609375 -8.890625 L 1.609375 -1.09375 C 1.609375 -0.4375 1.4375 -0.4375 0.46875 -0.4375 L 0.46875 0 C 0.859375 -0.03125 1.671875 -0.03125 2.078125 -0.03125 C 2.515625 -0.03125 3.3125 -0.03125 3.703125 0 L 3.703125 -0.4375 C 2.75 -0.4375 2.578125 -0.4375 2.578125 -1.09375 L 2.578125 -3.875 C 2.578125 -5.421875 3.59375 -6.265625 4.515625 -6.265625 C 5.4375 -6.265625 5.65625 -5.5 5.65625 -4.59375 L 5.65625 -1.09375 C 5.65625 -0.4375 5.484375 -0.4375 4.515625 -0.4375 L 4.515625 0 C 4.90625 -0.03125 5.71875 -0.03125 6.125 -0.03125 C 6.5625 -0.03125 7.359375 -0.03125 7.75 0 L 7.75 -0.4375 C 7 -0.4375 6.640625 -0.4375 6.625 -0.875 Z M 6.625 -3.609375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-3" overflow="visible">
+<path d="M 5.703125 -3.453125 C 6.03125 -3.453125 6.046875 -3.453125 6.046875 -3.734375 C 6.046875 -5.234375 5.25 -6.640625 3.453125 -6.640625 C 1.75 -6.640625 0.453125 -5.109375 0.453125 -3.25 C 0.453125 -1.296875 1.96875 0.15625 3.609375 0.15625 C 5.390625 0.15625 6.046875 -1.453125 6.046875 -1.765625 C 6.046875 -1.859375 5.984375 -1.921875 5.890625 -1.921875 C 5.765625 -1.921875 5.734375 -1.84375 5.71875 -1.765625 C 5.328125 -0.515625 4.328125 -0.171875 3.703125 -0.171875 C 3.078125 -0.171875 1.578125 -0.59375 1.578125 -3.171875 L 1.578125 -3.453125 Z M 1.59375 -3.734375 C 1.703125 -6.0625 3.015625 -6.34375 3.4375 -6.34375 C 5.03125 -6.34375 5.109375 -4.234375 5.125 -3.734375 Z M 1.59375 -3.734375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-4" overflow="visible">
+<path d="M 5.734375 -3.96875 C 5.734375 -4.78125 5.734375 -5.375 5.09375 -5.953125 C 4.5625 -6.421875 3.890625 -6.640625 3.25 -6.640625 C 2.015625 -6.640625 1.078125 -5.828125 1.078125 -4.859375 C 1.078125 -4.4375 1.375 -4.21875 1.703125 -4.21875 C 2.0625 -4.21875 2.328125 -4.484375 2.328125 -4.828125 C 2.328125 -5.4375 1.78125 -5.4375 1.5625 -5.4375 C 1.90625 -6.0625 2.625 -6.34375 3.21875 -6.34375 C 3.890625 -6.34375 4.78125 -5.765625 4.78125 -4.4375 L 4.78125 -3.84375 C 1.78125 -3.796875 0.65625 -2.546875 0.65625 -1.390625 C 0.65625 -0.21875 2.015625 0.15625 2.9375 0.15625 C 3.90625 0.15625 4.578125 -0.453125 4.859375 -1.15625 C 4.921875 -0.46875 5.390625 0.078125 6.03125 0.078125 C 6.34375 0.078125 7.203125 -0.140625 7.203125 -1.328125 L 7.203125 -2.15625 L 6.875 -2.15625 L 6.875 -1.328125 C 6.875 -0.46875 6.515625 -0.359375 6.3125 -0.359375 C 5.734375 -0.359375 5.734375 -1.140625 5.734375 -1.375 Z M 4.78125 -2.09375 C 4.78125 -0.640625 3.6875 -0.15625 3.046875 -0.15625 C 2.328125 -0.15625 1.703125 -0.6875 1.703125 -1.390625 C 1.703125 -3.359375 4.234375 -3.546875 4.78125 -3.5625 Z M 4.78125 -2.09375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-5" overflow="visible">
+<path d="M 4.46875 -10.15625 L 4.46875 -9.734375 C 5.46875 -9.734375 5.59375 -9.625 5.59375 -8.890625 L 5.59375 -5.609375 C 5.28125 -6.046875 4.640625 -6.5625 3.734375 -6.5625 C 2.015625 -6.5625 0.515625 -5.109375 0.515625 -3.203125 C 0.515625 -1.3125 1.9375 0.15625 3.5625 0.15625 C 4.703125 0.15625 5.359375 -0.59375 5.5625 -0.875 L 5.5625 0.15625 L 7.65625 0 L 7.65625 -0.4375 C 6.65625 -0.4375 6.53125 -0.53125 6.53125 -1.265625 L 6.53125 -10.328125 Z M 5.5625 -1.734375 C 5.5625 -1.46875 5.5625 -1.421875 5.359375 -1.09375 C 5 -0.578125 4.390625 -0.15625 3.640625 -0.15625 C 3.25 -0.15625 1.65625 -0.296875 1.65625 -3.1875 C 1.65625 -4.25 1.828125 -4.84375 2.15625 -5.34375 C 2.453125 -5.796875 3.046875 -6.265625 3.796875 -6.265625 C 4.71875 -6.265625 5.234375 -5.59375 5.390625 -5.359375 C 5.5625 -5.109375 5.5625 -5.078125 5.5625 -4.796875 Z M 5.5625 -1.734375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-6" overflow="visible">
+<path d="M 4.875 -6.296875 C 4.875 -6.5625 4.875 -6.640625 4.734375 -6.640625 C 4.609375 -6.640625 4.328125 -6.3125 4.21875 -6.171875 C 3.765625 -6.546875 3.296875 -6.640625 2.828125 -6.640625 C 1.03125 -6.640625 0.484375 -5.65625 0.484375 -4.828125 C 0.484375 -4.671875 0.484375 -4.15625 1.0625 -3.625 C 1.53125 -3.21875 2.03125 -3.109375 2.71875 -2.96875 C 3.546875 -2.8125 3.734375 -2.765625 4.109375 -2.46875 C 4.375 -2.25 4.5625 -1.921875 4.5625 -1.5 C 4.5625 -0.859375 4.1875 -0.15625 2.890625 -0.15625 C 1.90625 -0.15625 1.1875 -0.71875 0.859375 -2.203125 C 0.796875 -2.46875 0.796875 -2.484375 0.78125 -2.5 C 0.765625 -2.5625 0.703125 -2.5625 0.65625 -2.5625 C 0.484375 -2.5625 0.484375 -2.484375 0.484375 -2.21875 L 0.484375 -0.1875 C 0.484375 0.078125 0.484375 0.15625 0.640625 0.15625 C 0.71875 0.15625 0.734375 0.140625 0.984375 -0.171875 C 1.0625 -0.28125 1.0625 -0.3125 1.28125 -0.546875 C 1.84375 0.15625 2.640625 0.15625 2.90625 0.15625 C 4.46875 0.15625 5.234375 -0.71875 5.234375 -1.890625 C 5.234375 -2.6875 4.75 -3.171875 4.609375 -3.296875 C 4.078125 -3.765625 3.671875 -3.859375 2.6875 -4.03125 C 2.25 -4.125 1.15625 -4.328125 1.15625 -5.21875 C 1.15625 -5.6875 1.46875 -6.359375 2.8125 -6.359375 C 4.4375 -6.359375 4.515625 -4.984375 4.546875 -4.515625 C 4.5625 -4.40625 4.671875 -4.40625 4.71875 -4.40625 C 4.875 -4.40625 4.875 -4.484375 4.875 -4.75 Z M 4.875 -6.296875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-7" overflow="visible">
+<path d="M 2.5 -5.984375 L 4.59375 -5.984375 L 4.59375 -6.40625 L 2.5 -6.40625 L 2.5 -9.140625 L 2.171875 -9.140625 C 2.15625 -7.75 1.625 -6.328125 0.265625 -6.28125 L 0.265625 -5.984375 L 1.53125 -5.984375 L 1.53125 -1.84375 C 1.53125 -0.1875 2.640625 0.15625 3.421875 0.15625 C 4.359375 0.15625 4.84375 -0.78125 4.84375 -1.84375 L 4.84375 -2.6875 L 4.515625 -2.6875 L 4.515625 -1.875 C 4.515625 -0.796875 4.09375 -0.171875 3.515625 -0.171875 C 2.5 -0.171875 2.5 -1.5625 2.5 -1.8125 Z M 2.5 -5.984375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-8" overflow="visible">
+<path d="M 2.59375 -9.15625 C 2.59375 -9.546875 2.28125 -9.890625 1.859375 -9.890625 C 1.46875 -9.890625 1.140625 -9.578125 1.140625 -9.171875 C 1.140625 -8.734375 1.5 -8.453125 1.859375 -8.453125 C 2.328125 -8.453125 2.59375 -8.828125 2.59375 -9.15625 Z M 0.53125 -6.390625 L 0.53125 -5.96875 C 1.484375 -5.96875 1.625 -5.875 1.625 -5.140625 L 1.625 -1.09375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.625 -0.03125 2.046875 -0.03125 C 2.21875 -0.03125 3.078125 -0.03125 3.578125 0 L 3.578125 -0.4375 C 2.625 -0.4375 2.5625 -0.5 2.5625 -1.078125 L 2.5625 -6.5625 Z M 0.53125 -6.390625 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-9" overflow="visible">
+<path d="M 2.5625 -10.328125 L 0.484375 -10.15625 L 0.484375 -9.734375 C 1.5 -9.734375 1.625 -9.625 1.625 -8.890625 L 1.625 -1.09375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.640625 -0.03125 2.078125 -0.03125 C 2.53125 -0.03125 3.265625 -0.03125 3.6875 0 L 3.6875 -0.4375 C 2.734375 -0.4375 2.5625 -0.4375 2.5625 -1.09375 Z M 2.5625 -10.328125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-1" overflow="visible">
+<path d="M 2.515625 -3.3125 C 3.296875 -3.3125 3.796875 -2.734375 3.796875 -1.703125 C 3.796875 -0.453125 3.078125 -0.09375 2.5625 -0.09375 C 2.015625 -0.09375 1.265625 -0.28125 0.921875 -0.8125 C 1.28125 -0.8125 1.53125 -1.046875 1.53125 -1.375 C 1.53125 -1.6875 1.296875 -1.921875 0.984375 -1.921875 C 0.71875 -1.921875 0.4375 -1.75 0.4375 -1.34375 C 0.4375 -0.40625 1.453125 0.203125 2.578125 0.203125 C 3.90625 0.203125 4.828125 -0.703125 4.828125 -1.703125 C 4.828125 -2.515625 4.171875 -3.28125 3.15625 -3.5 C 3.9375 -3.765625 4.53125 -4.4375 4.53125 -5.234375 C 4.53125 -6.03125 3.625 -6.59375 2.59375 -6.59375 C 1.53125 -6.59375 0.734375 -6.015625 0.734375 -5.265625 C 0.734375 -4.90625 0.984375 -4.75 1.234375 -4.75 C 1.546875 -4.75 1.75 -4.953125 1.75 -5.25 C 1.75 -5.609375 1.421875 -5.75 1.203125 -5.765625 C 1.625 -6.3125 2.390625 -6.34375 2.5625 -6.34375 C 2.828125 -6.34375 3.578125 -6.265625 3.578125 -5.234375 C 3.578125 -4.546875 3.296875 -4.125 3.15625 -3.96875 C 2.859375 -3.65625 2.625 -3.640625 2.03125 -3.609375 C 1.828125 -3.59375 1.75 -3.578125 1.75 -3.453125 C 1.75 -3.3125 1.84375 -3.3125 2.015625 -3.3125 Z M 2.515625 -3.3125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-2" overflow="visible">
+<path d="M 3.90625 -6.421875 C 3.90625 -6.625 3.90625 -6.703125 3.703125 -6.703125 C 3.578125 -6.703125 3.5625 -6.6875 3.46875 -6.546875 L 0.296875 -1.953125 L 0.296875 -1.625 L 3.09375 -1.625 L 3.09375 -0.796875 C 3.09375 -0.4375 3.0625 -0.328125 2.296875 -0.328125 L 2.078125 -0.328125 L 2.078125 0 C 2.921875 -0.03125 2.9375 -0.03125 3.5 -0.03125 C 4.0625 -0.03125 4.09375 -0.03125 4.9375 0 L 4.9375 -0.328125 L 4.703125 -0.328125 C 3.9375 -0.328125 3.90625 -0.4375 3.90625 -0.796875 L 3.90625 -1.625 L 4.953125 -1.625 L 4.953125 -1.953125 L 3.90625 -1.953125 Z M 3.171875 -5.609375 L 3.171875 -1.953125 L 0.640625 -1.953125 Z M 3.171875 -5.609375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-3" overflow="visible">
+<path d="M 3.109375 -6.3125 C 3.109375 -6.59375 3.09375 -6.59375 2.828125 -6.59375 C 2.421875 -6.203125 1.890625 -5.96875 0.953125 -5.96875 L 0.953125 -5.640625 C 1.21875 -5.640625 1.75 -5.640625 2.328125 -5.90625 L 2.328125 -0.8125 C 2.328125 -0.453125 2.296875 -0.328125 1.359375 -0.328125 L 1.015625 -0.328125 L 1.015625 0 C 1.421875 -0.03125 2.265625 -0.03125 2.71875 -0.03125 C 3.171875 -0.03125 4.03125 -0.03125 4.4375 0 L 4.4375 -0.328125 L 4.09375 -0.328125 C 3.140625 -0.328125 3.109375 -0.453125 3.109375 -0.8125 Z M 3.109375 -6.3125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-1" overflow="visible">
+<path d="M 4.609375 -7.03125 C 4.671875 -7.15625 4.671875 -7.1875 4.671875 -7.21875 C 4.671875 -7.34375 4.578125 -7.4375 4.4375 -7.4375 C 4.28125 -7.4375 4.25 -7.328125 4.203125 -7.21875 L 0.640625 2.0625 C 0.578125 2.203125 0.578125 2.21875 0.578125 2.25 C 0.578125 2.375 0.6875 2.484375 0.8125 2.484375 C 0.96875 2.484375 1.015625 2.359375 1.046875 2.265625 Z M 4.609375 -7.03125 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="82.973038" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-1" y="15.77346"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="6.517494" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-2" y="57.963758"></use>
+<use x="14.609304" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-3" y="57.963758"></use>
+<use x="21.082752" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-4" y="57.963758"></use>
+<use x="28.36538" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-5" y="57.963758"></use>
+<use x="36.45719" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-6" y="57.963758"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="130.623877" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-7" y="57.963758"></use>
+<use x="136.288144" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-4" y="57.963758"></use>
+<use x="143.570773" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-8" y="57.963758"></use>
+<use x="147.616678" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-9" y="57.963758"></use>
+<use x="151.662583" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-6" y="57.963758"></use>
+</g>
+<path d="M -5.667742 12.849755 L -39.041367 -9.837559 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.995359,0,0,-0.995359,81.961753,31.704187)"></path>
+<path d="M -4.144779 4.780814 C -3.389084 1.913292 -1.701015 0.556966 -0.00138218 -0.000470754 C -1.700201 -0.558802 -3.388775 -1.911865 -4.144008 -4.782077 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(-0.823132,0.559551,0.559551,0.823132,42.772563,41.719911)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="39.880945" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-1" y="24.250936"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="45.148884" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-1" y="24.250936"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="50.416824" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-2" y="24.250936"></use>
+</g>
+<path d="M 14.609953 12.319953 L 44.836159 -9.814013 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.995359,0,0,-0.995359,81.961753,31.704187)"></path>
+<path d="M -4.146975 4.782206 C -3.388412 1.913105 -1.699679 0.557045 0.000540205 0.00231653 C -1.700606 -0.557612 -3.387284 -1.914457 -4.142148 -4.782796 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.803006,0.588078,0.588078,-0.803006,126.90836,41.708574)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="115.56409" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-3" y="24.514706"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="120.83203" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-1" y="24.514706"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="126.099969" xlink:href="#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-2" y="24.514706"></use>
+</g>
+</g>
+</svg>
+<p>In other words, the “average” or “mixture” can be thought of as an assignment <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>:</mo><mi>P</mi><mi>P</mi><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">E:P P X\to P X</annotation></semantics></math>, from laws of “random random variables” to laws of ordinary random variables.</p>
+<h2 id="algebras_expectation_values">Algebras: expectation values</h2>
+<p>According to the interpretation of probability monads in terms of “formal generalized convex combinations”, the <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> of a probability monad are then spaces equipped with a way of evaluating these expressions to a result, which we can see as a generalized “<a class="existingWikiWord" href="../../../../../2/6/9/6/26962/content.html">mixture</a>”, “<a class="existingWikiWord" href="../../../../../3/9/7/7/17793/content.html">average</a>”, or “<a class="existingWikiWord" href="../../../../../4/2/2/9/9224/content.html">expectation value</a>”. (Expectation values play a very important role in probability: probability monads can encode them via their algebras.)</p>
+<p>In other words, algebras of probability monads can be thought of as generalizations of <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex sets</a>, depending on the actual category and monad in question. For example,</p>
+<ul>
+<li>The <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> of the <a class="existingWikiWord" href="../../../../../0/8/7/0/20780/content.html">distribution monad</a> are <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex spaces</a>.</li>
+<li>The <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> of the <a class="existingWikiWord" href="../../../../../2/7/7/0/20772/content.html">Radon monad</a> are <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> convex subsets of <a class="existingWikiWord" href="../../../../../7/9/1/2/2197/content.html">locally convex topological vector spaces</a>.</li>
+<li>The <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> of the <a class="existingWikiWord" href="../../../../7/7/0/20778/content.html">Kantorovich monad</a> are closed convex subsets of <a class="existingWikiWord" href="../../../../../6/9/4/1/1496/content.html">Banach spaces</a>.</li>
+</ul>
+<p>(See also the table <a href="#detailed_list">below</a>.)</p>
+<p>If the measure are not required to be normalized, instead of (generalized) convex combinations one should think of linear combinations with non-negative coefficients, and so as algebras one gets a generalization of <a class="existingWikiWord" href="../../../../../3/0/0/3/3003/content.html">conical spaces</a> instead.</p>
+<h2 id="kleisli_morphisms_random_maps">Kleisli morphisms: random maps</h2>
+<p>The basic interpretation of a Kleisli morphism, i.e. a map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>P</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\to P Y</annotation></semantics></math>, is that of a <em>map with a random outcome</em>. For example,</p>
+<ul>
+<li>For the <a class="existingWikiWord" href="../../../../../0/8/7/0/20780/content.html">distribution monad</a>, Kleisli morphisms are <a class="existingWikiWord" href="../../../../4/1/6/26148/content.html">stochastic maps</a> (or <a class="existingWikiWord" href="../../../../4/1/6/26148/content.html">stochastic matrices</a>).</li>
+<li>For the <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a>, Kleisli morphisms are <a class="existingWikiWord" href="../../../../../9/6/4/6/26469/content.html">Markov kernels</a>.</li>
+<li>…and so on.</li>
+</ul>
+<p>The <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli composition</a> recovers exactly the <span class="newWikiWord">Chapman-Kolmogorov formula<a href="/nlab/new/Chapman-Kolmogorov+formula">?</a></span> for the composition of stochastic maps. In the language of <a class="existingWikiWord" href="../../../../../3/4/5/8/8543/content.html">conditional probability</a>, this reads as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo lspace="thinmathspace" rspace="thinmathspace">∑</mo> <mi>y</mi></munder><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">|</mo><mi>y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+p(z|x) = \sum_y p(z|y) \, p (y|x)
+
+</annotation></semantics></math></div>
+<p>for the discrete case, and as</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∫</mo> <mi>Y</mi></msub><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">|</mo><mi>y</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>d</mi><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">|</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+p(A|x) = \int_Y p(A|y) \, d p(y|x)
+
+</annotation></semantics></math></div>
+<p>for the continuous case.</p>
+<p>(See <a href="#giry80">Giry’s original article</a> for the details, as well as the introductions given in <a href="#thesisperrone">Perrone ‘18, Section 1.1</a> and <a href="#notesperrone">Perrone ‘19, Example 5.1.13</a>).</p>
+<p><a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli categories</a> of probability monads are often instances of <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html">Markov categories</a>.</p>
+<h2 id="monoidal_structure_products_and_marginals">Monoidal structure: products and marginals</h2>
+<p>Probability monads are usually defined on <a class="existingWikiWord" href="../../../../../1/3/2/0/231/content.html">monoidal categories</a>, in particular on <a class="existingWikiWord" href="../../../../../3/4/3/0/343/content.html">cartesian monoidal categories</a>. On product spaces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\times Y</annotation></semantics></math>, the object <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>×</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X\times Y)</annotation></semantics></math> has the interpretation of containing <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">joint distributions</a>. Given a joint distribution, one can form the <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">marginals</a> by pushing forward along the <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">product</a> projections <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>Y</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">X\times Y\to X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>×</mo><mi>Y</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X\times Y\to Y</annotation></semantics></math>. This is in general a destructive operation, since <a class="existingWikiWord" href="../../../../../3/9/5/6/26593/content.html">stochastic dependence</a> may be discarded.</p>
+<p>Given <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">marginal distributions</a>, one can form a canonical joint distribution by forming the <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">product distribution</a>. This is encoded by a <a class="existingWikiWord" href="../../../../../1/1/4/7/7411/content.html">monoidal structure</a> on the probability monad (or equivalently, a <a class="existingWikiWord" href="../../../../../0/5/0/1/21050/content.html">commutative strength</a>), a map <svg height="26.681pt" version="1.2" viewbox="0 0 186.254 26.681" width="186.254pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1" overflow="visible">
+<path d="M 4.375 -4.703125 L 6.84375 -4.703125 C 8.890625 -4.703125 10.921875 -6.203125 10.921875 -7.890625 C 10.921875 -9.03125 9.953125 -10.078125 8.09375 -10.078125 L 3.53125 -10.078125 C 3.25 -10.078125 3.109375 -10.078125 3.109375 -9.796875 C 3.109375 -9.65625 3.25 -9.65625 3.46875 -9.65625 C 4.375 -9.65625 4.375 -9.53125 4.375 -9.375 C 4.375 -9.34375 4.375 -9.265625 4.3125 -9.03125 L 2.3125 -1.09375 C 2.1875 -0.578125 2.15625 -0.421875 1.125 -0.421875 C 0.84375 -0.421875 0.6875 -0.421875 0.6875 -0.15625 C 0.6875 0 0.828125 0 0.921875 0 C 1.203125 0 1.484375 -0.03125 1.765625 -0.03125 L 3.5 -0.03125 C 3.78125 -0.03125 4.09375 0 4.375 0 C 4.484375 0 4.65625 0 4.65625 -0.28125 C 4.65625 -0.421875 4.515625 -0.421875 4.296875 -0.421875 C 3.40625 -0.421875 3.390625 -0.53125 3.390625 -0.671875 C 3.390625 -0.75 3.40625 -0.859375 3.421875 -0.9375 Z M 5.4375 -9.078125 C 5.5625 -9.625 5.625 -9.65625 6.203125 -9.65625 L 7.65625 -9.65625 C 8.765625 -9.65625 9.6875 -9.296875 9.6875 -8.1875 C 9.6875 -7.8125 9.5 -6.5625 8.8125 -5.875 C 8.5625 -5.609375 7.859375 -5.046875 6.515625 -5.046875 L 4.4375 -5.046875 Z M 5.4375 -9.078125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-2" overflow="visible">
+<path d="M 7.015625 -6 L 5.625 -9.234375 C 5.8125 -9.578125 6.265625 -9.640625 6.4375 -9.65625 C 6.53125 -9.65625 6.6875 -9.671875 6.6875 -9.921875 C 6.6875 -10.078125 6.5625 -10.078125 6.46875 -10.078125 C 6.21875 -10.078125 5.921875 -10.0625 5.671875 -10.0625 L 4.8125 -10.0625 C 3.90625 -10.0625 3.265625 -10.078125 3.25 -10.078125 C 3.125 -10.078125 2.984375 -10.078125 2.984375 -9.796875 C 2.984375 -9.65625 3.109375 -9.65625 3.3125 -9.65625 C 4.15625 -9.65625 4.21875 -9.515625 4.375 -9.15625 L 6.125 -5.046875 L 2.921875 -1.625 C 2.390625 -1.046875 1.75 -0.484375 0.671875 -0.421875 C 0.484375 -0.40625 0.375 -0.40625 0.375 -0.140625 C 0.375 -0.109375 0.390625 0 0.546875 0 C 0.75 0 0.96875 -0.03125 1.1875 -0.03125 L 1.875 -0.03125 C 2.34375 -0.03125 2.859375 0 3.328125 0 C 3.421875 0 3.609375 0 3.609375 -0.265625 C 3.609375 -0.40625 3.5 -0.421875 3.40625 -0.421875 C 3.109375 -0.453125 2.921875 -0.625 2.921875 -0.859375 C 2.921875 -1.109375 3.09375 -1.28125 3.53125 -1.734375 L 4.84375 -3.15625 C 5.171875 -3.5 5.953125 -4.359375 6.28125 -4.6875 L 7.828125 -1.046875 C 7.84375 -1.015625 7.90625 -0.875 7.90625 -0.859375 C 7.90625 -0.71875 7.578125 -0.453125 7.109375 -0.421875 C 7.015625 -0.421875 6.84375 -0.40625 6.84375 -0.140625 C 6.84375 0 7 0 7.078125 0 C 7.328125 0 7.625 -0.03125 7.875 -0.03125 L 9.5 -0.03125 C 9.765625 -0.03125 10.046875 0 10.296875 0 C 10.390625 0 10.5625 0 10.5625 -0.28125 C 10.5625 -0.421875 10.40625 -0.421875 10.28125 -0.421875 C 9.390625 -0.4375 9.359375 -0.515625 9.109375 -1.0625 L 7.15625 -5.640625 L 9.03125 -7.65625 C 9.1875 -7.796875 9.53125 -8.171875 9.65625 -8.3125 C 10.296875 -8.984375 10.875 -9.578125 12.078125 -9.65625 C 12.21875 -9.671875 12.375 -9.671875 12.375 -9.921875 C 12.375 -10.078125 12.234375 -10.078125 12.1875 -10.078125 C 11.96875 -10.078125 11.75 -10.0625 11.546875 -10.0625 L 10.875 -10.0625 C 10.390625 -10.0625 9.875 -10.078125 9.421875 -10.078125 C 9.3125 -10.078125 9.140625 -10.078125 9.140625 -9.8125 C 9.140625 -9.671875 9.25 -9.65625 9.328125 -9.65625 C 9.5625 -9.625 9.8125 -9.515625 9.8125 -9.234375 L 9.796875 -9.203125 C 9.796875 -9.09375 9.765625 -8.953125 9.59375 -8.765625 Z M 7.015625 -6 " style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-3" overflow="visible">
+<path d="M 8.6875 -8.453125 L 9.015625 -8.78125 C 9.671875 -9.453125 10.21875 -9.609375 10.734375 -9.65625 C 10.890625 -9.671875 11.03125 -9.6875 11.03125 -9.9375 C 11.03125 -10.078125 10.875 -10.078125 10.859375 -10.078125 C 10.671875 -10.078125 10.484375 -10.0625 10.3125 -10.0625 L 9.703125 -10.0625 C 9.265625 -10.0625 8.8125 -10.078125 8.40625 -10.078125 C 8.296875 -10.078125 8.140625 -10.078125 8.140625 -9.796875 C 8.140625 -9.671875 8.28125 -9.65625 8.328125 -9.65625 C 8.765625 -9.625 8.765625 -9.40625 8.765625 -9.3125 C 8.765625 -9.15625 8.65625 -8.9375 8.359375 -8.59375 L 4.84375 -4.5625 L 3.171875 -9.046875 C 3.09375 -9.265625 3.09375 -9.28125 3.09375 -9.3125 C 3.09375 -9.625 3.6875 -9.65625 3.875 -9.65625 C 4.046875 -9.65625 4.203125 -9.65625 4.203125 -9.921875 C 4.203125 -10.078125 4.078125 -10.078125 3.984375 -10.078125 C 3.734375 -10.078125 3.4375 -10.0625 3.1875 -10.0625 L 1.546875 -10.0625 C 1.28125 -10.0625 1 -10.078125 0.75 -10.078125 C 0.65625 -10.078125 0.484375 -10.078125 0.484375 -9.796875 C 0.484375 -9.65625 0.625 -9.65625 0.84375 -9.65625 C 1.5625 -9.65625 1.703125 -9.53125 1.828125 -9.1875 L 3.65625 -4.265625 C 3.671875 -4.21875 3.71875 -4.0625 3.71875 -4.015625 C 3.71875 -3.96875 3 -1.0625 2.953125 -0.921875 C 2.828125 -0.515625 2.6875 -0.4375 1.75 -0.421875 C 1.484375 -0.421875 1.375 -0.421875 1.375 -0.140625 C 1.375 0 1.53125 0 1.578125 0 C 1.84375 0 2.15625 -0.03125 2.4375 -0.03125 L 4.171875 -0.03125 C 4.4375 -0.03125 4.75 0 5.015625 0 C 5.125 0 5.296875 0 5.296875 -0.265625 C 5.296875 -0.421875 5.203125 -0.421875 4.953125 -0.421875 C 4.03125 -0.421875 4.03125 -0.53125 4.03125 -0.6875 C 4.03125 -0.796875 4.15625 -1.265625 4.21875 -1.5625 L 4.75 -3.6875 C 4.84375 -4 4.84375 -4.03125 4.96875 -4.171875 Z M 8.6875 -8.453125 " style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-1" overflow="visible">
+<path d="M 5.75 -4.109375 L 2.796875 -7.046875 C 2.609375 -7.21875 2.578125 -7.25 2.46875 -7.25 C 2.3125 -7.25 2.171875 -7.109375 2.171875 -6.953125 C 2.171875 -6.84375 2.203125 -6.828125 2.359375 -6.65625 L 5.3125 -3.6875 L 2.359375 -0.71875 C 2.203125 -0.5625 2.171875 -0.53125 2.171875 -0.421875 C 2.171875 -0.265625 2.3125 -0.140625 2.46875 -0.140625 C 2.578125 -0.140625 2.609375 -0.15625 2.796875 -0.34375 L 5.734375 -3.28125 L 8.78125 -0.21875 C 8.8125 -0.203125 8.921875 -0.140625 9 -0.140625 C 9.1875 -0.140625 9.296875 -0.265625 9.296875 -0.421875 C 9.296875 -0.453125 9.296875 -0.515625 9.265625 -0.59375 C 9.25 -0.625 6.890625 -2.9375 6.15625 -3.6875 L 8.859375 -6.390625 C 8.9375 -6.484375 9.15625 -6.671875 9.234375 -6.765625 C 9.25 -6.796875 9.296875 -6.84375 9.296875 -6.953125 C 9.296875 -7.109375 9.1875 -7.25 9 -7.25 C 8.890625 -7.25 8.828125 -7.1875 8.671875 -7.03125 Z M 5.75 -4.109375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-1" overflow="visible">
+<path d="M 4.796875 3.59375 C 4.796875 3.546875 4.796875 3.515625 4.546875 3.265625 C 3.078125 1.765625 2.25 -0.671875 2.25 -3.671875 C 2.25 -6.546875 2.9375 -9 4.65625 -10.75 C 4.796875 -10.875 4.796875 -10.90625 4.796875 -10.953125 C 4.796875 -11.046875 4.71875 -11.078125 4.671875 -11.078125 C 4.46875 -11.078125 3.265625 -10.015625 2.546875 -8.5625 C 1.78125 -7.078125 1.453125 -5.5 1.453125 -3.671875 C 1.453125 -2.359375 1.65625 -0.609375 2.421875 0.96875 C 3.296875 2.75 4.5 3.703125 4.671875 3.703125 C 4.71875 3.703125 4.796875 3.671875 4.796875 3.59375 Z M 4.796875 3.59375 " style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-2" overflow="visible">
+<path d="M 4.15625 -3.671875 C 4.15625 -4.796875 4.015625 -6.625 3.1875 -8.34375 C 2.3125 -10.109375 1.109375 -11.078125 0.9375 -11.078125 C 0.890625 -11.078125 0.8125 -11.046875 0.8125 -10.953125 C 0.8125 -10.90625 0.8125 -10.875 1.0625 -10.625 C 2.546875 -9.140625 3.359375 -6.703125 3.359375 -3.6875 C 3.359375 -0.828125 2.671875 1.640625 0.953125 3.375 C 0.8125 3.515625 0.8125 3.546875 0.8125 3.59375 C 0.8125 3.671875 0.890625 3.703125 0.9375 3.703125 C 1.140625 3.703125 2.34375 2.640625 3.078125 1.203125 C 3.828125 -0.3125 4.15625 -1.90625 4.15625 -3.671875 Z M 4.15625 -3.671875 " style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph3-0" overflow="visible">
+<path d="" style="stroke:none;"></path>
+</symbol>
+<symbol id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph3-1" overflow="visible">
+<path d="M 8.125 -6.453125 C 8.203125 -6.578125 8.203125 -6.609375 8.203125 -6.625 C 8.203125 -6.71875 8.125 -6.71875 7.9375 -6.71875 L 0.765625 -6.71875 C 0.578125 -6.71875 0.5 -6.71875 0.5 -6.625 C 0.5 -6.609375 0.5 -6.578125 0.578125 -6.453125 L 4.0625 0.09375 C 4.140625 0.21875 4.171875 0.3125 4.34375 0.3125 C 4.53125 0.3125 4.5625 0.21875 4.640625 0.09375 Z M 1.828125 -5.96875 L 7.5 -5.96875 L 4.671875 -0.625 Z M 1.828125 -5.96875 " style="stroke:none;"></path>
+</symbol>
+</g>
+</defs>
+<g id="FQme8ul8Df_GAE1ODmhtmfkt_3Q=-surface1">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="7.089669" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="18.417771" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-2" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="34.861378" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-1" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="49.62857" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="60.956673" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-3" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="113.038931" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="124.367239" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-1" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="129.990013" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-2" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="146.433415" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-1" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="161.200607" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-3" y="17.269524"></use>
+</g>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="172.803136" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-2" y="17.269524"></use>
+</g>
+<path d="M -13.756879 -0.000466062 L 13.044145 -0.000466062 " style="fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.988185,0,0,-0.988185,92.758407,13.577664)"></path>
+<path d="M -4.144535 4.782608 C -3.385568 1.912763 -1.70161 0.5569 -0.00183993 -0.000466062 C -1.70161 -0.557832 -3.385568 -1.913696 -4.144535 -4.78354 " style="fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(0.988185,0,0,-0.988185,106.040881,13.577664)"></path>
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+<use x="88.441026" xlink:href="#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph3-1" y="9.906556"></use>
+</g>
+</g>
+</svg> which satisfies particular compatibility conditions. The Giry monad is monoidal on the category <a class="existingWikiWord" href="../../../../../9/3/5/0/539/content.html">Meas</a> with the <a class="existingWikiWord" href="../../../../../4/7/8/0/874/content.html">cartesian product</a>. Similar statements are true for most other probability and measure monads.</p>
+<p>When the monad is <a class="existingWikiWord" href="../../../../../0/3/5/4/24530/content.html">affine</a>, one has that <em>a product probability is necessarily the product of its marginals</em>. This is the case for monads of probability measures, but not for monads of unnormalized measures.</p>
+<p>More on this at <a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">joint and marginal probability</a>.</p>
+<h2 id="duality">Duality</h2>
+<p>(…work in progress…)</p>
+<h2 id="detailed_list">Detailed list</h2>
+<div>
+<table>
+<tr>
+<th><a class="existingWikiWord" href="content.html">Probability monad</a> (<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>P</mi>
+</mrow>
+<annotation encoding="application/x-tex">P</annotation>
+</semantics>
+</math>)</th>
+<th>Category</th>
+<th>Elements/points of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>P</mi>
+<mi>X</mi>
+</mrow>
+<annotation encoding="application/x-tex">P X</annotation>
+</semantics>
+</math></th>
+<th>Extra structure of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>P</mi>
+<mi>X</mi>
+</mrow>
+<annotation encoding="application/x-tex">P X</annotation>
+</semantics>
+</math></th>
+<th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>P</mi>
+</mrow>
+<annotation encoding="application/x-tex">P</annotation>
+</semantics>
+</math>-Algebras</th>
+<th>References</th>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../0/8/7/0/20780/content.html">distribution monad</a> (a.k.a. finitary Giry monad, convex combination monad)</th>
+<td><a class="existingWikiWord" href="../../../../../2/9/1/0/192/content.html">Set</a></td>
+<td><a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex combinations</a> or finitely-<a class="existingWikiWord" href="../../../../../4/1/8/7/7814/content.html#in_measure_theory">supported</a> <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measures</a></td>
+<td>(just a set)</td>
+<td><a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex spaces</a></td>
+<td><a class="existingWikiWord" href="content.html#fritzconvex">Fritz '09</a>, <a class="existingWikiWord" href="content.html#jacobs">Jacobs '18</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a></th>
+<td><a class="existingWikiWord" href="../../../../../9/3/5/0/539/content.html">Meas</a></td>
+<td><a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measures</a></td>
+<td>initial <a class="existingWikiWord" href="../../../../../4/6/7/6/6764/content.html">σ-algebra</a> of evaluation maps</td>
+<td>Measurable convex spaces. <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html#algebras_over_the_giry_monad">See here</a>.</td>
+<td><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html#Sturtz26">Sturtz '26</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a></th>
+<td><a class="existingWikiWord" href="../../../../../6/3/9/2/2936/content.html">Pol</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/4/5/0/20542/content.html">Borel probability measures</a></td>
+<td><a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">initial topology</a> of integration maps</td>
+<td>See characterization by <a class="existingWikiWord" href="../../../../../3/7/6/1/11673/content.html">Ernst-Erich Doberkat</a>..</td>
+<td><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html#Doberkat03">Doberkat '03</a></td>
+</tr>
+<tr>
+<th><span class="newWikiWord">Probability monad on QBS<a href="/nlab/new/Probability+monad+on+QBS">?</a></span></th>
+<td><a class="existingWikiWord" href="../../../../../2/8/7/8/18782/content.html">quasi-Borel spaces</a></td>
+<td>Equivalence classes of <a class="existingWikiWord" href="../../../../../3/0/5/6/16503/content.html">random variables</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/8/7/8/18782/content.html">quasi-Borel structure</a> inherited by the <a class="existingWikiWord" href="../../../../../5/7/3/0/375/content.html">cartesian closed structure</a></td>
+<td>Full characterization unknown. </td>
+<td><a class="existingWikiWord" href="content.html#QBS">HKSY '17</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../2/7/7/0/20772/content.html">Radon monad</a></th>
+<td><a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html#category_of_compacta">Comp</a></td>
+<td><a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon probability measures</a> (or <a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">continuous valuations</a>)</td>
+<td></td>
+<td><a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex subsets</a> of <a class="existingWikiWord" href="../../../../../7/9/1/2/2197/content.html">locally convex topological vector spaces</a></td>
+<td><a class="existingWikiWord" href="content.html#swirszcz">Swirszcz '74</a>, <a class="existingWikiWord" href="content.html#radonkeimel">Keimel '08</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../2/7/7/0/20772/content.html#the_ordered_case">ordered Radon monad</a></th>
+<td><a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html#categories_of_compact_ordered_spaces">CompOrd</a></td>
+<td><a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon probability measures</a> (or <a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">continuous valuations</a>)</td>
+<td><a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">weak topology</a> w.r.t. <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous functions</a>, <a class="existingWikiWord" href="../../../../4/7/0/20748/content.html">stochastic order</a></td>
+<td><a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex subsets</a> of <span class="newWikiWord">ordered<a href="/nlab/new/ordered+vector+space">?</a></span> <a class="existingWikiWord" href="../../../../../7/9/1/2/2197/content.html">locally convex topological vector spaces</a></td>
+<td><a class="existingWikiWord" href="content.html#swirszcz">Swirszcz '74</a>, <a class="existingWikiWord" href="content.html#radonkeimel">Keimel '08</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html#the_measure_monad_on_top">measure monad on Top</a></th>
+<td><a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a></td>
+<td><a class="existingWikiWord" href="../../../../../3/5/0/0/20053/content.html">τ-additive measures</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html#the_measure_monad_on_top">A-topology</a>, <a class="existingWikiWord" href="../../../../4/7/0/20748/content.html">stochastic order</a></td>
+<td>Full characterization unknown. <a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html#algebras">See also here</a>. </td>
+<td><a class="existingWikiWord" href="content.html#support">F-P-R '19</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../3/8/7/7/27783/content.html">probabilistic powerdomain</a></th>
+<td><a class="existingWikiWord" href="../../../../../7/8/4/7/7487/content.html">dcpo</a>, <span class="newWikiWord">continuous domains<a href="/nlab/new/continuous+domains">?</a></span></td>
+<td><a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">continuous valuations</a></td>
+<td><a class="existingWikiWord" href="../../../../4/7/0/20748/content.html">stochastic order</a></td>
+<td><span class="newWikiWord">abstract probabilistic domains<a href="/nlab/new/abstract+probabilistic+domains">?</a></span> (continuous case)</td>
+<td><a class="existingWikiWord" href="content.html#jonesplotkin">J-P '89</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html">extended probabilistic powerdomain</a></th>
+<td><a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a>, <a class="existingWikiWord" href="../../../../../9/6/7/0/20769/content.html">stably compact spaces</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">continuous valuations</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html#spaces_of_valuations">initial topology of evaluation maps</a>, <a class="existingWikiWord" href="../../../../4/7/0/20748/content.html">stochastic order</a></td>
+<td>Full characterization unknown. <a class="existingWikiWord" href="../../../../../2/6/7/0/20762/content.html#algebras">Dedicated section here</a></td>
+<td><a class="existingWikiWord" href="content.html#heckmann96">Heckmann '96</a>, <a class="existingWikiWord" href="content.html#jung">A-J-K '04</a>, <a class="existingWikiWord" href="content.html#algebras">GL-J '19</a>, <a class="existingWikiWord" href="content.html#support">F-P-R '19</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../../4/8/7/7/27784/content.html">valuation monad on locales</a></th>
+<td><a class="existingWikiWord" href="../../../../../3/2/4/3/3423/content.html">Loc</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">continuous valuations</a></td>
+<td><a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">initial topology</a> of evaluation maps</td>
+<td>…</td>
+<td><a class="existingWikiWord" href="content.html#vmonad">Vickers '11</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../7/7/0/20778/content.html">Kantorovich monad</a></th>
+<td><a class="existingWikiWord" href="../../../../../1/4/0/6/26041/content.html">complete</a> <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric spaces</a></td>
+<td><a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon probability measures</a> of finite first moment</td>
+<td><a class="existingWikiWord" href="../../../../../6/0/2/6/6206/content.html">Kantorovich-Wasserstein metric</a></td>
+<td>closed <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex subsets</a> of <a class="existingWikiWord" href="../../../../../6/9/4/1/1496/content.html">Banach spaces</a></td>
+<td><a class="existingWikiWord" href="content.html#vanbreugel">van Breugel '05</a>, <a class="existingWikiWord" href="content.html#kantorovich19">F-P '19</a></td>
+</tr>
+<tr>
+<th><a class="existingWikiWord" href="../../../../7/7/0/20778/content.html#the_ordered_case">ordered Kantorovich monad</a></th>
+<td><a class="existingWikiWord" href="../../../../../1/4/0/6/26041/content.html">complete</a> <span class="newWikiWord">L-ordered<a href="/nlab/new/L-ordered">?</a></span> <a class="existingWikiWord" href="../../../../../7/5/4/1/1457/content.html">metric spaces</a></td>
+<td><a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon probability measures</a> of finite first moment</td>
+<td><a class="existingWikiWord" href="../../../../../6/0/2/6/6206/content.html">Kantorovich-Wasserstein metric</a>, <a class="existingWikiWord" href="../../../../4/7/0/20748/content.html">stochastic order</a></td>
+<td>closed <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex subsets</a> of <span class="newWikiWord">ordered Banach spaces<a href="/nlab/new/ordered+Banach+spaces">?</a></span></td>
+<td><a class="existingWikiWord" href="content.html#orderedkantorovich">F-P '20</a></td>
+</tr>
+<tr>
+<th>Baire monad</th>
+<td><a class="existingWikiWord" href="../../../../../3/7/9/2/2973/content.html">Weakly Hausdorff</a> quotients of countably-based <a class="existingWikiWord" href="../../../../../4/7/3/0/374/content.html">topological spaces</a></td>
+<td><a class="existingWikiWord" href="../../../../../2/3/5/0/20532/content.html">Baire measures</a></td>
+<td>topology induced by cartesian closedness</td>
+<td>Full characterization unknown</td>
+<td><a class="existingWikiWord" href="content.html#KP24">K-P '24</a></td>
+</tr>
+<tr>
+<th>Riesz monad</th>
+<td><a class="existingWikiWord" href="../../../../../0/1/9/0/910/content.html">compactly generated</a> <a class="existingWikiWord" href="../../../../../3/7/9/2/2973/content.html">weakly Hausdorff topological spaces</a></td>
+<td><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+<semantics>
+<mrow>
+<mi>k</mi>
+</mrow>
+<annotation encoding="application/x-tex">k</annotation>
+</semantics>
+</math>-regular probability measures</td>
+<td>topology induced by cartesian closedness</td>
+<td>Full characterization unknown</td>
+<td><a class="existingWikiWord" href="content.html#KP24">K-P '24</a></td>
+</tr>
+</table>
+<p>(…to be expanded…)</p>
+</div>
+<h2 id="see_also">See also</h2>
+<ul>
+<li><a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>, <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebra over a monad</a>, <a class="existingWikiWord" href="../../../../../6/0/0/2/2006/content.html">Kleisli category</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/5/0/1/21050/content.html">commutative monad</a>, <a class="existingWikiWord" href="../../../../../0/3/5/4/24530/content.html">affine monad</a></li>
+<li><a class="existingWikiWord" href="../../../../../0/8/3/8/8380/content.html">monad (in computer science)</a></li>
+<li><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a>, <a class="existingWikiWord" href="../../../../../9/6/4/6/26469/content.html">Markov kernel</a>, <a class="existingWikiWord" href="../../../../../1/6/5/6/26561/content.html">Stoch</a></li>
+<li><a class="existingWikiWord" href="../../../../../2/6/5/6/26562/content.html">categorical probability</a>, <a class="existingWikiWord" href="../../../../../0/9/0/1/21090/content.html">Markov category</a></li>
+<li><a class="existingWikiWord" href="../../../../../2/9/5/6/26592/content.html">joint and marginal distributions</a></li>
+<li><a class="existingWikiWord" href="../../../../../1/2/0/4/4021/content.html">probability theory</a>, <a class="existingWikiWord" href="../../../../../2/8/9/1/1982/content.html">measure theory</a></li>
+<li><a class="existingWikiWord" href="../../../../../2/5/0/0/20052/content.html">valuation (measure theory)</a></li>
+<li><a class="existingWikiWord" href="../../../../../4/2/2/9/9224/content.html">expectation value</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li id="Lawvere62">
+<p><a class="existingWikiWord" href="../../../../../3/6/5/1/1563/content.html">William Lawvere</a>: <em>The category of probabilistic mappings</em>, (formerly) classified appendix obtained by <a class="existingWikiWord" href="../../../../7/7/4/4778/content.html">Gian-Carlo Rota</a> (1962) [<a class="existingWikiWord" href="/nlab/files/Lawvere-ProbMappings.pdf" title="pdf">pdf</a>]</p>
+<p>posthumously retyped as:</p>
+<p id="Lawvere62b"> <a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a> (ed.): <em>The Category of Probabilistic Mappings With Applications to Stochastic Processes, Statistics, and Pattern Recognition</em>, including abstract and commentary added by Lawvere in 2020, <a href="https://lawverearchives.com">Lawvere Archive</a> (2025) [<a href="https://lawverearchives.com/wp-content/uploads/2025/07/1962.probmap.pdf">pdf</a>]</p>
+</li>
+<li id="Giry80">
+<p>Michèle Giry, <em>A categorical approach to probability theory</em>, Categorical aspects of topology and analysis (Ottawa, Ont., 1980), pp. 68–85, Lecture Notes in Math. <strong>915</strong> Springer 1982.</p>
+</li>
+<li id="swirszcz">
+<p>T. Swirszcz, <em>Monadic functors and convexity</em>, Bulletin de l’Academie Polonaise des Sciences 22, 1974 (<a href="https://www.fuw.edu.pl/~kostecki/scans/swirszcz1974.pdf">pdf</a>)</p>
+</li>
+<li id="radonkeimel">
+<p><a class="existingWikiWord" href="../../../../../6/0/4/6/26406/content.html">Klaus Keimel</a>, <em>The monad of probability measures over compact ordered spaces and its Eilenberg-Moore algebras</em>, Topology and its Applications, 2008 (<a href="https://doi.org/10.1016/j.topol.2008.07.002">doi:10.1016/j.topol.2008.07.002</a>)</p>
+</li>
+<li id="Heckmann96">
+<p>Reinhold Heckmann, <em>Spaces of valuations</em>, Papers on General Topology and Ap-plications, 1996 (<a href="https://doi.org/10.1111/j.1749-6632.1996.tb49168.x">doi:10.1111/j.1749-6632.1996.tb49168.x</a>,<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.45.5845&amp;rep=rep1&amp;type=pdf">pdf</a>)</p>
+</li>
+<li id="jung">
+<p>Mauricio Alvarez-Manilla, Achim Jung, <a class="existingWikiWord" href="../../../../../6/0/4/6/26406/content.html">Klaus Keimel</a>, <em>The probabilistic powerdomain for stably compact spaces</em>, Theoretical Computer Science 328, 2004. <a href="https://www.sciencedirect.com/science/article/pii/S0304397504004074">Link here</a>.</p>
+</li>
+<li id="jonesplotkin">
+<p>C. Jones and <a class="existingWikiWord" href="../../../../../2/9/3/8/8392/content.html">Gordon D. Plotkin</a>, <em>A probabilistic powerdomain of evaluations</em>, LICS 4, 1989. (<a href="https://doi.org/10.1109/LICS.1989.39173">doi:10.1109/LICS.1989.39173</a>)</p>
+</li>
+<li id="algebras">
+<p><a class="existingWikiWord" href="../../../../../4/8/0/6/26084/content.html">Jean Goubault-Larrecq</a> and Xiaodong Jia, <em>Algebras of the extended probabilistic powerdomain monad</em>, ENTCS 345, 2019</p>
+<p>(<a href="https://doi.org/10.1016/j.entcs.2019.07.015">doi:10.1016/j.entcs.2019.07.015</a>)</p>
+</li>
+<li id="support">
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a>, <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a> and Sharwin Rezagholi, <em>Probability, valuations, hyperspace: Three monads on Top and the support as a morphism</em>, Mathematical Constructions in Computer Science 31(8), 2021. <a href="https://arxiv.org/abs/1910.03752">arXiv</a>.</p>
+</li>
+<li id="vmonad">
+<p><a class="existingWikiWord" href="../../../../../0/8/3/0/10380/content.html">Steve Vickers</a>, <em>A monad of valuation locales</em>, 2011. <a href="https://www.cs.bham.ac.uk/~sjv/Riesz.pdf">PDF</a>.</p>
+</li>
+<li id="vanbreugel">
+<p>Franck van Breugel, <em>The metric monad for probabilistic nondeterminism</em>, unpublished, 2005. (<a href="http://www.cse.yorku.ca/~franck/research/drafts/monad.pdf">pdf</a>)</p>
+</li>
+<li id="kantorovich19">
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a> and <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>A probability monad as the colimit of spaces of finite samples</em>, Theory and Applications of Categories 34, 2019. (<a href="http://www.tac.mta.ca/tac/volumes/34/7/34-07.pdf">pdf</a>)</p>
+</li>
+<li id="orderedkantorovich">
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a> and <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Stochastic order on metric spaces and the ordered Kantorovich monad</em>, Advances in Mathematics 366, 2020. (<a href="https://arxiv.org/abs/1808.09898">arXiv:1808.09898</a>)</p>
+</li>
+<li id="jacobs">
+<p><a class="existingWikiWord" href="../../../../../7/9/9/4/4997/content.html">Bart Jacobs</a>, <em>From probability monads to commutative effectuses</em>, Journal of Logical and Algebraic Methods in Programming 94, 2018.</p>
+<p>(<a href="https://doi.org/10.1016/j.jlamp.2016.11.006">doi:10.1016/j.jlamp.2016.11.006</a>)</p>
+</li>
+<li id="fritzconvex">
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a>, <em>Convex spaces I: definitions and examples</em>, 2009. (<a href="https://arxiv.org/abs/0903.5522">arXiv:0903.5522</a>)</p>
+</li>
+<li id="QBS">
+<p><a class="existingWikiWord" href="../../../../../7/2/0/5/5027/content.html">Chris Heunen</a>, <a class="existingWikiWord" href="../../../../../9/4/7/7/27749/content.html">Ohad Kammar</a>, <a class="existingWikiWord" href="../../../../../2/0/7/7/17702/content.html">Sam Staton</a> and Hongseok Yang, <em>A convenient category for higher-order probability theory</em>, Proceedings of LICS 2017. (<a href="https://arxiv.org/abs/1701.02547">arXiv</a>)</p>
+</li>
+<li>
+<p><span class="newWikiWord">Sean Moss<a href="/nlab/new/Sean+Moss">?</a></span>, <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Probability monads with submonads of deterministic states</em>, LICS 2022. (<a href="https://arxiv.org/abs/2204.07003">arXiv:2204.07003</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a>, Tomáš Gonda, <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, Eigil Fjeldgren Rischel, <em>Representable Markov categories and comparison of statistical experiments in categorical probability</em>, Theoretical Computer Science 961, 2023. (<a href="https://arxiv.org/abs/2010.07416">arXiv:2010.07416</a>)</p>
+</li>
+<li id="KP24">
+<p>Peter Kristel, Benedikt Peterseim, <em>A topologically enriched probability monad on the cartesian closed category of CGWH spaces</em>. (<a href="https://arxiv.org/abs/2404.08430">arXiv</a>)</p>
+</li>
+</ul>
+<p>An account in terms of <a class="existingWikiWord" href="../../../../../9/8/1/7/7189/content.html">codensity monads</a> in:</p>
+<ul>
+<li>Ruben Van Belle, <em>Probability monads as codensity monads</em>. Theory and Applications of Categories 38 (2022), 811–842, (<a href="http://tac.mta.ca/tac/volumes/38/21/38-21abs.html">tac</a>)</li>
+</ul>
+<p>An introduction to some of the concepts can be also found in:</p>
+<ul>
+<li id="notesperrone">
+<p><a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Notes on Category Theory with examples from basic mathematics</em>, Chapter 5. (<a href="http://arxiv.org/abs/1912.10642">arXiv</a>)</p>
+</li>
+<li id="thesisperrone">
+<p><a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Categorical probability and stochastic dominance in metric spaces</em>, PhD thesis, Chapter 1. (<a href="http://www.paoloperrone.org/phdthesis.pdf">pdf</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../9/8/8/8898/content.html">Tobias Fritz</a> and <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Monads, partial evaluations, and rewriting</em>, MFPS 36, 2020 - Section 6. (<a href="https://arxiv.org/abs/1810.06037">arXiv</a>)</p>
+</li>
+</ul>
+<p>and in the following video lectures:</p>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/1/8/8/18815/content.html">Arthur Parzygnat</a>, <em>Categorical probability</em>, video playlist. (<a href="https://www.youtube.com/playlist?list=PLSx1kJDjrLRSKKHj4zetTZ45pVnGCRN80">YouTube</a>)</p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>What is a probability monad?</em>, tutorial. (<a href="https://youtu.be/3Da88Tgw_rM">YouTube</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

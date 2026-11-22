@@ -1,0 +1,405 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      Radon monad in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      Radon monad
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#spaces_of_radon_measures">Spaces of Radon measures</a></li>
+<ul>
+<li><a href="#in_terms_of_additive_measures">In terms of τ-additive measures</a></li>
+<li><a href="#in_terms_of_valuations">In terms of valuations</a></li>
+</ul>
+<li><a href="#functoriality_unit_and_multiplication">Functoriality, unit and multiplication</a></li>
+<li><a href="#algebras">Algebras</a></li>
+<li><a href="#the_ordered_case">The ordered case</a></li>
+<ul>
+<li><a href="#construction_of_the_spaces">Construction of the spaces</a></li>
+<li><a href="#algebras_2">Algebras</a></li>
+<li><a href="#lax_morphisms_are_concave_maps">Lax morphisms are concave maps</a></li>
+</ul>
+<li><a href="#see_also">See also</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>The Radon monad is a <a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">measure monad</a> on the <a class="existingWikiWord" href="../../../../../1/1/1/0/111/content.html">category</a> of <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff spaces</a>. Its functor assigns to each space <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> the space of <a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon</a> <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability</a> or subprobability <a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">measures</a>, equipped with the <a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">weak topology</a>.</p>
+<p>There is also an <a class="existingWikiWord" href="../../../../3/8/2/2832/content.html">ordered</a> version of the Radon monad on the category of <a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html">compact ordered spaces</a> (see <a href="#the_ordered_case">below</a>).</p>
+<h2 id="spaces_of_radon_measures">Spaces of Radon measures</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff space</a>. Denote by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">R X</annotation></semantics></math> the set of those <a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon measures</a> on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math> which are <em>subnormalized</em>, i.e. those measures <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math> for which <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\mu(X)\le 1</annotation></semantics></math>. Denote by <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> its subset of Radon <a class="existingWikiWord" href="../../../../../3/2/0/6/6023/content.html">probability measures</a>.</p>
+<p>Equip both sets with the <a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">topology of weak convergence</a> with respect to <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous functions</a>. It is well known that the resulting spaces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">R X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> are themselves <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff spaces</a>.</p>
+<h3 id="in_terms_of_additive_measures">In terms of τ-additive measures</h3>
+<p>Since <a class="existingWikiWord" href="../../../../../3/5/0/0/20053/content.html#relationship_with_other_measuretheoretical_notions">on compact Hausdorff spaces Radon and τ-additive measures coincide</a>, we can equivalently define <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">R X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> as the sets of subnormalized and normalized <a class="existingWikiWord" href="../../../../../3/5/0/0/20053/content.html">τ-additive measures</a>.</p>
+<p>For probability measures, the <a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">weak topology</a> and the <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html#the_measure_monad_on_top">A-topology</a> coincide, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> an be extended to the <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html#the_probability_monad_on_top">probability monad on Top</a>.</p>
+<p>The same cannot be said for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, since the weak topology and the A-topology do not coincide for <em>subnormalized</em> measures: given <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>∈</mo><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\mu\in R X</annotation></semantics></math>, the measure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>μ</mi></mrow><annotation encoding="application/x-tex">r \mu</annotation></semantics></math> for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>r</mi><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 \le r \le 1</annotation></semantics></math> is in the <a class="existingWikiWord" href="../../../../../9/8/9/8/8989/content.html">closure</a> of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math> for the <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>-topology, while the weak topology is <a class="existingWikiWord" href="../../../../../4/7/4/1/1474/content.html">Hausdorff</a>.</p>
+<h3 id="in_terms_of_valuations">In terms of valuations</h3>
+<p>Note that, since every <a class="existingWikiWord" href="../../../../5/0/0/20052/content.html">continuous valuation</a> on a <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff space</a> can be <a class="existingWikiWord" href="../../../../5/0/0/20052/content.html#extending_valuations_to_measures">extended to a τ-additive measure</a>, we could equivalently defined the Radon monad as a monad of <a class="existingWikiWord" href="../../../../5/0/0/20052/content.html">continuous valuations</a>.</p>
+<p>Just as above, for probability measures, the <a class="existingWikiWord" href="../../../../../7/7/0/5/5077/content.html">weak topology</a> and the <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html#spaces_of_valuations">pointwise topology of valuations</a> coincide, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> an be extended to a submonad of the <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html">extended probabilistic powerdomain</a> on <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a>. Again, the same cannot be said for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>.</p>
+<h2 id="functoriality_unit_and_multiplication">Functoriality, unit and multiplication</h2>
+<p>Let <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f:X\to Y</annotation></semantics></math> be a <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous map</a> between <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff spaces</a>. The <a class="existingWikiWord" href="../../../../8/9/8/18982/content.html">pushforward of measures</a> (or equivalently of <a class="existingWikiWord" href="../../../../5/0/0/20052/content.html#pushforward">valuations</a>) gives a well-defined, continuous map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>X</mi><mo>→</mo><mi>R</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">R X\to R Y</annotation></semantics></math> which restricts to the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi><mo>→</mo><mi>P</mi><mi>Y</mi></mrow><annotation encoding="application/x-tex">P X \to P Y</annotation></semantics></math>. This makes <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/6/5/0/569/content.html">endofunctors</a> of <a class="existingWikiWord" href="../../../../../4/3/1/0/134/content.html">Top</a>.</p>
+<p>As it is usual for <a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">measure monads</a>, the unit is given by the <a class="existingWikiWord" href="../../../../../9/7/7/0/20779/content.html">Dirac measures</a> and the multiplication is given by <a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integration</a>.</p>
+<p>More in detail, given a <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, we can assign to each <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">x\in X</annotation></semantics></math> its <a class="existingWikiWord" href="../../../../../9/7/7/0/20779/content.html">Dirac measure</a> (equivalently, <a class="existingWikiWord" href="../../../../5/0/0/20052/content.html#dirac_valuations">Dirac valuation</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi> <mi>x</mi></msub></mrow><annotation encoding="application/x-tex">\delta_x</annotation></semantics></math>. The assignment <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\delta:X\to P X</annotation></semantics></math>, or <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">X\to R X</annotation></semantics></math> is continuous, and <a class="existingWikiWord" href="../../../../2/1/0/122/content.html">natural</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>.</p>
+<p>Just as well, given a measure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>∈</mo><mi>P</mi><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">\mu\in P P X</annotation></semantics></math>, we can define the measure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>μ</mi><mo>∈</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">E\mu\in P X</annotation></semantics></math> as the one assigning to a measurable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>⊆</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">A\subseteq X</annotation></semantics></math> the number</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>μ</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>≔</mo><msub><mo>∫</mo> <mrow><mi>P</mi><mi>X</mi></mrow></msub><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>d</mi><mi>μ</mi><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+E\mu(A) \coloneqq \int_{P X} p(A) \,d\mu(p).
+
+</annotation></semantics></math></div>
+<p>(In terms of valuations, the same is given for <a class="existingWikiWord" href="../../../../../1/2/7/3/3721/content.html">open sets</a> instead of <a class="existingWikiWord" href="../../../../../7/8/1/7/7187/content.html">measurable sets</a>.) Again, the assignment <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>:</mo><mi>P</mi><mi>P</mi><mi>X</mi><mo>→</mo><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">E: P P X \to P X</annotation></semantics></math> is continuous and <a class="existingWikiWord" href="../../../../2/1/0/122/content.html">natural</a> in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>. The multiplication for <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is defined analogously.</p>
+<p>The unit and multiplication thus defined satisfy the usual <a class="existingWikiWord" href="../../../../2/9/5/5922/content.html">axioms</a> of a <a class="existingWikiWord" href="../../../../../5/5/2/0/255/content.html">monad</a>. The monads <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> are both known in the literature as the <strong>Radon monad</strong>.</p>
+<p>The monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is the restriction to <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff spaces</a> of the <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html#the_probability_monad_on_top">probability monad on Top</a>, which is itself a submonad of the <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html">extended probabilistic powerdomain</a>. (See also <a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">monads of probability, measures, and valuations</a>.)</p>
+<h2 id="algebras">Algebras</h2>
+<p>The <a class="existingWikiWord" href="../../../../../7/6/0/1/21067/content.html">algebras</a> of the Radon monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> are <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../3/4/9/4/4943/content.html">convex subsets</a> of <a class="existingWikiWord" href="../../../../../7/9/1/2/2197/content.html">locally convex topological vector spaces</a>.</p>
+<p>More in detail, a compact convex subset <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> of a locally convex topological vector space is a <a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff space</a>, and it admits a canonical <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>-algebra structure <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>:</mo><mi>P</mi><mi>C</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">e:P C\to C</annotation></semantics></math> via (vector-valued) <a class="existingWikiWord" href="../../../../../1/5/6/7/7651/content.html">integration</a>:</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>↦</mo><msub><mo>∫</mo> <mi>C</mi></msub><mi>c</mi><mspace width="thinmathspace"></mspace><mi>dp</mi><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+p \mapsto \int_{C} c \,dp(c) .
+
+</annotation></semantics></math></div>
+<p>Since the space is <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a>, the integral above is well-defined, and it returns an element of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> which we can view as the “center of mass” of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math>.</p>
+<p>Conversely, it can be proven that every <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>-algebra is of this form.</p>
+<p>The <a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">morphisms of algebras</a> are the continuous maps between algebras which commute with the operation of taking integrals. It can be shown that these coincide with the <em>affine</em> maps, i.e. those maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> which satisfy</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mspace width="thinmathspace"></mspace><mi>a</mi><mo>+</mo><mi>μ</mi><mspace width="thinmathspace"></mspace><mi>b</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>=</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>μ</mi><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+f\big( \lambda\, a + \mu\, b  \big) \;=\; \lambda\,f(a) + \mu\,f(b)
+
+</annotation></semantics></math></div>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">a,b\in A</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>λ</mi><mo>,</mo><mi>μ</mi><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0\le\lambda,\mu\le 1</annotation></semantics></math> (with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>+</mo><mi>μ</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\lambda+\mu=1</annotation></semantics></math> for the normalized case).</p>
+<p>For more information, see <a href="#swirszcz">Swirszcz ‘74</a> and the later <a href="#radonkeimel">Keimel ‘08</a>.</p>
+<p>The expectation map on <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>∞</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, \infty]</annotation></semantics></math> is <em>not</em> a Radon monad algebra, although it is a <a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a> algebra. This is because <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>∞</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, \infty]</annotation></semantics></math> is not a convex subset of any topological vector space, which causes the expectation map to not be continuous. To see this, consider the sequence of Radon measures $<math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi> <mi>n</mi></msub><mo>:</mo><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo stretchy="false">)</mo><msub><mi>δ</mi> <mn>0</mn></msub><mo>+</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msub><mi>δ</mi> <mrow><msup><mi>n</mi> <mn>2</mn></msup></mrow></msub></mrow><annotation encoding="application/x-tex">r_n := (1 -\frac{1}{n})\delta_0 + \frac{1}{n} \delta_{n^2}</annotation></semantics></math>$. Note that the expectation of the limit, and limit of the expectations are not equal.</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><mo stretchy="false">(</mo><munder><mi>lim</mi> <mrow><mi>n</mi><mo>→</mo><mn>∞</mn></mrow></munder><msub><mi>r</mi> <mi>n</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>𝔼</mi><mo stretchy="false">(</mo><msub><mi>δ</mi> <mn>0</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\mathbb{E}(\lim_{n \to \infty} r_n) = \mathbb{E}(\delta_0) = 0</annotation></semantics></math></div><div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi>lim</mi> <mrow><mi>n</mi><mo>→</mo><mn>∞</mn></mrow></munder><mi>𝔼</mi><mo stretchy="false">(</mo><msub><mi>r</mi> <mi>n</mi></msub><mo stretchy="false">)</mo><mo>=</mo><munder><mi>lim</mi> <mrow><mi>n</mi><mo>→</mo><mn>∞</mn></mrow></munder><mi>n</mi><mo>=</mo><mn>∞</mn></mrow><annotation encoding="application/x-tex">\lim_{n \to \infty}\mathbb{E}(r_n) = \lim_{n \to \infty} n = \infty </annotation></semantics></math></div>
+<p>Therefore the map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi></mrow><annotation encoding="application/x-tex">\mathbb{E}</annotation></semantics></math> is not continuous, although it is measurable.</p>
+<h2 id="the_ordered_case">The ordered case</h2>
+<p>The Radon monad can be lifted to the <a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html#categories_of_compact_ordered_spaces">category of compact ordered spaces</a> (and <a class="existingWikiWord" href="../../../../../0/2/1/2/2120/content.html">continuous</a> <a class="existingWikiWord" href="../../../../../7/7/0/2/2077/content.html">monotone maps</a>). This is done by means of the <a class="existingWikiWord" href="../../../../../8/4/7/0/20748/content.html">stochastic order</a>.</p>
+<p>Here we sketch the construction. For more details, see <a href="#radonkeimel">Keimel ‘08</a>.</p>
+<h3 id="construction_of_the_spaces">Construction of the spaces</h3>
+<p>Given a <a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html">compact ordered space</a> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math>, we can form the spaces <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">R X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> as for the unordered case, and then equip them with the <a class="existingWikiWord" href="../../../../../8/4/7/0/20748/content.html">stochastic order</a>. Over compact ordered spaces, the stochastic order is antisymmetric (i.e. it is a partial order), and it has <span class="newWikiWord">closed graph<a href="/nlab/new/closed+graph">?</a></span>, so that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">R X</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">P X</annotation></semantics></math> are again compact ordered spaces.</p>
+<p>Given a monotone map <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f:X\to Y</annotation></semantics></math>, the maps <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">R f</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">P f</annotation></semantics></math> are monotone for the stochastic order, and so are the monad structure maps. This way, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> lift to a monad on <a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html#categories_of_compact_ordered_spaces">CompOrd</a>.</p>
+<p>For the canonical <a class="existingWikiWord" href="../../../../../8/3/8/0/838/content.html">locally posetal 2-category</a> structure of <a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html#categories_of_compact_ordered_spaces">CompOrd</a> given by the <a class="existingWikiWord" href="../../../../../9/4/7/0/20749/content.html">pointwise order</a>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> are even <a class="existingWikiWord" href="../../../../../0/9/5/1/1590/content.html">2-monads</a>, since whenever <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>≤</mo><mi>g</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f\le g:X\to Y</annotation></semantics></math>, we have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>f</mi><mo>≤</mo><mi>R</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">R f\le R g</annotation></semantics></math> <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>f</mi><mo>≤</mo><mi>P</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">P f\le P g</annotation></semantics></math>.</p>
+<p>Both the resulting monads are known in the literature as <strong>ordered Radon monad</strong>.</p>
+<h3 id="algebras_2">Algebras</h3>
+<p>The algebras of the ordered Radon monad <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> are known to be <a class="existingWikiWord" href="../../../../../7/6/4/1/1467/content.html">compact</a> <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex</a> subsets of <a class="existingWikiWord" href="../../../../../7/9/1/2/2197/content.html">locally convex</a> <span class="newWikiWord">ordered topological vector spaces<a href="/nlab/new/ordered+topological+vector+spaces">?</a></span>. This can be seen as the ordered equivalent of the characterization <a href="#algebras">above</a>.</p>
+<p>The algebras of <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math>, similarly, can be seen as the ordered equivalent of <span class="newWikiWord">Kegelspitze<a href="/nlab/new/Kegelspitze">?</a></span>.</p>
+<p>See <a href="#radonkeimel">Keimel ‘08</a> for more.</p>
+<p>Just as for the unordered case, the <a class="existingWikiWord" href="../../../../../4/0/0/2/2004/content.html">algebra morphisms</a> are the continuous affine maps, which here are also required to be monotone.</p>
+<h3 id="lax_morphisms_are_concave_maps">Lax morphisms are concave maps</h3>
+<p>Differently from the unordered case, in the ordered setting we have a <a class="existingWikiWord" href="../../../../../3/7/3/0/373/content.html">2-category</a>, and so it makes sense to talk about <a class="existingWikiWord" href="../../../../../4/3/6/6/6634/content.html">lax morphisms</a> of algebras. By definition, these amount to maps between algebras <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">f:A\to B</annotation></semantics></math> with the <a class="existingWikiWord" href="../../../../../3/1/0/1/1013/content.html">property</a> that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mrow><mo>(</mo><mo>∫</mo><mi>a</mi><mspace width="thinmathspace"></mspace><mi>dp</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>)</mo></mrow><mspace width="thickmathspace"></mspace><mo>≤</mo><mspace width="thickmathspace"></mspace><mo>∫</mo><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mspace width="thinmathspace"></mspace><mi>dp</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+f \left( \int a \, dp(a) \right) \;\le\; \int f(a) \, dp(a)
+
+</annotation></semantics></math></div>
+<p>for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∈</mo><mi>P</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">p\in P A</annotation></semantics></math> (resp. <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">R A</annotation></semantics></math>).</p>
+<p>By the generalized <span class="newWikiWord">Jensen's inequality<a href="/nlab/new/Jensen%27s+inequality">?</a></span>, these are precisely the (continuous, monotone) <a class="existingWikiWord" href="../../../../../4/3/5/0/10534/content.html">concave maps</a>, i.e. the maps that satisfy</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo maxsize="1.2em" minsize="1.2em">(</mo><mi>λ</mi><mspace width="thinmathspace"></mspace><mi>a</mi><mo>+</mo><mi>μ</mi><mspace width="thinmathspace"></mspace><mi>b</mi><mo maxsize="1.2em" minsize="1.2em">)</mo><mspace width="thickmathspace"></mspace><mo>≤</mo><mspace width="thickmathspace"></mspace><mi>λ</mi><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>μ</mi><mspace width="thinmathspace"></mspace><mi>f</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">
+f\big( \lambda\, a + \mu\, b  \big) \;\le\; \lambda\,f(a) + \mu\,f(b) .
+
+</annotation></semantics></math></div>
+<p>(Compare with the strict case by replacing the order with equalities.)</p>
+<p>Just as well, the oplax morphisms are the (continuous, monotone) <a class="existingWikiWord" href="../../../../../4/3/5/0/10534/content.html">convex maps</a>.</p>
+<p>(For more information see the analogous discussion for the <a class="existingWikiWord" href="../../../../../8/7/7/0/20778/content.html">Kantorovich monad</a> in <a href="#orderedkantorovich">F-P ‘18</a>.)</p>
+<h2 id="see_also">See also</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../8/2/7/0/20728/content.html">monads of probability, measures, and valuations</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../9/4/7/9/9749/content.html">Giry monad</a>, <a class="existingWikiWord" href="../../../../6/7/0/20762/content.html">extended probabilistic powerdomain</a>, <a class="existingWikiWord" href="../../../../../8/7/7/0/20778/content.html">Kantorovich monad</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../7/9/1/2/2197/content.html">locally convex topological vector space</a>, <span class="newWikiWord">ordered vector space<a href="/nlab/new/ordered+vector+space">?</a></span>, <a class="existingWikiWord" href="../../../../../3/3/3/2/2333/content.html">convex space</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../../5/2/0/2/2025/content.html">compact Hausdorff space</a>, <a class="existingWikiWord" href="../../../../../1/7/7/0/20771/content.html">compact ordered space</a>, <a class="existingWikiWord" href="../../../../../9/6/7/0/20769/content.html">stably compact space</a></p>
+</li>
+<li>
+<p><a class="existingWikiWord" href="../../../../4/5/0/20542/content.html">Borel measure</a>, <a class="existingWikiWord" href="../../../../../4/4/1/6/6144/content.html">Radon measure</a>, <a class="existingWikiWord" href="../../../../../3/5/0/0/20053/content.html">τ-additive measure</a>, <a class="existingWikiWord" href="../../../../5/0/0/20052/content.html">continuous valuation</a></p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li id="swirszcz">
+<p>T. Swirszcz, <em>Monadic functors and convexity</em>, Bulletin de l’Academie Polonais des Sciences 22, 1974 (<a href="https://www.fuw.edu.pl/~kostecki/scans/swirszcz1974.pdf">pdf</a>)</p>
+</li>
+<li id="radonkeimel">
+<p><a class="existingWikiWord" href="../../../../../6/0/4/6/26406/content.html">Klaus Keimel</a>, <em>The monad of probability measures over compact ordered spaces and its Eilenberg-Moore algebras</em>, Topology and its Applications, 2008 (<a href="https://doi.org/10.1016/j.topol.2008.07.002">doi:10.1016/j.topol.2008.07.002</a>)</p>
+</li>
+<li id="orderedkantorovich">
+<p><a class="existingWikiWord" href="../../../../../8/9/8/8/8898/content.html">Tobias Fritz</a> and <a class="existingWikiWord" href="../../../../../1/9/0/1/21091/content.html">Paolo Perrone</a>, <em>Stochastic order on metric spaces and the ordered Kantorovich monad</em>, Advances in Mathematics 366, 2020. (<a href="https://arxiv.org/abs/1808.09898">arXiv:1808.09898</a>)</p>
+</li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>

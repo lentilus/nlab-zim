@@ -1,0 +1,454 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg-flat.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+      pure type system in nLab
+  </title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="index,follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style type="text/css">
+    h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+      color: #226622;
+    }
+    a:visited.existingWikiWord {
+      color: #164416;
+    }
+    
+    
+  </style>
+<style type="text/css"><!--/*--><![CDATA[/*><!--*/
+    .toc ul {margin: 0; padding: 0;}
+.toc ul ul {margin: 0; padding: 0 0 0 10px;}
+.toc li > p {margin: 0}
+.toc ul li {list-style-type: none; position: relative;}
+.toc div {border-top:1px dotted #ccc;}
+.rightHandSide h2 {font-size: 1.5em;color:#008B26}
+table.plaintable {
+    border-collapse:collapse;
+    margin-left:30px;
+    border:0;
+}
+.plaintable td {border:1px solid #000; padding: 3px;}
+.plaintable th {padding: 3px;}
+.plaintable caption {
+    font-weight: bold;
+    font-size:1.1em;
+    text-align:center;
+    margin-left:30px;
+}
+    
+   
+/* Query boxes for questioning and answering mechanism */
+div.query{
+background: #f6fff3;
+border: solid #ce9;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+max-height: 20em;
+overflow: auto;
+}
+
+/* Standout boxes for putting important text */
+div.standout{
+background: #fff1f1;
+border: solid black;
+border-width: 2px 1px;
+padding: 0 1em;
+margin: 0 1em;
+overflow: auto;
+}
+
+/* Icon for links to n-category arXiv documents 
+ (commented out for now i.e. disabled)
+a[href*="http://arxiv.org/"] {
+  background-image: url(../files/arXiv_icon.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 22px;
+  } */
+    
+/* Icon for links to n-category cafe posts (disabled) 
+a[href*="http://golem.ph.utexas.edu/category"] {
+  background-image: url(../files/n-cafe_5.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pdf files (disabled)
+a[href$=".pdf"] {
+  background-image: url(../files/pdficon_small.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+/* Icon for links to pages, etc. -inside- pdf files (disabled)
+a[href*=".pdf#"] {
+  background-image: url(../files/pdf_entry.gif);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+     padding-right: 25px;
+  } */
+
+a.existingWikiWord {
+color: #226622;
+}
+
+a.existingWikiWord:visited {
+color: #226622;
+}
+
+
+a.existingWikiWord[title] {
+border: 0px;
+color: #aa0505;
+text-decoration: none;
+}
+    
+a.existingWikiWord[title]:visited {
+border: 0px;
+color: #551111;
+text-decoration: none;
+}
+
+a[href^="http://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="http://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+a[href^="https://"] {
+border: 0px;
+color: #003399;
+}
+
+a[href^="https://"]:visited {
+border: 0px;
+color: #330066;
+}
+
+div.dropDown .hide {
+display: none;
+}
+
+div.dropDown:hover .hide {
+display:block;
+}
+
+div.clickDown .hide {
+display: none;
+}
+
+div.clickDown:focus {
+outline:none;
+}
+
+div.clickDown:focus .hide, div.clickDown:hover .hide {
+display: block;
+}
+
+div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+display:block;
+}
+
+div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+display:none;
+}
+
+div.clickDown .clickToReveal:after {
+content: "A(Hover to reveal, click to "hold")";
+font-size: 60%;
+}
+
+div.clickDown .clickToHide:after {
+content: "A(Click to hide)";
+font-size: 60%;
+}
+div.clickDown .clickToHide, div.clickDown .clickToReveal {
+white-space: pre-wrap;
+}
+
+.un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+margin-left: 1em;
+}
+
+span.theorem_label {
+margin-left: -1em;
+}
+.proof span.theorem_label {
+margin-left: 0em;
+}
+:target {
+    background-color: #BBBBBB;
+    border-radius: 5pt;
+}
+
+  /*]]>*/--></style>
+<link href="https://ncatlab.org/nlab/atom_with_headlines" rel="alternate" title="Atom with headlines" type="application/atom+xml"/>
+<link href="https://ncatlab.org/nlab/atom_with_content" rel="alternate" title="Atom with full content" type="application/atom+xml"/>
+<style>body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 50em; margin: 1em auto; padding: 0 1em;
+    line-height: 1.55; color: #222;
+}
+h1#pageName {
+    font-size: 2em;
+    margin-top: 0.5em;
+}
+a {
+    color: #005c19;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited {
+    color: #164416;
+}
+:target {
+    background-color: #ffffcc;
+}
+pre, code {
+    background: #f5f5f5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+pre {
+    padding: 0.5em 1em;
+    overflow-x: auto;
+}
+.maruku_toc {
+    background: #f0f4f0;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+.maruku_toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.2em 0;
+}
+.maruku_toc ul ul {
+    padding-left: 1.5em;
+}
+.maruku-equation {
+    margin: 1em 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.maruku-equation::-webkit-scrollbar {
+    display: none;
+}
+math {
+    font-size: 1.05em;
+}
+.maruku-eq-number {
+    margin-right: 0.5em; color: #666;
+}
+.num_theorem, .num_prop, .num_lemma, .num_remark, .num_example,
+.un_theorem, .un_prop, .un_lemma, .un_remark, .un_example, .proof {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #226622;
+    background: #fafafa;
+}
+.property {
+    color: #666; font-size: 0.9em; margin-top: 2em;
+}
+</style></head>
+<body>
+<div id="Container">
+<div id="Content">
+<h1 id="pageName">
+
+
+      pure type system
+  </h1>
+<div id="revision">
+<h1 id="contents">Contents</h1>
+<div class="maruku_toc">
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#definition">Definition</a></li>
+<li><a href="#examples">Examples</a></li>
+<ul>
+<li><a href="#strongly_normalizing_systems">Strongly normalizing systems</a></li>
+<ul>
+<li><a href="#intuitionistic_higherorder_logic">Intuitionistic (higher-order) logic</a></li>
+<li><a href="#lambda_cube">Lambda cube</a></li>
+<li><a href="#CalculusOfConstructions">Calculus of constructions</a></li>
+</ul>
+<li><a href="#inconsistent_systems">Inconsistent systems</a></li>
+</ul>
+<li><a href="#related_concepts">Related concepts</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="idea">Idea</h2>
+<p>In <a class="existingWikiWord" href="../../../../9/1/1/1194/content.html">type theory</a>, under a <em>pure type system</em> one understands an explicitly typed <a class="existingWikiWord" href="../../../../../8/9/9/5/5998/content.html">lambda calculus</a> using <a class="existingWikiWord" href="../../../../../5/9/2/1/1295/content.html">dependent product</a> as the type of lambda expressions: the basic idea is that</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi>b</mi><mo>:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\Gamma, x:A \vdash b:B</annotation></semantics></math></div>
+<p>implies</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Γ</mi><mo>⊢</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>b</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo><mo>.</mo></mrow><annotation encoding="application/x-tex">\Gamma \vdash (\lambda x:A . b) : (\prod x:A . B).</annotation></semantics></math></div>
+<p>In other words a <em>pure type system</em> is</p>
+<ol>
+<li>
+<p>a system of <a class="existingWikiWord" href="../../../../../1/2/4/8/8421/content.html">natural deduction</a>;</p>
+</li>
+<li>
+<p>for <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">dependent types</a>;</p>
+</li>
+<li>
+<p>and with (only) the <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product type</a> <a class="existingWikiWord" href="../../../../0/6/8/8604/content.html">formation</a> rule specified.</p>
+</li>
+</ol>
+<h2 id="definition">Definition</h2>
+<p>A <em>pure type system</em> is defined by</p>
+<ul>
+<li>
+<p>a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math> of <em>sorts</em>, all of which are constants,</p>
+</li>
+<li>
+<p>a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> of <em>axioms</em> of the form <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>:</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">c : s</annotation></semantics></math> with <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> a constant and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math> a sort,</p>
+</li>
+<li>
+<p>a set <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>↪</mo><mi>S</mi><mo>×</mo><mi>S</mi><mo>×</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">R \hookrightarrow S \times S \times S</annotation></semantics></math> of <em>rules</em>: triples <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>3</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_{1}, s_{2}, s_{3}) </annotation></semantics></math> of sorts.</p>
+<p>Rules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_{1}, s_{2}, s_{2})</annotation></semantics></math> are abbreviated as <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_{1}, s_{2})</annotation></semantics></math>.</p>
+</li>
+</ul>
+<div class="num_remark">
+<h6 id="remark">Remark</h6>
+<p>These <em>rules</em> will appear in the <a class="existingWikiWord" href="../../../../0/6/8/8604/content.html">type formation</a> rule for <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product types</a> below. They will say that for a type of sort <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">s_2</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">depending</a> on a type of sort <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">s_1</annotation></semantics></math> its dependent product is a type of sort <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>3</mn></msub></mrow><annotation encoding="application/x-tex">s_3</annotation></semantics></math>.</p>
+</div>
+<div class="num_remark">
+<h6 id="remark_2">Remark</h6>
+<p>In fact all rules <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_{1}, s_{2}, s_{2})</annotation></semantics></math> appearing in the following have <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>2</mn></msub><mo>=</mo><msub><mi>s</mi> <mn>3</mn></msub></mrow><annotation encoding="application/x-tex">s_2 = s_3</annotation></semantics></math>. So we can just as well regard <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> as a binary relation <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>↪</mo><mi>S</mi><mo>×</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">R \hookrightarrow S\times S</annotation></semantics></math> (rather than a ternary one).</p>
+</div>
+<p>From the above input data we derive the following</p>
+<ol>
+<li>
+<p>The <strong>terms</strong> of a pure type system are the following (recursive definition):</p>
+<ul>
+<li>variables and constants</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\lambda x : A . B)</annotation></semantics></math> (abstraction)</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\prod x : A . B)</annotation></semantics></math> (product)</li>
+<li><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">A B</annotation></semantics></math> (application)</li>
+</ul>
+<p>Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> is a variable and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math>, <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math> are terms. The operators <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math> and <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo></mrow><annotation encoding="application/x-tex">\prod</annotation></semantics></math> bind the variable <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math>.</p>
+</li>
+<li>
+<p>The <strong>typing of terms</strong> is inductively defined by the following rules.</p>
+<p>A typing is of the form</p>
+<div class="maruku-equation"><math class="maruku-mathml" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi> <mn>1</mn></msub><mo>:</mo><msub><mi>A</mi> <mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi> <mi>n</mi></msub><mo>:</mo><msub><mi>A</mi> <mi>n</mi></msub><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">
+  x_{1} : A_{1}, \dots, x_{n} : A_{n} \vdash A : B
+
+</annotation></semantics></math></div>
+<p>meaning that the types of the variables declared on the left induces the term <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> has type <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math>. Note that types are also terms.</p>
+<p>The order of variable declarations is significant: the declaration <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi> <mi>i</mi></msub><mo>:</mo><msub><mi>A</mi> <mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_{i} : A_{i}</annotation></semantics></math> may depend on declarations to its left.</p>
+</li>
+</ol>
+<p>The <a class="existingWikiWord" href="../../../../../1/2/4/8/8421/content.html">natural deduction</a> rules are defined to be the following, for all <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">s \in S</annotation></semantics></math> and where <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math> ranges over the set of variables.</p>
+<table><thead><tr><th>name</th><th>rule</th><th>condition</th></tr></thead><tbody><tr><td style="text-align: left;">(axioms)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⊢</mo><mi>c</mi><mo>:</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">\vdash c : s</annotation></semantics></math></td><td style="text-align: left;">if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>c</mi><mo>:</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(c : s)</annotation></semantics></math> is an axiom;</td></tr>
+<tr><td style="text-align: left;">(start)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>s</mi></mrow><mrow><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi>x</mi><mo>:</mo><mi>A</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A:s}{\Gamma, x : A \vdash x : A}</annotation></semantics></math></td><td style="text-align: left;">if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∉</mo><mi>Γ</mi></mrow><annotation encoding="application/x-tex">x \notin \Gamma</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;">(weakening)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>B</mi><mo>;</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>C</mi><mo>:</mo><mi>s</mi></mrow><mrow><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>C</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>B</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A:B; \quad \Gamma \vdash C:s}{\Gamma, x : C \vdash A : B}</annotation></semantics></math></td><td style="text-align: left;">if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∉</mo><mi>Γ</mi></mrow><annotation encoding="application/x-tex">x \notin \Gamma</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;">(product)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><msub><mi>s</mi> <mn>1</mn></msub><mo>;</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi>B</mi><mo>:</mo><msub><mi>s</mi> <mn>2</mn></msub></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mo stretchy="false">(</mo><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><msub><mi>s</mi> <mn>3</mn></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A : s_{1}; \quad \Gamma, x:A \vdash B : s_{2}}{\Gamma \vdash (\prod x:A . B) : s_{3}}</annotation></semantics></math></td><td style="text-align: left;">if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi> <mn>1</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>2</mn></msub><mo>,</mo><msub><mi>s</mi> <mn>3</mn></msub><mo stretchy="false">)</mo><mo>∈</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">(s_{1}, s_{2}, s_{3}) \in R</annotation></semantics></math>;</td></tr>
+<tr><td style="text-align: left;">(application)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>F</mi><mo>:</mo><mo stretchy="false">(</mo><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo><mo>;</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>a</mi><mo>:</mo><mi>A</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mi>Fa</mi><mo>:</mo><mi>B</mi><mo stretchy="false">[</mo><mi>x</mi><mo>:</mo><mo>=</mo><mi>a</mi><mo stretchy="false">]</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash F : (\prod x:A . B); \quad \Gamma \vdash a : A}{\Gamma \vdash Fa : B [x := a]}</annotation></semantics></math></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;">(abstraction)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>,</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>⊢</mo><mi>b</mi><mo>:</mo><mi>B</mi><mo>;</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mo stretchy="false">(</mo><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo><mo>:</mo><mi>s</mi></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>b</mi><mo stretchy="false">)</mo><mo>:</mo><mo stretchy="false">(</mo><mo lspace="thinmathspace" rspace="thinmathspace">∏</mo><mi>x</mi><mo>:</mo><mi>A</mi><mo>.</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma, x:A \vdash b : B; \quad \Gamma \vdash (\prod x:A . B) : s}{\Gamma \vdash (\lambda x:A.b) : (\prod x:A.B)}</annotation></semantics></math></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;">(conversion)</td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>B</mi><mo>;</mo><mspace width="1em"></mspace><mi>Γ</mi><mo>⊢</mo><mi>B</mi><mo>′</mo><mo>:</mo><mi>s</mi><mo>;</mo><mspace width="1em"></mspace><mi>B</mi><msub><mo>=</mo> <mi>β</mi></msub><mi>B</mi><mo>′</mo></mrow><mrow><mi>Γ</mi><mo>⊢</mo><mi>A</mi><mo>:</mo><mi>B</mi><mo>′</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\Gamma \vdash A : B; \quad \Gamma \vdash B' : s; \quad B =_{\beta} B'}{\Gamma \vdash A : B'}</annotation></semantics></math></td><td style="text-align: left;"></td></tr>
+</tbody></table>
+<h2 id="examples">Examples</h2>
+<h3 id="strongly_normalizing_systems">Strongly normalizing systems</h3>
+<h4 id="intuitionistic_higherorder_logic">Intuitionistic (higher-order) logic</h4>
+<h4 id="lambda_cube">Lambda cube</h4>
+<p>The <em>lambda cube</em> (<a href="#Barendregt91">Barendregt 91</a>) consists of eight systems arranged in a cube. The most expressive is given by the following choice of sorts, axioms and rules:</p>
+<table><thead><tr><th>symbol</th><th>actual value</th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">S = </annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo>*</mo><mo>,</mo><mo>□</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\ast, \square\}</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">A =</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mo>*</mo><mo>:</mo><mo>□</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(\ast : \square)\}</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">R =</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>□</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>□</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>□</mo><mo>,</mo><mo>□</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(\ast, \ast), (\ast, \square), (\square, \ast), (\square, \square)\}</annotation></semantics></math></td></tr>
+</tbody></table>
+<p>(Here <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo>*</mo><mo>,</mo><mo>□</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\ast, \Box\}</annotation></semantics></math> denotes the 2-element set, see <a href="#Barendregt91">Barendregt 91, 2.1</a>)</p>
+<p>The other systems omit some of the last three rules. Some specific systems are the following:</p>
+<table><thead><tr><th>name</th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\ast, \ast)</annotation></semantics></math></th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>□</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\ast, \square)</annotation></semantics></math></th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>□</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\square, \ast)</annotation></semantics></math></th><th><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>□</mo><mo>,</mo><mo>□</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\square, \square)</annotation></semantics></math></th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>→</mo></mrow><annotation encoding="application/x-tex">\lambda\rightarrow</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../0/3/3/6/16330/content.html">simply typed lambda calculus</a></td><td style="text-align: left;">yes</td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">{\lambda}P</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../9/3/4/8/8439/content.html">logical framework</a></td><td style="text-align: left;">yes</td><td style="text-align: left;">yes</td><td style="text-align: left;"></td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\lambda2</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../7/1/5/4/24517/content.html">System F</a></td><td style="text-align: left;">yes</td><td style="text-align: left;"></td><td style="text-align: left;">yes</td><td style="text-align: left;"></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><munder><mi>ω</mi><mo>̲</mo></munder></mrow><annotation encoding="application/x-tex">\lambda\underline{\omega}</annotation></semantics></math></td><td style="text-align: left;">yes</td><td style="text-align: left;"></td><td style="text-align: left;"></td><td style="text-align: left;">yes</td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">{\lambda}C</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../2/1/6/3/3612/content.html">calculus of constructions</a></td><td style="text-align: left;">yes</td><td style="text-align: left;">yes</td><td style="text-align: left;">yes</td><td style="text-align: left;">yes</td></tr>
+</tbody></table>
+<h4 id="CalculusOfConstructions">Calculus of constructions</h4>
+<p>For instance for the <a class="existingWikiWord" href="../../../../../2/1/6/3/3612/content.html">calculus of constructions</a> we have</p>
+<ul>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">* =</annotation></semantics></math> <a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">Prop</a>, the <em><a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">type of propositions</a></em></p>
+</li>
+<li>
+<p><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>□</mo><mo>=</mo></mrow><annotation encoding="application/x-tex">\Box = </annotation></semantics></math> <a class="existingWikiWord" href="../../../../../5/4/0/7/7045/content.html">Type</a>, the <em><a class="existingWikiWord" href="../../../../../5/4/0/7/7045/content.html">type of types</a></em>.</p>
+</li>
+</ul>
+<p>The single axiom <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mo lspace="verythinmathspace">:</mo><mo>□</mo></mrow><annotation encoding="application/x-tex">* \colon \Box</annotation></semantics></math> hence says that <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Prop</mi><mo lspace="verythinmathspace">:</mo><mi>Type</mi></mrow><annotation encoding="application/x-tex">Prop \colon Type</annotation></semantics></math>, hence that <a class="existingWikiWord" href="../../../../../0/6/0/7/7060/content.html">Prop</a> is a <a class="existingWikiWord" href="../../../../../0/8/3/2/2380/content.html">type</a>.</p>
+<p>The rules express the usual rule for <a class="existingWikiWord" href="../../../../../0/1/5/7/7510/content.html">dependent product type</a>:</p>
+<ul>
+<li>
+<p>a dependent product over a generic <a class="existingWikiWord" href="../../../../../9/9/5/3/3599/content.html">dependent type</a> is itself some type;</p>
+</li>
+<li>
+<p>but the dependent product of a dependent <a class="existingWikiWord" href="../../../../../8/4/8/2/2848/content.html">proposition</a> is itself a proposition, namely the <a class="existingWikiWord" href="../../../../../8/4/9/6/6948/content.html">universal quantification</a>.</p>
+</li>
+</ul>
+<h3 id="inconsistent_systems">Inconsistent systems</h3>
+<p>The most permissive pure type system:</p>
+<table><thead><tr><th>symbol</th><th>actual value</th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">S = </annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo>*</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{\ast\}</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">A = </annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mo>*</mo><mo>:</mo><mo>*</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(\ast : \ast)\}</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">R = </annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(\ast, \ast)\}</annotation></semantics></math></td></tr>
+</tbody></table>
+<p>But there is an example with even non-circular system of axioms (System <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mstyle mathvariant="sans-serif"><mi>U</mi></mstyle> <mo>−</mo></msup></mrow><annotation encoding="application/x-tex">\mathsf{U}^-</annotation></semantics></math>):</p>
+<table><thead><tr><th>symbol</th><th>actual value</th></tr></thead><tbody><tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">S =</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo>*</mo><mo>,</mo><mo>□</mo><mo>,</mo><mo>▵</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{ \ast, \square, \triangle\}</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">A =</annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mo>*</mo><mo>:</mo><mo>□</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>□</mo><mo>:</mo><mo>▵</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(\ast : \square), (\square : \triangle)\}</annotation></semantics></math></td></tr>
+<tr><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">R = </annotation></semantics></math></td><td style="text-align: left;"><math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mo>*</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>□</mo><mo>,</mo><mo>*</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>□</mo><mo>,</mo><mo>□</mo><mo stretchy="false">)</mo><mo>,</mo><mo stretchy="false">(</mo><mo>▵</mo><mo>,</mo><mo>□</mo><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{(\ast, \ast), (\square, \ast), (\square, \square), (\triangle, \square)\}</annotation></semantics></math></td></tr>
+</tbody></table>
+<h2 id="related_concepts">Related concepts</h2>
+<ul>
+<li>
+<p><a class="existingWikiWord" href="../../../../../0/3/3/6/16330/content.html">simple type theory</a></p>
+</li>
+<li>
+<p>Pure type systems can be augmented with a <em>cumulativity</em> relation between sorts, so that if <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>1</mn></msub><mo>⪯</mo><msub><mi>s</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">s_1 \preceq s_2</annotation></semantics></math>, then any type in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>1</mn></msub></mrow><annotation encoding="application/x-tex">s_1</annotation></semantics></math> is also in <math class="maruku-mathml" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi> <mn>2</mn></msub></mrow><annotation encoding="application/x-tex">s_2</annotation></semantics></math>; see <a href="#BG05">Barras-Gregoire</a>.</p>
+</li>
+<li>
+<p>The <em><a class="existingWikiWord" href="../../../../../2/1/6/3/3612/content.html">calculus of inductive constructions</a></em> can be formulated as a particular pure type system (with a hierarchy of <a class="existingWikiWord" href="../../../../../5/4/0/7/7045/content.html">type of types</a>) augmented by rules for introducing <a class="existingWikiWord" href="../../../../../5/3/9/6/6935/content.html">inductive types</a>.</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li id="Barendregt91">
+<p>Henk Barendregt, <em>Introduction to generalized type systems</em>, J. Funct. Program. 1(2), 1991 (<a href="http://patryshev.com/books/barendregt.pdf">pdf</a>)</p>
+</li>
+<li>
+<p>Henk Barendregt (Catholic University Nijmegen), <em><span class="newWikiWord">Lambda calculi with types<a href="/nlab/new/Lambda+calculi+with+types">?</a></span></em>, To appear in <a class="existingWikiWord" href="../../../../../5/0/6/3/3605/content.html">Samson Abramsky</a>, D.M. Gabbay and T.S.E. Maibaum (eds.) <em>Handbook of Logic in Computer Science</em>, Volume II, Oxford University Press. (<a href="http://ttic.uchicago.edu/~dreyer/course/papers/barendregt.pdf">preprint pdf</a>)</p>
+</li>
+</ul>
+<p>Survey includes</p>
+<ul>
+<li>
+<p>Frade, <em>Calculus of inductive constructions</em> (<a href="http://www4.di.uminho.pt/~mjf/pub/SFV-CIC-2up.pdf">pdf</a>)</p>
+</li>
+<li id="Cody15">
+<p><a class="existingWikiWord" href="../../../../../2/6/0/7/17062/content.html">Cody Roux</a>, <em>Pure type systems: Dependents when you need them</em>, talk at Boston Haskell Meetup 2015 (<a href="http://de.slideshare.net/imalsogreg/cody-roux-pure-type-systems-boston-haskell-meetup">slides</a>,<a href="https://www.youtube.com/watch?v=ZGqKsalJi4s">video</a>)</p>
+</li>
+</ul>
+<p>A generalization to cumulativity can be found in</p>
+<ul id="BG05">
+<li>Bruno Barras and Benjamin Gregoire, <em>On the role of type decorations in the Calculus of Inductive Constructions</em>, Lecture Notes in Computer Science Volume 3634, 2005, pp 151-166, <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.61.2666&amp;rep=rep1&amp;type=pdf">PDF</a></li>
+</ul>
+</div>
+</div> <!-- Content -->
+</div> <!-- Container -->
+</body>
+</html>
