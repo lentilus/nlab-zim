@@ -1,32 +1,51 @@
 # Zim Archive of the nLab
 
-Update git submodules.
+This repository builds a ZIM archive from the nLab HTML dump. The HTML dump is
+the basis for the archive, but static links require resolving redirects
+corretly. For that purpose we build a page index from the nLab Markdown dump.
 
-Make sure the python scripts dependencies are available.
+You can just download the `nLab.zim` file, or build an updated one yourself.
+
+## Update the source
+
+Update the git submodules:
+```
+git submodule update --init --recursive
+```
+
+## Dependencies
+
+You need a `python3` installation with `beautifulsoup4`. The latter is used to
+manipulate the html source. Furthermore we need `zimwriterfs` from `zimtools`
+to build the final `zim`.
+
+If you have nix installed you can just do
 ```bash
 nix-shell -p "python3.withPackages (ps: [ ps.beautifulsoup4 ])" zim-tools
 ```
 
-We want to use the html-dump as a basis for the zim archive but in order to
-have working static links, we need to resolve redirects correctly. We can build
-a page index respecting redirects using the markdown dump of the nlab.
+## Build
+
+Run all the remaining commands from the repositories root.
+
+Build the page index, respecting redirects from the markdown dump.
 ```bash
 ./build_page_index.py ./nlab-content > page-index.csv
 ```
 
-The html dump contains a bunch of elements that we don't want/need in the
-static archive. The below line removes the unnecessary bits from the dump.
+Prepare the html for use in a reader like `Kiwix`. Do this step before fixing
+the links!
 ```
 ./clean_html.py ./nlab-content-html ./cleaned-nlab-content-html ./assets/style.css
 ```
 
-Lastly we make sure that all links resolve correctly by replacing them with the
-correct static target from the page index.
+Replace links with their correct static targets from the page index. Unresolved
+links are written to `missing.html`.
 ```
 ./fix_links.py ./cleaned-nlab-content-html page-index.csv ./missing.html
 ```
 
-Copy the favicon over.
+Copy the nlab-favicon over to the `cleaned-nlab-content-html`.
 ```
 cp ./assets/favicon.png ./cleaned-nlab-content-html/
 ```
